@@ -4,6 +4,55 @@ Omarchy is a beautiful, fun & agentic Linux distribution by DHH.
 
 Read more at [omarchy.org](https://omarchy.org).
 
+## Download
+
+Prebuilt ISOs are available on [SourceForge](https://sourceforge.net/projects/unbloarchy/files/).
+
+Download the ISO and verify its integrity:
+
+```bash
+sha256sum -c SHA256SUMS
+```
+
+## Building from Source
+
+### Prerequisites
+
+- An Arch Linux system (or another Arch-based distro)
+- Docker
+
+### Clone the repositories
+
+All three repos must be siblings in the same directory:
+
+```bash
+git clone https://github.com/Magiclovekorean/unbloarchy.git
+git clone https://github.com/omacom/omarchy-iso.git
+git clone https://github.com/omacom/omarchy-pkgs.git
+```
+
+### Build the ISO
+
+From the `omarchy-iso` directory, run the build with local source:
+
+```bash
+cd omarchy-iso
+./bin/omarchy-iso-make --local-source ../unbloarchy ../omarchy-pkgs
+```
+
+Output goes into `./release/`.
+
+### Options
+
+| Flag | Description |
+|------|-------------|
+| `--edge` | Use `omarchy-dev` and `omarchy-settings-dev` from the edge mirror |
+| `--dev` | Build against the dev package channel |
+| `--rc` | Build against the RC package channel |
+| `--no-cache` | Skip the local package cache |
+
+See the [ISO repo](https://github.com/omacom/omarchy-iso) for full documentation.
+
 ## The Omarchy Manual
 
 The manual lives in [`manual/`](manual/), which is its authoritative source. It's
