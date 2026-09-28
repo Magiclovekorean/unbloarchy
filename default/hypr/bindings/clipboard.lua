@@ -45,4 +45,4 @@ end
 o.bind("SUPER + SHIFT + C", "Universal copy", universal_clipboard_shortcut("CTRL", "C", "CTRL", "Insert"))
 o.bind("SUPER + SHIFT + V", "Universal paste", universal_clipboard_shortcut("CTRL", "V", "SHIFT", "Insert"))
 o.bind("SUPER + SHIFT + X", "Universal cut", send_shortcut_once("CTRL", "X"))
-o.bind("SUPER + V", "Clipboard manager", "omarchy-shell shell toggle omarchy.clipboard")
+o.bind("SUPER + V", "Clipboard manager", { panel = "omarchy.clipboard" })
