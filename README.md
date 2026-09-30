@@ -1,8 +1,7 @@
-# Omarchy
+# Unbloarchy
 
-Omarchy is a beautiful, fun & agentic Linux distribution by DHH.
+Unbloarchy is a beautiful, fun & agentic Linux distribution based on omarchy.
 
-Read more at [omarchy.org](https://omarchy.org).
 
 ## Download
 
@@ -56,6 +55,8 @@ See the [ISO repo](https://github.com/omacom/omarchy-iso) for full documentation
 ## The Omarchy Manual
 
 The manual lives in [`manual/`](manual/), which is its authoritative source.
+
+Read more at [omarchy.org](https://omarchy.org).
 
 - [Welcome to Omarchy!](manual/01-welcome-to-omarchy.md)
 
