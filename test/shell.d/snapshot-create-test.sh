@@ -96,8 +96,10 @@ grep -qF 'unbloarchy-snapshot create || (($? == 127))' "$ROOT/bin/unbloarchy-upd
 pass "snapshot create keeps the quiet 127 path for systems without snapper"
 
 # The quattro upgrade runs under set -e, so a failed snapshot has to be warned
-# past there too or it aborts the whole upgrade at the snapshot step.
-grep -qF 'unbloarchy-snapshot create || (($? == 127))' "$ROOT/bin/unbloarchy-upgrade-to-quattro" ||
+# past there too or it aborts the whole upgrade at the snapshot step. That script
+# snapshots before it installs the quattro packages, so it still reaches for the
+# legacy command name on purpose.
+grep -qF 'omarchy-snapshot create || (($? == 127))' "$ROOT/bin/unbloarchy-upgrade-to-quattro" ||
   fail "upgrade ignores only the missing-snapper exit code"
 grep -qF 'Continuing the upgrade without a snapshot' "$ROOT/bin/unbloarchy-upgrade-to-quattro" ||
   fail "upgrade continues past a failed snapshot instead of aborting"
