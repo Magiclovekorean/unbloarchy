@@ -15,6 +15,12 @@ else
 fi
 export UNBLOARCHY_PATH
 
+# Deprecated alias. Pre-rename software and user dotfiles still read OMARCHY_PATH,
+# so it always mirrors UNBLOARCHY_PATH. Never let the two diverge: new code reads
+# UNBLOARCHY_PATH only, and nothing should treat this as an independent input.
+OMARCHY_PATH=$UNBLOARCHY_PATH
+export OMARCHY_PATH
+
 # Only prepend in dev-link mode. On a production install, the binaries are
 # already on PATH as /usr/bin/unbloarchy-* via the unbloarchy package — prepending
 # /usr/share/unbloarchy/bin would just be noise.
