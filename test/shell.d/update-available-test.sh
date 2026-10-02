@@ -34,8 +34,8 @@ cat >"$stub_bin/pacman" <<'SH'
 case "$1" in
   -Qq)
     case "${TEST_INSTALLED_PACKAGE:-omarchy}" in
-      unbloarchy)
-        [[ $2 == "unbloarchy" ]]; exit $?
+      omarchy)
+        [[ $2 == "omarchy" ]]; exit $?
         ;;
       omarchy-dev)
         [[ $2 == "omarchy-dev" ]]; exit $?

@@ -136,7 +136,7 @@ if pkgs_root is None:
   )
   sys.exit(1)
 settings_pkgbuild_path = pkgs_root / "omarchy-settings/PKGBUILD"
-omarchy_pkgbuild_path = pkgs_root / "unbloarchy/PKGBUILD"
+omarchy_pkgbuild_path = pkgs_root / "omarchy/PKGBUILD"
 if not settings_pkgbuild_path.exists():
   settings_pkgbuild_path = pkgs_root / "omarchy-settings-dev/PKGBUILD"
 if not omarchy_pkgbuild_path.exists():

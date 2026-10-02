@@ -8,5 +8,5 @@ Target = omarchy-settings-dev
 [Action]
 Description = Reloading Hyprland after Unbloarchy settings update...
 When = PostTransaction
-Depends = unbloarchy
+Depends = omarchy
 Exec = /usr/bin/unbloarchy-hyprland-reload-guard resume

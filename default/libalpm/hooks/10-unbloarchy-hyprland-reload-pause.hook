@@ -8,5 +8,5 @@ Target = omarchy-settings-dev
 [Action]
 Description = Pausing Hyprland config auto-reload for Unbloarchy settings update...
 When = PreTransaction
-Depends = unbloarchy
+Depends = omarchy
 Exec = /usr/bin/unbloarchy-hyprland-reload-guard pause

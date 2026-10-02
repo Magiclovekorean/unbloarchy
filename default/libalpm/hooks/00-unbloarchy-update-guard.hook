@@ -6,6 +6,6 @@ Target = *
 [Action]
 Description = Checking Unbloarchy update entrypoint...
 When = PreTransaction
-Depends = unbloarchy
+Depends = omarchy
 Exec = /usr/bin/unbloarchy-update-pacman-guard
 AbortOnFail

@@ -24,7 +24,7 @@ package=""
 if pacman -Qq omarchy-dev >/dev/null 2>&1; then
   package=omarchy-dev
 elif pacman -Qq omarchy >/dev/null 2>&1; then
-  package=unbloarchy
+  package=omarchy
 fi
 
 if [[ -n $package ]]; then

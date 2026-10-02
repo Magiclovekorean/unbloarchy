@@ -11,7 +11,7 @@ stub_bin="$test_tmp/bin"
 mkdir -p "$stub_bin"
 
 # The edge channel installs omarchy-dev. Older builds did not declare
-# provides=(unbloarchy), so a query for plain unbloarchy finds nothing there.
+# provides=(omarchy), so a query for plain omarchy finds nothing there.
 cat >"$stub_bin/pacman" <<'STUB'
 #!/bin/bash
 [[ $1 == "-Q" ]] || exit 1
@@ -36,7 +36,7 @@ version() {
     "$ROOT/bin/unbloarchy-version"
 }
 
-[[ $(version unbloarchy) == "4.0.0-1" ]] || fail "version reports the stable package"
+[[ $(version omarchy) == "4.0.0-1" ]] || fail "version reports the stable package"
 pass "version reports the stable package"
 
 [[ $(version omarchy-dev) == "4.0.0-1" ]] || fail "version reports the edge package"
