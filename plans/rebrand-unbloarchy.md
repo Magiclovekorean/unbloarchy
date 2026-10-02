@@ -297,3 +297,79 @@ Phases 1-4 are the risky ones and want the most careful review, because a mistak
 2. **Background wallpapers.** 21 files at `themes/*/backgrounds/*omarchy*.webp` have branded filenames and the Omarchy logo in the image. The current decision is rename-only, which leaves the logo visible on every default background — consistent with keeping `logo.svg`, but worth confirming it is the intent rather than an oversight.
 3. **`omarchy-iso` invocation.** The ISO builder calls `omarchy-apply-system`, `omarchy-provision-user`, and `omarchy-apply-hardware` by name in the target chroot. The generated shims make this work unchanged, so forking the ISO repo is optional rather than required — but it should be a recorded decision, not an accident.
 4. **`version`.** Currently `4.0.0.alpha`, tracking upstream. Keep tracking upstream, or set an independent version such as `4.0.0-unbloarchy.1`? An independent version is the more honest signal for a fork, and `bin/unbloarchy-version-channel` and the update flow both read it.
+
+## Progress log
+
+Append-only. Newest entry last.
+
+### 2026-10-02 — Phase 0 groundwork, Phase 1-4 mass transform applied
+
+Status: Phase 0 complete. Phases 1-4 applied to the working tree but **uncommitted**, because the verification gate below could not be run.
+
+**Baseline (captured on a machine with a full FHS, not in the Nix dev sandbox):**
+
+- `./test/cli` — passing.
+- `./test/shell` — 3215 `ok`, 48 `not ok`, 36 unique failures, all attributable to missing host tooling (`jq`, `magick`, `lua`, `gio`, `socat`, `updatedb`, `docker`, `mise`). Logs in `/tmp/opencode/`.
+
+**Transform applied**
+
+- 585 tracked paths renamed; 1305 files rewritten; 773 `omarchy` occurrences remain, all reviewed as intentional.
+- Protected and left untouched: upstream packages (`omarchy`, `omarchy-settings`, `omarchy-settings-dev`, `omarchy-dev`, `omarchy-keyring`, `omarchy-nvim*`, `omarchy-emacs`, `linux-omarchy*`), upstream mirrors and `pkgs.omarchy.org` / `logs.omarchy.org`, the `omacom` GitHub org, external `oma*` commands, `logo.svg` / `icon.png` / `icon.txt` / `U+E900`, and the legacy bridge `bin/unbloarchy-upgrade-to-quattro` (only its `# unbloarchy:*` metadata header was rewritten).
+- Intentionally still spelled the old way: `test/shell.d/fixtures/legacy-icon-font/omarchy.ttf`.
+
+**Three transform bugs found in review and fixed by hand**
+
+1. `test/shell.d/config-test.sh` — the upstream `omarchy-pkgs` package directory `"unbloarchy/PKGBUILD"` → `"omarchy/PKGBUILD"`.
+2. `test/shell.d/version-test.sh` — the comment `provides=(unbloarchy)` → `provides=(omarchy)`, since that describes the upstream `omarchy-dev` package's `provides` declaration.
+3. `test/shell.d/version-test.sh` — `version unbloarchy` → `version omarchy`, matching the `pacman -Q` argument `bin/unbloarchy-version` actually passes.
+
+Root cause for all three: the throwaway transform protected `omarchy-dev` / `omarchy-settings*` but not the bare `omarchy` package name.
+
+**Phase 3 alias**
+
+`default/bash/env-bootstrap` now exports `OMARCHY_PATH` mirroring `UNBLOARCHY_PATH`, so pre-rename software still resolves the checkout without becoming a second source of truth.
+
+**Verification gate — NOT MET**
+
+`./test/cli` and `./test/shell` cannot execute in the Nix dev sandbox: `/bin` is empty (every `#!/bin/bash` fails with `bad interpreter`), and `jq`, `magick`, `lua`, `gio`, `socat`, and `/usr/lib` are absent. The suites must be run on a real target before these phases are committed. What did run here:
+
+- `bash bin/unbloarchy commands --check` — passes, 473 commands.
+- `bash bin/unbloarchy commands` — renders, 403 lines.
+- `bash -n` across all 802 bash-shebang files — clean.
+
+**Still outstanding**
+
+Phase 2 absolute `/usr/bin/unbloarchy-*` pin review, Phase 5 brand text and assets, Phase 6 documentation/attribution, Phase 7 shim generator, Phase 8 migration, Phase 9 test fixes and visual verification. Phase 7 remains externally blocked until `omarchy-pkgs` calls the generator in `prepare()`.
+
+### 2026-10-02 — Verification gate met; Phases 1-4 committed
+
+Status: the verification gate from the previous entry is now met. Phases 1-4 are committed as `c68863a7` plus seven focused follow-up commits. Phase 5-9 work is still outstanding.
+
+**Getting the suites to run**
+
+The Nix dev sandbox has no `/bin` and is missing `jq`, `magick`, `lua`, `gio`, and `socat`, so both suites used to abort on the first file. Two throwaway helpers unblocked them without touching the system: `/tmp/opencode/with-bash.sh` unshares a mount namespace and binds the Nix `bash` over `/bin`, and `/tmp/opencode/run-suite.sh` supplies the missing tools. Neither is committed.
+
+A pre-rename worktree at `/tmp/opencode/pre-rename` (from `14a8db5e`) gives a **same-sandbox** baseline, which is the only fair comparison here — the earlier full-FHS baseline counts a different set of environmental failures.
+
+**Results**
+
+- `./test/cli` — 118 `ok`, 0 `not ok`, exit 0.
+- `./test/shell` — 3156 `ok`, 40 `not ok`, exit 127, identical to the same-sandbox baseline (3156/40). All 40 remaining failures are environmental (`/usr/bin/python3`, `vercmp`, sibling `omarchy-pkgs` checkout). Per-suite assertion counts match the baseline for all 268 suites, so nothing is silently aborting.
+
+Counting per-suite assertions mattered: four suites were dying mid-file on a bare `grep` under `set -e`, which showed as a lower total rather than as a failure. Per-suite parity with the baseline is what surfaced them.
+
+**Bugs the suites found, beyond the previous entry's three**
+
+The transform protected multi-part upstream names but not the bare ones, and it skipped the legacy bridge body wholesale. Both assumptions were wrong:
+
+1. `bin/unbloarchy-update-available` assigned `package=unbloarchy`; `bin/unbloarchy-update-system-pkgs-when-conflicted` parsed the conflict report with `^unbloarchy(-dev|...)`; the three ALPM hooks declared `Depends = unbloarchy`. The Arch package is still `omarchy`, so all four were silently looking for a package that does not exist.
+2. `test/shell.d/update-available-test.sh` stubbed pacman to match the wrong name, hiding #1.
+3. The Neovim provider fixtures had been rebranded, breaking the sha256 allowlist in `migrations/1788996284.sh`. They model historical upstream bytes and are restored.
+4. **The legacy bridge was rebranded in the wrong direction.** Leaving its body alone was not the safe choice: everything it does *after* `install_unbloarchy_quattro_packages` was still calling renamed commands under old names, so the theme refresh, update steps, migrations, sleep lock, and application launchers either ran legacy binaries or matched nothing. `enable_user_unit omarchy-sleep-lock.service` was the worst of these — the unit no longer exists and the helper returns 0 on a miss, so it did nothing at all. Post-install steps now use the new commands, helpers, `/usr/share/unbloarchy` paths, and `UNBLOARCHY_*` variables. Steps that *read or remove* the old system keep their `omarchy` spelling.
+5. `preserve_kernel_cmdline_root` now checks both `unbloarchy_linux*.efi` and `omarchy_linux*.efi`. Pre-rename UKIs are still on disk and still bootable, so matching only the new name would let one boot unverified.
+
+**Three mechanically-rebranded test expectations were wrong** and are corrected to name pre-rename artifacts: the `omarchy-snapshot` call (it runs before the packages go in), the dev-link `ExecStart` string being repaired, and the stale `99-omarchy-nofile.conf` drop-in (Unbloarchy ships no nofile drop-in of its own). A fourth, `root_path`, was the reverse case: my first change added `/usr/share/omarchy/bin` to root's `PATH`, and the suite was right to reject it — that is a user-writable legacy checkout path and belongs off the root `PATH`.
+
+**Still outstanding**
+
+Phase 2 absolute `/usr/bin/unbloarchy-*` pin review, Phase 5 brand text and assets (wallpaper logos, `omarchy-iso` invocation), Phase 6 documentation and attribution (`.github/SECURITY.md`, `contributing.md`, `unbloarchy-channel-set` upstream clone), Phase 7 shim generator, Phase 8 rename migration, Phase 9 visual verification. Phase 7 stays externally blocked until `omarchy-pkgs` calls `install/helpers/generate-compat-shims.sh` from `prepare()`. Absolute zero-failure runs still need a real target; the sandbox cannot reach them.
