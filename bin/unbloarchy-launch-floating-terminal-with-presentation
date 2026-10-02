@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# unbloarchy:summary=Launch a floating terminal with the Unbloarchy presentation wrapper
+# unbloarchy:args=<command>
+
+# Export the current theme's gum styling so gum widgets match the active theme
+# even after a theme switch (the inherited environment is captured at login).
+source unbloarchy-restart-gum
+
+cmd="$*"
+# 130 is the user bailing with Ctrl-C; anything else gets the Done/Failed prompt.
+presentation_script="unbloarchy-show-logo; $cmd; code=\$?; if (( code != 130 )); then unbloarchy-show-done \$code; fi"
+
+exec setsid uwsm-app -- xdg-terminal-exec --app-id=org.unbloarchy.terminal --title=Unbloarchy -e bash -c "$presentation_script"

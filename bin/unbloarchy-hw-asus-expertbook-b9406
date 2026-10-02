@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Detect ASUS ExpertBook B9406 series laptops on Intel Panther Lake.
+
+unbloarchy-hw-match "B9406" && unbloarchy-hw-intel-ptl

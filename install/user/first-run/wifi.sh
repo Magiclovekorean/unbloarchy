@@ -1,11 +1,11 @@
 notify_update() {
-  omarchy-notification-send -u critical -g  "Update System" "Click to update the system." \
-    --exec omarchy-launch-floating-terminal-with-presentation omarchy-update
+  unbloarchy-notification-send -u critical -g  "Update System" "Click to update the system." \
+    --exec unbloarchy-launch-floating-terminal-with-presentation unbloarchy-update
 }
 
 notify_wifi() {
-  omarchy-notification-send -u critical -g 󰖩 "Setup Wi-Fi" "Click to configure the wireless network." \
-    --exec omarchy-shell shell toggle omarchy.network
+  unbloarchy-notification-send -u critical -g 󰖩 "Setup Wi-Fi" "Click to configure the wireless network." \
+    --exec unbloarchy-shell shell toggle unbloarchy.network
 }
 
 announce_network() {

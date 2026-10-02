@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# unbloarchy:summary=Overwrite all the user Hyprland Lua configs in ~/.config/hypr with the Unbloarchy defaults.
+
+unbloarchy-refresh-config hypr/.luarc.json
+unbloarchy-refresh-config hypr/autostart.lua
+unbloarchy-refresh-config hypr/bindings.lua
+unbloarchy-refresh-config hypr/input.lua
+unbloarchy-refresh-config hypr/looknfeel.lua
+unbloarchy-refresh-config hypr/hyprland.lua
+unbloarchy-refresh-config hypr/monitors.lua
+
+mkdir -p ~/.local/state/unbloarchy/toggles/hypr
+cp "$UNBLOARCHY_PATH/default/hypr/toggles/flags.lua" ~/.local/state/unbloarchy/toggles/hypr/

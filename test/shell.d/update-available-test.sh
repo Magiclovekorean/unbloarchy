@@ -34,8 +34,8 @@ cat >"$stub_bin/pacman" <<'SH'
 case "$1" in
   -Qq)
     case "${TEST_INSTALLED_PACKAGE:-omarchy}" in
-      omarchy)
-        [[ $2 == "omarchy" ]]; exit $?
+      unbloarchy)
+        [[ $2 == "unbloarchy" ]]; exit $?
         ;;
       omarchy-dev)
         [[ $2 == "omarchy-dev" ]]; exit $?
@@ -91,10 +91,10 @@ SH
 chmod +x "$stub_bin/git"
 
 run_checker() {
-  OMARCHY_PATH="${TEST_OMARCHY_PATH:-/usr/share/omarchy}" \
+  UNBLOARCHY_PATH="${TEST_UNBLOARCHY_PATH:-/usr/share/unbloarchy}" \
     TEST_GIT_LOG="$git_log" \
     PATH="$stub_bin:$PATH" \
-    "$ROOT/bin/omarchy-update-available"
+    "$ROOT/bin/unbloarchy-update-available"
 }
 
 capture_checker() {
@@ -120,12 +120,12 @@ if capture_checker "$stdout" "$stderr" TEST_CHECKUPDATES=updates TEST_INSTALLED_
 else
   status=$?
 fi
-[[ $status -eq 0 ]] || fail "update checker exits successfully when omarchy update is available"
-grep -q '^omarchy ' "$stdout" || fail "update checker prints omarchy updates"
+[[ $status -eq 0 ]] || fail "update checker exits successfully when unbloarchy update is available"
+grep -q '^omarchy ' "$stdout" || fail "update checker prints unbloarchy updates"
 ! grep -q '^omarchy-settings ' "$stdout" || fail "update checker ignores omarchy-settings updates"
-! grep -q '^linux ' "$stdout" || fail "update checker ignores non-Omarchy package updates"
-! grep -q '^omarchy-dev ' "$stdout" || fail "update checker ignores omarchy-dev when omarchy is installed"
-pass "update checker detects installed omarchy package updates"
+! grep -q '^linux ' "$stdout" || fail "update checker ignores non-Unbloarchy package updates"
+! grep -q '^omarchy-dev ' "$stdout" || fail "update checker ignores omarchy-dev when unbloarchy is installed"
+pass "update checker detects installed unbloarchy package updates"
 
 if capture_checker "$stdout" "$stderr" TEST_CHECKUPDATES=updates TEST_INSTALLED_PACKAGE=omarchy-dev; then
   status=0
@@ -153,8 +153,8 @@ if capture_checker "$stdout" "$stderr" TEST_CHECKUPDATES=updates TEST_INSTALLED_
 else
   status=$?
 fi
-[[ $status -eq 1 ]] || fail "update checker exits non-zero when no Omarchy package is installed"
-[[ ! -s $stderr ]] || fail "update checker is quiet when no Omarchy package is installed"
+[[ $status -eq 1 ]] || fail "update checker exits non-zero when no Unbloarchy package is installed"
+[[ ! -s $stderr ]] || fail "update checker is quiet when no Unbloarchy package is installed"
 pass "update checker ignores systems without omarchy or omarchy-dev installed"
 
 if capture_checker "$stdout" "$stderr" TEST_CHECKUPDATES=none TEST_INSTALLED_PACKAGE=omarchy; then
@@ -163,21 +163,21 @@ else
   status=$?
 fi
 [[ $status -eq 1 ]] || fail "update checker exits non-zero when no updates are available"
-grep -q '^Omarchy is up to date$' "$stdout" || fail "update checker prints up-to-date message"
-pass "update checker reports up-to-date Omarchy packages"
+grep -q '^Unbloarchy is up to date$' "$stdout" || fail "update checker prints up-to-date message"
+pass "update checker reports up-to-date Unbloarchy packages"
 
 : >"$git_log"
 if capture_checker "$stdout" "$stderr" \
   TEST_CHECKUPDATES=none \
   TEST_INSTALLED_PACKAGE=none \
-  TEST_OMARCHY_PATH="$test_tmp/checkout" \
+  TEST_UNBLOARCHY_PATH="$test_tmp/checkout" \
   TEST_GIT_BEHIND=2; then
   status=0
 else
   status=$?
 fi
 [[ $status -eq 0 ]] || fail "update checker exits successfully when dev commits are available"
-grep -Fx 'omarchy-dev-checkout 2 new commits on origin/quattro' "$stdout" >/dev/null ||
+grep -Fx 'unbloarchy-dev-checkout 2 new commits on origin/quattro' "$stdout" >/dev/null ||
   fail "update checker reports available dev commits" "$(cat "$stdout")"
 grep -Fx -- "-C $test_tmp/checkout fetch --quiet" "$git_log" >/dev/null ||
   fail "update checker fetches the dev checkout upstream" "$(cat "$git_log")"
@@ -186,20 +186,20 @@ pass "update checker detects new commits in the dev checkout"
 if capture_checker "$stdout" "$stderr" \
   TEST_CHECKUPDATES=none \
   TEST_INSTALLED_PACKAGE=none \
-  TEST_OMARCHY_PATH="$test_tmp/checkout" \
+  TEST_UNBLOARCHY_PATH="$test_tmp/checkout" \
   TEST_GIT_BEHIND=0; then
   status=0
 else
   status=$?
 fi
 [[ $status -eq 1 ]] || fail "update checker exits non-zero when the dev checkout is current"
-grep -q '^Omarchy is up to date$' "$stdout" || fail "update checker reports a current dev checkout"
+grep -q '^Unbloarchy is up to date$' "$stdout" || fail "update checker reports a current dev checkout"
 pass "update checker ignores a current dev checkout"
 
 if capture_checker "$stdout" "$stderr" \
   TEST_CHECKUPDATES=none \
   TEST_INSTALLED_PACKAGE=none \
-  TEST_OMARCHY_PATH="$test_tmp/checkout" \
+  TEST_UNBLOARCHY_PATH="$test_tmp/checkout" \
   TEST_GIT_BEHIND=1 \
   TEST_GIT_FETCH=fail; then
   status=0
@@ -207,7 +207,7 @@ else
   status=$?
 fi
 [[ $status -eq 0 ]] || fail "update checker uses cached upstream state when fetch fails"
-grep -Fx 'omarchy-dev-checkout 1 new commit on origin/quattro' "$stdout" >/dev/null ||
+grep -Fx 'unbloarchy-dev-checkout 1 new commit on origin/quattro' "$stdout" >/dev/null ||
   fail "update checker reports cached dev commits after a fetch failure" "$(cat "$stdout")"
 [[ ! -s $stderr ]] || fail "update checker keeps dev fetch failures quiet" "$(cat "$stderr")"
 pass "update checker uses cached dev state when fetching is unavailable"

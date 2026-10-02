@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# unbloarchy:summary=Install the Claude desktop app
+# unbloarchy:requires-sudo=true
+
+set -euo pipefail
+
+echo "Installing Claude..."
+unbloarchy-pkg-add claude-desktop
+
+echo "Opening Claude..."
+setsid uwsm-app -- /usr/bin/claude-desktop >/dev/null 2>&1 &
+
+echo ""
+echo "Claude has been installed."

@@ -1,5 +1,5 @@
-cat >/etc/omarchy/agent.conf <<EOF
+cat >/etc/unbloarchy/agent.conf <<EOF
 enabled=true
   EOF
-helper=$HOME/.local/share/omarchy/bin/omarchy-agent
+helper=$HOME/.local/share/unbloarchy/bin/unbloarchy-agent
 EOF

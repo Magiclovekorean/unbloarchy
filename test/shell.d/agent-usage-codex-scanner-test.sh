@@ -52,7 +52,7 @@ cat >"$session" <<EOF
 EOF
 
 result=$(HOME="$TEST_HOME" CODEX_HOME="$TEST_HOME/.codex" CODEX_ARGS_FILE="$TEST_HOME/codex-args" XDG_DATA_HOME="$TEST_HOME/.local/share" PATH="$TEST_HOME/bin:$PATH" \
-  "$ROOT/bin/omarchy-agent-usage-codex")
+  "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 # NUL-separated, so the assertion sees argument boundaries: a single "-a on-request"
 # would flatten to the same text as two arguments but is not a policy codex accepts.
@@ -90,7 +90,7 @@ cat >"$PI_HOME/.omp/agent/sessions/project/omp.jsonl" <<EOF
 EOF
 
 result=$(HOME="$PI_HOME" CODEX_HOME="$PI_HOME/.codex" XDG_DATA_HOME="$PI_HOME/.local/share" \
-  PATH="$PI_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$PI_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "49" ]] ||
   fail "Codex collector counts usage from pi and omp sessions" "$result"
@@ -139,7 +139,7 @@ conn.close()
 PY
 
 result=$(HOME="$OPENCODE_HOME" CODEX_HOME="$OPENCODE_HOME/.codex" XDG_DATA_HOME="$OPENCODE_HOME/.local/share" \
-  PATH="$OPENCODE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$OPENCODE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "155" ]] ||
   fail "Codex collector counts OpenAI usage, reasoning included, from opencode sessions" "$result"
@@ -186,11 +186,11 @@ conn.close()
 PY
 
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "5" ]] ||
   fail "Codex collector writes a fresh local-stats cache on first scan" "$result"
-cache_file=$(ls "$CACHE_HOME/.cache/omarchy/agent-usage/"/codex-scan-*.json 2>/dev/null | head -n 1)
+cache_file=$(ls "$CACHE_HOME/.cache/unbloarchy/agent-usage/"/codex-scan-*.json 2>/dev/null | head -n 1)
 [[ -n $cache_file && -s $cache_file ]] ||
   fail "Codex collector leaves a cache file behind" "$result"
 [[ $(stat -c %a "$cache_file") == "644" ]] ||
@@ -203,7 +203,7 @@ pass "Codex collector writes a local-stats cache on first scan"
 # rewrite instead of emitting a garbage record.
 printf '[]' >"$cache_file"
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "5" ]] ||
   fail "Codex collector recovers from a corrupt cache file" "$result"
@@ -237,7 +237,7 @@ conn.close()
 PY
 
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "5" ]] ||
   fail "Codex collector --limits-only reuses cached local stats" "$result"
@@ -247,7 +247,7 @@ pass "Codex collector --limits-only reuses cached local stats"
 
 # --force must ignore the cache and pick up the new message.
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --force)
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --force)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "15" ]] ||
   fail "Codex collector --force rescans past the cache" "$result"
@@ -255,7 +255,7 @@ pass "Codex collector --force rescans past the cache"
 
 # The forced scan refreshed the cache, so a following --limits-only sees it.
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "15" ]] ||
   fail "Codex collector --limits-only sees a refreshed cache after --force" "$result"
@@ -287,7 +287,7 @@ conn.close()
 PY
 touch -d "2 hours ago" "$cache_file"
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "25" ]] ||
   fail "Codex collector --limits-only rescans when the cache is stale" "$result"
@@ -321,7 +321,7 @@ conn.close()
 PY
 
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "25" ]] ||
   fail "Codex collector no-flag reuses a seconds-old cache" "$result"
@@ -330,7 +330,7 @@ result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CAC
 # cache that old must already be past the no-flag reuse window.
 touch -d "30 seconds ago" "$cache_file"
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "35" ]] ||
   fail "Codex collector no-flag rescans past the concurrent-run window" "$result"
@@ -362,7 +362,7 @@ conn.close()
 PY
 touch -d "10 minutes ago" "$cache_file"
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "35" ]] ||
   fail "Codex collector --limits-only reuses a scan the no-flag mode would refresh" "$result"
@@ -373,7 +373,7 @@ pass "Codex collector --limits-only reuses a scan the no-flag mode would refresh
 # envelope's scanDate must turn it into a miss.
 jq -c '.scanDate = "1999-01-01"' "$cache_file" >"$cache_file.tmp" && mv "$cache_file.tmp" "$cache_file"
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "45" ]] ||
   fail "Codex collector treats a cache from another day as a miss" "$result"
@@ -408,7 +408,7 @@ conn.close()
 PY
 touch -d "@$(( $(date +%s) + 3600 ))" "$cache_file"
 result=$(HOME="$CACHE_HOME" CODEX_HOME="$CACHE_HOME/.codex" XDG_CACHE_HOME="$CACHE_HOME/.cache" XDG_DATA_HOME="$CACHE_HOME/.local/share" \
-  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$CACHE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "55" ]] ||
   fail "Codex collector treats a future-dated cache as a miss" "$result"
@@ -446,7 +446,7 @@ conn.close()
 PY
 
 result=$(HOME="$FRESH_HOME" CODEX_HOME="$FRESH_HOME/.codex" XDG_CACHE_HOME="$FRESH_HOME/.cache" XDG_DATA_HOME="$FRESH_HOME/.local/share" \
-  PATH="$FRESH_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$FRESH_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "7" ]] ||
   fail "Codex collector --limits-only falls back to a full scan without a cache" "$result"
@@ -502,7 +502,7 @@ conn.close()
 PY
 
 result=$(HOME="$MALFORMED_HOME" CODEX_HOME="$MALFORMED_HOME/.codex" XDG_CACHE_HOME="$MALFORMED_HOME/.cache" XDG_DATA_HOME="$MALFORMED_HOME/.local/share" \
-  PATH="$MALFORMED_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$MALFORMED_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "12" ]] ||
   fail "Codex collector counts good opencode rows past malformed ones" "$result"
@@ -542,7 +542,7 @@ PY
 # XDG_CACHE_HOME points at a regular file, so mkdir inside cache_root fails.
 touch "$UNWRITABLE_HOME/not-a-dir"
 result=$(HOME="$UNWRITABLE_HOME" CODEX_HOME="$UNWRITABLE_HOME/.codex" XDG_CACHE_HOME="$UNWRITABLE_HOME/not-a-dir" XDG_DATA_HOME="$UNWRITABLE_HOME/.local/share" \
-  PATH="$UNWRITABLE_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$UNWRITABLE_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "3" ]] ||
   fail "Codex collector still prints a complete record when the cache is unwritable" "$result"
@@ -571,11 +571,11 @@ conn.close()
 PY
 
 result=$(HOME="$INTERRUPTED_HOME" CODEX_HOME="$INTERRUPTED_HOME/.codex" XDG_CACHE_HOME="$INTERRUPTED_HOME/.cache" XDG_DATA_HOME="$INTERRUPTED_HOME/.local/share" \
-  PATH="$INTERRUPTED_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex")
+  PATH="$INTERRUPTED_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex")
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "0" ]] ||
   fail "Codex collector reports what it could read from a broken database" "$result"
-[[ -z $(ls "$INTERRUPTED_HOME/.cache/omarchy/agent-usage/"codex-scan-*.json 2>/dev/null) ]] ||
+[[ -z $(ls "$INTERRUPTED_HOME/.cache/unbloarchy/agent-usage/"codex-scan-*.json 2>/dev/null) ]] ||
   fail "Codex collector must not cache an interrupted scan" "$result"
 
 # Once the database is whole again, the very next --limits-only run scans it
@@ -605,7 +605,7 @@ conn.close()
 PY
 
 result=$(HOME="$INTERRUPTED_HOME" CODEX_HOME="$INTERRUPTED_HOME/.codex" XDG_CACHE_HOME="$INTERRUPTED_HOME/.cache" XDG_DATA_HOME="$INTERRUPTED_HOME/.local/share" \
-  PATH="$INTERRUPTED_HOME/bin:$PATH" "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  PATH="$INTERRUPTED_HOME/bin:$PATH" "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 
 [[ $(jq -r '.todayTotalTokens' <<<"$result") == "9" ]] ||
   fail "Codex collector does not reuse a snapshot from an interrupted scan" "$result"
@@ -616,7 +616,7 @@ pass "Codex collector does not cache an interrupted opencode scan"
 started=$(date +%s)
 result=$(HOME="$TEST_HOME" CODEX_HOME="$TEST_HOME/.codex" XDG_DATA_HOME="$TEST_HOME/.local/share" PATH="$TEST_HOME/bin:$PATH" \
   CODEX_ACCOUNT_READ_HANGS=1 CODEX_RATE_LIMITS='{"planType":"pro","primary":{"usedPercent":36,"windowDurationMins":10080}}' \
-  "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 (( $(date +%s) - started < 4 )) || fail "Codex collector doesn't wait on account/read when the limits name the plan"
 [[ $(jq -c '{tierLabel, usageStatusText, limits: [.limits[] | {label, percent}]}' <<<"$result") == '{"tierLabel":"pro","usageStatusText":"","limits":[{"label":"Weekly (7-day)","percent":0.36}]}' ]] ||
   fail "Codex collector reads limits even when account/read never answers" "$result"
@@ -627,7 +627,7 @@ pass "Codex collector reads limits even when account/read never answers"
 result=$(HOME="$TEST_HOME" CODEX_HOME="$TEST_HOME/.codex" XDG_DATA_HOME="$TEST_HOME/.local/share" PATH="$TEST_HOME/bin:$PATH" \
   CODEX_RATE_LIMITS='{"planType":"pro","primary":{"usedPercent":42,"windowDurationMins":10080}}' \
   CODEX_RESET_CREDITS='{"availableCount":2,"credits":[{"status":"available","expiresAt":2000000000},{"status":"available","expiresAt":1900000000},{"status":"used","expiresAt":1800000000}]}' \
-  "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 [[ $(jq -c '.resetCredits' <<<"$result") == '{"available":2,"nextExpiresAt":"2030-03-17T17:46:40+00:00"}' ]] ||
   fail "Codex collector reports its available free resets" "$result"
 pass "Codex collector reports its available free resets"
@@ -636,7 +636,7 @@ pass "Codex collector reports its available free resets"
 # sign-in to restore rather than as missing numbers.
 result=$(HOME="$TEST_HOME" CODEX_HOME="$TEST_HOME/.codex" XDG_DATA_HOME="$TEST_HOME/.local/share" PATH="$TEST_HOME/bin:$PATH" \
   CODEX_LIMITS_ERROR="codex account authentication required to read rate limits" \
-  "$ROOT/bin/omarchy-agent-usage-codex" --limits-only)
+  "$ROOT/bin/unbloarchy-agent-usage-codex" --limits-only)
 [[ $(jq -r '.usageStatusText' <<<"$result") == "Waiting for auth" ]] ||
   fail "Codex collector reports a missing sign-in as one" "$result"
 pass "Codex collector reports a missing sign-in as one"

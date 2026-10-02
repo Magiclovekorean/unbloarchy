@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# unbloarchy:summary=Open the Unbloarchy background switcher
+# unbloarchy:group=theme
+# unbloarchy:name=bg-switcher
+# unbloarchy:aliases=unbloarchy background
+
+theme_name=$(cat "$HOME/.local/state/unbloarchy/current/theme.name" 2>/dev/null)
+current_background=$(readlink -f "$HOME/.local/state/unbloarchy/current/background" 2>/dev/null)
+
+unbloarchy-menu-images \
+  --selected "$current_background" \
+  "$HOME/.local/state/unbloarchy/current/theme/backgrounds" \
+  "$HOME/.config/unbloarchy/backgrounds/$theme_name"

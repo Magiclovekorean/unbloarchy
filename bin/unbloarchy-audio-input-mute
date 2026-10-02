@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# unbloarchy:summary=Toggle microphone mute. Drives the hardware mic-mute LED on laptops that expose one.
+
+wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle >/dev/null
+
+if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then
+  unbloarchy-brightness-keyboard-mute on
+  unbloarchy-osd -i microphone-muted -m "Microphone muted"
+else
+  unbloarchy-brightness-keyboard-mute off
+  unbloarchy-osd -i microphone -m "Microphone on"
+fi

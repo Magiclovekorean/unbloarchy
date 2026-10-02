@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# unbloarchy:summary=Clear the internal-monitor-disable toggle if no external display is connected.
+
+TOGGLE="$HOME/.local/state/unbloarchy/toggles/hypr/internal-monitor-disable.lua"
+
+if [[ -f $TOGGLE ]] && ! unbloarchy-hw-external-monitors; then
+  rm -f "$TOGGLE"
+fi

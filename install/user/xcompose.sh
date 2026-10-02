@@ -1,11 +1,11 @@
 # Set default XCompose that is triggered with CapsLock
 tee ~/.XCompose >/dev/null <<EOF
-# Run omarchy-restart-xcompose to apply changes
+# Run unbloarchy-restart-xcompose to apply changes
 
 # Include fast emoji access
-include "/usr/share/omarchy/default/xcompose"
+include "/usr/share/unbloarchy/default/xcompose"
 
 # Identification
-<Multi_key> <space> <n> : "$OMARCHY_USER_NAME"
-<Multi_key> <space> <e> : "$OMARCHY_USER_EMAIL"
+<Multi_key> <space> <n> : "$UNBLOARCHY_USER_NAME"
+<Multi_key> <space> <e> : "$UNBLOARCHY_USER_EMAIL"
 EOF

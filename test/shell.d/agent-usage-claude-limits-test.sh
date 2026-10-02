@@ -9,7 +9,7 @@ require_command python3
 # exercised on its own: the collector loads as a module, and a recorded payload
 # stands in for the response.
 read_limits() {
-  COLLECTOR="$ROOT/bin/omarchy-agent-usage-claude" PAYLOAD="$1" python3 - <<'PY'
+  COLLECTOR="$ROOT/bin/unbloarchy-agent-usage-claude" PAYLOAD="$1" python3 - <<'PY'
 import importlib.machinery, importlib.util, io, json, os
 
 loader = importlib.machinery.SourceFileLoader("collector", os.environ["COLLECTOR"])
@@ -80,7 +80,7 @@ CACHE_HOME=$(mktemp -d)
 trap 'rm -rf "$CACHE_HOME"' EXIT
 
 collect_limits() {
-  COLLECTOR="$ROOT/bin/omarchy-agent-usage-claude" TOKEN="$1" EXPIRES_AT="$2" CACHED="$3" \
+  COLLECTOR="$ROOT/bin/unbloarchy-agent-usage-claude" TOKEN="$1" EXPIRES_AT="$2" CACHED="$3" \
     XDG_CACHE_HOME="$CACHE_HOME" python3 - <<'PY'
 import importlib.machinery, importlib.util, json, os, pathlib
 
@@ -158,7 +158,7 @@ pass "Claude collector falls back to cache when the probe cannot connect"
 # Reuse and --force are decided against a cache that is fresh by the clock, so
 # the probe is answered rather than refused: what matters is whether it ran.
 probe_with_cache() {
-  COLLECTOR="$ROOT/bin/omarchy-agent-usage-claude" FORCE="$1" CACHED="$2" PAYLOAD="$3" \
+  COLLECTOR="$ROOT/bin/unbloarchy-agent-usage-claude" FORCE="$1" CACHED="$2" PAYLOAD="$3" \
     XDG_CACHE_HOME="$CACHE_HOME" python3 - <<'PY'
 import importlib.machinery, importlib.util, io, json, os
 
@@ -263,7 +263,7 @@ JS
 # numbers measured minutes ago still describes the account; only older numbers
 # count as stale, and either way the record says when they were measured.
 rate_limited() {
-  COLLECTOR="$ROOT/bin/omarchy-agent-usage-claude" FETCHED_AGO="$1" XDG_CACHE_HOME="$CACHE_HOME" python3 - <<'PY'
+  COLLECTOR="$ROOT/bin/unbloarchy-agent-usage-claude" FETCHED_AGO="$1" XDG_CACHE_HOME="$CACHE_HOME" python3 - <<'PY'
 import datetime as dt, importlib.machinery, importlib.util, json, os, time, urllib.error
 
 loader = importlib.machinery.SourceFileLoader("collector", os.environ["COLLECTOR"])

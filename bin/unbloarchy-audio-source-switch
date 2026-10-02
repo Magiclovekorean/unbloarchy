@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# unbloarchy:summary=Cycle to the next media source and transfer playback when the current source is playing
+# unbloarchy:args=[next|previous]
+# unbloarchy:examples=unbloarchy audio source switch | unbloarchy-audio-source-switch previous
+
+direction="${1:-next}"
+
+case "$direction" in
+  next)
+    unbloarchy-shell media sourceSwitch
+    ;;
+  previous)
+    unbloarchy-shell media sourceSwitchPrevious
+    ;;
+  *)
+    echo "Usage: unbloarchy-audio-source-switch [next|previous]" >&2
+    exit 1
+    ;;
+esac

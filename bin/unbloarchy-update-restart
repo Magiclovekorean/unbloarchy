@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# unbloarchy:summary=Prompt for required reboot or service restarts after updates
+# unbloarchy:args=[--services-only|--reboot-only]
+
+mode="${1:-all}"
+case "$mode" in
+  all|--services-only|--reboot-only) ;;
+  *) echo "Unknown restart phase: $mode" >&2; exit 2 ;;
+esac
+
+echo
+confirm_reboot() {
+  if [[ ${UNBLOARCHY_UPDATE_UNATTENDED:-0} == "1" ]]; then
+    echo "$1 Run unbloarchy-system-reboot when ready."
+  elif gum confirm "$1"; then
+    unbloarchy-system-reboot
+    exit 0
+  fi
+}
+
+if [[ $mode != "--services-only" ]]; then
+  running_kernel=$(uname -r)
+  kernel_updated=true
+
+  for kernel in /usr/lib/modules/*/vmlinuz; do
+    if [[ -f $kernel ]] && pacman -Qo "$kernel" &>/dev/null; then
+      installed_kernel=$(basename "$(dirname "$kernel")")
+
+      if [[ $installed_kernel == $running_kernel ]]; then
+        kernel_updated=false
+        break
+      fi
+    fi
+  done
+
+  if [[ $kernel_updated == "true" ]]; then
+    confirm_reboot "Linux kernel has been updated. Reboot?"
+  elif [[ -f $HOME/.local/state/unbloarchy/reboot-required ]]; then
+    confirm_reboot "Updates require reboot. Ready?"
+  fi
+
+  running_hyprland=$(readlink /proc/$(pgrep -x Hyprland)/exe 2>/dev/null)
+  if [[ $running_hyprland == *"(deleted)"* ]]; then
+    confirm_reboot "Hyprland has been updated. Reboot?"
+  fi
+fi
+
+if [[ $mode != "--reboot-only" ]]; then
+  for file in "$HOME"/.local/state/unbloarchy/restart-*-required; do
+    if [[ -f $file ]]; then
+      filename=$(basename "$file")
+      service=$(echo "$filename" | sed 's/restart-\(.*\)-required/\1/')
+      echo "Restarting $service"
+      unbloarchy-state clear "$filename"
+      unbloarchy-restart-"$service"
+    fi
+  done
+
+  # Updates routinely replace the shell's QML, and a stale process can lazy-load
+  # new files into old code. A restart failure (locked session, ssh, TTY) only
+  # prints its reason: the next update or login gets a fresh shell anyway.
+  echo -e "\e[32m\nRestarting shell\e[0m"
+  echo "All plugins have been reloaded"
+  unbloarchy-restart-shell || true
+fi

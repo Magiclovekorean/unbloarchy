@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = omarchy-settings
+Target = omarchy-settings-dev
+
+[Action]
+Description = Pausing Hyprland config auto-reload for Unbloarchy settings update...
+When = PreTransaction
+Depends = unbloarchy
+Exec = /usr/bin/unbloarchy-hyprland-reload-guard pause

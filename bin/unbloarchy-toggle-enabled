@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# unbloarchy:summary=Check if a toggle is enabled (flag file exists)
+# unbloarchy:args=<flag-name>
+
+[[ -f "$HOME/.local/state/unbloarchy/toggles/$1" ]]

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# unbloarchy:summary=Toggle single-window square aspect ratio.
+
+case $(unbloarchy-hyprland-toggle single-window-aspect-ratio) in
+  on) unbloarchy-notification-send -g  "Enable single-window square aspect ratio" ;;
+  off) unbloarchy-notification-send -g  "Disable single-window square aspect ratio" ;;
+esac

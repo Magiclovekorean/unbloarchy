@@ -15,7 +15,7 @@ cat >"$stub_bin/sudo" <<'STUB'
 exec "$@"
 STUB
 
-# omarchy-update-pacman wraps the transaction in a real PID 1 scope; the tests
+# unbloarchy-update-pacman wraps the transaction in a real PID 1 scope; the tests
 # must stay inside the fixture, so drop the wrapper's options and run the command.
 cat >"$stub_bin/systemd-run" <<'STUB'
 #!/bin/bash
@@ -53,14 +53,14 @@ chmod +x "$stub_bin/sudo" "$stub_bin/systemd-run" "$stub_bin/pacman"
 replaced="$test_tmp/replaced"
 
 run_update() {
-  OMARCHY_REPLACED_DIR="$replaced" \
+  UNBLOARCHY_REPLACED_DIR="$replaced" \
     RETRY_FAILS="${RETRY_FAILS:-}" \
     RETRY_INSTALLS="${RETRY_INSTALLS:-}" \
     PACMAN_ATTEMPTS="$test_tmp/attempts" \
     CONFLICT_REPORT="$test_tmp/report" \
     OWNED_PATHS="${OWNED_PATHS:-}" \
     PATH="$stub_bin:$ROOT/bin:$PATH" \
-    bash "$ROOT/bin/omarchy-update-system-pkgs"
+    bash "$ROOT/bin/unbloarchy-update-system-pkgs"
 }
 
 # $1 blamed package, $2 path, $3 optional owning package.
@@ -89,7 +89,7 @@ fresh_work() {
 
 # An unowned path one of the packages is taking over.
 fresh_work
-stray="$work/omarchy-fcitx5.service"
+stray="$work/unbloarchy-fcitx5.service"
 echo "stray content" >"$stray"
 write_report omarchy-settings-dev "$stray"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -106,7 +106,7 @@ grep -qx "stray content" "$replaced$stray" ||
   fail "the replaced file is destroyed rather than kept out of the way"
 pass "the replaced file is quarantined outside the directory it came from"
 
-# A real fight between packages, not Omarchy's leftovers. pacman appends
+# A real fight between packages, not Unbloarchy's leftovers. pacman appends
 # "(owned by ...)" here.
 fresh_work
 echo "theirs" >"$stray"
@@ -133,24 +133,24 @@ pass "an owned path is left alone even when the report reads as unowned"
 # A name prefix is not a namespace; only the packages that own system paths.
 fresh_work
 echo "stray" >"$stray"
-write_report omarchy-chromium-bin "$stray"
+write_report unbloarchy-chromium-bin "$stray"
 if run_update >"$test_tmp/out" 2>"$test_tmp/err"; then
-  fail "an optional omarchy-prefixed package gets its conflicts auto-resolved"
+  fail "an optional unbloarchy-prefixed package gets its conflicts auto-resolved"
 fi
 pass "only the packages that own system paths get their conflicts resolved"
 
-# Not Omarchy's conflict to resolve.
+# Not Unbloarchy's conflict to resolve.
 fresh_work
 echo "stray" >"$stray"
 write_report some-other-pkg "$stray"
 if run_update >"$test_tmp/out" 2>"$test_tmp/err"; then
   fail "a conflict from an unrelated package is auto-resolved"
 fi
-pass "a conflict from a non-Omarchy package is left for a human"
+pass "a conflict from a non-Unbloarchy package is left for a human"
 
 # The path is used literally, so glob characters in a name mean nothing.
 fresh_work
-globby="$work/omarchy-[1].conf"
+globby="$work/unbloarchy-[1].conf"
 echo "globby" >"$globby"
 write_report omarchy-settings-dev "$globby"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -161,7 +161,7 @@ pass "a path whose name would act as a glob is moved literally"
 
 # A leftover directory is cleared the same way a file is.
 fresh_work
-conflict_dir="$work/omarchy-dir"
+conflict_dir="$work/unbloarchy-dir"
 mkdir -p "$conflict_dir"
 write_report omarchy-settings-dev "$conflict_dir"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -172,7 +172,7 @@ pass "a conflicting directory is moved away"
 
 # A space is legal in a package path; the parse must not truncate it.
 fresh_work
-spaced="$work/omarchy theme.conf"
+spaced="$work/unbloarchy theme.conf"
 echo "spaced" >"$spaced"
 write_report omarchy-settings-dev "$spaced"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -264,8 +264,8 @@ pass "a dangling symlink is restored rather than stranded in the quarantine"
 fresh_work
 echo "ours" >"$stray"
 write_report omarchy-settings-dev "$stray"
-if PATH="$stub_bin:$ROOT/bin:$PATH" OMARCHY_REPLACED_DIR="$replaced" \
-  bash "$ROOT/bin/omarchy-update-system-pkgs-when-conflicted" "$test_tmp/report" \
+if PATH="$stub_bin:$ROOT/bin:$PATH" UNBLOARCHY_REPLACED_DIR="$replaced" \
+  bash "$ROOT/bin/unbloarchy-update-system-pkgs-when-conflicted" "$test_tmp/report" \
   >"$test_tmp/out" 2>"$test_tmp/err"; then
   fail "the handler acts on a report handed to it outside an update"
 fi

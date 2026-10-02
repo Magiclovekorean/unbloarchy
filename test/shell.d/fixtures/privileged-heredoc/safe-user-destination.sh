@@ -1,9 +1,9 @@
-mkdir -p ~/.config/omarchy
+mkdir -p ~/.config/unbloarchy
 
-cat >~/.config/omarchy/agent.conf <<EOF
-helper=$HOME/.local/share/omarchy/bin/omarchy-agent
+cat >~/.config/unbloarchy/agent.conf <<EOF
+helper=$HOME/.local/share/unbloarchy/bin/unbloarchy-agent
 EOF
 
-cat >"$HOME/.local/bin/omarchy-shim" <<EOF
-exec "$OMARCHY_PATH/bin/omarchy-agent" "$@"
+cat >"$HOME/.local/bin/unbloarchy-shim" <<EOF
+exec "$UNBLOARCHY_PATH/bin/unbloarchy-agent" "$@"
 EOF

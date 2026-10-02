@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# unbloarchy:summary=Refresh the shell update status
+# unbloarchy:hidden=true
+
+set -e
+
+if unbloarchy-update-available >/dev/null; then
+  unbloarchy-shell -q unbloarchy.system-update refresh
+else
+  unbloarchy-shell -q unbloarchy.system-update clear
+fi

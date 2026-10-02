@@ -18,15 +18,15 @@ pass "duration and account validation retains bounded inputs and trailing-dollar
 (
   source "$library"
   assert_status 2 root_dispatch __status 1000
-  assert_status 2 env TEST_EUID=0 SUDO_UID=1001 /usr/bin/bash -p "$test_tmp/omarchy-sudo-passwordless" __status 1000
-  assert_status 3 env TEST_EUID=0 SUDO_UID=1000 /usr/bin/bash -p "$test_tmp/omarchy-sudo-passwordless" __status 1000
+  assert_status 2 env TEST_EUID=0 SUDO_UID=1001 /usr/bin/bash -p "$test_tmp/unbloarchy-sudo-passwordless" __status 1000
+  assert_status 3 env TEST_EUID=0 SUDO_UID=1000 /usr/bin/bash -p "$test_tmp/unbloarchy-sudo-passwordless" __status 1000
 )
 pass "internal actions reject missing root and mismatched sudo identity"
 
 for status in 1 2 3; do
   : >"$test_tmp/commands"
   result=0
-  TEST_STATUS=$status /usr/bin/bash -p "$test_tmp/omarchy-sudo-passwordless" 15 >"$test_tmp/public.log" 2>&1 || result=$?
+  TEST_STATUS=$status /usr/bin/bash -p "$test_tmp/unbloarchy-sudo-passwordless" 15 >"$test_tmp/public.log" 2>&1 || result=$?
   if (( status == 3 )); then
     (( result == 0 )) && grep -q '^gum confirm ' "$test_tmp/commands" || fail "inactive status must allow confirmation"
   else
@@ -39,7 +39,7 @@ pass "public status distinguishes inactive from errors and revokes authorization
 
 printf ': >"$TEST_STARTUP_MARKER"\nset -o privileged\nunset BASH_ENV\n' >"$test_tmp/startup"
 : >"$test_tmp/commands"
-if TEST_STARTUP_MARKER="$test_tmp/startup-ran" BASH_ENV="$test_tmp/startup" bash "$test_tmp/omarchy-sudo-passwordless" -p >/dev/null 2>&1; then
+if TEST_STARTUP_MARKER="$test_tmp/startup-ran" BASH_ENV="$test_tmp/startup" bash "$test_tmp/unbloarchy-sudo-passwordless" -p >/dev/null 2>&1; then
   fail "ordinary Bash with a decoy -p was accepted"
 fi
 [[ -f $test_tmp/startup-ran && ! -s $test_tmp/commands ]] || fail "startup rejection must precede sudo"
@@ -53,14 +53,14 @@ pass "startup validation rejects ordinary Bash before authorization"
   /usr/sbin/visudo -cf "$(rule_file 1000)" >/dev/null
   expiry=$(sed -n 's/^systemd-run .*--on-calendar=@\([0-9]*\).*$/\1/p' "$test_tmp/commands" | tail -1)
   [[ $GRANT_DEADLINE == "$(/usr/bin/date -u -d "@$expiry" +%Y%m%d%H%M%SZ)" ]]
-  if [[ -n ${OMARCHY_TEST_SUDOERS:-} ]]; then
-    [[ -x $OMARCHY_TEST_SUDOERS ]] || fail "OMARCHY_TEST_SUDOERS must name an executable"
+  if [[ -n ${UNBLOARCHY_TEST_SUDOERS:-} ]]; then
+    [[ -x $UNBLOARCHY_TEST_SUDOERS ]] || fail "UNBLOARCHY_TEST_SUDOERS must name an executable"
     printf 'root:x:0:0:root:/root:/bin/bash\naudituser:x:1000:1000:Test:/nonexistent:/bin/bash\n' >"$test_tmp/passwd"
     printf 'root:x:0:\naudituser:x:1000:\n' >"$test_tmp/group"
     { printf 'audituser ALL=(ALL) ALL\n'; cat "$(rule_file 1000)"; } >"$test_tmp/policy"
     for offset in -1 1; do
       when=$(/usr/bin/date -u -d "@$((expiry + offset))" +%Y%m%d%H%M%SZ)
-      "$OMARCHY_TEST_SUDOERS" -p "$test_tmp/passwd" -P "$test_tmp/group" -T "$when" audituser /usr/bin/true <"$test_tmp/policy" >"$test_tmp/policy-result"
+      "$UNBLOARCHY_TEST_SUDOERS" -p "$test_tmp/passwd" -P "$test_tmp/group" -T "$when" audituser /usr/bin/true <"$test_tmp/policy" >"$test_tmp/policy-result"
       if (( offset < 0 )); then
         ! grep -q 'Password required' "$test_tmp/policy-result" || fail "native policy requires a password before expiry"
       else
@@ -71,15 +71,15 @@ pass "startup validation rejects ordinary Bash before authorization"
   fi
   assert_status 0 status_locked 1000
   TEST_INACTIVE_TIMER=1 assert_status 0 status_locked 1000
-  [[ ! -e $test_tmp/var/lib/omarchy/sudo-passwordless ]]
-  ! compgen -G "$test_tmp/etc/sudoers.d/.omarchy-nopasswd.*"
+  [[ ! -e $test_tmp/var/lib/unbloarchy/sudo-passwordless ]]
+  ! compgen -G "$test_tmp/etc/sudoers.d/.unbloarchy-nopasswd.*"
 )
 pass "one complete mode-0440 sudoers rule holds the deadline with no separate grant state"
 
 (
   source "$library"
   before=$(cat "$(rule_file 1000)")
-  expire_locked 1000 omarchy-nopasswd-expire-1000-ffffffffffffffffffffffffffffffff
+  expire_locked 1000 unbloarchy-nopasswd-expire-1000-ffffffffffffffffffffffffffffffff
   [[ $(cat "$(rule_file 1000)") == "$before" ]]
   enable_locked 1000 30
   renewed=$(cat "$(rule_file 1000)")
@@ -94,7 +94,7 @@ pass "legacy and current callbacks preserve renewed grants and remove expired on
 (
   source "$library"
   enable_locked 1000 1
-  assert_status 2 env TEST_EXPIRED=1 TEST_DELETE_FAIL=1 TEST_EUID=0 SUDO_UID=1000 /usr/bin/bash -p "$test_tmp/omarchy-sudo-passwordless" __status 1000
+  assert_status 2 env TEST_EXPIRED=1 TEST_DELETE_FAIL=1 TEST_EUID=0 SUDO_UID=1000 /usr/bin/bash -p "$test_tmp/unbloarchy-sudo-passwordless" __status 1000
   [[ -e $(rule_file 1000) ]]
   TEST_EXPIRED=1 assert_status 3 status_locked 1000
   [[ ! -e $(rule_file 1000) ]]
@@ -108,7 +108,7 @@ for failure in TEST_TIMER_FAIL TEST_INACTIVE_TIMER TEST_PUBLISH_FAIL TEST_POST_P
   (
     source "$library"
     enable_locked 1000 15
-    assert_status "$expected" env "$failure=1" TEST_EUID=0 SUDO_UID=1000 /usr/bin/bash -p "$test_tmp/omarchy-sudo-passwordless" __enable 1000 30
+    assert_status "$expected" env "$failure=1" TEST_EUID=0 SUDO_UID=1000 /usr/bin/bash -p "$test_tmp/unbloarchy-sudo-passwordless" __enable 1000 30
     [[ ! -e $(rule_file 1000) ]]
   )
 done
@@ -151,7 +151,7 @@ reset_grant
 pass "publication requires trusted paths and the packaged cleanup hook"
 
 reset_grant
-cp "$ROOT/default/libalpm/hooks/05-omarchy-passwordless-revoke.hook" "$test_tmp/hooks/"
+cp "$ROOT/default/libalpm/hooks/05-unbloarchy-passwordless-revoke.hook" "$test_tmp/hooks/"
 (
   source "$library"
   TEST_ACCOUNT='buildbot$' enable_locked 1000 15

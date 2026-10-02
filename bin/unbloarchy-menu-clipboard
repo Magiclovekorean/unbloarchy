@@ -1,0 +1,6 @@
+#!/bin/bash
+# unbloarchy:summary=Launch the clipboard manager
+# unbloarchy:group=menu
+# unbloarchy:examples=unbloarchy menu clipboard
+
+unbloarchy-shell shell toggle unbloarchy.clipboard

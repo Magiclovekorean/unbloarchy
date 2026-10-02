@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "omarchy.disk-speedtest",
+  "id": "unbloarchy.disk-speedtest",
   "name": "Disk speed test",
   "version": "1.0.0",
-  "author": "Omarchy",
-  "description": "Live disk write and read speed dials. Summon with: omarchy-shell shell summon omarchy.disk-speedtest",
+  "author": "Unbloarchy",
+  "description": "Live disk write and read speed dials. Summon with: unbloarchy-shell shell summon unbloarchy.disk-speedtest",
   "kinds": [
     "panel"
   ],

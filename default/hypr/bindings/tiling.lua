@@ -1,13 +1,13 @@
 o.bind("SUPER + Q", "Close window", hl.dsp.window.close())
-o.bind("CTRL + ALT + DELETE", "Close all windows", "omarchy-hyprland-window-close-all")
+o.bind("CTRL + ALT + DELETE", "Close all windows", "unbloarchy-hyprland-window-close-all")
 
 o.bind("SUPER + Y", "Toggle window split", hl.dsp.layout("togglesplit"))
 o.bind("SUPER + P", "Pseudo window", hl.dsp.window.pseudo())
 o.bind("SUPER + T", "Toggle window floating/tiling", hl.dsp.window.float({ action = "toggle" }))
 o.bind("SUPER + SHIFT + F", "Full width", hl.dsp.window.fullscreen({ mode = "maximized" }))
-o.bind("SUPER + ALT + Home", "Save window width", "omarchy-hyprland-window-width save")
-o.bind("SUPER + Home", "Restore window width", "omarchy-hyprland-window-width restore")
-o.bind("SUPER + W", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
+o.bind("SUPER + ALT + Home", "Save window width", "unbloarchy-hyprland-window-width save")
+o.bind("SUPER + Home", "Restore window width", "unbloarchy-hyprland-window-width restore")
+o.bind("SUPER + W", "Toggle workspace layout", "unbloarchy-hyprland-workspace-layout-toggle")
 
 o.bind("SUPER + H", "Focus on left window", hl.dsp.focus({ direction = "l" }))
 o.bind("SUPER + L", "Focus on right window", hl.dsp.focus({ direction = "r" }))

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# unbloarchy:summary=Overwrite the user config for hyprsunset with the Unbloarchy default and restart the service.
+
+unbloarchy-refresh-config hypr/hyprsunset.conf
+unbloarchy-restart-hyprsunset

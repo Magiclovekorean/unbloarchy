@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# unbloarchy:summary=Apply the current theme keyboard color to supported keyboards
+# unbloarchy:hidden=true
+
+unbloarchy-theme-set-keyboard-asus-rog
+unbloarchy-theme-set-keyboard-f16

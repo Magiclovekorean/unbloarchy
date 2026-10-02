@@ -22,14 +22,14 @@ ShellRoot {
 
   FileView {
     id: resultFile
-    path: Quickshell.env("OMARCHY_QML_TEST_RESULT")
+    path: Quickshell.env("UNBLOARCHY_QML_TEST_RESULT")
     atomicWrites: true
   }
 
   Component.onCompleted: {
     var caller = "example.safe"
-    authStoreOwner.retain("omarchy.lock", root.ownService)
-    authStoreOwner.updateManifest("omarchy.lock", { version: "kept" })
+    authStoreOwner.retain("unbloarchy.lock", root.ownService)
+    authStoreOwner.updateManifest("unbloarchy.lock", { version: "kept" })
     var api = apiComponent.createObject(null, {
       pluginId: caller,
       idleConfig: { screensaver: 60, lock: 120 },
@@ -63,24 +63,24 @@ ShellRoot {
     var result = {
       detached: api.parent === undefined || api.parent === null,
       ownService: own && own.marker === "own",
-      foreignService: api.serviceFor("omarchy.lock") === null,
-      firstPartyService: api.firstPartyServiceFor("omarchy.polkit") === null,
+      foreignService: api.serviceFor("unbloarchy.lock") === null,
+      firstPartyService: api.firstPartyServiceFor("unbloarchy.polkit") === null,
       ownSummon: api.summon(caller, "{}") === true,
-      foreignSummon: api.summon("omarchy.lock", "{}") === false,
+      foreignSummon: api.summon("unbloarchy.lock", "{}") === false,
       ownHide: api.hide(caller) === true,
-      foreignHide: api.hide("omarchy.lock") === false,
+      foreignHide: api.hide("unbloarchy.lock") === false,
       ownToggle: api.toggle(caller, "{}") === true,
-      foreignToggle: api.toggle("omarchy.lock", "{}") === false,
+      foreignToggle: api.toggle("unbloarchy.lock", "{}") === false,
       ownOpen: api.isPluginOpen(caller) === true,
-      foreignOpen: api.isPluginOpen("omarchy.lock") === false,
+      foreignOpen: api.isPluginOpen("unbloarchy.lock") === false,
       ownSettings: api.updateEntryInline(caller, {}) === true,
-      foreignSettings: api.updateEntryInline("omarchy.lock", {}) === false,
+      foreignSettings: api.updateEntryInline("unbloarchy.lock", {}) === false,
       detachedIdleConfig: api.idleConfig.screensaver === 60 && api.idleConfig.lock === 120,
-      authStoreOwnerRetains: authStoreOwner.has("omarchy.lock") === true,
-      authStoreOwnerRemembersTrust: authStoreOwner.isTrusted("omarchy.lock") === true,
+      authStoreOwnerRetains: authStoreOwner.has("unbloarchy.lock") === true,
+      authStoreOwnerRemembersTrust: authStoreOwner.isTrusted("unbloarchy.lock") === true,
       authStoreOwnerUpdatesManifest: root.ownService.manifest
         && root.ownService.manifest.version === "kept",
-      authStoreImportIsolated: authStoreReader.has("omarchy.lock") === false,
+      authStoreImportIsolated: authStoreReader.has("unbloarchy.lock") === false,
       noGenericPluginShellFactory: typeof api.pluginShellForId !== "function",
       calls: root.calls
     }

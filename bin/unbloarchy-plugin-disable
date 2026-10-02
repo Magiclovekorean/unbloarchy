@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# unbloarchy:summary=Disable a shell plugin
+# unbloarchy:group=plugin
+# unbloarchy:args=<id>
+
+set -euo pipefail
+
+fail() {
+  echo "unbloarchy-plugin-disable: $*" >&2
+  exit 1
+}
+
+if [[ ${1:-} == "-h" || ${1:-} == "--help" ]]; then
+  echo "Usage: unbloarchy plugin disable <id>"
+  exit 0
+fi
+
+id="${1:-}"
+[[ -n $id ]] || fail "plugin id is required"
+
+result=$(unbloarchy-shell shell setPluginEnabled "$id" false)
+[[ $result == "ok" ]] ||
+  fail "plugin '$id' is not known; run: unbloarchy-shell shell rescanPlugins"
+
+echo "Disabled $id"
