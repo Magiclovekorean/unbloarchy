@@ -14,7 +14,9 @@ snapshot_line=$(grep -n '^create_pre_upgrade_snapshot$' "$upgrade_to_quattro" | 
 pacman_line=$(grep -n '^configure_pacman_channel$' "$upgrade_to_quattro" | cut -d: -f1)
 [[ -n $snapshot_line && -n $pacman_line ]] || fail "upgrade snapshot and first mutation calls exist"
 (( snapshot_line < pacman_line )) || fail "upgrade snapshot runs before pacman configuration"
-grep -F 'unbloarchy-snapshot create || (($? == 127))' "$upgrade_to_quattro" >/dev/null
+# The snapshot is taken before the quattro packages go in, so it still reaches
+# for the legacy command name on purpose.
+grep -F 'omarchy-snapshot create || (($? == 127))' "$upgrade_to_quattro" >/dev/null
 pass "Unbloarchy 4 upgrade snapshots the system before mutation"
 
 # The mirrors are repointed immediately before the keyrings go in, so only a
@@ -244,8 +246,10 @@ pass "Unbloarchy 4 upgrade backfills hardware support from the legacy release"
 grep -F 'unbloarchy-refresh-applications' "$upgrade_to_quattro" >/dev/null
 pass "Unbloarchy 4 upgrade refreshes application launchers"
 
-grep -F '/etc/systemd/system.conf.d/99-unbloarchy-nofile.conf' "$upgrade_to_quattro" >/dev/null
-grep -F '/etc/systemd/user.conf.d/99-unbloarchy-nofile.conf' "$upgrade_to_quattro" >/dev/null
+# Unbloarchy ships no nofile drop-in of its own, so what gets removed here is
+# the drop-in the pre-rename install wrote; the filename keeps its old name.
+grep -F '/etc/systemd/system.conf.d/99-omarchy-nofile.conf' "$upgrade_to_quattro" >/dev/null
+grep -F '/etc/systemd/user.conf.d/99-omarchy-nofile.conf' "$upgrade_to_quattro" >/dev/null
 pass "Unbloarchy 4 upgrade removes stale nofile drop-ins"
 
 cmdline_line=$(grep -n '^preserve_kernel_cmdline_root$' "$upgrade_to_quattro" | cut -d: -f1)

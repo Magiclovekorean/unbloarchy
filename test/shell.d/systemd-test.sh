@@ -34,7 +34,9 @@ pass "first-run reloads and enables the sleep lock service"
 upgrade_to_quattro="$ROOT/bin/unbloarchy-upgrade-to-quattro"
 grep -F '6870b232a6c0474b59187882e6d25ae771bba735098bcbedef8a2b73b97e2b6a' "$upgrade_to_quattro" >/dev/null
 grep -F 'bcd1a76cb5c63514922bc5e11af22ae480fc6d06a99863364e02bdf3c7bdceaf' "$upgrade_to_quattro" >/dev/null
-grep -F 'ExecStart=%h/.local/share/unbloarchy/bin/unbloarchy-system-sleep-monitor' "$upgrade_to_quattro" >/dev/null
+# The string being repaired is the one a pre-rename dev install wrote, so it
+# keeps the old name; only the replacement it is rewritten to is rebranded.
+grep -F 'ExecStart=%h/.local/share/omarchy/bin/omarchy-system-sleep-monitor' "$upgrade_to_quattro" >/dev/null
 grep -F 'ExecStart=/usr/bin/unbloarchy-system-sleep-monitor' "$upgrade_to_quattro" >/dev/null
 grep -F 'reset-failed unbloarchy-sleep-lock.service' "$upgrade_to_quattro" >/dev/null
 pass "Unbloarchy 4 upgrade repairs the legacy sleep lock unit path"
