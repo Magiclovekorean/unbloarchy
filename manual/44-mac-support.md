@@ -2,7 +2,7 @@
 
 Unbloarchy has built-in support for **Intel Macs**. There are a couple of known limitations at the moment, but as long as you're aware and OK with those; you can breathe some new life into your old Macs by loading Unbloarchy.
 
-Please note that installing on an M-series Mac is not directly supported at this time. You can find out more about the state of this in #unbloarchy-on-other in our [Discord](https://discord.gg/tXFUdasqhY).
+Please note that installing on an M-series Mac is not directly supported at this time. You can find out more about the state of this in #omarchy-on-other in [Omarchy's Discord](https://discord.gg/tXFUdasqhY), which is an upstream community rather than an Unbloarchy-run one.
 
 In a simple test, we were able to achieve 36% performance gains on a 2019 MacBook Pro just by installing Unbloarchy.
 
@@ -39,7 +39,7 @@ The installer detects Mac hardware and applies the needed fixes automatically: B
 
 ### Known Limitations
 
-Members of the community are constantly working on solutions to these challenges so if these are problematic for you, join #unbloarchy-on-other in our [Discord](https://discord.gg/tXFUdasqhY) and see if there's any up-to-date methods for resolving these.
+Members of the community are constantly working on solutions to these challenges so if these are problematic for you, join #omarchy-on-other in [Omarchy's Discord](https://discord.gg/tXFUdasqhY) and see if there's any up-to-date methods for resolving these.
 
 #### Devices with T1 Chip
 

@@ -26,4 +26,4 @@ Unbloarchy is really Arch + Hyprland, but Henry Sipp has [ported the essence of 
 
 ### Something else!
 
-If you're trying to get Unbloarchy running on a configuration that isn't the default, you should join the #unbloarchy-on-other channel on [our community Discord](https://discord.gg/tXFUdasqhY).
+If you're trying to get Unbloarchy running on a configuration that isn't the default, you should join the #omarchy-on-other channel on [Omarchy's community Discord](https://discord.gg/tXFUdasqhY), which is an upstream community rather than an Unbloarchy-run one.

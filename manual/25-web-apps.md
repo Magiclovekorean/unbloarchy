@@ -70,6 +70,6 @@ You start Zoom using the application launcher (`Super + Space`).
 
 ## Discord
 
-[Discord](https://discord.com/) is where most gaming and open source communities hang out, including [Unbloarchy's own](https://discord.gg/tXFUdasqhY).
+[Discord](https://discord.com/) is where most gaming and open source communities hang out, including [Omarchy's](https://discord.gg/tXFUdasqhY), which Unbloarchy users are welcome in but which Unbloarchy does not run.
 
 You start Discord using the application launcher (`Super + Space`).

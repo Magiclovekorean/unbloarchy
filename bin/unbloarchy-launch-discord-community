@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# unbloarchy:summary=Open the Unbloarchy Discord community in the Discord app or a browser.
+# unbloarchy:summary=Open the upstream Omarchy community Discord
 
+# Omarchy's invite, not a Unbloarchy-run server. The menu still offers it because
+# it is where Unbloarchy users end up, so it is labelled as upstream's rather
+# than silently rebranded — and not pointed at an invented URL either.
 invite="https://discord.gg/tXFUdasqhY"
 
 if unbloarchy-cmd-present discord; then
