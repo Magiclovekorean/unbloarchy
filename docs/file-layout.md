@@ -67,6 +67,8 @@ unbloarchy/                            built into          installed at
 
 bin/unbloarchy-*                  ──►  unbloarchy             /usr/bin/unbloarchy-*
                                                         (and symlinks in /usr/share/unbloarchy/bin/)
+bin/omarchy-* generated shims    ──►  unbloarchy             /usr/bin/omarchy-*
+bin/omarchy generated router shim ──►  unbloarchy             /usr/bin/omarchy
 bin/unbloarchy-debug,
 bin/unbloarchy-debug-idle,
 bin/unbloarchy-upload-log         ──►  omarchy-settings    /usr/bin/  (needed before unbloarchy is installed)
@@ -152,6 +154,12 @@ without a file conflict. Instead their sources (under `etc/` in the repo;
 
 Tradeoff: user edits to those files get clobbered on every `omarchy-settings`
 upgrade. This is documented in the PKGBUILD.
+
+## Legacy command compatibility shims
+
+The source checkout does not commit generated `bin/omarchy*` compatibility files. Before packaging, the upstream `omarchy-pkgs` PKGBUILD must run `bash "$srcdir/unbloarchy/install/helpers/generate-compat-shims.sh" "$srcdir/unbloarchy"` from its `prepare()` function, before discovering `bin/omarchy-*`. The package build must also explicitly install `bin/omarchy`, because that bare router alias is not matched by an `omarchy-*` glob.
+
+The generator preserves the `omarchy-*` glob expected by the upstream package build and emits source-forwarding and Python-forwarding shims for the non-shell tools. The generated files are ignored by git. Until the external PKGBUILD hook and explicit bare-router installation are merged, the ISO package build does not provide complete compatibility.
 
 ## Locate indexing
 
