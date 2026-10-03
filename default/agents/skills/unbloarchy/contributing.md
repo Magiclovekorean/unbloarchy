@@ -1,17 +1,17 @@
 # Reporting Issues and Submitting PRs
 
 Read this when the user wants to report an Unbloarchy bug, suggest a feature, or
-contribute a fix upstream.
+contribute a fix to Unbloarchy.
 
-Unbloarchy lives at https://github.com/omacom/omarchy. Route requests to the
+Unbloarchy lives at https://github.com/Magiclovekorean/unbloarchy. Route requests to the
 right place:
 
 - **Verified bugs** -> GitHub issues. Issues are for validated bugs only, not
   support requests.
 - **Feature ideas and suggestions** ->
-  https://github.com/omacom/omarchy/discussions/categories/suggestions
-- **Support and "is this a bug?" questions** -> the Discord community at
-  https://omarchy.org/discord. Start here when the problem isn't clearly a bug
+  https://github.com/Magiclovekorean/unbloarchy/discussions/categories/suggestions
+- **Support and "is this a bug?" questions** -> Unbloarchy's GitHub Discussions at
+  https://github.com/Magiclovekorean/unbloarchy/discussions. Start here when the problem isn't clearly a bug
   in Unbloarchy itself.
 
 ## Filing a Good Bug Report
@@ -25,9 +25,10 @@ unbloarchy version
 # Generate the diagnostic log (also written to /tmp/unbloarchy-debug.log)
 unbloarchy debug --no-sudo --print
 
-# Interactive variant: `unbloarchy debug` offers to upload the log to
-# logs.omarchy.org (expires after 24h) and prints a shareable URL to
-# include in the issue.
+# Interactive variant: `unbloarchy debug` can upload the log to the
+# upstream logs.omarchy.org service and print a shareable URL. Review the
+# log before uploading; it can contain system details and installed packages,
+# and the upstream service says uploads expire after 24 hours.
 ```
 
 **Capture the problem on screen.** A screenshot or short recording of the bug
@@ -43,7 +44,7 @@ For screen-recording failures specifically, rerun with
 File the issue with `gh` when available:
 
 ```bash
-gh issue create --repo omacom/omarchy --title "..." --body "..."
+gh issue create --repo Magiclovekorean/unbloarchy --title "..." --body "..."
 ```
 
 Include: what happened, what was expected, steps to reproduce, system details,
@@ -54,7 +55,7 @@ the debug log URL (or attached log), and the capture.
 Never develop against `/usr/share/unbloarchy`. Clone a working copy instead:
 
 ```bash
-gh repo fork omacom/omarchy --clone
+gh repo clone Magiclovekorean/unbloarchy
 cd unbloarchy
 ```
 

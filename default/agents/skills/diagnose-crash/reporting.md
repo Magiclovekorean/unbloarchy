@@ -1,4 +1,4 @@
-# Reporting a Crash Upstream to Unbloarchy
+# Reporting a Crash to Unbloarchy
 
 Read this only after concluding that a crash is genuinely Unbloarchy's to fix.
 
@@ -26,8 +26,8 @@ useful; filing there yourself is not part of this.
 ## Three conditions, all required
 
 1. **It is a verified bug in Unbloarchy's sphere**, established on evidence. Issues
-   are for verified bugs only. An "is this even a bug?" belongs on the Discord at
-   <https://omarchy.org/discord>; a feature idea belongs in GitHub Discussions
+   are for verified bugs only. An "is this even a bug?" belongs in Unbloarchy's GitHub Discussions at
+   <https://github.com/Magiclovekorean/unbloarchy/discussions>; a feature idea belongs in Discussions
    under Suggestions.
 2. **The user has explicitly agreed.** Show them the exact title and body you
    propose, and wait for a yes. Never file unprompted.
@@ -40,8 +40,8 @@ useful; filing there yourself is not part of this.
 A duplicate issue costs a maintainer more time than no report at all.
 
 ```bash
-gh search issues --repo omacom/omarchy "<program> crash"
-gh issue list --repo omacom/omarchy --state all --search "<signal> <program>"
+gh search issues --repo Magiclovekorean/unbloarchy "<program> crash"
+gh issue list --repo Magiclovekorean/unbloarchy --state all --search "<signal> <program>"
 ```
 
 Search on the crashing program, the signal, and distinctive symbols from the
@@ -59,7 +59,7 @@ more than another duplicate.
 If a plausible match comes back, read it properly first:
 
 ```bash
-gh issue view <number> --repo omacom/omarchy --comments
+gh issue view <number> --repo Magiclovekorean/unbloarchy --comments
 ```
 
 Confirm it is genuinely the same failure. The same program crashing is not the
@@ -74,7 +74,7 @@ A comment that only says the bug happens to you too is noise. If that is all you
 have, tell the user so and file nothing.
 
 ```bash
-gh issue comment <number> --repo omacom/omarchy --body "..."
+gh issue comment <number> --repo Magiclovekorean/unbloarchy --body "..."
 ```
 
 ## Filing a new issue
@@ -82,7 +82,7 @@ gh issue comment <number> --repo omacom/omarchy --body "..."
 Only when the search turns up nothing that matches:
 
 ```bash
-gh issue create --repo omacom/omarchy --title "..." --body "..."
+gh issue create --repo Magiclovekorean/unbloarchy --title "..." --body "..."
 ```
 
 Include what happened, what was expected, steps to reproduce, system details from

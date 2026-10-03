@@ -13,7 +13,7 @@ description: >
 
 # Unbloarchy Skill
 
-Manage [Unbloarchy](https://omarchy.org/) Linux systems - a beautiful, fun, agentic Arch Linux distribution with Hyprland.
+Manage Unbloarchy Linux systems — an unofficial, independent fork of Omarchy, based on Arch Linux and Hyprland.
 
 This skill is for end-user customization on installed systems.
 It is not for contributing to Unbloarchy source code.

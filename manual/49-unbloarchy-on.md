@@ -6,15 +6,15 @@
 
 ### Apple Virtual Machine
 
-You can also install Unbloarchy inside a Parallels VM. Quite the cumbersome process, but there's [a user-driven guide](https://github.com/omacom/omarchy/discussions/452) for that too.
+You can also install Unbloarchy inside a Parallels VM. It's a cumbersome process, but there's an [upstream Omarchy community guide](https://github.com/omacom/omarchy/discussions/452) for it.
 
 ### VirtualBox
 
-VirtualBox is a popular VM runner. [You can run Unbloarchy inside that too](https://github.com/omacom/omarchy/discussions/176). But performance probably won't be great.
+VirtualBox is a popular VM runner. An [upstream Omarchy community guide](https://github.com/omacom/omarchy/discussions/176) covers running Unbloarchy there too, though performance probably won't be great.
 
 ### VMware Workstation on Windows 11
 
-Another popular VM runner for Windows. [Unbloarchy has been setup inside of that as well](https://github.com/omacom/omarchy/discussions/572).
+VMware Workstation is another popular VM runner for Windows. An [upstream Omarchy community guide](https://github.com/omacom/omarchy/discussions/572) covers that setup.
 
 ### Steam Deck
 

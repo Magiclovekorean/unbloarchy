@@ -1,11 +1,11 @@
 # Welcome to Unbloarchy!
 
-Unbloarchy is an [omakase](https://manuals.omamix.org/3/omacom/76/omakase-computing) Linux distribution based on [Arch](https://archlinux.org/), the tiling window manager [Hyprland](https://hypr.land/), and the desktop construction-kit [Quickshell](https://quickshell.org/). It ships with everything a modern, savvy computer user needs to be productive immediately. From [Neovim](https://neovim.io/) (btw) to Chromium, [Obsidian](https://obsidian.md/) to LibreOffice, and Kdenlive to OBS Studio. Hell, even a retro Winamp-style music player is there!
+Unbloarchy is an unofficial, independent fork of Omarchy. It is not affiliated with, endorsed by, or sponsored by Omarchy LLC or David Heinemeier Hansson. “Omarchy” is a trademark of its respective owner and is used here only to identify the upstream project from which this fork derives. Please report Unbloarchy issues to this fork, not upstream.
 
-This isn't just a grab bag of preinstalled packages, though. It's a complete system designed with both aesthetics and productivity in mind. Because a _beautiful_ system is a _motivating_ system, and productivity has always been [downstream from motivation](https://world.hey.com/dhh/beautiful-motivations-6fef7c73). There's zero bloat here: Just everything I use.
+Unbloarchy is an [omakase](https://manuals.omamix.org/3/omacom/76/omakase-computing) Linux distribution based on [Arch Linux](https://archlinux.org/), the tiling window manager [Hyprland](https://hypr.land/), and the desktop construction kit [Quickshell](https://quickshell.org/). It ships with a curated set of applications, including [Neovim](https://neovim.io/), Chromium, [Obsidian](https://obsidian.md/), LibreOffice, Kdenlive, OBS Studio, and a retro Winamp-style music player.
 
-It's true that developing an eye for the beauty of a TUI-heavy, theme-delighted, tiling-window-managed system like Unbloarchy can be an acquired taste. But that's why you're here, isn't it? To experience something a little outside of your comfort zone? To embark on a little bit of an adventure into a new way of working with computers? I hope so.
+The project aims to provide a complete desktop with a strong visual identity and a keyboard- and terminal-oriented workflow. It inherits ideas and configuration from Omarchy while being developed and maintained independently as Unbloarchy.
 
-Unbloarchy isn't like Windows and it's not like macOS either. It's not trying to be as familiar as possible. It's trying to be beautiful and _better_. Embrace the Linux-ness of it all. Manually editing some config files, sure. Heavy on the terminal, definitely.
+A TUI-heavy, theme-focused, tiling-window-managed desktop can take some getting used to. Unbloarchy favors Linux's flexibility over matching Windows or macOS, so expect to explore the terminal and edit configuration files as you make the system your own.
 
 Let's get started with the basics.

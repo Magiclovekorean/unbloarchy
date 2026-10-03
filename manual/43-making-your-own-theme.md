@@ -42,4 +42,4 @@ That leftover `[themename]` becomes the theme's directory name, so it has to be 
 
 Remember that once it's installed from a repo, any `.lua`, terminal config or `vscode.json` it ships is dropped, so don't build the theme around those.
 
-You can have your theme added to [the extra themes page](https://omarchy.org/themes/) by sending a pull request to [the omarchy-site repo](https://github.com/omacom-io/omarchy-site).
+The extra themes catalog is maintained by the upstream Omarchy project. To contribute there, send a pull request to [the upstream omarchy-site repository](https://github.com/omacom-io/omarchy-site).

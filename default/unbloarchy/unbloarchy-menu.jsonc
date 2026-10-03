@@ -43,7 +43,7 @@
 
   // Learn
   "learn.keybindings": {"icon":"","label":"Keybindings","action":"unbloarchy-menu-keybindings"},
-  "learn.unbloarchy": {"icon":"","label":"Unbloarchy","action":"unbloarchy-launch-webapp 'https://omarchy.org/manual/'"},
+  "learn.unbloarchy": {"icon":"","label":"Unbloarchy","action":"unbloarchy-launch-webapp 'https://github.com/Magiclovekorean/unbloarchy'"},
   "learn.hyprland": {"icon":"","label":"Hyprland","action":"unbloarchy-launch-webapp 'https://wiki.hypr.land/'"},
   "learn.arch": {"icon":"󰣇","label":"Arch","action":"unbloarchy-launch-webapp 'https://wiki.archlinux.org/title/Main_page'"},
   "learn.neovim": {"icon":"","label":"Neovim","action":"unbloarchy-launch-webapp 'https://www.lazyvim.org/keymaps'"},

@@ -2,7 +2,7 @@
 
 Unbloarchy and your packages are kept up to date via _Update > Unbloarchy_ in the Unbloarchy menu (`Super + Space`).
 
-Unbloarchy itself is installed as regular pacman packages from the [Unbloarchy Package Repository](https://github.com/omacom-io/omarchy-pkgs), so an update installs [the latest Unbloarchy release](https://github.com/omacom/omarchy/releases), runs any pending migrations to get your system in sync with the latest, and updates all system packages from the [Unbloarchy Arch Mirror](https://github.com/omacom-io/omarchy-mirror) and [AUR](https://aur.archlinux.org/) (if you have installed any AUR packages).
+Unbloarchy itself is installed as regular pacman packages from the [upstream Omarchy package repository](https://github.com/omacom-io/omarchy-pkgs), so an update installs [the latest Unbloarchy source release](https://github.com/Magiclovekorean/unbloarchy/releases), runs any pending migrations to get your system in sync with it, and updates system packages from the [upstream Omarchy Arch mirror](https://github.com/omacom-io/omarchy-mirror) and [AUR](https://aur.archlinux.org/) (if you have installed any AUR packages). The package repository and mirror are upstream dependencies, not Unbloarchy-operated services.
 
 When new releases are made, a circle arrow icon will appear to the right of your clock. Click it and the update process will start.
 
@@ -10,11 +10,11 @@ When new releases are made, a circle arrow icon will appear to the right of your
 
 ### Four channels
 
-Unbloarchy is updated along four channels: stable, RC, edge, and dev. New installations start on the stable channel, which tracks the [official releases](https://github.com/omacom/omarchy/releases/), as well as the [stable Unbloarchy Arch mirror](https://github.com/omacom-io/omarchy-mirror) that's running one month behind the latest, so we can catch any new incompatibilities that require config changes before they cause problems for people.
+Unbloarchy is updated along four channels: stable, RC, edge, and dev. New installations start on the stable channel, which tracks the [Unbloarchy releases](https://github.com/Magiclovekorean/unbloarchy/releases/), as well as the [upstream stable Omarchy Arch mirror](https://github.com/omacom-io/omarchy-mirror) that's running one month behind the latest, so we can catch any new incompatibilities that require config changes before they cause problems for people.
 
 But if you'd like to help spot those potential issues, you can run on the edge channel. That'll keep your Unbloarchy packages tracking the latest development builds, and lets you update to the latest Arch packages as soon as they're available. You should only do this if you're experienced with Linux, and know how to recover a system that has problems.
 
-Before any new major release, we'll be doing final validation using the RC channel. If you're interested in helping with final polishing, come hang out in #unbloarchy-release-candidates on the Discord.
+Before any new major release, we'll do final validation using the RC channel. If you're interested in helping with final polishing, join the conversation in [Unbloarchy GitHub Discussions](https://github.com/Magiclovekorean/unbloarchy/discussions).
 
 Finally, there's the dev channel, which links Unbloarchy directly to a git checkout of the source code in `~/unbloarchy`, combined with the edge packages. You should only use this channel if you're an experienced Linux user, working directly on Unbloarchy, and willing to tolerate breakage.
 
