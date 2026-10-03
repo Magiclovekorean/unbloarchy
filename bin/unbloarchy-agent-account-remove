@@ -1,20 +1,20 @@
 #!/bin/bash
 
-# unbloarchy:summary=Forget an added Claude or Codex account
-# unbloarchy:args=[claude|codex] <account>
+# unbloarchy:summary=Forget an added Claude, Codex, or Grok account
+# unbloarchy:args=[claude|codex|grok] <account>
 # unbloarchy:examples=unbloarchy agent account remove work | unbloarchy agent account remove codex side
 
 set -uo pipefail
 
 # The provider can be left out when it's your default agent:
 # `unbloarchy agent account use work`.
-if [[ ${1:-} != "claude" && ${1:-} != "codex" ]]; then
+if [[ ${1:-} != "claude" && ${1:-} != "codex" && ${1:-} != "grok" ]]; then
   default=$(unbloarchy-default-agent)
-  [[ $default == "claude" || $default == "codex" ]] && set -- "$default" "$@"
+  [[ $default == "claude" || $default == "codex" || $default == "grok" ]] && set -- "$default" "$@"
 fi
 
-if [[ ${1:-} != "claude" && ${1:-} != "codex" ]] || [[ -z ${2:-} ]]; then
-  echo "Usage: unbloarchy-agent-account-remove [claude|codex] <account>" >&2
+if [[ ${1:-} != "claude" && ${1:-} != "codex" && ${1:-} != "grok" ]] || [[ -z ${2:-} ]]; then
+  echo "Usage: unbloarchy-agent-account-remove [claude|codex|grok] <account>" >&2
   exit 1
 fi
 

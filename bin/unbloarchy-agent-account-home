@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# unbloarchy:summary=Print the config home of the active Claude or Codex account
-# unbloarchy:args=<claude|codex>
+# unbloarchy:summary=Print the config home of the active Claude, Codex, or Grok account
+# unbloarchy:args=<claude|codex|grok>
 # unbloarchy:hidden=true
 
 # Prints nothing while the primary account (~/.claude, ~/.codex) is active, so
@@ -10,8 +10,8 @@
 # every `claude` and `codex` typed at a prompt.
 registry="${XDG_STATE_HOME:-$HOME/.local/state}/unbloarchy/agents/accounts/${1:-}.json"
 
-if [[ ${1:-} != "claude" && ${1:-} != "codex" ]]; then
-  echo "Usage: unbloarchy-agent-account-home <claude|codex>" >&2
+if [[ ${1:-} != "claude" && ${1:-} != "codex" && ${1:-} != "grok" ]]; then
+  echo "Usage: unbloarchy-agent-account-home <claude|codex|grok>" >&2
   exit 1
 elif [[ -f $registry ]]; then
   exec unbloarchy-agent-account-state home "$1"

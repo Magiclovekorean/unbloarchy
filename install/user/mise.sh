@@ -12,7 +12,7 @@ unbloarchy-mise-install opencode
 unbloarchy-mise-install npm:playwright playwright
 unbloarchy-mise-install pi
 unbloarchy-mise-install github:can1357/oh-my-pi omp
-unbloarchy-mise-install npm:@xai-official/grok grok
+unbloarchy-mise-install grok
 # Cursor's own installer links the same path, so a re-provision keeps it.
 unbloarchy-cmd-missing cursor-agent && unbloarchy-mise-install cursor-agent
 unbloarchy-mise-install npm:@kitlangton/ghui ghui
