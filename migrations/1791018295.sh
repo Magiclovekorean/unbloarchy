@@ -243,40 +243,20 @@ if [[ -e /boot/EFI/Linux/omarchy_linux.efi && ! -e /boot/EFI/Linux/unbloarchy_li
   sudo mv /boot/EFI/Linux/omarchy_linux.efi /boot/EFI/Linux/unbloarchy_linux.efi
 fi
 
-# The install root moves last: everything above resolves through
-# $UNBLOARCHY_PATH, and the running session still has the old one open. An older
-# install still has /usr/share/omarchy on disk and no package owns it any more.
-if [[ -d /usr/share/omarchy && ! -L /usr/share/omarchy ]]; then
-  if [[ -d /usr/share/omarchy/bin ]]; then
-    if [[ -e /usr/share/unbloarchy ]]; then
-      sudo rm -rf /usr/share/omarchy
-    else
-      sudo mv /usr/share/omarchy /usr/share/unbloarchy
-    fi
-  else
-    # A directory sharing the name but holding no bin/ is not an install root.
-    # It is either a leftover from an interrupted run or a directory of the
-    # user's own. The two cannot be told apart, and guessing wrong deletes
-    # someone's data, so leave it and skip the link below. Everything else in
-    # this migration has already completed by now, so continuing loses nothing
-    # and this never wedges the queue.
-    echo "Warning: /usr/share/omarchy holds no bin/, so it is not an install root." >&2
-    echo "Warning: leaving it in place and skipping its compatibility link." >&2
-  fi
+# The upstream package keeps owning /usr/share/omarchy; moving or deleting it
+# here would break pacman's file ownership and future upgrades. Add the new
+# runtime path as an unowned link instead.
+if [[ -d /usr/share/omarchy/bin &&
+      ! -e /usr/share/unbloarchy && ! -L /usr/share/unbloarchy ]]; then
+  sudo ln -s /usr/share/omarchy /usr/share/unbloarchy
+elif [[ -e /usr/share/omarchy && ! -d /usr/share/omarchy/bin &&
+        ! -e /usr/share/unbloarchy && ! -L /usr/share/unbloarchy ]]; then
+  echo "Warning: /usr/share/omarchy holds no bin/, so it is not the package root." >&2
+  echo "Warning: leaving it in place and skipping the Unbloarchy compatibility link." >&2
 fi
 
-# Pre-rename software and user dotfiles still resolve the old root. A symlink
-# rather than a package, so it survives `pacman -Qo` and is never a conflicting
-# files error.
-if [[ ! -e /usr/share/omarchy && ! -L /usr/share/omarchy ]]; then
-  sudo ln -sfn /usr/share/unbloarchy /usr/share/omarchy
-fi
-
-# The bare router name is not matched by the package's bin/omarchy-* glob, so
-# the packaged build only provides it if its PKGBUILD installs it explicitly.
-# Create it here when it is missing: `omarchy update`, `omarchy doctor`, and
-# the ISO chroot entrypoints all use the bare name, and this is the only place
-# the gap can be closed from this repository.
+# The command wrappers ship both router names through the upstream package's
+# bin/* loop. Retain a fallback for an installation that predates those files.
 if [[ -x /usr/bin/unbloarchy && ! -e /usr/bin/omarchy ]]; then
   sudo ln -s /usr/bin/unbloarchy /usr/bin/omarchy
 fi

@@ -63,6 +63,15 @@ if (( EUID != 0 )); then
   exit 1
 fi
 
+if [[ ! -e /usr/share/unbloarchy && ! -L /usr/share/unbloarchy &&
+      -d /usr/share/omarchy/bin ]]; then
+  if ! ln -s /usr/share/omarchy /usr/share/unbloarchy &&
+    [[ ! -e /usr/share/unbloarchy && ! -L /usr/share/unbloarchy ]]; then
+    echo "Error: could not create /usr/share/unbloarchy for the packaged installation." >&2
+    exit 1
+  fi
+fi
+
 if (( defer_provisioning )); then
   install_user=""
 else

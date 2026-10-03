@@ -5,15 +5,32 @@
 #   /usr/share/unbloarchy/default/bash/envs      (bash rc chain; SSH/non-login)
 
 # /etc/unbloarchy.conf is written by unbloarchy-dev-link and reset by
-# unbloarchy-dev-unlink. When absent, force the packaged default instead of
-# preserving a stale inherited value.
+# unbloarchy-dev-unlink. During the package-name-preserving transition, the
+# upstream package still owns /usr/share/omarchy and existing dev links still
+# use /etc/omarchy.conf.
+UNBLOARCHY_PACKAGED_PATH=/usr/share/unbloarchy
+if [ ! -d "$UNBLOARCHY_PACKAGED_PATH/default" ] &&
+  [ -d /usr/share/omarchy/default ]; then
+  UNBLOARCHY_PACKAGED_PATH=/usr/share/omarchy
+fi
+
 if [ -f /etc/unbloarchy.conf ]; then
   . /etc/unbloarchy.conf
-  : "${UNBLOARCHY_PATH:=/usr/share/unbloarchy}"
+  : "${UNBLOARCHY_PATH:=$UNBLOARCHY_PACKAGED_PATH}"
+elif [ -f /etc/omarchy.conf ]; then
+  . /etc/omarchy.conf
+  : "${UNBLOARCHY_PATH:=${OMARCHY_PATH:-$UNBLOARCHY_PACKAGED_PATH}}"
 else
-  UNBLOARCHY_PATH=/usr/share/unbloarchy
+  : "${UNBLOARCHY_PATH:=${OMARCHY_PATH:-$UNBLOARCHY_PACKAGED_PATH}}"
+fi
+
+if [ "$UNBLOARCHY_PATH" = /usr/share/unbloarchy ] &&
+  [ ! -d "$UNBLOARCHY_PATH/default" ] &&
+  [ -d /usr/share/omarchy/default ]; then
+  UNBLOARCHY_PATH=/usr/share/omarchy
 fi
 export UNBLOARCHY_PATH
+unset UNBLOARCHY_PACKAGED_PATH
 
 # Deprecated alias. Pre-rename software and user dotfiles still read OMARCHY_PATH,
 # so it always mirrors UNBLOARCHY_PATH. Never let the two diverge: new code reads
@@ -24,7 +41,8 @@ export OMARCHY_PATH
 # Only prepend in dev-link mode. On a production install, the binaries are
 # already on PATH as /usr/bin/unbloarchy-* via the unbloarchy package — prepending
 # /usr/share/unbloarchy/bin would just be noise.
-if [ "$UNBLOARCHY_PATH" != /usr/share/unbloarchy ]; then
+if [ "$UNBLOARCHY_PATH" != /usr/share/unbloarchy ] &&
+  [ "$UNBLOARCHY_PATH" != /usr/share/omarchy ]; then
   case ":$PATH:" in
     *":${UNBLOARCHY_PATH%/}/bin:"*) ;;
     *) PATH="${UNBLOARCHY_PATH%/}/bin${PATH:+:$PATH}" ;;

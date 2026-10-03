@@ -8,7 +8,9 @@ test_tmp=$(mktemp -d)
 trap 'rm -rf "$test_tmp"' EXIT
 repo="$test_tmp/repo"
 bin="$repo/bin"
-mkdir -p "$bin"
+mkdir -p "$bin" "$repo/default/wayland-sessions" "$repo/default/sddm/unbloarchy"
+touch "$repo/default/wayland-sessions/unbloarchy.desktop"
+touch "$repo/default/sddm/unbloarchy/Main.qml"
 
 cat >"$bin/unbloarchy" <<'ROUTER'
 #!/bin/bash
@@ -16,7 +18,7 @@ printf 'router:%s\n' "$*"
 ROUTER
 cat >"$bin/unbloarchy-test-tool" <<'COMMAND'
 #!/bin/bash
-printf 'command:%s\n' "$*"
+printf 'command:%s:%s\n' "$UNBLOARCHY_PATH" "$*"
 COMMAND
 cat >"$bin/unbloarchy-security-functions" <<'LIBRARY'
 #!/bin/bash
@@ -34,12 +36,32 @@ bash "$generator" "$repo"
 
 [[ -x $bin/omarchy ]] || fail "generator creates an executable router compatibility command"
 [[ $($bin/omarchy theme set example) == "router:theme set example" ]] || fail "router shim forwards arguments"
-[[ $($bin/omarchy-test-tool 'two words' --flag) == "command:two words --flag" ]] || fail "command shim preserves argument boundaries"
+[[ $(env -u UNBLOARCHY_PATH -u OMARCHY_PATH "$bin/omarchy-test-tool" 'two words' --flag) == \
+   "command:$repo:two words --flag" ]] || fail "command shim preserves arguments and initializes the checkout path"
+[[ -f $bin/omarchy-test-tool && ! -L $bin/omarchy-test-tool ]] ||
+  fail "command compatibility entries are packageable executable files"
 
 source "$bin/omarchy-security-functions"
 [[ $(compat_test_function ok) == "sourced:ok" ]] || fail "security compatibility shim sources the renamed library"
 [[ $(python3 "$bin/omarchy-dev-font" list) == "python:list" ]] || fail "Python compatibility shim invokes the renamed tool"
 pass "generated shims dispatch shell, library, and Python entrypoints"
+
+package_bin="$test_tmp/package/usr/bin"
+install -Dm755 "$bin/omarchy-test-tool" "$package_bin/omarchy-test-tool"
+install -Dm755 "$bin/unbloarchy-test-tool" "$package_bin/unbloarchy-test-tool"
+[[ $(UNBLOARCHY_PATH=/usr/share/omarchy "$package_bin/omarchy-test-tool" 'two words' --flag) == \
+   "command:/usr/share/omarchy:two words --flag" ]] ||
+  fail "an upstream-style install loop packages the old command as a forwarding executable"
+pass "old command names keep working after a package copies bin entries"
+
+[[ -L $repo/default/wayland-sessions/omarchy.desktop ]] ||
+  fail "generator provides the legacy session filename used by the package recipe"
+[[ -d $repo/default/sddm/omarchy && ! -L $repo/default/sddm/omarchy ]] ||
+  fail "generator provides a packageable SDDM directory under the legacy filename"
+mkdir -p "$test_tmp/package/usr/share/sddm/themes"
+cp -a "$repo/default/sddm/omarchy" "$test_tmp/package/usr/share/sddm/themes/"
+[[ -f $test_tmp/package/usr/share/sddm/themes/omarchy/Main.qml ]] ||
+  fail "the upstream-style SDDM package copy contains the theme files"
 
 cp "$bin/omarchy-test-tool" "$test_tmp/first-generation"
 bash "$generator" "$repo"

@@ -67,8 +67,8 @@ unbloarchy/                            built into          installed at
 
 bin/unbloarchy-*                  ──►  unbloarchy             /usr/bin/unbloarchy-*
                                                         (and symlinks in /usr/share/unbloarchy/bin/)
-bin/omarchy-* generated shims    ──►  unbloarchy             /usr/bin/omarchy-*
-bin/omarchy generated router shim ──►  unbloarchy             /usr/bin/omarchy
+bin/omarchy-* compatibility links ──► unbloarchy             /usr/bin/omarchy-*
+bin/omarchy compatibility link   ──►  unbloarchy             /usr/bin/omarchy
 bin/unbloarchy-debug,
 bin/unbloarchy-debug-idle,
 bin/unbloarchy-upload-log         ──►  omarchy-settings    /usr/bin/  (needed before unbloarchy is installed)
@@ -157,9 +157,9 @@ upgrade. This is documented in the PKGBUILD.
 
 ## Legacy command compatibility shims
 
-The source checkout does not commit generated `bin/omarchy*` compatibility files. Before packaging, the upstream `omarchy-pkgs` PKGBUILD must run `bash "$srcdir/unbloarchy/install/helpers/generate-compat-shims.sh" "$srcdir/unbloarchy"` from its `prepare()` function, before discovering `bin/omarchy-*`. The package build must also explicitly install `bin/omarchy`, because that bare router alias is not matched by an `omarchy-*` glob.
+The tracked `omarchy-*` wrappers and `omarchy` router wrapper are compatibility entrypoints, not a second implementation. They dispatch to the corresponding `unbloarchy-*` command, preserving arguments and exit status. This lets the unmodified upstream package recipe include the old names through its existing `bin/*` install loop without maintaining an `omarchy-pkgs` fork. The build also installs the bare `bin/omarchy` router wrapper because it is part of that same loop.
 
-The generator preserves the `omarchy-*` glob expected by the upstream package build and emits source-forwarding and Python-forwarding shims for the non-shell tools. The generated files are ignored by git. Until the external PKGBUILD hook and explicit bare-router installation are merged, the ISO package build does not provide complete compatibility.
+`install/helpers/generate-compat-shims.sh` regenerates this compatibility surface after adding or removing a command. Review and commit its output together with command changes; the package source must contain the wrappers for them to be installed. It also creates only the exact old default paths still selected by the upstream package recipe. The packaged root remains at `/usr/share/omarchy` for upstream compatibility; setup must establish `/usr/share/unbloarchy` as its alias before Unbloarchy commands that read package data run.
 
 ## Locate indexing
 

@@ -11,7 +11,7 @@ run_bootstrap() {
   local path_value="$4"
 
   shell_bin=$(command -v "$shell_bin")
-  HOME="$home" PATH="$path_value" "$shell_bin" -c '
+  env -u UNBLOARCHY_PATH -u OMARCHY_PATH HOME="$home" PATH="$path_value" "$shell_bin" -c '
     . "$1"
     printf "%s\n%s\n" "$UNBLOARCHY_PATH" "$PATH"
   ' sh "$bootstrap"
@@ -45,7 +45,10 @@ mkdir -p "$tmpdir/active/bin" "$tmpdir/unrelated/bin"
 
 # Test against a copy so the test controls /etc/unbloarchy.conf without mutating the host.
 bootstrap="$tmpdir/env-bootstrap"
-sed "s#/etc/unbloarchy.conf#$tmpdir/unbloarchy.conf#g" "$ROOT/default/bash/env-bootstrap" >"$bootstrap"
+sed \
+  -e "s#/etc/unbloarchy.conf#$tmpdir/unbloarchy.conf#g" \
+  -e "s#/etc/omarchy.conf#$tmpdir/omarchy.conf#g" \
+  "$ROOT/default/bash/env-bootstrap" >"$bootstrap"
 
 printf 'export UNBLOARCHY_PATH="/usr/share/unbloarchy"\n' >"$tmpdir/unbloarchy.conf"
 mapfile -t default_result < <(run_bootstrap bash "$bootstrap" "$home" "$tmpdir/unrelated/bin:/usr/bin")
@@ -84,3 +87,19 @@ if command -v zsh >/dev/null 2>&1; then
   assert_path_first "$zsh_path" "$tmpdir/active/bin" "env-bootstrap works when sourced by zsh"
   assert_path_present "$zsh_path" "$tmpdir/unrelated/bin" "env-bootstrap zsh mode preserves unrelated PATH entries"
 fi
+
+legacy_bootstrap="$tmpdir/legacy-env-bootstrap"
+legacy_root="$tmpdir/legacy-packaged"
+mkdir -p "$legacy_root/default"
+sed \
+  -e "s#/etc/unbloarchy.conf#$tmpdir/legacy-unbloarchy.conf#g" \
+  -e "s#/etc/omarchy.conf#$tmpdir/omarchy.conf#g" \
+  -e "s#/usr/share/unbloarchy#$tmpdir/new-packaged#g" \
+  -e "s#/usr/share/omarchy#$legacy_root#g" \
+  "$ROOT/default/bash/env-bootstrap" >"$legacy_bootstrap"
+printf 'export OMARCHY_PATH="%s"\n' "$legacy_root" >"$tmpdir/omarchy.conf"
+mapfile -t legacy_result < <(run_bootstrap bash "$legacy_bootstrap" "$home" "/usr/bin")
+[[ ${legacy_result[0]} == "$legacy_root" ]] ||
+  fail "env-bootstrap resolves the upstream package root from the legacy dev-link config" \
+    "actual: ${legacy_result[0]}"
+pass "env-bootstrap preserves the upstream package root during a no-fork transition"

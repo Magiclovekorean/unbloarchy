@@ -188,15 +188,15 @@ grep -qx 'CUSTOM_UKI_NAME="unbloarchy"' "$MROOT/etc/limine-entry-tool.d/unbloarc
 [[ -e $MROOT/etc/skel/.config/unbloarchy/branding/about.txt ]] || fail "the new-user skeleton moves"
 pass "system drop-ins, PAM, the units, the UKI, and the new-user skeleton all move"
 
-[[ -d $MROOT/usr/share/unbloarchy/bin ]] || fail "the install root moves to its new path"
-[[ -L $MROOT/usr/share/omarchy ]] || fail "pre-rename software keeps resolving the old root"
-[[ $(readlink "$MROOT/usr/share/omarchy") == "$MROOT/usr/share/unbloarchy" ]] ||
-  fail "the compatibility link points at the new root"
+[[ -d $MROOT/usr/share/omarchy/bin ]] || fail "the package-owned root stays in place"
+[[ -L $MROOT/usr/share/unbloarchy ]] || fail "the new runtime path aliases the package root"
+[[ $(readlink "$MROOT/usr/share/unbloarchy") == "$MROOT/usr/share/omarchy" ]] ||
+  fail "the new runtime link points to the old package root"
 [[ -e $MROOT/usr/share/fonts/unbloarchy/unbloarchy.ttf ]] || fail "the packaged icon font moves to its new path"
 [[ -L $MROOT/usr/bin/omarchy ]] || fail "the bare router name the package glob misses is provided"
 [[ $(readlink "$MROOT/usr/bin/omarchy") == "$MROOT/usr/bin/unbloarchy" ]] ||
   fail "the bare router link points at the fork's router"
-pass "the install root moves and both compatibility links resolve"
+pass "the package-owned root remains and the new runtime path resolves"
 
 [[ -e $MROOT/var/lib/unbloarchy/provisioning/groups ]] || fail "machine state moves to its new path"
 [[ ! -e $MROOT/var/lib/omarchy ]] || fail "the pre-rename machine state is left behind"
@@ -206,8 +206,8 @@ pass "machine-wide state and the install log move"
 seed_install
 run_migration
 run_migration
-[[ -d $MROOT/usr/share/unbloarchy/themes ]] || fail "a second run keeps the install root intact"
-[[ -L $MROOT/usr/share/omarchy ]] || fail "a second run keeps the compatibility link"
+[[ -d $MROOT/usr/share/omarchy/themes ]] || fail "a second run keeps the package-owned root intact"
+[[ -L $MROOT/usr/share/unbloarchy ]] || fail "a second run keeps the runtime compatibility link"
 [[ -e $MROOT/usr/share/fonts/unbloarchy/unbloarchy.ttf ]] || fail "a second run keeps the packaged font"
 [[ -e $MROOT/usr/lib/systemd/user/unbloarchy-crash-watch.service ]] ||
   fail "a second run keeps the renamed units intact"
@@ -248,18 +248,16 @@ grep -qx 'newer' "$MROOT/etc/sudoers.d/unbloarchy-dns" ||
 [[ ! -e $MROOT/etc/sudoers.d/omarchy-dns ]] || fail "the stale duplicate is left in place"
 pass "the already-installed drop-in wins and the stale duplicate is dropped"
 
-# /usr/share/omarchy is an install root by virtue of holding bin/. A directory
-# that happens to share the name but is not one is indistinguishable from a
-# directory of the user's own, so it has to survive, and losing the compat link
-# over it must not stop the rest of the migration.
+# A path named /usr/share/omarchy without the package's bin/ tree is not the
+# package root. Leave it alone and do not expose it as the runtime path.
 seed_install
 rm -rf "$MROOT/usr/share/omarchy"
-mkdir -p "$MROOT/usr/share/unbloarchy/bin" "$MROOT/usr/share/omarchy/etc"
+mkdir -p "$MROOT/usr/share/omarchy/etc"
 printf 'not an install root\n' >"$MROOT/usr/share/omarchy/etc/settings.conf"
 run_migration
 [[ -e $MROOT/usr/share/omarchy/etc/settings.conf ]] ||
   fail "a directory that is not an install root is deleted"
-[[ ! -L $MROOT/usr/share/omarchy ]] || fail "an unrelated directory is replaced by a link"
+[[ ! -L $MROOT/usr/share/unbloarchy ]] || fail "an unrelated directory is exposed as the package root"
 grep -q 'holds no bin/' "$test_dir/output" ||
   fail "the skipped link is reported rather than done silently"
 [[ -L $MROOT/usr/bin/omarchy ]] || fail "the migration stops at the skipped link"

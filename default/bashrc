@@ -1,5 +1,8 @@
 # Unbloarchy environment (UNBLOARCHY_PATH + PATH), needed even for non-interactive shells
-[[ -r /usr/share/unbloarchy/default/bash/env-bootstrap ]] && source /usr/share/unbloarchy/default/bash/env-bootstrap
+bootstrap=/usr/share/unbloarchy/default/bash/env-bootstrap
+[[ -r $bootstrap ]] || bootstrap=/usr/share/omarchy/default/bash/env-bootstrap
+[[ ! -r $bootstrap ]] || source "$bootstrap"
+unset bootstrap
 
 # If not running interactively, don't do anything else (leave this above the rc source)
 [[ $- != *i* ]] && return

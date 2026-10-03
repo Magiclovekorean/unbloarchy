@@ -170,18 +170,41 @@ for source, destination, legacy in package_defaults:
     errors.append(f"missing package default source: {source}")
   if (root / "config" / legacy).exists():
     errors.append(f"legacy path still in config/: {legacy}")
-  if destination and (source not in pkgbuild or destination not in pkgbuild):
-    errors.append(f"PKGBUILD does not explicitly install {source} -> {destination}")
+  if destination:
+    legacy_source = source.replace("unbloarchy", "omarchy")
+    legacy_destination = destination.replace("unbloarchy", "omarchy")
+    package_source = root / legacy_source
+    if not package_source.exists():
+      errors.append(f"legacy package source path is missing: {legacy_source}")
+    elif package_source.is_symlink() and package_source.resolve() != (root / source).resolve():
+      errors.append(f"legacy package source does not forward to {source}: {legacy_source}")
+    if legacy_source not in pkgbuild or legacy_destination not in pkgbuild:
+      errors.append(
+        f"upstream PKGBUILD no longer selects its compatible source/destination "
+        f"{legacy_source} -> {legacy_destination}"
+      )
 
-# Existing users have an absolute wants symlink to the old unit path, and the
-# migration that repoints it only runs for users who run an update -- the
-# opposite of who the notifier is for. Dropping this alias strands them.
-notify_alias = 'ln -sfn unbloarchy-migrate-notify.service "$pkgdir/usr/lib/systemd/user/unbloarchy-update-user-notify.service"'
-if notify_alias not in pkgbuild:
-  errors.append(
-    "PKGBUILD does not ship the unbloarchy-update-user-notify.service compatibility "
-    "alias, so users who have not run migration 1785095882 lose the login notifier"
-  )
+compat_links = (root / "install/config/compat-links.sh").read_text()
+compatibility_paths = [
+  ("usr/share/uwsm/env.d/10-unbloarchy", "usr/share/uwsm/env.d/10-omarchy"),
+  ("usr/lib/environment.d/10-unbloarchy-fcitx.conf", "usr/lib/environment.d/10-omarchy-fcitx.conf"),
+  ("usr/share/fontconfig/conf.avail/50-unbloarchy.conf", "usr/share/fontconfig/conf.avail/50-omarchy.conf"),
+  ("usr/share/fonts/unbloarchy/unbloarchy.ttf", "usr/share/fonts/omarchy/omarchy.ttf"),
+  ("usr/share/plymouth/themes/unbloarchy", "usr/share/plymouth/themes/omarchy"),
+  ("usr/share/sddm/themes/unbloarchy", "usr/share/sddm/themes/omarchy"),
+  ("usr/local/share/wayland-sessions/unbloarchy.desktop", "usr/local/share/wayland-sessions/omarchy.desktop"),
+  ("usr/lib/systemd/zram-generator.conf.d/90-unbloarchy.conf", "usr/lib/systemd/zram-generator.conf.d/90-omarchy.conf"),
+  ("usr/lib/systemd/system/plocate-updatedb.service.d/10-unbloarchy.conf", "usr/lib/systemd/system/plocate-updatedb.service.d/10-omarchy.conf"),
+  ("etc/snapper/config-templates/unbloarchy", "etc/snapper/config-templates/omarchy"),
+  ("usr/lib/systemd/user/unbloarchy-update-user-notify.service", "usr/lib/systemd/user/omarchy-update-user-notify.service"),
+]
+for renamed, upstream in compatibility_paths:
+  if f"/{renamed}" not in compat_links or f"/{upstream}" not in compat_links:
+    errors.append(f"fresh installs do not expose package path {renamed} -> {upstream}")
+for unit in ("crash-watch", "fcitx5", "migrate-notify", "recover-internal-monitor",
+             "sleep-lock", "tailscale-receive", "speaker-tuning"):
+  if f"{unit} " not in compat_links and f"{unit};" not in compat_links:
+    errors.append(f"fresh installs do not expose the upstream {unit} unit name")
 
 alpm_hooks = [
   "00-unbloarchy-update-guard.hook",
@@ -190,11 +213,15 @@ alpm_hooks = [
 ]
 for hook in alpm_hooks:
   source = f"default/libalpm/hooks/{hook}"
-  destination = f"/usr/share/libalpm/hooks/{hook}"
+  legacy_source = source.replace("unbloarchy", "omarchy")
+  legacy_hook = hook.replace("unbloarchy", "omarchy")
+  destination = f"/usr/share/libalpm/hooks/{legacy_hook}"
   if not (root / source).exists():
     errors.append(f"missing package default source: {source}")
-  if source not in unbloarchy_pkgbuild or destination not in unbloarchy_pkgbuild:
-    errors.append(f"unbloarchy PKGBUILD does not install {source} -> {destination}")
+  if not (root / legacy_source).exists():
+    errors.append(f"missing legacy package hook source: {legacy_source}")
+  if legacy_source not in unbloarchy_pkgbuild or destination not in unbloarchy_pkgbuild:
+    errors.append(f"upstream package does not install {legacy_source} -> {destination}")
 
 if errors:
   print("\n".join(errors), file=sys.stderr)

@@ -58,6 +58,19 @@ Do not maintain a second exhaustive prefix list here. Consult
 `GROUP_DESCRIPTIONS` when selecting or checking a command group so this
 guidance does not drift from the router.
 
+The `omarchy-*` names are compatibility entrypoints for the upstream package
+recipes and existing scripts. Keep their generated wrappers in `bin/` so the
+unmodified `omarchy-pkgs` package build copies them alongside the
+`unbloarchy-*` commands; do not require an Unbloarchy-specific fork of that
+repository. After adding or removing a `bin/unbloarchy-*` command, run
+`bash install/helpers/generate-compat-shims.sh` and include the resulting
+`bin/omarchy*` wrappers in the change. The wrappers must forward arguments and
+exit status to the matching Unbloarchy command. Preserve the special
+source-forwarding wrapper for `omarchy-security-functions` and the Python
+wrapper for `omarchy-dev-font`. Keep only exact legacy default-path aliases
+needed by the existing package recipe; do not generate aliases for every old
+brand string in the tree.
+
 # Runtime Environment
 
 - `$UNBLOARCHY_PATH` is set at the top level by the uwsm session environment and is always available to Unbloarchy runtime code.
