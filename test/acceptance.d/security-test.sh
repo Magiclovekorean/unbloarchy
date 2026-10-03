@@ -6,7 +6,7 @@
 #
 # The sshd section reconfigures the machine (enables sshd, opens the firewall,
 # disables password logins), so it demands explicit opt-in: it only runs when
-# UNBLOARCHY_ACCEPTANCE_SUDO_PASSWORD is set, which unbloarchy-iso-test does for its
+# UNBLOARCHY_ACCEPTANCE_SUDO_PASSWORD is set, which omarchy-iso-test does for its
 # throwaway VMs. A cached sudo timestamp alone never triggers it, so running
 # the suite on a machine you care about cannot reconfigure sshd by accident.
 
@@ -61,7 +61,7 @@ verify_sshd_hardening() {
   # sudo keys its cached credential on the calling terminal and, absent one, on
   # the caller's parent process alone, so a timestamp validated in this shell
   # never reaches the setup command's own sudo calls when the suite runs
-  # without a terminal (unbloarchy-iso-test drives it over ssh with no pty). Give
+  # without a terminal (omarchy-iso-test drives it over ssh with no pty). Give
   # the exercise a pseudo-terminal and validate the password on it first, so
   # every sudo underneath shares that terminal's credential.
   if ! UNBLOARCHY_ACCEPTANCE_SUDO_PASSWORD="$UNBLOARCHY_ACCEPTANCE_SUDO_PASSWORD" \

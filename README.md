@@ -38,7 +38,7 @@ From the `omarchy-iso` directory, run the build with local source:
 
 ```bash
 cd omarchy-iso
-./bin/unbloarchy-iso-make --local-source ../unbloarchy ../omarchy-pkgs
+./bin/omarchy-iso-make --local-source ../unbloarchy ../omarchy-pkgs
 ```
 
 Output goes into `./release/`.

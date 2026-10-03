@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # In-guest acceptance suite. Runs inside a live Unbloarchy session (typically a
-# VM installed by unbloarchy-iso-test, reached over SSH) and verifies that the
+# VM installed by omarchy-iso-test, reached over SSH) and verifies that the
 # desktop actually works: session health, application launches, and shell
 # surfaces (launcher, emoji picker, menu).
 #
@@ -21,7 +21,7 @@ export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=$XDG_RUNTIME_DIR/bus}"
 # The suite verifies the installed product the session is running, so default
 # UNBLOARCHY_PATH to the installed tree — never this checkout, which may hold
-# only test/ (unbloarchy-iso-test's --sync-unbloarchy). qs matches shell instances
+# only test/ (omarchy-iso-test's --sync-omarchy). qs matches shell instances
 # by config path, so a suite pointed at any other tree reads the session
 # shell as "not running". Callers testing a different tree pass it explicitly.
 export UNBLOARCHY_PATH="${UNBLOARCHY_PATH:-/usr/share/unbloarchy}"

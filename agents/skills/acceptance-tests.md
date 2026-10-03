@@ -13,14 +13,19 @@ Run acceptance tests in a disposable VM through the sibling `omarchy-iso`
 repository, not in the active development session. The suite opens and closes
 applications and temporarily changes desktop configuration.
 
+`omarchy-iso` is an upstream repository this one does not modify, so its scripts
+and their flags keep their upstream names — `omarchy-iso-make`,
+`omarchy-iso-test`, `--sync-omarchy`. Only the path argument naming this
+repository's checkout is spelled `unbloarchy`.
+
 For acceptance-test-only changes, reuse an installed base and sync the suite:
 
 ```bash
 cd ../omarchy-iso
-./bin/unbloarchy-iso-test release/<iso>.iso --reuse-base --sync-unbloarchy ../unbloarchy --no-preview
+./bin/omarchy-iso-test release/<iso>.iso --reuse-base --sync-omarchy ../unbloarchy --no-preview
 ```
 
-Use `--sync-all ../unbloarchy` instead of `--sync-unbloarchy ../unbloarchy` when the
+Use `--sync-all ../unbloarchy` instead of `--sync-omarchy ../unbloarchy` when the
 acceptance run must exercise local `bin/`, `config/`, or `shell/` source too.
 Changes to package manifests, installation, finalization, or shipped defaults
 require a fresh ISO built from the local checkouts and a run without
@@ -28,8 +33,8 @@ require a fresh ISO built from the local checkouts and a run without
 
 ```bash
 cd ../omarchy-iso
-./bin/unbloarchy-iso-make --no-boot-offer --local-source ../unbloarchy ../omarchy-pkgs
-./bin/unbloarchy-iso-test release/<generated-iso>.iso --no-preview
+./bin/omarchy-iso-make --no-boot-offer --local-source ../unbloarchy ../omarchy-pkgs
+./bin/omarchy-iso-test release/<generated-iso>.iso --no-preview
 ```
 
 Keep unrelated acceptance workflows in separate test files. The runner records
