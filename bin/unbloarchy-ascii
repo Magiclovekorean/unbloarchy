@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# unbloarchy:summary=Render text as ASCII art in the font the Unbloarchy logo is drawn in
+# unbloarchy:summary=Render text as ASCII art in the Delta Corps Priest 1 block font
 # unbloarchy:args=[text...]
 # unbloarchy:examples=unbloarchy ascii Unbloarchy | unbloarchy ascii "Hello there"
 
@@ -10,8 +10,9 @@ usage() {
   cat <<'EOF'
 Usage: unbloarchy-ascii [text...]
 
-Renders text as ASCII art in Delta Corps Priest 1, the FIGlet font the Unbloarchy
-logo is drawn in. Reads the text from stdin when given none.
+Renders text as ASCII art in the Delta Corps Priest 1 FIGlet font. That is not the
+font the Unbloarchy wordmark is drawn in, so output will not match it. Reads the
+text from stdin when given none.
 
 Options:
       --help  Show this help

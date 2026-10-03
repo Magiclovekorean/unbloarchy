@@ -46,7 +46,7 @@ It takes `--width` and `--height` in terminal columns and rows, a `--mode` of ei
 
 ### Words instead of a logo
 
-`unbloarchy ascii` draws text in Delta Corps Priest 1, the FIGlet font the Unbloarchy wordmark itself is drawn in, so a screensaver can say something rather than show a picture:
+`unbloarchy ascii` draws text in the Delta Corps Priest 1 FIGlet font, so a screensaver can say something rather than show a picture. That is not the font the shipped wordmark is drawn in — that is a narrower face — so the two will not match letter for letter:
 
 ```
 unbloarchy ascii "Back in five" > ~/.config/unbloarchy/branding/screensaver.txt
