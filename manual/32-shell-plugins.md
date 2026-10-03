@@ -95,7 +95,7 @@ unbloarchy plugin validate ./my-plugin
 
 That runs the same checks the shell does at load time: the schema version, the required fields, an id that isn't reserved, entry points that are safe relative paths and actually exist, an entry point for every kind you claimed, and no symlinks anywhere inside the folder.
 
-For plugin development, see the [upstream Omarchy shell reference](https://github.com/omacom/omarchy/blob/quattro/docs/unbloarchy-shell.md) and [upstream first-party plugin catalog](https://github.com/omacom/omarchy/blob/quattro/shell/plugins/README.md). These are Omarchy's official references, not Unbloarchy documentation.
+For plugin development, see the [Unbloarchy shell reference](https://github.com/Magiclovekorean/unbloarchy/blob/quattro/docs/unbloarchy-shell.md) and [upstream first-party plugin catalog](https://github.com/omacom/omarchy/blob/quattro/shell/plugins/README.md). The plugin catalog is Omarchy's official reference, not Unbloarchy documentation.
 
 ## Sharing yours with the world
 
