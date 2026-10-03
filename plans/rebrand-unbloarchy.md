@@ -293,10 +293,10 @@ Phases 1-4 are the risky ones and want the most careful review, because a mistak
 
 ## Open questions
 
-1. **`logs.omarchy.org`.** `bin/unbloarchy-debug` and `bin/unbloarchy-upload-log` send diagnostic logs, hardware/system details, and installed-package lists to an upstream service for troubleshooting; this is not stats collection. The service advertises 24-hour expiry. The user wants to retain uploads only if they are stats and otherwise wants a further decision; do not change the uploader until they decide whether this upstream support-upload flow is acceptable.
+1. **`logs.omarchy.org`.** **Decided: disable the uploader.** The user confirmed it is not stats collection and chose removal over keeping the upstream endpoint or making it configurable. Landed as `918faa4f`; see the 2026-10-03 entry below.
 2. **Branded wallpaper art.** Leave ordinary wallpapers unchanged. The user wants only images that visibly spell “Omarchy” regenerated with the updated wordmark. **Partly resolved.** The `backgrounds/unbloarchy.webp` files that carry the name are 2-colour 3840×2160 gradients of ~716 bytes and contain no text, so none needs regenerating. The visible branding lives in the `preview*.png` and `unlock.png` screenshots, which are real desktop captures showing the menu as `omarchy-launch-*` and `omarchy-install-*`, and `manual/images/*.webp` shows the same. Those need regenerating against a running session, which cannot be done here.
 3. **`omarchy-iso` invocation.** Decision: keep compatibility shims so the upstream ISO builder can continue calling `omarchy-apply-system`, `omarchy-provision-user`, and `omarchy-apply-hardware` in the target chroot. Keep the required `prepare()` hook and shim generator tracked as an external dependency; Phase 7 remains blocked until the upstream `omarchy-pkgs` PKGBUILD calls the generator.
-4. **`version`.** Currently `4.0.0.alpha`, tracking upstream. Keep tracking upstream, or set an independent version such as `4.0.0-unbloarchy.1`? An independent version is the more honest signal for a fork, and `bin/unbloarchy-version-channel` and the update flow both read it.
+4. **`version`.** **Decided: an independent version.** Landed as `87a7f135` as `4.0.0.alpha.unbloarchy.1`, not the `4.0.0-unbloarchy.1` sketched here — see that entry for why the hyphen form is unsafe and why the ordering had to be checked rather than assumed.
 
 ## Progress log
 
@@ -501,3 +501,49 @@ The theme `backgrounds/unbloarchy.webp` files are 2-colour 3840×2160 gradients 
 **Still outstanding**
 
 Phase 7's external `omarchy-pkgs` integration is unchanged and still blocked on a repository that is not in this checkout. Phase 5's screenshot regeneration needs a running session. Phase 9's visual verification needs a real target, and an absolute zero-failure run needs one too.
+
+### 2026-10-03 — Reference audit, and the two open questions decided
+
+Status: every phase is now either committed or blocked on something outside this checkout. This entry covers a final audit of the 895 remaining `omarchy` occurrences, the six defects it found, and the two decisions the user took on open questions 1 and 4. Landed as seven commits on top of `df62ff78`.
+
+**The audit, and the one failure mode it kept finding**
+
+The transform's protection list was written in terms of what the brand *names inside this repository*. What it did not model was that some identifiers this tree merely *refers to* are owned by repositories it does not contain. The `omarchy-iso` harness is the clearest case: its scripts and flags are spelled `omarchy-iso-make`, `omarchy-iso-test`, and `--sync-omarchy`, and the rename rewrote all three to `unbloarchy-`. Every one of those instructions was a command that does not exist. Restored in `ba4ae351`, with a note in `agents/skills/acceptance-tests.md` explaining that the sibling repository's identifiers keep upstream spelling while only the path argument naming this checkout is rebranded, because that is exactly the judgement the rename got wrong and the next reader will face.
+
+The same class produced four more, and it generalises to *any* destination whose path segment the rename rewrote:
+
+- `manual/32-shell-plugins.md:98` pointed into `omacom/omarchy` at `docs/unbloarchy-shell.md`. The doc was renamed here; upstream still has `docs/omarchy-shell.md`, so the link was a 404. Repointed at this fork's own doc, matching how `docs/audio-tuning.md` was already handled.
+- `manual/48-security.md:33` told readers an upstream ISO signature lives at `iso.omarchy.org/unbloarchy-x.x.x.iso.sig`. Upstream publishes the ISO under its own name. Restored, with a sentence saying why the filename keeps the prefix.
+- `manual/32-shell-plugins.md:104` called `omarchyplugins.com` the community plugin directory and linked `unbloarchyplugins.com`, a domain this fork does not own. Restored and labelled as Omarchy's, since it is still where Unbloarchy users will look.
+- `manual/49-unbloarchy-on.md:5` pointed at `unbloarchy-mac/unbloarchy-mac`. The `omarchy-mac` organisation is a third-party Asahi project, not `omacom`. Restored.
+
+The last three were found by extracting every URL in the tree before and after the rename and diffing the two sets, which is cheap and worth repeating for any rename that touches path strings. Reading for brand leftovers would not have found them: each of those URLs still contained no misspelled brand.
+
+**The uploader is gone, and the command that used it says so**
+
+`bin/unbloarchy-debug` loses its "Upload log" choice, and with it the `ping` reachability probe that existed only to decide whether to offer it. `bin/unbloarchy-upload-log` keeps its per-source log collection — `install`, `this-boot`, `last-boot`, `installed`, `system-info`, which `unbloarchy debug` does not offer — and stops at the local file: it prints where it wrote, says what the file contains, points at this fork's issue tracker, and **exits non-zero**. The non-zero exit is deliberate. The command is named `upload-log`; a zero exit would let any caller read it as a completed upload, and there are no in-tree callers today but nothing prevents one tomorrow. Both `curl` call sites to `logs.omarchy.org` are gone, and the string appears nowhere in the tree now.
+
+**The Discord was not ours either**
+
+The same audit turned up a claim rather than a broken link: `unbloarchy-launch-discord-community` opened `discord.gg/tXFUdasqhY`, which is Omarchy's invite, under a summary that called it "the Unbloarchy Discord community", and `manual/25-web-apps.md` called it "Unbloarchy's own". Pre-rename, `manual/25` correctly said "Omarchy's own". The links kept working and the labels did not. Fixed in `f4767162` by labelling the invite as upstream's at every point it is offered, including the command's summary, which is the only place the menu names it. No invented replacement URL.
+
+**`4.0.0.unbloarchy.1`, not `4.0.0-unbloarchy.1`**
+
+Open question 4's sketched example would have broken packaging. The `version` file's only consumer is the `pkgver` of the PKGBUILDs in `omarchy-pkgs` — nothing at runtime reads it, since `unbloarchy-version` derives from `pacman -Q` — and pacman splits a package version at the last `-` into `pkgver` and `pkgrel`. A hyphen would therefore be read as that separator, leaving `unbloarchy.1-1` where a pkgrel belongs.
+
+The other half was an ordering claim, and `vercmp` is absent from this sandbox, so rather than assert it I ported pacman's `vercmp` to a throwaway script and checked four comparisons: the fork's version sorts above its upstream baseline (so an existing install is offered the upgrade), below a future upstream alpha (so pacman correctly reports a newer mirror package as an upgrade, which is the maintainer-bump signal), above a bare `4.0.0`, and above the `4.0.0~unbloarchy.1` form that a `~` would have produced. All four behaved as the design requires. `docs/update-process.md` records both constraints and the bump rule, because the hyphen hazard is invisible until a package build splits the string.
+
+**Also fixed, small**
+
+`bin/unbloarchy-dev-pkg-test` documented a default checkout of `~/Work/unbloarchy/unbloarchy-installer` while its code used `~/Work/unbloarchy/omarchy-installer` — the prose rename and the code rename disagreed, so the help text described a default that never existed. Both now say `~/Work/unbloarchy/unbloarchy`, matching the directory name `git clone https://github.com/Magiclovekorean/unbloarchy.git` actually produces.
+
+**Results**
+
+- `./test/cli` — 118 `ok`, 0 `not ok`, exit 0.
+- `./test/shell` — 3211 `ok`, 37 `not ok`, exit 127. The `not ok` set is byte-identical to the last recorded full run after normalising temp paths, so nothing in this entry moved it. All 37 are environmental: absent `plocate` / `omasnap` / `magick` / `jq` / `lua` / `socat` / `mise`, `EUID 0` refusals, and the missing sibling `omarchy-pkgs` checkout.
+- **The previous entry's shell figures were wrong.** It recorded 3182/40; the recorded log for that same tree (`all2.log`, taken after `df62ff78`) is 3211/37, and a clean re-run reproduces it. The stale numbers were not the tree's fault, but any future comparison made against 3182/40 would read as 29 regressions.
+- `bash bin/unbloarchy commands --check` — passes, 473 commands. `bash -n` clean across all 805 tracked bash-shebang files. `git diff --check` clean.
+
+**Still outstanding, all blocked on something not in this checkout**
+
+Phase 7's `omarchy-pkgs` integration, which needs the generator called from `prepare()` and the bare `bin/omarchy` installed explicitly. Phase 5's `preview*.png` / `unlock.png` / `manual/images/*.webp` regeneration, and Phase 9's visual verification, which need a running session. An absolute zero-failure run needs a real target. `test/shell.d/channel-test.sh` still produces zero TAP lines here and needs a real target to confirm the Phase 6 clone-URL change.
