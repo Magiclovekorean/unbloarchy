@@ -25,10 +25,10 @@ unbloarchy version
 # Generate the diagnostic log (also written to /tmp/unbloarchy-debug.log)
 unbloarchy debug --no-sudo --print
 
-# Interactive variant: `unbloarchy debug` can upload the log to the
-# upstream logs.omarchy.org service and print a shareable URL. Review the
-# log before uploading; it can contain system details and installed packages,
-# and the upstream service says uploads expire after 24 hours.
+# Interactive variant: `unbloarchy debug` offers to view the log or save a copy.
+# Unbloarchy ships no log-collection service, so there is no upload and no
+# shareable URL. Read the log before sharing it: it contains system details and
+# installed packages.
 ```
 
 **Capture the problem on screen.** A screenshot or short recording of the bug
@@ -48,7 +48,7 @@ gh issue create --repo Magiclovekorean/unbloarchy --title "..." --body "..."
 ```
 
 Include: what happened, what was expected, steps to reproduce, system details,
-the debug log URL (or attached log), and the capture.
+the debug log (attached or pasted), and the capture.
 
 ## Submitting a PR
 

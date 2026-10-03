@@ -20,7 +20,7 @@ separate `omarchy-pkgs` repository, under `pkgbuilds/`):
   `default/limine/` and `default/snapper/` trees, and the boot/snapshot
   story end-to-end). Also ships the three debug binaries
   (`unbloarchy-debug`, `unbloarchy-debug-idle`, `unbloarchy-upload-log`) needed by
-  the live ISO env.
+  the live ISO env. None of them contacts a log service; they only write local files.
 
 Two other packages live in `omarchy-pkgs` but stand alone:
 `omarchy-keyring` (GPG keys for pacman) and `omarchy-nvim` (the Neovim

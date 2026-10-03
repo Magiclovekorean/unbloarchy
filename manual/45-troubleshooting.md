@@ -2,7 +2,7 @@
 
 ### I broke my system with an update!
 
-First try to [rollback your system](47-system-snapshots.md) the version before your recent update. If that doesn't work, use `unbloarchy-debug` to share with your problem on #unbloarchy-help in the Discord. And if all that fails, you can reinstall the defaults configs and packages using `unbloarchy-reinstall`.
+First try to [rollback your system](47-system-snapshots.md) the version before your recent update. If that doesn't work, run `unbloarchy debug` and attach the log to a [bug report](https://github.com/Magiclovekorean/unbloarchy/issues). Unbloarchy ships no log-collection service, so the log stays on your machine until you attach it yourself. And if all that fails, you can reinstall the defaults configs and packages using `unbloarchy-reinstall`.
 
 ### Why are some apps so large on my display?
 

@@ -87,8 +87,9 @@ gh issue create --repo Magiclovekorean/unbloarchy --title "..." --body "..."
 
 Include what happened, what was expected, steps to reproduce, system details from
 `unbloarchy version`, and diagnostics from `unbloarchy debug --no-sudo --print` (which
-also writes `/tmp/unbloarchy-debug.log`; the interactive `unbloarchy debug` can upload
-it and print a shareable URL worth including).
+also writes `/tmp/unbloarchy-debug.log`). Unbloarchy ships no log-collection service,
+so there is no upload and no shareable URL — hand the user the log path to attach,
+and say what the log contains, since it holds system details and package names.
 
 `gh` cannot attach media. If a screenshot would help, save one and give the user
 the path to drag into the web form.
