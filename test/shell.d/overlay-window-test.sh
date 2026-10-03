@@ -63,7 +63,7 @@ assert(
 
 // A kept surface grows from its parked 1x1 when shown, which Hyprland animates
 // as a slide in from the corner unless its layer rule turns animation off.
-const shellRules = read('default/hypr/apps/omarchy-shell.lua')
+const shellRules = read('default/hypr/apps/unbloarchy-shell.lua')
 const noAnim = /namespace = "\^\(([^)]*)\)\$" \}, no_anim = true/.exec(shellRules)
 assert(noAnim, 'the shell overlays share one no-animation layer rule')
 const unanimated = noAnim ? noAnim[1].split('|') : []

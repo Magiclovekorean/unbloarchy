@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# unbloarchy:summary=Reinstall all default Unbloarchy packages from the stable channel
+# unbloarchy:requires-sudo=true
+
+set -e
+
+# Reinstall all default Unbloarchy packages from the stable channel and downgrade any packages that are too new.
+
+# Set the package repository to the stable mirrors
+unbloarchy-refresh-pacman
+
+# Downgrade any packages to the stable setup
+unbloarchy-update-pacman -Suu --noconfirm
+
+# Ensure all packages are installed
+mapfile -t packages < <(grep -v '^#' "$UNBLOARCHY_PATH/install/unbloarchy-base.packages" | grep -v '^$')
+unbloarchy-update-pacman -Syu --noconfirm --needed "${packages[@]}"

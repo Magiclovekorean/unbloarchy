@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# unbloarchy:summary=Refresh the SDDM theme from default
+# unbloarchy:requires-sudo=true
+
+# Reuse the fixed-file publisher so root never resolves an untrusted source or
+# follows a destination symlink while restoring the packaged SDDM theme.
+exec "$UNBLOARCHY_PATH/bin/unbloarchy-plymouth-set" --refresh-sddm-default

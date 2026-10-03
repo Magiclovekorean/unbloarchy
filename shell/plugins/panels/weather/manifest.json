@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "omarchy.weather",
+  "id": "unbloarchy.weather",
   "name": "Weather",
   "version": "1.0.0",
-  "author": "Omarchy",
+  "author": "Unbloarchy",
   "description": "Weather pill with detail popup",
   "kinds": [
     "bar-widget"

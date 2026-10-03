@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# unbloarchy:summary=Toggle notification do-not-disturb mode
+
+state=$(unbloarchy-shell notifications toggleDnd 2>/dev/null || echo "")
+unbloarchy-shell -q unbloarchy.indicators refresh

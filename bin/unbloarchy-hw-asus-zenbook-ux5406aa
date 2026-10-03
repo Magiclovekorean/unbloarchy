@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Detect ASUS Zenbook UX5406AA series laptops on Intel Panther Lake.
+
+unbloarchy-hw-match "ux5406aa" && unbloarchy-hw-intel-ptl

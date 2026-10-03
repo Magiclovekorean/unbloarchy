@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# unbloarchy:summary=Enable, disable, or toggle the touch functionality of the screen
+# unbloarchy:args=[on|off|toggle]
+
+exec unbloarchy-toggle-input-device touchscreen "${1:-toggle}"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Reload hyprland configuration (used by the Unbloarchy theme switching).
+
+hyprctl reload >/dev/null

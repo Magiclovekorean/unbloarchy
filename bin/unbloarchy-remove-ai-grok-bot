@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# unbloarchy:summary=Remove Grok Bot along with its settings and data.
+# unbloarchy:requires-sudo=true
+
+set -e
+
+unbloarchy-pkg-drop grok-bot
+
+# Not ~/.grok: that is the Grok CLI, which is installed and used on its own.
+rm -rf \
+  "$HOME/.config/Grok Bot" \
+  "$HOME/.grokbot"
+
+echo ""
+echo "Grok Bot has been removed."

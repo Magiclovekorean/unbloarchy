@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# unbloarchy:summary=Sync Unbloarchy theme to all Obsidian vaults
+# unbloarchy:hidden=true
+
+CURRENT_THEME_DIR="$HOME/.local/state/unbloarchy/current/theme"
+
+[[ -f $CURRENT_THEME_DIR/obsidian.css ]] || exit 0
+
+jq -r '.vaults | values[].path' ~/.config/obsidian/obsidian.json 2>/dev/null | while read -r vault_path; do
+  [[ -d $vault_path/.obsidian ]] || continue
+
+  theme_dir="$vault_path/.obsidian/themes/Unbloarchy"
+  mkdir -p "$theme_dir"
+
+  [[ -f $theme_dir/manifest.json ]] || cat >"$theme_dir/manifest.json" <<'EOF'
+{
+  "name": "Unbloarchy",
+  "version": "1.0.0",
+  "minAppVersion": "0.16.0",
+  "description": "Automatically syncs with your current Unbloarchy system theme colors and fonts",
+  "author": "Unbloarchy",
+  "authorUrl": "https://omarchy.org"
+}
+EOF
+
+  cp "$CURRENT_THEME_DIR/obsidian.css" "$theme_dir/theme.css"
+done

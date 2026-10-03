@@ -46,14 +46,14 @@ case "$name" in
     ;;
   rm)
     for path in "$@"; do
-      if [[ ${TEST_DELETE_FAIL:-0} == 1 && $path == "$TEST_GRANT_ROOT/etc/sudoers.d/99-omarchy-nopasswd-1000" ]]; then exit 1; fi
+      if [[ ${TEST_DELETE_FAIL:-0} == 1 && $path == "$TEST_GRANT_ROOT/etc/sudoers.d/99-unbloarchy-nopasswd-1000" ]]; then exit 1; fi
     done
     exec /usr/bin/rm "$@"
     ;;
   mv)
     [[ ${TEST_PUBLISH_FAIL:-0} != 1 ]] || exit 1
     /usr/bin/mv "$@"
-    [[ ${TEST_POST_PUBLISH_FAIL:-0} != 1 ]] || : >"$TEST_GRANT_ROOT/run/omarchy-sudo-passwordless-package-removing"
+    [[ ${TEST_POST_PUBLISH_FAIL:-0} != 1 ]] || : >"$TEST_GRANT_ROOT/run/unbloarchy-sudo-passwordless-package-removing"
     ;;
   systemd-run)
     [[ ${TEST_TIMER_FAIL:-0} != 1 ]] || exit 1
@@ -91,7 +91,7 @@ python3 - "$ROOT" "$test_tmp" <<'PY'
 from pathlib import Path
 import sys
 root, temp = map(Path, sys.argv[1:])
-for name in ('omarchy-sudo-passwordless', 'omarchy-security-functions'):
+for name in ('unbloarchy-sudo-passwordless', 'unbloarchy-security-functions'):
     text = (root/'bin'/name).read_text()
     for path in ('/etc/', '/var/lib', '/run/', '/usr/share/libalpm/hooks'):
         target = str(temp/'hooks') if path == '/usr/share/libalpm/hooks' else str(temp) + path
@@ -104,11 +104,11 @@ for name in ('omarchy-sudo-passwordless', 'omarchy-security-functions'):
 PY
 library="$test_tmp/functions.sh"
 {
-  printf 'source %q\n' "$test_tmp/omarchy-security-functions"
-  awk '/^set -euo pipefail$/ { functions=1 } /^case "\$\{1:-\}" in$/ { exit } functions { print }' "$test_tmp/omarchy-sudo-passwordless"
+  printf 'source %q\n' "$test_tmp/unbloarchy-security-functions"
+  awk '/^set -euo pipefail$/ { functions=1 } /^case "\$\{1:-\}" in$/ { exit } functions { print }' "$test_tmp/unbloarchy-sudo-passwordless"
 } >"$library"
-cp "$ROOT/default/libalpm/hooks/05-omarchy-passwordless-revoke.hook" "$test_tmp/hooks/"
-sed "s|/etc/|$test_tmp/etc/|g" "$ROOT/etc/tmpfiles.d/omarchy-nopasswd-sudo.conf" >"$test_tmp/etc/tmpfiles.d/omarchy-nopasswd-sudo.conf"
+cp "$ROOT/default/libalpm/hooks/05-unbloarchy-passwordless-revoke.hook" "$test_tmp/hooks/"
+sed "s|/etc/|$test_tmp/etc/|g" "$ROOT/etc/tmpfiles.d/unbloarchy-nopasswd-sudo.conf" >"$test_tmp/etc/tmpfiles.d/unbloarchy-nopasswd-sudo.conf"
 : >"$test_tmp/commands"
 
 # New subshell per case prevents one test's overrides and readonly constants
@@ -120,6 +120,6 @@ assert_status() {
   (( actual == expected )) || fail "expected status $expected, got $actual from $*"
 }
 reset_grant() {
-  rm -f "$test_tmp/etc/sudoers.d/99-omarchy-nopasswd-1000" "$test_tmp/run/omarchy-sudo-passwordless-package-removing"
+  rm -f "$test_tmp/etc/sudoers.d/99-unbloarchy-nopasswd-1000" "$test_tmp/run/unbloarchy-sudo-passwordless-package-removing"
   : >"$test_tmp/commands"
 }

@@ -1,0 +1,6 @@
+#!/bin/bash
+# unbloarchy:summary=Launch emojis
+# unbloarchy:group=menu
+# unbloarchy:examples=unbloarchy menu emoji
+
+unbloarchy-shell shell toggle unbloarchy.emojis

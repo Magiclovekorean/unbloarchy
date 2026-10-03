@@ -1,27 +1,51 @@
-# Single source of truth for OMARCHY_PATH + PATH adjustments. Sourced by:
-#   /etc/profile.d/omarchy.sh                 (system login shells)
+# Single source of truth for UNBLOARCHY_PATH + PATH adjustments. Sourced by:
+#   /etc/profile.d/unbloarchy.sh                 (system login shells)
 #   /etc/skel/.bashrc                         (interactive shells)
-#   /usr/share/uwsm/env.d/10-omarchy          (Hyprland session via uwsm)
-#   /usr/share/omarchy/default/bash/envs      (bash rc chain; SSH/non-login)
+#   /usr/share/uwsm/env.d/10-unbloarchy          (Hyprland session via uwsm)
+#   /usr/share/unbloarchy/default/bash/envs      (bash rc chain; SSH/non-login)
 
-# /etc/omarchy.conf is written by omarchy-dev-link and reset by
-# omarchy-dev-unlink. When absent, force the packaged default instead of
-# preserving a stale inherited value.
-if [ -f /etc/omarchy.conf ]; then
-  . /etc/omarchy.conf
-  : "${OMARCHY_PATH:=/usr/share/omarchy}"
-else
-  OMARCHY_PATH=/usr/share/omarchy
+# /etc/unbloarchy.conf is written by unbloarchy-dev-link and reset by
+# unbloarchy-dev-unlink. During the package-name-preserving transition, the
+# upstream package still owns /usr/share/omarchy and existing dev links still
+# use /etc/omarchy.conf.
+UNBLOARCHY_PACKAGED_PATH=/usr/share/unbloarchy
+if [ ! -d "$UNBLOARCHY_PACKAGED_PATH/default" ] &&
+  [ -d /usr/share/omarchy/default ]; then
+  UNBLOARCHY_PACKAGED_PATH=/usr/share/omarchy
 fi
+
+if [ -f /etc/unbloarchy.conf ]; then
+  . /etc/unbloarchy.conf
+  : "${UNBLOARCHY_PATH:=$UNBLOARCHY_PACKAGED_PATH}"
+elif [ -f /etc/omarchy.conf ]; then
+  . /etc/omarchy.conf
+  : "${UNBLOARCHY_PATH:=${OMARCHY_PATH:-$UNBLOARCHY_PACKAGED_PATH}}"
+else
+  : "${UNBLOARCHY_PATH:=${OMARCHY_PATH:-$UNBLOARCHY_PACKAGED_PATH}}"
+fi
+
+if [ "$UNBLOARCHY_PATH" = /usr/share/unbloarchy ] &&
+  [ ! -d "$UNBLOARCHY_PATH/default" ] &&
+  [ -d /usr/share/omarchy/default ]; then
+  UNBLOARCHY_PATH=/usr/share/omarchy
+fi
+export UNBLOARCHY_PATH
+unset UNBLOARCHY_PACKAGED_PATH
+
+# Deprecated alias. Pre-rename software and user dotfiles still read OMARCHY_PATH,
+# so it always mirrors UNBLOARCHY_PATH. Never let the two diverge: new code reads
+# UNBLOARCHY_PATH only, and nothing should treat this as an independent input.
+OMARCHY_PATH=$UNBLOARCHY_PATH
 export OMARCHY_PATH
 
 # Only prepend in dev-link mode. On a production install, the binaries are
-# already on PATH as /usr/bin/omarchy-* via the omarchy package — prepending
-# /usr/share/omarchy/bin would just be noise.
-if [ "$OMARCHY_PATH" != /usr/share/omarchy ]; then
+# already on PATH as /usr/bin/unbloarchy-* via the unbloarchy package — prepending
+# /usr/share/unbloarchy/bin would just be noise.
+if [ "$UNBLOARCHY_PATH" != /usr/share/unbloarchy ] &&
+  [ "$UNBLOARCHY_PATH" != /usr/share/omarchy ]; then
   case ":$PATH:" in
-    *":${OMARCHY_PATH%/}/bin:"*) ;;
-    *) PATH="${OMARCHY_PATH%/}/bin${PATH:+:$PATH}" ;;
+    *":${UNBLOARCHY_PATH%/}/bin:"*) ;;
+    *) PATH="${UNBLOARCHY_PATH%/}/bin${PATH:+:$PATH}" ;;
   esac
 fi
 

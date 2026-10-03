@@ -1,9 +1,9 @@
 # Start Claude Code, Codex, and Grok as the active subscription account, so
-# `cx`, `cy`, `tdl` and a plain `claude` all follow `omarchy agent account use`.
+# `cx`, `cy`, `tdl` and a plain `claude` all follow `unbloarchy agent account use`.
 # An explicitly set CLAUDE_CONFIG_DIR / CODEX_HOME / GROK_HOME still wins.
 claude() {
   local home=""
-  [[ -z ${CLAUDE_CONFIG_DIR:-} ]] && home=$(omarchy-agent-account-home claude)
+  [[ -z ${CLAUDE_CONFIG_DIR:-} ]] && home=$(unbloarchy-agent-account-home claude)
 
   if [[ -n $home ]]; then
     CLAUDE_CONFIG_DIR="$home" command claude "$@"
@@ -14,7 +14,7 @@ claude() {
 
 codex() {
   local home=""
-  [[ -z ${CODEX_HOME:-} ]] && home=$(omarchy-agent-account-home codex)
+  [[ -z ${CODEX_HOME:-} ]] && home=$(unbloarchy-agent-account-home codex)
 
   if [[ -n $home ]]; then
     CODEX_HOME="$home" command codex "$@"
@@ -25,7 +25,7 @@ codex() {
 
 grok() {
   local home=""
-  [[ -z ${GROK_HOME:-} ]] && home=$(omarchy-agent-account-home grok)
+  [[ -z ${GROK_HOME:-} ]] && home=$(unbloarchy-agent-account-home grok)
 
   if [[ -n $home ]]; then
     GROK_HOME="$home" command grok "$@"

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# unbloarchy:summary=Toggle suspend availability in the system menu
+
+unbloarchy-toggle suspend-off
+
+if unbloarchy-toggle-enabled suspend-off; then
+  unbloarchy-notification-send -g 󰒲 "Suspend removed from system menu"
+else
+  unbloarchy-notification-send -g 󰒲 "Suspend now available in system menu"
+fi

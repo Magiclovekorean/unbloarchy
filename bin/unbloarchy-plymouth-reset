@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# unbloarchy:summary=Restore the default Unbloarchy Plymouth boot theme and SDDM login screen
+# unbloarchy:requires-sudo=true
+
+set -euo pipefail
+
+"$UNBLOARCHY_PATH/bin/unbloarchy-refresh-plymouth"
+"$UNBLOARCHY_PATH/bin/unbloarchy-refresh-sddm"

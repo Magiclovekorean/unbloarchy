@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# unbloarchy:summary=Wake displays and restore brightness after idle
+# unbloarchy:group=system
+# unbloarchy:name=wake
+# unbloarchy:examples=unbloarchy system wake
+
+unbloarchy-brightness-display on
+unbloarchy-brightness-keyboard restore
+unbloarchy-hyprland-monitor-clamshell >/dev/null 2>&1 || true

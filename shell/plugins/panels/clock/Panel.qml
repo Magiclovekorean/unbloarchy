@@ -16,8 +16,8 @@ import "Model.js" as Model
 // anchor against.
 Panel {
   id: root
-  moduleName: "omarchy.clock"
-  ipcTarget: "omarchy.clock"
+  moduleName: "unbloarchy.clock"
+  ipcTarget: "unbloarchy.clock"
   manageIpc: false
 
   property var anchorItem: null

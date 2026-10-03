@@ -1,6 +1,8 @@
 # Unbloarchy
 
-Unbloarchy is a beautiful, fun & agentic Linux distribution based on omarchy.
+Unbloarchy is a beautiful, fun & agentic Linux distribution based on Arch Linux.
+
+Unbloarchy is an unofficial, independent fork of Omarchy. It is not affiliated with, endorsed by, or sponsored by Omarchy LLC or David Heinemeier Hansson. Please report issues with this fork here, not to the upstream project. “Omarchy” is a trademark of its respective owner and is used only to identify the upstream project from which this fork derives.
 
 
 ## Download
@@ -22,7 +24,7 @@ sha256sum -c SHA256SUMS
 
 ### Clone the repositories
 
-All three repos must be siblings in the same directory:
+All three repos must be siblings in the same directory. The ISO builder and package definitions are upstream Omarchy projects; Unbloarchy keeps compatibility with their command names:
 
 ```bash
 git clone https://github.com/Magiclovekorean/unbloarchy.git
@@ -52,13 +54,13 @@ Output goes into `./release/`.
 
 See the [ISO repo](https://github.com/omacom/omarchy-iso) for full documentation.
 
-## The Omarchy Manual
+## The Unbloarchy Manual
 
 The manual lives in [`manual/`](manual/), which is its authoritative source.
 
-Read more at [omarchy.org](https://omarchy.org).
+Read the [Unbloarchy manual](manual/01-welcome-to-unbloarchy.md) or browse the [upstream Omarchy project](https://github.com/omacom/omarchy).
 
-- [Welcome to Omarchy!](manual/01-welcome-to-omarchy.md)
+- [Welcome to Unbloarchy!](manual/01-welcome-to-unbloarchy.md)
 
 **The Basics**
 
@@ -74,7 +76,7 @@ Read more at [omarchy.org](https://omarchy.org).
 - [Text Extraction & Dictation](manual/11-text-extraction-dictation.md)
 - [Screenshots & Recording](manual/12-screenshots-recording.md)
 - [Toggles, idle & screensaver](manual/13-toggles-idle-screensaver.md)
-- [Omarchy CLI](manual/14-omarchy-cli.md)
+- [Unbloarchy CLI](manual/14-unbloarchy-cli.md)
 
 **The Applications**
 
@@ -118,10 +120,14 @@ Read more at [omarchy.org](https://omarchy.org).
 - [FAQ](manual/46-faq.md)
 - [System snapshots](manual/47-system-snapshots.md)
 - [Security](manual/48-security.md)
-- [Omarchy on...](manual/49-omarchy-on.md)
+- [Unbloarchy on...](manual/49-unbloarchy-on.md)
 - [Dual Boot Install](manual/50-dual-boot-install.md)
 - [Unattended Installs](manual/51-unattended-installs.md)
 
+## Upstream
+
+Unbloarchy builds on [Omarchy](https://github.com/omacom/omarchy), an independent upstream project. The `omarchy-iso` and `omarchy-pkgs` repositories, Arch package names, and package mirrors remain upstream dependencies; they are not operated by Unbloarchy.
+
 ## License
 
-Omarchy is released under the [MIT License](https://opensource.org/licenses/MIT).
+Unbloarchy is released under the [MIT License](https://opensource.org/licenses/MIT).

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# A file Omarchy writes into /usr belongs to nobody, and the
+# A file Unbloarchy writes into /usr belongs to nobody, and the
 # day a package starts shipping that same path, pacman refuses the upgrade for
-# everyone who has the file. omarchy-update-system-pkgs-when-conflicted recovers from
+# everyone who has the file. unbloarchy-update-system-pkgs-when-conflicted recovers from
 # that, but the cheaper answer is to ship the file in the package instead.
 #
 # This flags a script writing such a path unless a PKGBUILD installs it, or it
@@ -22,7 +22,7 @@ from pathlib import Path
 
 root = Path(sys.argv[1])
 
-# Paths Omarchy writes into /usr that no package owns, with the reason.
+# Paths Unbloarchy writes into /usr that no package owns, with the reason.
 allowed = {
   # Symlinks into another package's icon theme; owning them would mean owning
   # paths inside Yaru.
@@ -32,14 +32,14 @@ allowed = {
   "/usr/lib/systemd/system-sleep",
   # Written through a variable, so the scan below cannot see them at the point
   # they are written. These drop configuration into another project's tree
-  # rather than Omarchy's and are not candidates for omarchy-settings.
+  # rather than Unbloarchy's and are not candidates for omarchy-settings.
   "/usr/share/chromium/extensions",
   "/usr/lib/firefox/distribution",
   # Claude's extension is registered only when the user selects Claude.
   "/usr/share/google-chrome/extensions",
   "/usr/share/microsoft-edge/extensions",
   # Static content that belongs in omarchy-settings. It cannot move there in the
-  # same release that first ships omarchy-update-system-pkgs-when-conflicted: the
+  # same release that first ships unbloarchy-update-system-pkgs-when-conflicted: the
   # upgrade carrying the handler is the one that would hit the conflict, and the
   # handler only helps once it is on disk. Package it the release after.
   "/usr/lib/chromium/initial_preferences",
@@ -47,7 +47,7 @@ allowed = {
 
 # One-time 3.x upgrade. It runs before this rule existed and cannot be made to
 # retroactively matter for machines that already ran it.
-skip_scripts = {"bin/omarchy-upgrade-to-quattro"}
+skip_scripts = {"bin/unbloarchy-upgrade-to-quattro"}
 
 pkgs_candidates = [
   root.parent / "omarchy-pkgs/pkgbuilds",
@@ -55,7 +55,7 @@ pkgs_candidates = [
   root.parent / "omacom/omarchy-pkgs/pkgbuilds",
   Path.home() / "Work/omacom/omarchy-pkgs/pkgbuilds",
 ]
-override = os.environ.get("OMARCHY_PKGS_PATH")
+override = os.environ.get("UNBLOARCHY_PKGS_PATH")
 if override:
   pkgs_candidates = [Path(override) / "pkgbuilds", Path(override)] + pkgs_candidates
 pkgs_root = next((p for p in pkgs_candidates if p.exists()), None)
@@ -66,7 +66,7 @@ if pkgs_root is None:
 packaged = "\n".join(p.read_text() for p in pkgs_root.glob("*/PKGBUILD"))
 
 # Commands that put a file somewhere, as opposed to reading one.
-# /etc is administrator territory that Omarchy legitimately edits. /usr is
+# /etc is administrator territory that Unbloarchy legitimately edits. /usr is
 # package territory, where writing anything is the thing worth catching.
 writer = re.compile(r"\b(tee|cp|install|ln)\b|>\s*/usr/")
 target = re.compile(r"/usr/[A-Za-z0-9._@/+-]+")
@@ -107,8 +107,8 @@ for base in ("bin", "install", "migrations"):
         if not tokens or not tokens[-1].startswith("/usr/"):
           continue
         hit = tokens[-1].rstrip("/")
-      # Omarchy's own tree and its binaries are covered elsewhere.
-      if hit.startswith(("/usr/share/omarchy", "/usr/bin")) or hit.count("/") < 3:
+      # Unbloarchy's own tree and its binaries are covered elsewhere.
+      if hit.startswith(("/usr/share/unbloarchy", "/usr/bin")) or hit.count("/") < 3:
         continue
       # Directory or file form of a recorded path both count as recorded, but
       # only on a path boundary: system-sleeping is not system-sleep.
@@ -123,7 +123,7 @@ for base in ("bin", "install", "migrations"):
       problems.append(f"{rel}:{lineno}: {hit}")
 
 if problems:
-  print("not ok - Omarchy writes paths under /usr that no package owns", file=sys.stderr)
+  print("not ok - Unbloarchy writes paths under /usr that no package owns", file=sys.stderr)
   for p in problems:
     print(f"  {p}", file=sys.stderr)
   print(
@@ -134,10 +134,10 @@ if problems:
   sys.exit(1)
 PYTHON
 
-pass "no Omarchy script writes a path under /usr that no package owns"
+pass "no Unbloarchy script writes a path under /usr that no package owns"
 
-for script in bin/omarchy-hibernation-setup bin/omarchy-toggle-hybrid-gpu; do
-  grep -F '"${destination%/*}/.${destination##*/}.omarchy.XXXXXX"' "$ROOT/$script" >/dev/null ||
+for script in bin/unbloarchy-hibernation-setup bin/unbloarchy-toggle-hybrid-gpu; do
+  grep -F '"${destination%/*}/.${destination##*/}.unbloarchy.XXXXXX"' "$ROOT/$script" >/dev/null ||
     fail "$script reserves a hidden sibling for the privileged replacement"
   grep -F 'sudo /usr/bin/install -m "$mode" -o root -g root -T "$source" "$stage"' "$ROOT/$script" >/dev/null ||
     fail "$script prepares privileged files with final root ownership and mode"
@@ -148,24 +148,24 @@ for script in bin/omarchy-hibernation-setup bin/omarchy-toggle-hybrid-gpu; do
   fi
 done
 
-grep -F '  /usr/lib/systemd/system-sleep/keyboard-backlight 0755' "$ROOT/bin/omarchy-hibernation-setup" >/dev/null ||
+grep -F '  /usr/lib/systemd/system-sleep/keyboard-backlight 0755' "$ROOT/bin/unbloarchy-hibernation-setup" >/dev/null ||
   fail "hibernation setup installs keyboard-backlight as a root-owned executable"
 
-hook_install_line=$(rg -n '^if ! install_root_file .*keyboard-backlight' "$ROOT/bin/omarchy-hibernation-setup" | cut -d: -f1)
-resume_marker_line=$(rg -n '^echo "HOOKS\+=\(resume\)"' "$ROOT/bin/omarchy-hibernation-setup" | cut -d: -f1)
+hook_install_line=$(rg -n '^if ! install_root_file .*keyboard-backlight' "$ROOT/bin/unbloarchy-hibernation-setup" | cut -d: -f1)
+resume_marker_line=$(rg -n '^echo "HOOKS\+=\(resume\)"' "$ROOT/bin/unbloarchy-hibernation-setup" | cut -d: -f1)
 [[ -n $hook_install_line && -n $resume_marker_line ]] ||
   fail "hibernation setup keeps recognizable hook-install and resume-marker steps"
 (( hook_install_line < resume_marker_line )) ||
   fail "hibernation setup marks completion before a failed hook install can be retried"
 
-grep -F '  /usr/lib/systemd/system-sleep/force-igpu 0755' "$ROOT/bin/omarchy-toggle-hybrid-gpu" >/dev/null ||
+grep -F '  /usr/lib/systemd/system-sleep/force-igpu 0755' "$ROOT/bin/unbloarchy-toggle-hybrid-gpu" >/dev/null ||
   fail "hybrid GPU setup installs force-igpu as a root-owned executable"
-grep -F '  /etc/systemd/system/supergfxd.service.d/delay-start.conf 0644' "$ROOT/bin/omarchy-toggle-hybrid-gpu" >/dev/null ||
+grep -F '  /etc/systemd/system/supergfxd.service.d/delay-start.conf 0644' "$ROOT/bin/unbloarchy-toggle-hybrid-gpu" >/dev/null ||
   fail "hybrid GPU setup installs its root service drop-in as root-owned configuration"
 
-delay_install_line=$(rg -n '^    if ! install_root_file .*delay-start\.conf' "$ROOT/bin/omarchy-toggle-hybrid-gpu" | cut -d: -f1)
-force_install_line=$(rg -n '^    if ! install_root_file .*force-igpu' "$ROOT/bin/omarchy-toggle-hybrid-gpu" | cut -d: -f1)
-config_switch_line=$(rg -n '^    sudo sed -i \\' "$ROOT/bin/omarchy-toggle-hybrid-gpu" | tail -1 | cut -d: -f1)
+delay_install_line=$(rg -n '^    if ! install_root_file .*delay-start\.conf' "$ROOT/bin/unbloarchy-toggle-hybrid-gpu" | cut -d: -f1)
+force_install_line=$(rg -n '^    if ! install_root_file .*force-igpu' "$ROOT/bin/unbloarchy-toggle-hybrid-gpu" | cut -d: -f1)
+config_switch_line=$(rg -n '^    sudo sed -i \\' "$ROOT/bin/unbloarchy-toggle-hybrid-gpu" | tail -1 | cut -d: -f1)
 [[ -n $delay_install_line && -n $force_install_line && -n $config_switch_line ]] ||
   fail "hybrid GPU setup keeps recognizable support-file and config-switch steps"
 (( delay_install_line < config_switch_line && force_install_line < config_switch_line )) ||
@@ -174,7 +174,7 @@ config_switch_line=$(rg -n '^    sudo sed -i \\' "$ROOT/bin/omarchy-toggle-hybri
 grep -Fq '/usr/bin/grep -Eq' "$ROOT/default/systemd/system-sleep/force-igpu" ||
   fail "force-igpu does not guard execution with the configured GPU mode"
 
-if rg -n 'cp -p.*(system-sleep|supergfxd\.service\.d)' "$ROOT/bin/omarchy-hibernation-setup" "$ROOT/bin/omarchy-toggle-hybrid-gpu"; then
+if rg -n 'cp -p.*(system-sleep|supergfxd\.service\.d)' "$ROOT/bin/unbloarchy-hibernation-setup" "$ROOT/bin/unbloarchy-toggle-hybrid-gpu"; then
   fail "privileged sleep and hybrid GPU files are never copied with source ownership"
 fi
 

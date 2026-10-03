@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Restart the hyprsunset service (used for blue light filtering/night light).
+
+unbloarchy-restart-app hyprsunset

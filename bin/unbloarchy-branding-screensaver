@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# unbloarchy:summary=Edit, set, or reset screensaver branding
+# unbloarchy:group=branding
+# unbloarchy:name=screensaver
+# unbloarchy:args=<image|text|reset>
+# unbloarchy:examples=unbloarchy branding screensaver image | unbloarchy branding screensaver text | unbloarchy branding screensaver reset
+
+set -euo pipefail
+
+case "${1:-}" in
+image)
+  image=$(unbloarchy-file-select --title "Pick PNG or SVG for screensaver" --extensions "png svg")
+  if unbloarchy-transcode-ascii "$image" ~/.config/unbloarchy/branding/screensaver.txt; then
+    unbloarchy-launch-screensaver force >/dev/null 2>&1
+  fi
+  ;;
+text)
+  unbloarchy-launch-editor ~/.config/unbloarchy/branding/screensaver.txt >/dev/null 2>&1 && unbloarchy-launch-screensaver force >/dev/null 2>&1
+  ;;
+reset)
+  cp "$UNBLOARCHY_PATH/logo.txt" ~/.config/unbloarchy/branding/screensaver.txt && unbloarchy-launch-screensaver force >/dev/null 2>&1
+  ;;
+*)
+  echo "Usage: unbloarchy-branding-screensaver <image|text|reset>" >&2
+  exit 1
+  ;;
+esac

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Show the current battery status notification
+
+unbloarchy-notification-send -g 󰁹 -u low "$(unbloarchy-battery-status)"

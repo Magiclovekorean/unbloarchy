@@ -1,12 +1,12 @@
 # Themes
 
-Omarchy comes with twenty-two beautiful themes. You can select between them via _Style > Theme_ in the Omarchy Menu (`Super + Space`) or hop directly to the theme selector using `Super + Ctrl + Shift + Space`.
+Unbloarchy comes with twenty-two beautiful themes. You can select between them via _Style > Theme_ in the Unbloarchy Menu (`Super + Space`) or hop directly to the theme selector using `Super + Ctrl + Shift + Space`.
 
-Each theme styles the desktop, terminal, neovim, activity screen (btop), Chromium, and the entire Omarchy shell: top bar, menu, notifications, OSD, and the lock screen. (For Obsidian, you must manually select the Omarchy theme via _Appearance > Themes_ inside the app).
+Each theme styles the desktop, terminal, neovim, activity screen (btop), Chromium, and the entire Unbloarchy shell: top bar, menu, notifications, OSD, and the lock screen. (For Obsidian, you must manually select the Unbloarchy theme via _Appearance > Themes_ inside the app).
 
 Themes have a set of background images that you can pick between using `Super + Ctrl + Space`.
 
-You can find even more themes on [the extra themes page](https://omarchy.org/themes/) or even [make your own theme](43-making-your-own-theme.md).
+You can find more themes in the [upstream Omarchy theme catalog](https://github.com/omacom-io/omarchy-site) or [make your own theme](43-making-your-own-theme.md).
 
  ![tokyo-night](../themes/tokyo-night/preview.png)
 _Tokyo Night_

@@ -1,12 +1,10 @@
-# Security at Omarchy
+# Security at Unbloarchy
 
 ## Report a vulnerability
 
-If you believe you’ve found a security vulnerability in Omarchy, please tell the [Omarchy Security Team](https://omarchy.org/teams/#security) privately so we have an opportunity to investigate and fix it before it is made public.
+If you believe you’ve found a security vulnerability in Unbloarchy, use GitHub’s private vulnerability reporting for this repository if it is enabled. Otherwise, contact the repository maintainers privately through GitHub before disclosing the issue publicly. Unbloarchy is an unofficial fork; reports about this fork should not be sent to Omarchy’s security team.
 
-[security@omarchy.org](mailto:security@omarchy.org?subject=Security%20report)
-
-Please don’t report potential vulnerabilities publicly in GitHub Issues, Discord, or social media before they’ve been resolved.
+Please don’t report potential vulnerabilities publicly in GitHub Issues, GitHub Discussions, or social media before they’ve been resolved.
 
 ## What is a vulnerability?
 
@@ -14,13 +12,13 @@ We consider a bug a security vulnerability when it can be exploited to cross a m
 
 Code that could be more robust but does not cross a security boundary is an improvement rather than a security vulnerability. We may still merge a proposed fix and credit the reporter in our release notes.
 
-Eligibility for our [security credits](https://omarchy.org/security/credits/) page depends on whether a report identifies a confirmed security vulnerability, not on its severity.
+We may acknowledge confirmed reports in Unbloarchy release notes, with the reporter’s permission.
 
 ## What to include
 
 Give us enough information to understand and reproduce the issue:
 
-- The affected component and Omarchy version.
+- The affected component and Unbloarchy version.
 - An explanation of what an attacker can do before and after exploitation.
 - Steps to reproduce the issue and any proof of concept.
 - Your preferred contact details for follow-up.
@@ -38,10 +36,10 @@ We’ll review your report and keep you informed as we’re able while we work t
 
 ## Credits
 
-Researchers who privately report a confirmed security vulnerability and give us the chance to ship a fix are thanked on the [security credits](https://omarchy.org/security/credits/) page. Accepted improvements that don’t cross a security boundary may still be credited in our release notes.
+Researchers who privately report a confirmed security vulnerability and give us the chance to ship a fix may be thanked in Unbloarchy release notes, with their permission. Accepted improvements that don’t cross a security boundary may also be credited there.
 
-Credits link to each reporter’s X profile and show their avatar. For duplicate reports, only the first reporter is eligible for credit.
+We will not publish identifying details without the reporter’s permission. For duplicate reports, only the first reporter is eligible for credit.
 
 ## Regular bugs and support
 
-For anything that isn’t a security vulnerability, please use the [Omarchy issue tracker](https://github.com/omacom/omarchy/issues).
+For verified bugs that aren’t security vulnerabilities, please use the [Unbloarchy issue tracker](https://github.com/Magiclovekorean/unbloarchy/issues).

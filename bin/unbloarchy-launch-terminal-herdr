@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Launch or attach to the persistent herdr session in a terminal
+
+exec unbloarchy-launch-terminal herdr

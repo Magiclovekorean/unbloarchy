@@ -11,14 +11,14 @@ import "ImagePickerModel.js" as ImagePickerModel
 Item {
   id: root
 
-  // Injected by omarchy-shell; defaults to the session OMARCHY_PATH.
-  property string omarchyPath: Quickshell.env("OMARCHY_PATH")
+  // Injected by unbloarchy-shell; defaults to the session UNBLOARCHY_PATH.
+  property string unbloarchyPath: Quickshell.env("UNBLOARCHY_PATH")
   property string stateHome: Quickshell.env("HOME") + "/.local/state"
-  property string imageDirs: Quickshell.env("OMARCHY_IMAGE_SELECTOR_DIRS") || Quickshell.env("OMARCHY_IMAGE_SELECTOR_DIR") || Quickshell.env("OMARCHY_STOCK_BACKGROUNDS_DIR") || (stateHome + "/omarchy/current/theme/backgrounds")
+  property string imageDirs: Quickshell.env("UNBLOARCHY_IMAGE_SELECTOR_DIRS") || Quickshell.env("UNBLOARCHY_IMAGE_SELECTOR_DIR") || Quickshell.env("UNBLOARCHY_STOCK_BACKGROUNDS_DIR") || (stateHome + "/unbloarchy/current/theme/backgrounds")
   property string imageRows: ""
   property string loadedImageRows: ""
-  property string selectionFile: Quickshell.env("OMARCHY_IMAGE_SELECTOR_SELECTION_FILE") || Quickshell.env("OMARCHY_BACKGROUND_SELECTION_FILE")
-  property string selectedImage: Quickshell.env("OMARCHY_IMAGE_SELECTOR_SELECTED")
+  property string selectionFile: Quickshell.env("UNBLOARCHY_IMAGE_SELECTOR_SELECTION_FILE") || Quickshell.env("UNBLOARCHY_BACKGROUND_SELECTION_FILE")
+  property string selectedImage: Quickshell.env("UNBLOARCHY_IMAGE_SELECTOR_SELECTED")
   property int selectedIndex: 0
   property bool imagesLoaded: false
   property bool opened: false
@@ -32,7 +32,7 @@ Item {
   property string filterText: ""
   property var doneFilesToRelease: []
   // Themes open from rows the shell already holds, so the picker shows without
-  // waiting on omarchy-theme-switcher; each open refreshes them behind it.
+  // waiting on unbloarchy-theme-switcher; each open refreshes them behind it.
   property string themeRows: ""
   property bool themeMode: false
   property bool themeOpenPending: false
@@ -55,7 +55,7 @@ Item {
   onOpenedChanged: if (!opened) layoutSettled = false
 
   function scriptPath(name) {
-    return omarchyPath + "/shell/plugins/image-picker/" + name
+    return unbloarchyPath + "/shell/plugins/image-picker/" + name
   }
 
   function focusPicker() {
@@ -161,7 +161,7 @@ Item {
     if (themeMode) {
       themeMode = false
       root.opened = false
-      if (path) Util.execArgv(["omarchy-theme-set", nameForPath(path)])
+      if (path) Util.execArgv(["unbloarchy-theme-set", nameForPath(path)])
       return
     }
 
@@ -321,14 +321,14 @@ Item {
 
   FileView {
     id: themeNameFile
-    path: root.stateHome + "/omarchy/current/theme.name"
+    path: root.stateHome + "/unbloarchy/current/theme.name"
     watchChanges: true
     onFileChanged: reload()
   }
 
   Process {
     id: themeRowsProc
-    command: [root.omarchyPath + "/bin/omarchy-theme-switcher", "--print-rows"]
+    command: [root.unbloarchyPath + "/bin/unbloarchy-theme-switcher", "--print-rows"]
     stdout: StdioCollector {
       onStreamFinished: root.updateThemeRows(String(text || "").trim())
     }
@@ -381,7 +381,7 @@ Item {
     }
   }
 
-  // Lifecycle hooks invoked by omarchy-shell summon/hide. shell.summon(id,
+  // Lifecycle hooks invoked by unbloarchy-shell summon/hide. shell.summon(id,
   // payloadJson) hands the JSON to open() here; shell.hide(id) calls close().
   // The shell host owns the stable `image-selector` IPC target and forwards
   // those lower-level positional calls here.
@@ -448,7 +448,7 @@ Item {
     id: panel
     shown: root.opened
     shownKeyboardFocus: root.imagesLoaded ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
-    WlrLayershell.namespace: "omarchy-image-selector"
+    WlrLayershell.namespace: "unbloarchy-image-selector"
 
     Rectangle {
       anchors.fill: parent

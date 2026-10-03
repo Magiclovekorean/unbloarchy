@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# unbloarchy:summary=Toggle animations, transparency and other effects that are slow without a GPU
+# unbloarchy:args=[toggle|on|off]
+# unbloarchy:examples=unbloarchy toggle animations | unbloarchy toggle animations off | unbloarchy toggle animations on
+
+# The flag records animations being off, so on and off swap on the way through.
+case ${1:-toggle} in
+toggle) unbloarchy-hyprland-toggle no-animations toggle ;;
+on) unbloarchy-hyprland-toggle no-animations off ;;
+off) unbloarchy-hyprland-toggle no-animations on ;;
+*)
+  echo "Usage: unbloarchy-toggle-animations [toggle|on|off]" >&2
+  exit 1
+  ;;
+esac
+
+if unbloarchy-hyprland-toggle-enabled no-animations; then
+  unbloarchy-notification-send -g 󰕟 "Animations disabled"
+else
+  unbloarchy-notification-send -g 󰕟 "Animations enabled"
+fi

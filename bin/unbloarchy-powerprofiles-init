@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Set the correct power profile on boot based on current AC/battery state.
+
+exec unbloarchy-powerprofiles-set autodetect

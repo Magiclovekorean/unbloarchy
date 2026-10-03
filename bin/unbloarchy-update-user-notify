@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# unbloarchy:summary=Compatibility wrapper for unbloarchy-migrate-notify.
+# unbloarchy:hidden=true
+
+exec unbloarchy-migrate-notify "$@"

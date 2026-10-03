@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Checking Unbloarchy update entrypoint...
+When = PreTransaction
+Depends = omarchy
+Exec = /usr/bin/unbloarchy-update-pacman-guard
+AbortOnFail

@@ -12,7 +12,7 @@ log_file="$test_tmp/keyring.log"
 mkdir -p "$stub_bin"
 
 # Behavior is driven by env vars so each case can pick its failure point:
-# KEYRING_TEST_PKG_MISSING     exit status of omarchy-pkg-missing (default 1: installed)
+# KEYRING_TEST_PKG_MISSING     exit status of unbloarchy-pkg-missing (default 1: installed)
 # KEYRING_TEST_LIST_FAIL_ON    which --list-keys call fails, counted per run (default: none)
 # KEYRING_TEST_RECV_STATUS     exit status of --recv-keys (default 0)
 # KEYRING_TEST_REINSTALL_STATUS exit status of the archlinux-keyring reinstall (default 0)
@@ -51,26 +51,26 @@ exit 0
 SH
 chmod +x "$stub_bin/sudo"
 
-cat >"$stub_bin/omarchy-pkg-missing" <<'SH'
+cat >"$stub_bin/unbloarchy-pkg-missing" <<'SH'
 #!/bin/bash
 
 exit "${KEYRING_TEST_PKG_MISSING:-1}"
 SH
-chmod +x "$stub_bin/omarchy-pkg-missing"
+chmod +x "$stub_bin/unbloarchy-pkg-missing"
 
-cat >"$stub_bin/omarchy-pkg-add" <<'SH'
+cat >"$stub_bin/unbloarchy-pkg-add" <<'SH'
 #!/bin/bash
 
 printf 'pkg-add\t%s\n' "$1" >>"$KEYRING_TEST_LOG"
 exit 0
 SH
-chmod +x "$stub_bin/omarchy-pkg-add"
+chmod +x "$stub_bin/unbloarchy-pkg-add"
 
 run_keyring() {
   KEYRING_TEST_LOG="$log_file" \
     KEYRING_TEST_DIR="$test_tmp" \
     PATH="$stub_bin:$PATH" \
-    "$ROOT/bin/omarchy-update-keyring" "$@"
+    "$ROOT/bin/unbloarchy-update-keyring" "$@"
 }
 
 # Everything healthy: the key and package are present, the reinstall works.

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# unbloarchy:summary=Open Voxtype AI model setup
+
+set -e
+
+unbloarchy-launch-floating-terminal-with-presentation "voxtype setup model"
+unbloarchy-restart-shell

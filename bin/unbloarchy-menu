@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# unbloarchy:summary=Control the Unbloarchy menu (toggle / summon / close / refresh)
+# unbloarchy:args=[toggle|summon|close|refresh|ping] [route]
+# unbloarchy:examples=unbloarchy menu | unbloarchy menu toggle system | unbloarchy menu summon style.theme | unbloarchy menu refresh
+
+# Thin wrapper around the standard plugin IPC surface. The menu is the
+# first-party `unbloarchy.menu` plugin; routes are passed as JSON payload.
+
+set -euo pipefail
+
+verb="${1-toggle}"
+route="${2-root}"
+
+menu_payload() {
+  jq -nc --arg menu "$1" '{ menu: $menu }'
+}
+
+case "$verb" in
+  toggle)
+    exec unbloarchy-shell shell toggle unbloarchy.menu "$(menu_payload "$route")"
+    ;;
+  summon)
+    exec unbloarchy-shell shell summon unbloarchy.menu "$(menu_payload "$route")"
+    ;;
+  close)
+    exec unbloarchy-shell shell hide unbloarchy.menu
+    ;;
+  refresh | ping)
+    exec unbloarchy-shell shell call unbloarchy.menu "$verb" "{}"
+    ;;
+  -h | --help | help)
+    cat <<USAGE
+Usage: unbloarchy menu [verb] [route]
+
+Verbs:
+  toggle [route]   Open the menu at <route>, or close it if already open. Default verb.
+  summon [route]   Always open the menu (no close-if-visible toggle).
+  close            Close the menu if it is visible.
+  refresh          Re-parse the menu JSONC files.
+  ping             Health check.
+
+Route is an item id (e.g. setup.power) or alias (e.g. power). Defaults to
+"root", which opens the top-level menu.
+USAGE
+    exit 0
+    ;;
+  *)
+    echo "unbloarchy-menu: unknown verb '$verb'. Try 'unbloarchy menu --help'." >&2
+    exit 2
+    ;;
+esac

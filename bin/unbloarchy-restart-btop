@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Reload btop configuration (used by the Unbloarchy theme switching).
+
+pkill -SIGUSR2 btop

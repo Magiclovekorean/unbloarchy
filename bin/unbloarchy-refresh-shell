@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# unbloarchy:summary=Reset shell.json to Unbloarchy defaults
+# unbloarchy:examples=unbloarchy refresh shell
+
+set -euo pipefail
+
+unbloarchy-refresh-config unbloarchy/shell.json
+unbloarchy-bar defaults
+
+unbloarchy-restart-shell

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# unbloarchy:summary=Edit, set, or reset About branding
+# unbloarchy:group=branding
+# unbloarchy:name=about
+# unbloarchy:args=<image|text|reset>
+# unbloarchy:examples=unbloarchy branding about image | unbloarchy branding about text | unbloarchy branding about reset
+
+set -euo pipefail
+
+case "${1:-}" in
+image)
+  image=$(unbloarchy-file-select --title "Pick PNG or SVG for About" --extensions "png svg")
+  if unbloarchy-transcode-ascii "$image" ~/.config/unbloarchy/branding/about.txt --width 54 --height 26; then
+    unbloarchy-launch-about >/dev/null 2>&1
+  fi
+  ;;
+text)
+  unbloarchy-launch-editor ~/.config/unbloarchy/branding/about.txt >/dev/null 2>&1 && unbloarchy-launch-about >/dev/null 2>&1
+  ;;
+reset)
+  cp "$UNBLOARCHY_PATH/icon.txt" ~/.config/unbloarchy/branding/about.txt && unbloarchy-launch-about >/dev/null 2>&1
+  ;;
+*)
+  echo "Usage: unbloarchy-branding-about <image|text|reset>" >&2
+  exit 1
+  ;;
+esac

@@ -1,3 +1,3 @@
-if omarchy-hw-framework16; then
-  omarchy-pkg-add qmk-hid
+if unbloarchy-hw-framework16; then
+  unbloarchy-pkg-add qmk-hid
 fi

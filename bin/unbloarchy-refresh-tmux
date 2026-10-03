@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# unbloarchy:summary=Overwrite the user tmux config with the Unbloarchy default and reload tmux.
+
+unbloarchy-refresh-config tmux/tmux.conf
+unbloarchy-restart-tmux

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# unbloarchy:summary=Refresh the current theme from its templates.
+
+THEME_NAME_PATH="$HOME/.local/state/unbloarchy/current/theme.name"
+
+if [[ -f $THEME_NAME_PATH ]]; then
+  UNBLOARCHY_THEME_SKIP_BACKGROUND=1 unbloarchy-theme-set "$(cat $THEME_NAME_PATH)"
+fi

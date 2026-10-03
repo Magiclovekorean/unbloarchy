@@ -15,10 +15,10 @@ systemctl --user daemon-reload
 systemctl --user enable --now \
   bt-agent.service \
   owed.service \
-  omarchy-recover-internal-monitor.service \
-  omarchy-sleep-lock.service \
-  omarchy-migrate-notify.service \
-  omarchy-fcitx5.service \
-  omarchy-crash-watch.service
+  unbloarchy-recover-internal-monitor.service \
+  unbloarchy-sleep-lock.service \
+  unbloarchy-migrate-notify.service \
+  unbloarchy-fcitx5.service \
+  unbloarchy-crash-watch.service
 
-omarchy-hook-install theme-set /usr/share/owe/10-owe-sync
+unbloarchy-hook-install theme-set /usr/share/owe/10-owe-sync

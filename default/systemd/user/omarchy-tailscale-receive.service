@@ -1,12 +1,1 @@
-[Unit]
-Description=Save incoming Taildrop files to the downloads directory
-ConditionPathExists=/usr/bin/tailscale
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/omarchy-tailscale-receive
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy=graphical-session.target
+unbloarchy-tailscale-receive.service

@@ -22,7 +22,7 @@ import sys
 
 source = pathlib.Path(sys.argv[1]).read_text()
 source = source.replace('$HOME', '$FONT_TEST_HOME')
-source = source.replace('/usr/share/fonts/omarchy/omarchy.ttf', '$FONT_TEST_PACKAGE')
+source = source.replace('/usr/share/fonts/unbloarchy/unbloarchy.ttf', '$FONT_TEST_PACKAGE')
 pathlib.Path(sys.argv[2]).write_text(source)
 PY
 
@@ -37,7 +37,7 @@ chmod +x "$test_dir/bin/fc-cache"
 reset_fonts() {
   rm -rf "$FONT_TEST_HOME"
   mkdir -p "$FONT_TEST_HOME/.local/share/fonts" "$FONT_TEST_HOME/.config"
-  cp "$ROOT/default/fonts/omarchy/omarchy.ttf" "$FONT_TEST_PACKAGE"
+  cp "$ROOT/default/fonts/unbloarchy/unbloarchy.ttf" "$FONT_TEST_PACKAGE"
   : > "$FONT_TEST_CACHE_LOG"
 }
 
@@ -51,7 +51,7 @@ cp "$fixture" "$FONT_TEST_HOME/.config/omarchy.ttf"
 run_migration
 [[ ! -e $legacy_font ]] || fail "stock font is removed from the actual user font directory"
 cmp "$fixture" "$FONT_TEST_HOME/.config/omarchy.ttf" || fail "unrelated config path is untouched"
-cmp "$ROOT/default/fonts/omarchy/omarchy.ttf" "$FONT_TEST_PACKAGE" || fail "packaged font is untouched"
+cmp "$ROOT/default/fonts/unbloarchy/unbloarchy.ttf" "$FONT_TEST_PACKAGE" || fail "packaged font is untouched"
 [[ $(cat "$FONT_TEST_CACHE_LOG") == "-f" ]] || fail "font cache is refreshed after retirement"
 pass "retire the known stock font at its real path and refresh the cache"
 
@@ -100,7 +100,7 @@ run_migration
 (( $(wc -l < "$FONT_TEST_CACHE_LOG") == 2 )) || fail "retry refreshes the cache after the file was removed"
 pass "retry a failed cache refresh after successful font retirement"
 
-if grep -q $'^retire\tomarchy.ttf\t' "$ROOT/bin/omarchy-upgrade-to-quattro"; then
+if grep -q $'^retire\tomarchy.ttf\t' "$ROOT/bin/unbloarchy-upgrade-to-quattro"; then
   fail "upgrader no longer treats the user font as a config file"
 fi
 pass "upgrader leaves font retirement to its post-upgrade migrations"

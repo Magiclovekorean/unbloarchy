@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# unbloarchy:summary=Toggle mirroring theme changes to and from your herdr machines
+
+unbloarchy-toggle herdr-theme-sync
+
+if unbloarchy-toggle-enabled herdr-theme-sync; then
+  unbloarchy-notification-send -g 󰸌 "Herdr theme sync enabled"
+else
+  unbloarchy-notification-send -g 󰸌 "Herdr theme sync disabled"
+fi
