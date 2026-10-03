@@ -3,7 +3,7 @@
 # unbloarchy:summary=Build and install an Unbloarchy package from a local checkout
 # unbloarchy:group=dev
 # unbloarchy:args=[package-name] [path-to-checkout]
-# unbloarchy:examples=unbloarchy dev pkg-test | unbloarchy dev pkg-test omarchy-dev ~/Work/unbloarchy/unbloarchy-installer
+# unbloarchy:examples=unbloarchy dev pkg-test | unbloarchy dev pkg-test omarchy-dev ~/Work/unbloarchy/unbloarchy
 
 set -euo pipefail
 
@@ -18,12 +18,12 @@ can't shadow.
 
 Defaults:
   packages          omarchy-settings-dev omarchy-dev
-  path-to-checkout  ~/Work/unbloarchy/unbloarchy-installer
+  path-to-checkout  ~/Work/unbloarchy/unbloarchy
 
 Examples:
   unbloarchy dev pkg-test
   unbloarchy dev pkg-test omarchy-settings-dev
-  unbloarchy dev pkg-test omarchy-dev ~/Work/unbloarchy/unbloarchy-installer
+  unbloarchy dev pkg-test omarchy-dev ~/Work/unbloarchy/unbloarchy
 
 The pkgver of the built package is tagged 'dev.<short-sha>[.dirty]' so
 'pacman -Q' makes it obvious where the installed version came from.
@@ -73,11 +73,11 @@ dev_package_name() {
 
 if (( $# == 0 )); then
   PKGS=(omarchy-settings-dev omarchy-dev)
-  CHECKOUT="$HOME/Work/unbloarchy/omarchy-installer"
+  CHECKOUT="$HOME/Work/unbloarchy/unbloarchy"
   MAKEPKG_ARGS=()
 else
   PKGS=("$(dev_package_name "$1")")
-  CHECKOUT="${2:-$HOME/Work/unbloarchy/omarchy-installer}"
+  CHECKOUT="${2:-$HOME/Work/unbloarchy/unbloarchy}"
   MAKEPKG_ARGS=("${@:3}")
 fi
 PKGBUILDS_ROOT="${UNBLOARCHY_PKGBUILDS_DIR:-$HOME/Work/unbloarchy/omarchy-pkgs/pkgbuilds}"
