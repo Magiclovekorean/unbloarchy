@@ -2,7 +2,7 @@
 
 ### Apple M1/M2 chips
 
-[Asahi Alarm](https://asahi-alarm.org/) is a version of Arch for Apple M1/M2 computers built on top of [Asahi Linux](https://asahilinux.org/). You can get Unbloarchy running on top of that with some effort. See [the user-driven guide](https://github.com/unbloarchy-mac/unbloarchy-mac).
+[Asahi Alarm](https://asahi-alarm.org/) is a version of Arch for Apple M1/M2 computers built on top of [Asahi Linux](https://asahilinux.org/). You can get Unbloarchy running on top of that with some effort. See [the user-driven guide](https://github.com/omarchy-mac/omarchy-mac), a community project rather than an Unbloarchy-run one.
 
 ### Apple Virtual Machine
 

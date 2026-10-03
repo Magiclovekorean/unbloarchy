@@ -30,4 +30,4 @@ Be clear-eyed about this one: while it's on, anything running as your user can d
 
 The upstream Omarchy signing key currently used for package and ISO signatures is `40DFB630FF42BCFFB047046CF0134EE680CAC571` ([verify it at OpenPGP.org](https://keys.openpgp.org/search?q=pkgs%40omarchy.org)). The upstream `omarchy-keyring` package contains the key. Unbloarchy has not established an independent signing-key infrastructure; verify each release using the checksum and signature information published by its distributor.
 
-For upstream ISO releases, the detached signature is available by adding `.sig` to the ISO URL, for example `https://iso.omarchy.org/unbloarchy-x.x.x.iso.sig`.
+For upstream ISO releases, the detached signature is available by adding `.sig` to the ISO URL, for example `https://iso.omarchy.org/omarchy-x.x.x.iso.sig`. Upstream publishes the ISO under its own name, so the filename keeps the `omarchy-` prefix even when the contents come from a Unbloarchy release.
