@@ -279,6 +279,20 @@ There is no version file at runtime. `unbloarchy-version` derives the version fr
 linked checkout, and `unbloarchy-version-channel` sniffs the mirrorlist and
 pacman.conf to answer which channel is active.
 
+The `version` file at the repository root does exist, but only as build input:
+the PKGBUILDs in `omarchy-pkgs` derive `pkgver` from it. This fork carries its
+own version, `<upstream version>.unbloarchy.<n>` (`4.0.0.alpha.unbloarchy.1`),
+rather than tracking upstream's string verbatim, so `unbloarchy version` never
+reports a number that upstream shipped. Two constraints follow. It must be a
+valid pacman `pkgver`, so it uses `.` separators and never a `-`: pacman splits a
+package version at the last `-` into `pkgver` and `pkgrel`, and a hyphen would be
+read as that separator. And it must sort **above** the upstream version it
+derives from, or an existing install is never offered the upgrade — which is why
+`.unbloarchy.1` is appended rather than prepended with `~`. When upstream moves
+past this fork's declared baseline, bump the baseline and the counter together;
+pacman will otherwise correctly report that the mirror's newer package is an
+upgrade.
+
 ## Update-related binaries
 
 This inventory is intentionally opinionated. Some commands are useful as stable
