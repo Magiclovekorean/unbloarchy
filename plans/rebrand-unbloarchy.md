@@ -27,7 +27,7 @@ The rename covers every in-repo identifier: executables, env vars, install root,
 
 Two compatibility layers keep the rest of the ecosystem working: a **generated `omarchy-*` shim set** in `bin/`, so the `omarchy-pkgs` PKGBUILD's `bin/omarchy-*` glob still produces `/usr/bin/omarchy-*`; and a **`migrations/<epoch>.sh`**, so an existing install upgrades in place instead of breaking. `OMARCHY_PATH` is exported alongside `UNBLOARCHY_PATH` as a deprecated alias for the same reason — it is the one env var external tooling reads.
 
-Brand artwork is deliberately left alone: `logo.svg`, `icon.png`, and the `U+E900` glyph stay, because the glyph is the menu icon (`shell/plugins/menu/BarWidget.qml:15`) and `etc/fastfetch/config.jsonc:72` prints it next to the OS name. What regenerates is text: `logo.txt` becomes "Unbloarchy", and `unbloarchy ascii` renders "unbloarchy" in the same FIGlet font the kept logo is drawn in.
+Brand artwork splits in two. The icon set is left alone: `icon.png`, `icon.txt`, and the `U+E900` glyph stay byte-identical, because the glyph is the menu icon (`shell/plugins/menu/BarWidget.qml:15`) and `etc/fastfetch/config.jsonc:72` prints it next to the OS name. The ASCII wordmark does not — both `logo.txt` and `logo.svg` spell OMARCHY, so both are regenerated as UNBLOARCHY in the original block letterforms. `unbloarchy ascii` is a separate renderer and is left on Delta Corps Priest 1.
 
 ## Rejected approaches
 
@@ -65,7 +65,7 @@ The rename is applied through an explicit substitution table, not a global repla
 | Display text | "Unbloarchy" / "unbloarchy" | menu labels, summaries, `GROUP_DESCRIPTIONS` |
 | GPG keyring / hostname | `unbloarchy` (hostname only) | `install/provisioning/setup-form.sh:84` |
 
-Two rules are deliberately **not** applied to generated art: `logo.svg`, `icon.png`, `icon.txt`, and the `U+E900` glyph stay as-is.
+Two rules are deliberately **not** applied to generated art: `icon.png`, `icon.txt`, and the `U+E900` glyph stay as-is. `logo.svg` and `logo.txt` are regenerated, because both spell the old name.
 
 ### Phase 0 — Groundwork
 
@@ -190,8 +190,8 @@ There are no DBus well-known names and no `StartupWMClass=omarchy` in any shippe
 
 ### Phase 5 — Brand text and assets
 
-- `logo.txt` regenerates as "Unbloarchy" in the same block style. `icon.txt`, `logo.svg`, and `icon.png` are untouched.
-- `bin/unbloarchy-ascii` keeps the Delta Corps Priest 1 FIGlet font — the font the kept logo is drawn in — but its examples and usage text change from `Omarchy` to `unbloarchy` (`:5`), and the summary drops "the font the Omarchy logo is drawn in" to a phrasing that does not imply the logo was redrawn. `manual/41-branding.md:49-52` follows, including its `~/.config/omarchy/branding/screensaver.txt` example.
+- `logo.txt` and `logo.svg` both regenerate as "Unbloarchy" in the same block style. They are one wordmark in two forms — the SVG is a vectorisation of the ASCII grid, not separate artwork — so leaving either one spelling OMARCHY would ship a mismatched pair. `icon.txt` and `icon.png` are untouched and stay byte-identical. Letters the original already had (`O M A R C H Y`) are reused verbatim from `git show HEAD:logo.txt`; only `U N B L` are new, drawn in the font's own vocabulary — 3-wide stems, 3-space counters, ` ▄█`/`█▄ ` rounded stem caps and `▀` bar terminals. `logo.svg` is regenerated on the original's 15-unit grid (10 letter paths, one per letter, vertically merged rectangles) rather than retraced, so its geometry is exact instead of carrying the old file's fractional tracing drift.
+- `bin/unbloarchy-ascii` keeps the Delta Corps Priest 1 FIGlet font, but its examples and usage text change from `Omarchy` to `unbloarchy` (`:5`). It is **not** the font the logo is drawn in — the logo is a narrower face with 9-wide letters against Delta Corps Priest 1's 11 — so both the `:3` summary and the `:13` usage text stop claiming the logo was drawn in it. `manual/41-branding.md:49` carries the same false claim and is corrected; its `~/.config/unbloarchy/branding/screensaver.txt` example at `:52` was already rebranded and needed no change.
 - The icon font's *family*, *file*, and *install path* rename to `unbloarchy` (`/usr/share/fonts/unbloarchy/unbloarchy.ttf`); the `U+E900` glyph artwork stays. `default/fonts/unbloarchy/README.md` is rewritten to describe the new family, and its charset table keeps `e900-e90e` so `test/shell.d/menu-test.sh:662` still holds.
 - Generated theme-name artifacts all move: `omarchy-system` (Pi, `default/themed/pi.json.tpl:3`), `Omarchy` (Claude `claude.json.tpl:2`, T3 `t3code.json.tpl:2`, VS Code `vscode-theme.json:2`), `omarchy` (Hermes skin `hermes.yaml.tpl:1` + `bin/omarchy-theme-set-hermes:16`, Helix `bin/omarchy-install-editor-helix:11,16` → `~/.config/helix/themes/omarchy.toml`, VS Code extension `local.omarchy-theme-1.0.0` under `~/.vscode/extensions/omarchy-theme/`), SDDM `Current=omarchy` in `etc/sddm.conf.d/10-theme.conf`, the Plymouth theme, and `default/snapper/root` → `/etc/snapper/config-templates/unbloarchy`.
 - `default/wayland-sessions/omarchy.desktop` → `unbloarchy.desktop`, with `Name=Unbloarchy (Hyprland uwsm)` and `Comment=Unbloarchy Hyprland session managed by uwsm`. Its `Exec=` line has no brand in it.
@@ -204,13 +204,13 @@ There are no DBus well-known names and no `StartupWMClass=omarchy` in any shippe
 
 **Prose rewrite**: all 51 manual pages that mention the brand, 11 `docs/` files, 7 `plans/` files, `AGENTS.md`'s "Privilege Escalation" pointer, and the 7 repo `agents/skills/` guides. The manual's section titles follow their filenames, so `01-welcome-to-unbloarchy.md` and `14-unbloarchy-cli.md` need their headings and cross-links updated in step.
 
-**Remove every `omarchy.org` hyperlink** from prose. The 25 files and the specific lines:
+**Remove every `omarchy.org` hyperlink** from fork-owned prose. Upstream-only package/signature endpoints remain explicitly identified as upstream dependencies; the diagnostic uploader is a pending policy decision. The files and lines to address include:
 
 - `.github/SECURITY.md:5,7,17,41` — the security team link, the `security@omarchy.org` address, and two security-credits links. All of these point at an upstream team that does not handle Unbloarchy reports; they get replaced with this fork's own reporting path.
 - `.github/ISSUE_TEMPLATE/config.yml:7` — the Discord link in the support-URLs block.
-- `manual/02-getting-started.md:5` (the ISO link) and `:39` (the `#omarchy-help` Discord channel)
+- `manual/02-getting-started.md:5` (the ISO link) and `:39` (the community support link)
 - `manual/06-themes.md:9` and `manual/43-making-your-own-theme.md:45` — the extra-themes page and the `omacom-io/omarchy-site` repo
-- `manual/48-security.md:31,33` — the `omarchy/omarchy-keyring` package and the `iso.omarchy.org` signature URLs
+- `manual/48-security.md:31,33` — these stay as explicit upstream keyring/signature references, not Unbloarchy-owned links
 - `README.md:59`
 - `default/agents/skills/unbloarchy/SKILL.md:16`, `.../contributing.md:14,29`, and `default/agents/skills/diagnose-crash/reporting.md:30`
 
@@ -237,14 +237,14 @@ There are no DBus well-known names and no `StartupWMClass=omarchy` in any shippe
 
 A `/usr/share/omarchy` symlink does **not** keep the ecosystem working on its own. The `omarchy` PKGBUILD in `omarchy-pkgs` globs `bin/omarchy-*` to build `/usr/bin/omarchy-*` and its `/usr/share/omarchy/bin/` symlink farm (`docs/file-layout.md:68-69`); rename the files and the glob matches nothing, producing an empty package. The shims exist to keep that glob matching, so they must be generated *into `bin/`*, not merely into the installed filesystem.
 
-`install/helpers/generate-compat-shims.sh` walks `bin/unbloarchy*` and emits one stub per command, idempotently, with output gitignored:
+`install/helpers/generate-compat-shims.sh` walks the executable `bin/unbloarchy-*` files and emits one stub per command, idempotently, with output gitignored. It also creates the bare `bin/omarchy` router shim; the external PKGBUILD must install that separately because the existing `bin/omarchy-*` glob does not match it:
 
 - `bin/omarchy` → `exec unbloarchy "$@"`
 - `bin/omarchy-<x>` → `exec unbloarchy-<x> "$@"`
 - `bin/omarchy-security-functions` → a **source-forwarding stub** (`source "${0%/*}/unbloarchy-security-functions"`), not an `exec`, because six files source it and `exec` would run it in a subshell and discard every function it defines
 - `bin/omarchy-dev-font` is special-cased rather than shimmed: it is Python invoked as `python3`, not executed, and it hardcodes the font path at `:5` (docstring), `:580` (the real default resolution), and `:605` (help text), plus brand strings at `:2,3,4,556,607,645,648` that all move with the rest
 
-Because the shims are generated rather than committed, the PKGBUILD must call the generator in `prepare()` before it globs. That PKGBUILD edit lives in `omarchy-pkgs`, not here, so this phase ships the script, the exact `prepare()` hook, and a written list of every PKGBUILD line that must change — and the ISO build is broken until those land. What the shims buy once they do: `/usr/bin/omarchy-*` keeps existing, which preserves the `omarchy-settings`-owned ALPM hooks that call `/usr/bin/omarchy-sudo-passwordless`, the sudoers entries that match `/usr/bin/omarchy-dns` and `/usr/bin/omarchy-theme-set-browser-policy`, the PAM `pam_exec` line pointing at `/usr/bin/omarchy-hw-laptop-closed`, and the `omarchy-iso` chroot entrypoints `omarchy-apply-system`, `omarchy-provision-user`, and `omarchy-apply-hardware`.
+Because the shims are generated rather than committed, the PKGBUILD must call the generator in `prepare()` before it globs. That PKGBUILD edit lives in `omarchy-pkgs`, not here. The required generator invocation is `bash "$srcdir/unbloarchy/install/helpers/generate-compat-shims.sh" "$srcdir/unbloarchy"`; the PKGBUILD must also install `$srcdir/unbloarchy/bin/omarchy` as `/usr/bin/omarchy`. The external package repository must add both changes before the ISO package build has complete compatibility. What the shims buy once they do: `/usr/bin/omarchy-*` keeps existing, which preserves the `omarchy-settings`-owned ALPM hooks that call `/usr/bin/omarchy-sudo-passwordless`, the sudoers entries that match `/usr/bin/omarchy-dns` and `/usr/bin/omarchy-theme-set-browser-policy`, the PAM `pam_exec` line pointing at `/usr/bin/omarchy-hw-laptop-closed`, and the `omarchy-iso` chroot entrypoints `omarchy-apply-system`, `omarchy-provision-user`, and `omarchy-apply-hardware`.
 
 `/usr/share/omarchy` → `/usr/share/unbloarchy` is created as a symlink by the install scripts in this repo, not by any package, so it survives `pacman -Qo` and is never a "conflicting files" error.
 
@@ -293,9 +293,9 @@ Phases 1-4 are the risky ones and want the most careful review, because a mistak
 
 ## Open questions
 
-1. **`logs.omarchy.org`.** `bin/unbloarchy-upload-log` sends installation logs, boot logs, and system information to an upstream service (`:95,108,121,140`, POST at `:155`, 24h expiry). After the rebrand that is the most user-visible remaining "this still points at omarchy" item. Keep it and document it plainly in the manual, or disable the uploader? Not decided.
-2. **Background wallpapers.** 21 files at `themes/*/backgrounds/*omarchy*.webp` have branded filenames and the Omarchy logo in the image. The current decision is rename-only, which leaves the logo visible on every default background — consistent with keeping `logo.svg`, but worth confirming it is the intent rather than an oversight.
-3. **`omarchy-iso` invocation.** The ISO builder calls `omarchy-apply-system`, `omarchy-provision-user`, and `omarchy-apply-hardware` by name in the target chroot. The generated shims make this work unchanged, so forking the ISO repo is optional rather than required — but it should be a recorded decision, not an accident.
+1. **`logs.omarchy.org`.** `bin/unbloarchy-debug` and `bin/unbloarchy-upload-log` send diagnostic logs, hardware/system details, and installed-package lists to an upstream service for troubleshooting; this is not stats collection. The service advertises 24-hour expiry. The user wants to retain uploads only if they are stats and otherwise wants a further decision; do not change the uploader until they decide whether this upstream support-upload flow is acceptable.
+2. **Branded wallpaper art.** Leave ordinary wallpapers unchanged. The user wants only images that visibly spell “Omarchy” regenerated with the updated wordmark. **Partly resolved.** The `backgrounds/unbloarchy.webp` files that carry the name are 2-colour 3840×2160 gradients of ~716 bytes and contain no text, so none needs regenerating. The visible branding lives in the `preview*.png` and `unlock.png` screenshots, which are real desktop captures showing the menu as `omarchy-launch-*` and `omarchy-install-*`, and `manual/images/*.webp` shows the same. Those need regenerating against a running session, which cannot be done here.
+3. **`omarchy-iso` invocation.** Decision: keep compatibility shims so the upstream ISO builder can continue calling `omarchy-apply-system`, `omarchy-provision-user`, and `omarchy-apply-hardware` in the target chroot. Keep the required `prepare()` hook and shim generator tracked as an external dependency; Phase 7 remains blocked until the upstream `omarchy-pkgs` PKGBUILD calls the generator.
 4. **`version`.** Currently `4.0.0.alpha`, tracking upstream. Keep tracking upstream, or set an independent version such as `4.0.0-unbloarchy.1`? An independent version is the more honest signal for a fork, and `bin/unbloarchy-version-channel` and the update flow both read it.
 
 ## Progress log
@@ -314,7 +314,7 @@ Status: Phase 0 complete. Phases 1-4 applied to the working tree but **uncommitt
 **Transform applied**
 
 - 585 tracked paths renamed; 1305 files rewritten; 773 `omarchy` occurrences remain, all reviewed as intentional.
-- Protected and left untouched: upstream packages (`omarchy`, `omarchy-settings`, `omarchy-settings-dev`, `omarchy-dev`, `omarchy-keyring`, `omarchy-nvim*`, `omarchy-emacs`, `linux-omarchy*`), upstream mirrors and `pkgs.omarchy.org` / `logs.omarchy.org`, the `omacom` GitHub org, external `oma*` commands, `logo.svg` / `icon.png` / `icon.txt` / `U+E900`, and the legacy bridge `bin/unbloarchy-upgrade-to-quattro` (only its `# unbloarchy:*` metadata header was rewritten).
+- Protected and left untouched: upstream packages (`omarchy`, `omarchy-settings`, `omarchy-settings-dev`, `omarchy-dev`, `omarchy-keyring`, `omarchy-nvim*`, `omarchy-emacs`, `linux-omarchy*`), upstream mirrors and `pkgs.omarchy.org` / `logs.omarchy.org`, the `omacom` GitHub org, external `oma*` commands, `icon.png` / `icon.txt` / `U+E900`, and the legacy bridge `bin/unbloarchy-upgrade-to-quattro` (only its `# unbloarchy:*` metadata header was rewritten). `logo.svg` was originally listed here too; it moved out of this list when the wordmark was regenerated in Phase 5, because it spells the old name.
 - Intentionally still spelled the old way: `test/shell.d/fixtures/legacy-icon-font/omarchy.ttf`.
 
 **Three transform bugs found in review and fixed by hand**
@@ -372,4 +372,132 @@ The transform protected multi-part upstream names but not the bare ones, and it 
 
 **Still outstanding**
 
-Phase 2 absolute `/usr/bin/unbloarchy-*` pin review, Phase 5 brand text and assets (wallpaper logos, `omarchy-iso` invocation), Phase 6 documentation and attribution (`.github/SECURITY.md`, `contributing.md`, `unbloarchy-channel-set` upstream clone), Phase 7 shim generator, Phase 8 rename migration, Phase 9 visual verification. Phase 7 stays externally blocked until `omarchy-pkgs` calls `install/helpers/generate-compat-shims.sh` from `prepare()`. Absolute zero-failure runs still need a real target; the sandbox cannot reach them.
+Phase 2 absolute `/usr/bin/unbloarchy-*` pin review, Phase 5 branded wallpaper audit/regeneration and visual verification, Phase 6 final reference review, Phase 7 external PKGBUILD integration, Phase 8 rename migration, Phase 9 visual verification. The generator and its focused test now exist in this repository; ISO compatibility is still incomplete until `omarchy-pkgs` calls the generator in `prepare()` and explicitly packages the bare `bin/omarchy` router shim. Absolute zero-failure runs still need a real target; the sandbox cannot reach them.
+
+### 2026-10-02 — Phase 5 wordmark regenerated in both forms
+
+Status: the Phase 5 wordmark is regenerated, pinned by a new suite, and verified. Phase 5 is otherwise incomplete — the wallpaper logos and the `omarchy-iso` invocation are still open questions below — and Phases 6-9 are untouched.
+
+**The plan's artwork rule was wrong, deliberately overruled**
+
+The plan protected `logo.svg` on the grounds that the icon set carries no ASCII and so cannot spell the old name. That reasoning does not transfer to the wordmark: `logo.txt` *and* `logo.svg` both spelled OMARCHY, so protecting one would ship a mismatched pair with the old name visible in the vector form. Both regenerate; `icon.png`, `icon.txt`, and `U+E900` stay byte-identical.
+
+**The logo font is not Delta Corps Priest 1**
+
+The committed `logo.txt` is a narrower face than the FIGlet renderer uses — 9-wide letters against Delta Corps Priest 1's 11 — so the previous `unbloarchy-ascii` summary claiming it drew "the font the Unbloarchy logo is drawn in" was simply false. The claim turned out to be load-bearing in three places rather than the one the plan named: `bin/unbloarchy-ascii:3` (the `:summary` metadata), `bin/unbloarchy-ascii:13` (the `usage()` heredoc), and `manual/41-branding.md:49`, which told users the font would match the wordmark they could see in the same file. All three now name the font and state plainly that it is not the wordmark's face. `bin/unbloarchy-ascii` stays on Delta Corps Priest 1 and `2f65300d`'s own reference rendering was always correct; only the prose around it was wrong. A repo-wide grep for the claim, `delta corps`, and `figlet` found no fourth instance.
+
+**What was drawn**
+
+`O M A R C H Y` are reused verbatim from `git show HEAD:logo.txt` rather than redrawn, so the surviving letters are byte-identical to the original. Only `U N B L` are new, built from the font's own vocabulary: 3-wide stems, 3-space counters, ` ▄█`/`█▄ ` rounded stem caps, `▀` bar terminals, 2-column letter gaps. Two review findings drove the final `N`: a curved diagonal read as a blob, and the first solid variant read as illegible at a glance, so it settled on a straight 3-wide diagonal with an **open bottom** and rounded feet — no baseline bar to close the counters. C's row 5 also carried a lone `▀` that rendered as a speck between C and H; it is removed, which is the only edit to a reused letter.
+
+Result: 113 columns by 9 rows. The grid is 9 tall rather than 10 because `M` supplied the ascender row that trimmed away — without it there is nothing above the rounded caps — while `R`'s descender keeps the ninth row.
+
+**The SVG is a vectorisation, not a retrace**
+
+The old `logo.svg` was traced and carried fractional drift; its viewBox was `0 0 1215 285`, and 285 is not a multiple of the 15-unit column it shared with the ASCII. The new one is generated from the same grid the ASCII is, on 15 units per column and 30 per row (two 15-unit half-blocks), as 10 letter paths of vertically merged rectangles — 181 subpaths in all. `viewBox="0 0 1695 270"` where `1695 = 113 * 15` and `270 = 9 * 30`. A headless Chromium render is 209,700 dark pixels, exactly the 932 filled half-cells times 225 square units.
+
+**`test/shell.d/logo-test.sh` pins the pair together**
+
+11 assertions: the exact wordmark text, the 113×9 grid, `sha256sum` pins on both icon files, the viewBox derived from the grid rather than hardcoded, one path per letter, every subpath a plain rectangle on the 15-unit grid, and the SVG's rebuilt half-cell occupancy compared against `logo.txt`'s. That last one is the point — nothing generates either file at install time, so a hand edit to one would otherwise desync the pair silently. Also checks `unbloarchy-show-logo` still prints it and that `unbloarchy-provision-owner` still measures `logo.txt` rather than assuming a width.
+
+The suite was mutation-tested rather than trusted. Nine mutations were tried and each failed the assertion it should: nudging a rect off-grid, deleting a rect, doubling a rect's width, altering the viewBox, adding an eleventh path, flipping a single half-block cell in `logo.txt`, adding one trailing blank to a row, and touching either icon file. Every file was confirmed byte-identical after restore. One attempt to flip a cell first reported no failure and turned out to be a bad mutation rather than a gap — the `sed` pattern targeted row 2, which begins `███` and not ` ▄█`, so it never matched; retargeted at row 1 it fails as expected.
+
+The width measurement is deliberately locale-proof. `awk`'s `length()` and bash's `${#line}` both count bytes under `LC_ALL=C`, which turns 113 columns into 263 and would have made the suite fail on a byte-only locale for no real reason. The count is instead taken after substituting the block characters for single-byte digits, so what is measured is all ASCII. The suite passes 11/11 under `LC_ALL` unset, `C`, and `C.UTF-8` — worth checking explicitly, because `ascii-test.sh` already pins C-locale behaviour elsewhere in this suite and the two must not disagree.
+
+**Two tests cannot pass under the sandbox runner, and it is not the working tree**
+
+`unbloarchy-plymouth-set` and `unbloarchy-provision-user` both refuse early on `(( EUID == 0 ))`. `run-suite.sh` enters `unshare --user --map-root-user`, so `EUID` is 0 inside the runner even though the user is uid 1000 outside it. Any assertion covering those commands' non-root path is unreachable here by construction. Confirmed by stashing the logo changes and re-running: same two failures.
+
+**Results**
+
+- `./test/cli` — 118 `ok`, 0 `not ok`, exit 0.
+- `./test/shell` — 3167 `ok`, 40 `not ok`, exit 127. Baseline was 3156/40; the +11 is this new suite, and the `not ok` set is identical to baseline apart from one random temp path inside a failure message.
+- Targeted: `ascii-test.sh` 17/0, `logo-test.sh` 11/0, `branding-about-animation-test.sh` 23/0, `plymouth-set-test.sh` 2/1, `provision-user-test.sh` 0/1.
+- `bash bin/unbloarchy commands --check` — passes, 473 commands, which is what proves the corrected `unbloarchy-ascii` summary still parses as metadata.
+- `bash -n` across all 784 bash-shebang tracked files — clean.
+
+**Still outstanding in Phase 5**
+
+The two rules deliberately not applied to `icon.*` and `U+E900` are now fully discharged, and `manual/41-branding.md` needed no path changes — its `~/.config/unbloarchy/branding/` examples were already rebranded. The empty untracked `default/fonts/omarchy/` directory left behind by the rename is gone; a grep for `default/fonts/omarchy` found no referent, and the surviving `omarchy.ttf` hits are the unrelated legacy user font at `~/.local/share/fonts/omarchy.ttf`. The user has now confirmed that ordinary wallpapers stay untouched and only visibly branded Omarchy wordmarks should be regenerated. The candidate image contents still need a visual audit; the earlier `*omarchy*.webp` filename inventory was stale. The upstream ISO compatibility decision is also recorded: keep the generated shims.
+
+### 2026-10-02 — Phase 6 fork links and attribution
+
+Status: Phase 6 is partially applied. Fork-owned issue, discussion, release, development-checkout, and manual links now point at Unbloarchy; links to upstream package repos, mirrors, and community guides are labeled as upstream dependencies. The README, license header, and welcome page now state the fork's independent status and non-affiliation/trademark posture. Security reporting now directs users to this repository's private vulnerability reporting when available, instead of Omarchy's security team. Manual descriptions of package ownership, mirrors, release signatures, and upstream community material were corrected to avoid implying that Unbloarchy operates those services.
+
+The diagnostic uploader was inspected: it uploads support logs, hardware/system details, and installed-package lists to `logs.omarchy.org`, not stats. The user’s answer was conditional on the purpose and DHH’s likely preference, so the implementation is left unchanged pending a clear policy decision; the manual/agent contribution guide disclose the destination and advertised 24-hour expiry. The user also confirmed ordinary wallpaper art should stay as-is while only visible Omarchy wordmarks should be regenerated; asset inspection/regeneration/visual verification is still pending. The compatibility-shim decision for the upstream ISO tools is to keep the shims.
+
+Verification: `bash bin/unbloarchy commands --check` passes (473 commands); `bash -n` passes on the changed shell scripts; and `git diff --check` is clean. The focused channel test could not run: direct execution fails because this sandbox has no `/bin/bash` (`bad interpreter`), and `/tmp/opencode/with-bash.sh /tmp/opencode/run-suite.sh bash test/shell.d/channel-test.sh` gets past that but fails because the runner lacks `/usr/bin/readlink`. The `test/shell.d/channel-test.sh` expected clone URL was updated with the runtime change. Other remaining upstream-looking references are intentional package/mirror infrastructure, inherited theme attribution, legacy-upgrade behavior, the support uploader pending the decision above, and historical upstream community references identified as such.
+
+### 2026-10-02 — Phase 7 shim generator implemented
+
+Status: the in-repository part of Phase 7 is implemented and tested. `install/helpers/generate-compat-shims.sh` emits executable per-command shell forwarding shims, a source-forwarding security-library shim, a Python forwarding shim for `unbloarchy-dev-font`, and a bare `omarchy` router shim. It is repeatable, removes only stale generated shims, refuses to overwrite unmanaged paths, and all generated files are gitignored. `test/shell.d/compat-shims-test.sh` covers argument forwarding, sourcing, Python dispatch, idempotence, newly added commands, stale-shim cleanup, and unmanaged-file protection.
+
+The upstream integration remains outstanding: `omarchy-pkgs` must invoke the generator in `prepare()` before its `bin/omarchy-*` glob and explicitly install `bin/omarchy` to `/usr/bin/omarchy`; that bare filename does not match the glob. This external repo is not present in the checkout, so the ISO build remains unverified and is not yet fully compatible.
+
+Verification: focused shim test passes with `/tmp/opencode/with-bash.sh bash test/shell.d/compat-shims-test.sh` (4 assertions). `bash -n` passes on the generator and test, `bash bin/unbloarchy commands --check` passes (473 commands), and `git diff --check` is clean. Direct test execution fails here because the sandbox has no `/bin/bash`.
+
+### 2026-10-03 — Phases 5-7 committed, with one unverified assertion
+
+Status: Phases 5, 6, and 7 are now committed as `050ea6d1`, `3fe6dd53`, and `2a12df06`. The three were separate working-tree changes that had been reviewed and tested together; they are separated here because they are independent changes and the wordmark, the fork's public links, and the packaging compatibility layer can each be reverted without the others. Phase 8 is still unwritten and Phase 9's visual verification has not run.
+
+**One line in Phase 6 is unverified, and it is not fixable here**
+
+`test/shell.d/channel-test.sh` pins the dev-channel clone URL that `3fe6dd53` changed, and that suite never actually executes in this sandbox. It produces zero TAP lines in the full-suite run, which is why it does not show up in the `not ok` count at all. Running the pre-rename worktree's own copy of the same suite through the same runner gives the identical silent abort, so this is a pre-existing environmental limit — the privileged entrypoint needs `/usr/bin/readlink`, `/usr/bin/sudo`, and a real `-p` Bash startup — and not a regression from the rename.
+
+This is the same silent-abort shape that per-suite parity caught earlier in the rebrand: a suite that dies under `set -e` before its first assertion lowers the total rather than adding a failure. The changed URL is correct by inspection and matches `bin/unbloarchy-channel-set:52`, but it needs a real target to confirm.
+
+**Do not "improve" the sandbox runner by supplying `/usr/bin`**
+
+An attempt to unblock the above by overlaying a symlink farm onto the sandbox's near-empty `/usr/bin` made things look better and was worse. `./test/shell` rose from 3171 `ok` to 3230, but the `not ok` set changed identity rather than shrinking: the privileged-entrypoint suites stopped failing `127` on a missing interpreter and started failing `126` inside the security checks, and seven assertions failed that had not failed before. A higher pass count with a churned failure set is not an improvement, so the overlay was reverted and the runner restored to bind `/bin` only.
+
+**Results on the committed tree**
+
+- `./test/cli` — 118 `ok`, 0 `not ok`, exit 0.
+- `./test/shell` — 3171 `ok`, 40 `not ok`, exit 127. Phase 5 was 3167/40, so the +4 is `compat-shims-test.sh`, and the `not ok` set is byte-identical to the Phase 5 baseline after normalising temp paths.
+- Targeted: `logo-test.sh` 11/0, `compat-shims-test.sh` 4/0, `ascii-test.sh` 17/0, `channel-test.sh` 0/0 (silent abort, above).
+- `bash bin/unbloarchy commands --check` — passes, 473 commands; `bash -n` clean on every changed script; `git diff --check` clean.
+
+**Still outstanding**
+
+Phase 2's absolute `/usr/bin/unbloarchy-*` pin review has still not been done — the one Phase 2 item to note here is that `default/systemd/user/unbloarchy-speaker-tuning.service` had its `Documentation=` URL repointed at this fork during Phase 6, initially against the local `rebrand-unbloarchy` branch, which is not a ref that exists for anyone who clones the repository. It is now `quattro`, matching `origin/HEAD`. Phase 5's branded-wallpaper audit, Phase 7's external `omarchy-pkgs` integration, Phase 8's migration, and Phase 9's visual verification all remain open, and an absolute zero-failure run still needs a real target.
+
+### 2026-10-03 — Phase 8 migration and the fresh-install compat links
+
+Status: Phase 8 is committed as `0e585f65` and the fresh-install half of the compat surface as `1d174023`. Phase 2's absolute-pin audit is closed with no code change, and Phase 9's automated gates have been run against the result. Phase 5's wallpaper audit is now partially answered — see below — and visual verification still needs a real target.
+
+**Phase 2 closed with no change**
+
+All eight hardcoded `/usr/bin/unbloarchy-*` pins are correctly repointed. Every remaining `/usr/share/omarchy` reference is confined to `bin/unbloarchy-upgrade-to-quattro`, which deliberately reasons about a pre-rename installation and is protected by design. Nothing needed changing.
+
+**The migration, and the two cases that were not obvious**
+
+`migrations/1791018295.sh` follows the ordering Phase 8 specifies, and `test/shell.d/rename-migration-test.sh` covers it with 11 assertions that run the real script against a redirected filesystem root. Writing the test found three things that inspection had missed:
+
+- **A symlinked legacy tree cannot be moved.** `~/.config/omarchy` is often a symlink into a pre-rename checkout. `mv` strips the checkout bare, and dropping the link discards the user's own layout — which is the one thing the migration exists to preserve. The contents are now copied across and the checkout left intact.
+- **`/usr/share/omarchy` is only an install root if it holds `bin/`.** The first draft keyed on the directory name alone, which both risked deleting a directory of the user's own and hard-`exit`ed on the ambiguity. That exit was the worse of the two faults: it fires after everything else has already run, so the box is left permanently half-migrated with a queue that re-runs and fails identically every time. It now warns, leaves the directory alone, and continues.
+- **`/usr/lib/systemd/user` was missing from the drop-in walk.** A unit left under its old name beside the new one has no referent but is still loaded, putting two instances of one unit in a session. The existing already-installed-wins rule drops the old copy rather than producing that pair.
+
+The bar-layout rewrite was validated before the script was written: applying its jq program to the pre-rename `config/omarchy/shell.json` reproduces the packaged post-rename `config/unbloarchy/shell.json` exactly, and running it twice is a no-op.
+
+**A gap the audit found between the phases**
+
+The plan states the `/usr/share/omarchy` symlink is created by install scripts, and nothing in the tree did it — the migration only covered upgrades, so a fresh install and an upgraded one behaved differently. `install/config/compat-links.sh` closes that. It also creates `/usr/bin/omarchy`, which the package's `bin/omarchy-*` glob does not match. Both are symlinks rather than packages, so `pacman -Qo` never claims them, and both are skipped when the old path is already occupied. They target the packaged root rather than tracking `$UNBLOARCHY_PATH` when that is a dev checkout: a system-wide link resolving into a home directory breaks every root-owned caller the moment the checkout moves.
+
+**Results**
+
+- `./test/cli` — 118 `ok`, 0 `not ok`, exit 0.
+- `./test/shell` — 3182 `ok`, 40 `not ok`, exit 127. Previous was 3171/40, so the +11 is `rename-migration-test.sh`, and the `not ok` set is identical to the previous baseline after normalising temp paths.
+- Targeted: `rename-migration-test.sh` 11/0, `logo-test.sh` 11/0, `compat-shims-test.sh` 4/0, `ascii-test.sh` 17/0.
+- `shellcheck` is clean on `migrations/1791018295.sh` and `install/config/compat-links.sh`; `bash -n` clean on both.
+
+**`logo.svg` is correct, including its dark-on-dark appearance**
+
+The wordmark SVG reads as a solid dark rectangle in a viewer that renders transparency as black. That is a viewer artifact, not a defect: the glyph is black on a transparent field, so both read as the same value. Measured, the file is transparent with mean alpha 0.458 against the wordmark's 932/2034 = 45.8% filled cells, and the geometry reproduces `logo.txt` cell for cell. The pre-rename file has the identical `fill="none"` plus `<g fill="#000">` construction, so upstream's renders the same way. Decided to leave it.
+
+**Wallpaper audit: what OCR could establish**
+
+The theme `backgrounds/unbloarchy.webp` files are 2-colour 3840×2160 gradients at ~716 bytes. They contain no text at all, so none of them needs regenerating. The visible branding is in the `preview*.png` and `unlock.png` screenshots instead, which are real desktop captures showing the menu as `omarchy-launch-*` and `omarchy-install-*`; those need regenerating against a running session, which is the same visual-verification limit as everywhere else in this rebrand.
+
+**Still outstanding**
+
+Phase 7's external `omarchy-pkgs` integration is unchanged and still blocked on a repository that is not in this checkout. Phase 5's screenshot regeneration needs a running session. Phase 9's visual verification needs a real target, and an absolute zero-failure run needs one too.
