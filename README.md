@@ -28,7 +28,7 @@ All three repos must be siblings in the same directory. The ISO builder and pack
 
 ```bash
 git clone https://github.com/Magiclovekorean/unbloarchy.git
-git clone https://github.com/omacom/omarchy-iso.git
+git clone https://github.com/Magiclovekorean/unbloarchy-iso.git
 git clone https://github.com/omacom/omarchy-pkgs.git
 ```
 
