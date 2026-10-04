@@ -14,18 +14,6 @@ When you're in a web app, you can copy the current URL to the clipboard using `S
 
 By default, Unbloarchy already ships with an assortment of default apps:
 
-## HEY
-
-[HEY](https://www.hey.com/) is an email and calendar service that serves as a great alternative to people tired of Gmail, Outlook, or Apple Mail. It's made by [37signals](https://37signals.com/) where Unbloarchy originated.
-
-You can start HEY Email using `Super + Shift + E`, jump straight to composing a new email using `Super + Shift + Alt + E`, and start HEY Calendar using `Super + Shift + C`.
-
-## Basecamp
-
-[Basecamp](https://basecamp.com/) is a project management service that helps small teams move faster and make more progress. Instead of patching together a mishmash of Trello, Slack, Asana, Notion, or whatever, you can have it all in one place with Basecamp. It's made by [37signals](https://37signals.com/) where Unbloarchy originated.
-
-You can start Basecamp using the application launcher (`Super + Space`)
-
 ## ChatGPT
 
 [ChatGPT](https://chatgpt.com) is the most popular AI chat bot in the world.
@@ -43,18 +31,6 @@ You can start Grok using `Super + Shift + Alt + A`.
 [WhatsApp](https://www.whatsapp.com/) is one of the most popular messaging services in the world, and the web version is a great option for Linux.
 
 You can start WhatsApp using `Super + Shift + Alt + G`.
-
-## Google apps
-
-Google Messages, Google Photos, Google Maps, and Google Contacts are all included as web apps too.
-
-You can start Google Messages using `Super + Shift + Ctrl + G`, Google Photos using `Super + Shift + P`, and Google Maps using `Super + Shift + S`. Google Contacts is available through the app launcher (`Super + Space`).
-
-## X
-
-X is where news break.
-
-You can start X using `Super + Shift + X` and go straight to writing a new post with `Super + Shift + Alt + X`.
 
 ## YouTube
 
