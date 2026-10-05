@@ -123,6 +123,45 @@ source "$ROOT/install/provisioning/setup-form.sh"
   fail "English (US) leads the keyboard layouts so gum choose opens on the default"
 pass "the form publishes the 0/1/130 status contract and leads with English (US)"
 
+# Legacy entrypoints. The ISO configurator vendors this file and calls the
+# pre-rename names, so a rename that dropped them leaves the whole install
+# wizard answering "command not found" on first paint.
+((OMARCHY_FORM_BACK == UNBLOARCHY_FORM_BACK)) ||
+  fail "the legacy Esc status mirrors the renamed one"
+((OMARCHY_FORM_SIGNAL == UNBLOARCHY_FORM_SIGNAL)) ||
+  fail "the legacy Ctrl+C status mirrors the renamed one"
+
+for legacy_prompt in keyboard username password identity hostname timezone; do
+  declare -F "omarchy_prompt_$legacy_prompt" >/dev/null ||
+    fail "the form still defines omarchy_prompt_$legacy_prompt for the ISO configurator"
+done
+pass "the form keeps the pre-rename prompt names the ISO configurator calls"
+
+run_prompt omarchy_prompt_keyboard "0:German"
+assert_status 0 "legacy keyboard prompt succeeds"
+[[ $(field keyboard) == "de" ]] || fail "legacy keyboard prompt resolves the label to a keymap"
+run_prompt omarchy_prompt_username "0:dhh"
+assert_status 0 "legacy username prompt succeeds"
+[[ $(field username) == "dhh" ]] || fail "legacy username prompt keeps the answer"
+run_prompt omarchy_prompt_hostname "0:workshop"
+assert_status 0 "legacy hostname prompt succeeds"
+[[ $(field hostname) == "workshop" ]] || fail "legacy hostname prompt keeps the answer"
+run_prompt omarchy_prompt_timezone "0:America/Chicago"
+assert_status 0 "legacy timezone prompt succeeds"
+[[ $(field timezone) == "America/Chicago" ]] || fail "legacy timezone prompt keeps the answer"
+run_prompt omarchy_prompt_password "0:s3cret" "0:s3cret"
+assert_status 0 "legacy password prompt succeeds"
+[[ $(field password) == "s3cret" ]] || fail "legacy password prompt keeps the answer"
+run_prompt omarchy_prompt_identity "0:David" "0:d@example.com"
+assert_status 0 "legacy identity prompt succeeds"
+[[ $(field full_name) == "David" ]] || fail "legacy identity prompt keeps the full name"
+[[ $(field email_address) == "d@example.com" ]] || fail "legacy identity prompt keeps the email address"
+run_prompt omarchy_prompt_keyboard "1:"
+assert_status "$OMARCHY_FORM_BACK" "legacy keyboard prompt reports Esc as back"
+run_prompt omarchy_prompt_keyboard "130:"
+assert_status "$OMARCHY_FORM_SIGNAL" "legacy keyboard prompt reports Ctrl+C as the caller's signal"
+pass "the legacy prompt names forward arguments, answers, and cancel statuses"
+
 # Keyboard
 
 run_prompt unbloarchy_prompt_keyboard "0:German"

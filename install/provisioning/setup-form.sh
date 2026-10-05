@@ -181,3 +181,18 @@ unbloarchy_prompt_timezone() {
 
   [[ -n $timezone ]] || timezone="UTC"
 }
+
+# Legacy entrypoints for callers that were not renamed with this file. The ISO
+# configurator is the one that matters: unbloarchy-iso vendors this file onto
+# the live image (build-iso.sh copies it to /usr/share/omarchy-iso/setup-form.sh)
+# and then calls the pre-rename omarchy_* names, so without these every prompt
+# on the install wizard is "command not found". Aliases rather than wrappers so
+# the vendored copy stays byte-identical to this one and the configurator needs
+# no fork of its own.
+OMARCHY_FORM_BACK=$UNBLOARCHY_FORM_BACK
+OMARCHY_FORM_SIGNAL=$UNBLOARCHY_FORM_SIGNAL
+
+for legacy_prompt in keyboard username password identity hostname timezone; do
+  eval "omarchy_prompt_${legacy_prompt}() { unbloarchy_prompt_${legacy_prompt} \"\$@\"; }"
+done
+unset legacy_prompt
