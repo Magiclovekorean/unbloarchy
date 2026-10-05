@@ -40,6 +40,16 @@ create_compat_link /usr/lib/systemd/zram-generator.conf.d/90-unbloarchy.conf /us
 create_compat_link /usr/lib/systemd/system/plocate-updatedb.service.d/10-unbloarchy.conf /usr/lib/systemd/system/plocate-updatedb.service.d/10-omarchy.conf
 create_compat_link /etc/snapper/config-templates/unbloarchy /etc/snapper/config-templates/omarchy
 
+# The provisioning units live inside the package-owned /usr/share/omarchy tree
+# (PKGBUILD:140) rather than at a top-level path, so the unit aliases below do
+# not cover them. The installer's deferred-provisioning check reads them by
+# their pre-rename names and aborts the install when either is absent, so here
+# the pre-rename name is the link and the renamed file is the target.
+create_compat_link /usr/share/omarchy/install/provisioning/omarchy-provision-owner.service \
+  /usr/share/omarchy/install/provisioning/unbloarchy-provision-owner.service
+create_compat_link /usr/share/omarchy/install/provisioning/omarchy-system-factory-reset-finish.service \
+  /usr/share/omarchy/install/provisioning/unbloarchy-system-factory-reset-finish.service
+
 for unit in crash-watch fcitx5 migrate-notify recover-internal-monitor sleep-lock \
   tailscale-receive speaker-tuning; do
   create_compat_link "/usr/lib/systemd/user/unbloarchy-$unit.service" \

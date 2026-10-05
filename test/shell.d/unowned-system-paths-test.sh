@@ -43,6 +43,12 @@ allowed = {
   # upgrade carrying the handler is the one that would hit the conflict, and the
   # handler only helps once it is on disk. Package it the release after.
   "/usr/lib/chromium/initial_preferences",
+  # Pre-rename aliases inside the runtime's own package-owned tree. The PKGBUILD
+  # copies install/ wholesale (cp -a install "$pkgdir/usr/share/omarchy/"), so
+  # pacman owns the real .service files and there is no conflict to recover from;
+  # only the compatibility symlink is unowned, and that is the point of
+  # compat-links.sh. The installer reads these by their pre-rename names.
+  "/usr/share/omarchy/install/provisioning",
 }
 
 # One-time 3.x upgrade. It runs before this rule existed and cannot be made to

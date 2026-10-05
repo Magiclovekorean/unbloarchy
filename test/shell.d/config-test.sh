@@ -197,6 +197,13 @@ compatibility_paths = [
   ("usr/lib/systemd/system/plocate-updatedb.service.d/10-unbloarchy.conf", "usr/lib/systemd/system/plocate-updatedb.service.d/10-omarchy.conf"),
   ("etc/snapper/config-templates/unbloarchy", "etc/snapper/config-templates/omarchy"),
   ("usr/lib/systemd/user/unbloarchy-update-user-notify.service", "usr/lib/systemd/user/omarchy-update-user-notify.service"),
+  # Inverted direction: these live inside the package-owned /usr/share/omarchy
+  # tree, so the installer reads them by the pre-rename name and the link points
+  # at the renamed file. Aborting a deferred-provisioning install depends on it.
+  ("usr/share/omarchy/install/provisioning/omarchy-provision-owner.service",
+   "usr/share/omarchy/install/provisioning/unbloarchy-provision-owner.service"),
+  ("usr/share/omarchy/install/provisioning/omarchy-system-factory-reset-finish.service",
+   "usr/share/omarchy/install/provisioning/unbloarchy-system-factory-reset-finish.service"),
 ]
 for renamed, upstream in compatibility_paths:
   if f"/{renamed}" not in compat_links or f"/{upstream}" not in compat_links:
