@@ -45,14 +45,42 @@ unbloarchy_security_sanitize_bash_environment() {
 }
 
 unbloarchy_security_require_source_root() {
-  local command_source command_name=${1##*/}
-  command_source=$(/usr/bin/readlink -e -- "$1") || return 1
+  local command_source command_name=${1##*/} root resolved_root ok=1
 
-  # A runtime root selects the code used by this invocation. Accept the
-  # canonical checkout containing the entrypoint or the package's bin links.
-  if [[ ${UNBLOARCHY_PATH:-} != /* || $(/usr/bin/realpath -e -- "$UNBLOARCHY_PATH") != "$UNBLOARCHY_PATH" ]] ||
-    ! { [[ $command_source == "$UNBLOARCHY_PATH/bin/$command_name" ]] ||
-      [[ $UNBLOARCHY_PATH == "/usr/share/unbloarchy" && $command_source == "/usr/bin/$command_name" ]]; }; then
+  command_source=$(/usr/bin/readlink -e -- "$1") || ok=0
+  root=${UNBLOARCHY_PATH:-}
+  [[ $root == /* ]] || ok=0
+  if (( ok )); then
+    resolved_root=$(/usr/bin/realpath -e -- "$root") || ok=0
+  fi
+
+  # A dev checkout must name itself canonically, without symlinks, so a moved
+  # or attacker-placed tree is never invoked by a stale UNBLOARCHY_PATH. The
+  # renamed system package root is the exception: compat-links.sh keeps
+  # /usr/share/unbloarchy as a symlink to the package-owned /usr/share/omarchy
+  # tree, so the two package literals are accepted only when they resolve back
+  # onto one of those roots.
+  if (( ok )); then
+    if [[ $root != "/usr/share/unbloarchy" && $root != "/usr/share/omarchy" ]]; then
+      [[ $resolved_root == "$root" ]] || ok=0
+    elif [[ $resolved_root != "/usr/share/unbloarchy" && $resolved_root != "/usr/share/omarchy" ]]; then
+      ok=0
+    fi
+  fi
+
+  # The command must come from the runtime root it declares: the checkout's own
+  # bin/, or the packaged /usr/bin wrapper (which the package tree's bin/ links
+  # back to).
+  if (( ok )); then
+    if [[ $resolved_root == "/usr/share/unbloarchy" || $resolved_root == "/usr/share/omarchy" ]]; then
+      [[ $command_source == "/usr/bin/$command_name" ||
+        $command_source == "$resolved_root/bin/$command_name" ]] || ok=0
+    else
+      [[ $command_source == "$root/bin/$command_name" ]] || ok=0
+    fi
+  fi
+
+  if ! (( ok )); then
     echo "UNBLOARCHY_PATH does not match this Unbloarchy command." >&2
     return 1
   fi
