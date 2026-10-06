@@ -126,7 +126,7 @@ Read the [Unbloarchy manual](manual/01-welcome-to-unbloarchy.md) or browse the [
 
 ## Upstream
 
-Unbloarchy builds on [Omarchy](https://github.com/omacom/omarchy), an independent upstream project. The `omarchy-iso` and `omarchy-pkgs` repositories, Arch package names, and package mirrors remain upstream dependencies; they are not operated by Unbloarchy.
+Unbloarchy builds on [Omarchy](https://github.com/omacom/omarchy), an independent upstream project. The `omarchy-pkgs` repositories, Arch package names, and package mirrors remain upstream dependencies; they are not operated by Unbloarchy.
 
 ## License
 
