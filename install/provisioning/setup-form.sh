@@ -1,5 +1,5 @@
 # The setup form: every question Unbloarchy asks a human to describe their machine
-# — keyboard, account, hostname, timezone — plus the rules those answers are
+# — keyboard, account, hostname, disk encryption, timezone — plus the rules those answers are
 # checked against. Shared by the two places that ask them: the ISO
 # configurator's user step and this package's first-boot owner setup
 # (unbloarchy-provision-owner). Sourced by both, so the copies cannot drift the way
@@ -19,7 +19,8 @@
 #
 # Callers supply `notice <message> <seconds>` for validation feedback, and set
 # the variables these prompts write: keyboard, keyboard_label, username,
-# password, password_confirmation, full_name, email_address, hostname, timezone.
+# password, password_confirmation, full_name, email_address, hostname, encrypt_installation,
+# timezone.
 
 UNBLOARCHY_FORM_BACK=1
 UNBLOARCHY_FORM_SIGNAL=130
@@ -166,6 +167,25 @@ unbloarchy_prompt_hostname() {
   done
 }
 
+# Encryption used to be a hidden Ctrl+C toggle on the disk screens, so it was a
+# default-on choice nobody ever saw. Ask it with the rest of the form: it
+# decides where the ESP is mounted in the target (/boot encrypted vs /efi
+# plain) and whether the greeter prompts after boot, so it belongs with the
+# other answers rather than behind a dim hint line. Defaults to encrypted to
+# keep the posture the disk screens had before the choice was visible.
+unbloarchy_prompt_encryption() {
+  local choice status
+  choice=$(printf '%s\n' "Encrypt disk (recommended)" "Install without encryption" |
+    gum choose --height 2 --header "Disk encryption") && status=0 || status=$?
+  ((status == 0)) || return $status
+
+  if [[ $choice == "Install without encryption" ]]; then
+    encrypt_installation=false
+  else
+    encrypt_installation=true
+  fi
+}
+
 # A fresh machine often hasn't joined a network yet, so the geo guess fails
 # often; guard it or a `set -e` caller dies before the filter fallback.
 unbloarchy_prompt_timezone() {
@@ -192,7 +212,7 @@ unbloarchy_prompt_timezone() {
 OMARCHY_FORM_BACK=$UNBLOARCHY_FORM_BACK
 OMARCHY_FORM_SIGNAL=$UNBLOARCHY_FORM_SIGNAL
 
-for legacy_prompt in keyboard username password identity hostname timezone; do
+for legacy_prompt in keyboard username password identity hostname encryption timezone; do
   eval "omarchy_prompt_${legacy_prompt}() { unbloarchy_prompt_${legacy_prompt} \"\$@\"; }"
 done
 unset legacy_prompt

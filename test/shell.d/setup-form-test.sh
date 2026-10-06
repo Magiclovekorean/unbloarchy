@@ -69,6 +69,7 @@ printf 'password_confirmation=%s\n' "${password_confirmation:-}"
 printf 'full_name=%s\n' "${full_name:-}"
 printf 'email_address=%s\n' "${email_address:-}"
 printf 'hostname=%s\n' "${hostname:-}"
+printf 'encrypt_installation=%s\n' "${encrypt_installation:-}"
 printf 'timezone=%s\n' "${timezone:-}"
 EOF
 
@@ -131,7 +132,7 @@ pass "the form publishes the 0/1/130 status contract and leads with English (US)
 ((OMARCHY_FORM_SIGNAL == UNBLOARCHY_FORM_SIGNAL)) ||
   fail "the legacy Ctrl+C status mirrors the renamed one"
 
-for legacy_prompt in keyboard username password identity hostname timezone; do
+for legacy_prompt in keyboard username password identity hostname encryption timezone; do
   declare -F "omarchy_prompt_$legacy_prompt" >/dev/null ||
     fail "the form still defines omarchy_prompt_$legacy_prompt for the ISO configurator"
 done
@@ -146,6 +147,9 @@ assert_status 0 "legacy username prompt succeeds"
 run_prompt omarchy_prompt_hostname "0:workshop"
 assert_status 0 "legacy hostname prompt succeeds"
 [[ $(field hostname) == "workshop" ]] || fail "legacy hostname prompt keeps the answer"
+run_prompt omarchy_prompt_encryption "0:Install without encryption"
+assert_status 0 "legacy encryption prompt succeeds"
+[[ $(field encrypt_installation) == "false" ]] || fail "legacy encryption prompt keeps the answer"
 run_prompt omarchy_prompt_timezone "0:America/Chicago"
 assert_status 0 "legacy timezone prompt succeeds"
 [[ $(field timezone) == "America/Chicago" ]] || fail "legacy timezone prompt keeps the answer"
@@ -247,6 +251,34 @@ run_prompt unbloarchy_prompt_hostname "1:"
 assert_status "$UNBLOARCHY_FORM_BACK" "hostname prompt reports Esc as back"
 assert_returned "hostname prompt survives Esc under set -e"
 pass "hostname prompt propagates Esc without dying under set -e"
+
+# Encryption — the default-off answer is a real choice now, not a hidden toggle
+
+run_prompt unbloarchy_prompt_encryption "0:Encrypt disk (recommended)"
+assert_status 0 "encryption prompt accepts the encrypted choice"
+[[ $(field encrypt_installation) == "true" ]] ||
+  fail "encryption prompt defaults to an encrypted install"
+grep -qF -- '--header Disk encryption' "$GUM_ARGS" || fail "encryption prompt labels itself"
+grep -qFx 'Encrypt disk (recommended)' "$tmp_dir/stdin.1" ||
+  fail "encryption prompt offers the recommended encrypted option"
+grep -qFx 'Install without encryption' "$tmp_dir/stdin.1" ||
+  fail "encryption prompt offers an unencrypted option"
+pass "encryption prompt asks for the choice instead of hiding it"
+
+run_prompt unbloarchy_prompt_encryption "0:Install without encryption"
+assert_status 0 "encryption prompt accepts the unencrypted choice"
+[[ $(field encrypt_installation) == "false" ]] ||
+  fail "encryption prompt honours an unencrypted install"
+pass "encryption prompt records an unencrypted install"
+
+run_prompt unbloarchy_prompt_encryption "1:"
+assert_status "$UNBLOARCHY_FORM_BACK" "encryption prompt reports Esc as back"
+assert_returned "encryption prompt survives Esc under set -e"
+
+run_prompt unbloarchy_prompt_encryption "130:"
+assert_status "$UNBLOARCHY_FORM_SIGNAL" "encryption prompt reports Ctrl+C as the caller's signal"
+assert_returned "encryption prompt survives Ctrl+C under set -e"
+pass "encryption prompt propagates Esc and Ctrl+C without dying under set -e"
 
 # Timezone
 
