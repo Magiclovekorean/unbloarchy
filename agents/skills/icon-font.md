@@ -32,6 +32,14 @@ use so it lands at their optical size, appends it at the next free private-use
 codepoint, and adds a line to the font README. It prints the codepoint and the
 glyph itself.
 
+`U+E900` is the one exception: it is the bar-launcher mark and is copied
+verbatim from the official Omarchy icon font — same glyph, same outline, same
+metrics — so the launcher renders pixel-identically to official Omarchy. Do
+not redraw it from any other artwork: the earlier redraw drawn from the
+two-block `omarchy-logo.svg` read as pseudo-text at the 12px bar size.
+Preserve the official glyph exactly when touching the font; do not defer to
+the 64..960 default.
+
 The source must be a **monochrome SVG with a single `<path>`**, because the
 menu recolors the glyph with the active theme's foreground and selection
 colors. Brand icon sets such as <https://simpleicons.org> publish exactly that

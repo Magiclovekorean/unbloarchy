@@ -2,7 +2,7 @@
 
 The private-use glyphs in `unbloarchy.ttf` are:
 
-- `U+E900` — Unbloarchy, from <https://omarchy.org/brand/omarchy-logo.svg>
+- `U+E900` — the bar-launcher mark, copied verbatim from the official Omarchy icon font (`default/fonts/omarchy/omarchy.ttf` in <https://github.com/omacom/omarchy>) so the launcher renders pixel-identically to official Omarchy. It deliberately fills the full 0..1024 em box; the marks below use the standard 64..960 box.
 - `U+E901` — Pi, from <https://pi.dev/logo-auto.svg>
 - `U+E902` — OpenCode, from <https://opencode.ai/favicon-96x96-v3.png>
 - `U+E903` — omp, from <https://omp.sh/favicon.svg>
