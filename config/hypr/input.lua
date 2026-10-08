@@ -7,9 +7,7 @@ hl.config({
   input = {
     -- Use multiple keyboard layouts and switch between them with Left Alt + Right Alt.
     kb_layout = "us,es",
-    -- grp:alt_altgr_toggle: press both Alts together to switch layout;
-    -- right Alt alone stays AltGr (alts_toggle would break AltGr+key, e.g. AltGr+2 = @ in es)
-    kb_options = "compose:caps,shift:both_capslock_cancel,grp:alt_altgr_toggle",
+    kb_options = "compose:caps,shift:both_capslock_cancel,grp:alts_toggle",
 
     -- Use a specific keyboard variant if needed (e.g. intl for international keyboards).
     -- kb_variant = "intl",
