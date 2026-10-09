@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import qs.Commons
 import "Arc.js" as Arc
 
@@ -13,7 +14,7 @@ Item {
   property real rise: 6
   property string fontFamily: Style.font.family
   property int pixelSize: Style.font.caption
-  property color color: Color.foreground
+  property color color: Commons.Color.foreground
 
   FontMetrics {
     id: metrics

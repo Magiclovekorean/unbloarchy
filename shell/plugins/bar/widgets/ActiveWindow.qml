@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import Quickshell
 import Quickshell.Wayland
 import qs.Commons
@@ -34,7 +35,7 @@ BarWidget {
       anchors.left: parent.left
       width: parent.width
       text: root.title
-      color: root.bar ? root.bar.barForeground : Color.foreground
+      color: root.bar ? root.bar.barForeground : Commons.Color.foreground
       font.family: root.bar ? root.bar.fontFamily : Style.font.family
       font.pixelSize: Style.font.body
       elide: Text.ElideRight

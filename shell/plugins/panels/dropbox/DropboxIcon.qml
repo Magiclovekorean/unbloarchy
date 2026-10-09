@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import QtQuick.Shapes
 import qs.Commons
 
@@ -6,7 +7,7 @@ Item {
   id: root
 
   property real iconSize: Style.font.icon
-  property color color: Color.foreground
+  property color color: Commons.Color.foreground
 
   width: iconSize * 1.18
   height: iconSize

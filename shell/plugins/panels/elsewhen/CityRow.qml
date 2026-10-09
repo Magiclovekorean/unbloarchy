@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import QtQuick.Layouts
 import qs.Commons
 import qs.Ui
@@ -52,7 +53,7 @@ Rectangle {
   // arrow keys never reads darker than the daytime rows around it.
   readonly property bool picked: panel.focusIndex === index && !panel.addSelected
   readonly property bool lit: rowHover.hovered || picked
-  color: Model.mix(Color.popups.background, foreground,
+  color: Model.mix(Commons.Color.popups.background, foreground,
     picked ? dayFill + hoverLift : rowHover.hovered ? phaseFill + hoverLift : phaseFill)
 
   // Transforms leave the Column's layout alone: the knock that clears the

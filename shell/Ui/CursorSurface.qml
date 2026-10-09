@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import qs.Commons
 
 // Shared visual chrome for keyboard-and-mouse-navigable items inside a panel.
@@ -19,8 +20,8 @@ BorderSurface {
   property bool outline: false
   property bool bordered: false
 
-  property color foreground: Color.foreground
-  property color accent: Color.accent
+  property color foreground: Commons.Color.foreground
+  property color accent: Commons.Color.accent
   property color fill: Style.hoverFillFor(foreground, accent)
   property color currentFill: Style.selectedFillFor(foreground, accent)
 

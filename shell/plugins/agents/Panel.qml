@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
@@ -11,11 +12,11 @@ Panel {
   ipcTarget: "unbloarchy.agents"
   manageIpc: false
 
-  readonly property color foreground: bar ? bar.foreground : Color.foreground
-  readonly property color urgent: bar ? bar.urgent : Color.urgent
+  readonly property color foreground: bar ? bar.foreground : Commons.Color.foreground
+  readonly property color urgent: bar ? bar.urgent : Commons.Color.urgent
   readonly property color dim: Qt.darker(foreground, 1.55)
-  readonly property color surface: Color.popups.background
-  readonly property color track: Style.selectedFillFor(foreground, Color.accent)
+  readonly property color surface: Commons.Color.popups.background
+  readonly property color track: Style.selectedFillFor(foreground, Commons.Color.accent)
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
 
   // Every subscription on one page, limits first: the question this panel
@@ -713,7 +714,7 @@ Panel {
   function iconCandidatesForProvider(p, surfaceColor) {
     if (!p) return []
     var candidates = []
-    if (colorLuminance(surfaceColor || Color.background) >= 0.5)
+    if (colorLuminance(surfaceColor || Commons.Color.background) >= 0.5)
       candidates.push(Qt.resolvedUrl("assets/" + p.providerId + "-light.svg"))
     candidates.push(Qt.resolvedUrl("assets/" + p.providerId + ".svg"))
     return candidates
@@ -1103,7 +1104,7 @@ Panel {
               anchors.horizontalCenter: parent.horizontalCenter
               textFormat: Text.PlainText
               text: choice.modelData.providerName
-              color: choice.hasCursor ? Color.accent : root.foreground
+              color: choice.hasCursor ? Commons.Color.accent : root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.body
               font.bold: true
@@ -1181,7 +1182,7 @@ Panel {
         Text {
           textFormat: Text.PlainText
           text: root.addCode
-          color: Color.accent
+          color: Commons.Color.accent
           font.family: root.fontFamily
           font.pixelSize: Style.font.display
           font.bold: true
@@ -1511,7 +1512,7 @@ Panel {
     property bool hasCursor: false
     implicitHeight: tileBody.implicitHeight + Style.space(20)
     radius: Style.cornerRadius
-    color: hasCursor ? root.alpha(Color.accent, 0.14) : root.alpha(root.foreground, 0.05)
+    color: hasCursor ? root.alpha(Commons.Color.accent, 0.14) : root.alpha(root.foreground, 0.05)
     onHasCursorChanged: if (hasCursor) root.revealItem(tile)
 
     Row {
@@ -1523,7 +1524,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
         textFormat: Text.PlainText
         text: tile.glyph
-        color: Color.accent
+        color: Commons.Color.accent
         font.family: root.fontFamily
         font.pixelSize: Style.font.heading
       }
@@ -1532,7 +1533,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
         textFormat: Text.PlainText
         text: tile.title
-        color: tile.hasCursor ? Color.accent : root.foreground
+        color: tile.hasCursor ? Commons.Color.accent : root.foreground
         font.family: root.fontFamily
         font.pixelSize: Style.font.body
         font.bold: true
@@ -1566,16 +1567,16 @@ Panel {
     implicitHeight: implicitWidth
     radius: Style.cornerRadius
     // The cursor needs more than a shade deeper to read on a tinted square.
-    color: root.alpha(Color.accent, hasCursor ? 0.3 : 0.12)
+    color: root.alpha(Commons.Color.accent, hasCursor ? 0.3 : 0.12)
     border.width: hasCursor ? Math.max(1, Style.hoverBorderWidth) : 0
-    border.color: Color.accent
+    border.color: Commons.Color.accent
     onHasCursorChanged: if (hasCursor) root.revealItem(heroButton)
 
     Text {
       anchors.centerIn: parent
       textFormat: Text.PlainText
       text: heroButton.glyph
-      color: Color.accent
+      color: Commons.Color.accent
       font.family: root.fontFamily
       font.pixelSize: Style.font.heading
     }
@@ -1607,7 +1608,7 @@ Panel {
     readonly property bool hot: linkMouse.containsMouse || picked
     onPickedChanged: if (picked) root.revealItem(link)
     textFormat: Text.PlainText
-    color: current ? Color.accent : (hot ? root.foreground : idleColor)
+    color: current ? Commons.Color.accent : (hot ? root.foreground : idleColor)
     font.family: root.fontFamily
     font.pixelSize: Style.font.caption
     font.bold: current
@@ -1688,7 +1689,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
         width: Math.min(implicitWidth, parent.width * 0.6)
         text: head.label
-        color: head.picked ? Color.accent : root.foreground
+        color: head.picked ? Commons.Color.accent : root.foreground
         font.family: root.fontFamily
         font.pixelSize: Style.font.body
         font.bold: head.isActive
@@ -1793,7 +1794,7 @@ Panel {
         visible: head.isActive
         anchors.right: parent.right
         text: "ACTIVE"
-        color: Color.accent
+        color: Commons.Color.accent
         font.family: root.fontFamily
         font.pixelSize: Style.font.caption
         font.bold: true

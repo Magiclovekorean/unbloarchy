@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import qs.Commons
 
 // 1px horizontal divider for panel sections. The alpha-on-foreground tint
@@ -7,7 +8,7 @@ import qs.Commons
 Rectangle {
   id: root
 
-  property color foreground: Color.foreground
+  property color foreground: Commons.Color.foreground
   property real strength: 0.12
 
   width: parent ? parent.width : implicitWidth

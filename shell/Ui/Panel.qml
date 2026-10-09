@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import Quickshell.Io
 import qs.Commons
 
@@ -19,7 +20,7 @@ Item {
   property bool popoutSwitchClosing: false
 
   readonly property bool opened: panelController.open
-  readonly property color barForeground: bar ? bar.barForeground : Color.foreground
+  readonly property color barForeground: bar ? bar.barForeground : Commons.Color.foreground
 
   function open() { panelController.show() }
   function close() { panelController.hide() }

@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import qs.Commons
 import "GlobeModel.js" as Solar
 
@@ -8,7 +9,7 @@ Item {
   id: root
 
   property real phase: 0            // 0 new, 0.25 first quarter, 0.5 full
-  property color color: Color.foreground
+  property color color: Commons.Color.foreground
 
   onPhaseChanged: canvas.requestPaint()
   onColorChanged: canvas.requestPaint()

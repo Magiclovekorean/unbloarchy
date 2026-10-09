@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import QtQuick.Controls
 import qs.Commons
 
@@ -18,8 +19,8 @@ import qs.Commons
 TextField {
   id: root
 
-  property color foreground: Color.foreground
-  property color accent: Color.accent
+  property color foreground: Commons.Color.foreground
+  property color accent: Commons.Color.accent
   property color selectionTint: Style.selectionFillFor(foreground, accent)
   property bool password: false
   property real horizontalPadding: Style.spacing.controlPaddingX

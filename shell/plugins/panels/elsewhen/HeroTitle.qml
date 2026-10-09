@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import qs.Commons
 import "GlobeModel.js" as Solar
 
@@ -10,7 +11,7 @@ Column {
   property string caption: ""
   property color captionColor: dim
   property bool captionClickable: false
-  property color foreground: Color.foreground
+  property color foreground: Commons.Color.foreground
   property color dim: Qt.darker(foreground, 1.55)
   property string fontFamily: Style.font.family
 

@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Commons as Commons
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Pam
@@ -315,7 +316,7 @@ Item {
 
     WlSessionLockSurface {
       id: lockSurface
-      color: Color.background
+      color: Commons.Color.background
 
       LockView {
         id: lockView
