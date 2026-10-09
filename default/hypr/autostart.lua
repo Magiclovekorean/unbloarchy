@@ -2,9 +2,9 @@ require("default.hypr.startup-cursor")
 
 hl.on("hyprland.start", function()
   -- Applications inherit the user's cursor; only the compositor starts blank.
-  if omarchy_startup_cursor_pending then
-    hl.env("XCURSOR_PATH", omarchy_startup_cursor.path)
-    hl.env("XCURSOR_THEME", omarchy_startup_cursor.xcursor)
+  if unbloarchy_startup_cursor_pending then
+    hl.env("XCURSOR_PATH", unbloarchy_startup_cursor.path)
+    hl.env("XCURSOR_THEME", unbloarchy_startup_cursor.xcursor)
   end
 
   -- Slow app launch fix -- set systemd vars before starting session services.

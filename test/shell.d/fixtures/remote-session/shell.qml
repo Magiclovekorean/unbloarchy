@@ -9,8 +9,8 @@ import Quickshell
 ShellRoot {
   id: root
 
-  property string resultPath: Quickshell.env("OMARCHY_QML_TEST_RESULT")
-  property string stubPidFile: Quickshell.env("OMARCHY_QML_TEST_STUB_PID")
+  property string resultPath: Quickshell.env("UNBLOARCHY_QML_TEST_RESULT")
+  property string stubPidFile: Quickshell.env("UNBLOARCHY_QML_TEST_STUB_PID")
   property var failures: []
   property var service: null
 
@@ -32,7 +32,7 @@ ShellRoot {
   }
 
   function captureFrame() {
-    Quickshell.execDetached(["grim", "-g", "0,0 1x1", Quickshell.env("OMARCHY_QML_TEST_FRAME")])
+    Quickshell.execDetached(["grim", "-g", "0,0 1x1", Quickshell.env("UNBLOARCHY_QML_TEST_FRAME")])
   }
 
   // Polls `condition` every 100 ms for up to `timeout` ms, then continues with
@@ -54,7 +54,7 @@ ShellRoot {
   }
 
   Component.onCompleted: {
-    var component = Qt.createComponent("file://" + Quickshell.env("OMARCHY_PATH") + "/shell/plugins/services/remote-session/Service.qml")
+    var component = Qt.createComponent("file://" + Quickshell.env("UNBLOARCHY_PATH") + "/shell/plugins/services/remote-session/Service.qml")
     if (component.status !== Component.Ready) {
       fail("remote session service failed to load: " + component.errorString())
       writeResult()

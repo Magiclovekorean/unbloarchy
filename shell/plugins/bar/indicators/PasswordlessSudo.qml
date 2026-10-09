@@ -46,7 +46,7 @@ BarIndicator {
 
   Process {
     id: statusProc
-    command: ["omarchy-sudo-passwordless", "--active"]
+    command: ["unbloarchy-sudo-passwordless", "--active"]
     onExited: function(exitCode, exitStatus) {
       root.granted = exitCode === 0 && exitStatus === 0
       if (root.refreshPending) Qt.callLater(root.refresh)
@@ -55,10 +55,10 @@ BarIndicator {
 
   Process {
     id: disableProc
-    command: ["omarchy-sudo-passwordless", "--disable"]
+    command: ["unbloarchy-sudo-passwordless", "--disable"]
     onExited: function(exitCode, exitStatus) {
       if ((exitCode !== 0 || exitStatus !== 0) && root.bar)
-        root.bar.run('omarchy-notification-send "Could not disable passwordless sudo" "Check the sudo configuration and try again."')
+        root.bar.run('unbloarchy-notification-send "Could not disable passwordless sudo" "Check the sudo configuration and try again."')
       if (root.indicatorHost) root.indicatorHost.refresh()
       else root.refresh()
     }
@@ -67,6 +67,6 @@ BarIndicator {
   onPressed: function() {
     if (!root.bar || disableProc.running) return
     if (root.granted) disableProc.running = true
-    else root.bar.run("omarchy-launch-floating-terminal-with-presentation omarchy-sudo-passwordless")
+    else root.bar.run("unbloarchy-launch-floating-terminal-with-presentation unbloarchy-sudo-passwordless")
   }
 }

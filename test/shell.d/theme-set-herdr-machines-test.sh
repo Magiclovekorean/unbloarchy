@@ -115,8 +115,8 @@ pass "logs an unreachable machine"
 # Keep reusable connections in a directory only this user can access.
 grep -qx 'ControlMaster=auto' "$SYNC_TEST/ssh-options" || fail "reuses authenticated SSH connections"
 grep -qx 'ControlPersist=600' "$SYNC_TEST/ssh-options" || fail "keeps connections for ten idle minutes"
-grep -qxF "ControlPath=$SYNC_TEST/run/omarchy-theme-sync/%C" "$SYNC_TEST/ssh-options" || fail "keeps separate control sockets for each SSH destination"
-[[ $(stat -c %a "$SYNC_TEST/run/omarchy-theme-sync") == "700" ]] || fail "control socket directory is private"
+grep -qxF "ControlPath=$SYNC_TEST/run/unbloarchy-theme-sync/%C" "$SYNC_TEST/ssh-options" || fail "keeps separate control sockets for each SSH destination"
+[[ $(stat -c %a "$SYNC_TEST/run/unbloarchy-theme-sync") == "700" ]] || fail "control socket directory is private"
 pass "reuses SSH connections for ten idle minutes in a private runtime directory"
 
 # Connects one machine at a time.

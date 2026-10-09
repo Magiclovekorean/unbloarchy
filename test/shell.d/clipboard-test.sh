@@ -340,7 +340,7 @@ for watched_mime in text image/png; do
   pass "clipboard watched $watched_mime cut off by a stalled owner emits no entry"
 done
 
-leftover=$(find "$TMPDIR/state/omarchy" -name 'clipboard.*' -print)
+leftover=$(find "$TMPDIR/state/unbloarchy" -name 'clipboard.*' -print)
 [[ -z $leftover ]] || fail "clipboard capture removes copies it dropped" "left: $leftover"
 pass "clipboard capture removes copies it dropped"
 

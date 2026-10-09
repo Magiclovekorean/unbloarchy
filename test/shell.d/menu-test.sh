@@ -362,7 +362,7 @@ assertEqual(
 )
 assert(
   !defaultItems.some(item => item.id.startsWith('style.background-intro'))
-    && defaultById['trigger.toggle.animations'].action === 'omarchy-toggle-animations',
+    && defaultById['trigger.toggle.animations'].action === 'unbloarchy-toggle-animations',
   'menu uses the existing animations toggle without separate background intro controls'
 )
 assertDeepEqual(

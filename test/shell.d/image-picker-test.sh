@@ -329,7 +329,7 @@ deletion.cancelDeleteTheme()
 assert(!deletion.deleteConfirmOpen && deletion.pendingDeleteTheme === '' && deletion.deleteThemeProc.command.length === 0, 'canceling deletion removes nothing')
 deletion.requestDeleteSelectedTheme()
 deletion.confirmDeleteTheme()
-assertDeepEqual(deletion.deleteThemeProc.command, ['omarchy-theme-remove', 'fjord'], 'confirming deletion removes exactly the selected theme')
+assertDeepEqual(deletion.deleteThemeProc.command, ['unbloarchy-theme-remove', 'fjord'], 'confirming deletion removes exactly the selected theme')
 assert(deletion.deleteThemeProc.running && !deletion.deleteConfirmOpen, 'confirming deletion runs the removal and closes the dialog')
 deletion = deleteContext('/cache/previews/nord.png', ['fjord'], true)
 deletion.requestDeleteSelectedTheme()
@@ -381,10 +381,10 @@ retention.requestDeleteSelectedTheme()
 retention.currentPath = () => '/p/charlie.png'
 retention.confirmDeleteTheme()
 assertEqual(retention.deleteSelectionPath, '', 'no landing is remembered when the selection moved off the deleted theme')
-assertDeepEqual(retention.deleteThemeProc.command, ['omarchy-theme-remove', 'bravo'], 'the confirmed theme is still the one removed')
+assertDeepEqual(retention.deleteThemeProc.command, ['unbloarchy-theme-remove', 'bravo'], 'the confirmed theme is still the one removed')
 
 assert(
-  /id: stockThemesProc\s*command: \["find", root\.omarchyPath \+ "\/themes", "-mindepth", "1", "-maxdepth", "1", "-type", "d", "-printf", "%f\\n"\]/.test(imagePickerQml) &&
+  /id: stockThemesProc\s*command: \["find", root\.unbloarchyPath \+ "\/themes", "-mindepth", "1", "-maxdepth", "1", "-type", "d", "-printf", "%f\\n"\]/.test(imagePickerQml) &&
     /root\.stockThemeNames = ImagePickerModel\.parseThemeNames\(String\(text \|\| ""\)\)/.test(imagePickerQml) &&
     /canDeleteTheme\(selectedThemeName\(\), extraThemeNames, stockThemeNames\)/.test(imagePickerQml),
   'image picker knows stock theme names so overrides stay undeletable'
@@ -477,7 +477,7 @@ application.applySelected()
 assert(application.applied === undefined && application.opened, 'Enter cannot apply a deleted theme before rows reload')
 application = applyContext(false)
 application.applySelected()
-assertDeepEqual(application.applied, ['omarchy-theme-set', 'fjord'], 'Enter applies the selected theme once no deletion is pending')
+assertDeepEqual(application.applied, ['unbloarchy-theme-set', 'fjord'], 'Enter applies the selected theme once no deletion is pending')
 
 updateCtx.awaitingDeleteRefresh = true
 updateCtx.deleteSelectionPath = '/p/alpha.png'

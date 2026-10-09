@@ -132,7 +132,7 @@ for case in "x86_64 linux-x64" "aarch64 linux-arm64"; do
     MISE_TEST_LOG="$arch_log" \
     NODE_TEST_BUNDLE="$bundle" \
     UNAME_TEST_MACHINE="$machine" \
-    OMARCHY_SETUP_CONTEXT=iso-chroot \
+    UNBLOARCHY_SETUP_CONTEXT=iso-chroot \
     PATH="$test_dir/bin:/usr/bin" \
     bash -euo pipefail -c 'source "$1"' bash "$ROOT/install/user/mise-work.sh"
 
@@ -142,7 +142,7 @@ for case in "x86_64 linux-x64" "aarch64 linux-arm64"; do
 done
 [[ ! -e $bundle/node-v24.1.0-linux-x64.tar.gz ]] || rm "$bundle/node-v24.1.0-linux-x64.tar.gz"
 if env HOME="$test_dir/missing-home" MISE_TEST_LOG="$test_dir/missing.log" NODE_TEST_BUNDLE="$bundle" \
-  UNAME_TEST_MACHINE=x86_64 OMARCHY_SETUP_CONTEXT=iso-chroot PATH="$test_dir/bin:/usr/bin" \
+  UNAME_TEST_MACHINE=x86_64 UNBLOARCHY_SETUP_CONTEXT=iso-chroot PATH="$test_dir/bin:/usr/bin" \
   bash -euo pipefail -c 'source "$1"' bash "$ROOT/install/user/mise-work.sh" 2>/dev/null; then
   fail "an x86_64 install accepts another architecture's Node tarball"
 fi

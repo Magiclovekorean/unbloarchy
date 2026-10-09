@@ -52,7 +52,7 @@ You start Discord using the application launcher (`Super + Space`).
 
 ## Microsoft apps
 
-Select _Install > Service > Microsoft_ to add Outlook, Word, Excel, PowerPoint, Teams, and OneDrive as web apps. Each app has its own launcher and opens directly, using the commercial Microsoft 365 URLs and your existing browser profile. They open in the same browser app windows as Omarchy's other web apps; they do not install the separate Teams for Linux client.
+Select _Install > Service > Microsoft_ to add Outlook, Word, Excel, PowerPoint, Teams, and OneDrive as web apps. Each app has its own launcher and opens directly, using the commercial Microsoft 365 URLs and your existing browser profile. They open in the same browser app windows as Unbloarchy's other web apps; they do not install the separate Teams for Linux client.
 
 Remove the bundle with _Remove > Service > Microsoft_, or remove individual apps with _Remove > Web App_. You can also install just the apps you want through _Install > Web App_.
 
@@ -61,7 +61,7 @@ For a government or sovereign cloud, edit the URL on the `Exec=` line in the rel
 To keep work sign-ins separate, append a browser data directory to each launcher's `Exec=` line:
 
 ```ini
-Exec=omarchy-launch-webapp "https://teams.cloud.microsoft/" --user-data-dir=/absolute/path/to/work-browser-profile
+Exec=unbloarchy-launch-webapp "https://teams.cloud.microsoft/" --user-data-dir=/absolute/path/to/work-browser-profile
 ```
 
-Replace the example directory with an absolute path of your choice and use the same path for all six launchers to share work sign-ins between them. The web apps use Omarchy's selected supported browser, falling back to Chromium when the default browser is unsupported.
+Replace the example directory with an absolute path of your choice and use the same path for all six launchers to share work sign-ins between them. The web apps use Unbloarchy's selected supported browser, falling back to Chromium when the default browser is unsupported.

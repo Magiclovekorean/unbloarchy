@@ -48,6 +48,6 @@ QtObject {
   }
 
   function refresh() {
-    if (serviceId === "omarchy.remote-session" && _refresh) _refresh()
+    if (serviceId === "unbloarchy.remote-session" && _refresh) _refresh()
   }
 }

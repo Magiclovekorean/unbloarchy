@@ -20,7 +20,7 @@ You start Spotify using `Super + Shift + M`. Like 1Password, the hotkey kicks of
 
 ## Slack
 
-[Slack](https://slack.com/) is where a lot of teams do their chatting, both inside the company and with outside collaborators. Install it with _Install > Service > Slack_ from the Omarchy menu, and it'll open as soon as it's ready.
+[Slack](https://slack.com/) is where a lot of teams do their chatting, both inside the company and with outside collaborators. Install it with _Install > Service > Slack_ from the Unbloarchy menu, and it'll open as soon as it's ready.
 
 ## Dropbox
 

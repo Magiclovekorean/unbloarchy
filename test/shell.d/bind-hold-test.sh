@@ -6,8 +6,8 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 
 require_command lua
 
-HOME="$(mktemp -d)" OMARCHY_PATH="$ROOT" lua <<'LUA'
-package.path = os.getenv("OMARCHY_PATH") .. "/?.lua;" .. package.path
+HOME="$(mktemp -d)" UNBLOARCHY_PATH="$ROOT" lua <<'LUA'
+package.path = os.getenv("UNBLOARCHY_PATH") .. "/?.lua;" .. package.path
 
 local binds, ran = {}, {}
 hl = setmetatable({

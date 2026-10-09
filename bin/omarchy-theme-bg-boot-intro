@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# omarchy:summary=Play the current background's matching theme intro
-# omarchy:hidden=true
+# unbloarchy:summary=Play the current background's matching theme intro
+# unbloarchy:hidden=true
 
 set -euo pipefail
 
 state_home="$HOME/.local/state"
-current_dir="$state_home/omarchy/current"
+current_dir="$state_home/unbloarchy/current"
 current_background_link="$current_dir/background"
-marker="$state_home/omarchy/background-intro.session-id"
-toggle="$state_home/omarchy/toggles/background-intros-off"
+marker="$state_home/unbloarchy/background-intro.session-id"
+toggle="$state_home/unbloarchy/toggles/background-intros-off"
 video_extensions=(mp4 m4v mov webm mkv avi)
 
 resolve_intro() {
@@ -45,20 +45,20 @@ prepare_theme_intro() {
   [[ ! -f $toggle ]] && ! animations_off || return 0
   owe warm >/dev/null 2>&1 || return 0
   [[ $(cat "$current_dir/theme.name" 2>/dev/null) != "$theme" ]] || return 0
-  remembered=$(cat "$state_home/omarchy/theme-backgrounds/$theme" 2>/dev/null || true)
+  remembered=$(cat "$state_home/unbloarchy/theme-backgrounds/$theme" 2>/dev/null || true)
   if [[ ${remembered%/*} == "$current_dir/theme/backgrounds" ]]; then
     name=${remembered##*/}
   elif [[ -f $remembered ]]; then
     background="$remembered"
   else
     mapfile -d '' -t names < <(
-      find -L "$HOME/.config/omarchy/backgrounds/$theme" -maxdepth 1 -type f -print0 2>/dev/null | sort -z
+      find -L "$HOME/.config/unbloarchy/backgrounds/$theme" -maxdepth 1 -type f -print0 2>/dev/null | sort -z
     )
     if (( ${#names[@]} > 0 )); then
       background=${names[0]}
     else
       mapfile -d '' -t names < <(
-        find -L "$OMARCHY_PATH/themes/$theme/backgrounds" "$HOME/.config/omarchy/themes/$theme/backgrounds" -maxdepth 1 -type f \
+        find -L "$UNBLOARCHY_PATH/themes/$theme/backgrounds" "$HOME/.config/unbloarchy/themes/$theme/backgrounds" -maxdepth 1 -type f \
           \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.webp' \) -printf '%f\0' 2>/dev/null | sort -zu
       )
       (( ${#names[@]} > 0 )) || return 0
@@ -66,7 +66,7 @@ prepare_theme_intro() {
     fi
   fi
   if [[ -n ${name:-} ]]; then
-    for source in "$HOME/.config/omarchy/themes/$theme" "$OMARCHY_PATH/themes/$theme"; do
+    for source in "$HOME/.config/unbloarchy/themes/$theme" "$UNBLOARCHY_PATH/themes/$theme"; do
       if [[ -f $source/backgrounds/$name ]]; then
         background="$source/backgrounds/$name"
         break
@@ -110,23 +110,23 @@ case ${1:-} in
     [[ -n $expected_theme ]] || exit 1
     ;;
   *)
-    echo "Usage: omarchy-theme-bg-boot-intro [--resolve-only [background]|--resolve-startup|--prepare-theme theme|--theme-switch background theme-id [prepared]]" >&2
+    echo "Usage: unbloarchy-theme-bg-boot-intro [--resolve-only [background]|--resolve-startup|--prepare-theme theme|--theme-switch background theme-id [prepared]]" >&2
     exit 1
     ;;
 esac
 
 if [[ $theme_switch == false ]]; then
   mkdir -p "$(dirname "$marker")"
-  exec 9>"$state_home/omarchy/background-intro.lock"
+  exec 9>"$state_home/unbloarchy/background-intro.lock"
   flock 9
 
-  session_id=${OMARCHY_SESSION_ID:-${HYPRLAND_INSTANCE_SIGNATURE:-}}
+  session_id=${UNBLOARCHY_SESSION_ID:-${HYPRLAND_INSTANCE_SIGNATURE:-}}
   [[ -n $session_id ]] || exit 0
   if [[ -f $marker && $(<"$marker") == "$session_id" ]]; then
     exit 0
   fi
 
-  marker_staged=$(mktemp "$state_home/omarchy/.background-intro.session-id.XXXXXX")
+  marker_staged=$(mktemp "$state_home/unbloarchy/.background-intro.session-id.XXXXXX")
   trap 'rm -f "$marker_staged"' EXIT
   printf '%s\n' "$session_id" >"$marker_staged"
   mv -f "$marker_staged" "$marker"
@@ -172,7 +172,7 @@ fi
 if [[ $theme_switch == true ]]; then
   deadline=$((SECONDS + 3))
   while true; do
-    cover_status=$(omarchy-shell shell themeIntroCoverStatus "$expected_theme" 2>/dev/null || true)
+    cover_status=$(unbloarchy-shell shell themeIntroCoverStatus "$expected_theme" 2>/dev/null || true)
     case $cover_status in
       loading)
         (( SECONDS < deadline )) || exit 1
