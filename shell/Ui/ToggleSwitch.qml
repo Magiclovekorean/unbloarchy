@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Commons as Commons
 import qs.Commons
+import qs.Commons as Commons
 
 // Bare on/off switch: a track with a sliding knob and no label. This is the
 // switch `Toggle` parks at the end of its labeled row, factored out so panel

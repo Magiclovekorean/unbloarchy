@@ -5,6 +5,7 @@ import QtQuick.Shapes
 import Quickshell
 import Quickshell.Wayland
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 
 // Centered speed test overlay shared by the network and disk speed tests. No

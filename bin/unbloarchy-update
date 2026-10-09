@@ -127,7 +127,7 @@ if [[ ${1:-} == "-y" ]] || unbloarchy-update-confirm; then
   unbloarchy-update-system-pkgs
 
   unbloarchy-migrate
-  unbloarchy-update-orphan-pkgs
+  unbloarchy-update-orphan-pkgs -y
 
   unbloarchy-update-analyze-logs
   unbloarchy-update-status

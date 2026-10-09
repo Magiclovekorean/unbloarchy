@@ -3,6 +3,7 @@ import qs.Commons as Commons
 import Quickshell
 import Quickshell.Hyprland
 import qs.Commons
+import qs.Commons as Commons
 
 PopupWindow {
   id: root

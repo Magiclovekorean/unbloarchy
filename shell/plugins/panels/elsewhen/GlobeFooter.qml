@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Commons as Commons
 import qs.Commons
+import qs.Commons as Commons
 
 // The selected city under the globe: name, local time and badge, then its
 // zone and offset. Blank without a selection; the parent reserves the height.
