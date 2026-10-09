@@ -2,6 +2,7 @@ import QtQuick
 import qs.Commons as Commons
 import QtQuick.Controls
 import qs.Commons
+import qs.Commons as Commons
 
 // The button. One component for every clickable thing in the kit.
 // States compose independently and are applied in priority order:

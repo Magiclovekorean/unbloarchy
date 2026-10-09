@@ -3,6 +3,7 @@ import qs.Commons as Commons
 import Quickshell
 import Quickshell.Wayland
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 
 BarWidget {

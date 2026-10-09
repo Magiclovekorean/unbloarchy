@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Commons as Commons
 import qs.Commons
+import qs.Commons as Commons
 
 // Labeled toggle row: title + optional description on the left, a
 // `ToggleSwitch` on the right. Clicking anywhere on the row emits `clicked()`;

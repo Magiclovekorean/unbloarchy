@@ -5,6 +5,7 @@ import QtQuick.Controls
 import QtQuick.Effects
 import Quickshell.Services.SystemTray
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 import "TrayModel.js" as TrayModel
 

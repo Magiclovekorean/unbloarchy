@@ -34,6 +34,7 @@ User-installed plugins live alongside these conceptually but on disk under
 | Battery       | `unbloarchy.battery`         | `service`               | `services/battery/Service.qml`        |
 | Idle          | `unbloarchy.idle`            | `service`               | `services/idle/Service.qml`           |
 | Night light   | `unbloarchy.nightlight`      | `service`               | `services/nightlight/Service.qml`     |
+| Remote session | `unbloarchy.remote-session` | `service`               | `services/remote-session/Service.qml` |
 | Lock screen   | `unbloarchy.lock`            | `service`               | `lock/Service.qml`                    |
 | OSD           | `unbloarchy.osd`             | `panel`                 | `osd/Osd.qml`                         |
 | Polkit agent  | `unbloarchy.polkit`          | `service`               | `polkit/PolkitAgent.qml`              |

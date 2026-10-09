@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Commons as Commons
 import qs.Commons
+import qs.Commons as Commons
 
 // Shared visual chrome for keyboard-and-mouse-navigable items inside a panel.
 // Contract: items must NOT read `containsMouse` for color/border. Mouse

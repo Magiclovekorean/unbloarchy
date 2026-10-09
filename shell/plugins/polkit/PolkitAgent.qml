@@ -5,6 +5,7 @@ import Quickshell.Io
 import Quickshell.Services.Polkit
 import Quickshell.Wayland
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 import "PolkitModel.js" as PolkitModel
 

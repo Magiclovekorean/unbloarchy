@@ -2,6 +2,7 @@ import QtQuick
 import qs.Commons as Commons
 import QtQuick.Controls as QQC
 import qs.Commons
+import qs.Commons as Commons
 
 Column {
   id: root

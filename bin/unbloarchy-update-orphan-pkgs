@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # unbloarchy:summary=Review and optionally remove orphaned system packages after updates
+# unbloarchy:args=[-y]
+# unbloarchy:examples=unbloarchy update orphan-pkgs | unbloarchy update orphan-pkgs -y
 # unbloarchy:requires-sudo=true
 
 set -e
@@ -12,18 +14,18 @@ echo -e "\e[32m\nOrphan system packages\e[0m"
 printf '  %s\n' "${orphans[@]}"
 echo
 
-if [[ ! -t 0 || ! -t 1 ]]; then
+if [[ ${1:-} != "-y" && ( ! -t 0 || ! -t 1 ) ]]; then
   echo "${#orphans[@]} orphaned package(s) found. Re-run unbloarchy-update-orphan-pkgs in a terminal to review/remove them."
   echo
   exit 0
 fi
 
-if ! gum confirm --default=false "Remove ${#orphans[@]} orphaned package(s)?"; then
+if [[ ${1:-} != "-y" ]] && ! gum confirm --default=false "Remove ${#orphans[@]} orphaned package(s)?"; then
   echo "Keeping orphaned packages."
   echo
   exit 0
 fi
 
 echo -e "\e[32m\nRemoving orphan system packages\e[0m"
-sudo pacman -Rns "${orphans[@]}"
+unbloarchy-pkg-drop "${orphans[@]}"
 echo

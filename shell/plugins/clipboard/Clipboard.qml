@@ -4,6 +4,7 @@ import Quickshell.Io
 import Quickshell.Wayland
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 import "ClipboardHistory.js" as ClipboardHistory
 

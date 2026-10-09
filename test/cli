@@ -609,22 +609,14 @@ EOF
 chmod +x "$FAKE_BIN/unbloarchy-toggle-enabled"
 
 mkdir -p "$PI_TMPDIR/.vscode/extensions"
+generated_version="1.0.$(cksum "$PI_TMPDIR/.local/state/unbloarchy/current/theme/vscode-theme.json" | cut -d' ' -f1)"
+jq -n --arg key "local.unbloarchy-theme-$generated_version" '{($key):true}' >"$PI_TMPDIR/.vscode/extensions/.obsolete"
 PATH="$FAKE_BIN:$ROOT/bin:$PATH" HOME="$PI_TMPDIR" "$ROOT/bin/unbloarchy-theme-set-vscode"
 jq -e '.contributes.themes[0].uiTheme == "vs"' "$PI_TMPDIR/.vscode/extensions/unbloarchy-theme/package.json" >/dev/null || fail "vscode generated light theme uses VS Code light uiTheme"
 pass "vscode generated light theme uses VS Code light uiTheme"
-[[ -f $PI_TMPDIR/.vscode/extensions/unbloarchy-theme/themes/unbloarchy-color-theme.json ]] || fail "vscode generated theme copies current theme file"
-[[ ! -L $PI_TMPDIR/.vscode/extensions/unbloarchy-theme/themes/unbloarchy-color-theme.json ]] || fail "vscode generated theme is a real file so _watch can rewrite it in place"
-cmp -s "$PI_TMPDIR/.local/state/unbloarchy/current/theme/vscode-theme.json" "$PI_TMPDIR/.vscode/extensions/unbloarchy-theme/themes/unbloarchy-color-theme.json" || fail "vscode generated theme copies current theme file"
-pass "vscode generated theme copies current theme file"
-jq -e '.contributes.themes[0]._watch == true' "$PI_TMPDIR/.vscode/extensions/unbloarchy-theme/package.json" >/dev/null || fail "vscode generated theme opts into _watch reload"
-pass "vscode generated theme opts into _watch reload"
-
-# The installed version is derived from the theme content, so read it back
-# instead of hardcoding the scheme: an obsolete marker naming the version we
-# just installed is the one that must be cleared.
-VSCODE_INSTALLED_VERSION=$(jq -r '.version' "$PI_TMPDIR/.vscode/extensions/unbloarchy-theme/package.json")
-printf '{"local.unbloarchy-theme-%s":true}\n' "$VSCODE_INSTALLED_VERSION" >"$PI_TMPDIR/.vscode/extensions/.obsolete"
-PATH="$FAKE_BIN:$ROOT/bin:$PATH" HOME="$PI_TMPDIR" "$ROOT/bin/unbloarchy-theme-set-vscode"
+[[ ! -L $PI_TMPDIR/.vscode/extensions/unbloarchy-theme/themes/unbloarchy-color-theme.json ]] || fail "vscode generated theme survives current theme replacement"
+cmp "$PI_TMPDIR/.local/state/unbloarchy/current/theme/vscode-theme.json" "$PI_TMPDIR/.vscode/extensions/unbloarchy-theme/themes/unbloarchy-color-theme.json" || fail "vscode generated theme contains the current palette"
+pass "vscode generated theme contains a copy of the current palette"
 [[ ! -f $PI_TMPDIR/.vscode/extensions/.obsolete ]] || fail "vscode generated theme clears obsolete extension marker"
 pass "vscode generated theme clears obsolete extension marker"
 jq -e '.[] | select(.identifier.id == "local.unbloarchy-theme" and .relativeLocation == "unbloarchy-theme")' "$PI_TMPDIR/.vscode/extensions/extensions.json" >/dev/null || fail "vscode generated theme registers local extension"

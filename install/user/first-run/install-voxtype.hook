@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -e
-
-if unbloarchy-done ensure voxtype-install-invitation; then
-  unbloarchy-notification-send -u critical -g  "Install Dictation with Voxtype" \
-    "Click to install voice dictation for Unbloarchy." \
-    --exec unbloarchy-launch-floating-terminal-with-presentation unbloarchy-voxtype-install
-fi

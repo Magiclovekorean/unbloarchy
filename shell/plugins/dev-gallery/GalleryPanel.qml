@@ -4,6 +4,7 @@ import QtQuick.Controls
 import Quickshell
 import qs.Ui
 import qs.Commons
+import qs.Commons as Commons
 
 // Visual reference + live playground for unbloarchy-shell's common UI
 // components. Summon with `unbloarchy dev ui-preview`, or directly via:

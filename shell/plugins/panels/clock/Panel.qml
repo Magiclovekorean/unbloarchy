@@ -2,6 +2,7 @@ import QtQuick
 import qs.Commons as Commons
 import Quickshell
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 import "Model.js" as Model
 

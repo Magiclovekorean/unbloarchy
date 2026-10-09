@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Commons as Commons
 import qs.Commons
+import qs.Commons as Commons
 import "GlobeModel.js" as Solar
 
 // "World [globe] Clock" under an arched caption. The little globe is the door

@@ -6,6 +6,7 @@ import Quickshell.Hyprland
 import Quickshell.Io
 
 import qs.Commons
+import qs.Commons as Commons
 
 import "plugins/bar"
 import "services"
@@ -22,6 +23,7 @@ ShellRoot {
   property BarWidgetRegistry barWidgetRegistry: BarWidgetRegistry { }
   property AppLibrary appLibrary: AppLibrary { }
   property BrightnessKeys brightnessKeys: BrightnessKeys { host: shell }
+  property BackgroundIntro bootIntro: BackgroundIntro { host: shell }
 
   property string home: Quickshell.env("HOME")
 
@@ -455,7 +457,7 @@ ShellRoot {
 
   function pluginFirstPartyServiceFor(cacheKey, pluginId, requestedId) {
     var id = String(requestedId || "")
-    var allowed = ["unbloarchy.idle", "unbloarchy.media", "unbloarchy.nightlight", "unbloarchy.notifications"]
+    var allowed = ["unbloarchy.idle", "unbloarchy.media", "unbloarchy.nightlight", "unbloarchy.notifications", "unbloarchy.remote-session"]
     if (allowed.indexOf(id) === -1) return null
     var proxyKey = cacheKey + "::" + id
     if (_pluginFirstPartyServiceApis[proxyKey]) return _pluginFirstPartyServiceApis[proxyKey]
@@ -489,6 +491,10 @@ ShellRoot {
       _selectPlayer: function(playerKey) {
         var target = service()
         if (target && typeof target.selectPlayer === "function") target.selectPlayer(playerKey)
+      },
+      _refresh: function() {
+        var target = service()
+        if (target && typeof target.refresh === "function") target.refresh()
       }
     })
     if (!api) return null
@@ -511,6 +517,14 @@ ShellRoot {
     api.sourcePlayers = Qt.binding(function() {
       var target = service()
       return target && Array.isArray(target.sourcePlayers) ? target.sourcePlayers : []
+    })
+    api.active = Qt.binding(function() {
+      var target = service()
+      return target ? target.active === true : false
+    })
+    api.peers = Qt.binding(function() {
+      var target = service()
+      return target && Array.isArray(target.peers) ? target.peers : []
     })
     var next = ({})
     for (var existing in _pluginFirstPartyServiceApis) next[existing] = _pluginFirstPartyServiceApis[existing]
@@ -587,7 +601,7 @@ ShellRoot {
     // property, even though the resulting proxy is otherwise acyclic.
     var firstPartyServices = ({})
     if (barCapabilities) {
-      var serviceIds = ["unbloarchy.idle", "unbloarchy.media", "unbloarchy.nightlight", "unbloarchy.notifications"]
+      var serviceIds = ["unbloarchy.idle", "unbloarchy.media", "unbloarchy.nightlight", "unbloarchy.notifications", "unbloarchy.remote-session"]
       for (var i = 0; i < serviceIds.length; i++) {
         var serviceId = serviceIds[i]
         firstPartyServices[serviceId] = shell.pluginFirstPartyServiceFor(cacheKey, key, serviceId)
@@ -1705,6 +1719,7 @@ ShellRoot {
     function ping(): string {
       return "ok"
     }
+
   }
 
   // ---------------------------------------------------------- shell IPC
@@ -1712,11 +1727,34 @@ ShellRoot {
   ShellIpc {
     target: "shell"
 
+    function prepareThemeIntro(fromPath: string, token: string, colorsB64: string, shellB64: string): void {
+      shell.bootIntro.prepareTheme(fromPath, token, colorsB64, shellB64)
+    }
+
+    function finishThemeIntro(token: string): void {
+      shell.bootIntro.finishTheme(token)
+    }
+
+    function themeIntroStatus(token: string): string {
+      return shell.bootIntro.themeStatus(token)
+    }
+
+    function themeIntroCoverStatus(token: string): string {
+      return shell.bootIntro.themeCoverStatus(token)
+    }
+
     function ping(): string {
       return "ok"
     }
 
     function applyTheme(colorsB64: string, shellB64: string): string {
+      if (shell.bootIntro) shell.bootIntro.cancelTheme()
+      var background = shell.firstPartyServiceFor("unbloarchy.background")
+      if (background && typeof background.setPendingTheme === "function" && typeof background.applyPendingTheme === "function") {
+        background.setPendingTheme(colorsB64, shellB64)
+        background.applyPendingTheme()
+        return "ok"
+      }
       var colorsRaw = ""
       var shellRaw = ""
       try { colorsRaw = Qt.atob(String(colorsB64 || "")) } catch (e) { colorsRaw = "" }

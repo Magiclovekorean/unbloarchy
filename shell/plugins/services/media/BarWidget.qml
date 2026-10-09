@@ -3,6 +3,7 @@ import qs.Commons as Commons
 import Quickshell
 import qs.Ui
 import qs.Commons
+import qs.Commons as Commons
 
 BarWidget {
   id: root

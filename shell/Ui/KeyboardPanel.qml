@@ -3,6 +3,7 @@ import qs.Commons as Commons
 import Quickshell
 import Quickshell.Wayland
 import qs.Commons
+import qs.Commons as Commons
 
 // Layer-shell popup attached to a bar widget icon, designed for
 // click-driven AND keyboard-driven panels (e.g. SUPER+CTRL+W summon).

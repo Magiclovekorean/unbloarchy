@@ -7,6 +7,7 @@ import Quickshell.Bluetooth
 import Quickshell.Services.Pipewire
 import qs.Ui
 import qs.Commons
+import qs.Commons as Commons
 import "Model.js" as Model
 
 Panel {

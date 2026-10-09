@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# unbloarchy:summary=Match the Dell XPS 13 DX13260 with an Intel Panther Lake GPU.
+
+unbloarchy-hw-match "DX13260" && unbloarchy-hw-intel-ptl
