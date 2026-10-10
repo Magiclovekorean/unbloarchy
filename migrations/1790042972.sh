@@ -9,5 +9,5 @@ config_file="$HOME/.config/unbloarchy/shell.json"
 if [[ -s $config_file ]] && jq -e '[.bar.layout[]?[]? | if type == "object" then .id else . end] | index("omacom.elsewhen")' "$config_file" >/dev/null 2>&1; then
   echo "Elsewhen is already on the bar"
 else
-  unbloarchy-bar put unbloarchy.elsewhen --before unbloarchy.clock
+  unbloarchy-bar put unbloarchy.elsewhen --after unbloarchy.clock
 fi

@@ -1,18 +1,20 @@
 #!/bin/bash
 
-# unbloarchy:summary=Reinstall all default Unbloarchy packages from the stable channel
+# unbloarchy:summary=Reinstall all default Unbloarchy packages from the stable channel, or on aarch64 the edge channel
 # unbloarchy:requires-sudo=true
 
 set -e
 
-# Reinstall all default Unbloarchy packages from the stable channel and downgrade any packages that are too new.
+# Reinstall all default Unbloarchy packages from the platform's default channel
+# (stable, or edge on aarch64) and downgrade any packages that are too new.
 
-# Set the package repository to the stable mirrors
+# Set the package repository to the platform's default channel
 unbloarchy-refresh-pacman
 
-# Downgrade any packages to the stable setup
+# Downgrade any packages to that channel's setup
 unbloarchy-update-pacman -Suu --noconfirm
 
-# Ensure all packages are installed
-mapfile -t packages < <(grep -v '^#' "$UNBLOARCHY_PATH/install/unbloarchy-base.packages" | grep -v '^$')
+# Ensure this platform's default packages are installed
+default_packages=$(unbloarchy-pkg-defaults)
+mapfile -t packages <<<"$default_packages"
 unbloarchy-update-pacman -Syu --noconfirm --needed "${packages[@]}"

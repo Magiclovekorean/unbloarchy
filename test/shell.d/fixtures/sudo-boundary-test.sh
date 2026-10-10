@@ -32,6 +32,17 @@ PY
 copy_boundary_file bin/unbloarchy-security-functions
 copy_boundary_file bin/unbloarchy-update-pacman
 copy_boundary_file default/unbloarchy/sudo-no-update/sudo
+copy_boundary_file install/helpers/pacman.sh
+# Channel changes copy the platform's templates; the copy itself is a stand-in.
+cp -r "$ROOT/default/pacman" "$SUDO_TEST_ROOT/default/"
+
+# Channel changes ask for the platform. x86 unless a test says otherwise, so no
+# test reads the host's hardware.
+cat >"$SUDO_TEST_ROOT/bin/unbloarchy-hw-platform" <<'STUB'
+#!/bin/bash
+echo "${SUDO_TEST_PLATFORM:-x86}"
+STUB
+chmod +x "$SUDO_TEST_ROOT/bin/unbloarchy-hw-platform"
 
 cat >"$SUDO_TEST_ROOT/mock/sudo" <<'STUB'
 #!/bin/bash
@@ -132,7 +143,7 @@ case "$step" in
 esac
 STUB
 chmod +x "$SUDO_TEST_ROOT/bin/test-step"
-for step in unbloarchy-update-lock unbloarchy-update-requires-free-space unbloarchy-update-confirm unbloarchy-update-pkg-prune unbloarchy-snapshot unbloarchy-update-stay-awake unbloarchy-update-dev unbloarchy-update-keyring unbloarchy-update-system-pkgs unbloarchy-migrate unbloarchy-hook unbloarchy-update-aur-pkgs unbloarchy-update-mise unbloarchy-update-orphan-pkgs unbloarchy-update-analyze-logs unbloarchy-update-status unbloarchy-update-restart unbloarchy-pkg-aur-accessible unbloarchy-notification-dismiss pacman systemd-run cp yay; do
+for step in unbloarchy-update-lock unbloarchy-update-requires-free-space unbloarchy-update-confirm unbloarchy-update-pkg-prune unbloarchy-snapshot unbloarchy-update-stay-awake unbloarchy-update-dev unbloarchy-update-boot unbloarchy-update-keyring unbloarchy-update-system-pkgs unbloarchy-migrate unbloarchy-hook unbloarchy-update-aur-pkgs unbloarchy-update-mise unbloarchy-update-orphan-pkgs unbloarchy-update-analyze-logs unbloarchy-update-status unbloarchy-update-restart unbloarchy-pkg-aur-accessible unbloarchy-notification-dismiss pacman systemd-run cp yay; do
   ln -s test-step "$SUDO_TEST_ROOT/bin/$step"
 done
 ln -s ../bin/test-step "$SUDO_TEST_ROOT/mock/pacman"
@@ -140,7 +151,7 @@ ln -s ../bin/test-step "$SUDO_TEST_ROOT/mock/pacman"
 reset_boundary() {
   : >"$SUDO_TEST_LOG"
   /usr/bin/rm -f "$SUDO_TEST_CACHE"
-  unset SUDO_TEST_FAIL_STEP SUDO_TEST_SIGNAL_STEP SUDO_TEST_SUDO_FAIL SUDO_TEST_REVOKE_FAIL SUDO_TEST_UNSUPPORTED SUDO_TEST_REMOVE_WRAPPER_STEP
+  unset SUDO_TEST_FAIL_STEP SUDO_TEST_SIGNAL_STEP SUDO_TEST_SUDO_FAIL SUDO_TEST_REVOKE_FAIL SUDO_TEST_UNSUPPORTED SUDO_TEST_REMOVE_WRAPPER_STEP SUDO_TEST_PLATFORM
 }
 assert_boundary_cold() {
   [[ ! -e $SUDO_TEST_CACHE ]] || fail "$1 left cached authorization"

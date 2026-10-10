@@ -34,7 +34,7 @@ With Secure Boot enabled, changing USB boot protection requires access to your s
 
 ## Changing your passwords
 
-You have two passwords on an encrypted install: the one that unlocks the drive at boot, and the one you log in and `sudo` with. Both can be changed under _Update > Password_ in the Unbloarchy menu — _Drive Encryption_ for the first, _User_ for the second. Changing the drive password asks for the current one first, so have it handy.
+You have two passwords on an encrypted install: the one that unlocks the drive at boot, and the one you log in and `sudo` with. Both can be changed under _Update > Password_ in the Unbloarchy menu — _Drive Encryption_ for the first, _User_ for the second. Setup makes them the same. Changing the drive password asks for the current one first, so have it handy. If a change is interrupted, run _Drive Encryption_ again: it asks for the password that unlocks the drive now and finishes the change.
 
 ## Passing on a machine you've already used
 

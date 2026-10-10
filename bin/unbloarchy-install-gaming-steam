@@ -15,6 +15,7 @@ echo "Installing Steam..."
 # GPU.
 unbloarchy-install-gaming-gpu-lib32
 unbloarchy-pkg-add steam
+unbloarchy-lifecycle-dispatch post-install steam
 
 echo ""
 echo "Steam will start automatically now. This might take a while..."

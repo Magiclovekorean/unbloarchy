@@ -18,6 +18,7 @@ steps=(
   unbloarchy-snapshot
   unbloarchy-update-stay-awake
   unbloarchy-update-dev
+  unbloarchy-update-boot
   unbloarchy-update-keyring
   unbloarchy-update-system-pkgs
   unbloarchy-migrate
@@ -79,6 +80,7 @@ expected_steps() {
     unbloarchy-hook \
     unbloarchy-update-mise \
     unbloarchy-update-aur-pkgs \
+    unbloarchy-update-boot \
     unbloarchy-update-stay-awake \
     unbloarchy-update-restart
 }

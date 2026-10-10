@@ -11,8 +11,9 @@
 # unbloarchy-system-sleep-lock then usually finds the session already secure.
 #
 # A docked lid close does not suspend (HandleLidSwitchDocked defaults to
-# ignore), so it must not lock either: that is clamshell mode, still in use on
-# the external display.
+# ignore, and unbloarchy-system-lid-inhibit covers displays logind does not count),
+# so it must not lock either: that is clamshell mode, still in use on the
+# external display.
 if unbloarchy-hw-laptop-closed && ! unbloarchy-hw-external-monitors; then
   unbloarchy-system-lock >/dev/null 2>&1 || true
 fi

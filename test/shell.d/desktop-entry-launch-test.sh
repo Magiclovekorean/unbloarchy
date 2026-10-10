@@ -22,7 +22,7 @@ cat >"$mock_bin/unbloarchy-font-set" <<'SH'
 printf 'font:%s\n' "$*" >>"$UNBLOARCHY_TEST_LOG"
 SH
 
-for command in unbloarchy-pkg-aur-add omarchy-install-emacs omazed unbloarchy-theme-set-vscode unbloarchy-install-gaming-gpu-lib32; do
+for command in unbloarchy-pkg-aur-add omarchy-install-emacs omazed unbloarchy-theme-set-vscode unbloarchy-install-gaming-gpu-lib32 unbloarchy-lifecycle-dispatch; do
   cat >"$mock_bin/$command" <<'SH'
 #!/bin/bash
 exit 0

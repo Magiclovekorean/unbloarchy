@@ -13,3 +13,6 @@ run_logged "$UNBLOARCHY_INSTALL/user/hardware/vm-no-animations.sh"
 
 run_logged "$UNBLOARCHY_INSTALL/user/default-keyring.sh"
 run_logged "$UNBLOARCHY_INSTALL/user/mise.sh"
+run_logged "$UNBLOARCHY_INSTALL/user/dictation-default.sh"
+
+run_logged "$UNBLOARCHY_INSTALL/user/platform-setup.sh"

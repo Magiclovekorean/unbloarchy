@@ -65,6 +65,13 @@ COMPAT_PATHS = (
     "test/shell.d/fixtures/legacy-icon-font/omarchy.ttf",
 )
 
+# Third-party Apple Silicon runtime package from omacom/omarchy-mac-pkgs.
+# The fork uses unbloarchy-mac-boot for its own boot package, but does not
+# publish or rename this external runtime package.
+COMPAT_TOKENS = (
+    "omarchy-mac",
+)
+
 # Content that deliberately references the OLD omarchy names (pre-rename
 # migration machinery, legacy fixtures, planning docs) and must not be
 # scanned. These name the past on purpose, so a dangling-looking reference is
@@ -131,6 +138,8 @@ def main():
                     for t in _TOK.findall(line):
                         key = t.lower()
                         if key in _BARE:
+                            continue
+                        if key in COMPAT_TOKENS:
                             continue
                         # Protected when the token's own omarchy spelling still
                         # names a tracked artifact (compat pair, shim, kept

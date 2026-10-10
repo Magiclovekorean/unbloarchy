@@ -97,6 +97,8 @@ cat >"$fake_bin/unbloarchy-hyprland-monitor-clamshell" <<'SH'
 exit 0
 SH
 
+cp "$fake_bin/unbloarchy-hyprland-monitor-clamshell" "$fake_bin/unbloarchy-system-lid-inhibit"
+
 chmod +x "$fake_bin"/*
 ln -s "$ROOT/bin/unbloarchy-hyprland-monitor-modeless" "$fake_bin/unbloarchy-hyprland-monitor-modeless"
 

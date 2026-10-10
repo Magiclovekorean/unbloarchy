@@ -5,6 +5,7 @@
 
 set -e
 
+unbloarchy-lifecycle-dispatch pre-remove steam
 unbloarchy-pkg-drop steam
 
 rm -rf \

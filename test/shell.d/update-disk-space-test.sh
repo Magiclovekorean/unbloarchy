@@ -79,6 +79,7 @@ for command in \
   unbloarchy-update-aur-pkgs \
   unbloarchy-update-mise \
   unbloarchy-update-orphan-pkgs \
+  unbloarchy-update-boot \
   unbloarchy-hook \
   unbloarchy-update-analyze-logs \
   unbloarchy-shell \

@@ -288,16 +288,25 @@ assert(!defaultById['install.ai.crush'], 'menu removes Crush from Install > AI')
 // dropped, so the list reads as a catalog of what Unbloarchy can install.
 // Chromium Account is the sole Install row with anything left to hide for, so
 // any other `when:` here is a row that went back to vanishing once installed.
+// Windows and x86-only software are hidden off x86_64, not merely because
+// the software is installed; that keeps Install as a catalog.
+const windowsGuard = 'unbloarchy-hw-x86'
+const x86OnlyInstalls = ['install.windows', 'install.browser.edge', 'install.service.dropbox', 'install.service.spotify', 'install.gaming.minecraft', 'install.gaming.heroic']
 assertDeepEqual(
   defaultItems
     .filter(item => item.id.startsWith('install.') && item.action && item.when)
-    .map(item => item.id),
-  ['install.service.chromium-account'],
+    .map(item => item.id)
+    .sort(),
+  [...x86OnlyInstalls, 'install.service.chromium-account'].sort(),
   'menu never hides an Install row because the software is already there'
 )
 assert(
+  x86OnlyInstalls.every(id => defaultById[id].when === windowsGuard),
+  'menu hides the Windows VM and the x86_64-only installers only off x86_64'
+)
+assert(
   ['install.browser.zen', 'install.editor.vscode', 'install.gaming.steam', 'install.development.rust', 'install.windows'].every(
-    id => defaultById[id].disabled && !defaultById[id].when
+    id => defaultById[id].disabled && (!defaultById[id].when || defaultById[id].when === windowsGuard)
   ),
   'menu dims the Install rows for software that is already installed'
 )
@@ -473,6 +482,11 @@ assertEqual(
   defaultById['trigger.capture.screenrecord.webcam'].when,
   'unbloarchy-hw-webcam',
   'menu only shows webcam screen recording when a webcam is available'
+)
+assertEqual(
+  defaultById['trigger.capture.screenrecord.stop'].when,
+  'unbloarchy-capture-screenrecording --status',
+  'menu shows Stop Screenrecording only when its stop has a recording to end'
 )
 assert(
   /font\.family: row\.iconFont\.length > 0 \? row\.iconFont : root\.fontFamily/.test(menuQml),
