@@ -1013,7 +1013,7 @@ run_provisioning() {
   log_step "finalizing user"
   echo finalize >"$STATE_FILE"
   if ! finalize_user; then
-    log_step "finalize-user failed (continuing; user can retry after login)"
+    log_step "finalize-user failed (continuing)"
     touch "$FINALIZE_WARNING_FLAG"
   fi
 
