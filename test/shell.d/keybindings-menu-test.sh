@@ -14,6 +14,10 @@ stub_bin="$tmpdir/bin"
 mkdir -p "$home/.config" "$stub_bin"
 cp -r "$ROOT/config/hypr" "$home/.config/hypr"
 
+# No platform package: neither its key names nor its binds.
+menu="$tmpdir/omarchy-menu-keybindings"
+platform_root_copy "$ROOT/bin/omarchy-menu-keybindings" "$menu" "$tmpdir/no-platform"
+
 # The menu reads binds from Hyprland, which is not running here, so stand in for
 # it. A Lua bind reports dispatcher __lua and no arg, and the menu recovers both
 # from the Lua source; an exec bind carries its own command. Both shapes matter:
@@ -42,12 +46,12 @@ stub_hyprctl() {
 
 keybindings() {
   env -i PATH="$stub_bin:$ROOT/bin:$PATH" HOME="$home" \
-    XDG_CACHE_HOME="$tmpdir/cache" UNBLOARCHY_PATH="$ROOT" \
-    bash "$ROOT/bin/unbloarchy-menu-keybindings" --print
+    XDG_CACHE_HOME="$tmpdir/cache" OMARCHY_PATH="$ROOT" \
+    bash "$menu" --print
 }
 
-# Closing a window and toggling the scratchpad are two of the actions Unbloarchy
-# binds twice on purpose. The last bind carries the longest description Unbloarchy
+# Closing a window and toggling the scratchpad are two of the actions Omarchy
+# binds twice on purpose. The last bind carries the longest description Omarchy
 # ships, which is what puts a row closest to the width the menu allows.
 stub_hyprctl <<BINDS
 $(lua_bind 64 "SUPER + W" "Close window")
@@ -64,6 +68,17 @@ rendered=$(keybindings)
 grep -q 'SUPER + F  *→ Full screen' <<<"$rendered" ||
   fail "a chord with no alternative renders on its own" "$rendered"
 pass "the keybindings menu renders its entries"
+
+# The menu's own scan of the config runs lua -E, so no LUA_INIT or LUA_PATH from
+# the environment reaches it and nothing there can move the platform root.
+printf "io.open('%s', 'w'):close()\n" "$tmpdir/init-ran" >"$tmpdir/init.lua"
+LUA_INIT="@$tmpdir/init.lua" lua -e '' && [[ -e $tmpdir/init-ran ]] || fail "the LUA_INIT probe runs in a plain lua"
+rm -f "$tmpdir/init-ran"
+env -i PATH="$stub_bin:$ROOT/bin:$PATH" HOME="$home" XDG_CACHE_HOME="$tmpdir/cache-init" OMARCHY_PATH="$ROOT" \
+  LUA_INIT="@$tmpdir/init.lua" LUA_INIT_5_5="@$tmpdir/init.lua" LUA_INIT_5_4="@$tmpdir/init.lua" LUA_PATH="$tmpdir/?.lua" \
+  bash "$ROOT/bin/omarchy-menu-keybindings" --print >/dev/null
+[[ ! -e $tmpdir/init-ran ]] || fail "the menu's config scan ignores LUA_INIT from the environment"
+pass "the menu's config scan ignores LUA_INIT and LUA_PATH from the environment"
 
 (( $(grep -c '→ Close window$' <<<"$rendered") == 1 )) ||
   fail "an alternative chord joins the row of the first one" "$rendered"
@@ -91,7 +106,7 @@ pass "the grave key reads as the symbol printed on it"
 pass "every entry pads its chords to the same column"
 
 # The menu elides a row that outgrows its card: 754px of label, 78 monospace
-# characters at the heading size. The longest entry Unbloarchy ships sits at 74, so
+# characters at the heading size. The longest entry Omarchy ships sits at 74, so
 # a row has four characters of room and no more.
 (( $(awk '{ print length($0) }' <<<"$rendered" | sort -rn | head -1) <= 78 )) ||
   fail "no entry outgrows the width the menu gives it" "$rendered"
@@ -144,18 +159,18 @@ rendered=$(keybindings)
   fail "a refused chord does not let the next one jump the queue" "$rendered"
 pass "a refused chord does not let the next one jump the queue"
 
-# Sharing a row is something Unbloarchy names an action for, not something two
+# Sharing a row is something Omarchy names an action for, not something two
 # chords earn by looking alike. Alt + Tab and Shift + Alt + Tab both read
 # "Reveal active window on top" and cycle opposite ways.
 stub_hyprctl <<BINDS
-$(exec_bind 64 "SUPER + Y" "Zoom in" "unbloarchy-zoom in")
-$(exec_bind 64 "SUPER + Z" "Zoom in" "unbloarchy-zoom in")
+$(exec_bind 64 "SUPER + Y" "Zoom in" "omarchy-zoom in")
+$(exec_bind 64 "SUPER + Z" "Zoom in" "omarchy-zoom in")
 BINDS
 
 rendered=$(keybindings)
 (( $(grep -c '→ Zoom in$' <<<"$rendered") == 2 )) ||
-  fail "an action Unbloarchy did not name keeps its chords on separate rows" "$rendered"
-pass "an action Unbloarchy did not name keeps its chords on separate rows"
+  fail "an action Omarchy did not name keeps its chords on separate rows" "$rendered"
+pass "an action Omarchy did not name keeps its chords on separate rows"
 
 # Even a named action gives up the shared row rather than overrun the column:
 # two rows in line beat one that juts out of it.
@@ -175,7 +190,7 @@ pass "chords too wide to share a row stay on their own"
 # to stay apart, or the menu hides one of them behind the other.
 stub_hyprctl <<BINDS
 $(lua_bind 64 "SUPER + W" "Close window")
-$(exec_bind 64 "SUPER + X" "Close window" "unbloarchy-hyprland-window-close-all")
+$(exec_bind 64 "SUPER + X" "Close window" "omarchy-hyprland-window-close-all")
 BINDS
 
 rendered=$(keybindings)
@@ -205,11 +220,11 @@ expected_alternatives=(
   "Move window to scratchpad"
 )
 
-eval "$(sed -n '/^alternative_chord_actions()/,/^}/p' "$ROOT/bin/unbloarchy-menu-keybindings")"
+eval "$(sed -n '/^alternative_chord_actions()/,/^}/p' "$ROOT/bin/omarchy-menu-keybindings")"
 
 [[ $(alternative_chord_actions) == "$(printf '%s\n' "${expected_alternatives[@]}")" ]] ||
-  fail "the menu pairs up the actions Unbloarchy means it to" "$(alternative_chord_actions)"
-pass "the menu pairs up the actions Unbloarchy means it to"
+  fail "the menu pairs up the actions Omarchy means it to" "$(alternative_chord_actions)"
+pass "the menu pairs up the actions Omarchy means it to"
 
 # A renamed description would leave an action named here matching nothing, and
 # the row it was meant to share would quietly split in two. Only real binds
@@ -229,6 +244,6 @@ BINDS
 
 rm -rf "$tmpdir/cache"
 keybindings >/dev/null
-grep -qP '→ Terminal\texec\tunbloarchy-launch-terminal$' "$tmpdir"/cache/unbloarchy/keybindings-*.records ||
-  fail "picking the terminal bind from the menu launches a terminal" "$(cat "$tmpdir"/cache/unbloarchy/keybindings-*.records)"
+grep -qP '→ Terminal\texec\tomarchy-launch-terminal$' "$tmpdir"/cache/omarchy/keybindings-*.records ||
+  fail "picking the terminal bind from the menu launches a terminal" "$(cat "$tmpdir"/cache/omarchy/keybindings-*.records)"
 pass "picking the terminal bind from the menu launches a terminal"

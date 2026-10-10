@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# unbloarchy:summary=Remove Steam and all of its game libraries, configs, and caches.
-# unbloarchy:requires-sudo=true
+# omarchy:summary=Remove Steam and all of its game libraries, configs, and caches.
+# omarchy:requires-sudo=true
 
 set -e
 
-unbloarchy-pkg-drop steam
+omarchy-lifecycle-dispatch pre-remove steam
+omarchy-pkg-drop steam
 
 rm -rf \
   "$HOME/.steam" \

@@ -143,9 +143,11 @@ unbloarchy-update
   ├─ run the post-update hook, then update mise tools
   ├─ stop the keepalive and invalidate sudo, then update AUR packages with
   │  no-update authentication, and invalidate again
-  ├─ unbloarchy-update-stay-awake stop
+  ├─ omarchy-update-boot, with no-update authentication, and invalidate again
+  │    └─ the platform's boot package proves the boot files boot the updated system
+  ├─ omarchy-update-stay-awake stop
   │    └─ release the sleep inhibitor and restore shell idle state, if changed
-  └─ offer the unprivileged reboot prompt
+  └─ offer the unprivileged reboot prompt, only when the boot files were verified
 ```
 
 Important behavior:
@@ -166,6 +168,7 @@ Important behavior:
   `unbloarchy-migrate` after pacman finishes.
 - A failure should leave enough output in `/tmp/unbloarchy-update.log` and the
   terminal transcript to debug.
+- The boot check is the [lifecycle dispatch](lifecycle-dispatch.md) operation `update-verify`, a no-op on platforms whose boot chain needs no handling of its own, x86 included: nothing runs and nothing asks for root. It is the last sudo-capable step, after AUR packages, so it also covers the initramfs rebuilds they trigger; since it follows third-party build code, it authenticates through the no-update wrapper like AUR does, which on a platform that implements it without passwordless sudo is one more prompt. When it fails, the update finishes its remaining steps, then exits non-zero without the reboot prompt: the update is not finished. A machine without its platform's boot package at all predates it: the update warns that its boot files were not verified and finishes. There is no check before the packages change: where `omarchy-hw-platform` can't tell the platform, the update installs its packages, and the update then fails verification, without the reboot prompt.
 
 ## Path 2: direct `sudo pacman -Syu` attempt
 
@@ -274,6 +277,32 @@ Channel switching runs the `pre-refresh-pacman` hook once, during its refresh
 step: cold, behind the no-update wrapper, after the package config is re-synced
 and before the refresh transaction. It does not run if the switch fails earlier.
 
+Every platform has its own pacman.conf and mirrorlist for each channel it
+offers (x86_64 stable, rc and edge; aarch64 edge alone, below), and a channel
+change or install finalization copies them into place whole, the same way on
+every platform (`install/helpers/pacman.sh`); a channel change backs up
+the old pair first.
+x86_64's are `default/pacman/pacman-<channel>.conf` and
+`mirrorlist-<channel>`; Snapdragon and other aarch64 machines use
+`default/pacman/aarch64/`, Omarchy's repository ahead of Arch Linux ARM's, as
+x86_64 puts it ahead of Arch's (migration 1791403252 reorders existing
+machines the same way, and a refresh can then move a package Omarchy also
+publishes to Omarchy's build, downgrading it if that build is older); Apple
+Silicon uses `default/pacman/aarch64-apple/`, which puts Omarchy and Asahi ALARM
+ahead of Arch Linux ARM. Omarchy publishes aarch64 packages on edge alone so
+far, and the `omarchy` and `omarchy-settings` packages there for stable and rc
+are the release line, which has no aarch64 support, so ARM platforms have edge
+templates only: switching an ARM machine to stable or rc would replace its
+runtime with one that cannot run it. Adding a stable or rc template once a
+release supports aarch64 is what opens that channel. A channel change refuses a
+channel without both files for the platform before anything changes. On aarch64,
+`omarchy-channel-set` refuses to link a dev checkout without
+`bin/omarchy-hw-platform` and `install/helpers/pacman.sh`, whose own refresh
+would write the x86_64 templates. `omarchy-reinstall-pkgs` resets to the
+platform's default channel (`omarchy_pacman_default_channel`: stable, or edge on
+aarch64) and installs its default packages; install finalization does the same
+when the install's channel has no templates for the platform.
+
 There is no version file at runtime. `unbloarchy-version` derives the version from
 `pacman -Q` on whichever package is installed, or reports `dev (<hash>)` for a
 linked checkout, and `unbloarchy-version-channel` sniffs the mirrorlist and
@@ -305,9 +334,10 @@ scripts.
 | `unbloarchy-update-lock` | Hidden command wrapper that holds the per-user update lock while its child runs. | **Keep internal/hidden.** Isolates update concurrency and lock descriptor handling. |
 | `unbloarchy-update-stay-awake` | Hidden helper that starts or stops update-owned sleep and idle inhibition, restoring only the state it changed. | **Keep internal/hidden.** Keeps inhibitor ownership and cleanup together. |
 | `unbloarchy-update-status` | Hidden helper that refreshes or clears the shell update indicator after rechecking available updates. | **Keep internal/hidden.** Keeps shell status synchronization out of the main pipeline. |
+| `omarchy-update-boot` | Hidden helper that runs the platform's `update-verify` lifecycle operation through `omarchy-lifecycle-dispatch`, with `sudo` only when the platform implements it. | **Keep internal/hidden.** Keeps platform boot checks out of the pipeline and stubbable in tests. |
 | `unbloarchy-update-confirm` | Gum confirmation copy for `unbloarchy update`. | **Question.** Could be inlined into `unbloarchy-update`; separate file only helps keep copy isolated. |
 | `unbloarchy-update-dev` | Fast-forwards the active dev-linked checkout from its configured upstream; no-ops for package-backed installs. | **Keep.** Runs before package updates so a checkout conflict stops the update before system mutation. |
-| `unbloarchy-update-keyring` | Ensures Unbloarchy keyring and Arch keyring are current before the main transaction. | **Keep, but review.** It uses targeted `pacman -Sy` for keyring bootstrapping; acceptable for this special case but should remain tightly scoped. |
+| `unbloarchy-update-keyring` | Ensures Unbloarchy, Arch, and (on aarch64) Arch Linux ARM keyrings are current before the main transaction. | **Keep, but review.** It uses targeted `pacman -Sy` for keyring bootstrapping; acceptable for this special case but should remain tightly scoped. |
 | `unbloarchy-update-system-pkgs` | Runs `unbloarchy-update-pacman -Syu --noconfirm` with `--overwrite '/usr/share/unbloarchy/*'`, capturing stderr to a report file; on failure it execs `unbloarchy-update-system-pkgs-when-conflicted`. | **Keep for now.** Small leaf command, clear/testable. |
 | `unbloarchy-update-system-pkgs-when-conflicted` | Hidden conflict handler: quarantines unowned conflicting files under `/var/lib/unbloarchy/replaced`, retries the upgrade once, restores files the upgrade didn't claim, and hands package-vs-package conflicts to an interactive pacman run (never under `-y`). | **Keep internal/hidden.** Keeps conflict recovery out of the happy path. |
 | `unbloarchy-update-pkg-prune` | Trims the pacman cache to two versions per package (`paccache -rk2`) before the snapshot, keeping the offline downgrade path while capping snapshot growth. | **Keep internal/hidden.** |

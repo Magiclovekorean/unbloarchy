@@ -15,7 +15,7 @@ cat >"$stub_bin/sudo" <<'STUB'
 exec "$@"
 STUB
 
-# unbloarchy-update-pacman wraps the transaction in a real PID 1 scope; the tests
+# omarchy-update-pacman wraps the transaction in a real PID 1 scope; the tests
 # must stay inside the fixture, so drop the wrapper's options and run the command.
 cat >"$stub_bin/systemd-run" <<'STUB'
 #!/bin/bash
@@ -52,15 +52,33 @@ chmod +x "$stub_bin/sudo" "$stub_bin/systemd-run" "$stub_bin/pacman"
 
 replaced="$test_tmp/replaced"
 
+# Every case says which platform it runs on (x86 unless it sets PLATFORM), and
+# which boot package entrypoints are installed (none unless it sets
+# LIFECYCLE_ROOT), rather than inherit the machine running the suite.
+for platform in x86 aarch64-apple; do
+  fake_platform "$test_tmp/$platform" "$platform"
+done
+mkdir -p "$test_tmp/no-boot-package"
+# Root ignores both fixtures and would ask the machine's own boot package, so
+# as root the cases before the platform ones get a dispatcher that registers
+# nothing, and the platform ones are skipped.
+if (( EUID == 0 )); then
+  printf '#!/bin/bash\nexit 0\n' >"$stub_bin/omarchy-lifecycle-dispatch"
+  chmod +x "$stub_bin/omarchy-lifecycle-dispatch"
+fi
+
 run_update() {
-  UNBLOARCHY_REPLACED_DIR="$replaced" \
+  local platform=${PLATFORM:-x86}
+  OMARCHY_REPLACED_DIR="$replaced" \
     RETRY_FAILS="${RETRY_FAILS:-}" \
     RETRY_INSTALLS="${RETRY_INSTALLS:-}" \
     PACMAN_ATTEMPTS="$test_tmp/attempts" \
     CONFLICT_REPORT="$test_tmp/report" \
     OWNED_PATHS="${OWNED_PATHS:-}" \
-    PATH="$stub_bin:$ROOT/bin:$PATH" \
-    bash "$ROOT/bin/unbloarchy-update-system-pkgs"
+    OMARCHY_PROC_ROOT="$test_tmp/$platform/proc" \
+    OMARCHY_LIFECYCLE_ROOT="${LIFECYCLE_ROOT:-$test_tmp/no-boot-package}" \
+    PATH="$stub_bin:$test_tmp/$platform/bin:$ROOT/bin:$PATH" \
+    bash "$ROOT/bin/omarchy-update-system-pkgs"
 }
 
 # $1 blamed package, $2 path, $3 optional owning package.
@@ -89,7 +107,7 @@ fresh_work() {
 
 # An unowned path one of the packages is taking over.
 fresh_work
-stray="$work/unbloarchy-fcitx5.service"
+stray="$work/omarchy-fcitx5.service"
 echo "stray content" >"$stray"
 write_report omarchy-settings-dev "$stray"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -106,7 +124,7 @@ grep -qx "stray content" "$replaced$stray" ||
   fail "the replaced file is destroyed rather than kept out of the way"
 pass "the replaced file is quarantined outside the directory it came from"
 
-# A real fight between packages, not Unbloarchy's leftovers. pacman appends
+# A real fight between packages, not Omarchy's leftovers. pacman appends
 # "(owned by ...)" here.
 fresh_work
 echo "theirs" >"$stray"
@@ -133,24 +151,24 @@ pass "an owned path is left alone even when the report reads as unowned"
 # A name prefix is not a namespace; only the packages that own system paths.
 fresh_work
 echo "stray" >"$stray"
-write_report unbloarchy-chromium-bin "$stray"
+write_report omarchy-chromium-bin "$stray"
 if run_update >"$test_tmp/out" 2>"$test_tmp/err"; then
-  fail "an optional unbloarchy-prefixed package gets its conflicts auto-resolved"
+  fail "an optional omarchy-prefixed package gets its conflicts auto-resolved"
 fi
 pass "only the packages that own system paths get their conflicts resolved"
 
-# Not Unbloarchy's conflict to resolve.
+# Not Omarchy's conflict to resolve.
 fresh_work
 echo "stray" >"$stray"
 write_report some-other-pkg "$stray"
 if run_update >"$test_tmp/out" 2>"$test_tmp/err"; then
   fail "a conflict from an unrelated package is auto-resolved"
 fi
-pass "a conflict from a non-Unbloarchy package is left for a human"
+pass "a conflict from a non-Omarchy package is left for a human"
 
 # The path is used literally, so glob characters in a name mean nothing.
 fresh_work
-globby="$work/unbloarchy-[1].conf"
+globby="$work/omarchy-[1].conf"
 echo "globby" >"$globby"
 write_report omarchy-settings-dev "$globby"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -161,7 +179,7 @@ pass "a path whose name would act as a glob is moved literally"
 
 # A leftover directory is cleared the same way a file is.
 fresh_work
-conflict_dir="$work/unbloarchy-dir"
+conflict_dir="$work/omarchy-dir"
 mkdir -p "$conflict_dir"
 write_report omarchy-settings-dev "$conflict_dir"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -172,7 +190,7 @@ pass "a conflicting directory is moved away"
 
 # A space is legal in a package path; the parse must not truncate it.
 fresh_work
-spaced="$work/unbloarchy theme.conf"
+spaced="$work/omarchy theme.conf"
 echo "spaced" >"$spaced"
 write_report omarchy-settings-dev "$spaced"
 run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
@@ -264,8 +282,8 @@ pass "a dangling symlink is restored rather than stranded in the quarantine"
 fresh_work
 echo "ours" >"$stray"
 write_report omarchy-settings-dev "$stray"
-if PATH="$stub_bin:$ROOT/bin:$PATH" UNBLOARCHY_REPLACED_DIR="$replaced" \
-  bash "$ROOT/bin/unbloarchy-update-system-pkgs-when-conflicted" "$test_tmp/report" \
+if PATH="$stub_bin:$ROOT/bin:$PATH" OMARCHY_REPLACED_DIR="$replaced" \
+  bash "$ROOT/bin/omarchy-update-system-pkgs-when-conflicted" "$test_tmp/report" \
   >"$test_tmp/out" 2>"$test_tmp/err"; then
   fail "the handler acts on a report handed to it outside an update"
 fi
@@ -282,3 +300,66 @@ run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
 [[ $(cat "$test_tmp/attempts") == 2 ]] ||
   fail "a clean upgrade runs more than one pacman transaction"
 pass "a clean upgrade runs a single pacman transaction"
+
+# A platform whose boot package owns files no package does vouches for a
+# takeover before anything moves. Only a boot package's answer lets it through.
+require_platform_fixtures "the platform's say over a takeover"
+
+boot_package="$test_tmp/boot-package"
+mkdir -p "$boot_package/usr/lib/omarchy/mac-boot"
+cat >"$boot_package/usr/lib/omarchy/mac-boot/update-takeover" <<SH
+#!/bin/bash
+printf '%s\\n' "\$@" >"$test_tmp/vouched"
+exit "\$(cat "$test_tmp/takeover-status")"
+SH
+chmod 755 "$boot_package/usr/lib/omarchy/mac-boot/update-takeover"
+chmod -R go-w "$boot_package"
+
+fresh_work
+echo "ours" >"$stray"
+write_report omarchy-settings "$stray"
+echo 0 >"$test_tmp/takeover-status"
+rm -f "$test_tmp/vouched"
+PLATFORM=aarch64-apple LIFECYCLE_ROOT="$boot_package" run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
+  fail "a takeover the boot package vouches for goes ahead" "$(cat "$test_tmp/err")"
+[[ ! -e $stray && -f $replaced$stray && $(cat "$test_tmp/vouched") == "$stray" ]] ||
+  fail "the boot package is asked about exactly the files that move"
+pass "apple: a takeover the boot package vouches for goes ahead"
+
+fresh_work
+echo "ours" >"$stray"
+write_report omarchy-settings "$stray"
+echo 1 >"$test_tmp/takeover-status"
+if PLATFORM=aarch64-apple LIFECYCLE_ROOT="$boot_package" run_update >"$test_tmp/out" 2>"$test_tmp/err"; then
+  fail "a takeover the boot package refuses stops the upgrade"
+fi
+[[ -f $stray && ! -e $replaced$stray && $(cat "$test_tmp/attempts") == 1 ]] ||
+  fail "a refused takeover moves nothing and retries nothing"
+grep -Fq "$stray" "$test_tmp/err" || fail "a refused takeover names the files it keeps" "$(cat "$test_tmp/err")"
+pass "apple: a takeover the boot package refuses moves nothing"
+
+# A Mac without its boot package, or with one too old to answer, keeps the files.
+older="$test_tmp/older-boot-package"
+mkdir -p "$older/usr/lib/omarchy/mac-boot" "$older/var/lib/pacman/local/omarchy-mac-boot-20260921-10"
+for root in "$test_tmp/no-boot-package" "$older"; do
+  fresh_work
+  echo "ours" >"$stray"
+  write_report omarchy-settings "$stray"
+  if PLATFORM=aarch64-apple LIFECYCLE_ROOT="$root" run_update >"$test_tmp/out" 2>"$test_tmp/err"; then
+    fail "a Mac whose boot package can't answer keeps the files" "$root"
+  fi
+  [[ -f $stray && ! -e $replaced$stray ]] || fail "a Mac whose boot package can't answer moves nothing" "$root"
+  grep -Fq omarchy-mac-boot "$test_tmp/err" || fail "the refusal names the boot package" "$(cat "$test_tmp/err")"
+done
+pass "apple: a Mac whose boot package can't answer keeps the files"
+
+# x86 with Mac entrypoints on disk still takes over as before, asking no one.
+fresh_work
+echo "ours" >"$stray"
+write_report omarchy-settings "$stray"
+echo 1 >"$test_tmp/takeover-status"
+rm -f "$test_tmp/vouched"
+LIFECYCLE_ROOT="$boot_package" run_update >"$test_tmp/out" 2>"$test_tmp/err" ||
+  fail "x86 takes over as before" "$(cat "$test_tmp/err")"
+[[ ! -e $stray && ! -e $test_tmp/vouched ]] || fail "x86 asks no boot package"
+pass "x86 takes over as before, asking no boot package"

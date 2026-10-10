@@ -11,6 +11,7 @@ echo "Rebuild the initramfs so NVIDIA-only systems shed nouveau's unused GSP fir
 # update as a .pacnew) keeps kms and correctly skips the rebuild.
 
 hooks_conf="${UNBLOARCHY_MKINITCPIO_HOOKS_CONF:-/etc/mkinitcpio.conf.d/unbloarchy_hooks.conf}"
+baseline_conf="${hooks_conf%/*}/00-omarchy-hooks.conf"
 nvidia_conf="${UNBLOARCHY_MKINITCPIO_NVIDIA_CONF:-/etc/mkinitcpio.conf.d/nvidia.conf}"
 rebuild_marker="${UNBLOARCHY_KMS_REBUILD_MARKER:-/var/lib/unbloarchy/migrations/1786605598}"
 
@@ -22,9 +23,9 @@ unbloarchy-cmd-present limine-mkinitcpio || exit 0
 # marker still retries an interrupted rebuild.
 [[ ! -e $rebuild_marker ]] || exit 0
 
-# Source the drop-ins in mkinitcpio's order (nvidia.conf sorts first) and read
-# the HOOKS they produce. Skip conservatively if evaluation fails.
-hooks=$(bash -c 'source "$1" && source "$2" && echo " ${HOOKS[*]} "' -- "$nvidia_conf" "$hooks_conf") || exit 0
+# Include the baseline when installed, then the hardware and filter drop-ins.
+# Skip conservatively if evaluation fails.
+hooks=$(bash -c 'if [[ -f $1 ]]; then source "$1" || exit 1; fi; source "$2" && source "$3" && echo " ${HOOKS[*]} "' -- "$baseline_conf" "$nvidia_conf" "$hooks_conf") || exit 0
 
 [[ $hooks != *" kms "* ]] || exit 0
 

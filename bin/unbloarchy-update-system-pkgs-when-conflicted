@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# unbloarchy:summary=Retry a system package update that hit a conflict
-# unbloarchy:hidden=true
+# omarchy:summary=Retry a system package update that hit a conflict
+# omarchy:hidden=true
 
-# Internal to unbloarchy-update-system-pkgs. Not a command to run by hand: it acts
+# Internal to omarchy-update-system-pkgs. Not a command to run by hand: it acts
 # on a pacman error report, and an old or hand-written one would move live files
 # out of the way for an upgrade that is not happening.
 #
@@ -18,12 +18,12 @@
 
 set -e
 
-[[ ${UNBLOARCHY_UPDATE_CONFLICT:-} == 1 ]] || {
-  echo "unbloarchy-update-system-pkgs-when-conflicted runs as part of unbloarchy update" >&2
+[[ ${OMARCHY_UPDATE_CONFLICT:-} == 1 ]] || {
+  echo "omarchy-update-system-pkgs-when-conflicted runs as part of omarchy update" >&2
   exit 1
 }
 
-errors=${1:?usage: unbloarchy-update-system-pkgs-when-conflicted <pacman-error-report>}
+errors=${1:?usage: omarchy-update-system-pkgs-when-conflicted <pacman-error-report>}
 
 # Where a file pacman is taking over gets moved, mirroring its full path. Kept
 # out of the directory it came from: SDDM reads every file in sddm.conf.d
@@ -71,13 +71,13 @@ if grep -q 'unresolvable package conflicts detected' "$errors"; then
   # ask; either way pacman would sit on a prompt nobody answers. An upgrade that
   # isn't running --noconfirm puts its questions on stderr and reads the answers
   # from stdin, so those are the two that have to be a terminal.
-  if [[ ${UNBLOARCHY_UPDATE_UNATTENDED:-} == 1 || ! -t 0 || ! -t 2 ]]; then
-    echo -e "\e[33m\nThis upgrade needs an answer. Run unbloarchy update interactively to give it.\e[0m" >&2
+  if [[ ${OMARCHY_UPDATE_UNATTENDED:-} == 1 || ! -t 0 || ! -t 2 ]]; then
+    echo -e "\e[33m\nThis upgrade needs an answer. Run omarchy update interactively to give it.\e[0m" >&2
     exit 1
   fi
 
   echo -e "\e[33m\nA package conflict stopped this upgrade. Running it again so you can answer:\e[0m"
-  UNBLOARCHY_UPDATE_INTERACTIVE=1 unbloarchy-update-system-pkgs
+  OMARCHY_UPDATE_INTERACTIVE=1 omarchy-update-system-pkgs
   exit 0
 fi
 
@@ -98,6 +98,17 @@ mapfile -t leftovers < <(
 # the moved files inactive for nothing.
 ((${#leftovers[@]} == $(grep -c ' exists in filesystem' "$errors"))) || exit 1
 
+# A platform whose boot package owns the boot chain may also have files no
+# package owns that it can't do without (written by its image or installer).
+# Its boot package vouches for the takeover or refuses it, and the files stay.
+# Where the platform registers none, nothing resolves and nothing asks for root.
+takeover=$(omarchy-lifecycle-dispatch --resolve update-takeover) || exit 1
+if [[ -n $takeover ]] && ! sudo omarchy-lifecycle-dispatch update-takeover "${leftovers[@]}"; then
+  echo -e "\e[33m\nThis platform keeps these files, so the upgrade can't take them over:\e[0m" >&2
+  printf '  %s\n' "${leftovers[@]}" >&2
+  exit 1
+fi
+
 echo -e "\e[33m\nTaking over files pacman doesn't own yet:\e[0m"
 for path in "${leftovers[@]}"; do
   sudo mkdir -p "$replaced${path%/*}"
@@ -108,7 +119,7 @@ for path in "${leftovers[@]}"; do
 done
 echo
 
-if UNBLOARCHY_UPDATE_RETRY=1 unbloarchy-update-system-pkgs; then
+if OMARCHY_UPDATE_RETRY=1 omarchy-update-system-pkgs; then
   moved=()
   exit 0
 fi

@@ -12,15 +12,22 @@
 set -euo pipefail
 
 systemctl --user daemon-reload
-systemctl --user enable --now \
+
+# One at a time: given a list, systemctl enables none of it when it cannot find
+# one unit, and that should not cost the session its bluetooth agent as well.
+failed=0
+for unit in \
   bt-agent.service \
   owed.service \
-unbloarchy-recover-internal-monitor.service \
+  unbloarchy-recover-internal-monitor.service \
   unbloarchy-sleep-lock.service \
   unbloarchy-migrate-notify.service \
   unbloarchy-fcitx5.service \
   unbloarchy-crash-watch.service \
   unbloarchy-usb-authorization.service \
-  unbloarchy-thunderbolt-authorization.service
+  unbloarchy-thunderbolt-authorization.service; do
+  systemctl --user enable --now "$unit" || failed=1
+done
 
 unbloarchy-hook-install theme-set /usr/share/owe/10-owe-sync
+exit "$failed"
