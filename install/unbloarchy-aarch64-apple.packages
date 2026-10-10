@@ -1,5 +1,5 @@
-# Apple Silicon additions, composed after omarchy-base.packages and
-# omarchy-aarch64.packages (omarchy-pkg-defaults aarch64-apple); never on Intel
+# Apple Silicon additions, composed after unbloarchy-base.packages and
+# unbloarchy-aarch64.packages (unbloarchy-pkg-defaults aarch64-apple); never on Intel
 # Macs or other aarch64 machines. The kernel and boot chain come with the
 # Mac's image, as the kernel and bootloader do from the ISO on x86_64. What a
 # Mac cannot work without (its speaker stack, audio server and GPU driver)
@@ -8,9 +8,9 @@
 
 # The Mac's runtime and boot packages (omacom/omarchy-mac-pkgs).
 omarchy-mac
-omarchy-mac-boot
+unbloarchy-mac-boot
 
-# Picks the startup volume (macOS or Omarchy) from Linux.
+# Picks the startup volume (macOS or Unbloarchy) from Linux.
 asahi-bless
 
 # Hardware video decode.
@@ -22,5 +22,5 @@ widevine
 
 # Screen recording: gpu-screen-recorder finds no display device to capture on
 # Apple Silicon, whose display and GPU are separate DRM devices, so recording
-# falls back to wf-recorder (omarchy-capture-screenrecording).
+# falls back to wf-recorder (unbloarchy-capture-screenrecording).
 wf-recorder

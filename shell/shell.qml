@@ -1,4 +1,4 @@
-//@ pragma OmarchyLoadPatch
+//@ pragma UnbloarchyLoadPatch
 import QtQuick
 import qs.Commons as Commons
 import QtQml.Models

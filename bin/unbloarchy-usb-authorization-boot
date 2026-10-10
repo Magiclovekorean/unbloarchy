@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# omarchy:summary=Manage USB authorization from the start of kernel boot
-# omarchy:args=<enable|disable>
-# omarchy:requires-sudo=true
-# omarchy:hidden=true
+# unbloarchy:summary=Manage USB authorization from the start of kernel boot
+# unbloarchy:args=<enable|disable>
+# unbloarchy:requires-sudo=true
+# unbloarchy:hidden=true
 
 set -euo pipefail
 
@@ -13,9 +13,9 @@ limine_conf=/boot/limine.conf
 limine_defaults=/etc/default/limine
 boot_path=/boot
 kernel_parameter=usbcore.authorized_default=0
-snapshot_begin='# Omarchy USB authorization begin'
+snapshot_begin='# Unbloarchy USB authorization begin'
 snapshot_setting='SNAPSHOT_KERNEL_PARAMETERS+=usbcore.authorized_default=0'
-snapshot_end='# Omarchy USB authorization end'
+snapshot_end='# Unbloarchy USB authorization end'
 
 usb_authorization_cmdline_has_parameter() {
   local cmdline="$1" parameter="$2" word
@@ -59,8 +59,8 @@ usb_authorization_verify_boot_entries() {
     return 1
   fi
 
-  paths=$(mktemp /tmp/omarchy-usb-boot-paths.XXXXXXXXXX)
-  section=$(mktemp /tmp/omarchy-usb-boot-cmdline.XXXXXXXXXX)
+  paths=$(mktemp /tmp/unbloarchy-usb-boot-paths.XXXXXXXXXX)
+  section=$(mktemp /tmp/unbloarchy-usb-boot-cmdline.XXXXXXXXXX)
 
   if ! awk -v expected="$expected" -v machine_id="$machine_id" -v parameter="$kernel_parameter" '
     function contains_parameter(value, count, fields, field_index) {
@@ -288,8 +288,8 @@ usb_authorization_rewrite_boot_cmdlines() {
   local expected="$1" config="$2" machine_id="${3:-$(</etc/machine-id)}"
   local backup temporary
 
-  backup=$(mktemp "${config}.omarchy-usb-backup.XXXXXXXXXX")
-  temporary=$(mktemp "${config}.omarchy-usb-new.XXXXXXXXXX")
+  backup=$(mktemp "${config}.unbloarchy-usb-backup.XXXXXXXXXX")
+  temporary=$(mktemp "${config}.unbloarchy-usb-new.XXXXXXXXXX")
   cp --preserve=mode,ownership "$config" "$backup"
   cp --preserve=mode,ownership "$config" "$temporary"
 
@@ -344,7 +344,7 @@ usb_authorization_rewrite_snapshot_manifest() {
   local expected="$1" manifest="$2" temporary
 
   [[ -e $manifest ]] || return 0
-  temporary=$(mktemp "${manifest}.omarchy-usb.XXXXXXXXXX")
+  temporary=$(mktemp "${manifest}.unbloarchy-usb.XXXXXXXXXX")
   if ! cp --preserve=mode,ownership "$manifest" "$temporary"; then
     rm -f "$temporary"
     return 1
@@ -444,7 +444,7 @@ usb_authorization_boot_transaction() (
   read -r architecture enrollment < <(usb_authorization_limine_settings) || return 1
   [[ -n $architecture ]] || return 1
   usb_authorization_verify_signature "$boot_path/EFI/limine/limine_$architecture.efi" || return 1
-  state=$(mktemp -d /var/tmp/omarchy-usb-boot.XXXXXXXXXX) || return 1
+  state=$(mktemp -d /var/tmp/unbloarchy-usb-boot.XXXXXXXXXX) || return 1
   trap '
     if (( changed && ! committed )); then
       echo "USB boot policy failed; restoring the previous boot files and settings." >&2
@@ -508,7 +508,7 @@ usb_authorization_reconcile_archived_images() (
 
   usb_authorization_secure_boot_enabled || return 0
   [[ -d $history ]] || return 0
-  staging=$(mktemp -d "$esp/.omarchy-usb-uki.XXXXXXXXXX") || return 1
+  staging=$(mktemp -d "$esp/.unbloarchy-usb-uki.XXXXXXXXXX") || return 1
   trap '
     if (( published && ! committed )); then
       for ((index=0; index<${#originals[@]}; index++)); do
@@ -658,8 +658,8 @@ usb_authorization_prepare_archived_images() (
   usb_authorization_secure_boot_enabled || return 0
   # Package hooks acquire the boot lock too; install this optional tool before
   # taking it, never while rewriting archived images.
-  if omarchy-cmd-missing sbattach; then
-    omarchy-pkg-add sbsigntools || return 1
+  if unbloarchy-cmd-missing sbattach; then
+    unbloarchy-pkg-add sbsigntools || return 1
   fi
   exec 9>/run/lock/boot-partition.lock
   flock --timeout 30 9 || return 1
@@ -714,7 +714,7 @@ usb_authorization_main() {
   local had_drop_in=0 had_snapshot_setting=0 snapshot_status temporary
 
   if (( EUID != 0 )); then
-    echo "Error: omarchy-usb-authorization-boot must run as root" >&2
+    echo "Error: unbloarchy-usb-authorization-boot must run as root" >&2
     exit 1
   fi
 
@@ -794,7 +794,7 @@ usb_authorization_main() {
   fi
   ;;
   *)
-  echo "Usage: omarchy-usb-authorization-boot <enable|disable>" >&2
+  echo "Usage: unbloarchy-usb-authorization-boot <enable|disable>" >&2
   exit 2
   ;;
   esac
@@ -802,12 +802,12 @@ usb_authorization_main() {
 
 main() {
   if (( EUID != 0 )); then
-    echo "Error: omarchy-usb-authorization-boot must run as root" >&2
+    echo "Error: unbloarchy-usb-authorization-boot must run as root" >&2
     return 1
   fi
   case "${1:-}" in
   enable|disable)
-    if /usr/bin/omarchy-hw-aarch64-apple; then
+    if /usr/bin/unbloarchy-hw-aarch64-apple; then
       usb_authorization_apple_boot "$1"
     elif usb_authorization_secure_boot_enabled; then
       usb_authorization_boot_transaction "$1"
@@ -816,7 +816,7 @@ main() {
     fi
     ;;
   *)
-    echo "Usage: omarchy-usb-authorization-boot <enable|disable>" >&2
+    echo "Usage: unbloarchy-usb-authorization-boot <enable|disable>" >&2
     return 2
     ;;
   esac

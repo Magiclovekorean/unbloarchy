@@ -22,11 +22,11 @@ mkdir -p "$HOME"
 
 # The command refuses any CPU but x86_64 before defining anything, and sourcing
 # it there would exit this test with it. What is under test is the x86_64 path,
-# so omarchy-hw-x86 answers as one.
+# so unbloarchy-hw-x86 answers as one.
 STUB_BIN="$TMPDIR/bin"
 mkdir -p "$STUB_BIN"
-printf '#!/bin/bash\nexit 0\n' >"$STUB_BIN/omarchy-hw-x86"
-chmod +x "$STUB_BIN/omarchy-hw-x86"
+printf '#!/bin/bash\nexit 0\n' >"$STUB_BIN/unbloarchy-hw-x86"
+chmod +x "$STUB_BIN/unbloarchy-hw-x86"
 PATH="$STUB_BIN:$PATH"
 
 set -- help

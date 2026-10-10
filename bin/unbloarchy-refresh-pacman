@@ -1,7 +1,7 @@
 #!/bin/bash -p
 
-# omarchy:summary=Overwrite the package configuration for /etc/pacman with the Omarchy default of using its dedicated mirrors and repositories, then update all packages.
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Overwrite the package configuration for /etc/pacman with the Unbloarchy default of using its dedicated mirrors and repositories, then update all packages.
+# unbloarchy:requires-sudo=true
 
 if [[ $- != *p* ]]; then
   echo "Refusing an unsafe Bash startup." >&2
@@ -9,20 +9,20 @@ if [[ $- != *p* ]]; then
 fi
 
 security_entrypoint=$(/usr/bin/readlink -e -- "${BASH_SOURCE[0]}") || exit 126
-source "${security_entrypoint%/*}/omarchy-security-functions" || exit 126
-omarchy_security_require_privileged_bash_startup || exit 126
+source "${security_entrypoint%/*}/unbloarchy-security-functions" || exit 126
+unbloarchy_security_require_privileged_bash_startup || exit 126
 set -e
-omarchy_security_sanitize_bash_environment "$0" "$@"
-omarchy_security_require_source_root "$0"
+unbloarchy_security_sanitize_bash_environment "$0" "$@"
+unbloarchy_security_require_source_root "$0"
 # Channel switching calls this behind its own sanitized PATH and hands the
 # caller's original path over the same way the updater receives it.
-user_path=${OMARCHY_UPDATE_USER_PATH:-$PATH}
-unset OMARCHY_UPDATE_USER_PATH
+user_path=${UNBLOARCHY_UPDATE_USER_PATH:-$PATH}
+unset UNBLOARCHY_UPDATE_USER_PATH
 # Traps first, so a signal or failure during the entry revocation still
 # exits through the cleanup path.
-omarchy_security_install_sudo_cleanup_traps
-omarchy_security_revoke_sudo_timestamp || exit 1
-omarchy_security_enable_no_update_sudo
+unbloarchy_security_install_sudo_cleanup_traps
+unbloarchy_security_revoke_sudo_timestamp || exit 1
+unbloarchy_security_enable_no_update_sudo
 
 channel="${1:-}"
 if [[ -n $channel && $channel != "stable" && $channel != "rc" && $channel != "edge" ]]; then
@@ -30,15 +30,15 @@ if [[ -n $channel && $channel != "stable" && $channel != "rc" && $channel != "ed
   exit 2
 fi
 
-source "$OMARCHY_PATH/install/helpers/pacman.sh"
-if ! platform=$(omarchy-hw-platform); then
+source "$UNBLOARCHY_PATH/install/helpers/pacman.sh"
+if ! platform=$(unbloarchy-hw-platform); then
   echo "Cannot tell this machine's platform. No repository configuration changed." >&2
   exit 1
 fi
-templates=$(omarchy_pacman_templates "$platform") || exit 1
-[[ -n $channel ]] || channel=$(omarchy_pacman_default_channel "$platform") || exit 1
+templates=$(unbloarchy_pacman_templates "$platform") || exit 1
+[[ -n $channel ]] || channel=$(unbloarchy_pacman_default_channel "$platform") || exit 1
 if [[ ! -f $templates/pacman-$channel.conf || ! -f $templates/mirrorlist-$channel ]]; then
-  echo "Omarchy has no $channel channel for $platform. No repository configuration changed." >&2
+  echo "Unbloarchy has no $channel channel for $platform. No repository configuration changed." >&2
   exit 1
 fi
 
@@ -53,10 +53,10 @@ sudo cp -f "$templates/mirrorlist-$channel" /etc/pacman.d/mirrorlist
 # transaction below. The hook is user code: it runs cold behind the no-update
 # wrapper, and the timestamp is revoked again afterwards so any authorization
 # the hook obtained for itself cannot carry into the transaction.
-omarchy_security_revoke_sudo_timestamp
-PATH="$OMARCHY_PATH/default/omarchy/sudo-no-update:$user_path" \
-  "$OMARCHY_PATH/bin/omarchy-hook" pre-refresh-pacman
-omarchy_security_revoke_sudo_timestamp
+unbloarchy_security_revoke_sudo_timestamp
+PATH="$UNBLOARCHY_PATH/default/unbloarchy/sudo-no-update:$user_path" \
+  "$UNBLOARCHY_PATH/bin/unbloarchy-hook" pre-refresh-pacman
+unbloarchy_security_revoke_sudo_timestamp
 
 # Reset all package DBs and then update
-omarchy-update-pacman -Syyuu --noconfirm
+unbloarchy-update-pacman -Syyuu --noconfirm

@@ -9,7 +9,7 @@ const fs = require('fs')
 const bar = requireFromRoot('shell/plugins/bar/BarModel.js')
 const barSource = fs.readFileSync(root + '/shell/plugins/bar/Bar.qml', 'utf8')
 const styleSource = fs.readFileSync(root + '/shell/Commons/Style.qml', 'utf8')
-const shellJson = fs.readFileSync(root + '/config/omarchy/shell.json', 'utf8')
+const shellJson = fs.readFileSync(root + '/config/unbloarchy/shell.json', 'utf8')
 
 // A platform package's cutout description, as it would ship it.
 const cutouts = bar.parseCutouts(JSON.stringify({ panels: [
@@ -81,7 +81,7 @@ assertEqual(bar.notchFloor(cutouts, 'top', 'eDP-1', 1512, 982, 2, mode(3024, 196
 // the fixed platform root, which no environment variable moves, not from a
 // detector.
 assert(
-  /path: "\/usr\/share\/omarchy-platform\/display-cutouts\.json"/.test(barSource) &&
+  /path: "\/usr\/share\/unbloarchy-platform\/display-cutouts\.json"/.test(barSource) &&
     /readonly property var displayCutouts: displayCutoutsFile\.missing \? \[\] : BarModel\.parseCutouts\(displayCutoutsFile\.text\(\)\)/.test(barSource),
   'bar reads the platform package\'s cutout description from the platform root'
 )
@@ -90,7 +90,7 @@ assert(
   'bar reads the description as the shell starts, before its surfaces map, and a removed file describes nothing'
 )
 assert(!/_PACKAGED_PATH|packagedPath/.test(barSource), 'no environment variable moves the cutout description')
-assert(!/omarchy-hw-/.test(barSource), 'bar asks no hardware detector')
+assert(!/unbloarchy-hw-/.test(barSource), 'bar asks no hardware detector')
 assert(
   /BarModel\.notchFloor\(root\.displayCutouts, root\.position, screen\.name, screen\.width, screen\.height, screen\.devicePixelRatio, root\.panelModeFor\(screen\), Style\.bar\.notchHeight\)/.test(barSource),
   'bar derives the floor from its own screen geometry, its mode and the calibration'
@@ -227,9 +227,9 @@ assertEqual(stateBarSizeFor(copy, 26, 'HDMI-A-1'), 26, 'a plugin falls back to b
 assertEqual(stateBarSizeFor({}, 26, 'eDP-1'), 26, 'a plugin under a bar without per-screen sizes gets barSize')
 
 const parsed = JSON.parse(shellJson)
-assertEqual(parsed.bar.centerAnchor, 'omarchy.clock', 'shipped bar layout still anchors on the clock')
+assertEqual(parsed.bar.centerAnchor, 'unbloarchy.clock', 'shipped bar layout still anchors on the clock')
 assert(
-  JSON.stringify(parsed.bar.layout.center).indexOf('omarchy.indicators') >= 0,
+  JSON.stringify(parsed.bar.layout.center).indexOf('unbloarchy.indicators') >= 0,
   'shipped bar layout still keeps the default center widgets'
 )
 JS

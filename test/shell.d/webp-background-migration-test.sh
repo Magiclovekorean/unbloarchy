@@ -10,44 +10,44 @@ home="$test_dir/home"
 migration="$ROOT/migrations/1791470456.sh"
 mkdir -p "$test_dir/bin"
 call_log="$test_dir/shell-calls"
-cat >"$test_dir/bin/omarchy-shell" <<'SH'
+cat >"$test_dir/bin/unbloarchy-shell" <<'SH'
 #!/bin/bash
 printf '%s\n' "$*" >>"$CALL_LOG"
 SH
-chmod +x "$test_dir/bin/omarchy-shell"
+chmod +x "$test_dir/bin/unbloarchy-shell"
 
 reset_home() {
   rm -rf "$home"
-  mkdir -p "$home/.local/state/omarchy/current/theme/backgrounds" "$home/.local/state/omarchy/theme-backgrounds"
+  mkdir -p "$home/.local/state/omarchy/current/theme/backgrounds" "$home/.local/state/unbloarchy/theme-backgrounds"
   : >"$call_log"
 }
 
 run_migration() {
-  HOME="$home" OMARCHY_PATH="$ROOT" CALL_LOG="$call_log" PATH="$test_dir/bin:$PATH" \
+  HOME="$home" UNBLOARCHY_PATH="$ROOT" CALL_LOG="$call_log" PATH="$test_dir/bin:$PATH" \
     bash -euo pipefail "$migration" >"$test_dir/output"
 }
 
 backgrounds="$home/.local/state/omarchy/current/theme/backgrounds"
-current="$home/.local/state/omarchy/current/background"
-remembered="$home/.local/state/omarchy/theme-backgrounds/tokyo-night"
-remembered_png="$home/.local/state/omarchy/theme-backgrounds/catppuccin"
+current="$home/.local/state/unbloarchy/current/background"
+remembered="$home/.local/state/unbloarchy/theme-backgrounds/tokyo-night"
+remembered_png="$home/.local/state/unbloarchy/theme-backgrounds/catppuccin"
 
 reset_home
 touch "$backgrounds/current.webp"
 ln -s "$backgrounds/current.jpg" "$current"
 printf '%s\n' "$backgrounds/2-swirl-buck.jpg" >"$remembered"
-printf '%s\n' "$backgrounds/omarchy.png" >"$remembered_png"
+printf '%s\n' "$backgrounds/unbloarchy.png" >"$remembered_png"
 run_migration
 [[ $(readlink "$current") == "$backgrounds/current.webp" ]] || fail "the current background moves from the removed JPEG to its WebP replacement"
 [[ $(<"$call_log") == "-q background set $backgrounds/current.webp" ]] || fail "the running shell is told about the repaired current background"
 [[ $(<"$remembered") == "$backgrounds/2-swirl-buck.webp" ]] || fail "an inactive theme's remembered JPEG moves to its bundled WebP replacement"
-[[ $(<"$remembered_png") == "$backgrounds/omarchy.webp" ]] || fail "an inactive theme's remembered PNG moves to its bundled WebP replacement"
+[[ $(<"$remembered_png") == "$backgrounds/unbloarchy.webp" ]] || fail "an inactive theme's remembered PNG moves to its bundled WebP replacement"
 pass "converted bundled backgrounds keep their current and remembered selections"
 
 run_migration
 [[ $(readlink "$current") == "$backgrounds/current.webp" ]] || fail "the repair can be rerun"
 [[ $(<"$remembered") == "$backgrounds/2-swirl-buck.webp" ]] || fail "the remembered JPEG repair can be rerun"
-[[ $(<"$remembered_png") == "$backgrounds/omarchy.webp" ]] || fail "the remembered PNG repair can be rerun"
+[[ $(<"$remembered_png") == "$backgrounds/unbloarchy.webp" ]] || fail "the remembered PNG repair can be rerun"
 pass "the background repair is idempotent"
 
 reset_home
@@ -68,9 +68,9 @@ run_migration
 pass "unrelated dangling background paths are left alone"
 
 reset_home
-mkdir -p "$home/.config/omarchy/themes/custom/backgrounds"
-touch "$backgrounds/cover.webp" "$home/.config/omarchy/themes/custom/backgrounds/cover.jpg"
-custom_remembered="$home/.local/state/omarchy/theme-backgrounds/custom"
+mkdir -p "$home/.config/unbloarchy/themes/custom/backgrounds"
+touch "$backgrounds/cover.webp" "$home/.config/unbloarchy/themes/custom/backgrounds/cover.jpg"
+custom_remembered="$home/.local/state/unbloarchy/theme-backgrounds/custom"
 printf '%s\n' "$backgrounds/cover.jpg" >"$custom_remembered"
 run_migration
 [[ $(<"$custom_remembered") == "$backgrounds/cover.jpg" ]] || fail "an inactive custom theme's existing JPEG is not confused with the active theme's WebP"
@@ -84,7 +84,7 @@ run_migration
 pass "active theme files do not control inactive remembered repairs"
 
 reset_home
-printf 'tokyo-night\n' >"$home/.local/state/omarchy/current/theme.name"
+printf 'tokyo-night\n' >"$home/.local/state/unbloarchy/current/theme.name"
 touch "$backgrounds/2-swirl-buck.jpg"
 ln -s "$backgrounds/2-swirl-buck.jpg" "$current"
 run_migration

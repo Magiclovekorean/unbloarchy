@@ -1,9 +1,9 @@
 #!/bin/bash -p
 
-# omarchy:summary=Run a fixed lifecycle operation through the platform's own packages
-# omarchy:args=[--resolve] <operation> [arguments...]
-# omarchy:requires-sudo=true
-# omarchy:hidden=true
+# unbloarchy:summary=Run a fixed lifecycle operation through the platform's own packages
+# unbloarchy:args=[--resolve] <operation> [arguments...]
+# unbloarchy:requires-sudo=true
+# unbloarchy:hidden=true
 
 # Provisioning, factory reset, update, boot, system and user setup and app
 # installs call a fixed set of operations here. A platform that needs its own
@@ -39,7 +39,7 @@ operations=(
 user_operations=(setup-user post-install pre-remove)
 
 usage() {
-  echo "Usage: omarchy-lifecycle-dispatch [--resolve] <operation> [arguments...]" >&2
+  echo "Usage: unbloarchy-lifecycle-dispatch [--resolve] <operation> [arguments...]" >&2
   echo "Operations: ${operations[*]}" >&2
   exit 2
 }
@@ -67,16 +67,16 @@ listed "$operation" "${operations[@]}" || usage
 # root resolves only the fixed paths below, and the detector beside this file
 # ignores its fixture roots. Fixture roots exist for unprivileged tests.
 fixed_path=/usr/local/sbin:/usr/local/bin:/usr/bin
-detect=("$(PATH=$fixed_path dirname -- "${BASH_SOURCE[0]}")/omarchy-hw-platform")
+detect=("$(PATH=$fixed_path dirname -- "${BASH_SOURCE[0]}")/unbloarchy-hw-platform")
 if (( EUID == 0 )); then
   export PATH=$fixed_path
   detect=(/usr/bin/env -i PATH="$fixed_path" "${detect[@]}")
   root=""
 else
-  root=${OMARCHY_LIFECYCLE_ROOT:-}
+  root=${UNBLOARCHY_LIFECYCLE_ROOT:-}
   root=${root%/}
   if [[ -n $root && $root != /* ]]; then
-    echo "Error: OMARCHY_LIFECYCLE_ROOT must be an absolute path" >&2
+    echo "Error: UNBLOARCHY_LIFECYCLE_ROOT must be an absolute path" >&2
     exit 1
   fi
 fi
@@ -89,7 +89,7 @@ fi
 # x86 and plain aarch64 machines (Snapdragon laptops among them) have no
 # registered package: every operation is a no-op there and callers keep their
 # generic path.
-# Apple Silicon's boot operations belong to omarchy-mac-boot, and its system and
+# Apple Silicon's boot operations belong to unbloarchy-mac-boot, and its system and
 # user setup and app-install hooks to omarchy-mac (both omacom/omarchy-mac-pkgs).
 # Provisioning and factory reset have no other path on a Mac, only update-verify
 # checks what an update left in its boot chain, its boot checks prove the kept
@@ -97,19 +97,19 @@ fi
 # the Mac's boot setup (setup-boot), so those operations are required. So is
 # update-takeover: the Mac boot chain and its image own files no package does,
 # and a Mac whose boot package can't vouch for a takeover keeps them. Setup and
-# the app-install hooks are optional: a Mac without omarchy-mac keeps Omarchy's
+# the app-install hooks are optional: a Mac without omarchy-mac keeps Unbloarchy's
 # generic setup and installs. Moving an operation to required also changes
 # apple_optional in test/shell.d/lifecycle-dispatch-test.sh and the Apple column
 # and registration table in docs/lifecycle-dispatch.md.
 case $platform:$operation in
   aarch64-apple:setup-system | aarch64-apple:setup-user | aarch64-apple:post-install | aarch64-apple:pre-remove)
-    implementation=/usr/lib/omarchy/mac
+    implementation=/usr/lib/unbloarchy/mac
     package=omarchy-mac
     required=()
     ;;
   aarch64-apple:*)
-    implementation=/usr/lib/omarchy/mac-boot
-    package=omarchy-mac-boot
+    implementation=/usr/lib/unbloarchy/mac-boot
+    package=unbloarchy-mac-boot
     required=(
       provision-prepare provision-commit provision-verify
       reset-prepare reset-verify reset-commit reset-rollback
@@ -193,7 +193,7 @@ fi
 # and nothing else.
 environment=(PATH="$fixed_path")
 if listed "$operation" "${user_operations[@]}"; then
-  for name in HOME USER XDG_CONFIG_HOME XDG_STATE_HOME XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY OMARCHY_PATH; do
+  for name in HOME USER XDG_CONFIG_HOME XDG_STATE_HOME XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY UNBLOARCHY_PATH; do
     [[ -z ${!name:-} ]] || environment+=("$name=${!name}")
   done
 fi

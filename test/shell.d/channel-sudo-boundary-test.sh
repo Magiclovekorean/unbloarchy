@@ -78,7 +78,7 @@ for platform in aarch64 aarch64-apple; do
   for channel in edge dev; do
     # dev refreshes from the checkout it links, on edge.
     pacman_channel=$channel root=$SUDO_TEST_ROOT
-    [[ $channel != "dev" ]] || pacman_channel=edge root=$SUDO_TEST_HOME/omarchy
+    [[ $channel != "dev" ]] || pacman_channel=edge root=$SUDO_TEST_HOME/unbloarchy
     reset_boundary
     SUDO_TEST_PLATFORM=$platform run_channel "$channel" || fail "$platform $channel failed" "$(<"$boundary_tmp/output")"
     assert_scoped_channel "$platform $channel"
@@ -95,7 +95,7 @@ for platform in aarch64 aarch64-apple; do
     reset_boundary
     if SUDO_TEST_PLATFORM=$platform run_channel "$channel"; then fail "$platform accepted $channel"; fi
     if grep -Eq '^step:|^sudo -N ' "$SUDO_TEST_LOG"; then fail "$platform $channel was refused before any change" "$(<"$SUDO_TEST_LOG")"; fi
-    grep -q "Omarchy has no $channel channel for $platform" "$boundary_tmp/output" || fail "$platform $channel: the refusal says why" "$(<"$boundary_tmp/output")"
+    grep -q "Unbloarchy has no $channel channel for $platform" "$boundary_tmp/output" || fail "$platform $channel: the refusal says why" "$(<"$boundary_tmp/output")"
     assert_boundary_cold "$platform $channel"
   done
 done
@@ -108,7 +108,7 @@ for channel in edge dev; do
   reset_boundary
   if SUDO_TEST_PLATFORM=aarch64-apple run_channel "$channel"; then fail "a channel without a template was accepted ($channel)"; fi
   if grep -Eq '^step:|^sudo -N ' "$SUDO_TEST_LOG"; then fail "$channel was refused before any change" "$(<"$SUDO_TEST_LOG")"; fi
-  grep -q "Omarchy has no edge channel for aarch64-apple" "$boundary_tmp/output" || fail "the refusal says why" "$(<"$boundary_tmp/output")"
+  grep -q "Unbloarchy has no edge channel for aarch64-apple" "$boundary_tmp/output" || fail "the refusal says why" "$(<"$boundary_tmp/output")"
   assert_boundary_cold "missing template $channel"
 done
 mv "$boundary_tmp/saved-template" "$SUDO_TEST_ROOT/default/pacman/aarch64-apple/pacman-edge.conf"
@@ -128,14 +128,14 @@ pass "a stale dev checkout is rejected before linking or privileged work"
 
 # On aarch64 the checkout's own refresh keeps the machine's repositories only
 # once it tells platforms apart: a checkout without that is refused the same way.
-checkout="$SUDO_TEST_HOME/omarchy"
-for required in bin/omarchy-hw-platform install/helpers/pacman.sh; do
+checkout="$SUDO_TEST_HOME/unbloarchy"
+for required in bin/unbloarchy-hw-platform install/helpers/pacman.sh; do
   for platform in aarch64; do
     reset_boundary
     mv "$checkout/$required" "$boundary_tmp/saved-required"
     if SUDO_TEST_PLATFORM=$platform run_channel dev; then fail "$platform: a dev checkout without $required was accepted"; fi
     mv "$boundary_tmp/saved-required" "$checkout/$required"
-    if grep -Eq '^step:omarchy-(dev-link|state)|^step:pacman|^sudo -N ' "$SUDO_TEST_LOG"; then
+    if grep -Eq '^step:unbloarchy-(dev-link|state)|^step:pacman|^sudo -N ' "$SUDO_TEST_LOG"; then
       fail "$platform: a dev checkout without $required changed the system before rejection" "$(<"$SUDO_TEST_LOG")"
     fi
     grep -q "Update the checkout before switching to dev; on $platform it needs $required" "$boundary_tmp/output" ||
@@ -152,7 +152,7 @@ mv "$template" "$boundary_tmp/saved-template"
 reset_boundary
 if SUDO_TEST_PLATFORM=aarch64 run_channel dev; then fail "a dev checkout without its templates was accepted"; fi
 mv "$boundary_tmp/saved-template" "$template"
-if grep -Eq '^step:omarchy-(dev-link|state)|^step:pacman|^sudo -N ' "$SUDO_TEST_LOG"; then
+if grep -Eq '^step:unbloarchy-(dev-link|state)|^step:pacman|^sudo -N ' "$SUDO_TEST_LOG"; then
   fail "a dev checkout without its templates changed the system before rejection" "$(<"$SUDO_TEST_LOG")"
 fi
 grep -q "Update the checkout before switching to dev; it has no edge templates for aarch64" "$boundary_tmp/output" ||

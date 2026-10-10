@@ -21,8 +21,8 @@ printf '%s\0' apple,j416c qcom,x1e80100 >"$test_tmp/platforms/contradiction/proc
 etc="$test_tmp/etc"
 devices="$test_tmp/devices"
 
-omarchy_hooks="base udev plymouth keyboard autodetect microcode modconf kms keymap consolefont block encrypt filesystems fsck btrfs-overlayfs"
-omarchy_hooks_without_kms=${omarchy_hooks/ kms / }
+unbloarchy_hooks="base udev plymouth keyboard autodetect microcode modconf kms keymap consolefont block encrypt filesystems fsck btrfs-overlayfs"
+unbloarchy_hooks_without_kms=${unbloarchy_hooks/ kms / }
 apple_hooks="base systemd plymouth autodetect microcode modconf kms keyboard sd-vconsole block filesystems fsck"
 nvidia_modules="nvidia nvidia_modeset nvidia_uvm nvidia_drm"
 
@@ -46,7 +46,7 @@ for fixture in "$test_tmp"/platforms/*; do
 done
 
 # mkinitcpio's stock mkinitcpio.conf, which the baseline replaces, plus every
-# drop-in Omarchy ships, on a machine with no PCI devices.
+# drop-in Unbloarchy ships, on a machine with no PCI devices.
 new_etc() {
   rm -rf "$etc" "$devices"
   mkdir -p "$etc/mkinitcpio.conf.d" "$devices"
@@ -92,7 +92,7 @@ compose() {
 
   local path="$fixture/bin:$ROOT/bin:$PATH"
   [[ $1 != "no-detector" ]] || path="$fixture/bin"
-  KERNELVERSION=6.99.0-test OMARCHY_PROC_ROOT="$fixture/proc" OMARCHY_PCI_DEVICES_PATH="$devices" PATH="$path" "$BASH" -c '
+  KERNELVERSION=6.99.0-test UNBLOARCHY_PROC_ROOT="$fixture/proc" UNBLOARCHY_PCI_DEVICES_PATH="$devices" PATH="$path" "$BASH" -c '
     . "$1" || exit 1
     files=()
     for file in "${FILES[@]}"; do
@@ -124,9 +124,9 @@ assert_hooks() {
 # Each platform starts from its own baseline, whatever mkinitcpio.conf says.
 new_etc
 assert_hooks "Apple Silicon starts from the systemd baseline" aarch64-apple "$apple_hooks"
-assert_hooks "plain aarch64 starts from the Omarchy baseline" aarch64 "$omarchy_hooks"
-assert_hooks "x86 starts from the Omarchy baseline" x86 "$omarchy_hooks"
-assert_hooks "without the detector the Omarchy baseline stays" no-detector "$omarchy_hooks"
+assert_hooks "plain aarch64 starts from the Unbloarchy baseline" aarch64 "$unbloarchy_hooks"
+assert_hooks "x86 starts from the Unbloarchy baseline" x86 "$unbloarchy_hooks"
+assert_hooks "without the detector the Unbloarchy baseline stays" no-detector "$unbloarchy_hooks"
 
 if composed=$(compose contradiction 2>"$test_tmp/contradiction.err"); then
   fail "a platform the detector cannot place stops the build" "composed: $composed"
@@ -161,13 +161,13 @@ for platform in aarch64-apple no-detector; do
 done
 new_etc
 sed -i "s/^HOOKS=.*/HOOKS=(base udev autodetect modconf block encrypt filesystems fsck)/" "$etc/mkinitcpio.conf"
-assert_hooks "busybox encrypt off Apple Silicon still gets the Omarchy baseline" x86 "$omarchy_hooks"
+assert_hooks "busybox encrypt off Apple Silicon still gets the Unbloarchy baseline" x86 "$unbloarchy_hooks"
 new_etc
 sed -i "s/^HOOKS=.*/HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems fsck)/" "$etc/mkinitcpio.conf"
 assert_hooks "a Mac with a stock busybox line and no asahi hook gets the systemd baseline" aarch64-apple "$apple_hooks"
 
-# A platform fragment sorts after the baseline and before omarchy_hooks.conf,
-# as omarchy-mac-boot's 90- drop-ins do. Its hooks must reach the image.
+# A platform fragment sorts after the baseline and before unbloarchy_hooks.conf,
+# as unbloarchy-mac-boot's 90- drop-ins do. Its hooks must reach the image.
 new_etc
 drop_in 90-platform-fragment.conf <<'CONF'
 _fragment_hooks=()
@@ -195,59 +195,59 @@ assert_hooks "the NVIDIA filter keeps a platform fragment's hooks" x86 \
 # moved: the same HOOKS, MODULES and FILES.
 new_etc
 assert_composed "a machine without hardware drop-ins is unchanged" x86 \
-  "$omarchy_hooks" "thunderbolt" ""
+  "$unbloarchy_hooks" "thunderbolt" ""
 
 new_etc
 drop_in nvidia.conf <<<"MODULES+=($nvidia_modules)"
 pci_devices 0x10de:0x030000
 assert_composed "NVIDIA-only drops only kms" x86 \
-  "$omarchy_hooks_without_kms" "$nvidia_modules thunderbolt" ""
+  "$unbloarchy_hooks_without_kms" "$nvidia_modules thunderbolt" ""
 
 new_etc
 drop_in nvidia.conf <<<"MODULES+=($nvidia_modules)"
 pci_devices 0x8086:0x030000 0x10de:0x030200
 assert_composed "hybrid graphics keeps kms for the iGPU" x86 \
-  "$omarchy_hooks" "$nvidia_modules thunderbolt" ""
+  "$unbloarchy_hooks" "$nvidia_modules thunderbolt" ""
 
 new_etc
 pci_devices 0x10de:0x030000
 assert_composed "NVIDIA-only without early nvidia_drm keeps kms" x86 \
-  "$omarchy_hooks" "thunderbolt" ""
+  "$unbloarchy_hooks" "thunderbolt" ""
 
 new_etc
 drop_in nvidia.conf <<<"MODULES+=($nvidia_modules)"
-drop_in omarchy_resume.conf <<<"HOOKS+=(resume)"
-drop_in 99-omarchy-provisioning-key.conf <<<"FILES+=(/etc/omarchy/provisioning.key)"
+drop_in unbloarchy_resume.conf <<<"HOOKS+=(resume)"
+drop_in 99-unbloarchy-provisioning-key.conf <<<"FILES+=(/etc/unbloarchy/provisioning.key)"
 pci_devices 0x10de:0x030000
 assert_composed "NVIDIA-only with hibernation and a provisioning key is unchanged" x86 \
-  "$omarchy_hooks_without_kms resume" "$nvidia_modules thunderbolt" "/etc/omarchy/provisioning.key"
+  "$unbloarchy_hooks_without_kms resume" "$nvidia_modules thunderbolt" "/etc/unbloarchy/provisioning.key"
 
 new_etc
 drop_in apple-t2.conf <<<"MODULES+=(t2bce_vhci usbhid hid_apple hid_generic xhci_pci xhci_hcd)"
 assert_composed "a T2 Mac is unchanged" x86 \
-  "$omarchy_hooks" "t2bce_vhci usbhid hid_apple hid_generic xhci_pci xhci_hcd thunderbolt" ""
+  "$unbloarchy_hooks" "t2bce_vhci usbhid hid_apple hid_generic xhci_pci xhci_hcd thunderbolt" ""
 
 new_etc
 drop_in macbook_spi_modules.conf <<<"MODULES=(applespi intel_lpss_pci spi_pxa2xx_platform)"
 assert_composed "an SPI keyboard MacBook is unchanged" x86 \
-  "$omarchy_hooks" "applespi intel_lpss_pci spi_pxa2xx_platform thunderbolt" ""
+  "$unbloarchy_hooks" "applespi intel_lpss_pci spi_pxa2xx_platform thunderbolt" ""
 
 new_etc
 drop_in nvidia.conf <<<"MODULES+=($nvidia_modules)"
 drop_in surface_device_modules.conf <<<"MODULES=(pinctrl_tigerlake surface_aggregator surface_aggregator_registry surface_aggregator_hub surface_hid_core surface_hid surface_kbd intel_lpss_pci 8250_dw)"
 pci_devices 0x8086:0x030000
 assert_composed "a Surface is unchanged" x86 \
-  "$omarchy_hooks" "pinctrl_tigerlake surface_aggregator surface_aggregator_registry surface_aggregator_hub surface_hid_core surface_hid surface_kbd intel_lpss_pci 8250_dw thunderbolt" ""
+  "$unbloarchy_hooks" "pinctrl_tigerlake surface_aggregator surface_aggregator_registry surface_aggregator_hub surface_hid_core surface_hid surface_kbd intel_lpss_pci 8250_dw thunderbolt" ""
 
 
 # Snapdragon and other aarch64 machines build the same image as x86, whatever
 # systemd line their mkinitcpio.conf starts from.
 for platform in aarch64; do
   new_etc
-  drop_in omarchy_resume.conf <<<"HOOKS+=(resume)"
-  drop_in 99-omarchy-provisioning-key.conf <<<"FILES+=(/etc/omarchy/provisioning.key)"
+  drop_in unbloarchy_resume.conf <<<"HOOKS+=(resume)"
+  drop_in 99-unbloarchy-provisioning-key.conf <<<"FILES+=(/etc/unbloarchy/provisioning.key)"
   assert_composed "$platform with hibernation and a provisioning key is unchanged" "$platform" \
-    "$omarchy_hooks resume" "thunderbolt" "/etc/omarchy/provisioning.key"
+    "$unbloarchy_hooks resume" "thunderbolt" "/etc/unbloarchy/provisioning.key"
 done
 
 # thunderbolt is early-loaded only where the kernel builds it as a module. A
@@ -258,7 +258,7 @@ assert_composed "Apple Silicon early-loads the Aurora kernel's thunderbolt modul
   "$apple_hooks" "thunderbolt" ""
 new_etc
 KERNEL_MODULES="" assert_composed "a plain aarch64 kernel without thunderbolt leaves it out" aarch64 \
-  "$omarchy_hooks" "" ""
+  "$unbloarchy_hooks" "" ""
 new_etc
 KERNEL_MODULES="" KERNEL_BUILTINS=thunderbolt assert_composed "a kernel with thunderbolt built in leaves it out" x86 \
-  "$omarchy_hooks" "" ""
+  "$unbloarchy_hooks" "" ""

@@ -582,7 +582,7 @@ Item {
     // A file that went away describes nothing, whatever text() still holds.
     property bool missing: false
 
-    path: "/usr/share/omarchy-platform/display-cutouts.json"
+    path: "/usr/share/unbloarchy-platform/display-cutouts.json"
     blockLoading: true
     watchChanges: true
     printErrors: false

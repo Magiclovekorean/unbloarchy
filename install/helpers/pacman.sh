@@ -5,10 +5,10 @@
 
 # The directory holding <platform>'s pacman-<channel>.conf and
 # mirrorlist-<channel>. A channel without both files isn't offered there.
-omarchy_pacman_templates() {
+unbloarchy_pacman_templates() {
   case ${1:-} in
-    x86) echo "$OMARCHY_PATH/default/pacman" ;;
-    aarch64 | aarch64-apple) echo "$OMARCHY_PATH/default/pacman/$1" ;;
+    x86) echo "$UNBLOARCHY_PATH/default/pacman" ;;
+    aarch64 | aarch64-apple) echo "$UNBLOARCHY_PATH/default/pacman/$1" ;;
     *)
       echo "Error: Unknown platform '${1:-}'." >&2
       return 1
@@ -17,10 +17,10 @@ omarchy_pacman_templates() {
 }
 
 # The channel a machine takes when none is named: stable, except on aarch64.
-# Omarchy publishes aarch64 packages on edge alone so far, and the stable and rc
+# Unbloarchy publishes aarch64 packages on edge alone so far, and the stable and rc
 # packages there are the release line, which has no aarch64 support, so ARM
 # platforms have edge templates only until a release does.
-omarchy_pacman_default_channel() {
+unbloarchy_pacman_default_channel() {
   case ${1:-} in
     x86) echo stable ;;
     aarch64 | aarch64-apple) echo edge ;;

@@ -112,14 +112,14 @@ for (const text of ['', 'Translate ID error: 404', 'Volume: loud', 'Volume: 0.50
 const fs = require('fs')
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8')
 const audioNodes = read('shell/Commons/AudioNodes.qml')
-assert(/path: "\/usr\/share\/omarchy-platform\/audio\.json"/.test(audioNodes) && !/Quickshell\.env|OMARCHY_/.test(audioNodes),
+assert(/path: "\/usr\/share\/unbloarchy-platform\/audio\.json"/.test(audioNodes) && !/Quickshell\.env|UNBLOARCHY_/.test(audioNodes),
   'audio reads the platform hints from the fixed platform root')
 assert(/onLoadFailed: missing = true/.test(audioNodes), 'a removed hints file hides nothing')
 const sources = ['shell/plugins/panels/audio/Panel.qml', 'shell/plugins/panels/audio/Model.js', 'shell/Commons/AudioNodes.qml',
   'shell/Commons/AudioNodesModel.js', 'shell/Commons/UntypedInput.qml', 'shell/plugins/bar/widgets/Microphone.qml',
-  'bin/omarchy-audio-input-set-default', 'bin/omarchy-audio-sink-availability']
+  'bin/unbloarchy-audio-input-set-default', 'bin/unbloarchy-audio-sink-availability']
 for (const file of sources)
-  assert(!/apple|asahi|macbook|j[0-9]{3}|omarchy-hw-|platform-sound/i.test(read(file)), file + ' names no platform')
+  assert(!/apple|asahi|macbook|j[0-9]{3}|unbloarchy-hw-|platform-sound/i.test(read(file)), file + ' names no platform')
 
 const panel = read('shell/plugins/panels/audio/Panel.qml')
 assert(/inputPeakNode: inputViaWpctl \? null : source/.test(panel) && /inputLevelShown: !!inputPeakNode/.test(panel) &&

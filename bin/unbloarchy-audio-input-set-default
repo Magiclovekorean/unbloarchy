@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# omarchy:summary=Set the default audio input and move active streams
-# omarchy:args=<node-id> <source-name>
-# omarchy:examples=omarchy audio input set default 43 alsa_input.pci-0000_00_1f.3.analog-stereo
+# unbloarchy:summary=Set the default audio input and move active streams
+# unbloarchy:args=<node-id> <source-name>
+# unbloarchy:examples=unbloarchy audio input set default 43 alsa_input.pci-0000_00_1f.3.analog-stereo
 
 node_id=${1:-}
 source_name=${2:-}
 
 if [[ -z $node_id || -z $source_name ]]; then
-  echo "Usage: omarchy-audio-input-set-default <node-id> <source-name>" >&2
+  echo "Usage: unbloarchy-audio-input-set-default <node-id> <source-name>" >&2
   exit 1
 fi
 

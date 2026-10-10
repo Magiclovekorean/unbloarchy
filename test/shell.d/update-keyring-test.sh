@@ -12,7 +12,7 @@ log_file="$test_tmp/keyring.log"
 mkdir -p "$stub_bin"
 
 # Behavior is driven by env vars so each case can pick its failure point:
-# KEYRING_TEST_PKG_MISSING     exit status of omarchy-pkg-missing (default 1: installed)
+# KEYRING_TEST_PKG_MISSING     exit status of unbloarchy-pkg-missing (default 1: installed)
 # KEYRING_TEST_LIST_FAIL_ON    which --list-keys call fails, counted per run (default: none)
 # KEYRING_TEST_RECV_STATUS     exit status of --recv-keys (default 0)
 # KEYRING_TEST_REINSTALL_STATUS exit status of the archlinux-keyring reinstall (default 0)
@@ -51,48 +51,48 @@ exit 0
 SH
 chmod +x "$stub_bin/sudo"
 
-cat >"$stub_bin/omarchy-pkg-missing" <<'SH'
+cat >"$stub_bin/unbloarchy-pkg-missing" <<'SH'
 #!/bin/bash
 
 exit "${KEYRING_TEST_PKG_MISSING:-1}"
 SH
-chmod +x "$stub_bin/omarchy-pkg-missing"
+chmod +x "$stub_bin/unbloarchy-pkg-missing"
 
 # KEYRING_TEST_ARM=1: Arch Linux ARM's keyring is installed.
 # KEYRING_TEST_PLATFORM: the platform (default x86).
-cat >"$stub_bin/omarchy-pkg-present" <<'SH'
+cat >"$stub_bin/unbloarchy-pkg-present" <<'SH'
 #!/bin/bash
 
 [[ ($* == "archlinuxarm-keyring" && ${KEYRING_TEST_ARM:-0} == 1) || " ${KEYRING_TEST_INSTALLED:-} " == *" $* "* ]]
 SH
-chmod +x "$stub_bin/omarchy-pkg-present"
+chmod +x "$stub_bin/unbloarchy-pkg-present"
 
-cat >"$stub_bin/omarchy-hw-aarch64" <<'SH'
+cat >"$stub_bin/unbloarchy-hw-aarch64" <<'SH'
 #!/bin/bash
 
 [[ ${KEYRING_TEST_PLATFORM:-x86} == aarch64* ]]
 SH
-chmod +x "$stub_bin/omarchy-hw-aarch64"
+chmod +x "$stub_bin/unbloarchy-hw-aarch64"
 
-cat >"$stub_bin/omarchy-pkg-add" <<'SH'
+cat >"$stub_bin/unbloarchy-pkg-add" <<'SH'
 #!/bin/bash
 
 printf 'pkg-add\t%s\n' "$1" >>"$KEYRING_TEST_LOG"
 exit 0
 SH
-chmod +x "$stub_bin/omarchy-pkg-add"
+chmod +x "$stub_bin/unbloarchy-pkg-add"
 
 # The platform's keyrings list is read at a fixed path; the test runs a copy
 # rewritten to read a fixture there.
 platform_keyrings="$test_tmp/platform-keyrings"
-sed "s|/usr/share/omarchy-platform/keyrings|$platform_keyrings|" "$ROOT/bin/omarchy-update-keyring" >"$test_tmp/omarchy-update-keyring"
-chmod +x "$test_tmp/omarchy-update-keyring"
+sed "s|/usr/share/unbloarchy-platform/keyrings|$platform_keyrings|" "$ROOT/bin/unbloarchy-update-keyring" >"$test_tmp/unbloarchy-update-keyring"
+chmod +x "$test_tmp/unbloarchy-update-keyring"
 
 run_keyring() {
   KEYRING_TEST_LOG="$log_file" \
     KEYRING_TEST_DIR="$test_tmp" \
     PATH="$stub_bin:$PATH" \
-    "$test_tmp/omarchy-update-keyring" "$@"
+    "$test_tmp/unbloarchy-update-keyring" "$@"
 }
 
 # Everything healthy: the key and package are present, the reinstall works.

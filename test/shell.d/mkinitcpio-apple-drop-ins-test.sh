@@ -6,9 +6,9 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 
 # Apple Silicon's boot package ships mkinitcpio drop-ins 90- to 94- that sort
 # after the HOOKS baseline and add the Asahi firmware and systemd unlock hooks
-# to it. The fixtures are the drop-ins omarchy-mac-boot 20260926-1.45 installs,
+# to it. The fixtures are the drop-ins unbloarchy-mac-boot 20260926-1.45 installs,
 # as read from an encrypted M1 Pro, byte for byte the same as
-# omarchy-mac-boot/files/etc/mkinitcpio.conf.d in omacom/omarchy-mac-pkgs at
+# unbloarchy-mac-boot/files/etc/mkinitcpio.conf.d in omacom/omarchy-mac-pkgs at
 # 4399105 (MIT). The encryption drop-in leaves a line carrying
 # busybox encrypt alone, since that is a Mac unlocked through cryptdevice=, so
 # the baseline must give a Mac the systemd line.
@@ -28,7 +28,7 @@ compose() {
   local -a conf_files=()
   rm -rf "$tmp/conf.d"
   mkdir -p "$tmp/conf.d"
-  cp "$ROOT"/etc/mkinitcpio.conf.d/*.conf "$ROOT"/test/shell.d/fixtures/omarchy-mac-boot-mkinitcpio/*.conf "$tmp/conf.d/"
+  cp "$ROOT"/etc/mkinitcpio.conf.d/*.conf "$ROOT"/test/shell.d/fixtures/unbloarchy-mac-boot-mkinitcpio/*.conf "$tmp/conf.d/"
   sed -i "s|/etc/vconsole.conf|$tmp/vconsole.conf|g" "$tmp/conf.d"/*.conf
   printf 'MODULES=()\nBINARIES=()\nFILES=()\nHOOKS=(%s)\n' "$1" >"$config"
   mapfile -d '' conf_files < <(LC_ALL=C.UTF-8 find "$tmp/conf.d" -maxdepth 1 -xtype f -name '*.conf' -print0 |
@@ -36,7 +36,7 @@ compose() {
   for conf in "${conf_files[@]}"; do
     cat -- "$tmp/conf.d/$conf" >>"$config"
   done
-  OMARCHY_PROC_ROOT="$tmp/platform/proc" PATH="$tmp/platform/bin:$ROOT/bin:$PATH" "$BASH" -c '
+  UNBLOARCHY_PROC_ROOT="$tmp/platform/proc" PATH="$tmp/platform/bin:$ROOT/bin:$PATH" "$BASH" -c '
     . "$1" || exit 1
     printf "HOOKS=%s\nFILES=%s\n" "${HOOKS[*]}" "${FILES[*]}"
   ' -- "$config"
@@ -51,7 +51,7 @@ assert_hooks() {
 }
 
 # The HOOKS the M1 Pro builds its encrypted image from today.
-apple="base systemd plymouth autodetect microcode modconf kms keyboard sd-vconsole block asahi omarchy-vendorfw omarchy-mac-encrypt sd-encrypt filesystems fsck"
+apple="base systemd plymouth autodetect microcode modconf kms keyboard sd-vconsole block asahi unbloarchy-vendorfw unbloarchy-mac-encrypt sd-encrypt filesystems fsck"
 alarm_systemd="base systemd autodetect microcode modconf kms keyboard sd-vconsole block filesystems fsck"
 alarm_busybox="base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck"
 

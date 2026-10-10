@@ -1,25 +1,25 @@
 #!/bin/bash
 
-# omarchy:summary=Factory-reset this machine back to its freshly-installed state
-# omarchy:group=setup
-# omarchy:requires-sudo=true
-# omarchy:examples=sudo omarchy-system-factory-reset
+# unbloarchy:summary=Factory-reset this machine back to its freshly-installed state
+# unbloarchy:group=setup
+# unbloarchy:requires-sudo=true
+# unbloarchy:examples=sudo unbloarchy-system-factory-reset
 
 # Returns the machine to provisioning state — fully installed, no user, first-boot
 # setup pending — the state you want before selling or handing the machine on.
 #
 # The running root (@) is swapped for a fresh writable clone of the @factory
 # snapshot, so user-installed packages and /etc drift are gone too. That
-# snapshot is taken by the Omarchy Quattro installer, so only machines
+# snapshot is taken by the Unbloarchy Quattro installer, so only machines
 # installed from that ISO can be reset; a machine upgraded to Quattro from an
 # earlier version has no baseline to return to and is turned away.
 #
-# The heavy lifting happens on the next boot via omarchy-system-factory-reset-finish, staged
+# The heavy lifting happens on the next boot via unbloarchy-system-factory-reset-finish, staged
 # here. On encrypted installs the LUKS volume is re-keyed to a throwaway
 # passphrase with an auto-unlock keyfile for the provisioning window; first-boot setup
 # re-keys it to the new owner's password and removes the keyfile. A platform
 # whose boot chain the Limine UKI path can't drive rebuilds, verifies and
-# unlocks it through omarchy-lifecycle-dispatch.
+# unlocks it through unbloarchy-lifecycle-dispatch.
 #
 # Honest limitations:
 #  - On unencrypted disks this is deletion, not forensic erasure. fstrim helps
@@ -31,15 +31,15 @@
 set -euo pipefail
 
 PROVISIONING_DIR=/var/lib/omarchy/provisioning
-PACKAGED_PATH=/usr/bin/omarchy-system-factory-reset
-OMARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
-TOP_MNT=/run/omarchy-system-factory-reset/top
-NEXT_NAME=@omarchy-reset-next
-LOG_FILE=/var/log/omarchy-system-factory-reset.log
+PACKAGED_PATH=/usr/bin/unbloarchy-system-factory-reset
+UNBLOARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
+TOP_MNT=/run/unbloarchy-system-factory-reset/top
+NEXT_NAME=@unbloarchy-reset-next
+LOG_FILE=/var/log/unbloarchy-system-factory-reset.log
 
 # Never replace a newer checkout reset with a different installed implementation.
 if ! /usr/bin/cmp -s -- "${BASH_SOURCE[0]}" "$PACKAGED_PATH"; then
-  echo "Factory reset differs from the installed command. Install the matching Omarchy package before resetting." >&2
+  echo "Factory reset differs from the installed command. Install the matching Unbloarchy package before resetting." >&2
   exit 1
 fi
 
@@ -52,7 +52,7 @@ if (( EUID != 0 )); then
   exec sudo env "${gum_env[@]}" "$PACKAGED_PATH" "$@"
 fi
 
-export PATH="$OMARCHY_PATH/bin:$PATH"
+export PATH="$UNBLOARCHY_PATH/bin:$PATH"
 
 log() {
   echo "$1" | tee -a "$LOG_FILE" >/dev/null
@@ -72,7 +72,7 @@ root_is_btrfs_at() {
   [[ $(findmnt -no FSTYPE /) == btrfs ]] && findmnt -no OPTIONS / | grep -q "subvol=/@\(,\|$\)"
 }
 
-DISPATCH="$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch"
+DISPATCH="$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch"
 
 # A platform whose boot package implements the reset operations rebuilds,
 # verifies and unlocks the factory root's boot chain itself; everywhere else
@@ -272,35 +272,35 @@ stage_luks_rekey() {
 
   [[ $RESET_BOOT == "generic" ]] || return 0
 
-  install -d -m 755 "$next/etc/omarchy"
-  printf '%s' "$passphrase" >"$next/etc/omarchy/provisioning.key"
-  chmod 600 "$next/etc/omarchy/provisioning.key"
+  install -d -m 755 "$next/etc/unbloarchy"
+  printf '%s' "$passphrase" >"$next/etc/unbloarchy/provisioning.key"
+  chmod 600 "$next/etc/unbloarchy/provisioning.key"
 
   install -d "$next/etc/limine-entry-tool.d" "$next/etc/mkinitcpio.conf.d"
-  echo 'KERNEL_CMDLINE[default]+=" cryptkey=rootfs:/etc/omarchy/provisioning.key"' \
-    >"$next/etc/limine-entry-tool.d/99-omarchy-provisioning-unlock.conf"
-  echo 'FILES+=(/etc/omarchy/provisioning.key)' \
-    >"$next/etc/mkinitcpio.conf.d/99-omarchy-provisioning-key.conf"
+  echo 'KERNEL_CMDLINE[default]+=" cryptkey=rootfs:/etc/unbloarchy/provisioning.key"' \
+    >"$next/etc/limine-entry-tool.d/99-unbloarchy-provisioning-unlock.conf"
+  echo 'FILES+=(/etc/unbloarchy/provisioning.key)' \
+    >"$next/etc/mkinitcpio.conf.d/99-unbloarchy-provisioning-key.conf"
 }
 
 install_provisioning_units() {
   local next="$1" unit_src="$2"
 
-  install -Dm644 "$unit_src/omarchy-provision-owner.service" \
-    "$next/etc/systemd/system/omarchy-provision-owner.service"
-  install -Dm644 "$unit_src/omarchy-system-factory-reset-finish.service" \
-    "$next/etc/systemd/system/omarchy-system-factory-reset-finish.service"
+  install -Dm644 "$unit_src/unbloarchy-provision-owner.service" \
+    "$next/etc/systemd/system/unbloarchy-provision-owner.service"
+  install -Dm644 "$unit_src/unbloarchy-system-factory-reset-finish.service" \
+    "$next/etc/systemd/system/unbloarchy-system-factory-reset-finish.service"
 
   install -d "$next/etc/systemd/system/multi-user.target.wants" \
     "$next/etc/systemd/system/sysinit.target.wants"
-  ln -sf /etc/systemd/system/omarchy-provision-owner.service \
-    "$next/etc/systemd/system/multi-user.target.wants/omarchy-provision-owner.service"
-  ln -sf /etc/systemd/system/omarchy-system-factory-reset-finish.service \
-    "$next/etc/systemd/system/sysinit.target.wants/omarchy-system-factory-reset-finish.service"
+  ln -sf /etc/systemd/system/unbloarchy-provision-owner.service \
+    "$next/etc/systemd/system/multi-user.target.wants/unbloarchy-provision-owner.service"
+  ln -sf /etc/systemd/system/unbloarchy-system-factory-reset-finish.service \
+    "$next/etc/systemd/system/sysinit.target.wants/unbloarchy-system-factory-reset-finish.service"
 }
 
 # Start the ESP's limine.conf over from the shipped template and drop the
-# previous Omarchy identity's state. limine-entry-tool keys OS entries by
+# previous Unbloarchy identity's state. limine-entry-tool keys OS entries by
 # machine-id, so after a reset gives the machine a fresh identity, the
 # previous system's entry (with the now-stale UKI hash) would survive, sort
 # first, and make Limine refuse the rebuilt UKI with a hash-mismatch warning.
@@ -384,7 +384,7 @@ rebuild_next_boot() {
   # lived. Recreate it and refresh the resume offset before the UKI build
   # bakes the cmdline; the empty placeholder directory has to go first so the
   # subvolume can be recreated.
-  if [[ -x $next/usr/bin/omarchy-hibernation-setup ]] && grep -q "/swap/swapfile" "$next/etc/fstab"; then
+  if [[ -x $next/usr/bin/unbloarchy-hibernation-setup ]] && grep -q "/swap/swapfile" "$next/etc/fstab"; then
     log "Recreating the hibernation swapfile in the factory system"
     if [[ -d $next/swap ]] && ! btrfs subvolume show "$next/swap" >/dev/null 2>&1; then
       rmdir "$next/swap" 2>/dev/null || true
@@ -396,11 +396,11 @@ rebuild_next_boot() {
     # offset when it is absent, so a surviving one bakes the old swapfile's
     # offset into the rebuilt UKI and breaks resume.
     if [[ ! -f $next/swap/swapfile ]]; then
-      rm -f "$next/etc/mkinitcpio.conf.d/omarchy_resume.conf" \
+      rm -f "$next/etc/mkinitcpio.conf.d/unbloarchy_resume.conf" \
         "$next/etc/limine-entry-tool.d/resume.conf"
     fi
-    if ! chroot "$next" env OMARCHY_PATH=/usr/share/omarchy \
-      /usr/bin/omarchy-hibernation-setup --force --no-rebuild >>"$LOG_FILE" 2>&1; then
+    if ! chroot "$next" env UNBLOARCHY_PATH=/usr/share/omarchy \
+      /usr/bin/unbloarchy-hibernation-setup --force --no-rebuild >>"$LOG_FILE" 2>&1; then
       fail "hibernation setup failed in the factory root (see $LOG_FILE)"
     fi
     [[ -f $next/swap/swapfile ]] ||
@@ -462,8 +462,8 @@ scrub_factory_accounts() {
 sanitize_factory_baseline() {
   local factory="$1"
   btrfs property set -ts "$factory" ro false
-  if [[ -d $factory/var/lib/omarchy/thunderbolt-authorization || -f $factory/etc/omarchy/thunderbolt-authorization.enabled || -f $factory/etc/omarchy/thunderbolt-authorization.pending ]]; then
-    if ! /usr/bin/omarchy-thunderbolt-authorization-admin reset-root "$factory"; then
+  if [[ -d $factory/var/lib/omarchy/thunderbolt-authorization || -f $factory/etc/unbloarchy/thunderbolt-authorization.enabled || -f $factory/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
+    if ! /usr/bin/unbloarchy-thunderbolt-authorization-admin reset-root "$factory"; then
       btrfs property set -ts "$factory" ro true
       fail "could not reset Thunderbolt authorization in the factory baseline"
     fi
@@ -490,7 +490,7 @@ stage_full_reset() {
   btrfs subvolume snapshot "$top/@factory" "$next" >>"$LOG_FILE"
 
   local unit_src="$next/usr/share/omarchy/install/provisioning"
-  [[ -f $unit_src/omarchy-provision-owner.service && -x $next/usr/bin/omarchy-provision-owner ]] ||
+  [[ -f $unit_src/unbloarchy-provision-owner.service && -x $next/usr/bin/unbloarchy-provision-owner ]] ||
     fail "the factory snapshot predates provisioning support; cannot reset from it"
 
   # A normal install's factory snapshot includes the original owner's USB
@@ -518,8 +518,8 @@ stage_full_reset() {
 
   # Leave the new owner's input available before interactive enrollment. Clear
   # inherited accessory identities in both roots; never change the live daemon.
-  if [[ -d $next/var/lib/omarchy/thunderbolt-authorization || -f $next/etc/omarchy/thunderbolt-authorization.enabled || -f $next/etc/omarchy/thunderbolt-authorization.pending ]]; then
-    /usr/bin/omarchy-thunderbolt-authorization-admin reset-root "$next" ||
+  if [[ -d $next/var/lib/omarchy/thunderbolt-authorization || -f $next/etc/unbloarchy/thunderbolt-authorization.enabled || -f $next/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
+    /usr/bin/unbloarchy-thunderbolt-authorization-admin reset-root "$next" ||
       fail "could not reset Thunderbolt authorization in the staged root"
   fi
 
@@ -549,7 +549,7 @@ stage_full_reset() {
   rebuild_next_boot "$next"
 
   log "Activating the factory system"
-  local old="@omarchy-old-$(date +%s)"
+  local old="@unbloarchy-old-$(date +%s)"
   mv "$top/@" "$top/$old"
   # Until the factory root is at @ the reset is not committed: cleanup has the
   # platform's boot package roll its boot state back to the old root and
@@ -585,19 +585,19 @@ require_factory_snapshot() {
   echo
   gum style --bold --foreground 3 "This machine has no factory snapshot to reset to."
   echo
-  gum style "A reset restores the @factory snapshot the Omarchy Quattro installer takes"
+  gum style "A reset restores the @factory snapshot the Unbloarchy Quattro installer takes"
   gum style "right after installing. Machines upgraded to Quattro from an earlier version,"
   gum style "or installed some other way, never got one, so there is no baseline here to"
   gum style "return to."
   echo
-  gum style --foreground 8 "Reinstall from the Omarchy ISO to make this machine resettable."
+  gum style --foreground 8 "Reinstall from the Unbloarchy ISO to make this machine resettable."
   exit 1
 }
 
 main() {
-  omarchy-cmd-present btrfs || { echo "Error: btrfs-progs is required" >&2; exit 1; }
+  unbloarchy-cmd-present btrfs || { echo "Error: btrfs-progs is required" >&2; exit 1; }
 
-  root_is_btrfs_at || fail "reset requires the standard Omarchy Btrfs layout (subvol=@)"
+  root_is_btrfs_at || fail "reset requires the standard Unbloarchy Btrfs layout (subvol=@)"
 
   touch "$LOG_FILE"
   chmod 600 "$LOG_FILE"

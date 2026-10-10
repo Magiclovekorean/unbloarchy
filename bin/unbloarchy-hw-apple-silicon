@@ -1,7 +1,7 @@
 #!/bin/bash -p
 
-# omarchy:summary=Detect whether the computer is an Apple Silicon Mac (the old name of omarchy-hw-aarch64-apple).
-# omarchy:hidden=true
+# unbloarchy:summary=Detect whether the computer is an Apple Silicon Mac (the old name of unbloarchy-hw-aarch64-apple).
+# unbloarchy:hidden=true
 
 # Kept while omarchy-mac's packages and units still call it by this name. Like
 # the predicate it runs, it refuses a launch without -p and searches no PATH.
@@ -12,4 +12,4 @@ fi
 
 dir=${BASH_SOURCE[0]%/*}
 [[ $dir != "${BASH_SOURCE[0]}" ]] || dir=.
-exec "$dir/omarchy-hw-aarch64-apple"
+exec "$dir/unbloarchy-hw-aarch64-apple"

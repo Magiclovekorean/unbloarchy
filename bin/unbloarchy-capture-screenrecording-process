@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# omarchy:summary=Check or signal the current user's recording processes
-# omarchy:args=[--pid <pid>] [--signal INT|KILL]
-# omarchy:hidden=true
+# unbloarchy:summary=Check or signal the current user's recording processes
+# unbloarchy:args=[--pid <pid>] [--signal INT|KILL]
+# unbloarchy:hidden=true
 
 usage() {
-  echo "Usage: omarchy-capture-screenrecording-process [--pid <pid>]... [--signal INT|KILL]" >&2
+  echo "Usage: unbloarchy-capture-screenrecording-process [--pid <pid>]... [--signal INT|KILL]" >&2
   exit 2
 }
 
-proc_root=${OMARCHY_PROC_ROOT:-/proc}
+proc_root=${UNBLOARCHY_PROC_ROOT:-/proc}
 wanted=" "
 signal=""
 

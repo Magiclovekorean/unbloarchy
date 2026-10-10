@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# omarchy:summary=Print the default package set for this computer's platform, or for the named one: the base list plus its architecture's and platform's additions.
-# omarchy:args=[x86|aarch64|aarch64-apple]
-# omarchy:hidden=true
+# unbloarchy:summary=Print the default package set for this computer's platform, or for the named one: the base list plus its architecture's and platform's additions.
+# unbloarchy:args=[x86|aarch64|aarch64-apple]
+# unbloarchy:hidden=true
 
 set -eo pipefail
 
 platform=${1:-}
 if [[ -z $platform ]]; then
-  platform=$(omarchy-hw-platform)
+  platform=$(unbloarchy-hw-platform)
 fi
 
 # Image builders written before the platform names settled pass the old ones.
@@ -32,7 +32,7 @@ esac
 # has no list of its own.
 files=()
 for list in "${lists[@]}"; do
-  file="$OMARCHY_PATH/install/omarchy-$list.packages"
+  file="$UNBLOARCHY_PATH/install/unbloarchy-$list.packages"
   if [[ $list == "base" || -f $file ]]; then
     files+=("$file")
   fi
@@ -47,7 +47,7 @@ names() {
 if [[ $platform == "x86" ]]; then
   names "${files[@]}" | awk '!seen[$0]++'
 else
-  names "${files[@]}" | awk -v skips=<(names "$OMARCHY_PATH/install/omarchy-x86_64-only.packages") '
+  names "${files[@]}" | awk -v skips=<(names "$UNBLOARCHY_PATH/install/unbloarchy-x86_64-only.packages") '
     BEGIN { while ((getline name < skips) > 0) skip[name] = 1 }
     !skip[$0] && !seen[$0]++'
 fi

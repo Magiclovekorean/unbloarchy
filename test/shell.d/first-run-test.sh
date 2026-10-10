@@ -38,18 +38,18 @@ pass "first-run uses one lifecycle completion marker"
 # missing from a build must cost first-run only that unit.
 cat >"$mock_bin/systemctl" <<'SH'
 #!/bin/bash
-[[ $* != *"$OMARCHY_TEST_MISSING_UNIT"* ]] || exit 1
-printf '%s\n' "$*" >>"$OMARCHY_TEST_CALLS"
+[[ $* != *"$UNBLOARCHY_TEST_MISSING_UNIT"* ]] || exit 1
+printf '%s\n' "$*" >>"$UNBLOARCHY_TEST_CALLS"
 SH
-cat >"$mock_bin/omarchy-hook-install" <<'SH'
+cat >"$mock_bin/unbloarchy-hook-install" <<'SH'
 #!/bin/bash
-echo "hook $*" >>"$OMARCHY_TEST_CALLS"
+echo "hook $*" >>"$UNBLOARCHY_TEST_CALLS"
 SH
-chmod +x "$mock_bin/systemctl" "$mock_bin/omarchy-hook-install"
+chmod +x "$mock_bin/systemctl" "$mock_bin/unbloarchy-hook-install"
 
 enable_user_units() {
   rm -f "$test_tmp/calls"
-  PATH="$mock_bin:$PATH" OMARCHY_TEST_CALLS="$test_tmp/calls" OMARCHY_TEST_MISSING_UNIT="$1" \
+  PATH="$mock_bin:$PATH" UNBLOARCHY_TEST_CALLS="$test_tmp/calls" UNBLOARCHY_TEST_MISSING_UNIT="$1" \
     bash "$ROOT/install/user/first-run/enable-user-units.sh"
 }
 

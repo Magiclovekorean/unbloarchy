@@ -8,19 +8,19 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 test_tmp=$(mktemp -d)
 trap 'rm -rf "$test_tmp"' EXIT
 stub_bin="$test_tmp/bin"
-omarchy_path="$test_tmp/omarchy"
+unbloarchy_path="$test_tmp/unbloarchy"
 opt_path="$test_tmp/opt"
 cdm="$opt_path/WidevineCdm/chromium"
 calls="$test_tmp/calls.log"
-mkdir -p "$stub_bin" "$test_tmp/home" "$omarchy_path/install/helpers" "$omarchy_path/config"
+mkdir -p "$stub_bin" "$test_tmp/home" "$unbloarchy_path/install/helpers" "$unbloarchy_path/config"
 
 # The real policy helper writes under /etc without sudo when run as root, so
 # stand it in; this test covers only the CDM link. Its as_root goes through the
 # sudo stub, which logs every link, whatever the test's EUID.
-printf 'browser_policy_setup_dir() { :; }\nas_root() { sudo "$@"; }\n' >"$omarchy_path/install/helpers/browser-policy.sh"
-cp "$ROOT/config/chromium-flags.conf" "$omarchy_path/config/"
+printf 'browser_policy_setup_dir() { :; }\nas_root() { sudo "$@"; }\n' >"$unbloarchy_path/install/helpers/browser-policy.sh"
+cp "$ROOT/config/chromium-flags.conf" "$unbloarchy_path/config/"
 
-for command in omarchy-pkg-add omarchy-pkg-aur-add omarchy-install-chromium-copy-url omarchy-install-chromium-ytdlp omarchy-theme-set-browser omarchy-lifecycle-dispatch; do
+for command in unbloarchy-pkg-add unbloarchy-pkg-aur-add unbloarchy-install-chromium-copy-url unbloarchy-install-chromium-ytdlp unbloarchy-theme-set-browser unbloarchy-lifecycle-dispatch; do
   printf '#!/bin/bash\nexit 0\n' >"$stub_bin/$command"
 done
 cat >"$stub_bin/sudo" <<'SH'
@@ -41,12 +41,12 @@ reset_opt() {
 
 run() {
   : >"$calls"
-  HOME="$test_tmp/home" OMARCHY_PATH="$omarchy_path" OMARCHY_OPT_PATH="$opt_path" \
+  HOME="$test_tmp/home" UNBLOARCHY_PATH="$omarchy_path" UNBLOARCHY_OPT_PATH="$opt_path" \
     TEST_LOG="$calls" PATH="$stub_bin:$PATH" "$@" >/dev/null
 }
 
 install_browser() {
-  run bash "$ROOT/bin/omarchy-install-browser" "$1"
+  run bash "$ROOT/bin/unbloarchy-install-browser" "$1"
 }
 
 links_made() {

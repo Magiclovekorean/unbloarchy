@@ -11,7 +11,7 @@ echo "Rebuild the initramfs so NVIDIA-only systems shed nouveau's unused GSP fir
 # update as a .pacnew) keeps kms and correctly skips the rebuild.
 
 hooks_conf="${UNBLOARCHY_MKINITCPIO_HOOKS_CONF:-/etc/mkinitcpio.conf.d/unbloarchy_hooks.conf}"
-baseline_conf="${hooks_conf%/*}/00-omarchy-hooks.conf"
+baseline_conf="${hooks_conf%/*}/00-unbloarchy-hooks.conf"
 nvidia_conf="${UNBLOARCHY_MKINITCPIO_NVIDIA_CONF:-/etc/mkinitcpio.conf.d/nvidia.conf}"
 rebuild_marker="${UNBLOARCHY_KMS_REBUILD_MARKER:-/var/lib/unbloarchy/migrations/1786605598}"
 

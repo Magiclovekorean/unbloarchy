@@ -485,7 +485,7 @@ assertEqual(
 )
 assertEqual(
   defaultById['trigger.capture.screenrecord.stop'].when,
-  'omarchy-capture-screenrecording --status',
+  'unbloarchy-capture-screenrecording --status',
   'menu shows Stop Screenrecording only when its stop has a recording to end'
 )
 assert(

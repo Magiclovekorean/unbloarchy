@@ -12,7 +12,7 @@ migration="$ROOT/migrations/1786391100.sh"
 # Apple Silicon's BCM4387 is in the ID list, but there the firmware supplicant
 # is the one that works, so the leaf and the migration step aside: a fresh
 # install marks the migration done only for its first user.
-grep -Fq 'omarchy-hw-aarch64-apple && exit 0' "$migration" || fail "Broadcom migration excludes Apple Silicon"
+grep -Fq 'unbloarchy-hw-aarch64-apple && exit 0' "$migration" || fail "Broadcom migration excludes Apple Silicon"
 
 grep -q 'apple/fix-brcmfmac-supplicant.sh' "$all" ||
   fail "the brcmfmac quirk runs during hardware setup"
@@ -58,15 +58,15 @@ printf '\n' >>"$TEST_LOG"
 SH
 
 # Stubbed rather than run: the real one would write the running user's state.
-cat >"$stub_bin/omarchy-state" <<'SH'
+cat >"$stub_bin/unbloarchy-state" <<'SH'
 #!/bin/bash
 
-printf 'omarchy-state' >>"$TEST_LOG"
+printf 'unbloarchy-state' >>"$TEST_LOG"
 printf '\t%s' "$@" >>"$TEST_LOG"
 printf '\n' >>"$TEST_LOG"
 SH
 
-cat >"$stub_bin/omarchy-hw-aarch64-apple" <<'SH'
+cat >"$stub_bin/unbloarchy-hw-aarch64-apple" <<'SH'
 #!/bin/bash
 
 (( ${APPLE_SILICON:-0} == 1 ))
@@ -140,8 +140,8 @@ run_migration() {
   : >"$calls"
 
   WIFI_ID="$wifi_id" T2_HARDWARE="$t2" APPLE_SILICON="$apple_silicon" PATH="$stub_bin:$PATH" TEST_LOG="$calls" \
-    OMARCHY_BRCMFMAC_DMI_VENDOR="$test_tmp/dmi/sys_vendor" \
-    OMARCHY_BRCMFMAC_CONF="$conf" \
+    UNBLOARCHY_BRCMFMAC_DMI_VENDOR="$test_tmp/dmi/sys_vendor" \
+    UNBLOARCHY_BRCMFMAC_CONF="$conf" \
     bash -euo pipefail "$migration" >/dev/null
 }
 
@@ -153,7 +153,7 @@ run_migration "Apple Inc." 4488 1
 grep -q '^options brcmfmac feature_disable=0x82000$' "$conf" 2>/dev/null ||
   fail "the migration fixes a T2 install that never got the quirk" "$(ls -R "$test_tmp/etc" 2>&1)"
 # The option only reaches the driver when brcmfmac next loads.
-grep -Fq $'omarchy-state\tset\treboot-required' "$calls" ||
+grep -Fq $'unbloarchy-state\tset\treboot-required' "$calls" ||
   fail "the migration asks for the reboot that applies it" "$(cat "$calls")"
 pass "the migration fixes a T2 install that never got the quirk"
 

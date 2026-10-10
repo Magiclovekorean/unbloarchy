@@ -3,17 +3,17 @@ echo "Stop the boot from waiting on a black screen for the console to answer"
 # systemd asks the console for its size when PID 1 starts and waits for the
 # reply. With Plymouth holding the screen the reply sometimes never comes, and
 # about 1 boot in 10 sits on a black screen until a key is pressed.
-# omarchy-defaults.conf now carries systemd.tty.term.console=dumb, which makes
+# unbloarchy-defaults.conf now carries systemd.tty.term.console=dumb, which makes
 # systemd skip the query. The package has already written that file by the
 # time this runs; the boot image still holds the old command line until it is
 # rebuilt.
 
-defaults_conf="${OMARCHY_LIMINE_DEFAULTS_CONF:-/etc/limine-entry-tool.d/omarchy-defaults.conf}"
-running_cmdline="${OMARCHY_RUNNING_CMDLINE:-/proc/cmdline}"
+defaults_conf="${UNBLOARCHY_LIMINE_DEFAULTS_CONF:-/etc/limine-entry-tool.d/unbloarchy-defaults.conf}"
+running_cmdline="${UNBLOARCHY_RUNNING_CMDLINE:-/proc/cmdline}"
 rebuild_marker="${OMARCHY_LIMINE_REBUILD_MARKER:-/var/lib/omarchy/migrations/1791581004}"
 param="systemd.tty.term.console=dumb"
 
-omarchy-cmd-present limine-mkinitcpio || exit 0
+unbloarchy-cmd-present limine-mkinitcpio || exit 0
 [[ -f $defaults_conf && -r $running_cmdline ]] || exit 0
 
 # The running kernel keeps its old command line until reboot, so a marker
@@ -31,7 +31,7 @@ sudo limine-mkinitcpio
 
 # The boot menu is on the ESP, which /etc/default/limine names; /boot when it
 # does not, or is not there.
-limine_conf="${OMARCHY_LIMINE_CONF:-}"
+limine_conf="${UNBLOARCHY_LIMINE_CONF:-}"
 if [[ -z $limine_conf ]]; then
   esp=""
   if [[ -r /etc/default/limine ]]; then

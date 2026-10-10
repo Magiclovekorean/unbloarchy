@@ -15,21 +15,21 @@ umask 022
 test_tmp=$(mktemp -d)
 trap 'rm -rf "$test_tmp"' EXIT
 
-unit_name=omarchy-provision-hardware.service
+unit_name=unbloarchy-provision-hardware.service
 unit_source="$ROOT/install/provisioning/$unit_name"
 
-# omarchy-apply-hardware refuses anyone but root, and root never reads the
+# unbloarchy-apply-hardware refuses anyone but root, and root never reads the
 # fixture root. Run a copy whose only change is that check, so a normal user
 # can build an image into a fixture root.
-apply_hardware="$test_tmp/omarchy-apply-hardware"
-sed 's/^if (( EUID != 0 )); then$/if false; then/' "$ROOT/bin/omarchy-apply-hardware" >"$apply_hardware"
+apply_hardware="$test_tmp/unbloarchy-apply-hardware"
+sed 's/^if (( EUID != 0 )); then$/if false; then/' "$ROOT/bin/unbloarchy-apply-hardware" >"$apply_hardware"
 chmod +x "$apply_hardware"
-grep -q '^if false; then$' "$apply_hardware" || fail "the test copy of omarchy-apply-hardware drops only its root check"
+grep -q '^if false; then$' "$apply_hardware" || fail "the test copy of unbloarchy-apply-hardware drops only its root check"
 
 # Commands a hardware leaf would reach for. Any call means a leaf ran.
 stub_bin="$test_tmp/stub-bin"
 mkdir -p "$stub_bin"
-for command in sudo pacman pacman-key systemctl lspci omarchy-pkg-add modinfo; do
+for command in sudo pacman pacman-key systemctl lspci unbloarchy-pkg-add modinfo; do
   cat >"$stub_bin/$command" <<'SH'
 #!/bin/bash
 printf '%s %s\n' "${0##*/}" "$*" >>"$LEAF_CALLS"
@@ -46,7 +46,7 @@ SH
 stub_rebuild mkinitcpio
 # Only the stubs count as present, so a machine with Limine never runs its own
 # limine-mkinitcpio here.
-cat >"$stub_bin/omarchy-cmd-present" <<SH
+cat >"$stub_bin/unbloarchy-cmd-present" <<SH
 #!/bin/bash
 [[ -x $stub_bin/\$1 ]]
 SH
@@ -56,31 +56,31 @@ export LEAF_CALLS="$test_tmp/leaf-calls" REBUILDS="$test_tmp/rebuilds"
 fake_platform "$test_tmp/hw" aarch64-apple
 base_path="$test_tmp/hw/bin:$stub_bin:$ROOT/bin:/usr/local/bin:/usr/bin:/bin"
 
-# An Omarchy tree whose hardware setup is three leaves that log their runs.
+# An Unbloarchy tree whose hardware setup is three leaves that log their runs.
 # Leaves a and b write initramfs drop-ins; b then fails while $FAIL_B exists.
-fixture="$test_tmp/omarchy"
+fixture="$test_tmp/unbloarchy"
 mkdir -p "$fixture/install/helpers" "$fixture/install/provisioning" "$fixture/install/hardware/apple" "$fixture/bin"
 cp "$ROOT/install/helpers/logging.sh" "$ROOT/install/helpers/image-target.sh" "$fixture/install/helpers/"
 cp "$unit_source" "$fixture/install/provisioning/"
 cat >"$fixture/install/hardware/all.sh" <<'SH'
-run_logged "$OMARCHY_INSTALL/hardware/a.sh"
-run_logged "$OMARCHY_INSTALL/hardware/apple/b.sh"
-run_logged "$OMARCHY_INSTALL/hardware/c.sh"
+run_logged "$UNBLOARCHY_INSTALL/hardware/a.sh"
+run_logged "$UNBLOARCHY_INSTALL/hardware/apple/b.sh"
+run_logged "$UNBLOARCHY_INSTALL/hardware/c.sh"
 SH
 cat >"$fixture/install/hardware/a.sh" <<'SH'
-printf 'a user=%s path=%s\n' "${OMARCHY_INSTALL_USER-unset}" "$OMARCHY_PATH" >>"$RUNS"
-mkdir -p "$OMARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d"
-echo 'MODULES+=(a)' >"$OMARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d/a.conf"
+printf 'a user=%s path=%s\n' "${UNBLOARCHY_INSTALL_USER-unset}" "$OMARCHY_PATH" >>"$RUNS"
+mkdir -p "$UNBLOARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d"
+echo 'MODULES+=(a)' >"$UNBLOARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d/a.conf"
 SH
 cat >"$fixture/install/hardware/apple/b.sh" <<'SH'
-mkdir -p "$OMARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d"
-echo 'MODULES+=(b)' >"$OMARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d/b.conf"
+mkdir -p "$UNBLOARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d"
+echo 'MODULES+=(b)' >"$UNBLOARCHY_IMAGE_ROOT/etc/mkinitcpio.conf.d/b.conf"
 [[ ! -e $FAIL_B ]] || return 1
 echo b >>"$RUNS"
 SH
 cat >"$fixture/install/hardware/c.sh" <<'SH'
 echo c >>"$RUNS"
-[[ ! -e $REQUEST_REBUILD ]] || touch "$OMARCHY_IMAGE_BOOT_REBUILD"
+[[ ! -e $REQUEST_REBUILD ]] || touch "$UNBLOARCHY_IMAGE_BOOT_REBUILD"
 SH
 export RUNS="$test_tmp/runs" FAIL_B="$test_tmp/fail-b" REQUEST_REBUILD="$test_tmp/request-rebuild"
 
@@ -100,15 +100,15 @@ write_manifest() {
 }
 
 build() {
-  local root=$1 omarchy=${2:-$fixture}
-  OMARCHY_IMAGE_ROOT="$root" OMARCHY_PATH="$omarchy" OMARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" \
+  local root=$1 unbloarchy=${2:-$fixture}
+  UNBLOARCHY_IMAGE_ROOT="$root" UNBLOARCHY_PATH="$unbloarchy" UNBLOARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" \
     PATH="$base_path" "$apply_hardware" --defer-provisioning
 }
 
 first_boot() {
   local root=$1
-  OMARCHY_IMAGE_ROOT="$root" OMARCHY_PATH="$fixture" OMARCHY_PROC_ROOT="$test_tmp/hw/proc" \
-    PATH="$base_path" "$ROOT/bin/omarchy-provision-hardware"
+  UNBLOARCHY_IMAGE_ROOT="$root" UNBLOARCHY_PATH="$fixture" UNBLOARCHY_PROC_ROOT="$test_tmp/hw/proc" \
+    PATH="$base_path" "$ROOT/bin/unbloarchy-provision-hardware"
 }
 
 reset_logs() {
@@ -126,7 +126,7 @@ reset_logs
 root=$(new_root real)
 write_manifest "$root"
 output=$(build "$root" "$ROOT") || fail "an image build defers the real hardware setup" "$output"
-expected=$(sed -n 's|^run_logged "\$OMARCHY_INSTALL/\(hardware/[^"]*\)"$|install/\1|p' "$ROOT/install/hardware/all.sh")
+expected=$(sed -n 's|^run_logged "\$UNBLOARCHY_INSTALL/\(hardware/[^"]*\)"$|install/\1|p' "$ROOT/install/hardware/all.sh")
 [[ -n $expected && $(queue_of "$root") == "$expected" ]] ||
   fail "an image build queues every hardware leaf in order" "expected:
 $expected
@@ -266,8 +266,8 @@ reset_logs
 root=$(new_root vm)
 write_manifest "$root"
 build "$root" >/dev/null || fail "the fixture image builds for a VM boot"
-output=$(OMARCHY_IMAGE_ROOT="$root" OMARCHY_PATH="$fixture" OMARCHY_PROC_ROOT="$test_tmp/vm/proc" \
-  PATH="$test_tmp/vm/bin:$stub_bin:$ROOT/bin:/usr/local/bin:/usr/bin:/bin" "$ROOT/bin/omarchy-provision-hardware") ||
+output=$(UNBLOARCHY_IMAGE_ROOT="$root" UNBLOARCHY_PATH="$fixture" UNBLOARCHY_PROC_ROOT="$test_tmp/vm/proc" \
+  PATH="$test_tmp/vm/bin:$stub_bin:$ROOT/bin:/usr/local/bin:/usr/bin:/bin" "$ROOT/bin/unbloarchy-provision-hardware") ||
   fail "the first boot on other hardware finishes" "$output"
 [[ $output == *"First boot of an image built for aarch64-apple, on aarch64 hardware"* ]] ||
   fail "the first boot reports the hardware it runs on, not the image target" "$output"
@@ -331,8 +331,8 @@ root=$(new_root cmdline)
 write_manifest "$root"
 build "$root" >/dev/null || fail "the fixture image builds"
 cat >"$fixture/install/hardware/cmdline.sh" <<'SH'
-mkdir -p "$OMARCHY_IMAGE_ROOT/etc/limine-entry-tool.d"
-echo 'KERNEL_CMDLINE[default]+=" example=on"' >"$OMARCHY_IMAGE_ROOT/etc/limine-entry-tool.d/example.conf"
+mkdir -p "$UNBLOARCHY_IMAGE_ROOT/etc/limine-entry-tool.d"
+echo 'KERNEL_CMDLINE[default]+=" example=on"' >"$UNBLOARCHY_IMAGE_ROOT/etc/limine-entry-tool.d/example.conf"
 SH
 printf '%s\n' install/hardware/cmdline.sh >"$root/var/lib/omarchy/image/deferred-steps"
 first_boot "$root" >/dev/null || fail "a step that changes the kernel command line finishes"
@@ -348,8 +348,8 @@ root=$(new_root modprobe)
 write_manifest "$root"
 build "$root" >/dev/null || fail "the fixture image builds"
 cat >"$fixture/install/hardware/modprobe.sh" <<'SH'
-mkdir -p "$OMARCHY_IMAGE_ROOT/etc/modprobe.d"
-echo 'options example flag=1' >"$OMARCHY_IMAGE_ROOT/etc/modprobe.d/example.conf"
+mkdir -p "$UNBLOARCHY_IMAGE_ROOT/etc/modprobe.d"
+echo 'options example flag=1' >"$UNBLOARCHY_IMAGE_ROOT/etc/modprobe.d/example.conf"
 SH
 printf '%s\n' install/hardware/modprobe.sh >"$root/var/lib/omarchy/image/deferred-steps"
 first_boot "$root" >/dev/null || fail "a step that changes module options finishes"
@@ -367,39 +367,39 @@ keyring_bin="$test_tmp/keyring-bin"
 mkdir -p "$keyring_bin" "$fixture/install/post-install"
 # Finalization's repositories are pacman-templates-test.sh's; here they land in
 # the root under test, never the host's /etc.
-sed 's|/etc/pacman|$OMARCHY_IMAGE_ROOT/etc/pacman|g' "$ROOT/install/post-install/pacman.sh" >"$fixture/install/post-install/pacman.sh"
+sed 's|/etc/pacman|$UNBLOARCHY_IMAGE_ROOT/etc/pacman|g' "$ROOT/install/post-install/pacman.sh" >"$fixture/install/post-install/pacman.sh"
 cp "$ROOT/install/helpers/pacman.sh" "$fixture/install/helpers/pacman.sh"
 mkdir -p "$fixture/default"
 cp -r "$ROOT/default/pacman" "$fixture/default/"
 : >"$fixture/install/hardware/pacman.sh"
-for command in pacman-key omarchy-pkg-add; do
+for command in pacman-key unbloarchy-pkg-add; do
   cat >"$keyring_bin/$command" <<'SH'
 #!/bin/bash
 printf '%s %s\n' "${0##*/}" "$*" >>"$KEYRING"
 [[ ${0##*/} != "pacman-key" || ! -e $KEYRING_FAIL ]]
 SH
 done
-printf '#!/bin/bash\necho "$PLATFORM"\n' >"$keyring_bin/omarchy-hw-platform"
+printf '#!/bin/bash\necho "$PLATFORM"\n' >"$keyring_bin/unbloarchy-hw-platform"
 chmod +x "$keyring_bin"/*
 export KEYRING="$test_tmp/keyring" KEYRING_FAIL="$test_tmp/keyring-fail"
 request=var/lib/omarchy/image/pacman-keyring
 
 finalize() {
   mkdir -p "$1/etc/pacman.d"
-  OMARCHY_IMAGE_ROOT="$1" OMARCHY_PATH="$fixture" OMARCHY_INSTALL="$fixture/install" PLATFORM=$2 \
+  UNBLOARCHY_IMAGE_ROOT="$1" UNBLOARCHY_PATH="$fixture" UNBLOARCHY_INSTALL="$fixture/install" PLATFORM=$2 \
     PATH="$keyring_bin:$base_path" bash -e -c 'source "$1"' bash "$fixture/install/post-install/pacman.sh"
 }
 
 keyring_boot() {
-  OMARCHY_IMAGE_ROOT="$1" OMARCHY_PATH="$fixture" OMARCHY_PROC_ROOT="$test_tmp/hw/proc" \
-    PATH="$keyring_bin:$base_path" "$ROOT/bin/omarchy-provision-hardware"
+  UNBLOARCHY_IMAGE_ROOT="$1" UNBLOARCHY_PATH="$fixture" UNBLOARCHY_PROC_ROOT="$test_tmp/hw/proc" \
+    PATH="$keyring_bin:$base_path" "$ROOT/bin/unbloarchy-provision-hardware"
 }
 
 for platform in aarch64; do
   rm -f "$KEYRING"
   root=$(new_root "install-$platform")
   finalize "$root" "$platform" || fail "$platform: install finalization succeeds"
-  [[ $(cat "$KEYRING") == $'omarchy-pkg-add archlinuxarm-keyring\npacman-key --init\npacman-key --populate' ]] ||
+  [[ $(cat "$KEYRING") == $'unbloarchy-pkg-add archlinuxarm-keyring\npacman-key --init\npacman-key --populate' ]] ||
     fail "$platform: an install makes its pacman keyring in finalization, as before" "$(cat "$KEYRING")"
   [[ ! -e $root/$request ]] || fail "$platform: an install requests no first-boot keyring"
 
@@ -408,7 +408,7 @@ for platform in aarch64; do
   write_manifest "$root" $'format=1\nplatform='"$platform"$'\n'
   build "$root" >/dev/null || fail "$platform: the fixture image builds"
   finalize "$root" "$platform" || fail "$platform: image finalization succeeds"
-  [[ $(cat "$KEYRING") == "omarchy-pkg-add archlinuxarm-keyring" ]] ||
+  [[ $(cat "$KEYRING") == "unbloarchy-pkg-add archlinuxarm-keyring" ]] ||
     fail "$platform: an image build makes no pacman keyring" "$(cat "$KEYRING")"
   [[ -f $root/$request ]] || fail "$platform: an image build asks its first boot for the keyring"
 done
@@ -466,11 +466,11 @@ install -m 0644 /dev/null "$root/$request"
 output=$(KEYRING=$RUNS keyring_boot "$root") || fail "a first boot with only a keyring request finishes" "$output"
 [[ $(cat "$RUNS") == "pacman-key --gpgdir $root/etc/pacman.d/gnupg --init"$'\n'"pacman-key --gpgdir $root/etc/pacman.d/gnupg --populate" && ! -e $root/$request ]] ||
   fail "a keyring request is honoured with no queued step" "$(cat "$RUNS" 2>/dev/null)"
-grep -qx 'ConditionPathExists=|/var/lib/omarchy/image/pacman-keyring' "$ROOT/install/provisioning/omarchy-provision-hardware.service" ||
+grep -qx 'ConditionPathExists=|/var/lib/omarchy/image/pacman-keyring' "$ROOT/install/provisioning/unbloarchy-provision-hardware.service" ||
   fail "the first-boot unit also starts for a keyring request alone"
 pass "a keyring request with no queued step still gets the machine's own keyring"
 
-# A leaf a later Omarchy no longer ships is dropped; a queue entry outside the
+# A leaf a later Unbloarchy no longer ships is dropped; a queue entry outside the
 # hardware setup stops the run before anything runs.
 reset_logs
 root=$(new_root gone)
@@ -480,7 +480,7 @@ printf '%s\n' install/hardware/removed.sh install/hardware/c.sh >"$root/var/lib/
 output=$(first_boot "$root") || fail "a step no longer shipped does not block the rest" "$output"
 [[ $output == *"Skipping deferred hardware step install/hardware/removed.sh"* && $(cat "$RUNS") == "c" ]] ||
   fail "a step no longer shipped is skipped and the rest run" "$output"
-pass "a deferred step Omarchy no longer ships is skipped"
+pass "a deferred step Unbloarchy no longer ships is skipped"
 
 # A step that would build the boot image itself asks for the rebuild after the
 # last step instead: one rebuild, even when no
@@ -538,7 +538,7 @@ output=$(first_boot "$root") || fail "the first-boot hardware setup succeeds wit
 [[ -z $output && ! -e $root/var/lib/omarchy ]] || fail "the first-boot hardware setup does nothing with nothing deferred" "$output"
 pass "with nothing deferred the first-boot hardware setup does nothing"
 
-if env -u OMARCHY_IMAGE_ROOT OMARCHY_PATH="$fixture" PATH="$base_path" "$ROOT/bin/omarchy-provision-hardware" >/dev/null 2>&1; then
+if env -u UNBLOARCHY_IMAGE_ROOT UNBLOARCHY_PATH="$fixture" PATH="$base_path" "$ROOT/bin/unbloarchy-provision-hardware" >/dev/null 2>&1; then
   fail "the first-boot hardware setup refuses a normal user"
 fi
 pass "the first-boot hardware setup refuses a normal user"
@@ -546,8 +546,8 @@ pass "the first-boot hardware setup refuses a normal user"
 # The service fires on the queue this helper writes and hands the machine to
 # owner setup and the login screen only after it.
 grep -qx 'ConditionPathExists=|/var/lib/omarchy/image/deferred-steps' "$unit_source" &&
-  grep -qx 'ExecStart=/usr/bin/omarchy-provision-hardware' "$unit_source" &&
-  grep -qx 'Before=omarchy-provision-owner.service display-manager.service' "$unit_source" &&
+  grep -qx 'ExecStart=/usr/bin/unbloarchy-provision-hardware' "$unit_source" &&
+  grep -qx 'Before=unbloarchy-provision-owner.service display-manager.service' "$unit_source" &&
   grep -qx 'WantedBy=multi-user.target' "$unit_source" ||
   fail "the first-boot hardware service runs on the queue before owner setup and the login screen"
 pass "the first-boot hardware service runs on the queue before owner setup and the login screen"
@@ -558,13 +558,13 @@ pass "the first-boot hardware service runs on the queue before owner setup and t
 # Bluetooth leaf, and a target never starts a unit enabled after its start job
 # was made, so that boot has to start bluetooth.service itself. Nothing else
 # does: an install or a rerun of hardware setup leaves the service as it finds it.
-bt_fixture="$test_tmp/omarchy-bluetooth"
+bt_fixture="$test_tmp/unbloarchy-bluetooth"
 mkdir -p "$bt_fixture/install/helpers" "$bt_fixture/install/provisioning" "$bt_fixture/install/hardware"
 cp "$ROOT/install/helpers/logging.sh" "$ROOT/install/helpers/image-target.sh" "$bt_fixture/install/helpers/"
 cp "$unit_source" "$bt_fixture/install/provisioning/"
 cp "$ROOT/install/hardware/bluetooth.sh" "$bt_fixture/install/hardware/"
 cp "$fixture/install/hardware/c.sh" "$bt_fixture/install/hardware/"
-printf 'run_logged "$OMARCHY_INSTALL/hardware/%s"\n' bluetooth.sh c.sh >"$bt_fixture/install/hardware/all.sh"
+printf 'run_logged "$UNBLOARCHY_INSTALL/hardware/%s"\n' bluetooth.sh c.sh >"$bt_fixture/install/hardware/all.sh"
 
 bt_bin="$test_tmp/bt-bin"
 mkdir -p "$bt_bin"
@@ -584,15 +584,15 @@ bt_image() {
   local root
   root=$(new_root "bt-$1")
   write_manifest "$root"
-  OMARCHY_IMAGE_ROOT="$root" OMARCHY_PATH="$bt_fixture" OMARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" \
+  UNBLOARCHY_IMAGE_ROOT="$root" UNBLOARCHY_PATH="$bt_fixture" UNBLOARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" \
     PATH="$bt_path" "$apply_hardware" --defer-provisioning >/dev/null || fail "the Bluetooth fixture image builds"
   printf '%s\n' "$root"
 }
 
 bt_first_boot() {
   rm -f "$SYSTEMCTL_CALLS" "$RUNS"
-  OMARCHY_IMAGE_ROOT="$1" OMARCHY_PATH="$bt_fixture" OMARCHY_PROC_ROOT="$test_tmp/hw/proc" \
-    PATH="$bt_path" "$ROOT/bin/omarchy-provision-hardware" >/dev/null 2>&1
+  UNBLOARCHY_IMAGE_ROOT="$1" UNBLOARCHY_PATH="$bt_fixture" UNBLOARCHY_PROC_ROOT="$test_tmp/hw/proc" \
+    PATH="$bt_path" "$ROOT/bin/unbloarchy-provision-hardware" >/dev/null 2>&1
 }
 
 started=$'enable bluetooth.service\nstart --no-block bluetooth.service'
@@ -627,8 +627,8 @@ pass "a retried queue starts Bluetooth like the first run"
 # Hardware setup outside the first boot, even with the marker inherited.
 rm -f "$SYSTEMCTL_CALLS" "$RUNS"
 root=$(new_root bt-live)
-OMARCHY_IMAGE_DEFERRED_HARDWARE=1 OMARCHY_IMAGE_ROOT="$root" OMARCHY_PATH="$bt_fixture" \
-  OMARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" PATH="$bt_path" "$apply_hardware" --defer-provisioning >/dev/null ||
+UNBLOARCHY_IMAGE_DEFERRED_HARDWARE=1 UNBLOARCHY_IMAGE_ROOT="$root" UNBLOARCHY_PATH="$bt_fixture" \
+  UNBLOARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" PATH="$bt_path" "$apply_hardware" --defer-provisioning >/dev/null ||
   fail "hardware setup without a manifest runs the Bluetooth leaf"
 [[ $(<"$SYSTEMCTL_CALLS") == "enable bluetooth.service" && $(cat "$RUNS") == c ]] ||
   fail "hardware setup outside the first boot only enables Bluetooth" "$(<"$SYSTEMCTL_CALLS")"
@@ -646,16 +646,16 @@ elif unshare --user --map-root-user true 2>/dev/null; then
   reset_logs
   root=$(new_root root-build)
   write_manifest "$root"
-  OMARCHY_IMAGE_ROOT="$root" OMARCHY_PATH="$fixture" OMARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" \
-    PATH="$base_path" "${root_runner[@]}" "$ROOT/bin/omarchy-apply-hardware" --defer-provisioning >/dev/null ||
+  UNBLOARCHY_IMAGE_ROOT="$root" UNBLOARCHY_PATH="$fixture" UNBLOARCHY_INSTALL_LOG_FILE="$root/var/log/omarchy-install.log" \
+    PATH="$base_path" "${root_runner[@]}" "$ROOT/bin/unbloarchy-apply-hardware" --defer-provisioning >/dev/null ||
     fail "root runs hardware setup with a fixture root in its environment"
   [[ $(cat "$RUNS") == $'a user= path='"$fixture"$'\nb\nc' && ! -e $root/var/lib/omarchy/image/deferred-steps ]] ||
     fail "root ignores a fixture manifest named by its environment"
 
   # Both commands take every path from the helper, which as root answers with
   # the live ones whatever the environment says.
-  resolved=$(OMARCHY_IMAGE_ROOT="$root" "${root_runner[@]}" bash -c \
-    'source "$1"; omarchy_image_init && printf "%s\n" "$omarchy_image_manifest" "$omarchy_image_queue" "$omarchy_image_systemd_dir"' \
+  resolved=$(UNBLOARCHY_IMAGE_ROOT="$root" "${root_runner[@]}" bash -c \
+    'source "$1"; unbloarchy_image_init && printf "%s\n" "$unbloarchy_image_manifest" "$unbloarchy_image_queue" "$unbloarchy_image_systemd_dir"' \
     bash "$ROOT/install/helpers/image-target.sh") || fail "root resolves the image paths"
   [[ $resolved == $'/var/lib/omarchy/image/target\n/var/lib/omarchy/image/deferred-steps\n/etc/systemd/system' ]] ||
     fail "root resolves the live image paths whatever its environment names" "$resolved"

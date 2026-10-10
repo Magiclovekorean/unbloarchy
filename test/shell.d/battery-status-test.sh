@@ -23,7 +23,7 @@ cat >"$tmp_dir/bin/upower" <<'STUB'
 if [[ $1 == "-e" ]]; then
   echo "/org/freedesktop/UPower/devices/line_power_macsmc_ac"
   echo "/org/freedesktop/UPower/devices/battery_hidpp_battery_0"
-  echo "/org/freedesktop/UPower/devices/battery_${OMARCHY_TEST_NATIVE_PATH//-/_}"
+  echo "/org/freedesktop/UPower/devices/battery_${UNBLOARCHY_TEST_NATIVE_PATH//-/_}"
   exit 0
 fi
 
@@ -56,7 +56,7 @@ exit 1
 STUB
 chmod +x "$tmp_dir/bin/upower"
 
-shell_output=$(OMARCHY_TEST_NATIVE_PATH=macsmc-battery OMARCHY_POWER_SUPPLY_PATH="$tmp_dir/power" PATH="$tmp_dir/bin:$PATH" "$ROOT/bin/omarchy-battery-status" --shell)
+shell_output=$(UNBLOARCHY_TEST_NATIVE_PATH=macsmc-battery UNBLOARCHY_POWER_SUPPLY_PATH="$tmp_dir/power" PATH="$tmp_dir/bin:$PATH" "$ROOT/bin/unbloarchy-battery-status" --shell)
 
 grep -Fx $'percentage\t51%' <<<"$shell_output" >/dev/null || fail "battery status reports the machine's battery, not the mouse's"
 grep -Fx $'state\tdischarging' <<<"$shell_output" >/dev/null || fail "battery status reports state"
@@ -70,7 +70,7 @@ grep -Fx $'threshold\t75-80%' <<<"$shell_output" >/dev/null || fail "battery sta
 mkdir -p "$tmp_dir/power/CMB0"
 printf '7300000\n' >"$tmp_dir/power/CMB0/power_now"
 sed -i 's/native-path:          macsmc-battery/native-path:          CMB0/' "$tmp_dir/bin/upower"
-generic_output=$(OMARCHY_TEST_NATIVE_PATH=CMB0 OMARCHY_POWER_SUPPLY_PATH="$tmp_dir/power" PATH="$tmp_dir/bin:$PATH" "$ROOT/bin/omarchy-battery-status" --shell)
+generic_output=$(UNBLOARCHY_TEST_NATIVE_PATH=CMB0 UNBLOARCHY_POWER_SUPPLY_PATH="$tmp_dir/power" PATH="$tmp_dir/bin:$PATH" "$ROOT/bin/unbloarchy-battery-status" --shell)
 grep -Fx $'rate\t7.3W' <<<"$generic_output" >/dev/null || fail "battery status accepts arbitrary UPower battery paths"
 pass "battery status supports Apple Silicon and arbitrary native battery paths"
 
@@ -108,19 +108,19 @@ exit 1
 STUB
 chmod +x "$hold_dir/bin/upower"
 
-hold_output=$(OMARCHY_POWER_SUPPLY_PATH="$hold_dir/power" PATH="$hold_dir/bin:$PATH" "$ROOT/bin/omarchy-battery-status" --shell)
+hold_output=$(UNBLOARCHY_POWER_SUPPLY_PATH="$hold_dir/power" PATH="$hold_dir/bin:$PATH" "$ROOT/bin/unbloarchy-battery-status" --shell)
 
 grep -Fx $'state\tcharging' <<<"$hold_output" >/dev/null || fail "a hold below its threshold is still charging"
 pass "battery status doesn't trip a hold early"
 
 # Once the battery reaches the threshold, idle charging is holding.
 sed -i 's/percentage:           79.5%/percentage:           80.0%/' "$hold_dir/bin/upower"
-held_output=$(OMARCHY_POWER_SUPPLY_PATH="$hold_dir/power" PATH="$hold_dir/bin:$PATH" "$ROOT/bin/omarchy-battery-status" --shell)
+held_output=$(UNBLOARCHY_POWER_SUPPLY_PATH="$hold_dir/power" PATH="$hold_dir/bin:$PATH" "$ROOT/bin/unbloarchy-battery-status" --shell)
 grep -Fx $'percentage\t80%' <<<"$held_output" >/dev/null || fail "threshold percentage still displays as 80%"
 grep -Fx $'state\tholding' <<<"$held_output" >/dev/null || fail "idle charging at the threshold is holding"
 pass "battery status reports holding once the raw percentage reaches the threshold"
 
-if matches=$(rg -n 'omarchy-battery-(capacity|remaining|remaining-time)' "$ROOT/bin" "$ROOT/test" "$ROOT/shell" "$ROOT/docs"); then
+if matches=$(rg -n 'unbloarchy-battery-(capacity|remaining|remaining-time)' "$ROOT/bin" "$ROOT/test" "$ROOT/shell" "$ROOT/docs"); then
   fail "battery status owns capacity and remaining calculations" "$matches"
 fi
 

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# omarchy:summary=Add or remove an EFI boot entry for the Omarchy UKI, allowing the system to boot directly
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Add or remove an EFI boot entry for the Unbloarchy UKI, allowing the system to boot directly
+# unbloarchy:requires-sudo=true
 
 # Apple Silicon boots m1n1, then U-Boot, which finds the bootloader on its own
 # and creates its boot entries itself, so there is no direct-boot entry to add
 # or remove.
-if omarchy-hw-aarch64-apple; then
+if unbloarchy-hw-aarch64-apple; then
   echo "Error: Direct boot is not supported on Apple Silicon: U-Boot finds the bootloader itself" >&2
   exit 1
 fi
@@ -34,22 +34,22 @@ case "${bios_vendor,,}" in
     ;;
 esac
 
-existing_entry=$(efibootmgr | grep -E "^Boot[0-9A-Fa-f]+\*? Omarchy([[:space:]]|$)" | head -1)
+existing_entry=$(efibootmgr | grep -E "^Boot[0-9A-Fa-f]+\*? Unbloarchy([[:space:]]|$)" | head -1)
 
 if [[ -n $existing_entry ]]; then
   boot_num=$(echo "$existing_entry" | sed -n 's/^Boot\([0-9A-Fa-f]\+\).*/\1/p')
 
-  if gum confirm "Disable direct boot (remove Omarchy EFI entry)?"; then
+  if gum confirm "Disable direct boot (remove Unbloarchy EFI entry)?"; then
     echo "Removing EFI boot entry $boot_num"
     sudo efibootmgr --bootnum "$boot_num" --delete-bootnum >/dev/null
   fi
 
   exit 0
 else
-  uki_file=$(sudo find /boot/EFI/Linux/ -name "omarchy*.efi" -printf "%f\n" 2>/dev/null | head -1)
+  uki_file=$(sudo find /boot/EFI/Linux/ -name "unbloarchy*.efi" -printf "%f\n" 2>/dev/null | head -1)
 
   if [[ -z $uki_file ]]; then
-    echo "Error: No Omarchy UKI found in /boot/EFI/Linux/" >&2
+    echo "Error: No Unbloarchy UKI found in /boot/EFI/Linux/" >&2
     exit 1
   fi
 
@@ -63,7 +63,7 @@ else
     sudo efibootmgr --create \
       --disk "$disk" \
       --part "$part" \
-      --label "Omarchy" \
+      --label "Unbloarchy" \
       --loader "\\EFI\\Linux\\$uki_file"
   fi
 fi

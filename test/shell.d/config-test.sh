@@ -223,7 +223,7 @@ def installs_first(text):
   enable = text.find("systemctl --user enable")
   return bool(copy) and (enable < 0 or copy.start() < enable)
 
-named = 'unit="$OMARCHY_PATH/default/systemd/user/a.service"\n'
+named = 'unit="$UNBLOARCHY_PATH/default/systemd/user/a.service"\n'
 if installs_first(named + "systemctl --user enable a.service\n"):
   errors.append("unit check accepts a command that names a unit's source but never installs it")
 if installs_first(named + 'systemctl --user enable a.service\ninstall -Dm644 "$unit" "$target"\n'):
@@ -243,10 +243,10 @@ for unit in sorted(path.name for path in (root / "default/systemd/user").glob("*
 # Existing users have an absolute wants symlink to the old unit path, and the
 # migration that repoints it only runs for users who run an update -- the
 # opposite of who the notifier is for. Dropping this alias strands them.
-notify_alias = 'ln -sfn omarchy-migrate-notify.service "$pkgdir/usr/lib/systemd/user/omarchy-update-user-notify.service"'
+notify_alias = 'ln -sfn unbloarchy-migrate-notify.service "$pkgdir/usr/lib/systemd/user/unbloarchy-update-user-notify.service"'
 if notify_alias not in pkgbuild:
   errors.append(
-    "PKGBUILD does not ship the omarchy-update-user-notify.service compatibility "
+    "PKGBUILD does not ship the unbloarchy-update-user-notify.service compatibility "
     "alias, so users who have not run migration 1785095882 lose the login notifier"
   )
 

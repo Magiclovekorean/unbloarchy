@@ -977,7 +977,7 @@ else
   printf '#!/bin/bash\necho "sudo $*" >>"%s"\n' "$scratch/apple-sudo" >"$scratch/apple-stubs/sudo"
   chmod +x "$scratch/apple-stubs/sudo"
   status=0
-  OMARCHY_PROC_ROOT="$scratch/apple/proc" PATH="$scratch/apple/bin:$scratch/apple-stubs:$ROOT/bin:$PATH" \
+  UNBLOARCHY_PROC_ROOT="$scratch/apple/proc" PATH="$scratch/apple/bin:$scratch/apple-stubs:$ROOT/bin:$PATH" \
     "$scratch/setup" --boot --yes >"$scratch/apple-out" 2>&1 || status=$?
   (( status == 2 )) || fail "Apple Silicon refuses USB authorization from boot" "$(cat "$scratch/apple-out")"
   grep -Fq "not available on Apple Silicon" "$scratch/apple-out" || fail "the refusal says why" "$(cat "$scratch/apple-out")"

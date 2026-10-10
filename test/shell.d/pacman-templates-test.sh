@@ -12,7 +12,7 @@ require_command pacman-conf
 
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
-export OMARCHY_PATH="$ROOT"
+export UNBLOARCHY_PATH="$ROOT"
 source "$ROOT/install/helpers/pacman.sh"
 
 platforms="x86 aarch64 aarch64-apple"
@@ -24,17 +24,17 @@ channels_for() {
 
 # ── the templates ────────────────────────────────────────────────────────────
 
-[[ $(omarchy_pacman_templates x86) == "$ROOT/default/pacman" ]] || fail "x86 keeps its templates where they were"
-[[ $(omarchy_pacman_templates aarch64) == "$ROOT/default/pacman/aarch64" ]] || fail "plain aarch64 uses the aarch64 templates"
-[[ $(omarchy_pacman_templates aarch64-apple) == "$ROOT/default/pacman/aarch64-apple" ]] || fail "Apple Silicon uses its own templates"
-! omarchy_pacman_templates riscv 2>/dev/null || fail "an unknown platform has no templates"
+[[ $(unbloarchy_pacman_templates x86) == "$ROOT/default/pacman" ]] || fail "x86 keeps its templates where they were"
+[[ $(unbloarchy_pacman_templates aarch64) == "$ROOT/default/pacman/aarch64" ]] || fail "plain aarch64 uses the aarch64 templates"
+[[ $(unbloarchy_pacman_templates aarch64-apple) == "$ROOT/default/pacman/aarch64-apple" ]] || fail "Apple Silicon uses its own templates"
+! unbloarchy_pacman_templates riscv 2>/dev/null || fail "an unknown platform has no templates"
 pass "each platform's templates sit in a directory of their own, x86_64's where they always were"
 
-[[ $(omarchy_pacman_default_channel x86) == stable ]] || fail "x86 defaults to stable"
+[[ $(unbloarchy_pacman_default_channel x86) == stable ]] || fail "x86 defaults to stable"
 for platform in aarch64 aarch64-apple; do
-  [[ $(omarchy_pacman_default_channel "$platform") == edge ]] || fail "$platform defaults to edge"
+  [[ $(unbloarchy_pacman_default_channel "$platform") == edge ]] || fail "$platform defaults to edge"
 done
-! omarchy_pacman_default_channel riscv 2>/dev/null || fail "an unknown platform has no default channel"
+! unbloarchy_pacman_default_channel riscv 2>/dev/null || fail "an unknown platform has no default channel"
 pass "x86 defaults to stable and every aarch64 platform to edge"
 
 # pacman reads each repository list from the template, with its mirrorlist
@@ -45,7 +45,7 @@ repos() {
   pacman-conf --config "$work/pacman.conf" --repo-list | tr '\n' ' '
 }
 for platform in $platforms; do
-  templates=$(omarchy_pacman_templates "$platform")
+  templates=$(unbloarchy_pacman_templates "$platform")
   for channel in stable rc; do
     [[ $platform == "x86" ]] && continue
     [[ ! -e $templates/pacman-$channel.conf && ! -e $templates/mirrorlist-$channel ]] ||
@@ -56,15 +56,15 @@ for platform in $platforms; do
       fail "$platform has a $channel template and mirrorlist"
     list=$(repos "$templates" "$channel") || fail "$platform $channel: pacman reads the template"
     case $platform in
-      x86) expected="omarchy core extra multilib " ;;
-      aarch64) expected="omarchy core extra alarm aur " ;;
-      aarch64-apple) expected="omarchy asahi-alarm core extra alarm aur " ;;
+      x86) expected="unbloarchy core extra multilib " ;;
+      aarch64) expected="unbloarchy core extra alarm aur " ;;
+      aarch64-apple) expected="unbloarchy asahi-alarm core extra alarm aur " ;;
     esac
     [[ $list == "$expected" ]] || fail "$platform $channel: repositories in order" "$list"
     # $arch stays literal: pacman fills it in on the machine.
     server=$(sed -n '/^\[omarchy\]/,/^\[/s/^Server = //p' "$templates/pacman-$channel.conf")
     [[ $server == "https://pkgs.omarchy.org/$channel/\$arch" ]] ||
-      fail "$platform $channel: Omarchy's $channel repository" "$server"
+      fail "$platform $channel: Unbloarchy's $channel repository" "$server"
   done
 done
 pass "x86 has templates for stable, rc and edge and aarch64 for edge alone, each with its repositories in order"
@@ -73,8 +73,8 @@ pass "x86 has templates for stable, rc and edge and aarch64 for edge alone, each
 
 finalize_bin=$work/finalize-bin
 mkdir -p "$finalize_bin"
-printf '#!/bin/bash\necho "$PLATFORM"\n' >"$finalize_bin/omarchy-hw-platform"
-for command in omarchy-pkg-add pacman-key; do
+printf '#!/bin/bash\necho "$PLATFORM"\n' >"$finalize_bin/unbloarchy-hw-platform"
+for command in unbloarchy-pkg-add pacman-key; do
   printf '#!/bin/bash\nexit 0\n' >"$finalize_bin/$command"
 done
 chmod +x "$finalize_bin"/*
@@ -88,16 +88,16 @@ if (( EUID == 0 )); then
   skip "install finalization copies the platform's channel template and mirrorlist (refuses to run as root)"
 else
 for platform in $platforms; do
-  templates=$(omarchy_pacman_templates "$platform")
+  templates=$(unbloarchy_pacman_templates "$platform")
   # An install built for a channel the platform has no templates for, or for
   # none, gets the platform's default channel.
   for channel in stable rc edge ""; do
     expected=$channel
-    [[ -n $expected && -f $templates/pacman-$expected.conf ]] || expected=$(omarchy_pacman_default_channel "$platform")
+    [[ -n $expected && -f $templates/pacman-$expected.conf ]] || expected=$(unbloarchy_pacman_default_channel "$platform")
     rm -rf "$work/etc"
     mkdir -p "$work/etc/pacman.d"
     printf 'offline\n' | tee "$work/etc/pacman.conf" >"$work/etc/pacman.d/mirrorlist"
-    OMARCHY_IMAGE_ROOT=$work OMARCHY_MIRROR=$channel PLATFORM=$platform OMARCHY_INSTALL="$work/install" PATH="$finalize_bin:$PATH" \
+    UNBLOARCHY_IMAGE_ROOT=$work UNBLOARCHY_MIRROR=$channel PLATFORM=$platform UNBLOARCHY_INSTALL="$work/install" PATH="$finalize_bin:$PATH" \
       bash -e -c 'source "$1"' bash "$work/finalize.sh" >/dev/null || fail "$platform finalization on '$channel'"
     cmp -s "$work/etc/pacman.conf" "$templates/pacman-$expected.conf" || fail "$platform '$channel': finalization copies the $expected template"
     cmp -s "$work/etc/pacman.d/mirrorlist" "$templates/mirrorlist-$expected" || fail "$platform '$channel': finalization copies the $expected mirrorlist"
@@ -110,10 +110,10 @@ fi
 
 rm -rf "$work"
 source "$SHELL_TEST_DIR/fixtures/sudo-boundary-test.sh"
-copy_boundary_file bin/omarchy-refresh-pacman
+copy_boundary_file bin/unbloarchy-refresh-pacman
 
 refresh() {
-  "$SUDO_TEST_ROOT/bin/omarchy-refresh-pacman" "$@" >"$boundary_tmp/output" 2>&1
+  "$SUDO_TEST_ROOT/bin/unbloarchy-refresh-pacman" "$@" >"$boundary_tmp/output" 2>&1
 }
 events() {
   grep -vE '^sudo (-h|-k)$' "$SUDO_TEST_LOG" || true
@@ -129,7 +129,7 @@ for platform in $platforms; do
   for channel in $(channels_for "$platform") ""; do
     reset_boundary
     SUDO_TEST_PLATFORM=$platform refresh $channel || fail "$platform refreshes to '$channel'" "$(cat "$boundary_tmp/output")"
-    [[ -n $channel ]] || channel=$(omarchy_pacman_default_channel "$platform")
+    [[ -n $channel ]] || channel=$(unbloarchy_pacman_default_channel "$platform")
     python3 - "$SUDO_TEST_LOG" "$templates" "$channel" <<'PY'
 import sys
 events = [e for e in open(sys.argv[1]).read().splitlines() if e not in ('sudo -h', 'sudo -k')]
@@ -142,7 +142,7 @@ expected = [
 ]
 copies = [e for e in events if e.startswith('step:cp ')]
 assert copies == expected, events
-hook = events.index('step:omarchy-hook pre-refresh-pacman')
+hook = events.index('step:unbloarchy-hook pre-refresh-pacman')
 transaction = events.index('step:pacman -Syyuu --noconfirm')
 assert events.index(expected[-1]) < hook < transaction, events
 PY
@@ -158,11 +158,11 @@ for platform in aarch64 aarch64-apple; do
     reset_boundary
     if SUDO_TEST_PLATFORM=$platform refresh "$channel"; then fail "$platform: $channel is refused"; fi
     [[ -z $(events) ]] || fail "$platform: $channel stops before anything" "$(events)"
-    grep -q "Omarchy has no $channel channel for $platform" "$boundary_tmp/output" || fail "the refusal says why" "$(cat "$boundary_tmp/output")"
+    grep -q "Unbloarchy has no $channel channel for $platform" "$boundary_tmp/output" || fail "the refusal says why" "$(cat "$boundary_tmp/output")"
     assert_boundary_cold "$platform $channel"
   done
 done
-cat >"$SUDO_TEST_ROOT/bin/omarchy-hw-platform" <<'STUB'
+cat >"$SUDO_TEST_ROOT/bin/unbloarchy-hw-platform" <<'STUB'
 #!/bin/bash
 exit 1
 STUB

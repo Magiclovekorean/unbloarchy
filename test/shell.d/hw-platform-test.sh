@@ -4,7 +4,7 @@ set -euo pipefail
 
 source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 
-detector="$ROOT/bin/omarchy-hw-platform"
+detector="$ROOT/bin/unbloarchy-hw-platform"
 test_tmp=$(mktemp -d)
 trap 'rm -rf "$test_tmp"' EXIT
 
@@ -28,7 +28,7 @@ if (( EUID == 0 )) || unshare --user --map-root-user true 2>/dev/null; then
       mkdir -p "$fixture/sys/firmware/devicetree/base"
       cp "$fixture/proc/device-tree/compatible" "$fixture/sys/firmware/devicetree/base/compatible"
     fi
-    overridden=$(OMARCHY_PROC_ROOT="$fixture/proc" OMARCHY_SYS_ROOT="$fixture/sys" PATH="$fixture/bin:$ROOT/bin:$PATH" \
+    overridden=$(UNBLOARCHY_PROC_ROOT="$fixture/proc" UNBLOARCHY_SYS_ROOT="$fixture/sys" PATH="$fixture/bin:$ROOT/bin:$PATH" \
       "${root_runner[@]}" "$detector") || fail "root detects the live platform with a $platform fixture in its environment"
     [[ $overridden == "$live" ]] ||
       fail "root ignores a $platform fixture in its environment" "live: $live
@@ -41,7 +41,7 @@ fi
 
 # -p in the shebang is what keeps exported functions and BASH_ENV out, so an
 # ordinary Bash launch with a decoy -p argument is refused before it reads anything.
-for command in omarchy-hw-platform omarchy-hw-aarch64-apple omarchy-hw-apple-silicon; do
+for command in unbloarchy-hw-platform unbloarchy-hw-aarch64-apple unbloarchy-hw-apple-silicon; do
   if /usr/bin/bash "$ROOT/bin/$command" -p >/dev/null 2>"$test_tmp/error"; then
     fail "$command refuses an ordinary Bash launch"
   fi
@@ -54,12 +54,12 @@ require_platform_fixtures "the platform fixtures"
 # The three platforms every caller is written against.
 for platform in aarch64-apple aarch64 x86; do
   fixture="$test_tmp/$platform"
-  actual=$(OMARCHY_PROC_ROOT="$fixture/proc" PATH="$fixture/bin:$ROOT/bin:$PATH" "$detector") ||
+  actual=$(UNBLOARCHY_PROC_ROOT="$fixture/proc" PATH="$fixture/bin:$ROOT/bin:$PATH" "$detector") ||
     fail "the $platform fixture is detected"
   [[ $actual == "$platform" ]] || fail "the $platform fixture is detected" "actual: $actual"
 
   apple_status=0
-  OMARCHY_PROC_ROOT="$fixture/proc" PATH="$fixture/bin:$ROOT/bin:$PATH" "$ROOT/bin/omarchy-hw-aarch64-apple" || apple_status=$?
+  UNBLOARCHY_PROC_ROOT="$fixture/proc" PATH="$fixture/bin:$ROOT/bin:$PATH" "$ROOT/bin/unbloarchy-hw-aarch64-apple" || apple_status=$?
   if [[ $platform == "aarch64-apple" ]]; then
     (( apple_status == 0 )) || fail "the Apple predicate accepts the Apple fixture"
   else
@@ -71,9 +71,9 @@ done
 # Systemd and the shell run the predicate by absolute path with whatever PATH
 # they have; it must use the detector shipped beside it.
 fixture="$test_tmp/aarch64-apple"
-OMARCHY_PROC_ROOT="$fixture/proc" PATH="$fixture/bin:/usr/bin:/bin" "$ROOT/bin/omarchy-hw-aarch64-apple" ||
-  fail "the Apple predicate finds its detector without Omarchy on PATH"
-pass "the Apple predicate finds its detector without Omarchy on PATH"
+UNBLOARCHY_PROC_ROOT="$fixture/proc" PATH="$fixture/bin:/usr/bin:/bin" "$ROOT/bin/unbloarchy-hw-aarch64-apple" ||
+  fail "the Apple predicate finds its detector without Unbloarchy on PATH"
+pass "the Apple predicate finds its detector without Unbloarchy on PATH"
 
 stub_bin="$test_tmp/bin"
 mkdir -p "$stub_bin"
@@ -87,7 +87,7 @@ chmod +x "$stub_bin/uname"
 # $1 names a case directory holding proc/ and sys/ roots; $2 is the CPU.
 detect() {
   local case_dir="$test_tmp/cases/$1"
-  TEST_ARCH="${2:-aarch64}" OMARCHY_PROC_ROOT="$case_dir/proc" OMARCHY_SYS_ROOT="$case_dir/sys" \
+  TEST_ARCH="${2:-aarch64}" UNBLOARCHY_PROC_ROOT="$case_dir/proc" UNBLOARCHY_SYS_ROOT="$case_dir/sys" \
     PATH="$stub_bin:$ROOT/bin:$PATH" "$detector" 2>"$test_tmp/error"
 }
 
@@ -171,8 +171,8 @@ write_tree vendor-vs-none sys linux,dummy-virt
 expect_contradiction vendor-vs-none aarch64 "proc naming Apple while sysfs names nobody fails"
 expect_contradiction m1-pro x86_64 "an Apple device tree on an x86 CPU fails"
 expect_contradiction yoga-slim7x x86_64 "a Qualcomm device tree on an x86 CPU fails"
-if TEST_ARCH=x86_64 OMARCHY_PROC_ROOT="$test_tmp/cases/m1-pro/proc" PATH="$stub_bin:$ROOT/bin:$PATH" \
-  "$ROOT/bin/omarchy-hw-aarch64-apple" 2>/dev/null; then
+if TEST_ARCH=x86_64 UNBLOARCHY_PROC_ROOT="$test_tmp/cases/m1-pro/proc" PATH="$stub_bin:$ROOT/bin:$PATH" \
+  "$ROOT/bin/unbloarchy-hw-aarch64-apple" 2>/dev/null; then
   fail "the Apple predicate fails closed on contradictory identity"
 fi
 pass "contradictory identity fails with an explanation"
@@ -181,7 +181,7 @@ failing_uname="$test_tmp/failing-uname"
 mkdir -p "$failing_uname"
 printf '#!/bin/bash\nexit 1\n' >"$failing_uname/uname"
 chmod +x "$failing_uname/uname"
-if OMARCHY_PROC_ROOT="$test_tmp/cases/acpi/proc" PATH="$failing_uname:$PATH" "$detector" 2>"$test_tmp/error"; then
+if UNBLOARCHY_PROC_ROOT="$test_tmp/cases/acpi/proc" PATH="$failing_uname:$PATH" "$detector" 2>"$test_tmp/error"; then
   fail "an unreadable CPU architecture fails instead of guessing generic"
 fi
 grep -Fq "cannot read the CPU architecture" "$test_tmp/error" || fail "an unreadable CPU architecture explains itself" "$(cat "$test_tmp/error")"
@@ -193,11 +193,11 @@ for platform in x86 aarch64 aarch64-apple; do
   fake_platform "$test_tmp/arch-$platform" "$platform"
   arch_path="$test_tmp/arch-$platform/bin:$ROOT/bin:$PATH"
   if [[ $platform == "x86" ]]; then
-    PATH=$arch_path omarchy-hw-x86 || fail "x86: omarchy-hw-x86 accepts it"
-    ! PATH=$arch_path omarchy-hw-aarch64 || fail "x86: omarchy-hw-aarch64 rejects it"
+    PATH=$arch_path unbloarchy-hw-x86 || fail "x86: unbloarchy-hw-x86 accepts it"
+    ! PATH=$arch_path unbloarchy-hw-aarch64 || fail "x86: unbloarchy-hw-aarch64 rejects it"
   else
-    PATH=$arch_path omarchy-hw-aarch64 || fail "$platform: omarchy-hw-aarch64 accepts it"
-    ! PATH=$arch_path omarchy-hw-x86 || fail "$platform: omarchy-hw-x86 rejects it"
+    PATH=$arch_path unbloarchy-hw-aarch64 || fail "$platform: unbloarchy-hw-aarch64 accepts it"
+    ! PATH=$arch_path unbloarchy-hw-x86 || fail "$platform: unbloarchy-hw-x86 rejects it"
   fi
 done
-pass "omarchy-hw-x86 and omarchy-hw-aarch64 split every platform by its CPU"
+pass "unbloarchy-hw-x86 and unbloarchy-hw-aarch64 split every platform by its CPU"

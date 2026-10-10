@@ -4,7 +4,7 @@ set -euo pipefail
 
 source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 
-dispatch="$ROOT/bin/omarchy-lifecycle-dispatch"
+dispatch="$ROOT/bin/unbloarchy-lifecycle-dispatch"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
@@ -20,7 +20,7 @@ cp -r "$tmp/aarch64-apple/bin" "$tmp/contradiction/bin"
 
 # A root-owned directory of entrypoints stands in for the boot package; in a
 # fixture root the caller's own files count as root's.
-implementation=usr/lib/omarchy/mac-boot
+implementation=usr/lib/unbloarchy/mac-boot
 install_implementation() {
   local root=$1 operation
   rm -rf "$root"
@@ -41,7 +41,7 @@ SH
 on() {
   local platform=$1 root=$2
   shift 2
-  OMARCHY_PROC_ROOT="$tmp/$platform/proc" OMARCHY_LIFECYCLE_ROOT="$root" PATH="$tmp/$platform/bin:$PATH" \
+  UNBLOARCHY_PROC_ROOT="$tmp/$platform/proc" UNBLOARCHY_LIFECYCLE_ROOT="$root" PATH="$tmp/$platform/bin:$PATH" \
     "$dispatch" "$@"
 }
 
@@ -76,7 +76,7 @@ for platform in x86 aarch64; do
 done
 rm -f "$tmp/fail-with"
 
-# Apple with omarchy-mac-boot: each operation runs its entrypoint with the
+# Apple with unbloarchy-mac-boot: each operation runs its entrypoint with the
 # caller's arguments, a cleared environment and a fixed PATH.
 export CALLER_SECRET=leak
 for operation in "${operations[@]}"; do
@@ -96,7 +96,7 @@ on aarch64-apple "$full" provision-commit || status=$?
 rm -f "$tmp/fail-with"
 pass "apple: each operation runs the boot package's entrypoint with its arguments and status"
 
-# Apple without omarchy-mac-boot: required operations fail naming the package
+# Apple without unbloarchy-mac-boot: required operations fail naming the package
 # and entrypoint; optional ones are no-ops.
 for operation in "${operations[@]}"; do
   status=0
@@ -107,27 +107,27 @@ for operation in "${operations[@]}"; do
       fail "apple: optional $operation resolves to nothing without the boot package" "$output"
   else
     (( status == 3 )) || fail "apple: required $operation fails with status 3 without the boot package" "status: $status"
-    [[ $output == "Error: $operation on aarch64-apple needs omarchy-mac-boot, which provides /usr/lib/omarchy/mac-boot/$operation; it is not installed" ]] ||
+    [[ $output == "Error: $operation on aarch64-apple needs unbloarchy-mac-boot, which provides /usr/lib/unbloarchy/mac-boot/$operation; it is not installed" ]] ||
       fail "apple: required $operation names the missing package and entrypoint" "$output"
     status=0
     on aarch64-apple "$empty" --resolve "$operation" >/dev/null 2>&1 || status=$?
     (( status == 3 )) || fail "apple: required $operation does not resolve without the boot package" "status: $status"
   fi
 done
-pass "apple: without omarchy-mac-boot required operations fail with a clear message and optional ones are no-ops"
+pass "apple: without unbloarchy-mac-boot required operations fail with a clear message and optional ones are no-ops"
 
-# An installed omarchy-mac-boot that predates an operation is named with its
+# An installed unbloarchy-mac-boot that predates an operation is named with its
 # version, as an update away rather than missing.
 older=$tmp/older
-mkdir -p "$older/usr/lib/omarchy/mac-boot" "$older/var/lib/pacman/local/omarchy-mac-boot-20260921-10"
+mkdir -p "$older/usr/lib/unbloarchy/mac-boot" "$older/var/lib/pacman/local/unbloarchy-mac-boot-20260921-10"
 for operation in "${operations[@]}"; do
   [[ " ${apple_optional[*]} " == *" $operation "* ]] && continue
   status=0
   output=$(on aarch64-apple "$older" "$operation" 2>&1) || status=$?
-  (( status == 1 )) && [[ $output == "Error: $operation on aarch64-apple needs /usr/lib/omarchy/mac-boot/$operation, which omarchy-mac-boot 20260921-10 does not provide; update omarchy-mac-boot" ]] ||
-    fail "apple: an omarchy-mac-boot without $operation is named with its version" "status $status: $output"
+  (( status == 1 )) && [[ $output == "Error: $operation on aarch64-apple needs /usr/lib/unbloarchy/mac-boot/$operation, which unbloarchy-mac-boot 20260921-10 does not provide; update unbloarchy-mac-boot" ]] ||
+    fail "apple: an unbloarchy-mac-boot without $operation is named with its version" "status $status: $output"
 done
-pass "apple: an installed omarchy-mac-boot that lacks a required operation fails asking for its update"
+pass "apple: an installed unbloarchy-mac-boot that lacks a required operation fails asking for its update"
 
 # An entrypoint anyone but root could have changed never runs, optional or not.
 untrusted() {
@@ -137,7 +137,7 @@ untrusted() {
     fail "apple: $description is refused"
   fi
   [[ ! -e $tmp/ran ]] || fail "apple: $description never runs"
-  [[ $output == *"refusing /usr/lib/omarchy/mac-boot/$operation"* ]] || fail "apple: $description is named" "$output"
+  [[ $output == *"refusing /usr/lib/unbloarchy/mac-boot/$operation"* ]] || fail "apple: $description is named" "$output"
   if on aarch64-apple "$full" --resolve "$operation" >/dev/null 2>&1; then
     fail "apple: $description does not resolve"
   fi
@@ -152,7 +152,7 @@ chmod o+w "$full/$implementation/provision-commit"
 untrusted "a world-writable entrypoint" provision-commit
 
 install_implementation "$full"
-chmod o+w "$full/usr/lib/omarchy"
+chmod o+w "$full/usr/lib/unbloarchy"
 untrusted "an entrypoint in a world-writable directory" provision-verify
 
 install_implementation "$full"
@@ -196,7 +196,7 @@ rm -f "$tmp/ran"
 if output=$(cd "$tmp" && on aarch64-apple full provision-commit 2>&1); then
   fail "a relative fixture root is refused"
 fi
-[[ ! -e $tmp/ran && $output == "Error: OMARCHY_LIFECYCLE_ROOT must be an absolute path" ]] ||
+[[ ! -e $tmp/ran && $output == "Error: UNBLOARCHY_LIFECYCLE_ROOT must be an absolute path" ]] ||
   fail "a relative fixture root runs nothing and says why" "$output"
 pass "a relative fixture root is refused"
 
@@ -206,13 +206,13 @@ pass "a relative fixture root is refused"
 if unshare --user --map-root-user true 2>/dev/null; then
   mkdir -p "$tmp/rootbin"
   cp "$dispatch" "$tmp/rootbin/"
-  printf '#!/bin/bash\necho aarch64-apple\n' >"$tmp/rootbin/omarchy-hw-platform"
-  chmod +x "$tmp/rootbin/omarchy-hw-platform"
+  printf '#!/bin/bash\necho aarch64-apple\n' >"$tmp/rootbin/unbloarchy-hw-platform"
+  chmod +x "$tmp/rootbin/unbloarchy-hw-platform"
   rm -f "$tmp/ran"
   status=0
-  output=$(OMARCHY_LIFECYCLE_ROOT="$full" unshare --user --map-root-user "$tmp/rootbin/omarchy-lifecycle-dispatch" reset-prepare 2>&1) ||
+  output=$(UNBLOARCHY_LIFECYCLE_ROOT="$full" unshare --user --map-root-user "$tmp/rootbin/unbloarchy-lifecycle-dispatch" reset-prepare 2>&1) ||
     status=$?
-  (( status != 0 )) && [[ ! -e $tmp/ran && $output != *"$tmp"* && $output == *" /usr/lib/omarchy/mac-boot/reset-prepare"* ]] ||
+  (( status != 0 )) && [[ ! -e $tmp/ran && $output != *"$tmp"* && $output == *" /usr/lib/unbloarchy/mac-boot/reset-prepare"* ]] ||
     fail "root ignores a fixture root in its environment" "status $status: $output"
   pass "root ignores fixture roots when resolving an operation"
 
@@ -230,10 +230,10 @@ fi
 # ── setup and app-install operations ─────────────────────────────────────────
 
 # System and user setup and the app-install hooks resolve in omarchy-mac's
-# directory on a Mac, never in omarchy-mac-boot's, and are optional everywhere.
+# directory on a Mac, never in unbloarchy-mac-boot's, and are optional everywhere.
 setup_operations=(setup-system setup-user post-install pre-remove)
 user_operations=(setup-user post-install pre-remove)
-setup_implementation=usr/lib/omarchy/mac
+setup_implementation=usr/lib/unbloarchy/mac
 install_setup() {
   local root=$1 dir=$2 operation
   mkdir -p "$root/$dir"
@@ -276,23 +276,23 @@ for operation in "${setup_operations[@]}"; do
   output=$(on aarch64-apple "$empty" "$operation" 2>&1) && [[ -z $output ]] ||
     fail "apple: $operation is a no-op without omarchy-mac" "$output"
   output=$(on aarch64-apple "$boot_only" "$operation" 2>&1) && [[ -z $output && ! -e $tmp/ran ]] ||
-    fail "apple: $operation never runs from omarchy-mac-boot's directory" "$output"
+    fail "apple: $operation never runs from unbloarchy-mac-boot's directory" "$output"
 done
 pass "apple: setup and the app-install hooks resolve in omarchy-mac's directory, and are no-ops without omarchy-mac"
 
 session=(CALLER_SECRET=leak HOME=/home/owner USER=owner XDG_RUNTIME_DIR=/run/user/1000 XDG_CONFIG_HOME=/home/owner/.cfg
-  XDG_STATE_HOME=/home/owner/.st XDG_DATA_HOME=/home/owner/.data DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus OMARCHY_PATH=/usr/share/omarchy)
+  XDG_STATE_HOME=/home/owner/.st XDG_DATA_HOME=/home/owner/.data DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus UNBLOARCHY_PATH=/usr/share/omarchy)
 rm -f "$tmp/ran"
-env -u WAYLAND_DISPLAY "${session[@]}" OMARCHY_PROC_ROOT="$tmp/aarch64-apple/proc" OMARCHY_LIFECYCLE_ROOT="$with_mac" \
+env -u WAYLAND_DISPLAY "${session[@]}" UNBLOARCHY_PROC_ROOT="$tmp/aarch64-apple/proc" UNBLOARCHY_LIFECYCLE_ROOT="$with_mac" \
   PATH="$tmp/aarch64-apple/bin:$PATH" "$dispatch" setup-system image-first-boot || fail "apple: setup-system runs"
 [[ $(cat "$tmp/ran") == "setup-system image-first-boot" ]] || fail "apple: setup-system gets its argument" "$(cat "$tmp/ran")"
 [[ $(grep -Ev '^(_|PWD|OLDPWD|SHLVL)=' "$tmp/env" | sort) == "PATH=/usr/local/sbin:/usr/local/bin:/usr/bin" ]] ||
   fail "apple: setup-system gets PATH alone" "$(cat "$tmp/env")"
-expected=$(printf '%s\n' DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus HOME=/home/owner OMARCHY_PATH=/usr/share/omarchy \
+expected=$(printf '%s\n' DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus HOME=/home/owner UNBLOARCHY_PATH=/usr/share/omarchy \
   PATH=/usr/local/sbin:/usr/local/bin:/usr/bin USER=owner XDG_CONFIG_HOME=/home/owner/.cfg XDG_RUNTIME_DIR=/run/user/1000 XDG_STATE_HOME=/home/owner/.st)
 for invocation in "setup-user" "post-install steam" "pre-remove steam"; do
   rm -f "$tmp/ran"
-  env -u WAYLAND_DISPLAY "${session[@]}" OMARCHY_PROC_ROOT="$tmp/aarch64-apple/proc" OMARCHY_LIFECYCLE_ROOT="$with_mac" \
+  env -u WAYLAND_DISPLAY "${session[@]}" UNBLOARCHY_PROC_ROOT="$tmp/aarch64-apple/proc" UNBLOARCHY_LIFECYCLE_ROOT="$with_mac" \
     PATH="$tmp/aarch64-apple/bin:$PATH" "$dispatch" $invocation || fail "apple: $invocation runs"
   [[ $(cat "$tmp/ran") == "$invocation" ]] || fail "apple: $invocation runs its entrypoint with its argument" "$(cat "$tmp/ran")"
   [[ $(grep -Ev '^(_|PWD|OLDPWD|SHLVL)=' "$tmp/env" | sort) == "$expected" ]] ||
@@ -310,7 +310,7 @@ rm -f "$tmp/ran"
 if output=$(on aarch64-apple "$with_mac" setup-user 2>&1); then
   fail "apple: a world-writable setup entrypoint is refused"
 fi
-[[ ! -e $tmp/ran && $output == *"refusing /usr/lib/omarchy/mac/setup-user"* ]] ||
+[[ ! -e $tmp/ran && $output == *"refusing /usr/lib/unbloarchy/mac/setup-user"* ]] ||
   fail "apple: a world-writable setup entrypoint never runs" "$output"
 chmod o-w "$with_mac/$setup_implementation/setup-user"
 pass "apple: a setup entrypoint that fails the trust rules never runs"
@@ -322,14 +322,14 @@ if unshare --user --map-root-user true 2>/dev/null; then
   for platform in aarch64-apple x86 aarch64; do
     mkdir -p "$tmp/root-$platform"
     cp "$dispatch" "$tmp/root-$platform/"
-    printf '#!/bin/bash\necho %s\n' "$platform" >"$tmp/root-$platform/omarchy-hw-platform"
-    chmod +x "$tmp/root-$platform/omarchy-hw-platform"
+    printf '#!/bin/bash\necho %s\n' "$platform" >"$tmp/root-$platform/unbloarchy-hw-platform"
+    chmod +x "$tmp/root-$platform/unbloarchy-hw-platform"
     for operation in "${user_operations[@]}"; do
       for arguments in "$operation" "--resolve $operation" "$operation steam"; do
         rm -f "$tmp/ran"
         status=0
-        output=$(OMARCHY_LIFECYCLE_ROOT="$with_mac" unshare --user --map-root-user \
-          "$tmp/root-$platform/omarchy-lifecycle-dispatch" $arguments 2>&1) || status=$?
+        output=$(UNBLOARCHY_LIFECYCLE_ROOT="$with_mac" unshare --user --map-root-user \
+          "$tmp/root-$platform/unbloarchy-lifecycle-dispatch" $arguments 2>&1) || status=$?
         [[ ! -e $tmp/ran ]] || fail "$platform: root never runs '$arguments'"
         if [[ $platform == "aarch64-apple" ]]; then
           (( status == 1 )) && [[ $output == "Error: $operation runs as the user, never as root" ]] ||

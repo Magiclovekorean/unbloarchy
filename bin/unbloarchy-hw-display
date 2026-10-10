@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# omarchy:summary=Print the most likely display backlight device.
-# omarchy:examples=omarchy-hw-display
+# unbloarchy:summary=Print the most likely display backlight device.
+# unbloarchy:examples=unbloarchy-hw-display
 
-backlight_path="${OMARCHY_BACKLIGHT_PATH:-/sys/class/backlight}"
+backlight_path="${UNBLOARCHY_BACKLIGHT_PATH:-/sys/class/backlight}"
 
 # The platform package may name backlights to skip and to prefer (see
 # docs/file-layout.md).
-displays_conf=/usr/share/omarchy-platform/displays.conf
+displays_conf=/usr/share/unbloarchy-platform/displays.conf
 skips=()
 prefers=()
 if [[ -r $displays_conf ]]; then
