@@ -71,6 +71,8 @@ COMPAT_PATHS = (
 # correct here.
 CONTENT_EXEMPT = (
     "test/shell.d/rename-migration-test.sh",
+    # This checker necessarily describes the legacy tokens it detects.
+    "test/shell.d/rebrand-integrity-check.py",
     # Migrates a legacy Omarchy install onto the Unbloarchy layout; its
     # manifest lists the pre-rename config paths and unit names it rewrites.
     "bin/unbloarchy-upgrade-to-quattro",
