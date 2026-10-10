@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# unbloarchy:summary=Stream the selected dictation backend as bar-friendly JSON
+
+backend=$(unbloarchy-default-dictation 2>/dev/null) || backend=""
+
+case "$backend" in
+  voxtype)
+    if unbloarchy-cmd-missing voxtype; then
+      echo '{"alt": "", "class": "idle", "tooltip": ""}'
+      exit 0
+    fi
+
+    # Keep the status follower as the direct child of the bar. Quickshell
+    # cleans up their direct child when they restart; a shell pipeline/coproc
+    # would leave `voxtype status --follow` orphaned under the user systemd
+    # instance.
+    exec setpriv --pdeathsig TERM voxtype status --follow --extended --format json
+    ;;
+  *)
+    echo '{"alt": "", "class": "idle", "tooltip": ""}'
+    ;;
+esac

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# unbloarchy:hidden=true
+# unbloarchy:summary=Watch USBGuard for devices awaiting user approval
+
+set -euo pipefail
+
+# Starting a new graphical-session watcher must offer fresh prompts even if
+# their old notification actions were dismissed and aged out of history.
+UNBLOARCHY_USB_AUTHORIZATION_WATCH_ID=$(cat /proc/sys/kernel/random/uuid)
+export UNBLOARCHY_USB_AUTHORIZATION_WATCH_ID
+
+event_handler="$UNBLOARCHY_PATH/bin/unbloarchy-usb-authorization-event"
+
+# The handler scans blocked devices on IPC.Connected, including reconnects
+# after a daemon restart, once the event subscription is established.
+exec usbguard watch --wait --exec "$event_handler"

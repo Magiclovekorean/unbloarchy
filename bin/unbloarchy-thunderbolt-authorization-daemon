@@ -1,0 +1,16 @@
+#!/bin/bash -p
+
+# unbloarchy:summary=Restore trusted Thunderbolt devices and publish their status
+# unbloarchy:hidden=true
+
+# Keep root startup independent of a caller's environment or checkout.
+if [[ $- != *p* ]]; then exit 126; fi
+source /usr/bin/unbloarchy-security-functions || exit 126
+unbloarchy_security_require_privileged_bash_startup || exit 126
+unbloarchy_security_sanitize_bash_environment "$0" "$@"
+set -euo pipefail
+(( EUID == 0 )) || exit 126
+export PATH=/usr/bin:/bin LC_ALL=C
+unset DBUS_SYSTEM_BUS_ADDRESS DBUS_SESSION_BUS_ADDRESS
+source /usr/share/omarchy/install/helpers/thunderbolt-policy.sh
+tb_daemon

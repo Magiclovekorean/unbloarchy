@@ -91,7 +91,6 @@ GROUP_DESCRIPTIONS[transcode]="Image and video transcoding"
 GROUP_DESCRIPTIONS[tui]="Terminal UI launchers"
 GROUP_DESCRIPTIONS[update]="Unbloarchy and system updates"
 GROUP_DESCRIPTIONS[version]="Version and channel information"
-GROUP_DESCRIPTIONS[voxtype]="Voxtype dictation"
 GROUP_DESCRIPTIONS[weather]="Weather status"
 GROUP_DESCRIPTIONS[webapp]="Web app launchers"
 GROUP_DESCRIPTIONS[wifi]="Wi-Fi helpers"
@@ -203,7 +202,7 @@ register_command() {
       break
     fi
 
-    if [[ $line =~ ^[[:space:]]*#[[:space:]]*unbloarchy:([[:alnum:]_-]+)=(.*)$ ]]; then
+    if [[ $line =~ ^[[:space:]]*#[[:space:]]*omarchy:([[:alnum:]_-]+)=(.*)$ ]]; then
       metadata_key="${BASH_REMATCH[1]}"
       metadata_value="${BASH_REMATCH[2]}"
       metadata_value="${metadata_value%$'\r'}"
@@ -316,7 +315,7 @@ register_command() {
 load_commands() {
   local file=""
 
-  for file in "$UNBLOARCHY_BIN_DIR"/unbloarchy-*; do
+  for file in "$OMARCHY_BIN_DIR"/omarchy-*; do
     [[ -f $file && -x $file ]] || continue
     register_command "$file"
   done
@@ -413,7 +412,7 @@ resolve_direct_route() {
   for (( prefix_count = argc; prefix_count >= 1; prefix_count-- )); do
     route="unbloarchy $(join_words " " "${args[@]:0:prefix_count}")"
 
-    binary="unbloarchy-$(join_words "-" "${args[@]:0:prefix_count}")"
+    binary="omarchy-$(join_words "-" "${args[@]:0:prefix_count}")"
     candidate="$UNBLOARCHY_BIN_DIR/$binary"
     if [[ -f $candidate && -x $candidate ]]; then
       DIRECT_RESOLVED_BINARY="$binary"

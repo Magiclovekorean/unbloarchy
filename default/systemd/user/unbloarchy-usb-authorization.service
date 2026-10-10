@@ -1,0 +1,16 @@
+[Unit]
+Description=Ask before allowing new USB devices
+After=graphical-session.target dbus.socket
+Requires=dbus.socket
+PartOf=graphical-session.target
+ConditionEnvironment=UNBLOARCHY_PATH
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bash -lc 'exec "$UNBLOARCHY_PATH/bin/unbloarchy-usb-authorization-watch"'
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

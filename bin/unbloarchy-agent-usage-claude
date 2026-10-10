@@ -50,7 +50,7 @@ def expand_path(value: str) -> Path:
 
 
 def cache_root() -> Path:
-  root = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "unbloarchy" / "agent-usage"
+  root = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "omarchy" / "agent-usage"
   root.mkdir(parents=True, exist_ok=True)
   return root
 
@@ -1150,7 +1150,7 @@ def collect_limits(access_token: str, expires_at_ms: int, refresh_expires_at_ms:
 def registered_accounts() -> list[dict[str, Any]]:
   state = Path(os.environ.get("XDG_STATE_HOME") or Path.home() / ".local" / "state")
   try:
-    registry = json.loads((state / "unbloarchy" / "agents" / "accounts" / "claude.json").read_text(encoding="utf-8"))
+    registry = json.loads((state / "omarchy" / "agents" / "accounts" / "claude.json").read_text(encoding="utf-8"))
   except Exception:
     return []
   accounts = [a for a in registry.get("accounts") or [] if isinstance(a, dict) and a.get("id")]

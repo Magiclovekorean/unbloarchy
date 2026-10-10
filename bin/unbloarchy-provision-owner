@@ -1045,6 +1045,20 @@ run_setup() {
   while true; do
     keyboard_form
     user_form && status=0 || status=$?
+    if ((statunderbolt accessories"
+  /usr/bin/unbloarchy-thunderbolt-authorization-admin owner
+
+  log_step "cleaning up provisioning state"
+  cleanup_oem_state
+  log_step "first-boot setup complete"
+}
+
+run_setup() {
+  local status
+
+  while true; do
+    keyboard_form
+    user_form && status=0 || status=$?
     if ((status != 0)); then
       # Esc unwinds to the keyboard step. Ctrl+C is the only other way out of a
       # prompt, and it offers the reboot instead of returning a value.

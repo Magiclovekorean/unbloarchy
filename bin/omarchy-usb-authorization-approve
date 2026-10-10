@@ -16,4 +16,4 @@ if [[ -z ${UNBLOARCHY_PATH:-} ]]; then
   fi
 fi
 export UNBLOARCHY_PATH
-exec "${BASH_SOURCE[0]%/*}/unbloarchy-voxtype-model" "$@"
+exec "${BASH_SOURCE[0]%/*}/unbloarchy-usb-authorization-approve" "$@"
