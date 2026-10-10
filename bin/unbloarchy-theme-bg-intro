@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# unbloarchy:summary=Enable or disable background intros
+# unbloarchy:args=<enable|disable|toggle|status>
+# unbloarchy:examples=unbloarchy theme bg intro toggle | unbloarchy theme bg intro disable
+
+set -euo pipefail
+
+toggle="$HOME/.local/state/unbloarchy/toggles/background-intros-off"
+case ${1:-} in
+  enable)
+    rm -f "$toggle"
+    unbloarchy-notification-send "Background Intros" "Enabled"
+    ;;
+  disable)
+    mkdir -p "$(dirname "$toggle")"
+    touch "$toggle"
+    unbloarchy-notification-send "Background Intros" "Disabled"
+    ;;
+  toggle)
+    if [[ -f $toggle ]]; then
+      unbloarchy-theme-bg-intro enable
+    else
+      unbloarchy-theme-bg-intro disable
+    fi
+    ;;
+  status)
+    [[ ! -f $toggle ]]
+    ;;
+  *)
+    echo "Usage: unbloarchy-theme-bg-intro <enable|disable|toggle|status>" >&2
+    exit 1
+    ;;
+esac

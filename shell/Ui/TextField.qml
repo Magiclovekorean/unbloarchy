@@ -2,6 +2,7 @@ import QtQuick
 import qs.Commons as Commons
 import QtQuick.Controls
 import qs.Commons
+import qs.Commons as Commons
 
 // Single-line text input with the kit's focus + selection styling. Inherits
 // from Qt Quick Controls TextField so the underlying type's API (text,

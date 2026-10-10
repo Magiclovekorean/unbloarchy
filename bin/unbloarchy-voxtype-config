@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# unbloarchy:summary=Open Voxtype configuration
-
-set -e
-
-unbloarchy-launch-floating-terminal-with-presentation "voxtype configure"
-unbloarchy-restart-shell

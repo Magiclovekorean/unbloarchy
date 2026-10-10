@@ -15,8 +15,8 @@ o.bind("XF86Calculator", "Calculator", "omacalc")
 
 o.bind_toggle("SUPER + SHIFT + SPACE", "Toggle top bar", "bar")
 o.bind("SUPER + CTRL + SPACE", "Background switcher", { menu = "background" })
-o.bind("SUPER + SHIFT + T", "Theme menu", { menu = "theme" })
-o.bind("SUPER + BACKSPACE", "Toggle window transparency", "unbloarchy-hyprland-window-transparency-toggle")
+o.bind("SUPER + SHIFT + CTRL + SPACE", "Theme menu", { menu = "theme" })
+o.bind("SUPER + BACKSPACE", "Toggle transparency on a window", "unbloarchy-hyprland-window-transparency-toggle")
 o.bind("SUPER + SHIFT + BACKSPACE", "Toggle window gaps", "unbloarchy-hyprland-window-gaps-toggle")
 o.bind("SUPER + CTRL + BACKSPACE", "Toggle single-window square aspect", "unbloarchy-hyprland-window-single-square-aspect-toggle")
 

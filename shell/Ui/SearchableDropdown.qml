@@ -2,6 +2,7 @@ import QtQuick
 import qs.Commons as Commons
 import QtQuick.Controls as QQC
 import qs.Commons
+import qs.Commons as Commons
 
 // Searchable single-select dropdown. Same trigger shape as Dropdown, but
 // the popup leads with an embedded TextField that filters the option

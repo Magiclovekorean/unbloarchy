@@ -2,6 +2,7 @@ import QtQuick
 import qs.Commons as Commons
 import QtQuick.Controls
 import qs.Commons
+import qs.Commons as Commons
 
 // Styled wrapper around Qt Quick Controls ToolTip. Drop-in: declare inside
 // the hovered item and bind `visible` to the hover state, e.g.

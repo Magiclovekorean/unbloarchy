@@ -29,7 +29,7 @@ wtype "rocket"
 sleep 1
 screenshot "success-emoji-picker-search"
 wtype -k Return
-wait_until "emoji picker selection closes" 15 layer_off_overlay "unbloarchy-emojis"
+wait_until "emoji picker selection closes" 15 layer_absent "unbloarchy-emojis"
 
 # Seed two clipboard entries, search for the older one, and copy it back out.
 clipboard_token="Unbloarchy acceptance clipboard $(date +%s)"
@@ -44,7 +44,7 @@ wtype "$clipboard_token"
 wait_until "clipboard search finds test text" 15 screen_contains "Unbloarchy acceptance clipboard"
 screenshot "success-clipboard-search"
 wtype -M shift -k Return -m shift
-wait_until "clipboard selection closes" 15 layer_off_overlay "unbloarchy-clipboard"
+wait_until "clipboard selection closes" 15 layer_absent "unbloarchy-clipboard"
 wait_until "clipboard selection restores test text" 15 bash -c '[[ $(wl-paste --no-newline) == "$1" ]]' _ "$clipboard_token"
 
 # Exercise the system branch without invoking any destructive action.
@@ -53,7 +53,7 @@ wait_until "system menu opens" 15 layer_on_overlay "unbloarchy-menu"
 wait_until "system menu content is visible" 15 screen_contains "Shutdown"
 screenshot "success-system-menu"
 wtype -k Escape
-wait_until "system menu closes" 15 layer_off_overlay "unbloarchy-menu"
+wait_until "system menu closes" 15 layer_absent "unbloarchy-menu"
 
 # Preview both visual selectors and cancel without changing user state. These
 # cover thumbnail generation, the image-grid overlay, and current selection.
@@ -62,14 +62,14 @@ wait_until "background selector opens" 30 layer_on_overlay "unbloarchy-image-sel
 sleep 1
 screenshot "success-background-selector"
 wtype -k Escape
-wait_until "background selector closes" 15 layer_off_overlay "unbloarchy-image-selector"
+wait_until "background selector closes" 15 layer_absent "unbloarchy-image-selector"
 
 launch_app "unbloarchy-theme-switcher"
 wait_until "theme selector opens" 30 layer_on_overlay "unbloarchy-image-selector"
 sleep 1
 screenshot "success-theme-selector"
 wtype -k Escape
-wait_until "theme selector closes" 15 layer_off_overlay "unbloarchy-image-selector"
+wait_until "theme selector closes" 15 layer_absent "unbloarchy-image-selector"
 
 # Walk the reminder flow through each input screen, but dismiss before it
 # schedules a real timer in the test user's session.
@@ -83,7 +83,7 @@ wtype -k Return
 wait_until "reminder message prompt opens" 15 screen_contains "Reminder message"
 screenshot "success-reminder-03-message-prompt"
 wtype -k Escape
-wait_until "reminder flow closes" 15 layer_off_overlay "unbloarchy-reminders"
+wait_until "reminder flow closes" 15 layer_absent "unbloarchy-reminders"
 
 # Render a real shell notification and clear it through the notification IPC.
 unbloarchy-shell notifications dismissAll >/dev/null
@@ -111,7 +111,7 @@ screenshot "success-apps-menu-search"
 wtype -k Return
 
 wait_until "apps menu launches the top search hit" 60 window_present "(?i)omawrite"
-wait_until "apps menu closes after launching" 15 layer_off_overlay "unbloarchy-menu"
+wait_until "apps menu closes after launching" 15 layer_absent "unbloarchy-menu"
 
 close_windows "(?i)omawrite"
 wait_until "Omawrite window closes" 30 window_absent "(?i)omawrite"

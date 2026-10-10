@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# unbloarchy:summary=Get or set the default dictation backend
+# unbloarchy:args=[backend]
+# unbloarchy:examples=unbloarchy default dictation | unbloarchy default dictation superwhisper
+
+if (($# > 1)); then
+  echo "Usage: unbloarchy default dictation [backend]" >&2
+  exit 1
+fi
+
+if (($# == 0)); then
+  config="${XDG_CONFIG_HOME:-$HOME/.config}/unbloarchy/defaults/dictation"
+  if [[ ! -s $config ]]; then
+    echo "No dictation backend configured. Select one in Setup > Defaults > Dictation." >&2
+    exit 1
+  fi
+  read -r backend < "$config"
+else
+  backend=$1
+fi
+
+if [[ ! $backend =~ ^[a-z0-9][a-z0-9-]*$ ]]; then
+  echo "Invalid dictation backend: $backend" >&2
+  exit 1
+fi
+
+if (($# == 0)); then
+  echo "$backend"
+else
+  installer="unbloarchy-install-dictation-$backend"
+  if unbloarchy-cmd-missing "$installer"; then
+    echo "No installer available for dictation backend: $backend" >&2
+    exit 1
+  fi
+  unbloarchy-launch-floating-terminal-with-presentation "$installer"
+fi

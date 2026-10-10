@@ -28,18 +28,26 @@
 
 set -euo pipefail
 
-PROVISIONING_DIR=/var/lib/unbloarchy/provisioning
-UNBLOARCHY_PATH="${UNBLOARCHY_PATH:-/usr/share/unbloarchy}"
+PROVISIONING_DIR=/var/lib/omarchy/provisioning
+PACKAGED_PATH=/usr/bin/unbloarchy-system-factory-reset
+UNBLOARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
 TOP_MNT=/run/unbloarchy-system-factory-reset/top
 NEXT_NAME=@unbloarchy-reset-next
 LOG_FILE=/var/log/unbloarchy-system-factory-reset.log
 
+# Never replace a newer checkout reset with a different installed implementation.
+if ! /usr/bin/cmp -s -- "${BASH_SOURCE[0]}" "$PACKAGED_PATH"; then
+  echo "Factory reset differs from the installed command. Install the matching Unbloarchy package before resetting." >&2
+  exit 1
+fi
+
 # Self-elevate so the menu entry (and a bare shell invocation) need no sudo
 # prefix. The caller's gum theme vars are forwarded as `env` arguments rather
 # than via `sudo -E`, so styling survives even under an env_reset sudoers.
+# Always elevate the packaged copy, including when invoked from a dev checkout.
 if (( EUID != 0 )); then
   mapfile -t gum_env < <(env | grep '^GUM_' || true)
-  exec sudo env "${gum_env[@]}" "$0" "$@"
+  exec sudo env "${gum_env[@]}" "$PACKAGED_PATH" "$@"
 fi
 
 export PATH="$UNBLOARCHY_PATH/bin:$PATH"
@@ -195,15 +203,15 @@ reset_limine_config() {
     old_ids=$(grep -o 'machine-id=[0-9a-f]\{32\}' "$root$esp/limine.conf" | cut -d= -f2 | sort -u)
   fi
 
-  for template in "$root/usr/share/unbloarchy/install/assets/limine/limine.conf" \
-                  "$root/usr/share/unbloarchy/default/limine/limine.conf"; do
+  for template in "$root/usr/share/omarchy/install/assets/limine/limine.conf" \
+                  "$root/usr/share/omarchy/default/limine/limine.conf"; do
     if [[ -f $template ]]; then
       cp "$template" "$root$esp/limine.conf"
       found=1
       break
     fi
   done
-  [[ -n $found ]] || fail "no limine.conf template in $root/usr/share/unbloarchy"
+  [[ -n $found ]] || fail "no limine.conf template in $root/usr/share/omarchy"
 
   local machine_id old_id
   machine_id=$(cat "$root/etc/machine-id" 2>/dev/null || true)
@@ -274,7 +282,7 @@ rebuild_next_boot() {
       rm -f "$next/etc/mkinitcpio.conf.d/unbloarchy_resume.conf" \
         "$next/etc/limine-entry-tool.d/resume.conf"
     fi
-    if ! chroot "$next" env UNBLOARCHY_PATH=/usr/share/unbloarchy \
+    if ! chroot "$next" env UNBLOARCHY_PATH=/usr/share/omarchy \
       /usr/bin/unbloarchy-hibernation-setup --force --no-rebuild >>"$LOG_FILE" 2>&1; then
       fail "hibernation setup failed in the factory root (see $LOG_FILE)"
     fi
@@ -320,6 +328,12 @@ scrub_factory_accounts() {
 sanitize_factory_baseline() {
   local factory="$1"
   btrfs property set -ts "$factory" ro false
+  if [[ -d $factory/var/lib/omarchy/thunderbolt-authorization || -f $factory/etc/unbloarchy/thunderbolt-authorization.enabled || -f $factory/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
+    if ! /usr/bin/unbloarchy-thunderbolt-authorization-admin reset-root "$factory"; then
+      btrfs property set -ts "$factory" ro true
+      fail "could not reset Thunderbolt authorization in the factory baseline"
+    fi
+  fi
 
   if ! scrub_factory_accounts "$factory"; then
     btrfs property set -ts "$factory" ro true
@@ -341,9 +355,17 @@ stage_full_reset() {
   [[ -d $next ]] && btrfs subvolume delete --recursive "$next" >/dev/null
   btrfs subvolume snapshot "$top/@factory" "$next" >>"$LOG_FILE"
 
-  local unit_src="$next/usr/share/unbloarchy/install/provisioning"
+  local unit_src="$next/usr/share/omarchy/install/provisioning"
   [[ -f $unit_src/unbloarchy-provision-owner.service && -x $next/usr/bin/unbloarchy-provision-owner ]] ||
     fail "the factory snapshot predates provisioning support; cannot reset from it"
+
+  # A normal install's factory snapshot includes the original owner's USB
+  # policy and enabled daemon. Keep input usable during the new owner's setup;
+  # provisioning enrolls their devices before enabling USBGuard again.
+  if [[ -f $next/usr/lib/systemd/system/usbguard.service ]]; then
+    systemctl --root="$next" disable usbguard.service >>"$LOG_FILE" 2>&1 ||
+      fail "could not disable USBGuard in the factory system (see $LOG_FILE)"
+  fi
 
   log "Scrubbing machine identity from the factory system"
   systemd-id128 new >"$next/etc/machine-id"
@@ -359,6 +381,13 @@ stage_full_reset() {
   log "Removing account credentials from the factory system"
   scrub_factory_accounts "$next" ||
     fail "could not remove account credentials from the factory system (see $LOG_FILE)"
+
+  # Leave the new owner's input available before interactive enrollment. Clear
+  # inherited accessory identities in both roots; never change the live daemon.
+  if [[ -d $next/var/lib/omarchy/thunderbolt-authorization || -f $next/etc/unbloarchy/thunderbolt-authorization.enabled || -f $next/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
+    /usr/bin/unbloarchy-thunderbolt-authorization-admin reset-root "$next" ||
+      fail "could not reset Thunderbolt authorization in the staged root"
+  fi
 
   # @factory itself survives the wipe as the baseline for future resets. If it
   # came from a normal install it still holds the seller's account and

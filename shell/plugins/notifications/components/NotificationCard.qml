@@ -7,6 +7,7 @@ import qs.Commons as Commons
 import QtQuick.Layouts
 import Quickshell
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 import "../NotificationLogic.js" as NotificationLogic
 

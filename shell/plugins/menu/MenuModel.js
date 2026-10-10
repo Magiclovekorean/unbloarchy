@@ -398,6 +398,7 @@ var GUARD_READERS = [
   "unbloarchy-default-browser",
   "unbloarchy-default-editor",
   "unbloarchy-default-terminal",
+  "unbloarchy-default-dictation",
   "unbloarchy-dns"
 ]
 

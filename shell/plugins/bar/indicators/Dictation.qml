@@ -24,7 +24,7 @@ BarIndicator {
   }
 
   Process {
-    command: ["bash", "-c", "unbloarchy-voxtype-status"]
+    command: ["bash", "-c", "unbloarchy-dictation-status"]
     running: true
     stdout: SplitParser {
       onRead: function(data) { root.update(data) }
@@ -33,6 +33,6 @@ BarIndicator {
 
   onPressed: function() {
     if (!root.bar) return
-    root.bar.run("unbloarchy-voxtype-config")
+    root.bar.run("unbloarchy-dictation toggle")
   }
 }

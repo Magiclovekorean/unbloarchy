@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Commons as Commons
 import qs.Commons
+import qs.Commons as Commons
 import "Arc.js" as Arc
 
 // One line of text arched over what sits below it, each character turned to

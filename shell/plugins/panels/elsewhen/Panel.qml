@@ -3,6 +3,7 @@ import qs.Commons as Commons
 import Quickshell
 import Quickshell.Io
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 import "Model.js" as Model
 import "GlobeModel.js" as Solar
@@ -713,6 +714,7 @@ Panel {
     id: button
     anchors.fill: parent
     bar: root.bar
+    slotSize: Style.bar.statusSlot
     text: "󰇧"
     tooltipText: "World clock"
     onPressed: function(buttonCode) {
@@ -777,6 +779,7 @@ Panel {
       Flickable {
         id: scroller
         anchors.fill: parent
+        anchors.rightMargin: -Style.space(12)
         clip: true
         interactive: false
         contentWidth: width
@@ -821,7 +824,7 @@ Panel {
 
         Column {
           id: content
-          width: scroller.width
+          width: scroller.width - Style.space(12)
           spacing: Style.spacing.panelGap
 
           HeroTitle {
@@ -857,11 +860,15 @@ Panel {
             // Clipped, so knocked rows fall out of the panel.
             Item {
               anchors.fill: parent
+              // Let circular actions straddle the rows' top-right corners.
+              anchors.topMargin: -Style.space(12)
+              anchors.rightMargin: -Style.space(12)
               clip: true
 
               Column {
                 id: listWrap
-                width: parent.width
+                y: Style.space(12)
+                width: stage.width
                 spacing: Style.spacing.panelGap
 
                 Column {

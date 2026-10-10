@@ -57,11 +57,11 @@ state_dir="$HOME/.local/state/unbloarchy"
 mkdir -p "$state_dir"
 
 if unbloarchy-done check finalize-user && (( force == 0 )); then
-  echo "User finalization already complete (rerun with --force to refresh)."
+  echo "User finalization already complete."
   exit 0
 fi
 
-export UNBLOARCHY_PATH="${UNBLOARCHY_PATH:-/usr/share/unbloarchy}"
+export UNBLOARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
 export UNBLOARCHY_INSTALL="${UNBLOARCHY_INSTALL:-$UNBLOARCHY_PATH/install}"
 export UNBLOARCHY_SETUP_CONTEXT="${UNBLOARCHY_SETUP_CONTEXT:-runtime}"
 export PATH="$UNBLOARCHY_PATH/bin:$PATH"
@@ -85,7 +85,7 @@ fi
 # point at a dev checkout (unbloarchy dev link) where the target differs.
 # Loops every skill directory, so shipping a new one needs no edit here.
 mkdir -p ~/.agents/skills ~/.claude/skills ~/.codex/skills ~/.pi/agent/skills ~/.gemini/config/skills ~/.hermes/skills
-for skill in "$UNBLOARCHY_PATH"/default/agents/skills/*/; do
+for skill in "$OMARCHY_PATH"/default/agents/skills/*/; do
   skill=${skill%/}
   name=${skill##*/}
   ln -sfn "$skill" ~/.agents/skills/"$name"
@@ -122,7 +122,7 @@ xdg-mime default HEY.desktop x-scheme-handler/mailto
 
 if (( first_install )); then
   mkdir -p "$state_dir/migrations"
-  for migration in "$UNBLOARCHY_PATH"/migrations/*.sh; do
+  for migration in "$OMARCHY_PATH"/migrations/*.sh; do
     [[ -f $migration ]] && touch "$state_dir/migrations/$(basename "$migration")"
   done
 fi

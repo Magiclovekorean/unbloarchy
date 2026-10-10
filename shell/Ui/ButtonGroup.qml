@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Commons as Commons
 import qs.Commons
+import qs.Commons as Commons
 
 // Mutually-exclusive row of Buttons — the form-style "pick one of N"
 // pattern (bar position top/right/bottom/left, theme preset chips, etc.).
