@@ -22,12 +22,20 @@ Rules, mirroring ../transform.py and the resolve command:
     `omarchy` spelling now points at nothing, the `unbloarchy` spelling is the
     real artifact. Package and namespace names the fork keeps intact
     (`omarchy-keyring`, `/usr/share/omarchy`, the `[omarchy]` pacman repo,
-    ...) have no `unbloarchy` twin in the tree and are never flagged, so no
-    explicit keep list is needed.
+    ...) have no `unbloarchy` twin in the tree, so the forward rule needs no
+    keep list.
+  - Kept names: the upstream identifiers in KEEP_VERBATIM must never appear in
+    their `unbloarchy` form. The token rule above cannot see this mistake: it
+    is a `unbloarchy` token with no dangling `omarchy` twin, because a
+    repository name is not a tracked path. The package mirror publishes
+    `omarchy.db`, so a `[unbloarchy]` repository in a pacman.conf points at a
+    database that does not exist; a sweep renamed exactly that and shipped it,
+    which is why this reverse scan exists.
 
-The COMPAT list is a deliberate snapshot: a future sync that legitimately
-needs a new omarchy-named artifact must extend it consciously, alongside the
-git mv decision.
+COMPAT_PATHS and KEEP_VERBATIM are deliberate snapshots: a future sync that
+legitimately needs a new omarchy-named artifact must extend COMPAT_PATHS
+consciously, alongside the git mv decision, and anything the fork newly keeps
+in upstream spelling belongs in KEEP_VERBATIM.
 """
 import os
 import re
@@ -72,6 +80,20 @@ COMPAT_PATHS = (
 COMPAT_TOKENS = (
     "omarchy-mac",
 )
+
+# Upstream identifiers the fork keeps in the original spelling. The sweep must
+# never emit their unbloarchy forms: the mirror publishes `omarchy.db` and only
+# pkgs.omarchy.org / logs.omarchy.org resolve, so a renamed repository or host
+# names something that does not exist. The token rule is blind to this, because
+# the mistake is a `unbloarchy` token, so scan for the forbidden forms directly.
+KEEP_VERBATIM = (
+    "pkgs.omarchy.org",
+    "logs.omarchy.org",
+    "[omarchy]",
+    "omarchy.db",
+)
+FORBIDDEN_FORMS = tuple(
+    re.sub(r"omarchy", "unbloarchy", kept, flags=re.I) for kept in KEEP_VERBATIM)
 
 # Content that deliberately references the OLD omarchy names (pre-rename
 # migration machinery, legacy fixtures, planning docs) and must not be
@@ -150,12 +172,30 @@ def main():
                         if key not in CORPUS and swapped(t) in CORPUS:
                             failures.append(
                                 f"token {path}:{n}: {t.strip()[:72]}")
+    # Kept names, in every text file including the exempt ones: a migration or
+    # legacy bridge that quotes `[omarchy]` is exactly where a bad sweep does
+    # the most damage, so exemptions must not hide the forbidden forms.
+    for path in TRACKED:
+        if not is_text(path):
+            continue
+        if path == os.path.relpath(__file__, ROOT):
+            continue  # this checker necessarily names the forbidden forms
+        with open(os.path.join(ROOT, path), "r",
+                  encoding="utf-8", errors="replace") as f:
+            for n, line in enumerate(f, 1):
+                low = line.lower()
+                for kept, forbidden in zip(KEEP_VERBATIM, FORBIDDEN_FORMS):
+                    if forbidden.lower() in low:
+                        failures.append(
+                            f"token {path}:{n}: {forbidden} (kept as {kept})")
     if failures:
         print("not ok - rebrand-integrity-check")
         for f in failures:
             print(f"  {f}")
         print("(a merge-new omarchy path needs git mv; a token names an "
-              "artifact whose unbloarchy twin exists, so it dangles)")
+              "artifact whose unbloarchy twin exists, so it dangles; a kept "
+              "name was rewritten to its unbloarchy form, which does not "
+              "resolve)")
         sys.exit(1)
     print("ok - rebrand-integrity-check")
 
