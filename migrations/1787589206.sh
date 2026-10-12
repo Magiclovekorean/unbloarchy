@@ -8,7 +8,7 @@ echo "Require signed packages from the Unbloarchy repository"
 unbloarchy_sig_override='SigLevel = Optional TrustAll'
 
 if [[ -f /etc/pacman.conf ]] &&
-  sed -n '/^\[unbloarchy\]/,/^\[/p' /etc/pacman.conf | grep -qxF "$unbloarchy_sig_override"; then
+  sed -n '/^\[omarchy\]/,/^\[/p' /etc/pacman.conf | grep -qxF "$unbloarchy_sig_override"; then
   # Requiring signatures with an untrusted packaging key would fail every
   # unbloarchy transaction, including the one that could repair it.
   if unbloarchy-pkg-missing omarchy-keyring ||
@@ -16,5 +16,5 @@ if [[ -f /etc/pacman.conf ]] &&
     unbloarchy-update-keyring
   fi
 
-  sudo sed -i "/^\[unbloarchy\]/,/^\[/{/^$unbloarchy_sig_override$/d}" /etc/pacman.conf
+  sudo sed -i "/^\[omarchy\]/,/^\[/{/^$unbloarchy_sig_override$/d}" /etc/pacman.conf
 fi

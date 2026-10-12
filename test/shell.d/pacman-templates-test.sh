@@ -56,9 +56,9 @@ for platform in $platforms; do
       fail "$platform has a $channel template and mirrorlist"
     list=$(repos "$templates" "$channel") || fail "$platform $channel: pacman reads the template"
     case $platform in
-      x86) expected="unbloarchy core extra multilib " ;;
-      aarch64) expected="unbloarchy core extra alarm aur " ;;
-      aarch64-apple) expected="unbloarchy asahi-alarm core extra alarm aur " ;;
+      x86) expected="omarchy core extra multilib " ;;
+      aarch64) expected="omarchy core extra alarm aur " ;;
+      aarch64-apple) expected="omarchy asahi-alarm core extra alarm aur " ;;
     esac
     [[ $list == "$expected" ]] || fail "$platform $channel: repositories in order" "$list"
     # $arch stays literal: pacman fills it in on the machine.
