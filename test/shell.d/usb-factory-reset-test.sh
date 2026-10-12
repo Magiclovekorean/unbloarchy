@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory(prefix='unbloarchy-usb-reset-') as tmp:
     top = root / 'top'
     factory = top / '@factory'
     for rel in ['etc/systemd/system/basic.target.wants', 'usr/lib/systemd/system',
-          'etc/usbguard', 'usr/bin', 'usr/share/omarchy/install/provisioning']:
+          'etc/usbguard', 'usr/bin', 'usr/share/unbloarchy/install/provisioning']:
       (factory / rel).mkdir(parents=True, exist_ok=True)
     (top / '@').mkdir()
     (top / '@' / 'original-root').touch()
@@ -48,12 +48,12 @@ with tempfile.TemporaryDirectory(prefix='unbloarchy-usb-reset-') as tmp:
     owner.chmod(0o755)
     for name in ['unbloarchy-provision-owner.service', 'unbloarchy-system-factory-reset-finish.service']:
       shutil.copyfile(repo / 'install/provisioning' / name,
-              factory / 'usr/share/omarchy/install/provisioning' / name)
+              factory / 'usr/share/unbloarchy/install/provisioning' / name)
     harness = '''#!/bin/bash
 set -euo pipefail
 TOP_MNT="$1/top"
 NEXT_NAME=@next
-PROVISIONING_DIR=/var/lib/omarchy/provisioning
+PROVISIONING_DIR=/var/lib/unbloarchy/provisioning
 LOG_FILE="$1/log"
 log() { :; }
 fail() { echo "$*" >&2; exit 1; }
@@ -95,7 +95,7 @@ systemctl() {
       assert result.returncode == 0, result.stderr
       staged = top / '@'
       assert not (staged / enabled_path).is_symlink(), 'reset must not start USBGuard before enrollment'
-      assert (staged / 'var/lib/omarchy/provisioning/pending').exists()
+      assert (staged / 'var/lib/unbloarchy/provisioning/pending').exists()
       assert (staged / 'etc/usbguard/rules.conf').read_text() == policy
       if scenario == 'enabled':
         assert (factory / enabled_path).is_symlink(), 'only the staged clone is disabled'

@@ -188,20 +188,21 @@ if grep -Fq $'SUPER + SHIFT + D\tDocker' <<<"$missing_lazydocker_output"; then
 fi
 pass "missing Lazydocker skips its Docker shortcut"
 
-# The Grave shortcuts are aliases, so the original SUPER + S pair has to keep
-# working alongside them.
+# The fork's keymap drops the scratchpad: SUPER + S opens the capture menu
+# instead, and the calculator's two chords are the alias pair left to check.
 scratchpad_home="$tmpdir/scratchpad-home"
 mkdir -p "$scratchpad_home"
 scratchpad_output=$(run_unbloarchy_bindings "$scratchpad_home")
-grep -Fqx $'SUPER + S	Toggle scratchpad' <<<"$scratchpad_output" ||
-  fail "scratchpad keeps its existing toggle binding"
-grep -Fqx $'SUPER + grave	Toggle scratchpad' <<<"$scratchpad_output" ||
-  fail "scratchpad supports a Quake-style toggle binding"
-grep -Fqx $'SUPER + ALT + S	Move window to scratchpad' <<<"$scratchpad_output" ||
-  fail "scratchpad keeps its existing move binding"
-grep -Fqx $'SUPER + SHIFT + grave	Move window to scratchpad' <<<"$scratchpad_output" ||
-  fail "scratchpad supports a Quake-style move binding"
-pass "scratchpad retains existing bindings and adds Grave shortcuts"
+if grep -Fq 'scratchpad' <<<"$scratchpad_output"; then
+  fail "the fork drops the scratchpad bindings"
+fi
+grep -Fqx $'SUPER + S	Capture menu' <<<"$scratchpad_output" ||
+  fail "SUPER + S opens the capture menu"
+grep -Fqx $'SUPER + C	Calculator' <<<"$scratchpad_output" ||
+  fail "the calculator keeps its primary chord"
+grep -Fqx $'XF86Calculator	Calculator' <<<"$scratchpad_output" ||
+  fail "the calculator keeps its media-key chord"
+pass "the fork drops the scratchpad and keeps the calculator alias pair"
 
 # The panel hotkeys claim a row of keys that workspace switching already uses
 # under other modifiers, so the count matters as much as the bindings: a tenth

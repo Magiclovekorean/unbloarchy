@@ -50,22 +50,20 @@ keybindings() {
     bash "$menu" --print
 }
 
-# Closing a window and toggling the scratchpad are two of the actions Unbloarchy
-# binds twice on purpose. The last bind carries the longest description Unbloarchy
-# ships, which is what puts a row closest to the width the menu allows.
+# The calculator is the action Unbloarchy binds twice on purpose. The last bind
+# carries the longest description Unbloarchy ships, which is what puts a row
+# closest to the width the menu allows.
 stub_hyprctl <<BINDS
-$(lua_bind 64 "SUPER + W" "Close window")
-$(lua_bind 64 "SUPER + Q" "Close window")
-$(lua_bind 64 "SUPER + F" "Full screen")
-$(lua_bind 64 "SUPER + S" "Toggle scratchpad")
-$(lua_bind 64 "SUPER + grave" "Toggle scratchpad")
+$(lua_bind 64 "SUPER + C" "Calculator")
+$(lua_bind 0 "XF86Calculator" "Calculator")
+$(lua_bind 65 "SUPER + SHIFT + F" "Full width")
 $(exec_bind 73 "SUPER SHIFT ALT + 0" "Move window silently to workspace 10" "true")
 BINDS
 
 rendered=$(keybindings)
 [[ -n $rendered ]] || fail "the keybindings menu renders with a stubbed Hyprland"
 
-grep -q 'SUPER + F  *→ Full screen' <<<"$rendered" ||
+grep -q 'SUPER SHIFT + F  *→ Full width' <<<"$rendered" ||
   fail "a chord with no alternative renders on its own" "$rendered"
 pass "the keybindings menu renders its entries"
 
@@ -80,24 +78,23 @@ env -i PATH="$stub_bin:$ROOT/bin:$PATH" HOME="$home" XDG_CACHE_HOME="$tmpdir/cac
 [[ ! -e $tmpdir/init-ran ]] || fail "the menu's config scan ignores LUA_INIT from the environment"
 pass "the menu's config scan ignores LUA_INIT and LUA_PATH from the environment"
 
-(( $(grep -c '→ Close window$' <<<"$rendered") == 1 )) ||
+(( $(grep -c '→ Calculator$' <<<"$rendered") == 1 )) ||
   fail "an alternative chord joins the row of the first one" "$rendered"
-grep -q 'SUPER + W / SUPER + Q  *→ Close window' <<<"$rendered" ||
+grep -q 'SUPER + C / XF86Calculator  *→ Calculator' <<<"$rendered" ||
   fail "a shared row names both chords" "$rendered"
 pass "an alternative chord joins the row of the first one"
 
-# Which chord leads is the whole point of keeping Hyprland's order: SUPER + W is
-# the documented default and SUPER + Q the alternative bound after it.
-grep -q '^SUPER + W / SUPER + Q' <<<"$rendered" ||
+# Which chord leads is the whole point of keeping Hyprland's order: SUPER + C is
+# the documented default and XF86Calculator the alternative bound after it.
+grep -q '^SUPER + C / XF86Calculator' <<<"$rendered" ||
   fail "the chord declared first leads a shared row" "$rendered"
 pass "the chord declared first leads a shared row"
 
-# Hyprland calls the key left of 1 "grave". Nobody reads their keyboard that way.
-grep -q 'SUPER + S / SUPER + ~  *→ Toggle scratchpad' <<<"$rendered" ||
-  fail "the grave key reads as the symbol printed on it" "$rendered"
+# Hyprland calls the key left of 1 "grave". Nobody reads their keyboard that way,
+# and the fork binds no grave chord, so nothing may print one.
 ! grep -q 'grave' <<<"$rendered" ||
   fail "no entry still says grave" "$rendered"
-pass "the grave key reads as the symbol printed on it"
+pass "no entry still says grave"
 
 # Monospace menu: every arrow sits in one column, and nothing is allowed past
 # it. A row that overruns pushes its own arrow out of line.
@@ -136,13 +133,13 @@ bind
 	key: 
 	keycode: 49
 	catchall: false
-	description: Toggle scratchpad
+	description: Color picker
 	dispatcher: exec
 	arg: true
 BINDS
 
 rendered=$(keybindings)
-grep -q 'SUPER + ~  *→ Toggle scratchpad' <<<"$rendered" ||
+grep -q 'SUPER + ~  *→ Color picker' <<<"$rendered" ||
   fail "a keycode resolves to the symbol printed on the key too" "$rendered"
 pass "a keycode resolves to the symbol printed on the key too"
 
@@ -214,10 +211,7 @@ pass "chords whose dispatch is unknown stay apart"
 # the script, so dropping an action from the list fails instead of shrinking
 # what gets checked.
 expected_alternatives=(
-  "Close window"
   "Calculator"
-  "Toggle scratchpad"
-  "Move window to scratchpad"
 )
 
 eval "$(sed -n '/^alternative_chord_actions()/,/^}/p' "$ROOT/bin/unbloarchy-menu-keybindings")"

@@ -330,14 +330,14 @@ test_active_policy_is_not_deferred() {
 }
 test_pending_only_factory_reset_reaches_both_roots() {
   local function_name root="$T/top/@factory"
-  local TOP_MNT="$T/top" NEXT_NAME=@next PROVISIONING_DIR=/var/lib/omarchy/provisioning LOG_FILE="$T/reset.log" swap_done=0
+  local TOP_MNT="$T/top" NEXT_NAME=@next PROVISIONING_DIR=/var/lib/unbloarchy/provisioning LOG_FILE="$T/reset.log" swap_done=0
   mkdir -p "$root/etc/unbloarchy" "$root/etc/systemd/system" "$root/usr/bin" \
-    "$root/usr/share/omarchy/install/provisioning" "$T/top/@"
+    "$root/usr/share/unbloarchy/install/provisioning" "$T/top/@"
   touch "$root/etc/unbloarchy/thunderbolt-authorization.pending" "$root/usr/bin/unbloarchy-provision-owner"
   chmod +x "$root/usr/bin/unbloarchy-provision-owner"
   echo 'root:x:0:0:root:/root:/bin/bash' > "$root/etc/passwd"
   cp "$ROOT/install/provisioning/unbloarchy-provision-owner.service" \
-    "$ROOT/install/provisioning/unbloarchy-system-factory-reset-finish.service" "$root/usr/share/omarchy/install/provisioning/"
+    "$ROOT/install/provisioning/unbloarchy-system-factory-reset-finish.service" "$root/usr/share/unbloarchy/install/provisioning/"
   cp "$ROOT/etc/systemd/system/unbloarchy-thunderbolt-authorization.service" "$root/etc/systemd/system/"
   for function_name in install_provisioning_units scrub_factory_accounts sanitize_factory_baseline stage_full_reset; do
     eval "$(sed -n "/^$function_name() {$/,/^}/p" "$ROOT/bin/unbloarchy-system-factory-reset")"
@@ -370,7 +370,7 @@ test_pending_only_factory_reset_reaches_both_roots() {
   [[ $(wc -l < "$T/reset-roots") == 2 && $swap_done == 1 ]]
   [[ ! -f $TOP_MNT/@/etc/unbloarchy/thunderbolt-authorization.pending &&
     ! -f $TOP_MNT/@factory/etc/unbloarchy/thunderbolt-authorization.pending ]]
-  [[ -f $TOP_MNT/@/var/lib/omarchy/provisioning/pending ]]
+  [[ -f $TOP_MNT/@/var/lib/unbloarchy/provisioning/pending ]]
 }
 test_config_preserves_settings() {
   rm "$TB_STATE"; printf '[config]\nAuthMode=enabled\nDefaultPolicy=manual\n' > "$TB_CONFIG"

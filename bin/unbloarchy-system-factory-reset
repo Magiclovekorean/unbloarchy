@@ -30,9 +30,9 @@
 
 set -euo pipefail
 
-PROVISIONING_DIR=/var/lib/omarchy/provisioning
+PROVISIONING_DIR=/var/lib/unbloarchy/provisioning
 PACKAGED_PATH=/usr/bin/unbloarchy-system-factory-reset
-UNBLOARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
+UNBLOARCHY_PATH="${UNBLOARCHY_PATH:-/usr/share/unbloarchy}"
 TOP_MNT=/run/unbloarchy-system-factory-reset/top
 NEXT_NAME=@unbloarchy-reset-next
 LOG_FILE=/var/log/unbloarchy-system-factory-reset.log
@@ -462,7 +462,7 @@ scrub_factory_accounts() {
 sanitize_factory_baseline() {
   local factory="$1"
   btrfs property set -ts "$factory" ro false
-  if [[ -d $factory/var/lib/omarchy/thunderbolt-authorization || -f $factory/etc/unbloarchy/thunderbolt-authorization.enabled || -f $factory/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
+  if [[ -d $factory/var/lib/unbloarchy/thunderbolt-authorization || -f $factory/etc/unbloarchy/thunderbolt-authorization.enabled || -f $factory/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
     if ! /usr/bin/unbloarchy-thunderbolt-authorization-admin reset-root "$factory"; then
       btrfs property set -ts "$factory" ro true
       fail "could not reset Thunderbolt authorization in the factory baseline"
@@ -489,7 +489,7 @@ stage_full_reset() {
   [[ -d $next ]] && btrfs subvolume delete --recursive "$next" >/dev/null
   btrfs subvolume snapshot "$top/@factory" "$next" >>"$LOG_FILE"
 
-  local unit_src="$next/usr/share/omarchy/install/provisioning"
+  local unit_src="$next/usr/share/unbloarchy/install/provisioning"
   [[ -f $unit_src/unbloarchy-provision-owner.service && -x $next/usr/bin/unbloarchy-provision-owner ]] ||
     fail "the factory snapshot predates provisioning support; cannot reset from it"
 
@@ -518,7 +518,7 @@ stage_full_reset() {
 
   # Leave the new owner's input available before interactive enrollment. Clear
   # inherited accessory identities in both roots; never change the live daemon.
-  if [[ -d $next/var/lib/omarchy/thunderbolt-authorization || -f $next/etc/unbloarchy/thunderbolt-authorization.enabled || -f $next/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
+  if [[ -d $next/var/lib/unbloarchy/thunderbolt-authorization || -f $next/etc/unbloarchy/thunderbolt-authorization.enabled || -f $next/etc/unbloarchy/thunderbolt-authorization.pending ]]; then
     /usr/bin/unbloarchy-thunderbolt-authorization-admin reset-root "$next" ||
       fail "could not reset Thunderbolt authorization in the staged root"
   fi

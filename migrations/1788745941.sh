@@ -2,7 +2,7 @@ echo "Update Kitty configuration"
 
 kitty_config="$HOME/.config/kitty/kitty.conf"
 # config/kitty/kitty.conf as shipped after 008f3a22 (Kitty cwd lookup).
-stock_sha="856cd466bf568d091cb775c5b90d1852178090a419f492fde02a4eaef6407bf9"
+stock_sha="b671240e551259a5317a1331cf9ad299aac1f606ae9ba29054e0a573485237fd"
 unrestricted='^[[:space:]]*allow_remote_control[[:space:]]+(yes|y|true)[[:space:]]*$'
 
 if [[ -f $kitty_config ]]; then

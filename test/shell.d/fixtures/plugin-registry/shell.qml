@@ -129,17 +129,17 @@ ShellRoot {
       "local.grouped-panel",
       "local.hybrid",
       "local.weather",
-      "unbloarchy.bar",
-      "unbloarchy.first-widget",
-      "unbloarchy.future-auth",
-      "unbloarchy.grouped-panel",
-      "unbloarchy.hybrid",
       "third.bar",
       "third.center-widget",
       "third.panel",
       "third.right-widget",
       "third.spoofed-auth",
-      "third.widget"
+      "third.widget",
+      "unbloarchy.bar",
+      "unbloarchy.first-widget",
+      "unbloarchy.future-auth",
+      "unbloarchy.grouped-panel",
+      "unbloarchy.hybrid"
     ], "registry merges valid first-party and third-party manifests")
 
     root.assertTrue(registry.installedPlugins["unbloarchy.first-widget"].__isFirstParty === true, "first-party manifests are stamped")

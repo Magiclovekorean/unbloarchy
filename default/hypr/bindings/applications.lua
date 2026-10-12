@@ -19,4 +19,7 @@ if o.preinstalled_bindings_enabled() then
   o.bind("SUPER + SHIFT + SLASH", "Passwords", { unbloarchy = "1password" })
 
   o.bind("SUPER + SHIFT + A", "ChatGPT", { webapp = "https://chatgpt.com" })
+  o.bind("SUPER + SHIFT + ALT + A", "Grok", { webapp = "https://grok.com" })
+  o.bind("SUPER + SHIFT + Y", "YouTube", { webapp = "https://youtube.com/" })
+  o.bind("SUPER + SHIFT + ALT + G", "WhatsApp", { webapp = "https://web.whatsapp.com/", focus = true })
 end
