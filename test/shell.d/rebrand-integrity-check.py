@@ -95,6 +95,15 @@ KEEP_VERBATIM = (
 FORBIDDEN_FORMS = tuple(
     re.sub(r"omarchy", "unbloarchy", kept, flags=re.I) for kept in KEEP_VERBATIM)
 
+# The bare repo name at the head of a repository list, as in a test's expected
+# `"omarchy core extra multilib"`; the bracketed KEEP_VERBATIM entry above only
+# catches the section header. A run of Arch repository names after the name is
+# what marks a list, so a lone "Unbloarchy core packages" in prose is ignored.
+_ARCH_REPOS = r"(?:asahi-alarm|core|extra|multilib|alarm|aur)"
+FORBIDDEN_PATTERNS = (
+    re.compile(rf"unbloarchy(?:\s+{_ARCH_REPOS}){{3,}}", re.I),
+)
+
 # Content that deliberately references the OLD omarchy names (pre-rename
 # migration machinery, legacy fixtures, planning docs) and must not be
 # scanned. These name the past on purpose, so a dangling-looking reference is
@@ -188,6 +197,12 @@ def main():
                     if forbidden.lower() in low:
                         failures.append(
                             f"token {path}:{n}: {forbidden} (kept as {kept})")
+                for rx in FORBIDDEN_PATTERNS:
+                    m = rx.search(line)
+                    if m:
+                        failures.append(
+                            f"token {path}:{n}: {m.group(0)} "
+                            "(kept as a repository name)")
     if failures:
         print("not ok - rebrand-integrity-check")
         for f in failures:
