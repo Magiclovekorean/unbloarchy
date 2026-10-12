@@ -35,8 +35,17 @@ wait_for_terminal_resize() {
 
 wait_for_terminal_resize
 
+# The user's own art wins; fall back to the shipped wordmark until they brand
+# the screensaver. With neither, there is nothing to draw, so leave rather than
+# open a black window that never animates.
+branding=~/.config/unbloarchy/branding/screensaver.txt
+[[ -f $branding ]] || branding="$UNBLOARCHY_PATH/logo.txt"
+[[ -f $branding ]] || exit_screensaver
+
 while true; do
-  ttfx -i ~/.config/unbloarchy/branding/screensaver.txt \
+  launched=$SECONDS
+
+  ttfx -i "$branding" \
     --frame-rate 120 --canvas-width 0 --canvas-height 0 --reuse-canvas --anchor-canvas c --anchor-text c\
     --random-effect --no-eol --no-restore-cursor &
 
@@ -45,4 +54,9 @@ while true; do
       exit_screensaver
     fi
   done
+
+  # ttfx exits on its own when an effect finishes, and the loop chains a fresh
+  # random effect. Dying within a second means the input or the terminal is
+  # broken, so stop instead of restarting into the same failure forever.
+  (( SECONDS - launched >= 1 )) || exit_screensaver
 done

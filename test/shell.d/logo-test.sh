@@ -47,6 +47,17 @@ pass "icon.txt is untouched by the rename"
   fail "icon.png is untouched by the rename"
 pass "icon.png is untouched by the rename"
 
+# /etc/skel seeds the branding from the packaged config tree, which is a copy of
+# the root artifact rather than a generator. Pin the copies to their sources so
+# a wordmark or icon edit cannot leave fresh users seeded with the old art.
+cmp -s "$ROOT/logo.txt" "$ROOT/config/unbloarchy/branding/screensaver.txt" ||
+  fail "the seeded screensaver branding is the shipped wordmark"
+pass "the seeded screensaver branding is the shipped wordmark"
+
+cmp -s "$ROOT/icon.txt" "$ROOT/config/unbloarchy/branding/about.txt" ||
+  fail "the seeded About branding is the shipped icon"
+pass "the seeded About branding is the shipped icon"
+
 # Every block character is one cell. Measuring the width with awk or ${#line}
 # would be locale-dependent: under LC_ALL=C both count bytes, and the
 # three-byte blocks turn 113 columns into 263. Substituting the blocks for

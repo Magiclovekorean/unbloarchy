@@ -56,6 +56,7 @@ COMPAT_PATHS = (
     "default/systemd/system/plocate-updatedb.service.d/10-omarchy.conf",
     "default/systemd/zram-generator.conf.d/90-omarchy.conf",
     "default/libalpm/hooks/00-omarchy-update-guard.hook",
+    "default/libalpm/hooks/05-omarchy-passwordless-revoke.hook",
     "default/libalpm/hooks/10-omarchy-hyprland-reload-pause.hook",
     "default/libalpm/hooks/90-omarchy-hyprland-reload-resume.hook",
     "default/environment.d/10-omarchy-fcitx.conf",
