@@ -1,32 +1,32 @@
 #!/bin/bash
 
-# omarchy:summary=Apply an Omarchy theme
-# omarchy:args=<theme-name>
-# omarchy:examples=omarchy theme list | omarchy theme set "Tokyo Night"
+# unbloarchy:summary=Apply an Unbloarchy theme
+# unbloarchy:args=<theme-name>
+# unbloarchy:examples=unbloarchy theme list | unbloarchy theme set "Tokyo Night"
 
 if [[ -z $1 ]]; then
-  echo "Usage: omarchy-theme-set <theme-name>"
+  echo "Usage: unbloarchy-theme-set <theme-name>"
   exit 1
 fi
 
-CURRENT_THEME_PATH="$HOME/.local/state/omarchy/current/theme"
-CURRENT_THEME_NAME_PATH="$HOME/.local/state/omarchy/current/theme.name"
-NEXT_THEME_PATH="$HOME/.local/state/omarchy/current/next-theme"
-CURRENT_BACKGROUND_LINK="$HOME/.local/state/omarchy/current/background"
-THEME_BACKGROUND_STATE_PATH="$HOME/.local/state/omarchy/theme-backgrounds"
-BACKGROUND_TRANSITION_CACHE="$HOME/.cache/omarchy/background-transitions"
-THEME_SET_LOCK="${XDG_RUNTIME_DIR:-/tmp}/omarchy-theme-set.lock"
-THEME_SET_LOG="$HOME/.local/state/omarchy/theme-set.log"
-THEME_RETINT_LOCK="${XDG_RUNTIME_DIR:-/tmp}/omarchy-theme-set-retint.lock"
-THEME_GENERATION_PATH="$HOME/.local/state/omarchy/current/theme.generation"
-USER_THEMES_PATH="$HOME/.config/omarchy/themes"
-OMARCHY_THEMES_PATH="$OMARCHY_PATH/themes"
+CURRENT_THEME_PATH="$HOME/.local/state/unbloarchy/current/theme"
+CURRENT_THEME_NAME_PATH="$HOME/.local/state/unbloarchy/current/theme.name"
+NEXT_THEME_PATH="$HOME/.local/state/unbloarchy/current/next-theme"
+CURRENT_BACKGROUND_LINK="$HOME/.local/state/unbloarchy/current/background"
+THEME_BACKGROUND_STATE_PATH="$HOME/.local/state/unbloarchy/theme-backgrounds"
+BACKGROUND_TRANSITION_CACHE="$HOME/.cache/unbloarchy/background-transitions"
+THEME_SET_LOCK="${XDG_RUNTIME_DIR:-/tmp}/unbloarchy-theme-set.lock"
+THEME_SET_LOG="$HOME/.local/state/unbloarchy/theme-set.log"
+THEME_RETINT_LOCK="${XDG_RUNTIME_DIR:-/tmp}/unbloarchy-theme-set-retint.lock"
+THEME_GENERATION_PATH="$HOME/.local/state/unbloarchy/current/theme.generation"
+USER_THEMES_PATH="$HOME/.config/unbloarchy/themes"
+UNBLOARCHY_THEMES_PATH="$UNBLOARCHY_PATH/themes"
 
 # What a theme installed from a git repo may not ship, because these run code.
 # Hyprland requires a theme's hyprland.lua and gum_env.lua at login and Neovim
 # loads its neovim.lua at startup, so no .lua from such a theme is staged at all.
 # Each terminal config names the program the terminal launches, and vscode.json
-# names an extension omarchy-theme-set-vscode installs, a VS Code extension being
+# names an extension unbloarchy-theme-set-vscode installs, a VS Code extension being
 # arbitrary JavaScript. Everything else a theme ships is colour and is kept.
 #
 # Adding a template for another terminal, or for another editor that loads Lua,
@@ -37,7 +37,7 @@ IGNORED_THEME_FILES=()
 
 FAILED_THEME_COMMANDS=()
 
-# Each command is an Omarchy command on the PATH this one already has, so it
+# Each command is an Unbloarchy command on the PATH this one already has, so it
 # runs directly rather than through a login shell that rereads the profile.
 # A background command would otherwise get /dev/null as stdin, and the browser
 # policy asks for a sudo password on stdin when it is a terminal.
@@ -66,20 +66,20 @@ report_failed_theme_commands() {
 
   echo "Theme retint failed: ${FAILED_THEME_COMMANDS[*]}" >&2
   if [[ $detached == "detached" ]]; then
-    omarchy-notification-send -u normal "$(omarchy-i18n theme.notAppliedEverywhere)" \
-      "$(omarchy-i18n theme.commandsFailed "${FAILED_THEME_COMMANDS[*]}" "$THEME_SET_LOG")" >/dev/null 2>&1 || true
+    unbloarchy-notification-send -u normal "$(unbloarchy-i18n theme.notAppliedEverywhere)" \
+      "$(unbloarchy-i18n theme.commandsFailed "${FAILED_THEME_COMMANDS[*]}" "$THEME_SET_LOG")" >/dev/null 2>&1 || true
   fi
 }
 
 shell_ipc() {
-  timeout 2 omarchy-shell "$@" >/dev/null 2>&1
+  timeout 2 unbloarchy-shell "$@" >/dev/null 2>&1
 }
 
 # Wait, at most three seconds, while a shell call answers <pending>.
 wait_for_theme_intro() {
   local pending="$1" deadline=$((SECONDS + 3))
   shift
-  while (( SECONDS < deadline )) && [[ $(omarchy-shell shell "$@" 2>/dev/null) == "$pending" ]]; do
+  while (( SECONDS < deadline )) && [[ $(unbloarchy-shell shell "$@" 2>/dev/null) == "$pending" ]]; do
     sleep 0.02
   done
 }
@@ -152,7 +152,7 @@ choose_theme_background() {
 
   CHOSEN_THEME_BACKGROUND=""
   mapfile -d '' -t backgrounds < <(
-    find -L "$HOME/.config/omarchy/backgrounds/$THEME_NAME/" "$theme_path/backgrounds/" -maxdepth 1 -type f \
+    find -L "$HOME/.config/unbloarchy/backgrounds/$THEME_NAME/" "$theme_path/backgrounds/" -maxdepth 1 -type f \
       \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.gif' -o -iname '*.bmp' -o -iname '*.webp' \
          -o -iname '*.mp4' -o -iname '*.m4v' -o -iname '*.mov' -o -iname '*.webm' -o -iname '*.mkv' -o -iname '*.avi' \) \
       -print0 2>/dev/null | sort -z
@@ -217,7 +217,7 @@ set_theme_background() {
 
   if [[ -z $CHOSEN_THEME_BACKGROUND || ! -f $CHOSEN_THEME_BACKGROUND ]]; then
     if ! choose_theme_background; then
-      omarchy-notification-send "$(omarchy-i18n theme.noBackground)" -t 2000
+      unbloarchy-notification-send "$(unbloarchy-i18n theme.noBackground)" -t 2000
       shell_ipc shell applyTheme "$colors_payload" "$shell_payload" || true
       return
     fi
@@ -302,7 +302,7 @@ stage_installed_colors_from_alacritty() {
 
   scratch=$(mktemp -d)
   cp "$source/alacritty.toml" "$scratch/alacritty.toml"
-  omarchy-theme-colors-from-alacritty "$scratch"
+  unbloarchy-theme-colors-from-alacritty "$scratch"
 
   if [[ -f $scratch/colors.toml ]]; then
     cp "$scratch/colors.toml" "$NEXT_THEME_PATH/colors.toml"
@@ -333,11 +333,11 @@ stage_installed_dir() {
   done
 }
 
-# `omarchy theme install` clones into ~/.config/omarchy/themes, so a .git
+# `unbloarchy theme install` clones into ~/.config/unbloarchy/themes, so a .git
 # directory there means the contents came from a stranger and are held to the
 # list above. A directory the user wrote themselves, and a symlink to their own
 # working copy, are theirs to fill however they like -- the same distinction
-# omarchy-theme-extras draws when it decides which themes it may pull.
+# unbloarchy-theme-extras draws when it decides which themes it may pull.
 theme_came_from_a_repo() {
   local source="$1"
 
@@ -378,7 +378,7 @@ report_ignored_theme_files() {
 
 THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 THEME_HEADLESS=0
-if [[ ${OMARCHY_THEME_HEADLESS:-} == "1" || ${OMARCHY_THEME_OFFLINE:-} == "1" ]]; then
+if [[ ${UNBLOARCHY_THEME_HEADLESS:-} == "1" || ${UNBLOARCHY_THEME_OFFLINE:-} == "1" ]]; then
   THEME_HEADLESS=1
 fi
 
@@ -387,7 +387,7 @@ if [[ -z $THEME_NAME || $THEME_NAME == .* || $THEME_NAME == */* ]]; then
   exit 1
 fi
 
-if [[ ! -d $OMARCHY_THEMES_PATH/$THEME_NAME ]] && [[ ! -d $USER_THEMES_PATH/$THEME_NAME ]]; then
+if [[ ! -d $UNBLOARCHY_THEMES_PATH/$THEME_NAME ]] && [[ ! -d $USER_THEMES_PATH/$THEME_NAME ]]; then
   echo "Theme '$THEME_NAME' does not exist"
   exit 1
 fi
@@ -400,7 +400,7 @@ flock 9
 
 # A current video frame only represents the screen after its opening fade.
 # Finish that short reveal before capturing the next outgoing cover.
-if [[ $THEME_HEADLESS != "1" && $OMARCHY_THEME_SKIP_BACKGROUND != "1" ]]; then
+if [[ $THEME_HEADLESS != "1" && $UNBLOARCHY_THEME_SKIP_BACKGROUND != "1" ]]; then
   wait_for_theme_intro pending themeIntroBusy
 fi
 
@@ -412,7 +412,7 @@ rm -rf "$NEXT_THEME_PATH"
 mkdir -p "$NEXT_THEME_PATH"
 
 # Copy official theme first, then overlay the user's theme on top
-cp -r "$OMARCHY_THEMES_PATH/$THEME_NAME/"* "$NEXT_THEME_PATH/" 2>/dev/null
+cp -r "$UNBLOARCHY_THEMES_PATH/$THEME_NAME/"* "$NEXT_THEME_PATH/" 2>/dev/null
 
 if theme_came_from_a_repo "$USER_THEMES_PATH/$THEME_NAME"; then
   stage_installed_theme "$USER_THEMES_PATH/$THEME_NAME"
@@ -423,7 +423,7 @@ fi
 
 # Generate colors.toml from alacritty.toml if theme is missing colors.toml
 if [[ ! -f $NEXT_THEME_PATH/colors.toml && -f $NEXT_THEME_PATH/alacritty.toml ]]; then
-  omarchy-theme-colors-from-alacritty "$NEXT_THEME_PATH"
+  unbloarchy-theme-colors-from-alacritty "$NEXT_THEME_PATH"
 fi
 
 CHOSEN_THEME_BACKGROUND=""
@@ -436,16 +436,16 @@ THEME_BACKGROUND_INTRO=""
 THEME_BACKGROUND_COVER=false
 INTRO_PREPARE_PID=""
 THEME_INTRO_TOKEN=""
-if [[ $THEME_HEADLESS != "1" && $OMARCHY_THEME_SKIP_BACKGROUND != "1" ]]; then
+if [[ $THEME_HEADLESS != "1" && $UNBLOARCHY_THEME_SKIP_BACKGROUND != "1" ]]; then
   # Resolve the staged choice while the old theme still exists. Video changes
   # switch directly to the durable path in QML, so neither side needs a copy.
   if choose_staged_theme_background; then
     # Reselecting the current theme cycles its background, which plays that
     # background's intro like any other background change.
     if [[ $PREVIOUS_THEME_NAME != "$THEME_NAME" || $(readlink "$CURRENT_BACKGROUND_LINK") != "$CHOSEN_THEME_BACKGROUND" ]] &&
-      [[ ! -f $HOME/.local/state/omarchy/toggles/background-intros-off ]] &&
+      [[ ! -f $HOME/.local/state/unbloarchy/toggles/background-intros-off ]] &&
       [[ $(hyprctl -j getoption animations:enabled 2>/dev/null | jq -r '.bool') == "true" ]]; then
-      THEME_BACKGROUND_INTRO=$(omarchy-theme-bg-boot-intro --resolve-only "$STAGED_THEME_BACKGROUND")
+      THEME_BACKGROUND_INTRO=$(unbloarchy-theme-bg-boot-intro --resolve-only "$STAGED_THEME_BACKGROUND")
     fi
     # An intro still playing hides the shell's background, so an ordinary
     # transition would run unseen and end in a cut. Hold its current frame
@@ -477,7 +477,7 @@ if [[ $THEME_HEADLESS != "1" && $OMARCHY_THEME_SKIP_BACKGROUND != "1" ]]; then
 fi
 
 # Generate dynamic configs
-omarchy-theme-set-templates
+unbloarchy-theme-set-templates
 
 # Replacing the theme's still can cancel an active OWE intro even before the
 # background link changes. Present its cover before replacing either path.
@@ -506,10 +506,10 @@ colors_payload=$([[ -f $CURRENT_THEME_PATH/colors.toml ]] && base64 -w 0 "$CURRE
 shell_payload=$([[ -f $CURRENT_THEME_PATH/shell.toml ]] && base64 -w 0 "$CURRENT_THEME_PATH/shell.toml")
 if [[ $THEME_HEADLESS == "1" ]]; then
   # No shell/session bus exists during ISO chroot finalization, but the first
-  # real login still needs a current background symlink for omarchy-shell to
+  # real login still needs a current background symlink for unbloarchy-shell to
   # render.
-  [[ $OMARCHY_THEME_SKIP_BACKGROUND == "1" ]] || set_theme_background_link || true
-elif [[ $OMARCHY_THEME_SKIP_BACKGROUND == "1" ]]; then
+  [[ $UNBLOARCHY_THEME_SKIP_BACKGROUND == "1" ]] || set_theme_background_link || true
+elif [[ $UNBLOARCHY_THEME_SKIP_BACKGROUND == "1" ]]; then
   shell_ipc shell applyTheme "$colors_payload" "$shell_payload" || true
 else
   set_theme_background
@@ -524,29 +524,29 @@ flock -u 9
 # them, plus the window borders when no intro is playing. These run as soon as
 # the theme is in place, alongside the wallpaper and bar transition.
 visible_theme_commands=(
-  omarchy-restart-terminal
-  omarchy-theme-set-foot
-  omarchy-theme-set-tmux
-  omarchy-restart-btop
-  omarchy-restart-opencode
-  omarchy-restart-helix
-  omarchy-theme-set-hunk
+  unbloarchy-restart-terminal
+  unbloarchy-theme-set-foot
+  unbloarchy-theme-set-tmux
+  unbloarchy-restart-btop
+  unbloarchy-restart-opencode
+  unbloarchy-restart-helix
+  unbloarchy-theme-set-hunk
 )
 
 # Configs other apps read on their next refresh or launch: GTK, the browser
 # policy, editors, agents and the keyboard backlight. Nothing on screen waits
 # for these.
 other_theme_commands=(
-  omarchy-theme-set-gnome
-  omarchy-theme-set-pi
-  omarchy-theme-set-claude
-  omarchy-theme-set-hermes
-  omarchy-theme-set-t3code
-  omarchy-theme-set-browser
-  omarchy-theme-set-vscode
-  omarchy-theme-set-obsidian
-  omarchy-theme-set-keyboard
-  omarchy-theme-set-fcitx5
+  unbloarchy-theme-set-gnome
+  unbloarchy-theme-set-pi
+  unbloarchy-theme-set-claude
+  unbloarchy-theme-set-hermes
+  unbloarchy-theme-set-t3code
+  unbloarchy-theme-set-browser
+  unbloarchy-theme-set-vscode
+  unbloarchy-theme-set-obsidian
+  unbloarchy-theme-set-keyboard
+  unbloarchy-theme-set-fcitx5
 )
 
 theme_still_current() {
@@ -566,7 +566,7 @@ apply_other_theme_commands() {
   # Warm the background selector's thumbnails, which converts images on every
   # core, so it too waits for the reveal. The theme picker keeps its own rows
   # in the shell and refreshes them each time it opens.
-  omarchy-theme-bg-cache </dev/null >/dev/null 2>&1 8>&- 9>&- &
+  unbloarchy-theme-bg-cache </dev/null >/dev/null 2>&1 8>&- 9>&- &
 
   # Quick switches leave several of these batches going, and a retint such as
   # the browser's reads its colour long before it writes it. Run the batches
@@ -595,7 +595,7 @@ apply_other_theme_commands() {
 
   # Call hook on theme set. The lock is released first: a hook may switch the
   # theme itself, and that switch's batch needs the lock.
-  omarchy-hook theme-set "$THEME_NAME" >/dev/null
+  unbloarchy-hook theme-set "$THEME_NAME" >/dev/null
 
   # A newer switch replaced this theme during the hook, so its failures say
   # nothing about the apps any more; the newer batch reports its own.
@@ -608,7 +608,7 @@ if [[ $THEME_HEADLESS != "1" ]]; then
   # An intro reloads Hyprland after playback; ordinary theme changes reload it
   # with the terminals.
   if [[ -z $THEME_INTRO_TOKEN ]]; then
-    visible_theme_commands+=(omarchy-restart-hyprctl)
+    visible_theme_commands+=(unbloarchy-restart-hyprctl)
   fi
   run_parallel "${visible_theme_commands[@]}"
 
@@ -616,8 +616,8 @@ if [[ $THEME_HEADLESS != "1" ]]; then
   # on screen has changed and leaves the rest running behind it, with its
   # output in the log. One typed in a terminal waits for everything, so the
   # browser policy can ask for a sudo password there, and so does a caller
-  # that sets OMARCHY_THEME_WAIT=1 because it reads those app configs next.
-  if [[ -t 0 || ${OMARCHY_THEME_WAIT:-} == "1" ]]; then
+  # that sets UNBLOARCHY_THEME_WAIT=1 because it reads those app configs next.
+  if [[ -t 0 || ${UNBLOARCHY_THEME_WAIT:-} == "1" ]]; then
     apply_other_theme_commands
   else
     mkdir -p "${THEME_SET_LOG%/*}"
@@ -625,5 +625,5 @@ if [[ $THEME_HEADLESS != "1" ]]; then
   fi
 
   # Mirror the theme to herdr machines. SSH can take a while, so this never holds up the theme change.
-  setsid omarchy-theme-set-herdr-machines >>"$HOME/.local/state/omarchy/theme-set-herdr-machines.log" 2>&1 </dev/null &
+  setsid unbloarchy-theme-set-herdr-machines >>"$HOME/.local/state/unbloarchy/theme-set-herdr-machines.log" 2>&1 </dev/null &
 fi

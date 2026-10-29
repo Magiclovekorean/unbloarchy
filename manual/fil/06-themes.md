@@ -1,8 +1,8 @@
 # Mga Tema
 
-May dalawampu't dalawang magagandang tema ang Omarchy. Maaari kang pumili sa mga ito sa pamamagitan ng _Appearance > Theme_ sa Omarchy Menu (`Super + Space`) o dumiretso sa tagapili ng tema gamit ang `Super + Ctrl + T`.
+May dalawampu't dalawang magagandang tema ang Unbloarchy. Maaari kang pumili sa mga ito sa pamamagitan ng _Appearance > Theme_ sa Unbloarchy Menu (`Super + Space`) o dumiretso sa tagapili ng tema gamit ang `Super + Ctrl + T`.
 
-Binibigyan ng estilo ng bawat tema ang desktop, terminal, neovim, activity screen (btop), Chromium, at ang buong Omarchy shell: top bar, menu, mga notification, OSD, at lock screen. (Para sa Obsidian, kailangan mong manu-manong piliin ang tema ng Omarchy sa pamamagitan ng _Appearance > Themes_ sa loob ng app).
+Binibigyan ng estilo ng bawat tema ang desktop, terminal, neovim, activity screen (btop), Chromium, at ang buong Unbloarchy shell: top bar, menu, mga notification, OSD, at lock screen. (Para sa Obsidian, kailangan mong manu-manong piliin ang tema ng Unbloarchy sa pamamagitan ng _Appearance > Themes_ sa loob ng app).
 
 May hanay ng mga background image ang mga tema na maaari mong pagpilian gamit ang `Super + Ctrl + W`.
 

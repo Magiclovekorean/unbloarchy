@@ -198,7 +198,7 @@ Panel {
     refreshFacts()
   }
 
-  function notify(title) { Util.execArgv(["omarchy-notification-send", title]) }
+  function notify(title) { Util.execArgv(["unbloarchy-notification-send", title]) }
 
   function startChoosingHere() { if (hereSearch && localZone !== "" && !globeMode) hereSearch.start() }
 

@@ -41,20 +41,20 @@ shell_call() {
   local display_env=()
   [[ -n $display ]] && display_env=(WAYLAND_DISPLAY="$display")
   : >"$calls"
-  env -u WAYLAND_DISPLAY PATH="$stub_bin:$PATH" OMARCHY_PATH="$root_dir" XDG_RUNTIME_DIR="${runtime:-$run_dir}" \
+  env -u WAYLAND_DISPLAY PATH="$stub_bin:$PATH" UNBLOARCHY_PATH="$root_dir" XDG_RUNTIME_DIR="${runtime:-$run_dir}" \
     "${display_env[@]}" QS_CALLS="$calls" QS_MODE="${qs_mode:-}" \
-    OMARCHY_SHELL_IPC_TIMEOUT="${IPC_TIMEOUT:-2s}" "$ROOT/bin/omarchy-shell" "$@"
+    UNBLOARCHY_SHELL_IPC_TIMEOUT="${IPC_TIMEOUT:-2s}" "$ROOT/bin/unbloarchy-shell" "$@"
 }
 
 # qs ipc path: no shell socket in the runtime directory yet.
 
 output=$(IPC_TIMEOUT=0.1s qs_mode=hang shell_call shell ping 2>&1) && fail "hung shell IPC returns a failure"
-[[ $output == "omarchy-shell is not responding" ]] || fail "hung shell IPC reports that the shell is unresponsive" "$output"
+[[ $output == "unbloarchy-shell is not responding" ]] || fail "hung shell IPC reports that the shell is unresponsive" "$output"
 pass "shell IPC calls time out when Quickshell is unresponsive"
 
 # A starting shell answers on stdout and exits 0, so a ping reads it as up.
 output=$(qs_mode=starting shell_call shell ping 2>&1) && fail "a starting shell answers IPC calls with a failure"
-[[ $output == "omarchy-shell is not ready" ]] || fail "a starting shell reports that it is not ready" "$output"
+[[ $output == "unbloarchy-shell is not ready" ]] || fail "a starting shell reports that it is not ready" "$output"
 pass "shell IPC calls fail while Quickshell is still starting"
 
 qs_mode=starting shell_call -q shell ping >/dev/null 2>&1 || fail "quiet best-effort IPC calls tolerate a starting shell"
@@ -70,31 +70,31 @@ display_run="$test_tmp/display-run"
 mkdir -p "$display_run"
 touch "$display_run/wayland-1" "$display_run/wayland-1.lock"
 
-output=$(runtime="$display_run" display="" shell_call omarchy.indicators refresh)
+output=$(runtime="$display_run" display="" shell_call unbloarchy.indicators refresh)
 [[ $output == "from-qs on wayland-1" ]] || fail "shell ipc recovers a missing display" "$output"
 pass "shell ipc recovers a missing display"
 
 touch "$display_run/wayland-9"
-output=$(runtime="$display_run" display=wayland-9 shell_call omarchy.indicators refresh)
+output=$(runtime="$display_run" display=wayland-9 shell_call unbloarchy.indicators refresh)
 [[ $output == "from-qs on wayland-9" ]] || fail "shell ipc keeps an existing display" "$output"
 pass "shell ipc keeps an existing display"
 rm "$display_run/wayland-9"
 
 # A second Hyprland session leaves its display in the systemd user environment
 # after it ends, and services started then must still reach the live shell.
-output=$(runtime="$display_run" display=wayland-2 shell_call omarchy.indicators refresh)
+output=$(runtime="$display_run" display=wayland-2 shell_call unbloarchy.indicators refresh)
 [[ $output == "from-qs on wayland-1" ]] || fail "shell ipc recovers from a display whose socket is gone" "$output"
 pass "shell ipc recovers from a display whose socket is gone"
 
 # A display may be an absolute path to a socket outside the runtime directory.
 mkdir -p "$test_tmp/elsewhere"
 touch "$test_tmp/elsewhere/wayland-5"
-output=$(runtime="$display_run" display="$test_tmp/elsewhere/wayland-5" shell_call omarchy.indicators refresh)
+output=$(runtime="$display_run" display="$test_tmp/elsewhere/wayland-5" shell_call unbloarchy.indicators refresh)
 [[ $output == "from-qs on $test_tmp/elsewhere/wayland-5" ]] || fail "shell ipc keeps a live absolute display" "$output"
 pass "shell ipc keeps a live absolute display"
 
 # Socket path: the shell names its socket after its config and display, as
-# omarchy-shell derives it.
+# unbloarchy-shell derives it.
 socket=$(XDG_RUNTIME_DIR="$run_dir" WAYLAND_DISPLAY="$display" shell_ipc_socket "$root_dir")
 
 # The fake shell replies as the mode file says, and logs each request with
@@ -146,19 +146,19 @@ pass "an argument holding a separator goes straight to qs ipc"
 
 printf 'hang' >"$mode"
 output=$(IPC_TIMEOUT=0.5s shell_call shell ping 2>&1) && fail "a shell that never replies fails the call"
-[[ $output == "omarchy-shell is not responding" && ! -s $calls ]] ||
+[[ $output == "unbloarchy-shell is not responding" && ! -s $calls ]] ||
   fail "a call that may have run is reported, not retried through qs ipc" "got: $output"
 pass "a call that may have run is reported as unresponsive, not retried"
 
 printf 'close' >"$mode"
 output=$(shell_call shell ping 2>&1) && fail "a shell that closes without answering fails the call"
-[[ $output == "omarchy-shell is not responding" && ! -s $calls ]] ||
+[[ $output == "unbloarchy-shell is not responding" && ! -s $calls ]] ||
   fail "a connection closed without an answer is reported, not retried" "got: $output"
 pass "a connection closed without an answer is reported, not retried"
 
 printf 'partial' >"$mode"
 output=$(shell_call shell listPlugins 2>&1) && fail "a reply cut off before its end fails the call"
-[[ $output == "omarchy-shell is not responding" && ! -s $calls ]] ||
+[[ $output == "unbloarchy-shell is not responding" && ! -s $calls ]] ||
   fail "a reply cut off before its end is reported, not taken or retried" "got: $output"
 pass "a reply cut off before its end is reported, not taken or retried"
 
@@ -207,7 +207,7 @@ assert(
   'the socket answers only declared functions with their exact argument count'
 )
 assert(
-  shellQml.includes('+ Qt.md5(shell.omarchyPath + "/shell\\n" + Quickshell.env("WAYLAND_DISPLAY")).slice(0, 16) + ".sock"'),
-  'the shell names its socket after its config and display, as omarchy-shell does'
+  shellQml.includes('+ Qt.md5(shell.unbloarchyPath + "/shell\\n" + Quickshell.env("WAYLAND_DISPLAY")).slice(0, 16) + ".sock"'),
+  'the shell names its socket after its config and display, as unbloarchy-shell does'
 )
 JS

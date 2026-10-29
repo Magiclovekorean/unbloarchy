@@ -20,11 +20,11 @@ Obsidian is gratis voor alle doeleinden, inclusief persoonlijk, commercieel en n
 
 Obsidian biedt ook een [commerciële add-on voor synchronisatie](https://obsidian.md/sync) met mobiele apps op iOS en Android. (https://obsidian.md/pricing).
 
-Je start Obsidian met `Super + Shift + O`. Om themasynchronisatie te gebruiken, moet je het thema `Omarchy` selecteren onder instellingen.
+Je start Obsidian met `Super + Shift + O`. Om themasynchronisatie te gebruiken, moet je het thema `Unbloarchy` selecteren onder instellingen.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) is Omarchy's eigen doodeenvoudige Markdown-schrijfapp. Geen vaults, geen plugins, alleen jij en de woorden.
+[Omawrite](https://github.com/omacom-io/omawrite) is Unbloarchy's eigen doodeenvoudige Markdown-schrijfapp. Geen vaults, geen plugins, alleen jij en de woorden.
 
 Je start Omawrite met `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Je start Aether via de applicatiestarter (`Super + Space`).
 
 [LocalSend](https://localsend.org/) laat je bestanden sturen naar andere apparaten op hetzelfde netwerk waarop de app draait, zoals Apple's AirDrop. Het is echter cross-platform, dus je kunt bestanden sturen naar en vanaf Windows, macOS, Android, iOS en natuurlijk Linux.
 
-Je opent het menu Delen met `Super + Ctrl + S` of via _Trigger > Share_ in het Omarchy-menu. Het geeft je vier opties:
+Je opent het menu Delen met `Super + Ctrl + S` of via _Trigger > Share_ in het Unbloarchy-menu. Het geeft je vier opties:
 
 - **Clipboard** stuurt wat je hebt gekopieerd als een tekstbestand. Geweldig om een link of een snippet op je telefoon te krijgen zonder jezelf te e-mailen.
 - **File** opent een bestandsselector waarin je er meerdere tegelijk kunt selecteren.
 - **Folder** stuurt een hele map.
 - **Receive** opent LocalSend zelf, zodat een ander apparaat iets naar je kan sturen.
 
-Hetzelfde werkt vanuit de terminal met `omarchy share clipboard`, `omarchy share file [path]` en `omarchy share folder [path]`. Laat het pad weg en je krijgt de selector.
+Hetzelfde werkt vanuit de terminal met `unbloarchy share clipboard`, `unbloarchy share file [path]` en `unbloarchy share folder [path]`. Laat het pad weg en je krijgt de selector.
 
 Je kunt ook rechtstreeks vanuit de bestandsbeheerder sturen: klik met de rechtermuisknop op een selectie in Nautilus en kies _Send via LocalSend_.
 
-De firewall van Omarchy is standaard gesloten, behalve voor de poort van LocalSend, dus dit werkt direct op een nieuwe installatie. Zie [beveiliging](48-security.md).
+De firewall van Unbloarchy is standaard gesloten, behalve voor de poort van LocalSend, dus dit werkt direct op een nieuwe installatie. Zie [beveiliging](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ Je start LibreOffice via de applicatiestarter (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) is Omarchy's eigen doodeenvoudige presentatie-app. Je deck is één enkel Markdown-bestand met zijn afbeeldingen en video's ernaast: schrijf elke slide onder een live preview, sleep slides in de juiste volgorde en presenteer daarna fullscreen of exporteer naar PDF en PowerPoint. Het pikt zelfs je Omarchy-thema op.
+[Hype](https://github.com/omacom/hype) is Unbloarchy's eigen doodeenvoudige presentatie-app. Je deck is één enkel Markdown-bestand met zijn afbeeldingen en video's ernaast: schrijf elke slide onder een live preview, sleep slides in de juiste volgorde en presenteer daarna fullscreen of exporteer naar PDF en PowerPoint. Het pikt zelfs je Unbloarchy-thema op.
 
 Je start Hype via de applicatiestarter (`Super + Space`). Druk erbinnen op `?` om elke sneltoets te zien.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) is Omarchy's eigen doodeenvoudige manier om PDF's te ondertekenen en in te vullen. Plaats je opgeslagen handtekening, tekst en de datum van vandaag waar je wilt op een pagina en sla daarna een ondertekende kopie op naast het origineel. Zie [PDF's invullen](27-filling-out-pdfs.md) voor hoe dat werkt.
+[Signed](https://github.com/omacom/signed) is Unbloarchy's eigen doodeenvoudige manier om PDF's te ondertekenen en in te vullen. Plaats je opgeslagen handtekening, tekst en de datum van vandaag waar je wilt op een pagina en sla daarna een ondertekende kopie op naast het origineel. Zie [PDF's invullen](27-filling-out-pdfs.md) voor hoe dat werkt.
 
 Je start Signed via de applicatiestarter (`Super + Space`), of je opent er een PDF mee vanuit de bestandsbeheerder.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) is Omarchy's eigen doodeenvoudige rekenmachine, die opent in een zwevend venster.
+[Omacalc](https://github.com/omacom-io/omacalc) is Unbloarchy's eigen doodeenvoudige rekenmachine, die opent in een zwevend venster.
 
 Je start Omacalc met `Super + Shift + Q` (of de rekenmachinetoets, als je toetsenbord er een heeft).
 
@@ -85,7 +85,7 @@ Je start Omacalc met `Super + Shift + Q` (of de rekenmachinetoets, als je toetse
 
 [Signal](https://signal.org/) is de pionier van E2E-versleutelde berichtgeving en een geweldige communicatieoptie voor iedereen die liever niet via een van de grote techconglomeraten gaat.
 
-Je start Signal met `Super + Shift + G`. Het maakt geen deel uit van de basisinstallatie, dus de eerste keer dat je daarop drukt, biedt Omarchy aan om het voor je te installeren (het staat ook onder _Install > Service_ in het Omarchy-menu).
+Je start Signal met `Super + Shift + G`. Het maakt geen deel uit van de basisinstallatie, dus de eerste keer dat je daarop drukt, biedt Unbloarchy aan om het voor je te installeren (het staat ook onder _Install > Service_ in het Unbloarchy-menu).
 
 ## mpv
 
@@ -95,13 +95,13 @@ Je start mpv via de applicatiestarter (`Super + Space`) of je dubbelklikt gewoon
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) is Omarchy's eigen doodeenvoudige videotrimmer. Als je alleen het begin en het einde van een clip hoeft af te knippen, is dit veel handiger dan een volledige video-editor opstarten.
+[Omacut](https://github.com/omacom-io/omacut) is Unbloarchy's eigen doodeenvoudige videotrimmer. Als je alleen het begin en het einde van een clip hoeft af te knippen, is dit veel handiger dan een volledige video-editor opstarten.
 
 Je start Omacut via de applicatiestarter (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) is Omarchy's eigen doodeenvoudige webcamrecorder. Kies één keer je camera en microfoon, druk daarna op `Space` om op te nemen en nogmaals om dezelfde take te pauzeren en te hervatten. Het neemt altijd op in de hoogste resolutie van je camera, met een live microfoonmeter zodat je je niveaus kunt controleren voordat je begint.
+[Monologue](https://github.com/omacom/monologue) is Unbloarchy's eigen doodeenvoudige webcamrecorder. Kies één keer je camera en microfoon, druk daarna op `Space` om op te nemen en nogmaals om dezelfde take te pauzeren en te hervatten. Het neemt altijd op in de hoogste resolutie van je camera, met een live microfoonmeter zodat je je niveaus kunt controleren voordat je begint.
 
 Stop de take en hij opent meteen in een ingebouwde editor. Dubbelklik op een clip om hem te splitsen, sleep aan de handvatten om elk stuk bij te snijden en verwijder de delen die je niet wilt. Sla hem daarna op als een MP4. Je originele opname blijft behouden totdat je hem weggooit, dus je kunt altijd terugkomen en hem anders knippen.
 

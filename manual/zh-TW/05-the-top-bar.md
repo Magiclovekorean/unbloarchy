@@ -1,14 +1,14 @@
 # 頂部列
 
-螢幕頂部那條就是 Omarchy 列。它不是外加的狀態列，而是 Omarchy shell 的一部分，也就是那個長期執行的 Quickshell 程序，同一個程序也負責繪製選單、通知、OSD 彈出視窗和鎖定畫面。這就是為什麼它跟其他所有東西的主題都能完美契合，也為什麼面板能立即開啟，而不是另行啟動一個應用程式。
+螢幕頂部那條就是 Unbloarchy 列。它不是外加的狀態列，而是 Unbloarchy shell 的一部分，也就是那個長期執行的 Quickshell 程序，同一個程序也負責繪製選單、通知、OSD 彈出視窗和鎖定畫面。這就是為什麼它跟其他所有東西的主題都能完美契合，也為什麼面板能立即開啟，而不是另行啟動一個應用程式。
 
 它也是桌面上唯一永遠留在畫面上的部分，所以值得弄清楚那些小圖示到底都在做什麼。
 
 ## 預設有哪些東西
 
-這條列有三個區段。左邊是 Omarchy logo（選單啟動器）和工作區指示器。中間是狀態指示器、時鐘、Elsewhen（世界時鐘）、天氣，以及 Omarchy 更新徽章。右邊則是：系統匣、鍵盤配置（設定不只一個配置時才會顯示）、agents、bluetooth、network、audio、display 和 power。
+這條列有三個區段。左邊是 Unbloarchy logo（選單啟動器）和工作區指示器。中間是狀態指示器、時鐘、Elsewhen（世界時鐘）、天氣，以及 Unbloarchy 更新徽章。右邊則是：系統匣、鍵盤配置（設定不只一個配置時才會顯示）、agents、bluetooth、network、audio、display 和 power。
 
-其中有幾個只有在有話要說時才會出現。鍵盤配置只有在你設定了不只一個配置時才會出現。更新徽章只有在有 Omarchy 更新等待處理時才會出現。而 agents 圖示則會在 Omarchy 第一次在這台機器上發現 AI coding 使用量時出現（請參閱 [AI](17-ai.md)）。
+其中有幾個只有在有話要說時才會出現。鍵盤配置只有在你設定了不只一個配置時才會出現。更新徽章只有在有 Unbloarchy 更新等待處理時才會出現。而 agents 圖示則會在 Unbloarchy 第一次在這台機器上發現 AI coding 使用量時出現（請參閱 [AI](17-ai.md)）。
 
 ## 到處點點看
 
@@ -16,7 +16,7 @@
 
 | 小工具 | 左鍵 | 右鍵 | 中鍵 / 滾動 |
 | --- | --- | --- | --- |
-| 選單 | Omarchy 選單 | 新終端機 | — |
+| 選單 | Unbloarchy 選單 | 新終端機 | — |
 | 工作區 | 在這台螢幕上聚焦該工作區 | — | 滾動：下一個/上一個工作區 |
 | 時鐘 | 行事曆彈出視窗 | 切換標籤格式 | 中鍵：時區選擇器 |
 | 天氣 | 天氣預報彈出視窗 | 以通知顯示完整天氣 | 中鍵：重新整理 |
@@ -29,7 +29,7 @@
 | 媒體 | 播放/暫停 | 封面圖片彈出視窗 | 中鍵：下一首 · 滾動：上一首/下一首 |
 | Agents | Agents 面板 | 啟動你的 agent | 中鍵：下一個訂閱 |
 | 系統匣 | 懸停以展開抽屜 | 在 chevron 上按右鍵進行管理 | — |
-| Omarchy 更新 | 執行更新 | — | — |
+| Unbloarchy 更新 | 執行更新 | — | — |
 
 那張表裡的東西並不是全都一開始就在你的列上。媒體小工具（MPRIS 正在播放，帶有可滾動的曲目和演出者）和麥克風小工具都已內建，但預設是關閉的——想用的話就把它們加上，如下所述。
 
@@ -66,7 +66,7 @@
 
 還有另外兩個小工具，只有在你從**安裝 → 服務**安裝了對應的服務之後才會出現在列上，而且兩個都值得了解一下，因為它們不只是回報狀態而已。
 
-**Tailscale** 面板可以連線和中斷 tailnet、切換帳號，並選擇一個 exit node（你自己的機器和 Mullvad 地區都會出現在那份清單裡）。它還可以瀏覽你的機器——而且選好一台之後，`s` 會透過 Taildrop 把檔案送到它那裡，這是把檔案移到你的手機或另一台筆記型電腦最快的方法。`c` 會複製該機器的 IP，`n` 會複製它的名稱，`d` 則會複製它完整的 DNS 名稱。每個機器列上也有一個傳送按鈕，如果你比較想用點的。同樣的事情從終端機執行就是 `omarchy tailscale send <machine> [file...]`。
+**Tailscale** 面板可以連線和中斷 tailnet、切換帳號，並選擇一個 exit node（你自己的機器和 Mullvad 地區都會出現在那份清單裡）。它還可以瀏覽你的機器——而且選好一台之後，`s` 會透過 Taildrop 把檔案送到它那裡，這是把檔案移到你的手機或另一台筆記型電腦最快的方法。`c` 會複製該機器的 IP，`n` 會複製它的名稱，`d` 則會複製它完整的 DNS 名稱。每個機器列上也有一個傳送按鈕，如果你比較想用點的。同樣的事情從終端機執行就是 `unbloarchy tailscale send <machine> [file...]`。
 
 **Dropbox** 面板負責登入、顯示你已經用了多少儲存空間，並列出最近同步的檔案。
 
@@ -93,19 +93,19 @@
 同樣的事情也有命令可用，這正是你在設定 [dotfiles](31-dotfiles.md) 時會想要的方式：
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-若要完全新增或移除一個小工具，請使用 plugin 命令。`omarchy plugin list` 會印出 shell 知道的每個小工具及其 id，然後：
+若要完全新增或移除一個小工具，請使用 plugin 命令。`unbloarchy plugin list` 會印出 shell 知道的每個小工具及其 id，然後：
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## 隱藏這條列
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## 設定檔
 
-所有這些都儲存在 `~/.config/omarchy/shell.json` 裡的 `bar` 鍵底下。這是精簡過的版本：
+所有這些都儲存在 `~/.config/unbloarchy/shell.json` 裡的 `bar` 鍵底下。這是精簡過的版本：
 
 ```json
 {
@@ -123,20 +123,20 @@ omarchy plugin disable omarchy.weather
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-每個小工具都是五個 layout 陣列其中一個裡面的一筆項目，它的設定就直接寫在那筆項目上——沒有另外的設定檔，也沒有 `config` 子物件。時鐘的 `format`、`formatAlt`（右鍵點擊會切換到的格式）和 `verticalFormat` 全都直接住在 `{ "id": "omarchy.clock" }` 上。
+每個小工具都是五個 layout 陣列其中一個裡面的一筆項目，它的設定就直接寫在那筆項目上——沒有另外的設定檔，也沒有 `config` 子物件。時鐘的 `format`、`formatAlt`（右鍵點擊會切換到的格式）和 `verticalFormat` 全都直接住在 `{ "id": "unbloarchy.clock" }` 上。
 
 `center` 就是列中間的那個盒子：裡面的每一樣東西都會以一個群組的形式在螢幕上置中。`centerBegin` 和 `centerEnd` 則掛在盒子的兩側，天氣和更新徽章來來去去時，時鐘還能維持正中央，就是靠這個。把不只一個小工具放進 `center`，它們就會一起置中；讓它保持空的，`centerBegin` 和 `centerEnd` 就會在列的中間相會。
 
-有一條規則值得記牢：**一旦你有了自己的 `shell.json`，它就是權威**。在你自訂任何東西之前，shell 會讀取 Omarchy 的預設檔案。而你一拖曳小工具、執行 `omarchy bar`，或自己編輯檔案的那一刻起，它就是你的了——沒有深度合併，所以未來 Omarchy 版本裡的新預設小工具不會自動出現在你的列上。每當你想要一個乾淨的起點，`omarchy bar defaults` 都能把出貨時的版面配置放回去。
+有一條規則值得記牢：**一旦你有了自己的 `shell.json`，它就是權威**。在你自訂任何東西之前，shell 會讀取 Unbloarchy 的預設檔案。而你一拖曳小工具、執行 `unbloarchy bar`，或自己編輯檔案的那一刻起，它就是你的了——沒有深度合併，所以未來 Unbloarchy 版本裡的新預設小工具不會自動出現在你的列上。每當你想要一個乾淨的起點，`unbloarchy bar defaults` 都能把出貨時的版面配置放回去。
 
 同一個檔案在最上層也放著你的閒置計時，位於 `bar` 鍵之外：`idle.screensaver` 和 `idle.lock`，兩者都是從你開始閒置起算的秒數。所以預設的螢幕保護程式會在 150 秒後啟用，而鎖定會在 300 秒後啟用。

@@ -10,7 +10,7 @@ Kortit tarjoavat sen, mitä ne kantavat: _Kopioi koodi_ vahvistuskoodeille (pide
 
 Kun haluat käyttää niitä ilman hiirtä, paina `Super + Ctrl + ,`. Uusin ilmoitus on valittuna ja sen painikkeet numeroituna: käytä painiketta painamalla sen numeroa, napsauta ilmoitusta painamalla `Enter`, siirry ilmoitusten välillä painikkeilla `↑` ja `↓`, hylkää ilmoitus painamalla `Delete` ja palauta näppäimistö painamalla `Esc`. Se päästää myös itse irti muutaman käyttämättömän sekunnin jälkeen.
 
-Ilmoitusten hiljentäminen pitää ne poissa näkyvistä, lukuun ottamatta Omarchyn omia vahvistuksia, hätävaroituksia ja vahvistuskoodeja, joita pyysit hetki sitten. Tuo viimeisimmät takaisin näytölle, olivatpa ne pidätettyinä tai eivät, painamalla `Super + Shift + Alt + ,`. Historiaa säilytetään vuorokauden ajan.
+Ilmoitusten hiljentäminen pitää ne poissa näkyvistä, lukuun ottamatta Unbloarchyn omia vahvistuksia, hätävaroituksia ja vahvistuskoodeja, joita pyysit hetki sitten. Tuo viimeisimmät takaisin näytölle, olivatpa ne pidätettyinä tai eivät, painamalla `Super + Shift + Alt + ,`. Historiaa säilytetään vuorokauden ajan.
 
 ## Pikanäppäinilmoitukset
 
@@ -26,7 +26,7 @@ Ilmoitusten hiljentäminen pitää ne poissa näkyvistä, lukuun ottamatta Omarc
 
  ![notice-weather](images/notice-weather.webp)
 
-Sijainti tunnistetaan IP-osoitteesi perusteella, mikä on yleensä riittävän lähellä, mutta ei aina. Voit tarkentaa sen komennolla `omarchy weather location --set Malibu` tai olla täsmällinen lisäämällä koordinaatit: `omarchy weather location --set Malibu 34.0259,-118.7798`. Suorita `omarchy weather location` sellaisenaan nähdäksesi, missä se luulee sinun olevan, ja `--clear` palataksesi automaattiseen tunnistukseen.
+Sijainti tunnistetaan IP-osoitteesi perusteella, mikä on yleensä riittävän lähellä, mutta ei aina. Voit tarkentaa sen komennolla `unbloarchy weather location --set Malibu` tai olla täsmällinen lisäämällä koordinaatit: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Suorita `unbloarchy weather location` sellaisenaan nähdäksesi, missä se luulee sinun olevan, ja `--clear` palataksesi automaattiseen tunnistukseen.
 
 ### Akku
 

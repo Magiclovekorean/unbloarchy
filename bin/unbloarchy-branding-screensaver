@@ -1,28 +1,28 @@
 #!/bin/bash
 
-# omarchy:summary=Edit, set, or reset screensaver branding
-# omarchy:group=branding
-# omarchy:name=screensaver
-# omarchy:args=<image|text|reset>
-# omarchy:examples=omarchy branding screensaver image | omarchy branding screensaver text | omarchy branding screensaver reset
+# unbloarchy:summary=Edit, set, or reset screensaver branding
+# unbloarchy:group=branding
+# unbloarchy:name=screensaver
+# unbloarchy:args=<image|text|reset>
+# unbloarchy:examples=unbloarchy branding screensaver image | unbloarchy branding screensaver text | unbloarchy branding screensaver reset
 
 set -euo pipefail
 
 case "${1:-}" in
 image)
-  image=$(omarchy-file-select --title "$(omarchy-i18n branding.pickScreensaverImage)" --extensions "png svg")
-  if omarchy-transcode-ascii "$image" ~/.config/omarchy/branding/screensaver.txt; then
-    omarchy-launch-screensaver force >/dev/null 2>&1
+  image=$(unbloarchy-file-select --title "$(unbloarchy-i18n branding.pickScreensaverImage)" --extensions "png svg")
+  if unbloarchy-transcode-ascii "$image" ~/.config/unbloarchy/branding/screensaver.txt; then
+    unbloarchy-launch-screensaver force >/dev/null 2>&1
   fi
   ;;
 text)
-  omarchy-launch-editor ~/.config/omarchy/branding/screensaver.txt >/dev/null 2>&1 && omarchy-launch-screensaver force >/dev/null 2>&1
+  unbloarchy-launch-editor ~/.config/unbloarchy/branding/screensaver.txt >/dev/null 2>&1 && unbloarchy-launch-screensaver force >/dev/null 2>&1
   ;;
 reset)
-  cp "$OMARCHY_PATH/logo.txt" ~/.config/omarchy/branding/screensaver.txt && omarchy-launch-screensaver force >/dev/null 2>&1
+  cp "$UNBLOARCHY_PATH/logo.txt" ~/.config/unbloarchy/branding/screensaver.txt && unbloarchy-launch-screensaver force >/dev/null 2>&1
   ;;
 *)
-  echo "Usage: omarchy-branding-screensaver <image|text|reset>" >&2
+  echo "Usage: unbloarchy-branding-screensaver <image|text|reset>" >&2
   exit 1
   ;;
 esac

@@ -201,13 +201,13 @@ pass "upgrade cleanup preserves existing Lazydocker when replacement fails"
 # Runs the upgrade's step block as written, with every step logging its name,
 # so what is checked is the order the script really runs them in.
 upgrade_steps=$(sed -n '/^upgrade_started=1$/,$p' "$upgrade_to_quattro")
-grep -qx 'install_omarchy_quattro_packages' <<<"$upgrade_steps" || fail "the upgrade's step block is where this test looks for it"
+grep -qx 'install_unbloarchy_quattro_packages' <<<"$upgrade_steps" || fail "the upgrade's step block is where this test looks for it"
 run_upgrade_steps() {
   bash -c '
     for step in $(grep -xE "[a-z_0-9]+" <<<"$1"); do
       eval "$step() { echo $step; }"
     done
-    run_as_user_omarchy() { :; }
+    run_as_user_unbloarchy() { :; }
     warn() { :; }
     log() { :; }
     as_root() { echo "as_root $*"; }
@@ -229,9 +229,9 @@ runs_before create_pre_upgrade_snapshot configure_pacman_channel ||
   fail "the upgrade snapshots before it changes the package channel" "$steps"
 # The new kernel's boot entries are written during the package install, from a
 # cmdline that must already name root=; checked again once Limine is rewritten.
-runs_before preserve_kernel_cmdline_root install_omarchy_quattro_packages ||
+runs_before preserve_kernel_cmdline_root install_unbloarchy_quattro_packages ||
   fail "the upgrade pins root= before installing the new kernel" "$steps"
-runs_before install_omarchy_quattro_packages verify_kernel_cmdline_root &&
+runs_before install_unbloarchy_quattro_packages verify_kernel_cmdline_root &&
   runs_before normalize_limine_config verify_kernel_cmdline_root ||
   fail "the upgrade checks root= in the boot entries after writing them" "$steps"
 pass "the upgrade snapshots first and pins root= around the kernel install"
@@ -244,9 +244,9 @@ pass "the upgrade reboots on --reboot only when root= is confirmed in the boot e
 
 # The base list carries rtkit, which can make a running app with a zero
 # realtime budget realtime and get it killed. The repair that raises those
-# budgets and installs rtkit runs once the new omarchy package is in and before
+# budgets and installs rtkit runs once the new unbloarchy package is in and before
 # any other package install, and a failed repair stops the upgrade.
-packages_body=$(function_body install_omarchy_quattro_packages)
+packages_body=$(function_body install_unbloarchy_quattro_packages)
 package_calls=$(mktemp)
 exercise_package_install() {
   local repair_status=$1
@@ -259,26 +259,26 @@ exercise_package_install() {
     mark_packages_explicit() { :; }
     as_root() {
       echo "$*" >>"$package_calls"
-      [[ $* != *omarchy-realtime-repair* ]] || return "$repair_status"
+      [[ $* != *unbloarchy-realtime-repair* ]] || return "$repair_status"
     }
     use_dev_packages=0
     root_path=/usr/bin
-    eval "install_omarchy_quattro_packages() { $packages_body
+    eval "install_unbloarchy_quattro_packages() { $packages_body
 }"
-    install_omarchy_quattro_packages
+    install_unbloarchy_quattro_packages
   )
 }
 
-exercise_package_install 0 || fail "Omarchy 4 upgrade installs its packages when the realtime repair succeeds"
-awk '/pacman -Syu/ { syu = NR } /omarchy-realtime-repair/ { repair = NR } /(^| )pacman -S / && !first { first = NR }
+exercise_package_install 0 || fail "Unbloarchy 4 upgrade installs its packages when the realtime repair succeeds"
+awk '/pacman -Syu/ { syu = NR } /unbloarchy-realtime-repair/ { repair = NR } /(^| )pacman -S / && !first { first = NR }
   END { exit !(syu && repair && syu < repair && repair < first) }' "$package_calls" ||
-  fail "Omarchy 4 upgrade repairs realtime budgets after installing omarchy and before the base list" "$(cat "$package_calls")"
-pass "Omarchy 4 upgrade repairs realtime budgets after installing omarchy and before the base list"
+  fail "Unbloarchy 4 upgrade repairs realtime budgets after installing unbloarchy and before the base list" "$(cat "$package_calls")"
+pass "Unbloarchy 4 upgrade repairs realtime budgets after installing unbloarchy and before the base list"
 
 if exercise_package_install 1; then
-  fail "Omarchy 4 upgrade stops when the realtime repair fails"
+  fail "Unbloarchy 4 upgrade stops when the realtime repair fails"
 fi
 grep -qx fail "$package_calls" && ! grep -qE '(^| )pacman -S ' "$package_calls" ||
-  fail "Omarchy 4 upgrade installs nothing more once the realtime repair fails" "$(cat "$package_calls")"
-pass "Omarchy 4 upgrade stops before the base list when the realtime repair fails"
+  fail "Unbloarchy 4 upgrade installs nothing more once the realtime repair fails" "$(cat "$package_calls")"
+pass "Unbloarchy 4 upgrade stops before the base list when the realtime repair fails"
 rm -f "$package_calls"

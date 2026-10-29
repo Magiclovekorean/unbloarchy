@@ -15,33 +15,33 @@ cat >"$TMPDIR/bin/systemctl" <<'SH'
 printf '%s\n' "$*" >>"$SYSTEMCTL_LOG"
 SH
 
-cat >"$TMPDIR/bin/omarchy-notification-send" <<'SH'
+cat >"$TMPDIR/bin/unbloarchy-notification-send" <<'SH'
 #!/bin/bash
 exit 0
 SH
 
-chmod +x "$TMPDIR/bin/systemctl" "$TMPDIR/bin/omarchy-notification-send"
+chmod +x "$TMPDIR/bin/systemctl" "$TMPDIR/bin/unbloarchy-notification-send"
 
 test_home="$TMPDIR/home"
-flag="$test_home/.local/state/omarchy/toggles/crash-capture-off"
+flag="$test_home/.local/state/unbloarchy/toggles/crash-capture-off"
 
 toggle_crash_capture() {
   PATH="$TMPDIR/bin:$ROOT/bin:$PATH" \
   SYSTEMCTL_LOG="$SYSTEMCTL_LOG" \
   HOME="$test_home" \
-    "$ROOT/bin/omarchy-toggle-crash-capture"
+    "$ROOT/bin/unbloarchy-toggle-crash-capture"
 }
 
 toggle_crash_capture
 [[ -f $flag ]] || fail "crash capture toggle disables the watcher"
-grep -Fqx -- "--user stop omarchy-crash-watch.service" "$SYSTEMCTL_LOG" ||
+grep -Fqx -- "--user stop unbloarchy-crash-watch.service" "$SYSTEMCTL_LOG" ||
   fail "crash capture toggle stops the running watcher, so disabling takes effect before the next login"
 pass "crash capture toggle disables the watcher"
 
 : >"$SYSTEMCTL_LOG"
 toggle_crash_capture
 [[ ! -f $flag ]] || fail "crash capture toggle re-enables the watcher"
-grep -Fqx -- "--user start omarchy-crash-watch.service" "$SYSTEMCTL_LOG" ||
+grep -Fqx -- "--user start unbloarchy-crash-watch.service" "$SYSTEMCTL_LOG" ||
   fail "crash capture toggle starts the watcher, so enabling takes effect before the next login"
 pass "crash capture toggle re-enables the watcher"
 
@@ -62,23 +62,23 @@ cat >"$watch_bin/journalctl" <<'SH'
 cat "$JOURNAL_ENTRIES"
 SH
 
-cat >"$watch_bin/omarchy-default-agent" <<'SH'
+cat >"$watch_bin/unbloarchy-default-agent" <<'SH'
 #!/bin/bash
 echo claude
 SH
 
-cat >"$watch_bin/omarchy-notification-wait" <<'SH'
+cat >"$watch_bin/unbloarchy-notification-wait" <<'SH'
 #!/bin/bash
 exit 0
 SH
 
-cat >"$watch_bin/omarchy-notification-send" <<'SH'
+cat >"$watch_bin/unbloarchy-notification-send" <<'SH'
 #!/bin/bash
 printf '%s\n' "$*" >>"$NOTIFY_LOG"
 SH
 
-chmod +x "$watch_bin/journalctl" "$watch_bin/omarchy-default-agent" \
-  "$watch_bin/omarchy-notification-wait" "$watch_bin/omarchy-notification-send"
+chmod +x "$watch_bin/journalctl" "$watch_bin/unbloarchy-default-agent" \
+  "$watch_bin/unbloarchy-notification-wait" "$watch_bin/unbloarchy-notification-send"
 
 reset_entries() {
   : >"$JOURNAL_ENTRIES"
@@ -107,7 +107,7 @@ run_watch() {
   JOURNAL_ENTRIES="$JOURNAL_ENTRIES" \
   NOTIFY_LOG="$NOTIFY_LOG" \
   HOME="$watch_home" \
-    "$ROOT/bin/omarchy-crash-watch" || status=$?
+    "$ROOT/bin/unbloarchy-crash-watch" || status=$?
 
   (( status == 0 )) ||
     fail "the watcher exited $status rather than carrying on, so a mute takes the service down with it"
@@ -118,7 +118,7 @@ run_watch() {
 # reads have not drifted apart.
 mute() {
   HOME="$watch_home" PATH="$ROOT/bin:$PATH" \
-    "$ROOT/bin/omarchy-crash-mute" "$1" "$2" >/dev/null
+    "$ROOT/bin/unbloarchy-crash-mute" "$1" "$2" >/dev/null
 }
 
 announced() {
@@ -189,7 +189,7 @@ pass "a muted crash does not stop the watcher reading the next one"
 # for dropping all of them.
 reset_entries
 crash_entry a/../bar-off -
-sibling_flag="$watch_home/.local/state/omarchy/toggles/bar-off"
+sibling_flag="$watch_home/.local/state/unbloarchy/toggles/bar-off"
 touch "$sibling_flag"
 run_watch
 announced bar-off ||
@@ -243,18 +243,18 @@ run_watch
 pass "the fallback name can be muted like any other"
 mute unknown off
 
-# What omarchy-crash-mute does on its own. That it agrees with the watcher is
+# What unbloarchy-crash-mute does on its own. That it agrees with the watcher is
 # already covered above, which drives it for every mute it makes.
 mute_home="$TMPDIR/mute-home"
 mkdir -p "$mute_home"
 
 crash_mute() {
-  HOME="$mute_home" PATH="$ROOT/bin:$PATH" "$ROOT/bin/omarchy-crash-mute" "$@"
+  HOME="$mute_home" PATH="$ROOT/bin:$PATH" "$ROOT/bin/unbloarchy-crash-mute" "$@"
 }
 
 mute_flag() {
   [[ $1 == "--" ]] && shift
-  printf '%s' "$mute_home/.local/state/omarchy/toggles/crash-ignore/$1"
+  printf '%s' "$mute_home/.local/state/unbloarchy/toggles/crash-ignore/$1"
 }
 
 crash_mute | grep -Fq "No programs muted" ||
@@ -314,7 +314,7 @@ grep -Fq "Not an action" <<<"$refusal" ||
 pass "the command names the action it refused"
 
 crash_mute ../bar-off >/dev/null
-[[ ! -e "$mute_home/.local/state/omarchy/toggles/bar-off" ]] ||
+[[ ! -e "$mute_home/.local/state/unbloarchy/toggles/bar-off" ]] ||
   fail "a name that climbs out writes a sibling toggle, so muting a crash could turn off the bar instead"
 pass "the command cannot be talked into writing outside crash-ignore/"
 
@@ -349,15 +349,15 @@ rmdir "$(mute_flag notactuallymuted)"
 # command can print success for a flag that was never created.
 failing_bin="$TMPDIR/failing-bin"
 mkdir -p "$failing_bin"
-cat >"$failing_bin/omarchy-toggle" <<'SH'
+cat >"$failing_bin/unbloarchy-toggle" <<'SH'
 #!/bin/bash
 exit 1
 SH
-chmod +x "$failing_bin/omarchy-toggle"
+chmod +x "$failing_bin/unbloarchy-toggle"
 
 status=0
 refusal=$(HOME="$mute_home" PATH="$failing_bin:$ROOT/bin:$PATH" \
-  "$ROOT/bin/omarchy-crash-mute" hyprland 2>&1) || status=$?
+  "$ROOT/bin/unbloarchy-crash-mute" hyprland 2>&1) || status=$?
 (( status != 0 )) ||
   fail "a mute that could not be written exits zero, so nothing downstream learns it failed"
 ! grep -Fq "Muted crash notifications" <<<"$refusal" ||

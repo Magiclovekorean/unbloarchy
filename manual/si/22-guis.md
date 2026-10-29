@@ -20,11 +20,11 @@ Obsidian පුද්ගලික, වාණිජ, සහ ලාභ නොල�
 
 Obsidian විසින් iOS සහ Android මත mobile apps සමඟ [සමමුහුර්ත කිරීම සඳහා වාණිජ අමතර කොටසක්](https://obsidian.md/sync) ද පිරිනමයි. (https://obsidian.md/pricing).
 
-ඔබ `Super + Shift + O` සමඟ Obsidian ආරම්භ කරයි. Theme syncing භාවිතා කිරීමට, settings යටතේ ඔබ `Omarchy` theme එක තෝරාගත යුතුය.
+ඔබ `Super + Shift + O` සමඟ Obsidian ආරම්භ කරයි. Theme syncing භාවිතා කිරීමට, settings යටතේ ඔබ `Unbloarchy` theme එක තෝරාගත යුතුය.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) යනු Omarchy හිම ඉතා සරල Markdown ලිවීමේ app එකයි. Vaults නැත, plugins නැත, සිටින්නේ ඔබ සහ වචන පමණි.
+[Omawrite](https://github.com/omacom-io/omawrite) යනු Unbloarchy හිම ඉතා සරල Markdown ලිවීමේ app එකයි. Vaults නැත, plugins නැත, සිටින්නේ ඔබ සහ වචන පමණි.
 
 ඔබ `Super + Shift + W` සමඟ Omawrite ආරම්භ කරයි.
 
@@ -44,18 +44,18 @@ Obsidian විසින් iOS සහ Android මත mobile apps සමඟ [ස
 
 [LocalSend](https://localsend.org/) මගින් Apple හි AirDrop මෙන්, එම app එකම ධාවනය වන එකම network එකේ ඇති වෙනත් උපාංග වෙත ගොනු යැවීමට ඔබට ඉඩ ලැබේ. කෙසේ වෙතත්, එය cross-platform බැවින් ඔබට Windows, macOS, Android, iOS, සහ ඇත්තෙන්ම Linux වෙත සහ ඒවායින් ගොනු යැවිය හැකිය.
 
-ඔබට `Super + Ctrl + S` මත හෝ Omarchy menu එකේ _Trigger > Share_ යටතේ Share menu එක විවෘත කළ හැකිය. එය ඔබට විකල්ප හතරක් ලබා දෙයි:
+ඔබට `Super + Ctrl + S` මත හෝ Unbloarchy menu එකේ _Trigger > Share_ යටතේ Share menu එක විවෘත කළ හැකිය. එය ඔබට විකල්ප හතරක් ලබා දෙයි:
 
 - **Clipboard** ඔබ පිටපත් කළ ඕනෑම දෙයක් text file එකක් ලෙස යවයි. ඔබටම email නොකර link එකක් හෝ snippet එකක් ඔබේ දුරකථනයට ලබාගැනීමට විශිෂ්ටයි.
 - **File** ඔබට එකවර කිහිපයක් තෝරාගත හැකි file picker එකක් විවෘත කරයි.
 - **Folder** සම්පූර්ණ directory එකක් යවයි.
 - **Receive** තවත් උපාංගයකට ඔබට යමක් යැවිය හැකි වන පරිදි LocalSend නිසි පරිදි විවෘත කරයි.
 
-එම දෙයම terminal එකෙන් `omarchy share clipboard`, `omarchy share file [path]`, සහ `omarchy share folder [path]` සමඟ ක්‍රියා කරයි. Path එක අත්හරින්න, ඔබට picker එක ලැබේ.
+එම දෙයම terminal එකෙන් `unbloarchy share clipboard`, `unbloarchy share file [path]`, සහ `unbloarchy share folder [path]` සමඟ ක්‍රියා කරයි. Path එක අත්හරින්න, ඔබට picker එක ලැබේ.
 
 ඔබට file manager එකෙන් කෙළින්ම ද යැවිය හැකිය: Nautilus හි ඕනෑම තේරීමක් right-click කර _Send via LocalSend_ තෝරන්න.
 
-Omarchy හි firewall එක LocalSend හි port එක හැර පෙරනිමියෙන් වසා ඇති බැවින්, මෙය අලුත් install එකක පෙට්ටියෙන් එළියට ගත් වහාම ක්‍රියා කරයි. [ආරක්ෂාව](48-security.md) බලන්න.
+Unbloarchy හි firewall එක LocalSend හි port එක හැර පෙරනිමියෙන් වසා ඇති බැවින්, මෙය අලුත් install එකක පෙට්ටියෙන් එළියට ගත් වහාම ක්‍රියා කරයි. [ආරක්ෂාව](48-security.md) බලන්න.
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ Omarchy හි firewall එක LocalSend හි port එක හැර පෙර�
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) යනු Omarchy හිම ඉතා සරල presentation app එකයි. ඔබේ deck එක යනු එහි පින්තූර සහ වීඩියෝ ඒ අසලම ඇති තනි Markdown ගොනුවකි: සජීවී පෙරදසුනක් යට එක් එක් slide එක ලියන්න, slides පිළිවෙළට ඇද දමන්න, ඉන්පසු fullscreen ඉදිරිපත් කරන්න හෝ PDF සහ PowerPoint වෙත export කරන්න. එය ඔබේ Omarchy theme එක පවා ලබාගනී.
+[Hype](https://github.com/omacom/hype) යනු Unbloarchy හිම ඉතා සරල presentation app එකයි. ඔබේ deck එක යනු එහි පින්තූර සහ වීඩියෝ ඒ අසලම ඇති තනි Markdown ගොනුවකි: සජීවී පෙරදසුනක් යට එක් එක් slide එක ලියන්න, slides පිළිවෙළට ඇද දමන්න, ඉන්පසු fullscreen ඉදිරිපත් කරන්න හෝ PDF සහ PowerPoint වෙත export කරන්න. එය ඔබේ Unbloarchy theme එක පවා ලබාගනී.
 
 ඔබ application launcher එක හරහා (`Super + Space`) Hype ආරම්භ කරයි. සෑම shortcut එකක්ම බැලීමට එහි ඇතුළත `?` ඔබන්න.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) යනු PDF අත්සන් කිරීමට සහ ඒවා පිරවීමට Omarchy හිම ඉතා සරල ක්‍රමයයි. ඔබ සුරකින ලද අත්සන, text එක, සහ අද දිනය පිටුවක ඕනෑම තැනක තබන්න, ඉන්පසු මුල් පිටපත අසලම අත්සන් කළ පිටපතක් සුරකින්න. ආකාරය සඳහා [PDF පිරවීම](27-filling-out-pdfs.md) බලන්න.
+[Signed](https://github.com/omacom/signed) යනු PDF අත්සන් කිරීමට සහ ඒවා පිරවීමට Unbloarchy හිම ඉතා සරල ක්‍රමයයි. ඔබ සුරකින ලද අත්සන, text එක, සහ අද දිනය පිටුවක ඕනෑම තැනක තබන්න, ඉන්පසු මුල් පිටපත අසලම අත්සන් කළ පිටපතක් සුරකින්න. ආකාරය සඳහා [PDF පිරවීම](27-filling-out-pdfs.md) බලන්න.
 
 ඔබ application launcher එක හරහා (`Super + Space`) Signed ආරම්භ කරයි, නැතහොත් file manager එකෙන් එය සමඟ PDF එකක් විවෘත කරයි.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) යනු පාවෙන window එකක විවෘත වන Omarchy හිම ඉතා සරල calculator එකයි.
+[Omacalc](https://github.com/omacom-io/omacalc) යනු පාවෙන window එකක විවෘත වන Unbloarchy හිම ඉතා සරල calculator එකයි.
 
 ඔබ `Super + Shift + Q` සමඟ (හෝ ඔබේ keyboard එකේ එකක් තිබේ නම් calculator key එක සමඟ) Omacalc ආරම්භ කරයි.
 
@@ -85,7 +85,7 @@ Omarchy හි firewall එක LocalSend හි port එක හැර පෙර�
 
 [Signal](https://signal.org/) යනු E2E encrypted messaging හි පුරෝගාමියා වන අතර, විශාල tech conglomerates එකක් හරහා යාමට කැමති නැති ඕනෑම කෙනෙකුට විශිෂ්ට සන්නිවේදන විකල්පයකි.
 
-ඔබ `Super + Shift + G` සමඟ Signal ආරම්භ කරයි. එය base install එකේ කොටසක් නොවන බැවින්, ඔබ පළමු වරට එය එබූ විට, Omarchy එය ඔබට install කිරීමට ඉදිරිපත් වේ (එය Omarchy menu එකේ _Install > Service_ යටතේ ද ඇත).
+ඔබ `Super + Shift + G` සමඟ Signal ආරම්භ කරයි. එය base install එකේ කොටසක් නොවන බැවින්, ඔබ පළමු වරට එය එබූ විට, Unbloarchy එය ඔබට install කිරීමට ඉදිරිපත් වේ (එය Unbloarchy menu එකේ _Install > Service_ යටතේ ද ඇත).
 
 ## mpv
 
@@ -95,13 +95,13 @@ Omarchy හි firewall එක LocalSend හි port එක හැර පෙර�
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) යනු Omarchy හිම ඉතා සරල video trimmer එකයි. ඔබට අවශ්‍ය වන්නේ clip එකක ආරම්භය සහ අවසානය කපා දැමීම පමණක් වන විට, එය සම්පූර්ණ video editor එකක් දියත් කිරීමට වඩා හොඳය.
+[Omacut](https://github.com/omacom-io/omacut) යනු Unbloarchy හිම ඉතා සරල video trimmer එකයි. ඔබට අවශ්‍ය වන්නේ clip එකක ආරම්භය සහ අවසානය කපා දැමීම පමණක් වන විට, එය සම්පූර්ණ video editor එකක් දියත් කිරීමට වඩා හොඳය.
 
 ඔබ application launcher එක හරහා (`Super + Space`) Omacut ආරම්භ කරයි.
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) යනු Omarchy හිම ඉතා සරල webcam recorder එකයි. ඔබේ camera එක සහ microphone එක එක් වරක් තෝරන්න, ඉන්පසු record කිරීමට `Space` ඔබන්න, එම take එකම pause කර නැවත ආරම්භ කිරීමට නැවතත් එය ඔබන්න. එය සැමවිටම ඔබේ camera එකේ ඉහළම resolution එකෙන් record කරයි, ඔබ ආරම්භ කිරීමට පෙර ඔබේ levels පරීක්ෂා කළ හැකි වන පරිදි සජීවී microphone meter එකක් ද ඇත.
+[Monologue](https://github.com/omacom/monologue) යනු Unbloarchy හිම ඉතා සරල webcam recorder එකයි. ඔබේ camera එක සහ microphone එක එක් වරක් තෝරන්න, ඉන්පසු record කිරීමට `Space` ඔබන්න, එම take එකම pause කර නැවත ආරම්භ කිරීමට නැවතත් එය ඔබන්න. එය සැමවිටම ඔබේ camera එකේ ඉහළම resolution එකෙන් record කරයි, ඔබ ආරම්භ කිරීමට පෙර ඔබේ levels පරීක්ෂා කළ හැකි වන පරිදි සජීවී microphone meter එකක් ද ඇත.
 
 Take එක නවත්වන්න, එය බිල්ට්-ඉන් editor එකක වහාම විවෘත වේ. Clip එකක් බෙදීමට එය ද්විත්ව-ක්ලික් කරන්න, එක් එක් කොටස trim කිරීමට handles අදින්න, සහ ඔබට අනවශ්‍ය කොටස් ඉවත් කරන්න. ඉන්පසු එය MP4 එකක් ලෙස සුරකින්න. ඔබ එය ඉවත දමන තෙක් ඔබේ මුල් recording එක තබාගනු ලැබේ, එබැවින් ඔබට සැමවිටම ආපසු පැමිණ එය වෙනස් ලෙස කපාගත හැකිය.
 

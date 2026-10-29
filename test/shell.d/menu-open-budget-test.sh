@@ -14,7 +14,7 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 require_quickshell "menu open budget"
 require_comparable_speed "menu open budget"
 
-BUDGET_MS=$(( ${OMARCHY_MENU_OPEN_BUDGET_MS:-150} * SPEED_PERCENT / 100 ))
+BUDGET_MS=$(( ${UNBLOARCHY_MENU_OPEN_BUDGET_MS:-150} * SPEED_PERCENT / 100 ))
 
 setup_scratch_shell
 start_scratch_shell
@@ -24,24 +24,24 @@ wait_scratch_shell
 # registration itself is asynchronous, so summon until it lands.
 summoned=""
 for _ in {1..80}; do
-  [[ $(scratch_ipc shell summon omarchy.menu '{"menu":"root"}' 2>/dev/null || true) == "ok" ]] && { summoned=1; break; }
+  [[ $(scratch_ipc shell summon unbloarchy.menu '{"menu":"root"}' 2>/dev/null || true) == "ok" ]] && { summoned=1; break; }
   kill -0 "$SCRATCH_PID" 2>/dev/null || break
   sleep 0.1
 done
 [[ -n $summoned ]] || { sed -n '1,120p' "$SCRATCH_LOG" >&2; fail "menu summons in a scratch shell"; }
-wait_scratch_layer omarchy-menu mapped || fail "menu maps after warm-up summon"
-scratch_ipc_quiet shell hide omarchy.menu >/dev/null 2>&1 || true
-wait_scratch_layer omarchy-menu absent || fail "menu hides after warm-up"
+wait_scratch_layer unbloarchy-menu mapped || fail "menu maps after warm-up summon"
+scratch_ipc_quiet shell hide unbloarchy.menu >/dev/null 2>&1 || true
+wait_scratch_layer unbloarchy-menu absent || fail "menu hides after warm-up"
 
 open_ms() {
   local start end
   start=$EPOCHREALTIME
-  [[ $(scratch_ipc shell summon omarchy.menu '{"menu":"root"}') == "ok" ]] || return 1
-  wait_scratch_layer omarchy-menu mapped || return 1
+  [[ $(scratch_ipc shell summon unbloarchy.menu '{"menu":"root"}') == "ok" ]] || return 1
+  wait_scratch_layer unbloarchy-menu mapped || return 1
   end=$EPOCHREALTIME
   echo $(( (${end/[.,]/} - ${start/[.,]/}) / 1000 ))
-  scratch_ipc_quiet shell hide omarchy.menu >/dev/null 2>&1 || true
-  wait_scratch_layer omarchy-menu absent || return 1
+  scratch_ipc_quiet shell hide unbloarchy.menu >/dev/null 2>&1 || true
+  wait_scratch_layer unbloarchy-menu absent || return 1
 }
 
 best=""

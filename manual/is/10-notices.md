@@ -10,7 +10,7 @@ Spjöld bjóða upp á það sem þau bera: _Afrita kóða_ fyrir staðfestingar
 
 Til að nota þau án músar skaltu ýta á `Super + Ctrl + ,`. Nýjasta tilkynningin er valin og hnappar hennar númeraðir: ýttu á tölu til að nota einn, `Enter` til að smella á tilkynninguna, `↑` og `↓` til að færa þig á milli tilkynninga, `Delete` til að loka einni og `Esc` til að skila lyklaborðinu aftur. Það sleppir líka takinu af sjálfu sér eftir nokkrar sekúndur án aðgerða.
 
-Að þagga niður í tilkynningum heldur þeim aftur, nema eigin staðfestingum Omarchy, neyðarviðvörunum og staðfestingarkóðum, sem þú baðst um fyrir augnabliki síðan. Settu síðustu nokkrar aftur á skjáinn, hvort sem þeim var haldið aftur eða ekki, með `Super + Shift + Alt + ,`. Sagan er geymd í einn dag.
+Að þagga niður í tilkynningum heldur þeim aftur, nema eigin staðfestingum Unbloarchy, neyðarviðvörunum og staðfestingarkóðum, sem þú baðst um fyrir augnabliki síðan. Settu síðustu nokkrar aftur á skjáinn, hvort sem þeim var haldið aftur eða ekki, með `Super + Shift + Alt + ,`. Sagan er geymd í einn dag.
 
 ## Tilkynningar með flýtilyklum
 
@@ -26,7 +26,7 @@ Að þagga niður í tilkynningum heldur þeim aftur, nema eigin staðfestingum 
 
  ![notice-weather](images/notice-weather.webp)
 
-Staðsetningin er greind út frá IP-tölunni þinni, sem er yfirleitt nógu nálægt lagi, en ekki alltaf. Þú getur fest hana með `omarchy weather location --set Malibu`, eða verið nákvæmur með því að bæta við hnitum: `omarchy weather location --set Malibu 34.0259,-118.7798`. Keyrðu `omarchy weather location` eitt og sér til að sjá hvar kerfið heldur að þú sért, og `--clear` til að fara aftur í sjálfvirka greiningu.
+Staðsetningin er greind út frá IP-tölunni þinni, sem er yfirleitt nógu nálægt lagi, en ekki alltaf. Þú getur fest hana með `unbloarchy weather location --set Malibu`, eða verið nákvæmur með því að bæta við hnitum: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Keyrðu `unbloarchy weather location` eitt og sér til að sjá hvar kerfið heldur að þú sért, og `--clear` til að fara aftur í sjálfvirka greiningu.
 
 ### Rafhlaða
 

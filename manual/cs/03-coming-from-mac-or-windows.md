@@ -1,12 +1,12 @@
 # Přecházíte z Macu nebo Windows
 
-Pokud jste strávili roky na macOS nebo Windows, vaše prsty znají sto věcí, u kterých váš mozek už zapomněl, že se je vůbec kdy naučil. Tato kapitola je překladová vrstva: kam tyhle instinkty v Omarchy patří. Samotné funkce jsou podrobně popsané jinde — tohle je jen mapa.
+Pokud jste strávili roky na macOS nebo Windows, vaše prsty znají sto věcí, u kterých váš mozek už zapomněl, že se je vůbec kdy naučil. Tato kapitola je překladová vrstva: kam tyhle instinkty v Unbloarchy patří. Samotné funkce jsou podrobně popsané jinde — tohle je jen mapa.
 
 ### Super je středem všeho
 
-Veškerá svalová paměť, kterou jste si vybudovali kolem Cmd nebo klávesy Windows, se přenáší na jedinou klávesu: Super. To je klávesa Windows na PC klávesnici a je kotvou téměř každé klávesové zkratky v Omarchy.
+Veškerá svalová paměť, kterou jste si vybudovali kolem Cmd nebo klávesy Windows, se přenáší na jedinou klávesu: Super. To je klávesa Windows na PC klávesnici a je kotvou téměř každé klávesové zkratky v Unbloarchy.
 
-Váš reflex na Spotlight, Raycast nebo nabídku Start se stává `Super + Space`. To otevře nabídku Omarchy, která spouští aplikace, mění nastavení, instaluje software, zachycuje obrazovku — prostě skoro všechno. Začněte psát a filtrujete. `Super + Alt + Space` zobrazí všechny aplikace v jedné mřížce, stejně jako to dělá Launchpad. Viz [navigace](04-navigation.md).
+Váš reflex na Spotlight, Raycast nebo nabídku Start se stává `Super + Space`. To otevře nabídku Unbloarchy, která spouští aplikace, mění nastavení, instaluje software, zachycuje obrazovku — prostě skoro všechno. Začněte psát a filtrujete. `Super + Alt + Space` zobrazí všechny aplikace v jedné mřížce, stejně jako to dělá Launchpad. Viz [navigace](04-navigation.md).
 
 ### Není tu žádný dock ani ikony na ploše
 
@@ -22,27 +22,27 @@ Pracovní plochy vám budou povědomé: jsou to macOS Spaces nebo virtuální pl
 
 ### Kopírování a vkládání prostě funguje
 
-Na Macu jste měli všude Cmd + C. Ve Windows jste měli všude Ctrl + C — kromě terminálu, kde vám to zabije program. Omarchy vám dává `Super + C`, `Super + X` a `Super + V` a fungují všude, včetně terminálu. Nemusíte se učit žádný zvláštní reflex pro shell.
+Na Macu jste měli všude Cmd + C. Ve Windows jste měli všude Ctrl + C — kromě terminálu, kde vám to zabije program. Unbloarchy vám dává `Super + C`, `Super + X` a `Super + V` a fungují všude, včetně terminálu. Nemusíte se učit žádný zvláštní reflex pro shell.
 
 Lidé z Windows: vaše historie schránky z Win + V žije na `Super + Ctrl + V` a uchovává obrázky stejně jako text. Viz [jednotná schránka a historie](08-unified-clipboard-history.md).
 
 ### Překladová tabulka
 
-| Po čem saháte | V Omarchy |
+| Po čem saháte | V Unbloarchy |
 | ------------- | ---------- |
-| Spotlight / Raycast / nabídka Start | `Super + Space` — nabídka Omarchy |
+| Spotlight / Raycast / nabídka Start | `Super + Space` — nabídka Unbloarchy |
 | AirDrop | LocalSend, přes `Super + Ctrl + S` — viz [GUI](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` nebo `Print Screen` — viz [snímky obrazovky a nahrávání](12-screenshots-recording.md) |
 | Centrum oznámení | Historie oznámení na `Super + Shift + Alt + ,` |
 | Time Machine (pro systém) | Automatické [snímky systému](47-system-snapshots.md) při každé aktualizaci |
-| App Store / stažení instalátoru | _Instalovat_ v nabídce, nebo `omarchy pkg add` — viz [další balíčky](29-other-packages.md) |
+| App Store / stažení instalátoru | _Instalovat_ v nabídce, nebo `unbloarchy pkg add` — viz [další balíčky](29-other-packages.md) |
 | Nastavení systému / Ovládací panely | _Nastavení_ v nabídce, které upravuje prosté konfigurační soubory — viz [dotfiles](31-dotfiles.md) |
 
 ### Některé věci jsou opravdu jiné
 
 Spousta nastavení žije v textových souborech, které upravujete, ne v panelech, kterými se proklikáváte. Zní to primitivně, dokud si neuvědomíte, že to znamená, že každou úpravu lze vidět, zkopírovat na váš další počítač a dát pod správu verzí. Nabídka _Nastavení_ vás hodí rovnou do správného souboru a po dokončení restartuje vše, co restart potřebuje.
 
-Aktualizace přicházejí jedním příkazem — _Aktualizace > Omarchy_ — který aktualizuje samotné Omarchy i každý balíček v systému a předtím pořídí snímek. Žádné aktualizační programy jednotlivých aplikací, které by vás otravovaly v náhodných chvílích. Viz [aktualizace](30-updates.md).
+Aktualizace přicházejí jedním příkazem — _Aktualizace > Unbloarchy_ — který aktualizuje samotné Unbloarchy i každý balíček v systému a předtím pořídí snímek. Žádné aktualizační programy jednotlivých aplikací, které by vás otravovaly v náhodných chvílích. Viz [aktualizace](30-updates.md).
 
 Software pochází ze správce balíčků, ne ze stažených instalátorů.
 
@@ -50,7 +50,7 @@ A když okno zavřete, aplikace se skutečně ukončí. Neexistuje žádné macO
 
 ### Na hardwaru Mac
 
-Omarchy běží dobře na Macech s procesorem Intel — viz [podpora Maců](44-mac-support.md). A klávesnice je k vám laskavá: Omarchy nic nepřemapovává a Linux zachází s klávesou Command jako se Super, takže Super sedí přesně tam, kde vždycky bylo Cmd. Váš palec si přesunu ani nevšimne.
+Unbloarchy běží dobře na Macech s procesorem Intel — viz [podpora Maců](44-mac-support.md). A klávesnice je k vám laskavá: Unbloarchy nic nepřemapovává a Linux zachází s klávesou Command jako se Super, takže Super sedí přesně tam, kde vždycky bylo Cmd. Váš palec si přesunu ani nevšimne.
 
 ### Dejte tomu dva týdny
 

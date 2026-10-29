@@ -1,20 +1,20 @@
 # Sava motīva izveide
 
-Tu vari pievienot savus motīvus mapē `~/.config/omarchy/themes`. Vienkārši nokopē kādu no esošajiem motīviem kā pamatu (skaties `/usr/share/omarchy/themes`), pēc tam pielāgo pēc patikas. Kamēr tavs motīvs atrodas šajā mapē, tas tiks iekļauts motīvu izvēles izvēlnē.
+Tu vari pievienot savus motīvus mapē `~/.config/unbloarchy/themes`. Vienkārši nokopē kādu no esošajiem motīviem kā pamatu (skaties `/usr/share/omarchy/themes`), pēc tam pielāgo pēc patikas. Kamēr tavs motīvs atrodas šajā mapē, tas tiks iekļauts motīvu izvēles izvēlnē.
 
-Galvenais fails, kas jāpielāgo, ir `colors.toml`. Tas nosaka krāsu kopu, kas pēc tam tiek izmantota, lai ģenerētu konfigurācijas termināļiem (Foot/Alacritty/Ghostty/Kitty), btop, Chromium, Hyprland, Neovim, Helix, VSCode, Obsidian un visai Omarchy čaulai (augšējā josla, izvēlne, paziņojumi, OSD un bloķēšanas ekrāns).
+Galvenais fails, kas jāpielāgo, ir `colors.toml`. Tas nosaka krāsu kopu, kas pēc tam tiek izmantota, lai ģenerētu konfigurācijas termināļiem (Foot/Alacritty/Ghostty/Kitty), btop, Chromium, Hyprland, Neovim, Helix, VSCode, Obsidian un visai Unbloarchy čaulai (augšējā josla, izvēlne, paziņojumi, OSD un bloķēšanas ekrāns).
 
 Tu vari arī izmantot iekļauto Aether lietotni, lai izveidotu jaunu motīvu ar jauku GUI saskarni, kurā spēlēties ar krāsām un meklēt fonus. Vienkārši palaid to no lietotņu režģa ar `Super + Alt + Space`.
 
 ### Ko var saturēt instalēts motīvs
 
-Motīvs, ko tu pats raksti `~/.config/omarchy/themes`, var saturēt jebko, ko vēlies — tā ir tava iekārta un tavs fails, un Omarchy to visu piemēro.
+Motīvs, ko tu pats raksti `~/.config/unbloarchy/themes`, var saturēt jebko, ko vēlies — tā ir tava iekārta un tavs fails, un Unbloarchy to visu piemēro.
 
-Motīvs, ko tu instalē no kāda cita repozitorija ar `omarchy theme install`, saglabā visu, kas ir krāsa, un zaudē tos nedaudzos failus, kas tavā iekārtā palaistu kodu: jebkuru `.lua` failu, termināļu konfigurācijas (`alacritty.toml`, `foot.ini`, `ghostty.conf`, `kitty.conf`) un `vscode.json`. Motīva `hyprland.lua` ir Lua, ko tavs kompozitors palaiž pie pieteikšanās, termināļa konfigurācija norāda programmu, ko tavs terminālis startē, un `vscode.json` norāda instalējamo VSCode paplašinājumu. Kādas personas motīva instalēšanai vajadzētu mainīt to, kā tava darbvirsma izskatās, nevis to, ko tā palaiž.
+Motīvs, ko tu instalē no kāda cita repozitorija ar `unbloarchy theme install`, saglabā visu, kas ir krāsa, un zaudē tos nedaudzos failus, kas tavā iekārtā palaistu kodu: jebkuru `.lua` failu, termināļu konfigurācijas (`alacritty.toml`, `foot.ini`, `ghostty.conf`, `kitty.conf`) un `vscode.json`. Motīva `hyprland.lua` ir Lua, ko tavs kompozitors palaiž pie pieteikšanās, termināļa konfigurācija norāda programmu, ko tavs terminālis startē, un `vscode.json` norāda instalējamo VSCode paplašinājumu. Kādas personas motīva instalēšanai vajadzētu mainīt to, kā tava darbvirsma izskatās, nevis to, ko tā palaiž.
 
 Viss pārējais joprojām darbojas tieši tā, kā motīva autors to ir uzrakstījis — `btop.theme`, `chromium.theme`, `helix.toml`, `icons.theme`, `shell.toml`, foni un priekšskatījumi tiek saglabāti visi. Tikai tas, kas tika atmests, tavā iekārtā tiek atkārtoti ģenerēts no `colors.toml`.
 
-Omarchy tos abus atšķir pēc tā, vai motīvam iekšā ir savs git repozitorijs, ko pēc klonēšanas aiz sevis atstāj `omarchy theme install`. Tātad motīvs, ko tu uzrakstīji, paliek tavs, bet motīvs, ko tu paņēmi no interneta, paliek tikai krāsas.
+Unbloarchy tos abus atšķir pēc tā, vai motīvam iekšā ir savs git repozitorijs, ko pēc klonēšanas aiz sevis atstāj `unbloarchy theme install`. Tātad motīvs, ko tu uzrakstīji, paliek tavs, bet motīvs, ko tu paņēmi no interneta, paliek tikai krāsas.
 
 ### Gaišais režīms
 
@@ -26,19 +26,19 @@ Ja tu vēlies pieskaņot failu pārvaldnieka ikonas savam motīvam, pievieno fai
 
 ### Atbloķēšanas attēls
 
-Motīvi, kas piegādāti ar `unlock.png` un `preview-unlock.png` attēliem, tiks norādīti sadaļā _Izskats > Atbloķēšana_. Tavai `unlock.png` vēlams būt caurspīdīgam png. Un tu vari izveidot priekšskatījuma attēlu, izmantojot `omarchy plymouth preview`.
+Motīvi, kas piegādāti ar `unlock.png` un `preview-unlock.png` attēliem, tiks norādīti sadaļā _Izskats > Atbloķēšana_. Tavai `unlock.png` vēlams būt caurspīdīgam png. Un tu vari izveidot priekšskatījuma attēlu, izmantojot `unbloarchy plymouth preview`.
 
-### Motīvu piemērošana lietotnēm, ko Omarchy neaptver
+### Motīvu piemērošana lietotnēm, ko Unbloarchy neaptver
 
-Ja tu izmanto lietotni, kas nav šajā sarakstā, tu vari iemācīt Omarchy piemērot tai motīvu pats, izmantojot veidni. Iemet failu mapē `~/.config/omarchy/themed/`, nosauc to tāpat kā konfigurāciju, ko tas ģenerē, pievienojot `.tpl` paplašinājumu, un raksti konfigurāciju ar `{{ background }}`, `{{ foreground }}`, `{{ accent }}`, `{{ red }}`, `{{ color0 }}` līdz `{{ color15 }}` un pārējo paleti kā vietturiem. Katru reizi, kad tu pārslēdz motīvus, fails tiek atkārtoti ģenerēts ar attiecīgā motīva krāsām.
+Ja tu izmanto lietotni, kas nav šajā sarakstā, tu vari iemācīt Unbloarchy piemērot tai motīvu pats, izmantojot veidni. Iemet failu mapē `~/.config/unbloarchy/themed/`, nosauc to tāpat kā konfigurāciju, ko tas ģenerē, pievienojot `.tpl` paplašinājumu, un raksti konfigurāciju ar `{{ background }}`, `{{ foreground }}`, `{{ accent }}`, `{{ red }}`, `{{ color0 }}` līdz `{{ color15 }}` un pārējo paleti kā vietturiem. Katru reizi, kad tu pārslēdz motīvus, fails tiek atkārtoti ģenerēts ar attiecīgā motīva krāsām.
 
-Šajā mapē ir pilnībā komentēts `alacritty.toml.tpl.sample`, no kura kopēt — tajā ir uzskaitīts katrs mainīgais, ko tu vari izmantot, kā arī `_strip` un `_rgb` modifikatori lietotnēm, kuras vēlas savas krāsas bez `#` vai kā decimālus RGB. Tavām veidnēm ir prioritāte pār paša Omarchy veidnēm, tāpēc tu vari to izmantot arī, lai ignorētu to, kā iebūvētai lietotnei tiek piemērots motīvs.
+Šajā mapē ir pilnībā komentēts `alacritty.toml.tpl.sample`, no kura kopēt — tajā ir uzskaitīts katrs mainīgais, ko tu vari izmantot, kā arī `_strip` un `_rgb` modifikatori lietotnēm, kuras vēlas savas krāsas bez `#` vai kā decimālus RGB. Tavām veidnēm ir prioritāte pār paša Unbloarchy veidnēm, tāpēc tu vari to izmantot arī, lai ignorētu to, kā iebūvētai lietotnei tiek piemērots motīvs.
 
 ### Motīva izplatīšana
 
-Ja tu vēlies izplatīt savu motīvu, lai citi varētu to izmantot, tev tas jāievieto publiskā git serverī, piemēram, GitHub. Pēc tam cilvēki varēs to instalēt, Omarchy izvēlnē izmantojot _Instalēt > Stils > Motīvs_ un šo URL. Ieteicams ievērot nosaukumu konvenciju `omarchy-[themename]-theme`, jo pēc instalēšanas motīvs motīvu izvēles izvēlnē pareizi parādīsies vienkārši kā `[themename]`.
+Ja tu vēlies izplatīt savu motīvu, lai citi varētu to izmantot, tev tas jāievieto publiskā git serverī, piemēram, GitHub. Pēc tam cilvēki varēs to instalēt, Unbloarchy izvēlnē izmantojot _Instalēt > Stils > Motīvs_ un šo URL. Ieteicams ievērot nosaukumu konvenciju `unbloarchy-[themename]-theme`, jo pēc instalēšanas motīvs motīvu izvēles izvēlnē pareizi parādīsies vienkārši kā `[themename]`.
 
-Šis atlikušais `[themename]` kļūst par motīva direktorija nosaukumu, tāpēc tam jābūt tādam, ko Omarchy var droši nodot tālāk: tam jāsākas ar burtu, ciparu vai pasvītrojumu, bet pārējā daļa var saturēt burtus, ciparus, `.`, `_`, `+` un `-`. Lielie burti tev tiek pārveidoti par mazajiem, bet jebkas cits — atstarpe, pēdiņa, rakstzīme, kas nav angļu — instalēšanas laikā tiek noraidīts, nevis pārvērsts par direktorija nosaukumu. Tāpēc `omarchy-tokyo-night-theme`, `omarchy-flexoki_light-theme` un `omarchy-c++-theme` visi instalējas labi.
+Šis atlikušais `[themename]` kļūst par motīva direktorija nosaukumu, tāpēc tam jābūt tādam, ko Unbloarchy var droši nodot tālāk: tam jāsākas ar burtu, ciparu vai pasvītrojumu, bet pārējā daļa var saturēt burtus, ciparus, `.`, `_`, `+` un `-`. Lielie burti tev tiek pārveidoti par mazajiem, bet jebkas cits — atstarpe, pēdiņa, rakstzīme, kas nav angļu — instalēšanas laikā tiek noraidīts, nevis pārvērsts par direktorija nosaukumu. Tāpēc `unbloarchy-tokyo-night-theme`, `unbloarchy-flexoki_light-theme` un `unbloarchy-c++-theme` visi instalējas labi.
 
 Atceries, ka, tiklīdz tas ir instalēts no repozitorija, jebkurš `.lua`, termināļa konfigurācija vai `vscode.json`, ko tas piegādā, tiek atmests, tāpēc nebūvē motīvu ap tiem.
 

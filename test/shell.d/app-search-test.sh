@@ -54,7 +54,7 @@ const entries = [
 ]
 
 // Keep the packaged launcher when upstream rebuilds register their own entry.
-const configuredHides = new Set(fs.readFileSync(path.join(root, 'default/omarchy/launcher.hides'), 'utf8').trim().split(/\n/))
+const configuredHides = new Set(fs.readFileSync(path.join(root, 'default/unbloarchy/launcher.hides'), 'utf8').trim().split(/\n/))
 const hermesEntries = [{ name: 'Hermes', id: 'hermes' }, { name: 'Hermes', id: 'hermes-desktop' }]
 for (const query of ['', 'hermes']) {
   const visible = search.sortedEntries(hermesEntries, query, entry => configuredHides.has(entry.id))

@@ -1,8 +1,8 @@
 # Temes
 
-Omarchy inclou vint-i-dos temes preciosos. Pots triar entre ells a través d'_Aspecte > Tema_ al menú d'Omarchy (`Super + Space`) o anar directament al selector de temes amb `Super + Ctrl + T`.
+Unbloarchy inclou vint-i-dos temes preciosos. Pots triar entre ells a través d'_Aspecte > Tema_ al menú d'Unbloarchy (`Super + Space`) o anar directament al selector de temes amb `Super + Ctrl + T`.
 
-Cada tema dona estil a l'escriptori, el terminal, neovim, la pantalla d'activitat (btop), Chromium i tota la interfície d'Omarchy: la barra superior, el menú, les notificacions, l'OSD i la pantalla de bloqueig. (Per a Obsidian, has de seleccionar manualment el tema d'Omarchy a través d'_Aspecte > Temes_ dins de l'aplicació).
+Cada tema dona estil a l'escriptori, el terminal, neovim, la pantalla d'activitat (btop), Chromium i tota la interfície d'Unbloarchy: la barra superior, el menú, les notificacions, l'OSD i la pantalla de bloqueig. (Per a Obsidian, has de seleccionar manualment el tema d'Unbloarchy a través d'_Aspecte > Temes_ dins de l'aplicació).
 
 Els temes tenen un conjunt d'imatges de fons entre les quals pots triar amb `Super + Ctrl + W`.
 

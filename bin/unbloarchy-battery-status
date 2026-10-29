@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# omarchy:summary=Returns a formatted battery status string with percentage and power draw/charge.
-# omarchy:args=[--shell]
+# unbloarchy:summary=Returns a formatted battery status string with percentage and power draw/charge.
+# unbloarchy:args=[--shell]
 
 shell_output=false
-power_supply_path="${OMARCHY_POWER_SUPPLY_PATH:-/sys/class/power_supply}"
+power_supply_path="${UNBLOARCHY_POWER_SUPPLY_PATH:-/sys/class/power_supply}"
 
 case "${1:-}" in
   "")
@@ -13,12 +13,12 @@ case "${1:-}" in
     shell_output=true
     ;;
   *)
-    echo "Usage: omarchy-battery-status [--shell]" >&2
+    echo "Usage: unbloarchy-battery-status [--shell]" >&2
     exit 2
     ;;
 esac
 
-# Durations and the status line read in the Omarchy language; the --shell
+# Durations and the status line read in the Unbloarchy language; the --shell
 # time feeds the power panel, which shows it as-is.
 # The power reading is joined with no-break spaces so a longer language wraps
 # the line between its parts rather than inside "13.1W / 53Wh".
@@ -27,11 +27,11 @@ format_duration() {
   if [[ -z $minutes ]] || (( minutes <= 0 )); then
     return
   elif (( minutes < 60 )); then
-    omarchy-i18n battery.durationMinutes "$minutes"
+    unbloarchy-i18n battery.durationMinutes "$minutes"
   elif (( minutes % 60 == 0 )); then
-    omarchy-i18n battery.durationHours "$(( minutes / 60 ))"
+    unbloarchy-i18n battery.durationHours "$(( minutes / 60 ))"
   else
-    omarchy-i18n battery.durationHoursMinutes "$(( minutes / 60 ))" "$(( minutes % 60 ))"
+    unbloarchy-i18n battery.durationHoursMinutes "$(( minutes / 60 ))" "$(( minutes % 60 ))"
   fi
 }
 
@@ -175,33 +175,33 @@ elif [[ $ac_online == "true" ]] && (( percentage >= 100 )); then
   battery_full=true
 fi
 
-parts=("$(omarchy-i18n battery.statusLabel "$percentage")")
+parts=("$(unbloarchy-i18n battery.statusLabel "$percentage")")
 
 if [[ $charge_holding == "true" ]]; then
   if [[ -n $threshold_start && $threshold_start != $threshold_end ]]; then
-    threshold_label="$(omarchy-i18n --number "$threshold_start")-$(omarchy-i18n --number "$threshold_end")%"
+    threshold_label="$(unbloarchy-i18n --number "$threshold_start")-$(unbloarchy-i18n --number "$threshold_end")%"
   else
-    threshold_label="$(omarchy-i18n --number "$threshold_end")%"
+    threshold_label="$(unbloarchy-i18n --number "$threshold_end")%"
   fi
 
-  parts+=("$(omarchy-i18n battery.holdingAt "$threshold_label")")
+  parts+=("$(unbloarchy-i18n battery.holdingAt "$threshold_label")")
 elif [[ $battery_full == "true" ]]; then
-  parts+=("$(omarchy-i18n battery.fullyCharged)")
+  parts+=("$(unbloarchy-i18n battery.fullyCharged)")
 elif [[ -n $time_remaining && $state == "charging" ]]; then
-  parts+=("$(omarchy-i18n battery.toFull "$time_remaining")")
+  parts+=("$(unbloarchy-i18n battery.toFull "$time_remaining")")
 elif [[ -n $time_remaining ]]; then
-  parts+=("$(omarchy-i18n battery.timeLeft "$time_remaining")")
+  parts+=("$(unbloarchy-i18n battery.timeLeft "$time_remaining")")
 fi
 
 # The power reading shows its numbers in the language's own way, with an arrow
 # for the direction of a live draw.
 capacity_reading=""
-(( ${capacity:-0} > 0 )) && capacity_reading="$(omarchy-i18n --number "$capacity")Wh"
+(( ${capacity:-0} > 0 )) && capacity_reading="$(unbloarchy-i18n --number "$capacity")Wh"
 if [[ $charge_holding == "false" && $battery_full == "false" && $charge_idle == "false" ]]; then
   if [[ $state == "charging" ]]; then
-    draw=" $(omarchy-i18n --number "$power_rate")W"
+    draw=" $(unbloarchy-i18n --number "$power_rate")W"
   else
-    draw=" $(omarchy-i18n --number "$power_rate")W"
+    draw=" $(unbloarchy-i18n --number "$power_rate")W"
   fi
 
   if [[ -n $capacity_reading ]]; then

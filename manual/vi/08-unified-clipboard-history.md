@@ -2,7 +2,7 @@
 
 Thông thường trên Linux, bạn cần `Ctrl + Shift + C/V` để sao chép và dán trong terminal và `Ctrl + C/V` để làm điều đó ở mọi nơi khác. Thật khó làm quen với điều đó đối với bất kỳ ai không sinh ra và lớn lên cùng Linux! Việc chuyển từ Super sang Ctrl cũng vậy, nếu bạn chuyển đến từ Mac.
 
-Omarchy giải quyết cả hai vấn đề bằng các phím tắt clipboard thống nhất hoạt động (gần như) ở mọi nơi. Chúng là:
+Unbloarchy giải quyết cả hai vấn đề bằng các phím tắt clipboard thống nhất hoạt động (gần như) ở mọi nơi. Chúng là:
 
 | Phím tắt | Lệnh |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Dùng `Super + A`, sau đó `Super + C` để sao chép mọi thứ trong một 
 
 ### Lịch sử clipboard
 
-Lịch sử clipboard được cung cấp bởi shell của Omarchy và hoạt động với cả văn bản và hình ảnh. Bạn kích hoạt nó bằng `Super + Ctrl + V`, chọn mục của bạn bằng phím Return, và mục đó sau đó sẽ được đặt vào clipboard, sẵn sàng để dán bằng `Super + V`.
+Lịch sử clipboard được cung cấp bởi shell của Unbloarchy và hoạt động với cả văn bản và hình ảnh. Bạn kích hoạt nó bằng `Super + Ctrl + V`, chọn mục của bạn bằng phím Return, và mục đó sau đó sẽ được đặt vào clipboard, sẵn sàng để dán bằng `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

@@ -2,7 +2,7 @@
 
 Normalt på Linux skal du bruge `Ctrl + Shift + C/V` til at kopiere og indsætte i terminalen og `Ctrl + C/V` til at gøre det alle andre steder. Det er svært at vænne sig til for alle, der ikke er født og opvokset med Linux! Det samme gælder skiftet fra super til ctrl, hvis du kommer fra Mac.
 
-Omarchy løser begge problemer med ensartede genvejstaster til udklipsholderen, der virker (næsten) overalt. De er:
+Unbloarchy løser begge problemer med ensartede genvejstaster til udklipsholderen, der virker (næsten) overalt. De er:
 
 | Genvejstast | Kommando |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Brug `Super + A` og derefter `Super + C` til at kopiere alt i et fokuseret tekst
 
 ### Udklipsholderhistorik
 
-Udklipsholderhistorikken leveres af Omarchy-skallen og virker til både tekst og billeder. Du åbner den med `Super + Ctrl + V`, vælger dit opslag med return, og så bliver det lagt i udklipsholderen, klar til at sætte ind med `Super + V`.
+Udklipsholderhistorikken leveres af Unbloarchy-skallen og virker til både tekst og billeder. Du åbner den med `Super + Ctrl + V`, vælger dit opslag med return, og så bliver det lagt i udklipsholderen, klar til at sætte ind med `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

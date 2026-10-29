@@ -6,7 +6,7 @@ Všechny hlavní klávesové zkratky si můžete zobrazit pomocí `Super + K` (z
 
 | Klávesová zkratka                  | Funkce              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Nabídka Omarchy (aplikace a všechno ostatní)    |
+| `Super + Space`           | Nabídka Unbloarchy (aplikace a všechno ostatní)    |
 | `Super + Alt + Space` | Mřížka aplikací |
 | `Super + Escape` | Systémová nabídka (uspání, restart atd.)  |
 | `Super + Ctrl + L` | Zamknout počítač |
@@ -143,7 +143,7 @@ Zkratky změňte/přidejte v `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Vložit    |
 | `Super + Ctrl + V`           | Správce schránky    |
 
-Na Linuxu obvykle potřebujete `Ctrl + Shift + C/V` ke kopírování a vkládání v terminálu a `Ctrl + C/V` k tomu všude jinde. Tyto sjednocené klávesové zkratky schránky v Omarchy fungují všude.
+Na Linuxu obvykle potřebujete `Ctrl + Shift + C/V` ke kopírování a vkládání v terminálu a `Ctrl + C/V` k tomu všude jinde. Tyto sjednocené klávesové zkratky schránky v Unbloarchy fungují všude.
 
 ## Zachytávání
 
@@ -164,7 +164,7 @@ Na Linuxu obvykle potřebujete `Ctrl + Shift + C/V` ke kopírování a vkládán
 
 U nahrávání obrazovky se zkratka nejdřív zeptá, jaký zvuk chcete, a pak začne nahrávat. Dalším stisknutím nahrávání zastavíte. Podrobnosti najdete v části [snímky obrazovky a nahrávání](12-screenshots-recording.md).
 
-Všechny možnosti zachytávání jsou dostupné také pod _Trigger > Capture_ v nabídce Omarchy (`Super + Space`).
+Všechny možnosti zachytávání jsou dostupné také pod _Trigger > Capture_ v nabídce Unbloarchy (`Super + Space`).
 
 ## Oznámení
 
@@ -186,9 +186,9 @@ Všechny možnosti zachytávání jsou dostupné také pod _Trigger > Capture_ v
 | `Super + Backspace` | Přepnout průhlednost okna |
 | `Super + Ctrl + Backspace` | Přepnout čtvercový poměr stran jednoho okna |
 
-Další obrázky pozadí se nacházejí v `~/.config/omarchy/backgrounds/<theme name>`. K dispozici také přes _Install > Style > Background_ v nabídce Omarchy.
+Další obrázky pozadí se nacházejí v `~/.config/unbloarchy/backgrounds/<theme name>`. K dispozici také přes _Install > Style > Background_ v nabídce Unbloarchy.
 
-Všechny možnosti stylu jsou dostupné také pod _Style_ v nabídce Omarchy (`Super + Space`).
+Všechny možnosti stylu jsou dostupné také pod _Style_ v nabídce Unbloarchy (`Super + Space`).
 
 ## Přepínače
 
@@ -289,7 +289,7 @@ Tyto funkce musíte spouštět uvnitř relace Tmux.
 
 ## Terminál Ghostty
 
-Terminál Ghostty se instaluje pomocí _Install > Terminal_ přes nabídku Omarchy.
+Terminál Ghostty se instaluje pomocí _Install > Terminal_ přes nabídku Unbloarchy.
 
 | Klávesová zkratka                  | Funkce              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Pomocí `Super + Ctrl + E` můžete zobrazit kompletní výběr emoji, který v�
 | `Shift + CapsLock Space N` | Vaše jméno (jak bylo zadáno při nastavení)  |
 | `Shift + CapsLock Space E` | Váš e-mail (jak byl zadán při nastavení)  |
 
-Další vlastní můžete přidat úpravou `~/.XCompose` a poté spuštěním `omarchy-restart-xcompose` v terminálu, aby se změny projevily.
+Další vlastní můžete přidat úpravou `~/.XCompose` a poté spuštěním `unbloarchy-restart-xcompose` v terminálu, aby se změny projevily.

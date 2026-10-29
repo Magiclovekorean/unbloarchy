@@ -1,12 +1,12 @@
 # 来自 Mac 或 Windows
 
-如果你在 macOS 或 Windows 上用了很多年，你的手指知道上百件大脑已经忘了自己学过的事情。本章就是翻译层：那些本能在 Omarchy 里去了哪里。具体功能在其他章节有深入讲解——这里只是一张地图。
+如果你在 macOS 或 Windows 上用了很多年，你的手指知道上百件大脑已经忘了自己学过的事情。本章就是翻译层：那些本能在 Unbloarchy 里去了哪里。具体功能在其他章节有深入讲解——这里只是一张地图。
 
 ### Super 是一切的中心
 
-你围绕 Cmd 或 Windows 键建立的所有肌肉记忆，都转移到一个键上：Super。那就是 PC 键盘上的 Windows 键，它也是 Omarchy 里几乎每个快捷键的锚点。
+你围绕 Cmd 或 Windows 键建立的所有肌肉记忆，都转移到一个键上：Super。那就是 PC 键盘上的 Windows 键，它也是 Unbloarchy 里几乎每个快捷键的锚点。
 
-你打开 Spotlight、Raycast 或开始菜单的 reflex 会变成 `Super + Space`。这会打开 Omarchy 菜单，它能启动应用、更改设置、安装软件、截取屏幕——几乎无所不能。开始输入即可筛选。`Super + Alt + Space` 会把所有应用显示在一个网格里，就像 Launchpad 那样。参见[导航](04-navigation.md)。
+你打开 Spotlight、Raycast 或开始菜单的 reflex 会变成 `Super + Space`。这会打开 Unbloarchy 菜单，它能启动应用、更改设置、安装软件、截取屏幕——几乎无所不能。开始输入即可筛选。`Super + Alt + Space` 会把所有应用显示在一个网格里，就像 Launchpad 那样。参见[导航](04-navigation.md)。
 
 ### 没有程序坞，也没有桌面图标
 
@@ -22,27 +22,27 @@
 
 ### 复制和粘贴就是能用
 
-在 Mac 上，你到处用 Cmd + C。在 Windows 上，你到处用 Ctrl + C——除了终端，在终端里它会杀掉你的程序。Omarchy 给你 `Super + C`、`Super + X` 和 `Super + V`，它们在任何地方都能用，包括终端。你不用再为 shell 单独学一套 reflex。
+在 Mac 上，你到处用 Cmd + C。在 Windows 上，你到处用 Ctrl + C——除了终端，在终端里它会杀掉你的程序。Unbloarchy 给你 `Super + C`、`Super + X` 和 `Super + V`，它们在任何地方都能用，包括终端。你不用再为 shell 单独学一套 reflex。
 
 Windows 用户注意：你的 Win + V 剪贴板历史记录在 `Super + Ctrl + V` 上，它不仅能存文本，还能存图片。参见[统一剪贴板与历史记录](08-unified-clipboard-history.md)。
 
 ### 对照表
 
-| 你习惯找的 | 在 Omarchy 中 |
+| 你习惯找的 | 在 Unbloarchy 中 |
 | ------------- | ---------- |
-| Spotlight / Raycast / 开始菜单 | `Super + Space`——Omarchy 菜单 |
+| Spotlight / Raycast / 开始菜单 | `Super + Space`——Unbloarchy 菜单 |
 | AirDrop | LocalSend，通过 `Super + Ctrl + S`——参见 [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` 或 `Print Screen`——参见[截图与录屏](12-screenshots-recording.md) |
 | Notification Center | 通知历史记录，`Super + Shift + Alt + ,` |
 | Time Machine（用于系统） | 每次更新时自动创建[系统快照](47-system-snapshots.md) |
-| App Store / 下载安装程序 | 菜单中的 _Install_，或 `omarchy pkg add`——参见[其他软件包](29-other-packages.md) |
+| App Store / 下载安装程序 | 菜单中的 _Install_，或 `unbloarchy pkg add`——参见[其他软件包](29-other-packages.md) |
 | System Settings / Control Panel | 菜单中的 _Setup_，它编辑的是纯文本配置文件——参见 [dotfiles](31-dotfiles.md) |
 
 ### 有些事情确实不一样
 
 很多设置都存放在你 직접 编辑的文本文件里，而不是靠点击面板来修改。听起来很原始，直到你意识到这意味着每个调整都能被看见、能复制到你的下一台机器上、能纳入版本控制。_Setup_ 菜单会直接把你带到正确的文件，并在你完成后重启所有需要重启的东西。
 
-更新通过一条命令完成——_Update > Omarchy_——它会更新 Omarchy 本身和系统上的每个软件包，并先创建一个快照。没有各个应用的更新程序在随机时刻烦你。参见[更新](30-updates.md)。
+更新通过一条命令完成——_Update > Unbloarchy_——它会更新 Unbloarchy 本身和系统上的每个软件包，并先创建一个快照。没有各个应用的更新程序在随机时刻烦你。参见[更新](30-updates.md)。
 
 软件来自软件包管理器，而不是下载的安装程序。
 
@@ -50,7 +50,7 @@ Windows 用户注意：你的 Win + V 剪贴板历史记录在 `Super + Ctrl + V
 
 ### 在 Mac 硬件上
 
-Omarchy 在 Intel Mac 上运行良好——参见 [Mac 支持](44-mac-support.md)。而且键盘对你很友善：Omarchy 不会重映射任何按键，Linux 会把 Command 键当作 Super，所以 Super 就在 Cmd 一直所在的位置。你的拇指不会察觉到这次搬家。
+Unbloarchy 在 Intel Mac 上运行良好——参见 [Mac 支持](44-mac-support.md)。而且键盘对你很友善：Unbloarchy 不会重映射任何按键，Linux 会把 Command 键当作 Super，所以 Super 就在 Cmd 一直所在的位置。你的拇指不会察觉到这次搬家。
 
 ### 给它两周时间
 

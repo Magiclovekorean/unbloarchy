@@ -79,10 +79,10 @@ done
 pass "each native messaging host admits exactly the bundled extension that talks to it"
 
 # Chromium ships in the base packages, so fresh installs do not go through
-# omarchy-install-browser and mark every migration as already applied. The user
+# unbloarchy-install-browser and mark every migration as already applied. The user
 # install has to register the hosts itself.
 home="$test_tmp/home"
-HOME="$home" OMARCHY_PATH="$ROOT" PATH="$ROOT/bin:$PATH" \
+HOME="$home" UNBLOARCHY_PATH="$ROOT" PATH="$ROOT/bin:$PATH" \
   bash -euo pipefail -c 'source "$ROOT/install/user/chromium.sh"' ||
   fail "the user install registers the Chromium native messaging hosts"
 
@@ -93,7 +93,7 @@ for template in "$ROOT"/default/chromium/native-messaging-hosts/*.json; do
     [[ -f $installed ]] || fail "a fresh install registers native host $host for $profile"
     path=$(jq -r .path "$installed")
     [[ $path == "$ROOT/bin/"* && -x $path ]] ||
-      fail "native host $host for $profile runs an Omarchy host command" "path: $path"
+      fail "native host $host for $profile runs an Unbloarchy host command" "path: $path"
     [[ $(jq -c .allowed_origins "$installed") == "$(jq -c .allowed_origins "$template")" ]] ||
       fail "native host $host for $profile admits the bundled extension"
   done

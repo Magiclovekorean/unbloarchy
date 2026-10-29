@@ -1,16 +1,16 @@
 # Mac-támogatás
 
-Az Omarchy beépített támogatással rendelkezik **Intel Macekre**. Jelenleg van néhány ismert korlátozás, de amennyiben tudatában vagy és rendben vagy velük; az Omarchy betöltésével új életet lehelhetsz a régi Maceidbe.
+Az Unbloarchy beépített támogatással rendelkezik **Intel Macekre**. Jelenleg van néhány ismert korlátozás, de amennyiben tudatában vagy és rendben vagy velük; az Unbloarchy betöltésével új életet lehelhetsz a régi Maceidbe.
 
 Kérjük, vedd figyelembe, hogy M-sorozatú Macre telepítés jelenleg nem közvetlenül támogatott. Ennek állapotáról többet a #omarchy-on-other csatornán tudhatsz meg a [Discordunkon](https://discord.gg/tXFUdasqhY).
 
-Egy egyszerű tesztben egy 2019-es MacBook Prón egyedül az Omarchy telepítésével 36%-os teljesítménynövekedést értünk el.
+Egy egyszerű tesztben egy 2019-es MacBook Prón egyedül az Unbloarchy telepítésével 36%-os teljesítménynövekedést értünk el.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Az Omarchy telepítése Macre
+### Az Unbloarchy telepítése Macre
 
-Az Omarchy jelenleg csak azt támogatja, hogy az **egyetlen** telepített operációs rendszer legyen. A telepítés során a meghajtó törlődik, és a MacOS nem lesz többé indítható.
+Az Unbloarchy jelenleg csak azt támogatja, hogy az **egyetlen** telepített operációs rendszer legyen. A telepítés során a meghajtó törlődik, és a MacOS nem lesz többé indítható.
 
 Később visszaállíthatod Internet Recovery segítségével, ha szeretnéd.
 

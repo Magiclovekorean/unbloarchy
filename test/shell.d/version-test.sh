@@ -17,9 +17,9 @@ cat >"$stub_bin/pacman" <<'STUB'
 [[ $1 == "-Q" ]] || exit 1
 shift
 for package in "$@"; do
-  case ",${OMARCHY_TEST_PACKAGES:-}," in
+  case ",${UNBLOARCHY_TEST_PACKAGES:-}," in
     *",$package,"*)
-      echo "$package ${OMARCHY_TEST_VERSION:-4.0.0-1}"
+      echo "$package ${UNBLOARCHY_TEST_VERSION:-4.0.0-1}"
       exit 0
       ;;
   esac
@@ -30,10 +30,10 @@ STUB
 chmod +x "$stub_bin/pacman"
 
 version() {
-  OMARCHY_TEST_PACKAGES="$1" \
-    OMARCHY_PATH="${2:-/usr/share/omarchy}" \
+  UNBLOARCHY_TEST_PACKAGES="$1" \
+    UNBLOARCHY_PATH="${2:-/usr/share/omarchy}" \
     PATH="$stub_bin:$PATH" \
-    "$ROOT/bin/omarchy-version"
+    "$ROOT/bin/unbloarchy-version"
 }
 
 [[ $(version omarchy) == "4.0.0-1" ]] || fail "version reports the stable package"
@@ -47,6 +47,6 @@ pass "version reports the edge package"
 pass "version reports a dev checkout"
 
 if version "" >/dev/null 2>&1; then
-  fail "version fails when no Omarchy package is installed"
+  fail "version fails when no Unbloarchy package is installed"
 fi
-pass "version fails when no Omarchy package is installed"
+pass "version fails when no Unbloarchy package is installed"

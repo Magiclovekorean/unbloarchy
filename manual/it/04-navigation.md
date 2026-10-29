@@ -1,8 +1,8 @@
 # Navigazione
 
-Tutto in Omarchy avviene tramite la tastiera — _TUTTO!_ Quando il sistema si avvia per la prima volta, letteralmente non puoi fare nulla con il solo mouse. Ma puoi premere `Super + Space` per mostrare il Menu Omarchy e da qui puoi fare praticamente tutto.
+Tutto in Unbloarchy avviene tramite la tastiera — _TUTTO!_ Quando il sistema si avvia per la prima volta, letteralmente non puoi fare nulla con il solo mouse. Ma puoi premere `Super + Space` per mostrare il Menu Unbloarchy e da qui puoi fare praticamente tutto.
 
-Ma il menu Omarchy non è nemmeno pensato per essere il modo principale di usare il sistema per la maggior parte del tempo. Possiamo andare più veloci di così! Tutte le applicazioni più importanti sono associate direttamente a singole scorciatoie. Avvii il terminale con `Super + Return` e un browser con `Super + Shift + Return`. Prova a fare l'una dopo l'altra, e vedrai la magia dell'affiancamento di Hyprland in azione:
+Ma il menu Unbloarchy non è nemmeno pensato per essere il modo principale di usare il sistema per la maggior parte del tempo. Possiamo andare più veloci di così! Tutte le applicazioni più importanti sono associate direttamente a singole scorciatoie. Avvii il terminale con `Super + Return` e un browser con `Super + Shift + Return`. Prova a fare l'una dopo l'altra, e vedrai la magia dell'affiancamento di Hyprland in azione:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Puoi anche andare a schermo intero con `Super + F` o anche solo a tutta larghezz
 
 ### Dwindle vs layout a scorrimento
 
-Il layout predefinito di Omarchy si chiama dwindle. Mantiene tutte le finestre che apri su un singolo spazio di lavoro visibili in ogni momento, anche se deve ridurle.
+Il layout predefinito di Unbloarchy si chiama dwindle. Mantiene tutte le finestre che apri su un singolo spazio di lavoro visibili in ogni momento, anche se deve ridurle.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Uno spazio di lavoro fluttuante funziona come un desktop tradizionale: le finestre si sovrappongono, e le sposti e le ridimensioni tu stesso. Ogni finestra riceve una barra del titolo con i colori del tuo tema, con pulsanti per minimizzare, massimizzare e chiudere. Anche `Super + M` minimizza la finestra attiva. Una finestra minimizzata attende nel dock; fai clic sulla sua app per riportarla. Fai clic su una finestra per portarla in primo piano. Ridimensionala da qualsiasi bordo o angolo. Fai doppio clic su una barra del titolo per massimizzare la finestra mantenendo visibile la barra superiore, e di nuovo per ripristinare le sue vecchie dimensioni.
 
-Uno spazio di lavoro fluttuante mostra anche un dock, con le tue app bloccate, tutto ciò che è in esecuzione e una griglia di ogni app dietro il pulsante delle app, che anche `Super + Alt + Space` e _Apps_ nel menu Omarchy aprono. Fai clic con il pulsante destro su un'app nella griglia, o premi `Delete`, per disinstallarla. Fai clic su un'app per aprirla, o per portare in primo piano la sua finestra; fai di nuovo clic per scorrere le sue finestre. Il clic centrale apre una nuova finestra. Trascina un'icona lungo il dock per spostarla; trascinare un'app in esecuzione tra le altre la mantiene lì. Fai clic con il pulsante destro per mantenere un'app nel dock, rimuoverla o chiuderla. Il dock si toglie di mezzo davanti a una finestra a schermo intero. Fai clic con il pulsante destro sul pulsante delle app per spostare il dock su un altro bordo o farlo nascondere finché il puntatore non raggiunge il suo bordo. La posizione si trova anche in _Aspetto > Dock > Posizione del Dock_, e `omarchy dock position left` e `omarchy dock autohide on` impostano entrambe le cose da un terminale. Le app che mantieni nel dock sono attenuate mentre non sono in esecuzione.
+Uno spazio di lavoro fluttuante mostra anche un dock, con le tue app bloccate, tutto ciò che è in esecuzione e una griglia di ogni app dietro il pulsante delle app, che anche `Super + Alt + Space` e _Apps_ nel menu Unbloarchy aprono. Fai clic con il pulsante destro su un'app nella griglia, o premi `Delete`, per disinstallarla. Fai clic su un'app per aprirla, o per portare in primo piano la sua finestra; fai di nuovo clic per scorrere le sue finestre. Il clic centrale apre una nuova finestra. Trascina un'icona lungo il dock per spostarla; trascinare un'app in esecuzione tra le altre la mantiene lì. Fai clic con il pulsante destro per mantenere un'app nel dock, rimuoverla o chiuderla. Il dock si toglie di mezzo davanti a una finestra a schermo intero. Fai clic con il pulsante destro sul pulsante delle app per spostare il dock su un altro bordo o farlo nascondere finché il puntatore non raggiunge il suo bordo. La posizione si trova anche in _Aspetto > Dock > Posizione del Dock_, e `unbloarchy dock position left` e `unbloarchy dock autohide on` impostano entrambe le cose da un terminale. Le app che mantieni nel dock sono attenuate mentre non sono in esecuzione.
 
-I nuovi spazi di lavoro, e quelli a cui non hai assegnato un layout proprio con `Super + L`, usano il layout predefinito. Cambiare il predefinito reimposta su di esso ogni spazio di lavoro senza finestre, mentre uno con finestre mantiene il layout che ha. Una finestra minimizzata nel dock conta ancora come una finestra sullo spazio di lavoro che ha lasciato. Lo scegli in _Aspetto > Layout dello spazio di lavoro_: Tiling, Scrolling o Floating. `omarchy-hyprland-workspace-layout-default scrolling` lo imposta da un terminale.
+I nuovi spazi di lavoro, e quelli a cui non hai assegnato un layout proprio con `Super + L`, usano il layout predefinito. Cambiare il predefinito reimposta su di esso ogni spazio di lavoro senza finestre, mentre uno con finestre mantiene il layout che ha. Una finestra minimizzata nel dock conta ancora come una finestra sullo spazio di lavoro che ha lasciato. Lo scegli in _Aspetto > Layout dello spazio di lavoro_: Tiling, Scrolling o Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` lo imposta da un terminale.
 
 ### Raggruppare le finestre
 

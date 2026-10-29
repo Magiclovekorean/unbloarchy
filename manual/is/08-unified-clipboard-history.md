@@ -2,7 +2,7 @@
 
 Venjulega á Linux þarftu `Ctrl + Shift + C/V` til að afrita og líma í terminal og `Ctrl + C/V` til að gera það alls staðar annars staðar. Það er erfitt að venjast því fyrir alla sem hafa ekki fæðst og alist upp með Linux! Svo er líka skiptið frá super yfir í ctrl, ef þú ert að koma frá Mac.
 
-Omarchy tekst á við bæði vandamálin með sameinuðum flýtilyklum fyrir klippiborð sem virka (nánast) alls staðar. Þeir eru:
+Unbloarchy tekst á við bæði vandamálin með sameinuðum flýtilyklum fyrir klippiborð sem virka (nánast) alls staðar. Þeir eru:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Notaðu `Super + A`, síðan `Super + C` til að afrita allt í textareit í fó
 
 ### Saga klippiborðs
 
-Saga klippiborðs er veitt af Omarchy shell og virkar bæði fyrir texta og myndir. Þú virkjar hana með `Super + Ctrl + V`, velur færsluna þína með return, og þá verður hún sett á klippiborðið tilbúin til að límast inn með `Super + V`.
+Saga klippiborðs er veitt af Unbloarchy shell og virkar bæði fyrir texta og myndir. Þú virkjar hana með `Super + Ctrl + V`, velur færsluna þína með return, og þá verður hún sett á klippiborðið tilbúin til að límast inn með `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

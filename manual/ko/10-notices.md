@@ -10,7 +10,7 @@
 
 마우스 없이 사용하려면 `Super + Ctrl + ,`를 누르세요. 가장 최근 알림이 선택되고 그 버튼에 번호가 매겨집니다. 번호를 눌러 버튼을 사용하고, `Enter`를 눌러 알림을 클릭하고, `↑`와 `↓`로 알림 사이를 이동하고, `Delete`로 하나를 닫고, `Esc`로 키보드를 돌려줍니다. 몇 초 동안 아무 입력이 없어도 자동으로 해제됩니다.
 
-알림을 무음으로 설정하면 알림이 표시되지 않지만, Omarchy 자체 확인, 긴급 알림, 방금 요청한 인증 코드는 예외입니다. 억제 여부와 관계없이 최근 몇 개의 알림을 `Super + Shift + Alt + ,`로 다시 화면에 표시할 수 있습니다. 기록은 하루 동안 보관됩니다.
+알림을 무음으로 설정하면 알림이 표시되지 않지만, Unbloarchy 자체 확인, 긴급 알림, 방금 요청한 인증 코드는 예외입니다. 억제 여부와 관계없이 최근 몇 개의 알림을 `Super + Shift + Alt + ,`로 다시 화면에 표시할 수 있습니다. 기록은 하루 동안 보관됩니다.
 
 ## 단축키 알림
 
@@ -26,7 +26,7 @@
 
  ![notice-weather](images/notice-weather.webp)
 
-위치는 IP 주소로 감지되며, 보통은 충분히 가깝지만 항상 그렇지는 않습니다. `omarchy weather location --set Malibu`로 고정할 수 있고, 좌표를 추가하면 정확하게 지정할 수 있습니다: `omarchy weather location --set Malibu 34.0259,-118.7798`. `omarchy weather location`을 단독으로 실행하면 현재 인식된 위치를 확인할 수 있고, `--clear`를 사용하면 자동 감지로 돌아갑니다.
+위치는 IP 주소로 감지되며, 보통은 충분히 가깝지만 항상 그렇지는 않습니다. `unbloarchy weather location --set Malibu`로 고정할 수 있고, 좌표를 추가하면 정확하게 지정할 수 있습니다: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. `unbloarchy weather location`을 단독으로 실행하면 현재 인식된 위치를 확인할 수 있고, `--clear`를 사용하면 자동 감지로 돌아갑니다.
 
 ### 배터리
 

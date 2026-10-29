@@ -20,11 +20,11 @@ Obsidian は、個人利用、商用利用、非営利用を問わず、あら�
 
 Obsidian は、iOS や Android のモバイルアプリと同期するための[商用アドオン](https://obsidian.md/sync)も提供しています。(https://obsidian.md/pricing)。
 
-Obsidian は `Super + Shift + O` で起動します。テーマの同期を使うには、設定で `Omarchy` テーマを選択する必要があります。
+Obsidian は `Super + Shift + O` で起動します。テーマの同期を使うには、設定で `Unbloarchy` テーマを選択する必要があります。
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) は、Omarchy 独自の、驚くほどシンプルな Markdown ライティングアプリです。ボールトもプラグインもありません。あるのはあなたと文章だけです。
+[Omawrite](https://github.com/omacom-io/omawrite) は、Unbloarchy 独自の、驚くほどシンプルな Markdown ライティングアプリです。ボールトもプラグインもありません。あるのはあなたと文章だけです。
 
 Omawrite は `Super + Shift + W` で起動します。
 
@@ -44,18 +44,18 @@ Aether はアプリケーションランチャー (`Super + Space`) から起動
 
 [LocalSend](https://localsend.org/) を使うと、Apple の AirDrop のように、同じネットワーク上でアプリを実行している他のデバイスへファイルを送信できます。ただしクロスプラットフォームなので、Windows、macOS、Android、iOS、そしてもちろん Linux との間でファイルを送受信できます。
 
-Share メニューは `Super + Ctrl + S` で開くか、Omarchy メニューの _Trigger > Share_ から開けます。4 つのオプションがあります。
+Share メニューは `Super + Ctrl + S` で開くか、Unbloarchy メニューの _Trigger > Share_ から開けます。4 つのオプションがあります。
 
 - **Clipboard** は、コピーしたものをテキストファイルとして送信します。自分宛てにメールしなくても、リンクやスニペットをスマートフォンへ送るのに最適です。
 - **File** はファイルピッカーを開き、一度に複数選択できます。
 - **Folder** はディレクトリ全体を送信します。
 - **Receive** は LocalSend 本体を開き、他のデバイスから何かを送信してもらえるようにします。
 
-同じことはターミナルからも `omarchy share clipboard`、`omarchy share file [path]`、`omarchy share folder [path]` で実行できます。パスを省略するとピッカーが表示されます。
+同じことはターミナルからも `unbloarchy share clipboard`、`unbloarchy share file [path]`、`unbloarchy share folder [path]` で実行できます。パスを省略するとピッカーが表示されます。
 
 ファイルマネージャーから直接送信することもできます。Nautilus で選択範囲を右クリックし、_Send via LocalSend_ を選んでください。
 
-Omarchy のファイアウォールは、デフォルトでは LocalSend のポートを除いて閉じられているので、新規インストール直後からそのまま使えます。[セキュリティ](48-security.md)を参照してください。
+Unbloarchy のファイアウォールは、デフォルトでは LocalSend のポートを除いて閉じられているので、新規インストール直後からそのまま使えます。[セキュリティ](48-security.md)を参照してください。
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice はアプリケーションランチャー (`Super + Space`) から�
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) は、Omarchy 独自の、驚くほどシンプルなプレゼンテーションアプリです。デッキは、画像や動画を横に配置した単一の Markdown ファイルです。各スライドをライブプレビューの下に書き、スライドをドラッグして順序を入れ替え、全画面でプレゼンするか、PDF や PowerPoint にエクスポートします。Omarchy のテーマも反映されます。
+[Hype](https://github.com/omacom/hype) は、Unbloarchy 独自の、驚くほどシンプルなプレゼンテーションアプリです。デッキは、画像や動画を横に配置した単一の Markdown ファイルです。各スライドをライブプレビューの下に書き、スライドをドラッグして順序を入れ替え、全画面でプレゼンするか、PDF や PowerPoint にエクスポートします。Unbloarchy のテーマも反映されます。
 
 Hype はアプリケーションランチャー (`Super + Space`) から起動します。アプリ内で `?` を押すと、すべてのショートカットを表示できます。
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) は、Omarchy 独自の、驚くほどシンプルな PDF への署名と記入の方法です。保存済みの署名、テキスト、今日の日付をページ上の任意の場所に配置し、署名済みのコピーを元のファイルの横に保存します。方法については [PDF への記入](27-filling-out-pdfs.md) を参照してください。
+[Signed](https://github.com/omacom/signed) は、Unbloarchy 独自の、驚くほどシンプルな PDF への署名と記入の方法です。保存済みの署名、テキスト、今日の日付をページ上の任意の場所に配置し、署名済みのコピーを元のファイルの横に保存します。方法については [PDF への記入](27-filling-out-pdfs.md) を参照してください。
 
 Signed はアプリケーションランチャー (`Super + Space`) から起動するか、ファイルマネージャーから PDF を Signed で開きます。
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) は、Omarchy 独自の、驚くほどシンプルな電卓で、フローティングウィンドウで開きます。
+[Omacalc](https://github.com/omacom-io/omacalc) は、Unbloarchy 独自の、驚くほどシンプルな電卓で、フローティングウィンドウで開きます。
 
 Omacalc は `Super + Shift + Q` で起動します (キーボードに電卓キーがある場合はそれでも起動できます)。
 
@@ -85,7 +85,7 @@ Omacalc は `Super + Shift + Q` で起動します (キーボードに電卓キ�
 
 [Signal](https://signal.org/) は E2E 暗号化メッセージングの先駆者であり、大手テクノロジーコングロマリットを経由したくない人にとって最適なコミュニケーション手段です。
 
-Signal は `Super + Shift + G` で起動します。基本インストールには含まれていないので、初めてそのキーを押すと、Omarchy がインストールを提案します (Omarchy メニューの _Install > Service_ からもインストールできます)。
+Signal は `Super + Shift + G` で起動します。基本インストールには含まれていないので、初めてそのキーを押すと、Unbloarchy がインストールを提案します (Unbloarchy メニューの _Install > Service_ からもインストールできます)。
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv はアプリケーションランチャー (`Super + Space`) から起動す
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) は、Omarchy 独自の、驚くほどシンプルな動画トリマーです。クリップの最初と最後を切り取るだけで十分なら、本格的な動画エディターを起動するよりずっと手軽です。
+[Omacut](https://github.com/omacom-io/omacut) は、Unbloarchy 独自の、驚くほどシンプルな動画トリマーです。クリップの最初と最後を切り取るだけで十分なら、本格的な動画エディターを起動するよりずっと手軽です。
 
 Omacut はアプリケーションランチャー (`Super + Space`) から起動します。
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) は、Omarchy 独自の、驚くほどシンプルなウェブカメラレコーダーです。カメラとマイクを一度選択したら、`Space` を押して録画し、もう一度押して同じテイクを一時停止したり再開したりします。常にカメラの最高解像度で録画し、ライブのマイクメーターがあるので、開始前にレベルを確認できます。
+[Monologue](https://github.com/omacom/monologue) は、Unbloarchy 独自の、驚くほどシンプルなウェブカメラレコーダーです。カメラとマイクを一度選択したら、`Space` を押して録画し、もう一度押して同じテイクを一時停止したり再開したりします。常にカメラの最高解像度で録画し、ライブのマイクメーターがあるので、開始前にレベルを確認できます。
 
 テイクを停止すると、内蔵エディターですぐに開きます。クリップをダブルクリックして分割し、ハンドルをドラッグして各部分をトリミングし、不要な部分を取り除きます。その後、MP4 として保存します。元の録画は破棄するまで保持されるので、いつでも戻って別の切り方をすることができます。
 

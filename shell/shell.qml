@@ -1,4 +1,4 @@
-//@ pragma OmarchyLoadPatch
+//@ pragma UnbloarchyLoadPatch
 import QtQuick
 import QtQml.Models
 import Quickshell
@@ -28,14 +28,14 @@ ShellRoot {
 
   property string home: Quickshell.env("HOME")
 
-  // The omarchy-shell host is the long-running entry point. Plugins live in
-  // sibling directories under plugins/. OMARCHY_PATH is provided by the uwsm
+  // The unbloarchy-shell host is the long-running entry point. Plugins live in
+  // sibling directories under plugins/. UNBLOARCHY_PATH is provided by the uwsm
   // session environment and is the single source of truth for this checkout.
-  property string omarchyPath: Quickshell.env("OMARCHY_PATH")
-  readonly property string shellPath: omarchyPath + "/shell"
+  property string unbloarchyPath: Quickshell.env("UNBLOARCHY_PATH")
+  readonly property string shellPath: unbloarchyPath + "/shell"
   readonly property string firstPartyPluginsDir: shellPath + "/plugins"
-  readonly property string defaultsPath: omarchyPath + "/config/omarchy/shell.json"
-  readonly property string userConfigPath: home + "/.config/omarchy/shell.json"
+  readonly property string defaultsPath: unbloarchyPath + "/config/unbloarchy/shell.json"
+  readonly property string userConfigPath: home + "/.config/unbloarchy/shell.json"
 
   // Bundled fallback so the shell can start even when the default shell.json is
   // missing or unreadable. The bar config here mirrors the on-disk defaults
@@ -50,11 +50,11 @@ ShellRoot {
       position: "top",
       background: "opaque",
       layout: {
-        left: [{ id: "omarchy.menu" }, { id: "omarchy.workspaces" }],
+        left: [{ id: "unbloarchy.menu" }, { id: "unbloarchy.workspaces" }],
         centerBegin: [],
-        center: [{ id: "omarchy.clock", format: "dddd HH:mm" }],
+        center: [{ id: "unbloarchy.clock", format: "dddd HH:mm" }],
         centerEnd: [],
-        right: [{ id: "omarchy.audio" }]
+        right: [{ id: "unbloarchy.audio" }]
       }
     },
     plugins: []
@@ -157,8 +157,8 @@ ShellRoot {
   }
 
   Component.onCompleted: {
-    console.log("omarchy-shell paths",
-      "omarchyPath=" + shell.omarchyPath,
+    console.log("unbloarchy-shell paths",
+      "unbloarchyPath=" + shell.unbloarchyPath,
       "shellDir=" + Quickshell.shellDir,
       "firstPartyPluginsDir=" + shell.firstPartyPluginsDir,
       "defaultsPath=" + shell.defaultsPath,
@@ -181,7 +181,7 @@ ShellRoot {
 
   // Exposed as a property so child plugins (notifications, future panels)
   // can read barSize/barHidden/position to anchor relative to the active bar.
-  readonly property string defaultBarId: "omarchy.bar"
+  readonly property string defaultBarId: "unbloarchy.bar"
   readonly property string selectedBarId: {
     var config = shell.barConfig
     if (Util.isPlainObject(config)) {
@@ -231,7 +231,7 @@ ShellRoot {
 
   function configureBar(target, manifest) {
     if (!target) return
-    if ("omarchyPath" in target) target.omarchyPath = shell.omarchyPath
+    if ("unbloarchyPath" in target) target.unbloarchyPath = shell.unbloarchyPath
     if ("shell" in target) target.shell = shell.pluginShellFor(manifest)
     if ("manifest" in target) target.manifest = shell.publicPluginManifest(manifest)
     if ("barWidgetRegistry" in target) target.barWidgetRegistry = shell.pluginBarWidgetRegistryFor(manifest)
@@ -244,7 +244,7 @@ ShellRoot {
     id: defaultBarComponent
 
     Bar {
-      omarchyPath: shell.omarchyPath
+      unbloarchyPath: shell.unbloarchyPath
       barWidgetRegistry: shell.barWidgetRegistry
       barConfig: shell.barConfig
       shell: shell
@@ -371,21 +371,21 @@ ShellRoot {
   }
 
   function publicIdleConfigFor(manifest) {
-    var metadata = manifest && Util.isPlainObject(manifest.omarchy) ? manifest.omarchy : null
-    if (!metadata || String(metadata.clonedFrom || "") !== "omarchy.idle") return ({})
+    var metadata = manifest && Util.isPlainObject(manifest.unbloarchy) ? manifest.unbloarchy : null
+    if (!metadata || String(metadata.clonedFrom || "") !== "unbloarchy.idle") return ({})
     var idle = shell.shellConfig && Util.isPlainObject(shell.shellConfig.idle)
       ? shell.shellConfig.idle : ({})
     return JSON.parse(JSON.stringify(idle))
   }
 
   function pluginCloneMaySummon(manifest, requestedId) {
-    var metadata = manifest && Util.isPlainObject(manifest.omarchy) ? manifest.omarchy : null
+    var metadata = manifest && Util.isPlainObject(manifest.unbloarchy) ? manifest.unbloarchy : null
     var sourceId = metadata ? String(metadata.clonedFrom || "") : ""
     var allowed = {
-      "omarchy.audio": ["omarchy.osd"],
-      "omarchy.media": ["omarchy.osd"],
-      "omarchy.monitor": ["omarchy.osd"],
-      "omarchy.network": ["omarchy.speedtest", "omarchy.wifiqr"]
+      "unbloarchy.audio": ["unbloarchy.osd"],
+      "unbloarchy.media": ["unbloarchy.osd"],
+      "unbloarchy.monitor": ["unbloarchy.osd"],
+      "unbloarchy.network": ["unbloarchy.speedtest", "unbloarchy.wifiqr"]
     }
     var targets = allowed[sourceId] || []
     return targets.indexOf(String(requestedId || "")) !== -1
@@ -480,7 +480,7 @@ ShellRoot {
 
   function pluginFirstPartyServiceFor(cacheKey, pluginId, requestedId) {
     var id = String(requestedId || "")
-    var allowed = ["omarchy.idle", "omarchy.media", "omarchy.nightlight", "omarchy.notifications", "omarchy.remote-session"]
+    var allowed = ["unbloarchy.idle", "unbloarchy.media", "unbloarchy.nightlight", "unbloarchy.notifications", "unbloarchy.remote-session"]
     if (allowed.indexOf(id) === -1) return null
     var proxyKey = cacheKey + "::" + id
     if (_pluginFirstPartyServiceApis[proxyKey]) return _pluginFirstPartyServiceApis[proxyKey]
@@ -624,7 +624,7 @@ ShellRoot {
     // property, even though the resulting proxy is otherwise acyclic.
     var firstPartyServices = ({})
     if (barCapabilities) {
-      var serviceIds = ["omarchy.idle", "omarchy.media", "omarchy.nightlight", "omarchy.notifications", "omarchy.remote-session"]
+      var serviceIds = ["unbloarchy.idle", "unbloarchy.media", "unbloarchy.nightlight", "unbloarchy.notifications", "unbloarchy.remote-session"]
       for (var i = 0; i < serviceIds.length; i++) {
         var serviceId = serviceIds[i]
         firstPartyServices[serviceId] = shell.pluginFirstPartyServiceFor(cacheKey, key, serviceId)
@@ -955,7 +955,7 @@ ShellRoot {
         console.warn("service plugin createObject returned null for", key)
         return
       }
-      if ("omarchyPath" in inst) inst.omarchyPath = shell.omarchyPath
+      if ("unbloarchyPath" in inst) inst.unbloarchyPath = shell.unbloarchyPath
       if ("shell" in inst) inst.shell = shell.pluginShellFor(manifest)
       if ("manifest" in inst) inst.manifest = shell.publicPluginManifest(manifest)
       if ("barWidgetRegistry" in inst) inst.barWidgetRegistry = shell.pluginBarWidgetRegistryFor(manifest)
@@ -1058,7 +1058,7 @@ ShellRoot {
   }
 
   // keepLoaded services (lock, idle, polkit) must survive plugin hot-reload.
-  // Destroying omarchy.lock drops the ext-session-lock client while Hyprland
+  // Destroying unbloarchy.lock drops the ext-session-lock client while Hyprland
   // still holds the lock, which surfaces the crashed-lockscreen fallback.
   function unloadPluginServices() {
     var next = ({})
@@ -1171,7 +1171,7 @@ ShellRoot {
     if (!m || !Array.isArray(m.kinds)) return false
     if (m.kinds.indexOf("bar-widget") === -1) return false
     // Plugins that are also panel/overlay/menu kinds are owned by the
-    // panel loader (e.g. omarchy.menu); let that path handle them.
+    // panel loader (e.g. unbloarchy.menu); let that path handle them.
     var loaderKinds = ["panel", "overlay", "menu"]
     for (var i = 0; i < loaderKinds.length; i++) {
       if (m.kinds.indexOf(loaderKinds[i]) !== -1) return false
@@ -1404,7 +1404,7 @@ ShellRoot {
         asynchronous: true
         onLoaded: {
           if (!item) return
-          if ("omarchyPath" in item) item.omarchyPath = shell.omarchyPath
+          if ("unbloarchyPath" in item) item.unbloarchyPath = shell.unbloarchyPath
           if ("shell" in item) item.shell = shell.pluginShellFor(panelEntry.manifest)
           if ("manifest" in item) item.manifest = shell.publicPluginManifest(panelEntry.manifest)
           if ("barWidgetRegistry" in item) item.barWidgetRegistry = shell.pluginBarWidgetRegistryFor(panelEntry.manifest)
@@ -1609,11 +1609,11 @@ ShellRoot {
   }
 
   // The IPC targets an ipc shortcut may name, and the service that owns each.
-  readonly property var ipcShortcutServices: ({ media: "omarchy.media", notifications: "omarchy.notifications" })
+  readonly property var ipcShortcutServices: ({ media: "unbloarchy.media", notifications: "unbloarchy.notifications" })
 
   function runShortcut(entry) {
     if (entry.kind === "menu") {
-      shell.toggle("omarchy.menu", JSON.stringify({ menu: entry.target }))
+      shell.toggle("unbloarchy.menu", JSON.stringify({ menu: entry.target }))
     } else if (entry.kind === "ipc") {
       // "media.next" runs the media service's own IPC handler for next.
       var dot = entry.target.indexOf(".")
@@ -1621,14 +1621,14 @@ ShellRoot {
       var method = entry.target.slice(dot + 1)
       var service = shell.serviceFor(shell.ipcShortcutServices[target] || "")
       if (!service || !service.runShortcut(method))
-        Util.execArgv(["omarchy-shell", target, method])
+        Util.execArgv(["unbloarchy-shell", target, method])
     } else if (entry.kind === "brightness") {
       if (!shell.brightnessKeys.handle(entry.target))
-        Util.execArgv(["omarchy-brightness-display", entry.target === "raise" ? "+5%" : "5%-"])
+        Util.execArgv(["unbloarchy-brightness-display", entry.target === "raise" ? "+5%" : "5%-"])
     } else if (entry.kind === "audio") {
-      var media = shell.serviceFor("omarchy.media")
+      var media = shell.serviceFor("unbloarchy.media")
       if (!media || !media.handleVolumeKey(entry.target))
-        Util.execArgv(["omarchy-audio-output-volume", entry.target])
+        Util.execArgv(["unbloarchy-audio-output-volume", entry.target])
     } else {
       shell.toggle(entry.target, "{}")
     }
@@ -1636,7 +1636,7 @@ ShellRoot {
 
   FileView {
     id: shortcutsFile
-    path: shell.omarchyPath + "/default/omarchy/shortcuts"
+    path: shell.unbloarchyPath + "/default/unbloarchy/shortcuts"
     watchChanges: true
     onFileChanged: reload()
   }
@@ -1656,20 +1656,20 @@ ShellRoot {
 
   // ------------------------------------------------------------ IPC socket
   //
-  // omarchy-shell reaches the shell here first: a qs ipc client costs ~45ms
+  // unbloarchy-shell reaches the shell here first: a qs ipc client costs ~45ms
   // to start per call, socat ~5ms. A request is target, method and arguments
   // separated by unit separators and ended by a record separator. The reply is
   // "OK" and the output, or "SKIP" when nothing ran (no such target or
-  // function, or the wrong number of arguments), which omarchy-shell hands to
+  // function, or the wrong number of arguments), which unbloarchy-shell hands to
   // qs ipc for its exact answer. The socket sits in XDG_RUNTIME_DIR, private
   // to the user like qs ipc's own. Like qs ipc, it belongs to one shell: the
-  // one running this config on this display. omarchy-shell derives the same
+  // one running this config on this display. unbloarchy-shell derives the same
   // name from the same two values.
-  readonly property string ipcSocketPath: Quickshell.env("XDG_RUNTIME_DIR") + "/omarchy-shell-"
-    + Qt.md5(shell.omarchyPath + "/shell\n" + Quickshell.env("WAYLAND_DISPLAY")).slice(0, 16) + ".sock"
+  readonly property string ipcSocketPath: Quickshell.env("XDG_RUNTIME_DIR") + "/unbloarchy-shell-"
+    + Qt.md5(shell.unbloarchyPath + "/shell\n" + Quickshell.env("WAYLAND_DISPLAY")).slice(0, 16) + ".sock"
 
   SocketServer {
-    active: shell.omarchyPath !== ""
+    active: shell.unbloarchyPath !== ""
     path: shell.ipcSocketPath
 
     handler: Socket {
@@ -1691,7 +1691,7 @@ ShellRoot {
   // --------------------------------------------------- image selector IPC
 
   function imagePickerItem() {
-    var loader = panelLoaders["omarchy.image-picker"]
+    var loader = panelLoaders["unbloarchy.image-picker"]
     return loader && loader.item ? loader.item : null
   }
 
@@ -1714,7 +1714,7 @@ ShellRoot {
         showLabels: showLabels,
         filterable: filterable
       })
-      return shell.summon("omarchy.image-picker", payload) ? "ok" : "unknown"
+      return shell.summon("unbloarchy.image-picker", payload) ? "ok" : "unknown"
     }
 
     function preload(imageRowsB64: string,
@@ -1734,7 +1734,7 @@ ShellRoot {
       if (picker && typeof picker.closeSelector === "function") {
         picker.closeSelector(doneFile || "")
       } else {
-        shell.hide("omarchy.image-picker")
+        shell.hide("unbloarchy.image-picker")
       }
       return "ok"
     }
@@ -1760,7 +1760,7 @@ ShellRoot {
       return shell.backgroundSwitch.play(token, stillPath, introPath, prepared)
     }
 
-    // omarchy-theme-bg-set's change, with the intro it found or none.
+    // unbloarchy-theme-bg-set's change, with the intro it found or none.
     function switchBackground(path: string, introPath: string): string {
       return shell.backgroundSwitch.switchTo(path, introPath)
     }
@@ -1791,7 +1791,7 @@ ShellRoot {
 
     function applyTheme(colorsB64: string, shellB64: string): string {
       if (shell.bootIntro) shell.bootIntro.cancelTheme()
-      var background = shell.firstPartyServiceFor("omarchy.background")
+      var background = shell.firstPartyServiceFor("unbloarchy.background")
       if (background && typeof background.setPendingTheme === "function" && typeof background.applyPendingTheme === "function") {
         background.setPendingTheme(colorsB64, shellB64)
         background.applyPendingTheme()
@@ -1885,13 +1885,13 @@ ShellRoot {
         var isBarOption = Array.isArray(kinds) && kinds.indexOf("bar") !== -1
         var isBarWidget = Array.isArray(kinds) && kinds.indexOf("bar-widget") !== -1
         var active = isBarOption && shell.isActiveBarOption(id)
-        var metadata = plugins[id].omarchy
+        var metadata = plugins[id].unbloarchy
         var clonedFrom = Util.isPlainObject(metadata) ? String(metadata.clonedFrom || "") : ""
         out.push({
           id: id,
           name: plugins[id].name,
           kinds: kinds,
-          // What `omarchy plugin enable/disable` toggles: for a widget that is
+          // What `unbloarchy plugin enable/disable` toggles: for a widget that is
           // its place in the bar, not whether its component is loadable.
           enabled: isBarOption ? active
             : (isBarWidget ? shell.pluginRegistry.inBar(id) : shell.pluginRegistry.isEnabled(id)),

@@ -2,7 +2,7 @@
 
 ## Alternatieve editors
 
-Omarchy wordt standaard geleverd met [Neovim](https://neovim.io/), maar als je iets mainstreamers en vertrouwders wilt, kun je het Omarchy Menu (`Super + Space`) openen en de opties onder _Install > Editor_ bekijken. Daar staan VSCode, Cursor, Zed, Sublime Text, Helix, Vim en Emacs voor je klaar. Als je niet vindt wat je zoekt, kijk dan bij _Install > Package_ of het niet in een Arch-pakket zit (en zo niet, probeer _Install > AUR_ om in de AUR te zoeken).
+Unbloarchy wordt standaard geleverd met [Neovim](https://neovim.io/), maar als je iets mainstreamers en vertrouwders wilt, kun je het Unbloarchy Menu (`Super + Space`) openen en de opties onder _Install > Editor_ bekijken. Daar staan VSCode, Cursor, Zed, Sublime Text, Helix, Vim en Emacs voor je klaar. Als je niet vindt wat je zoekt, kijk dan bij _Install > Package_ of het niet in een Arch-pakket zit (en zo niet, probeer _Install > AUR_ om in de AUR te zoeken).
 
 De originele `vi`-editor is ook standaard beschikbaar. Voer `vi filename` uit om een bestand in de terminal te bewerken.
 
@@ -12,7 +12,7 @@ Je kunt de systeemwijde standaardeditor instellen via `Setup > Defaults > Editor
 
 ## Omgeving
 
-Omarchy ondersteunt het instellen van een hele reeks ontwikkelomgevingen via de sectie _Install > Development_ van het Omarchy Menu (`Super + Space`). Je vindt er natuurlijk _Ruby on Rails_, maar ook alle drie de grote runtimes voor JavaScript (Node.js, Bun, Deno), evenals populaire PHP-frameworks zoals Laravel en Symfony. Oh, en er zijn ook Go, Rust, Python, Java, Elixir (met Phoenix), .NET, OCaml, Zig, Clojure en Scala. Het is een zeer brede selectie!
+Unbloarchy ondersteunt het instellen van een hele reeks ontwikkelomgevingen via de sectie _Install > Development_ van het Unbloarchy Menu (`Super + Space`). Je vindt er natuurlijk _Ruby on Rails_, maar ook alle drie de grote runtimes voor JavaScript (Node.js, Bun, Deno), evenals populaire PHP-frameworks zoals Laravel en Symfony. Oh, en er zijn ook Go, Rust, Python, Java, Elixir (met Phoenix), .NET, OCaml, Zig, Clojure en Scala. Het is een zeer brede selectie!
 
 De meeste van deze omgevingen worden beheerd door [Mise](https://mise.jdx.dev/). Het is een tool waarmee je meerdere versies van een programmeertaal op dezelfde machine kunt installeren en uitvoeren. Het is net als rbenv of rvm voor Ruby of virtualenv voor Python, maar dan voor een heleboel verschillende omgevingen.
 
@@ -20,7 +20,7 @@ Om bijvoorbeeld Ruby te installeren, voer je `mise use -g ruby` uit. Daarmee ins
 
 ## Vooraf geïnstalleerde CLI-tools
 
-Omarchy maakt tools zoals `gh`, `uv` en de meeste [codeeragents](17-ai.md) beschikbaar via [mise's lazy installation](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). De eerste keer dat je er een uitvoert, installeert mise deze. Latere uitvoeringen hergebruiken de geïnstalleerde versie; ze controleren niet bij elke start op een update.
+Unbloarchy maakt tools zoals `gh`, `uv` en de meeste [codeeragents](17-ai.md) beschikbaar via [mise's lazy installation](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). De eerste keer dat je er een uitvoert, installeert mise deze. Latere uitvoeringen hergebruiken de geïnstalleerde versie; ze controleren niet bij elke start op een update.
 
 Je kunt ook de standaardinstellingen bekijken of ze vooraf installeren:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Voer `omarchy update` uit om geïnstalleerde tools bij te werken samen met de rest van Omarchy. De alias `mup` werkt alleen mise-beheerde tools bij. Om nog een tool aan je eigen configuratie toe te voegen, gebruik je `mise use -g <tool>`.
+Voer `unbloarchy update` uit om geïnstalleerde tools bij te werken samen met de rest van Unbloarchy. De alias `mup` werkt alleen mise-beheerde tools bij. Om nog een tool aan je eigen configuratie toe te voegen, gebruik je `mise use -g <tool>`.
 
 De Python-installatie installeert ook `uv` via mise. Als je de Python-ontwikkelomgeving verwijdert, blijft `uv` beschikbaar als onafhankelijke tool.
 
@@ -47,15 +47,15 @@ Als je al een `[settings]`-tabel hebt, voeg je het item daar toe; breid een best
 
 ### Standaardinstellingen verwijderen en herstellen
 
-_Remove Preinstalls_ zorgt ervoor dat mise Omarchy's tooldeclaraties voor jouw gebruiker overslaat, door ze toe te voegen aan `ignored_config_paths` in `~/.config/mise/miserc.toml`. _Restore Preinstalls_ verwijdert die regel weer. Tools die je zelf declareert, in je eigen configuratie of in de `mise.toml` van een project, blijven in beide gevallen werken. Als je een standaardagent kiest of Python instelt nadat je de preinstalls hebt verwijderd, wordt die tool toegevoegd aan je eigen configuratie. Beide gelden alleen voor jouw gebruiker; andere gebruikers op de machine behouden hun eigen keuze.
+_Remove Preinstalls_ zorgt ervoor dat mise Unbloarchy's tooldeclaraties voor jouw gebruiker overslaat, door ze toe te voegen aan `ignored_config_paths` in `~/.config/mise/miserc.toml`. _Restore Preinstalls_ verwijdert die regel weer. Tools die je zelf declareert, in je eigen configuratie of in de `mise.toml` van een project, blijven in beide gevallen werken. Als je een standaardagent kiest of Python instelt nadat je de preinstalls hebt verwijderd, wordt die tool toegevoegd aan je eigen configuratie. Beide gelden alleen voor jouw gebruiker; andere gebruikers op de machine behouden hun eigen keuze.
 
 ## Docker
 
-[Docker](https://www.docker.com/) behoeft nauwelijks introductie. Hiermee kun je geïsoleerde containers draaien, en Omarchy installeert alles wat nodig is om het goed te laten werken, inclusief Docker zelf en [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) behoeft nauwelijks introductie. Hiermee kun je geïsoleerde containers draaien, en Unbloarchy installeert alles wat nodig is om het goed te laten werken, inclusief Docker zelf en [Docker Compose](https://docs.docker.com/compose/).
 
-Standaard zit je gebruiker *niet* in de groep `docker`. Die groep is in feite root zonder wachtwoord — alles wat erin zit, kan `docker run -v /:/host` uitvoeren en de machine overnemen — dus één enkel kwaadaardig script of één enkele afhankelijkheid die als jou draait, zou anders met één commando root kunnen worden. Dus op de commandoregel voer je Docker uit met `sudo` (`sudo docker ps`, `sudo docker compose up`), en de grafische tools die met de daemon praten — de Windows VM — vragen om autorisatie wanneer ze die nodig hebben. Als je het gemak van een setup zonder groep terug wilt en de afweging begrijpt, schakel dit dan in via **Setup > Security > Sudoless Docker** (of voer `omarchy-setup-security-sudoless-docker` uit). Daarmee word je na een waarschuwing toegevoegd aan de groep `docker`; daarna werken gewoon `docker` en de alias `d` weer zonder `sudo`.
+Standaard zit je gebruiker *niet* in de groep `docker`. Die groep is in feite root zonder wachtwoord — alles wat erin zit, kan `docker run -v /:/host` uitvoeren en de machine overnemen — dus één enkel kwaadaardig script of één enkele afhankelijkheid die als jou draait, zou anders met één commando root kunnen worden. Dus op de commandoregel voer je Docker uit met `sudo` (`sudo docker ps`, `sudo docker compose up`), en de grafische tools die met de daemon praten — de Windows VM — vragen om autorisatie wanneer ze die nodig hebben. Als je het gemak van een setup zonder groep terug wilt en de afweging begrijpt, schakel dit dan in via **Setup > Security > Sudoless Docker** (of voer `unbloarchy-setup-security-sudoless-docker` uit). Daarmee word je na een waarschuwing toegevoegd aan de groep `docker`; daarna werken gewoon `docker` en de alias `d` weer zonder `sudo`.
 
-Je kunt de gangbare databases voor lokale ontwikkeling in Docker instellen via _Install > Development > Docker DB_ in het Omarchy-menu.
+Je kunt de gangbare databases voor lokale ontwikkeling in Docker instellen via _Install > Development > Docker DB_ in het Unbloarchy-menu.
 
 ## GitHub CLI
 

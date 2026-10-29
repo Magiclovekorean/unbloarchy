@@ -1,6 +1,6 @@
 # Feidhmeanna Blaoisce
 
-Tagann Omarchy le sraith feidhmeanna blaoisce chun tascanna coitianta a shimpliú agus glaonna paraiméadar casta a chuimsiú.
+Tagann Unbloarchy le sraith feidhmeanna blaoisce chun tascanna coitianta a shimpliú agus glaonna paraiméadar casta a chuimsiú.
 
 ## Comhbhrú
 

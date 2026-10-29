@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# omarchy:summary=Take a screenshot
-# omarchy:group=capture
-# omarchy:args=[smart|region|windows|fullscreen|scroll] [copy|save]
-# omarchy:examples=omarchy screenshot | omarchy capture screenshot region
-# omarchy:aliases=omarchy screenshot
+# unbloarchy:summary=Take a screenshot
+# unbloarchy:group=capture
+# unbloarchy:args=[smart|region|windows|fullscreen|scroll] [copy|save]
+# unbloarchy:examples=unbloarchy screenshot | unbloarchy capture screenshot region
+# unbloarchy:aliases=unbloarchy screenshot
 
-if [[ -n ${OMARCHY_SCREENSHOT_DIR:-} && -z ${OMASNAP_SCREENSHOT_DIR:-} ]]; then
-  export OMASNAP_SCREENSHOT_DIR="$OMARCHY_SCREENSHOT_DIR"
+if [[ -n ${UNBLOARCHY_SCREENSHOT_DIR:-} && -z ${OMASNAP_SCREENSHOT_DIR:-} ]]; then
+  export OMASNAP_SCREENSHOT_DIR="$UNBLOARCHY_SCREENSHOT_DIR"
 fi
 
 # --notify announces saved shots with Open and Edit buttons instead of a
 # preview. Omasnap reads that toast's text from this catalog itself:
-#   omarchy-i18n capture.screenshotSaved, omarchy-i18n capture.screenshotSavedCopied,
-#   omarchy-i18n capture.screenshotOpen, omarchy-i18n capture.screenshotEdit
+#   unbloarchy-i18n capture.screenshotSaved, unbloarchy-i18n capture.screenshotSavedCopied,
+#   unbloarchy-i18n capture.screenshotOpen, unbloarchy-i18n capture.screenshotEdit
 omasnap_args=(--notify)
 for arg in "$@"; do
   case "$arg" in

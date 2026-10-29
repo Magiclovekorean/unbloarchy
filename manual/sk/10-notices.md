@@ -10,7 +10,7 @@ Karty ponúkajú to, čo nesú: _Kopírovať kód_ pre overovacie kódy (neuklad
 
 Ak ich chcete používať bez myši, stlačte `Super + Ctrl + ,`. Najnovšie oznámenie je vybrané a jeho tlačidlá sú očíslované: stlačením čísla použijete jedno z nich, stlačením `Enter` kliknete na oznámenie, stlačením `↑` a `↓` sa presúvate medzi oznámeniami, stlačením `Delete` jedno zrušíte a stlačením `Esc` vrátite ovládanie klávesnici. Po niekoľkých sekundách nečinnosti sa uvoľní aj samo.
 
-Stíšenie oznámení ich pozdrží, okrem vlastných potvrdení Omarchy, núdzových upozornení a overovacích kódov, o ktoré ste pred chvíľou požiadali. Posledných niekoľko ich vrátite späť na obrazovku, či už boli pozdržané alebo nie, pomocou `Super + Shift + Alt + ,`. História sa uchováva jeden deň.
+Stíšenie oznámení ich pozdrží, okrem vlastných potvrdení Unbloarchy, núdzových upozornení a overovacích kódov, o ktoré ste pred chvíľou požiadali. Posledných niekoľko ich vrátite späť na obrazovku, či už boli pozdržané alebo nie, pomocou `Super + Shift + Alt + ,`. História sa uchováva jeden deň.
 
 ## Oznámenia klávesových skratiek
 
@@ -26,7 +26,7 @@ Stíšenie oznámení ich pozdrží, okrem vlastných potvrdení Omarchy, núdzo
 
  ![notice-weather](images/notice-weather.webp)
 
-Poloha sa zisťuje z vašej IP adresy, čo je zvyčajne dostatočne presné, ale nie vždy. Môžete ju upresniť pomocou `omarchy weather location --set Malibu` alebo byť úplne presní pridaním súradníc: `omarchy weather location --set Malibu 34.0259,-118.7798`. Spustením samotného `omarchy weather location` zistíte, kde si myslí, že sa nachádzate, a pomocou `--clear` sa vrátite k automatickému zisťovaniu.
+Poloha sa zisťuje z vašej IP adresy, čo je zvyčajne dostatočne presné, ale nie vždy. Môžete ju upresniť pomocou `unbloarchy weather location --set Malibu` alebo byť úplne presní pridaním súradníc: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Spustením samotného `unbloarchy weather location` zistíte, kde si myslí, že sa nachádzate, a pomocou `--clear` sa vrátite k automatickému zisťovaniu.
 
 ### Batéria
 

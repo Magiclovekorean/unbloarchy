@@ -1,16 +1,16 @@
 # Mac-Unterstützung
 
-Omarchy unterstützt **Intel-Macs** von Haus aus. Im Moment gibt es ein paar bekannte Einschränkungen, aber solange du sie kennst und damit einverstanden bist, kannst du deinen alten Macs mit Omarchy neues Leben einhauchen.
+Unbloarchy unterstützt **Intel-Macs** von Haus aus. Im Moment gibt es ein paar bekannte Einschränkungen, aber solange du sie kennst und damit einverstanden bist, kannst du deinen alten Macs mit Unbloarchy neues Leben einhauchen.
 
 Bitte beachte, dass die Installation auf einem Mac der M-Serie derzeit nicht direkt unterstützt wird. Mehr über den Stand der Dinge findest du unter #omarchy-on-other in unserem [Discord](https://discord.gg/tXFUdasqhY).
 
-In einem einfachen Test konnten wir auf einem MacBook Pro von 2019 allein durch die Installation von Omarchy 36 % mehr Leistung erzielen.
+In einem einfachen Test konnten wir auf einem MacBook Pro von 2019 allein durch die Installation von Unbloarchy 36 % mehr Leistung erzielen.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Omarchy auf dem Mac installieren
+### Unbloarchy auf dem Mac installieren
 
-Omarchy unterstützt derzeit nur, das **einzige** installierte Betriebssystem zu sein. Während der Installation wird das Laufwerk gelöscht und MacOS ist danach nicht mehr bootfähig.
+Unbloarchy unterstützt derzeit nur, das **einzige** installierte Betriebssystem zu sein. Während der Installation wird das Laufwerk gelöscht und MacOS ist danach nicht mehr bootfähig.
 
 Du kannst es später über die Internet-Wiederherstellung wiederherstellen, wenn du möchtest.
 

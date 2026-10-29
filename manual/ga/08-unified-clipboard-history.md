@@ -2,7 +2,7 @@
 
 De ghnáth ar Linux, teastaíonn `Ctrl + Shift + C/V` uait chun cóipeáil is greamú a dhéanamh sa teirminéal agus `Ctrl + C/V` chun é a dhéanamh i ngach áit eile. Is deacair dul i dtaithí air sin d'aon duine nár rugadh agus nár tógadh ar Linux! Is amhlaidh freisin don athrú ó super go ctrl, má tá tú ag teacht ón Mac.
 
-Téann Omarchy i ngleic leis an dá fhadhb le haicearraí gearrthaisce aontaithe a oibríonn (beagnach) i ngach áit. Seo iad:
+Téann Unbloarchy i ngleic leis an dá fhadhb le haicearraí gearrthaisce aontaithe a oibríonn (beagnach) i ngach áit. Seo iad:
 
 | Aicearra | Ordú |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ _Tabhair faoi deara go n-úsáidfidh formhór na n-úimacha gníomhairí `Ctrl +
 
 ### Stair na gearrthaisce
 
-Is é blaosc Omarchy a sholáthraíonn stair na gearrthaisce agus oibríonn sí do théacs agus d'íomhánna araon. Gníomhaíonn tú í le `Super + Ctrl + V`, roghnaíonn tú d'iontráil le return, agus ansin cuirfear sin ar an ngearrrthaisce réidh le greamú ar `Super + V`.
+Is é blaosc Unbloarchy a sholáthraíonn stair na gearrthaisce agus oibríonn sí do théacs agus d'íomhánna araon. Gníomhaíonn tú í le `Super + Ctrl + V`, roghnaíonn tú d'iontráil le return, agus ansin cuirfear sin ar an ngearrrthaisce réidh le greamú ar `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

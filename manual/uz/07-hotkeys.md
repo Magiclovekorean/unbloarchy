@@ -6,7 +6,7 @@ Barcha asosiy tugmalar birikmalarini `Super + K` bilan ko'rishingiz mumkin (Tmux
 
 | Tezkor tugma | Funksiya |
 | ----------------------- | --------------------- |
-| `Super + Space` | Omarchy menyusi (ilovalar va boshqa hamma narsa) |
+| `Super + Space` | Unbloarchy menyusi (ilovalar va boshqa hamma narsa) |
 | `Super + Alt + Space` | Ilovalar panjarasi |
 | `Super + Escape` | Tizim menyusi (kutish rejimi, qayta ishga tushirish va boshqalar) |
 | `Super + Ctrl + L` | Kompyuterni qulflash |
@@ -143,7 +143,7 @@ Birikmalarni `~/.config/hypr/bindings.lua` da o'zgartiring/qo'shing.
 | `Super + V` | Qo'yish |
 | `Super + Ctrl + V` | Bufer menejeri |
 
-Odatda Linux da terminalda nusxalash va qo'yish uchun `Ctrl + Shift + C/V` va boshqa hamma joyda buni qilish uchun `Ctrl + C/V` kerak bo'ladi. Ushbu Omarchy birlashtirilgan bufer tezkor tugmalari hamma joyda ishlaydi.
+Odatda Linux da terminalda nusxalash va qo'yish uchun `Ctrl + Shift + C/V` va boshqa hamma joyda buni qilish uchun `Ctrl + C/V` kerak bo'ladi. Ushbu Unbloarchy birlashtirilgan bufer tezkor tugmalari hamma joyda ishlaydi.
 
 ## Tasvirga olish
 
@@ -164,7 +164,7 @@ Odatda Linux da terminalda nusxalash va qo'yish uchun `Ctrl + Shift + C/V` va bo
 
 Screenrecord larda tezkor tugma avval qaysi audioni xohlashingizni so'raydi, keyin yozib olishni boshlaydi. To'xtatish uchun uni yana bosing. Tafsilotlar uchun [skrinshotlar va yozib olish](12-screenshots-recording.md) ga qarang.
 
-Barcha tasvirga olish variantlariga Omarchy menyusidagi (`Super + Space`) _Trigger > Capture_ ostida ham kirish mumkin.
+Barcha tasvirga olish variantlariga Unbloarchy menyusidagi (`Super + Space`) _Trigger > Capture_ ostida ham kirish mumkin.
 
 ## Bildirishnomalar
 
@@ -186,9 +186,9 @@ Barcha tasvirga olish variantlariga Omarchy menyusidagi (`Super + Space`) _Trigg
 | `Super + Backspace` | Oynada shaffoflikni yoqish/o'chirish |
 | `Super + Ctrl + Backspace` | Yagona oynaning kvadrat nisbatini yoqish/o'chirish |
 
-Qo'shimcha fon rasmlari `~/.config/omarchy/backgrounds/<theme name>` da joylashgan. Omarchy menyusidagi _Install > Style > Background_ orqali ham mavjud.
+Qo'shimcha fon rasmlari `~/.config/unbloarchy/backgrounds/<theme name>` da joylashgan. Unbloarchy menyusidagi _Install > Style > Background_ orqali ham mavjud.
 
-Barcha uslub variantlariga Omarchy menyusidagi (`Super + Space`) _Style_ ostida ham kirish mumkin.
+Barcha uslub variantlariga Unbloarchy menyusidagi (`Super + Space`) _Style_ ostida ham kirish mumkin.
 
 ## Kalitlar
 
@@ -289,7 +289,7 @@ Ushbu funksiyalar Tmux sessiyasi ichida ishga tushirilishi kerak.
 
 ## Ghostty Terminal
 
-Ghostty terminali Omarchy menyusi orqali _Install > Terminal_ yordamida o'rnatiladi.
+Ghostty terminali Unbloarchy menyusi orqali _Install > Terminal_ yordamida o'rnatiladi.
 
 | Tezkor tugma | Funksiya |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ To'liq emoji tanlagichni ko'rsatish uchun `Super + Ctrl + E` dan foydalanishingi
 | `Shift + CapsLock Space N` | Ismingiz (sozlashda kiritilganidek) |
 | `Shift + CapsLock Space E` | Emailingiz (sozlashda kiritilganidek) |
 
-`~/.XCompose` ni tahrirlash orqali o'zingiznikidan ko'proq qo'shishingiz mumkin, keyin o'zgarishlar qabul qilinishi uchun terminalda `omarchy-restart-xcompose` ni ishga tushiring.
+`~/.XCompose` ni tahrirlash orqali o'zingiznikidan ko'proq qo'shishingiz mumkin, keyin o'zgarishlar qabul qilinishi uchun terminalda `unbloarchy-restart-xcompose` ni ishga tushiring.

@@ -2,23 +2,23 @@
 
 ### Saya rosakkan sistem saya dengan kemas kini!
 
-Mula-mula cuba [pulihkan sistem anda](47-system-snapshots.md) kepada versi sebelum kemas kini terbaru anda. Jika itu tidak berjaya, gunakan `omarchy-debug` untuk berkongsi masalah anda di #omarchy-help dalam Discord. Dan jika semuanya gagal, anda boleh memasang semula konfigurasi dan pakej lalai menggunakan `omarchy-reinstall`.
+Mula-mula cuba [pulihkan sistem anda](47-system-snapshots.md) kepada versi sebelum kemas kini terbaru anda. Jika itu tidak berjaya, gunakan `unbloarchy-debug` untuk berkongsi masalah anda di #unbloarchy-help dalam Discord. Dan jika semuanya gagal, anda boleh memasang semula konfigurasi dan pakej lalai menggunakan `unbloarchy-reinstall`.
 
 ### Mengapa sesetengah aplikasi begitu besar pada paparan saya?
 
-Omarchy mengandaikan paparan resolusi tinggi 2x, yang memerlukan penetapan `GDK_SCALE` kepada 2 dalam `~/.config/hypr/monitors.lua`. Tetapi jika anda menggunakan paparan 1x, anda boleh menukar `local omarchy_gdk_scale = 2` kepada 1 (dan kemudian mulakan semula mana-mana aplikasi yang terlalu besar). Lihat [manual tentang monitor](33-monitors.md).
+Unbloarchy mengandaikan paparan resolusi tinggi 2x, yang memerlukan penetapan `GDK_SCALE` kepada 2 dalam `~/.config/hypr/monitors.lua`. Tetapi jika anda menggunakan paparan 1x, anda boleh menukar `local unbloarchy_gdk_scale = 2` kepada 1 (dan kemudian mulakan semula mana-mana aplikasi yang terlalu besar). Lihat [manual tentang monitor](33-monitors.md).
 
 Untuk Spotify, anda boleh menggunakan `Ctrl + Minus` untuk mengecilkan UI (dan `Ctrl + Plus` untuk membesarkannya).
 
 ### Mengapa semua ikatan kekunci Super saya berhenti berfungsi?
 
-Pada sesetengah komputer riba ASUS ROG dan TUF, `Fn + Super` ialah gabungan kekunci yang mudah terlepas pandang yang menogol kunci Windows-key perisian tegar (bertujuan untuk permainan supaya anda tidak keluar daripada permainan secara tidak sengaja). Tiada apa-apa pada skrin yang memberitahu anda ia telah berlaku. Semasa kunci itu aktif, Super tidak menghantar apa-apa langsung — jadi setiap ikatan Omarchy yang menggunakan Super terus berhenti, dan ia kelihatan seperti Hyprland yang rosak.
+Pada sesetengah komputer riba ASUS ROG dan TUF, `Fn + Super` ialah gabungan kekunci yang mudah terlepas pandang yang menogol kunci Windows-key perisian tegar (bertujuan untuk permainan supaya anda tidak keluar daripada permainan secara tidak sengaja). Tiada apa-apa pada skrin yang memberitahu anda ia telah berlaku. Semasa kunci itu aktif, Super tidak menghantar apa-apa langsung — jadi setiap ikatan Unbloarchy yang menggunakan Super terus berhenti, dan ia kelihatan seperti Hyprland yang rosak.
 
 Tekan `Fn + Super` sekali sebelum anda menyiasat `~/.config/hypr/`, dan jika itu tidak mengembalikan Super, tekan sekali lagi supaya anda tidak membiarkan kunci itu kekal aktif. Ini bukan Fn-lock, yang hanya mengubah fungsi baris kekunci F.
 
 ### Wi-Fi, Bluetooth, audio, atau trackpad saya tiba-tiba berhenti berfungsi
 
-Sebelum anda but semula, cuba mulakan semula subsistem yang bermasalah itu secara berasingan. _Update > Hardware_ dalam menu Omarchy mempunyai Wi-Fi, Bluetooth, Audio, dan Trackpad, dan memuat semula salah satu daripadanya menyelesaikan kebanyakan situasi "ia berfungsi lima minit lepas" — set kepala Bluetooth yang tidak mahu menyambung semula, trackpad yang mati selepas suspend, bunyi yang hilang apabila anda mencabut monitor.
+Sebelum anda but semula, cuba mulakan semula subsistem yang bermasalah itu secara berasingan. _Update > Hardware_ dalam menu Unbloarchy mempunyai Wi-Fi, Bluetooth, Audio, dan Trackpad, dan memuat semula salah satu daripadanya menyelesaikan kebanyakan situasi "ia berfungsi lima minit lepas" — set kepala Bluetooth yang tidak mahu menyambung semula, trackpad yang mati selepas suspend, bunyi yang hilang apabila anda mencabut monitor.
 
 ### Mengapa pembesar suara luaran saya tidak berbunyi?
 
@@ -26,7 +26,7 @@ Mungkin kerana ia tidak ditetapkan sebagai output utama. Klik pada ikon pembesar
 
 ### Pembesar suara komputer riba saya berbunyi pelik
 
-Pada sesetengah komputer riba, Omarchy secara automatik menggunakan penalaan pembesar suara yang membetulkan tindak balas frekuensi pembesar suara terbina dalam. `omarchy audio tuning status` memberitahu anda sama ada penalaan aktif pada mesin anda, dan `omarchy audio tuning off` mematikannya jika anda lebih suka mendengar pembesar suara tanpa penalaan.
+Pada sesetengah komputer riba, Unbloarchy secara automatik menggunakan penalaan pembesar suara yang membetulkan tindak balas frekuensi pembesar suara terbina dalam. `unbloarchy audio tuning status` memberitahu anda sama ada penalaan aktif pada mesin anda, dan `unbloarchy audio tuning off` mematikannya jika anda lebih suka mendengar pembesar suara tanpa penalaan.
 
 ### Mengapa saya tidak boleh log masuk atau sudo dengan kata laluan saya?
 

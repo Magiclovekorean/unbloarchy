@@ -20,11 +20,11 @@ Obsidian gratis untuk semua tujuan, termasuk penggunaan pribadi, komersial, dan 
 
 Obsidian juga menawarkan [add-on komersial untuk sinkronisasi](https://obsidian.md/sync) dengan aplikasi seluler di iOS dan Android. (https://obsidian.md/pricing).
 
-Anda memulai Obsidian dengan `Super + Shift + O`. Untuk menggunakan sinkronisasi tema, Anda harus memilih tema `Omarchy` di bawah pengaturan.
+Anda memulai Obsidian dengan `Super + Shift + O`. Untuk menggunakan sinkronisasi tema, Anda harus memilih tema `Unbloarchy` di bawah pengaturan.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) adalah aplikasi penulisan Markdown Omarchy sendiri yang sangat sederhana. Tanpa vault, tanpa plugin, hanya Anda dan kata-kata.
+[Omawrite](https://github.com/omacom-io/omawrite) adalah aplikasi penulisan Markdown Unbloarchy sendiri yang sangat sederhana. Tanpa vault, tanpa plugin, hanya Anda dan kata-kata.
 
 Anda memulai Omawrite dengan `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Anda memulai Aether melalui peluncur aplikasi (`Super + Space`).
 
 [LocalSend](https://localsend.org/) memungkinkan Anda mengirim file ke perangkat lain di jaringan yang sama yang menjalankan aplikasi ini, seperti AirDrop milik Apple. Namun ini lintas platform, jadi Anda dapat mengirim file ke dan dari Windows, macOS, Android, iOS, dan tentu saja Linux.
 
-Anda dapat membuka menu Share di `Super + Ctrl + S` atau di bawah _Trigger > Share_ di menu Omarchy. Ini memberi Anda empat opsi:
+Anda dapat membuka menu Share di `Super + Ctrl + S` atau di bawah _Trigger > Share_ di menu Unbloarchy. Ini memberi Anda empat opsi:
 
 - **Clipboard** mengirim apa pun yang telah Anda salin sebagai file teks. Hebat untuk memasukkan tautan atau cuplikan ke ponsel Anda tanpa mengirim email ke diri sendiri.
 - **File** membuka pemilih file tempat Anda dapat memilih beberapa sekaligus.
 - **Folder** mengirim seluruh direktori.
 - **Receive** membuka LocalSend yang sebenarnya agar perangkat lain dapat mengirim sesuatu kepada Anda.
 
-Hal yang sama bekerja dari terminal dengan `omarchy share clipboard`, `omarchy share file [path]`, dan `omarchy share folder [path]`. Hilangkan path-nya dan Anda akan mendapatkan pemilihnya.
+Hal yang sama bekerja dari terminal dengan `unbloarchy share clipboard`, `unbloarchy share file [path]`, dan `unbloarchy share folder [path]`. Hilangkan path-nya dan Anda akan mendapatkan pemilihnya.
 
 Anda juga dapat mengirim langsung dari pengelola file: klik kanan pilihan apa pun di Nautilus dan pilih _Send via LocalSend_.
 
-Firewall Omarchy tertutup secara default kecuali untuk port LocalSend, jadi ini bekerja langsung sejak awal pada instalasi baru. Lihat [keamanan](48-security.md).
+Firewall Unbloarchy tertutup secara default kecuali untuk port LocalSend, jadi ini bekerja langsung sejak awal pada instalasi baru. Lihat [keamanan](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ Anda memulai LibreOffice melalui peluncur aplikasi (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) adalah aplikasi presentasi Omarchy sendiri yang sangat sederhana. Deck Anda adalah satu file Markdown dengan gambar dan videonya di sampingnya: tulis setiap slide di bawah pratinjau langsung, seret slide ke urutan, lalu presentasikan dalam layar penuh atau ekspor ke PDF dan PowerPoint. Ini bahkan mengambil tema Omarchy Anda.
+[Hype](https://github.com/omacom/hype) adalah aplikasi presentasi Unbloarchy sendiri yang sangat sederhana. Deck Anda adalah satu file Markdown dengan gambar dan videonya di sampingnya: tulis setiap slide di bawah pratinjau langsung, seret slide ke urutan, lalu presentasikan dalam layar penuh atau ekspor ke PDF dan PowerPoint. Ini bahkan mengambil tema Unbloarchy Anda.
 
 Anda memulai Hype melalui peluncur aplikasi (`Super + Space`). Tekan `?` di dalamnya untuk melihat setiap pintasan.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) adalah cara Omarchy sendiri yang sangat sederhana untuk menandatangani PDF dan mengisinya. Letakkan tanda tangan tersimpan Anda, teks, dan tanggal hari ini di mana saja pada sebuah halaman, lalu simpan salinan yang telah ditandatangani di samping aslinya. Lihat [Mengisi PDF](27-filling-out-pdfs.md) untuk caranya.
+[Signed](https://github.com/omacom/signed) adalah cara Unbloarchy sendiri yang sangat sederhana untuk menandatangani PDF dan mengisinya. Letakkan tanda tangan tersimpan Anda, teks, dan tanggal hari ini di mana saja pada sebuah halaman, lalu simpan salinan yang telah ditandatangani di samping aslinya. Lihat [Mengisi PDF](27-filling-out-pdfs.md) untuk caranya.
 
 Anda memulai Signed melalui peluncur aplikasi (`Super + Space`), atau buka PDF dengannya dari pengelola file.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) adalah kalkulator Omarchy sendiri yang sangat sederhana, yang terbuka dalam jendela mengambang.
+[Omacalc](https://github.com/omacom-io/omacalc) adalah kalkulator Unbloarchy sendiri yang sangat sederhana, yang terbuka dalam jendela mengambang.
 
 Anda memulai Omacalc dengan `Super + Shift + Q` (atau tombol kalkulator, jika keyboard Anda memilikinya).
 
@@ -85,7 +85,7 @@ Anda memulai Omacalc dengan `Super + Shift + Q` (atau tombol kalkulator, jika ke
 
 [Signal](https://signal.org/) adalah pelopor perpesanan terenkripsi E2E, dan opsi komunikasi yang hebat bagi siapa pun yang lebih suka tidak melalui salah satu konglomerat teknologi besar.
 
-Anda memulai Signal dengan `Super + Shift + G`. Ini bukan bagian dari instalasi dasar, jadi pertama kali Anda menekan itu, Omarchy akan menawarkan untuk menginstalnya untuk Anda (ini juga ada di bawah _Install > Service_ di menu Omarchy).
+Anda memulai Signal dengan `Super + Shift + G`. Ini bukan bagian dari instalasi dasar, jadi pertama kali Anda menekan itu, Unbloarchy akan menawarkan untuk menginstalnya untuk Anda (ini juga ada di bawah _Install > Service_ di menu Unbloarchy).
 
 ## mpv
 
@@ -95,13 +95,13 @@ Anda memulai mpv melalui peluncur aplikasi (`Super + Space`) atau cukup klik dua
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) adalah pemangkas video Omarchy sendiri yang sangat sederhana. Ketika yang Anda butuhkan hanya memotong bagian awal dan akhir sebuah klip, ini mengalahkan membuka editor video lengkap.
+[Omacut](https://github.com/omacom-io/omacut) adalah pemangkas video Unbloarchy sendiri yang sangat sederhana. Ketika yang Anda butuhkan hanya memotong bagian awal dan akhir sebuah klip, ini mengalahkan membuka editor video lengkap.
 
 Anda memulai Omacut melalui peluncur aplikasi (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) adalah perekam webcam Omarchy sendiri yang sangat sederhana. Pilih kamera dan mikrofon Anda sekali, lalu tekan `Space` untuk merekam, dan lagi untuk menjeda dan melanjutkan pengambilan yang sama. Ini selalu merekam pada resolusi tertinggi kamera Anda, dengan meter mikrofon langsung agar Anda dapat memeriksa level Anda sebelum mulai.
+[Monologue](https://github.com/omacom/monologue) adalah perekam webcam Unbloarchy sendiri yang sangat sederhana. Pilih kamera dan mikrofon Anda sekali, lalu tekan `Space` untuk merekam, dan lagi untuk menjeda dan melanjutkan pengambilan yang sama. Ini selalu merekam pada resolusi tertinggi kamera Anda, dengan meter mikrofon langsung agar Anda dapat memeriksa level Anda sebelum mulai.
 
 Hentikan pengambilan dan itu langsung terbuka di editor bawaan. Klik dua kali sebuah klip untuk membaginya, seret handle-nya untuk memangkas setiap bagian, dan hapus bagian yang tidak Anda inginkan. Lalu simpan sebagai MP4. Rekaman asli Anda disimpan hingga Anda membuangnya, jadi Anda selalu dapat kembali dan memotongnya secara berbeda.
 

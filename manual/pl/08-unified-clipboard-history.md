@@ -2,7 +2,7 @@
 
 Zwykle w Linuksie musisz używać `Ctrl + Shift + C/V`, aby kopiować i wklejać w terminalu, oraz `Ctrl + C/V`, aby robić to wszędzie indziej. Każdemu, kto nie urodził się i nie wychował na Linuksie, trudno się do tego przyzwyczaić! Podobnie jest z przejściem z Super na Ctrl, jeśli przesiadasz się z Maca.
 
-Omarchy rozwiązuje oba problemy za pomocą ujednoliconych skrótów klawiszowych schowka, które działają (prawie) wszędzie. Są to:
+Unbloarchy rozwiązuje oba problemy za pomocą ujednoliconych skrótów klawiszowych schowka, które działają (prawie) wszędzie. Są to:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Użyj `Super + A`, a następnie `Super + C`, aby skopiować wszystko w aktywnym 
 
 ### Historia schowka
 
-Historię schowka zapewnia powłoka Omarchy i działa ona zarówno dla tekstu, jak i obrazów. Wywołujesz ją za pomocą `Super + Ctrl + V`, wybierasz wpis klawiszem return, a następnie zostanie on umieszczony w schowku, gotowy do wklejenia za pomocą `Super + V`.
+Historię schowka zapewnia powłoka Unbloarchy i działa ona zarówno dla tekstu, jak i obrazów. Wywołujesz ją za pomocą `Super + Ctrl + V`, wybierasz wpis klawiszem return, a następnie zostanie on umieszczony w schowku, gotowy do wklejenia za pomocą `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

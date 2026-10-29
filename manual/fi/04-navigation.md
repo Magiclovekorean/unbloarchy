@@ -1,8 +1,8 @@
 # Navigointi
 
-Kaikki Omarchyssa tapahtuu näppäimistöllä — _KAIKKI!_ Kun järjestelmä käynnistyy ensimmäisen kerran, et kirjaimellisesti voi tehdä yhtään mitään pelkällä hiirellä. Mutta voit painaa `Super + Space` tuodaksesi esiin Omarchy-valikon, ja täältä voit tehdä melkein kaiken.
+Kaikki Unbloarchyssa tapahtuu näppäimistöllä — _KAIKKI!_ Kun järjestelmä käynnistyy ensimmäisen kerran, et kirjaimellisesti voi tehdä yhtään mitään pelkällä hiirellä. Mutta voit painaa `Super + Space` tuodaksesi esiin Unbloarchy-valikon, ja täältä voit tehdä melkein kaiken.
 
-Mutta Omarchy-valikkoa ei ole edes tarkoitettu olemaan pääasiallinen tapa käyttää järjestelmää suurimman osan ajasta. Pystymme nopeampaan kuin se! Kaikki tärkeimmät sovellukset on sidottu suoraan yksittäisiin pikanäppäimiin. Käynnistät päätteen näppäimillä `Super + Return` ja selaimen näppäimillä `Super + Shift + Return`. Kokeile tehdä se peräkkäin, niin näet Hyprlandin laatoituksen taian toiminnassa:
+Mutta Unbloarchy-valikkoa ei ole edes tarkoitettu olemaan pääasiallinen tapa käyttää järjestelmää suurimman osan ajasta. Pystymme nopeampaan kuin se! Kaikki tärkeimmät sovellukset on sidottu suoraan yksittäisiin pikanäppäimiin. Käynnistät päätteen näppäimillä `Super + Return` ja selaimen näppäimillä `Super + Shift + Return`. Kokeile tehdä se peräkkäin, niin näet Hyprlandin laatoituksen taian toiminnassa:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Voit myös siirtyä koko näytön tilaan näppäimillä `Super + F` tai jopa vai
 
 ### Dwindle vs. vieritysasettelu
 
-Omarchyn oletusasettelu on nimeltään dwindle. Se pitää kaikki yhdelle työtilalle avaamasi ikkunat näkyvissä kaiken aikaa, vaikka se joutuisi kutistamaan ne pieniksi.
+Unbloarchyn oletusasettelu on nimeltään dwindle. Se pitää kaikki yhdelle työtilalle avaamasi ikkunat näkyvissä kaiken aikaa, vaikka se joutuisi kutistamaan ne pieniksi.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Kelluva työtila toimii kuin perinteinen työpöytä: ikkunat limittyvät, ja siirrät niitä ja muutat niiden kokoa itse. Jokainen ikkuna saa otsikkopalkin teemasi väreissä, painikkeilla pienentämistä, suurentamista ja sulkemista varten. `Super + M` pienentää myös fokuksessa olevan ikkunan. Pienennetty ikkuna odottaa telakassa; napsauta sen sovellusta tuodaksesi sen takaisin. Napsauta ikkunaa tuodaksesi sen eteen. Muuta sen kokoa mistä tahansa reunasta tai kulmasta. Kaksoisnapsauta otsikkopalkkia suurentaaksesi ikkunan pitäen samalla yläpalkin näkyvissä, ja uudelleen saadaksesi sen vanhan koon takaisin.
 
-Kelluva työtila näyttää myös telakan, jossa ovat kiinnittämäsi sovellukset, kaikki käynnissä olevat sekä ruudukko jokaisesta sovelluksesta sovelluspainikkeen takana, jonka myös `Super + Alt + Space` ja _Apps_ Omarchy-valikossa avaavat. Napsauta sovellusta ruudukossa hiiren oikealla painikkeella tai paina `Delete` poistaaksesi sen asennuksen. Napsauta sovellusta avataksesi sen tai tuodaksesi sen ikkunan eteen; napsauta uudelleen selataksesi sen ikkunoita. Keskinapsautus avaa uuden ikkunan. Vedä kuvaketta telakkaa pitkin siirtääksesi sitä; käynnissä olevan sovelluksen vetäminen muiden joukkoon pitää sen siellä. Napsauta hiiren oikealla painikkeella pitääksesi sovelluksen telakassa, ottaaksesi sen pois tai lopettaaksesi sen. Telakka väistyy koko näytön ikkunan tieltä. Napsauta sovelluspainiketta hiiren oikealla painikkeella siirtääksesi telakan toiselle reunalle tai saadaksesi sen piiloutumaan, kunnes osoitin saavuttaa sen reunan. Sijainti on myös kohdassa _Appearance > Dock > Dock Position_, ja `omarchy dock position left` ja `omarchy dock autohide on` asettavat molemmat päätteestä. Sovellukset, jotka pidät telakassa, näkyvät haalistuneina, kun ne eivät ole käynnissä.
+Kelluva työtila näyttää myös telakan, jossa ovat kiinnittämäsi sovellukset, kaikki käynnissä olevat sekä ruudukko jokaisesta sovelluksesta sovelluspainikkeen takana, jonka myös `Super + Alt + Space` ja _Apps_ Unbloarchy-valikossa avaavat. Napsauta sovellusta ruudukossa hiiren oikealla painikkeella tai paina `Delete` poistaaksesi sen asennuksen. Napsauta sovellusta avataksesi sen tai tuodaksesi sen ikkunan eteen; napsauta uudelleen selataksesi sen ikkunoita. Keskinapsautus avaa uuden ikkunan. Vedä kuvaketta telakkaa pitkin siirtääksesi sitä; käynnissä olevan sovelluksen vetäminen muiden joukkoon pitää sen siellä. Napsauta hiiren oikealla painikkeella pitääksesi sovelluksen telakassa, ottaaksesi sen pois tai lopettaaksesi sen. Telakka väistyy koko näytön ikkunan tieltä. Napsauta sovelluspainiketta hiiren oikealla painikkeella siirtääksesi telakan toiselle reunalle tai saadaksesi sen piiloutumaan, kunnes osoitin saavuttaa sen reunan. Sijainti on myös kohdassa _Appearance > Dock > Dock Position_, ja `unbloarchy dock position left` ja `unbloarchy dock autohide on` asettavat molemmat päätteestä. Sovellukset, jotka pidät telakassa, näkyvät haalistuneina, kun ne eivät ole käynnissä.
 
-Uudet työtilat, ja kaikki, joille et ole antanut omaa asetteluaan näppäimillä `Super + L`, käyttävät oletusasettelua. Oletuksen muuttaminen palauttaa jokaisen ikkunattoman työtilan siihen, kun taas työtila, jossa on ikkunoita, säilyttää asettelunsa. Ikkuna, joka on pienennetty telakkaan, lasketaan edelleen ikkunaksi työtilalla, jolta se lähti. Valitse se kohdasta _Appearance > Workspace Layout_: Tiling, Scrolling tai Floating. `omarchy-hyprland-workspace-layout-default scrolling` asettaa sen päätteestä.
+Uudet työtilat, ja kaikki, joille et ole antanut omaa asetteluaan näppäimillä `Super + L`, käyttävät oletusasettelua. Oletuksen muuttaminen palauttaa jokaisen ikkunattoman työtilan siihen, kun taas työtila, jossa on ikkunoita, säilyttää asettelunsa. Ikkuna, joka on pienennetty telakkaan, lasketaan edelleen ikkunaksi työtilalla, jolta se lähti. Valitse se kohdasta _Appearance > Workspace Layout_: Tiling, Scrolling tai Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` asettaa sen päätteestä.
 
 ### Ikkunoiden ryhmittely
 

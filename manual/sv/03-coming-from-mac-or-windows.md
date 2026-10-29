@@ -1,12 +1,12 @@
 # Kommer du från Mac eller Windows
 
-Om du har tillbringat åratal på macOS eller Windows vet dina fingrar hundra saker som din hjärna har glömt att den någonsin har lärt sig. Det här kapitlet är översättningsskiktet: var de instinkterna hör hemma i Omarchy. Funktionerna i sig beskrivs på djupet på andra ställen — det här är bara kartan.
+Om du har tillbringat åratal på macOS eller Windows vet dina fingrar hundra saker som din hjärna har glömt att den någonsin har lärt sig. Det här kapitlet är översättningsskiktet: var de instinkterna hör hemma i Unbloarchy. Funktionerna i sig beskrivs på djupet på andra ställen — det här är bara kartan.
 
 ### Super är centrum för allt
 
-Allt muskelminne som du har byggt upp kring Cmd eller Windows-tangenten överförs till en enda tangent: Super. Det är Windows-tangenten på ett PC-tangentbord, och den är ankaret för nästan varje snabbtangent i Omarchy.
+Allt muskelminne som du har byggt upp kring Cmd eller Windows-tangenten överförs till en enda tangent: Super. Det är Windows-tangenten på ett PC-tangentbord, och den är ankaret för nästan varje snabbtangent i Unbloarchy.
 
-Din reflex för Spotlight, Raycast eller Start-menyn blir `Super + Space`. Det öppnar Omarchy-menyn, som startar appar, ändrar inställningar, installerar programvara och tar skärmbilder — i stort sett allt. Börja skriva för att filtrera. `Super + Alt + Space` visar varje app i ett enda rutnät, på samma sätt som Launchpad gör. Se [navigering](04-navigation.md).
+Din reflex för Spotlight, Raycast eller Start-menyn blir `Super + Space`. Det öppnar Unbloarchy-menyn, som startar appar, ändrar inställningar, installerar programvara och tar skärmbilder — i stort sett allt. Börja skriva för att filtrera. `Super + Alt + Space` visar varje app i ett enda rutnät, på samma sätt som Launchpad gör. Se [navigering](04-navigation.md).
 
 ### Det finns ingen docka och inga skrivbordsikoner
 
@@ -22,27 +22,27 @@ Arbetsytor kommer att kännas bekanta: de är macOS Spaces eller virtuella skriv
 
 ### Kopiera och klistra in bara fungerar
 
-På Mac hade du Cmd + C överallt. På Windows hade du Ctrl + C överallt — utom i terminalen, där det dödar ditt program. Omarchy ger dig `Super + C`, `Super + X` och `Super + V`, och de fungerar överallt, inklusive i terminalen. Ingen separat reflex att lära sig för skalet.
+På Mac hade du Cmd + C överallt. På Windows hade du Ctrl + C överallt — utom i terminalen, där det dödar ditt program. Unbloarchy ger dig `Super + C`, `Super + X` och `Super + V`, och de fungerar överallt, inklusive i terminalen. Ingen separat reflex att lära sig för skalet.
 
 Ni som kommer från Windows: er urklippshistorik med Win + V bor på `Super + Ctrl + V`, och den rymmer bilder såväl som text. Se [enhetligt urklipp och historik](08-unified-clipboard-history.md).
 
 ### Översättningstabellen
 
-| Du sträcker dig efter | I Omarchy |
+| Du sträcker dig efter | I Unbloarchy |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start-menyn | `Super + Space` — Omarchy-menyn |
+| Spotlight / Raycast / Start-menyn | `Super + Space` — Unbloarchy-menyn |
 | AirDrop | LocalSend, via `Super + Ctrl + S` — se [GUI:er](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` eller `Print Screen` — se [skärmbilder och inspelning](12-screenshots-recording.md) |
 | Notiscenter | Notishistorik på `Super + Shift + Alt + ,` |
 | Time Machine (för systemet) | Automatiska [systemögonblicksbilder](47-system-snapshots.md) vid varje uppdatering |
-| App Store / att ladda ner ett installationsprogram | _Installera_ i menyn, eller `omarchy pkg add` — se [andra paket](29-other-packages.md) |
+| App Store / att ladda ner ett installationsprogram | _Installera_ i menyn, eller `unbloarchy pkg add` — se [andra paket](29-other-packages.md) |
 | Systeminställningar / Kontrollpanelen | _Konfigurera_ i menyn, som redigerar vanliga konfigurationsfiler — se [dotfiles](31-dotfiles.md) |
 
 ### Vissa saker är verkligen annorlunda
 
 Många inställningar bor i textfiler som du redigerar, inte i paneler som du klickar dig igenom. Det låter primitivt tills du inser att det betyder att varje justering kan ses, kopieras till din nästa maskin och läggas under versionshantering. Menyn _Konfigurera_ släpper dig rakt in i rätt fil och startar om det som behöver startas om när du är klar.
 
-Uppdateringar kommer via ett enda kommando — _Uppdatera > Omarchy_ — som uppdaterar själva Omarchy och varje paket på systemet, och tar en ögonblicksbild först. Inga uppdaterare för enskilda appar som tjatar på dig vid slumpmässiga tillfällen. Se [uppdateringar](30-updates.md).
+Uppdateringar kommer via ett enda kommando — _Uppdatera > Unbloarchy_ — som uppdaterar själva Unbloarchy och varje paket på systemet, och tar en ögonblicksbild först. Inga uppdaterare för enskilda appar som tjatar på dig vid slumpmässiga tillfällen. Se [uppdateringar](30-updates.md).
 
 Programvara kommer från en pakethanterare, inte från nedladdade installationsprogram.
 
@@ -50,7 +50,7 @@ Och när du stänger ett fönster avslutas appen faktiskt. Det finns inget macOS
 
 ### På Mac-hårdvara
 
-Omarchy körs bra på Intel-Macar — se [Mac-stöd](44-mac-support.md). Och tangentbordet är snällt mot dig: Omarchy mappar inte om någonting, och Linux behandlar Command-tangenten som Super, så Super sitter precis där Cmd alltid satt. Din tumme kommer inte att märka flytten.
+Unbloarchy körs bra på Intel-Macar — se [Mac-stöd](44-mac-support.md). Och tangentbordet är snällt mot dig: Unbloarchy mappar inte om någonting, och Linux behandlar Command-tangenten som Super, så Super sitter precis där Cmd alltid satt. Din tumme kommer inte att märka flytten.
 
 ### Ge det två veckor
 

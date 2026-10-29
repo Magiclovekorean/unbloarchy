@@ -1,16 +1,16 @@
 # Mac desteği
 
-Omarchy'nin **Intel Mac'ler** için yerleşik desteği vardır. Şu anda bilinen birkaç sınırlama vardır, ancak bunların farkında olduğunuz ve sizin için uygun olduğu sürece, Omarchy yükleyerek eski Mac'lerinize yeni bir hayat verebilirsiniz.
+Unbloarchy'nin **Intel Mac'ler** için yerleşik desteği vardır. Şu anda bilinen birkaç sınırlama vardır, ancak bunların farkında olduğunuz ve sizin için uygun olduğu sürece, Unbloarchy yükleyerek eski Mac'lerinize yeni bir hayat verebilirsiniz.
 
 Lütfen M serisi bir Mac'e kurulumun şu anda doğrudan desteklenmediğini unutmayın. Bunun durumu hakkında daha fazla bilgiyi [Discord](https://discord.gg/tXFUdasqhY) sunucumuzdaki #omarchy-on-other kanalında bulabilirsiniz.
 
-Basit bir testte, yalnızca Omarchy kurarak 2019 MacBook Pro'da %36 performans kazancı elde edebildik.
+Basit bir testte, yalnızca Unbloarchy kurarak 2019 MacBook Pro'da %36 performans kazancı elde edebildik.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Omarchy'yi Mac'e kurma
+### Unbloarchy'yi Mac'e kurma
 
-Omarchy şu anda kurulu **tek** işletim sistemi olmayı destekler. Kurulum sırasında sürücü silinecek ve MacOS artık önyükleneemeyecektir.
+Unbloarchy şu anda kurulu **tek** işletim sistemi olmayı destekler. Kurulum sırasında sürücü silinecek ve MacOS artık önyükleneemeyecektir.
 
 İsterseniz daha sonra İnternet Kurtarma aracılığıyla geri yükleyebilirsiniz.
 

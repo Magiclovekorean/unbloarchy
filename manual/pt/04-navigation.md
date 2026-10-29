@@ -1,8 +1,8 @@
 # Navegação
 
-Tudo no Omarchy acontece através do teclado — _TUDO!_ Quando o sistema arranca pela primeira vez, literalmente não consegue fazer nada só com o rato. Mas pode premir `Super + Space` para revelar o Menu Omarchy e, a partir daí, pode fazer praticamente tudo.
+Tudo no Unbloarchy acontece através do teclado — _TUDO!_ Quando o sistema arranca pela primeira vez, literalmente não consegue fazer nada só com o rato. Mas pode premir `Super + Space` para revelar o Menu Unbloarchy e, a partir daí, pode fazer praticamente tudo.
 
-Mas o menu Omarchy nem sequer foi pensado para ser a principal forma de operar o sistema na maior parte do tempo. Conseguimos ser mais rápidos do que isso! Todas as aplicações mais importantes estão associadas diretamente a teclas de atalho individuais. Arranca o terminal com `Super + Return` e um navegador com `Super + Shift + Return`. Experimente fazer uma coisa a seguir à outra e verá a magia da disposição em mosaico do Hyprland em ação:
+Mas o menu Unbloarchy nem sequer foi pensado para ser a principal forma de operar o sistema na maior parte do tempo. Conseguimos ser mais rápidos do que isso! Todas as aplicações mais importantes estão associadas diretamente a teclas de atalho individuais. Arranca o terminal com `Super + Return` e um navegador com `Super + Shift + Return`. Experimente fazer uma coisa a seguir à outra e verá a magia da disposição em mosaico do Hyprland em ação:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Também pode passar para ecrã inteiro com `Super + F`, ou mesmo apenas para a l
 
 ### Dwindle vs. disposição em deslocamento
 
-A disposição predefinida do Omarchy chama-se dwindle. Mantém todas as janelas que abrir num único espaço de trabalho sempre visíveis, mesmo que tenha de as encolher.
+A disposição predefinida do Unbloarchy chama-se dwindle. Mantém todas as janelas que abrir num único espaço de trabalho sempre visíveis, mesmo que tenha de as encolher.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Um espaço de trabalho flutuante funciona como um ambiente de trabalho tradicional: as janelas sobrepõem-se e é o utilizador que as move e dimensiona. Cada janela recebe uma barra de título nas cores do seu tema, com botões para minimizar, maximizar e fechar. `Super + M` também minimiza a janela focada. Uma janela minimizada fica à espera na dock; clique na sua aplicação para a trazer de volta. Clique numa janela para a trazer para a frente. Redimensione-a a partir de qualquer extremidade ou canto. Faça duplo clique numa barra de título para maximizar a janela mantendo a barra superior visível, e outra vez para recuperar o tamanho antigo.
 
-Um espaço de trabalho flutuante também mostra uma dock, com as suas aplicações fixadas, tudo o que está a ser executado e uma grelha de todas as aplicações por trás do botão de aplicações, que `Super + Alt + Space` e _Aplicações_ no menu Omarchy também abrem. Clique com o botão direito numa aplicação na grelha, ou prima `Delete`, para a desinstalar. Clique numa aplicação para a abrir, ou para trazer a sua janela para a frente; clique outra vez para percorrer as suas janelas. O clique com o botão do meio abre uma nova janela. Arraste um ícone ao longo da dock para o mover; arrastar uma aplicação em execução para o meio das outras mantém-na lá. Clique com o botão direito para manter uma aplicação na dock, retirá-la de lá ou terminá-la. A dock sai do caminho de uma janela em ecrã inteiro. Clique com o botão direito no botão de aplicações para mover a dock para outra extremidade ou para fazer com que se oculte até o ponteiro chegar à sua extremidade. A posição também está em _Aspeto > Dock > Posição do Dock_, e `omarchy dock position left` e `omarchy dock autohide on` definem ambas a partir de um terminal. As aplicações que mantiver na dock ficam esbatidas enquanto não estiverem a ser executadas.
+Um espaço de trabalho flutuante também mostra uma dock, com as suas aplicações fixadas, tudo o que está a ser executado e uma grelha de todas as aplicações por trás do botão de aplicações, que `Super + Alt + Space` e _Aplicações_ no menu Unbloarchy também abrem. Clique com o botão direito numa aplicação na grelha, ou prima `Delete`, para a desinstalar. Clique numa aplicação para a abrir, ou para trazer a sua janela para a frente; clique outra vez para percorrer as suas janelas. O clique com o botão do meio abre uma nova janela. Arraste um ícone ao longo da dock para o mover; arrastar uma aplicação em execução para o meio das outras mantém-na lá. Clique com o botão direito para manter uma aplicação na dock, retirá-la de lá ou terminá-la. A dock sai do caminho de uma janela em ecrã inteiro. Clique com o botão direito no botão de aplicações para mover a dock para outra extremidade ou para fazer com que se oculte até o ponteiro chegar à sua extremidade. A posição também está em _Aspeto > Dock > Posição do Dock_, e `unbloarchy dock position left` e `unbloarchy dock autohide on` definem ambas a partir de um terminal. As aplicações que mantiver na dock ficam esbatidas enquanto não estiverem a ser executadas.
 
-Os novos espaços de trabalho, e quaisquer espaços a que não tenha dado uma disposição própria com `Super + L`, usam a disposição predefinida. Alterar a predefinição redefine para ela todos os espaços de trabalho sem janelas, ao passo que um espaço com janelas mantém a disposição que tem. Uma janela minimizada para a dock continua a contar como uma janela no espaço de trabalho de onde saiu. Escolha-a em _Aspeto > Disposição do Espaço de Trabalho_: Em Mosaico, Em Deslocamento ou Flutuante. `omarchy-hyprland-workspace-layout-default scrolling` define-a a partir de um terminal.
+Os novos espaços de trabalho, e quaisquer espaços a que não tenha dado uma disposição própria com `Super + L`, usam a disposição predefinida. Alterar a predefinição redefine para ela todos os espaços de trabalho sem janelas, ao passo que um espaço com janelas mantém a disposição que tem. Uma janela minimizada para a dock continua a contar como uma janela no espaço de trabalho de onde saiu. Escolha-a em _Aspeto > Disposição do Espaço de Trabalho_: Em Mosaico, Em Deslocamento ou Flutuante. `unbloarchy-hyprland-workspace-layout-default scrolling` define-a a partir de um terminal.
 
 ### Agrupar janelas
 

@@ -190,7 +190,7 @@ for zone in ZONES:
     if flag == "--limits-only":
       with (root / "brain/valid/.system_generated/logs/transcript.jsonl").open("a") as transcript:
         transcript.write("\n" + json.dumps(dict(created_at="2026-10-02T12:00:00Z", model="dated", usage=dict(input_tokens=100, output_tokens=1))))
-    result = subprocess.run([str(ROOT / "bin" / "omarchy-agent-usage-agy"), flag], env=env, capture_output=True, text=True, timeout=30)
+    result = subprocess.run([str(ROOT / "bin" / "unbloarchy-agent-usage-agy"), flag], env=env, capture_output=True, text=True, timeout=30)
     record = json.loads(result.stdout or "{}")
     expect(f"Antigravity collector runs cleanly as a command ({zone}, {flag})",
            [result.returncode, result.stderr, record.get("ready"), record.get("usageStatusText"), record.get("limits"),

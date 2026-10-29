@@ -56,8 +56,8 @@
   "learn.keybindings": {
     "label": "Tastaturgenveje"
   },
-  "learn.omarchy": {
-    "label": "Omarchy"
+  "learn.unbloarchy": {
+    "label": "Unbloarchy"
   },
   "learn.hyprland": {
     "label": "Hyprland"
@@ -1076,8 +1076,8 @@
   "remove.development.elixir.phoenix": {
     "label": "Phoenix"
   },
-  "update.omarchy": {
-    "label": "Omarchy"
+  "update.unbloarchy": {
+    "label": "Unbloarchy"
   },
   "update.channel": {
     "label": "Kanal"

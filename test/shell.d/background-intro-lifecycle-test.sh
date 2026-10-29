@@ -60,9 +60,9 @@ released=$(grep -c '^released$' "$stage/polls" || true)
 pass "the cover stays while waiting, remains off when OWE recreates the background service, and stops polling after a still intro"
 
 cp "$SHELL_TEST_DIR/fixtures/background-intro-lifecycle/finish-handoff.qml" "$stage/shell.qml"
-mkdir -p "$stage/home/.local/state/omarchy"
-printf 'finish-session\n' >"$stage/home/.local/state/omarchy/background-intro.session-id"
-output=$(HOME="$stage/home" PATH="$stage/bin:$PATH" OMARCHY_SESSION_ID=finish-session INTRO_TEST_LOG="$stage/starts" INTRO_TEST_COVER="$stage/cover.ppm" timeout 10 quickshell -p "$stage" --no-color 2>&1) || fail "finish handoff fixture exits cleanly" "$output"
+mkdir -p "$stage/home/.local/state/unbloarchy"
+printf 'finish-session\n' >"$stage/home/.local/state/unbloarchy/background-intro.session-id"
+output=$(HOME="$stage/home" PATH="$stage/bin:$PATH" UNBLOARCHY_SESSION_ID=finish-session INTRO_TEST_LOG="$stage/starts" INTRO_TEST_COVER="$stage/cover.ppm" timeout 10 quickshell -p "$stage" --no-color 2>&1) || fail "finish handoff fixture exits cleanly" "$output"
 [[ $output == *"RESULT pass"* ]] || fail "finish handoff assertions pass" "$output"
 if rg -q 'RESULT fail|ReferenceError|TypeError|Error:|Unable to assign|Binding loop' <<<"$output"; then
   fail "finish handoff fixture has no QML errors" "$output"
@@ -72,7 +72,7 @@ pass "a finished switch keeps its cover until OWE hands back a decoded still"
 # BackgroundSwitch with the real intro lookup, a fake OWE and a fake Hyprland.
 require_command magick
 switch="$stage/switch"
-mkdir -p "$switch/services" "$switch/bin" "$switch/home/.local/state/omarchy/current" "$switch/media/intros"
+mkdir -p "$switch/services" "$switch/bin" "$switch/home/.local/state/unbloarchy/current" "$switch/media/intros"
 cp "$ROOT/shell/services/BackgroundIntro.qml" "$ROOT/shell/services/BackgroundSwitch.qml" "$switch/services/"
 ln -s "$ROOT/shell/Commons" "$switch/Commons"
 cp "$SHELL_TEST_DIR/fixtures/background-intro-lifecycle/switch-sequence.qml" "$switch/shell.qml"
@@ -80,8 +80,8 @@ for name in old new plain other frame; do
   magick -size 16x10 "xc:#$(printf '%06x' $((RANDOM * 512)))" "$switch/media/$name.png"
 done
 printf 'clip\n' >"$switch/media/intros/new.mp4"
-ln -s "$switch/media/old.png" "$switch/home/.local/state/omarchy/current/background"
-printf 'switch-session\n' >"$switch/home/.local/state/omarchy/background-intro.session-id"
+ln -s "$switch/media/old.png" "$switch/home/.local/state/unbloarchy/current/background"
+printf 'switch-session\n' >"$switch/home/.local/state/unbloarchy/background-intro.session-id"
 cat >"$switch/bin/owe" <<'SH'
 #!/bin/bash
 [[ $1 == render-status ]] && { echo '{"kind":"still","ready":true,"has_transition":false,"time_pos":-1}'; exit 0; }
@@ -95,13 +95,13 @@ cat >"$switch/bin/hyprctl" <<'SH'
 #!/bin/bash
 echo '{"bool":true}'
 SH
-cat >"$switch/bin/omarchy-restart-hyprctl" <<'SH'
+cat >"$switch/bin/unbloarchy-restart-hyprctl" <<'SH'
 #!/bin/bash
 printf 'reload\n' >>"$SWITCH_LOG"
 SH
 chmod +x "$switch/bin/"*
 touch "$switch/log"
-output=$(HOME="$switch/home" PATH="$switch/bin:$ROOT/bin:$PATH" OMARCHY_SESSION_ID=switch-session \
+output=$(HOME="$switch/home" PATH="$switch/bin:$ROOT/bin:$PATH" UNBLOARCHY_SESSION_ID=switch-session \
   SWITCH_STAGE="$switch/media" SWITCH_LOG="$switch/log" timeout 15 quickshell -p "$switch" --no-color 2>&1) || fail "background switch fixture exits cleanly" "$output"
 [[ $output == *"RESULT pass"* ]] || fail "background switch assertions pass" "$output$(printf '\n--- log\n')$(cat "$switch/log")"
 if rg -q 'RESULT fail|ReferenceError|TypeError|Error:|Unable to assign|Binding loop' <<<"$output"; then

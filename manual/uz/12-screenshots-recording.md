@@ -22,7 +22,7 @@ Izoh muharriri o‘qlar, chiziqlar, shakllar, ajratib ko‘rsatishlar, raqamlang
 
 Saqlangan skrinshotlar sukut bo‘yicha `~/Pictures/Screenshots` ga tushadi va `screenshot-2026-08-13_14-22-05-firefox.png` kabi nomga ega bo‘ladi. Boshqa katalog ishlatish uchun `OMASNAP_SCREENSHOT_DIR` ni o‘rnating — sessiya muhit o‘zgaruvchilarini qayerga qo‘yishni bilish uchun [tez-tez beriladigan savollar](46-faq.md) ga qarang. Omasnap birinchi tasvirni saqlaganda katalogni yaratadi. Avtomatik saqlashni o‘chirish uchun `~/.config/omasnap/omasnap.conf` da `[output] autosave = false` ni o‘rnating; tasvirlar u holda faqat nusxalanadi va 10 soniya davomida oldindan ko‘rishda ko‘rsatiladi, uni pin tugmasi yoki `Ctrl + P` bilan ekranda ushlab qolishingiz mumkin.
 
-Terminaldan `omarchy screenshot` xuddi shu qoplamani ochadi va siz uning boshlang‘ich rejimini tanlashingiz mumkin: `omarchy capture screenshot region`, `windows`, `fullscreen` yoki `scroll`. `copy` yoki `save` dan iborat ikkinchi argument tasvirni to‘g‘ridan-to‘g‘ri o‘sha manzilga yuboradi. Chiqarishdan oldin tahrirlash uchun to‘liq ekran muharriri uchun `omarchy screenshot --editor=overlay` dan yoki alohida oyna uchun `omarchy screenshot --editor=window` dan foydalaning.
+Terminaldan `unbloarchy screenshot` xuddi shu qoplamani ochadi va siz uning boshlang‘ich rejimini tanlashingiz mumkin: `unbloarchy capture screenshot region`, `windows`, `fullscreen` yoki `scroll`. `copy` yoki `save` dan iborat ikkinchi argument tasvirni to‘g‘ridan-to‘g‘ri o‘sha manzilga yuboradi. Chiqarishdan oldin tahrirlash uchun to‘liq ekran muharriri uchun `unbloarchy screenshot --editor=overlay` dan yoki alohida oyna uchun `unbloarchy screenshot --editor=window` dan foydalaning.
 
 ### Tanlagichni klaviaturadan boshqarish
 
@@ -41,9 +41,9 @@ Bu bog‘lamlar faqat Omasnap ochiq bo‘lganda mavjud, shuning uchun ular o‘z
 
 ## Ekranni yozib olish
 
-`Alt + Print Screen` _Trigger > Capture > Screenrecord_ ni ochadi, u ovoz yo‘liga nimani xohlashingizni so‘raydi: audiosiz, ish stoli audiosi, ish stoli plyus mikrofon yoki ish stoli plyus mikrofon plyus veb-kamera. Oxirgisi faqat kamerangiz haqiqatan ulangan bo‘lsa paydo bo‘ladi. Bittasini tanlang va Omarchy ning yozib olish tanlagichi hududni tortib belgilashga yoki oyna yoxud monitorni bosishga imkon beradi.
+`Alt + Print Screen` _Trigger > Capture > Screenrecord_ ni ochadi, u ovoz yo‘liga nimani xohlashingizni so‘raydi: audiosiz, ish stoli audiosi, ish stoli plyus mikrofon yoki ish stoli plyus mikrofon plyus veb-kamera. Oxirgisi faqat kamerangiz haqiqatan ulangan bo‘lsa paydo bo‘ladi. Bittasini tanlang va Unbloarchy ning yozib olish tanlagichi hududni tortib belgilashga yoki oyna yoxud monitorni bosishga imkon beradi.
 
-Yozib olish gpu-screen-recorder da ishlaydi, u GPU da 60fps da kodlaydi va zarur bo‘lsa CPU ga qaytadi. Natija `~/Videos` dagi MP4 bo‘ladi va `screenrecording-2026-08-13_14-22-05.mp4` deb nomlanadi. Buni o‘zgartirish uchun `OMARCHY_SCREENRECORD_DIR` ni o‘rnating — lekin shuni yodda tutingki, skrinshot katalogidan farqli o‘laroq, bu katalog allaqachon mavjud bo‘lishi kerak, aks holda yozib olish boshlanishdan bosh tortadi.
+Yozib olish gpu-screen-recorder da ishlaydi, u GPU da 60fps da kodlaydi va zarur bo‘lsa CPU ga qaytadi. Natija `~/Videos` dagi MP4 bo‘ladi va `screenrecording-2026-08-13_14-22-05.mp4` deb nomlanadi. Buni o‘zgartirish uchun `UNBLOARCHY_SCREENRECORD_DIR` ni o‘rnating — lekin shuni yodda tutingki, skrinshot katalogidan farqli o‘laroq, bu katalog allaqachon mavjud bo‘lishi kerak, aks holda yozib olish boshlanishdan bosh tortadi.
 
 Yozib olayotganingizda panelda kichkina indikator paydo bo‘ladi. To‘xtatish uchun uni bosing. Shuningdek, `Alt + Print Screen` ni yana bosib to‘xtatishingiz mumkin yoki _Trigger > Capture > Screenrecord_ ostidagi _Stop Screenrecording_ yozuvi bilan to‘xtatishingiz mumkin, u faqat biror narsa haqiqatan yozib olinayotganda paydo bo‘ladi.
 
@@ -60,7 +60,7 @@ Veb-kamera bilan yozib olganingizda kamera yozib olayotgan narsangizning pastki 
 
 Uchta o‘lcham bor — kichik, o‘rta va katta — va tugmalar birikmalari ular orasida qadam tashlaydi. O‘rta sukut bo‘yicha hisoblanadi. Ular yozuvga mutanosib, shuning uchun 1080p monitorni yoki 6K monitorni yozib olishingizdan qat’i nazar, kamera kadrning bir xil ulushini egallaydi. Va agar siz butun displey o‘rniga hududni yozib olgan bo‘lsangiz, qoplama monitor burchagiga emas, o‘sha hududning burchagiga tayanadi, shuning uchun u tasvir ichida qoladi.
 
-Uni `omarchy-capture-webcam-resize small` bilan ham to‘g‘ridan-to‘g‘ri chaqirishingiz mumkin, yoki o‘rta holatga qaytish uchun `reset` bilan.
+Uni `unbloarchy-capture-webcam-resize small` bilan ham to‘g‘ridan-to‘g‘ri chaqirishingiz mumkin, yoki o‘rta holatga qaytish uchun `reset` bilan.
 
 ## Matn, QR kodlar va ranglar
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ QR kodlar uchun xuddi shu hiylani qiladi. Ichida k
 
 Rasmlar yuqori, o‘rta yoki past darajada jpg yoki png ga o‘tadi, ular kenglikni 3160, 2160 va 1080 pikselda cheklaydi. Videolar 4k, 1080p yoki 720p da mp4 yoki animatsiyalangan gif ga o‘tadi. O‘zgartirilgan fayl asl fayl yoniga nomi ichida o‘lchami bilan yoziladi — `demo-1080p.mp4` — va yo‘l fayl URI si sifatida buferga nusxalanadi, shuning uchun uni fayllarni tashlashni qabul qiladigan ilovaga to‘g‘ridan-to‘g‘ri joylashtirishingiz mumkin.
 
-Bu terminaldan ham ishlaydi, agar nimani xohlashingizni allaqachon bilsangiz: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Shuningdek, `omarchy transcode ascii` ham bor, u tasvirni ASCII art ga aylantiradi — u asosan [brending](41-branding.md) uchun.
+Bu terminaldan ham ishlaydi, agar nimani xohlashingizni allaqachon bilsangiz: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Shuningdek, `unbloarchy transcode ascii` ham bor, u tasvirni ASCII art ga aylantiradi — u asosan [brending](41-branding.md) uchun.
 
 ## Uni biror joyga yuborish
 

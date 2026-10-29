@@ -1,14 +1,14 @@
 # Bar Atas
 
-Jalur di sepanjang bahagian atas skrin anda ialah bar Omarchy. Ia bukan bar status yang ditampal kemudian tetapi sebahagian daripada shell Omarchy, proses Quickshell tunggal yang berjalan lama yang turut melukis menu, pemberitahuan, popup OSD, dan skrin kunci. Sebab itulah ia bertema dengan sempurna bersama semua yang lain dan sebab sesuatu panel dibuka serta-merta dan bukannya melancarkan aplikasi baharu.
+Jalur di sepanjang bahagian atas skrin anda ialah bar Unbloarchy. Ia bukan bar status yang ditampal kemudian tetapi sebahagian daripada shell Unbloarchy, proses Quickshell tunggal yang berjalan lama yang turut melukis menu, pemberitahuan, popup OSD, dan skrin kunci. Sebab itulah ia bertema dengan sempurna bersama semua yang lain dan sebab sesuatu panel dibuka serta-merta dan bukannya melancarkan aplikasi baharu.
 
 Ia juga satu-satunya bahagian desktop yang sentiasa berada di skrin, jadi berbaloi untuk mengetahui fungsi semua glif kecil itu.
 
 ## Apa yang ada padanya secara lalai
 
-Bar ini mempunyai tiga bahagian. Di sebelah kiri terletak logo Omarchy (pelancar menu) dan penunjuk ruang kerja. Di tengah anda mendapat penunjuk status, jam, Elsewhen (jam dunia), cuaca, dan lencana kemas kini Omarchy. Di sebelah kanan: dulang sistem, susun atur papan kekunci (apabila lebih daripada satu dikonfigurasikan), ejen, bluetooth, rangkaian, audio, paparan, dan kuasa.
+Bar ini mempunyai tiga bahagian. Di sebelah kiri terletak logo Unbloarchy (pelancar menu) dan penunjuk ruang kerja. Di tengah anda mendapat penunjuk status, jam, Elsewhen (jam dunia), cuaca, dan lencana kemas kini Unbloarchy. Di sebelah kanan: dulang sistem, susun atur papan kekunci (apabila lebih daripada satu dikonfigurasikan), ejen, bluetooth, rangkaian, audio, paparan, dan kuasa.
 
-Beberapa daripadanya hanya muncul apabila mereka mempunyai sesuatu untuk disampaikan. Susun atur papan kekunci hanya muncul jika anda telah mengkonfigurasikan lebih daripada satu susun atur. Lencana kemas kini hanya muncul apabila ada kemas kini Omarchy yang menunggu. Dan ikon ejen muncul pada kali pertama Omarchy menemui penggunaan pengekodan AI pada mesin (lihat [AI](17-ai.md)).
+Beberapa daripadanya hanya muncul apabila mereka mempunyai sesuatu untuk disampaikan. Susun atur papan kekunci hanya muncul jika anda telah mengkonfigurasikan lebih daripada satu susun atur. Lencana kemas kini hanya muncul apabila ada kemas kini Unbloarchy yang menunggu. Dan ikon ejen muncul pada kali pertama Unbloarchy menemui penggunaan pengekodan AI pada mesin (lihat [AI](17-ai.md)).
 
 ## Mengklik di sana sini
 
@@ -16,7 +16,7 @@ Hampir setiap widget melakukan sesuatu pada klik kiri, kanan, dan tengah, dan be
 
 | Widget | Kiri | Kanan | Tengah / skrol |
 | --- | --- | --- | --- |
-| Menu | Menu Omarchy | Terminal baharu | — |
+| Menu | Menu Unbloarchy | Terminal baharu | — |
 | Ruang kerja | Fokus ruang kerja itu pada monitor ini | — | Skrol: ruang kerja seterusnya/sebelumnya |
 | Jam | Popup kalendar | Kitar format label | Tengah: pemilih zon waktu |
 | Cuaca | Popup ramalan | Cuaca penuh sebagai pemberitahuan | Tengah: muat semula |
@@ -29,7 +29,7 @@ Hampir setiap widget melakukan sesuatu pada klik kiri, kanan, dan tengah, dan be
 | Media | Main/jeda | Popup seni kulit | Tengah: seterusnya · skrol: sebelumnya/seterusnya |
 | Ejen | Panel ejen | Lancarkan ejen anda | Tengah: langganan seterusnya |
 | Dulang | Layangkan untuk mendedahkan laci | Klik kanan pada chevron untuk mengurus | — |
-| Kemas kini Omarchy | Jalankan kemas kini | — | — |
+| Kemas kini Unbloarchy | Jalankan kemas kini | — | — |
 
 Tidak semua dalam jadual itu ada pada bar anda dari kotak. Widget media (MPRIS sedang dimainkan, dengan trek dan artis yang menatal) dan widget mikrofon kedua-duanya terbina dalam tetapi dimatikan secara lalai — tambahkannya jika anda mahukannya, seperti yang diterangkan di bawah.
 
@@ -66,7 +66,7 @@ Setiap panel menerima papan kekunci serta tetikus: anak panah bergerak, Return m
 
 Dua lagi widget muncul pada bar hanya sebaik anda memasang perkhidmatan yang sepadan daripada **Install → Service**, dan kedua-duanya berbaloi diketahui kerana ia melakukan lebih daripada melaporkan status.
 
-Panel **Tailscale** menyambung dan memutuskan tailnet, bertukar antara akaun, dan memilih nod keluar (mesin anda sendiri dan wilayah Mullvad kedua-duanya muncul dalam senarai itu). Ia juga melayari mesin anda — dan dengan satu dipilih, `s` menghantar fail kepadanya melalui Taildrop, iaitu cara terpantas untuk memindahkan fail ke telefon atau laptop lain anda. `c` menyalin IP mesin, `n` namanya, dan `d` nama DNS penuhnya. Ada juga butang hantar pada setiap baris mesin, jika anda lebih suka mengklik. Perkara yang sama dari terminal ialah `omarchy tailscale send <machine> [file...]`.
+Panel **Tailscale** menyambung dan memutuskan tailnet, bertukar antara akaun, dan memilih nod keluar (mesin anda sendiri dan wilayah Mullvad kedua-duanya muncul dalam senarai itu). Ia juga melayari mesin anda — dan dengan satu dipilih, `s` menghantar fail kepadanya melalui Taildrop, iaitu cara terpantas untuk memindahkan fail ke telefon atau laptop lain anda. `c` menyalin IP mesin, `n` namanya, dan `d` nama DNS penuhnya. Ada juga butang hantar pada setiap baris mesin, jika anda lebih suka mengklik. Perkara yang sama dari terminal ialah `unbloarchy tailscale send <machine> [file...]`.
 
 Panel **Dropbox** mengendalikan log masuk, menunjukkan berapa banyak storan yang telah anda gunakan, dan menyenaraikan fail yang baru disegerakkan.
 
@@ -93,19 +93,19 @@ Jika anda lebih suka memilih daripada menu, **Appearance → Menu Bar** mempunya
 Perkara yang sama mempunyai arahan, iaitu apa yang anda mahu untuk persediaan [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Untuk menambah atau mengalih keluar widget sepenuhnya, gunakan arahan plugin. `omarchy plugin list` mencetak setiap widget yang diketahui shell dengan idnya, dan kemudian:
+Untuk menambah atau mengalih keluar widget sepenuhnya, gunakan arahan plugin. `unbloarchy plugin list` mencetak setiap widget yang diketahui shell dengan idnya, dan kemudian:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Menyembunyikan bar
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Fail konfigurasi
 
-Semuanya disimpan dalam `~/.config/omarchy/shell.json`, di bawah kunci `bar`. Berikut versi yang dipangkas:
+Semuanya disimpan dalam `~/.config/unbloarchy/shell.json`, di bawah kunci `bar`. Berikut versi yang dipangkas:
 
 ```json
 {
@@ -123,20 +123,20 @@ Semuanya disimpan dalam `~/.config/omarchy/shell.json`, di bawah kunci `bar`. Be
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Setiap widget ialah satu entri dalam salah satu daripada lima tatasusunan susun atur, dan tetapannya duduk sebaris pada entri itu — tiada fail tetapan berasingan dan tiada sub-objek `config`. `format`, `formatAlt` (apa yang klik kanan kitar kepadanya), dan `verticalFormat` jam semuanya tinggal di sana pada `{ "id": "omarchy.clock" }`.
+Setiap widget ialah satu entri dalam salah satu daripada lima tatasusunan susun atur, dan tetapannya duduk sebaris pada entri itu — tiada fail tetapan berasingan dan tiada sub-objek `config`. `format`, `formatAlt` (apa yang klik kanan kitar kepadanya), dan `verticalFormat` jam semuanya tinggal di sana pada `{ "id": "unbloarchy.clock" }`.
 
 `center` ialah kotak di tengah bar: semua di dalamnya berpusat pada skrin sebagai satu kumpulan. `centerBegin` dan `centerEnd` tergantung pada kedua-dua sisi kotak, iaitu cara jam kekal betul-betul di tengah walaupun cuaca dan lencana kemas kini datang dan pergi. Letak lebih daripada satu widget dalam `center` dan ia berpusat bersama; biarkan kosong dan `centerBegin` dan `centerEnd` bertemu di tengah bar.
 
-Satu peraturan yang berbaloi dihayati: **sebaik sahaja anda mempunyai `shell.json` anda sendiri, ia kanonik**. Sehingga anda menyesuaikan apa-apa, shell membaca fail lalai Omarchy. Sebaik sahaja anda menyeret widget, menjalankan `omarchy bar`, atau mengedit fail sendiri, anda memilikinya — tiada gabungan mendalam, jadi widget lalai baharu dalam keluaran Omarchy akan datang tidak akan muncul pada bar anda secara automatik. `omarchy bar defaults` meletakkan semula susun atur yang dihantar bila-bila masa anda mahukan permulaan bersih.
+Satu peraturan yang berbaloi dihayati: **sebaik sahaja anda mempunyai `shell.json` anda sendiri, ia kanonik**. Sehingga anda menyesuaikan apa-apa, shell membaca fail lalai Unbloarchy. Sebaik sahaja anda menyeret widget, menjalankan `unbloarchy bar`, atau mengedit fail sendiri, anda memilikinya — tiada gabungan mendalam, jadi widget lalai baharu dalam keluaran Unbloarchy akan datang tidak akan muncul pada bar anda secara automatik. `unbloarchy bar defaults` meletakkan semula susun atur yang dihantar bila-bila masa anda mahukan permulaan bersih.
 
 Fail yang sama juga menyimpan pemasaan melahu anda di peringkat atas, di luar kunci `bar`: `idle.screensaver` dan `idle.lock`, kedua-duanya dalam saat sejak anda melahu. Jadi penyelamat skrin lalai bermula pada 150 saat dan kunci pada 300.

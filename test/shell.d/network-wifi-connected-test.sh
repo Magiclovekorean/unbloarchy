@@ -40,7 +40,7 @@ SH
 chmod +x "$stub_bin"/*
 
 connected() {
-  OMARCHY_NET_CLASS_PATH="$net_class" PATH="$stub_bin:$PATH" "$ROOT/bin/omarchy-network-wifi-connected"
+  UNBLOARCHY_NET_CLASS_PATH="$net_class" PATH="$stub_bin:$PATH" "$ROOT/bin/unbloarchy-network-wifi-connected"
 }
 
 ROUTE_DEV=wlan0 connected || fail "an activated Wi-Fi default route is connected Wi-Fi"
@@ -51,7 +51,7 @@ pass "an activated Wi-Fi default route is connected Wi-Fi"
 pass "Ethernet and no route at all are not Wi-Fi"
 
 # 70 is NM_DEVICE_STATE_IP_CONFIG: associated but not yet activated, which
-# omarchy-network-status reports as disconnected.
+# unbloarchy-network-status reports as disconnected.
 ! ROUTE_DEV=wlan0 NM_STATE=70 connected || fail "a Wi-Fi device NetworkManager has not activated is not connected"
 ! ROUTE_DEV=wlan0 NM_DOWN=1 connected || fail "Wi-Fi NetworkManager cannot answer for is not connected"
-pass "Wi-Fi counts only once NetworkManager has it activated, as omarchy-network-status does"
+pass "Wi-Fi counts only once NetworkManager has it activated, as unbloarchy-network-status does"

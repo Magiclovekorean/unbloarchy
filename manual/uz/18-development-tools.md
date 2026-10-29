@@ -2,7 +2,7 @@
 
 ## Muqobil tahrirlagichlar
 
-Omarchy sukut boʻyicha [Neovim](https://neovim.io/) bilan birga keladi, lekin agar sizga biroz keng tarqalgan va tanishroq narsa kerak boʻlsa, Omarchy Menu (`Super + Space`) ni ishga tushirib, _Oʻrnatish > Tahrirlagich_ ostidagi variantlarni koʻrishingiz mumkin. U yerda VSCode, Cursor, Zed, Sublime Text, Helix, Vim va Emacs roʻyxati bor. Izlaganingizni topa olmasangiz, _Oʻrnatish > Paket_ boʻlimini tekshirib koʻring va u Arch paketi ichida yoʻqmi, koʻring (agar yoʻq boʻlsa, AUR ni tekshirish uchun _Oʻrnatish > AUR_ ni sinab koʻring).
+Unbloarchy sukut boʻyicha [Neovim](https://neovim.io/) bilan birga keladi, lekin agar sizga biroz keng tarqalgan va tanishroq narsa kerak boʻlsa, Unbloarchy Menu (`Super + Space`) ni ishga tushirib, _Oʻrnatish > Tahrirlagich_ ostidagi variantlarni koʻrishingiz mumkin. U yerda VSCode, Cursor, Zed, Sublime Text, Helix, Vim va Emacs roʻyxati bor. Izlaganingizni topa olmasangiz, _Oʻrnatish > Paket_ boʻlimini tekshirib koʻring va u Arch paketi ichida yoʻqmi, koʻring (agar yoʻq boʻlsa, AUR ni tekshirish uchun _Oʻrnatish > AUR_ ni sinab koʻring).
 
 Asl `vi` tahrirlagichi ham qutidan chiqqan holda mavjud. Terminalda faylni tahrirlash uchun `vi filename` buyrugʻini ishga tushiring.
 
@@ -12,7 +12,7 @@ Tizim boʻyicha standart tahrirlagichni `Sozlash > Standartlar > Tahrirlagich` o
 
 ## Muhit
 
-Omarchy Omarchy Menu (`Super + Space`) ning _Oʻrnatish > Ishlab chiqish_ boʻlimi orqali ishlab chiqish muhitlarining butun bir toʻplamini sozlashni qoʻllab-quvvatlaydi. Albatta, u yerda _Ruby on Rails_ ni topasiz, shuningdek JavaScript uchun uchta asosiy runtime (Node.js, Bun, Deno), hamda Laravel va Symfony kabi mashhur PHP freymvorklarini ham. Ha, yana Go, Rust, Python, Java, Elixir (Phoenix bilan), .NET, OCaml, Zig, Clojure va Scala ham bor. Bu juda keng tanlov!
+Unbloarchy Unbloarchy Menu (`Super + Space`) ning _Oʻrnatish > Ishlab chiqish_ boʻlimi orqali ishlab chiqish muhitlarining butun bir toʻplamini sozlashni qoʻllab-quvvatlaydi. Albatta, u yerda _Ruby on Rails_ ni topasiz, shuningdek JavaScript uchun uchta asosiy runtime (Node.js, Bun, Deno), hamda Laravel va Symfony kabi mashhur PHP freymvorklarini ham. Ha, yana Go, Rust, Python, Java, Elixir (Phoenix bilan), .NET, OCaml, Zig, Clojure va Scala ham bor. Bu juda keng tanlov!
 
 Bu muhitlarning aksariyati [Mise](https://mise.jdx.dev/) tomonidan boshqariladi. Bu sizga bitta kompyuterda dasturlash tilining bir nechta versiyasini oʻrnatish va ishga tushirish imkonini beradigan vosita. Bu Ruby uchun rbenv yoki rvm kabi, Python uchun virtualenv kabi, lekin u turli xil muhitlarning bir qanchasi uchun ishlaydi.
 
@@ -20,7 +20,7 @@ Masalan, Ruby ni oʻrnatish uchun siz `mise use -g ruby` buyrugʻini ishga tushi
 
 ## Oldindan oʻrnatilgan CLI vositalari
 
-Omarchy `gh`, `uv` kabi vositalarni va aksariyat [dasturlash agentlari](17-ai.md) ni [mise ning kechiktirilgan oʻrnatilishi](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools) orqali mavjud qiladi. Ulardan birini birinchi marta ishga tushirganingizda, mise uni oʻrnatadi. Keyingi ishga tushirishlar oʻrnatilgan versiyadan qayta foydalanadi; ular har bir ishga tushirishda yangilanish borligini tekshirmaydi.
+Unbloarchy `gh`, `uv` kabi vositalarni va aksariyat [dasturlash agentlari](17-ai.md) ni [mise ning kechiktirilgan oʻrnatilishi](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools) orqali mavjud qiladi. Ulardan birini birinchi marta ishga tushirganingizda, mise uni oʻrnatadi. Keyingi ishga tushirishlar oʻrnatilgan versiyadan qayta foydalanadi; ular har bir ishga tushirishda yangilanish borligini tekshirmaydi.
 
 Standartlarni tekshirishingiz yoki ularni oldindan oʻrnatishingiz ham mumkin:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Oʻrnatilgan vositalarni Omarchy ning qolgan qismi bilan birga yangilash uchun `omarchy update` buyrugʻini ishga tushiring. `mup` taxallusi faqat mise tomonidan boshqariladigan vositalarni yangilaydi. Oʻz konfiguratsiyangizga boshqa vosita qoʻshish uchun `mise use -g <tool>` dan foydalaning.
+Oʻrnatilgan vositalarni Unbloarchy ning qolgan qismi bilan birga yangilash uchun `unbloarchy update` buyrugʻini ishga tushiring. `mup` taxallusi faqat mise tomonidan boshqariladigan vositalarni yangilaydi. Oʻz konfiguratsiyangizga boshqa vosita qoʻshish uchun `mise use -g <tool>` dan foydalaning.
 
 Python sozlamasi mise orqali `uv` ni ham oʻrnatadi. Python ishlab chiqish muhitini olib tashlash `uv` ni mustaqil vosita sifatida mavjud qoldiradi.
 
@@ -47,15 +47,15 @@ Agar sizda allaqachon `[settings]` jadvali boʻlsa, yozuvni oʻsha yerga qoʻshi
 
 ### Standartlarni olib tashlash va tiklash
 
-_Oldindan oʻrnatilganlarni olib tashlash_ mise ga foydalanuvchingiz uchun Omarchy vosita deklaratsiyalarini oʻtkazib yuborishni buyuradi, ularni `~/.config/mise/miserc.toml` dagi `ignored_config_paths` ga qoʻshish orqali. _Oldindan oʻrnatilganlarni tiklash_ oʻsha qatorni yana olib tashlaydi. Oʻzingiz deklaratsiya qilgan vositalar, oʻz konfiguratsiyangizda yoki loyihaning `mise.toml` ida boʻlsin, har qanday holatda ham ishlashda davom etadi. Agar oldindan oʻrnatilganlarni olib tashlaganingizdan keyin standart agentni tanlasangiz yoki Python ni sozlasangiz, oʻsha vosita oʻz konfiguratsiyangizga qoʻshiladi. Ikkalasi ham faqat foydalanuvchingizga tegishli; kompyuterdagi boshqa foydalanuvchilar oʻz tanlovini saqlab qoladi.
+_Oldindan oʻrnatilganlarni olib tashlash_ mise ga foydalanuvchingiz uchun Unbloarchy vosita deklaratsiyalarini oʻtkazib yuborishni buyuradi, ularni `~/.config/mise/miserc.toml` dagi `ignored_config_paths` ga qoʻshish orqali. _Oldindan oʻrnatilganlarni tiklash_ oʻsha qatorni yana olib tashlaydi. Oʻzingiz deklaratsiya qilgan vositalar, oʻz konfiguratsiyangizda yoki loyihaning `mise.toml` ida boʻlsin, har qanday holatda ham ishlashda davom etadi. Agar oldindan oʻrnatilganlarni olib tashlaganingizdan keyin standart agentni tanlasangiz yoki Python ni sozlasangiz, oʻsha vosita oʻz konfiguratsiyangizga qoʻshiladi. Ikkalasi ham faqat foydalanuvchingizga tegishli; kompyuterdagi boshqa foydalanuvchilar oʻz tanlovini saqlab qoladi.
 
 ## Docker
 
-[Docker](https://www.docker.com/) ni deyarli tanishtirish shart emas. U sizga izolyatsiya qilingan konteynerlarni ishga tushirish imkonini beradi va Omarchy uni yaxshi ishlashi uchun kerak boʻlgan hamma narsani, jumladan Docker ning oʻzini va [Docker Compose](https://docs.docker.com/compose/) ni oʻrnatadi.
+[Docker](https://www.docker.com/) ni deyarli tanishtirish shart emas. U sizga izolyatsiya qilingan konteynerlarni ishga tushirish imkonini beradi va Unbloarchy uni yaxshi ishlashi uchun kerak boʻlgan hamma narsani, jumladan Docker ning oʻzini va [Docker Compose](https://docs.docker.com/compose/) ni oʻrnatadi.
 
-Sukut boʻyicha foydalanuvchingiz `docker` guruhida *emas*. Bu guruh amalda parolsiz root hisoblanadi — undagi har qanday narsa `docker run -v /:/host` buyrugʻini ishga tushirib, kompyuterni egallab olishi mumkin — shuning uchun siz sifatida ishlaydigan bitta yovuz skript yoki bogʻliqlik aks holda root dan bitta buyruq uzoqlikda boʻlardi. Shuning uchun buyruq qatorida siz Docker ni `sudo` bilan ishga tushirasiz (`sudo docker ps`, `sudo docker compose up`), va demon bilan gaplashadigan grafik vositalar — Windows VM — kerak boʻlganda sizdan avtorizatsiya soʻraydi. Agar guruhsiz sozlamaning qulayligini qaytarishni istasangiz va murosani tushunsangiz, uni **Sozlash > Xavfsizlik > Sudosiz Docker** dan yoqing (yoki `omarchy-setup-security-sudoless-docker` buyrugʻini ishga tushiring), bu ogohlantirishdan keyin sizni `docker` guruhiga qoʻshadi; shunda oddiy `docker` va `d` taxallusi yana `sudo` siz ishlaydi.
+Sukut boʻyicha foydalanuvchingiz `docker` guruhida *emas*. Bu guruh amalda parolsiz root hisoblanadi — undagi har qanday narsa `docker run -v /:/host` buyrugʻini ishga tushirib, kompyuterni egallab olishi mumkin — shuning uchun siz sifatida ishlaydigan bitta yovuz skript yoki bogʻliqlik aks holda root dan bitta buyruq uzoqlikda boʻlardi. Shuning uchun buyruq qatorida siz Docker ni `sudo` bilan ishga tushirasiz (`sudo docker ps`, `sudo docker compose up`), va demon bilan gaplashadigan grafik vositalar — Windows VM — kerak boʻlganda sizdan avtorizatsiya soʻraydi. Agar guruhsiz sozlamaning qulayligini qaytarishni istasangiz va murosani tushunsangiz, uni **Sozlash > Xavfsizlik > Sudosiz Docker** dan yoqing (yoki `unbloarchy-setup-security-sudoless-docker` buyrugʻini ishga tushiring), bu ogohlantirishdan keyin sizni `docker` guruhiga qoʻshadi; shunda oddiy `docker` va `d` taxallusi yana `sudo` siz ishlaydi.
 
-Mahalliy ishlab chiqish uchun keng tarqalgan maʼlumotlar bazalarini Docker da Omarchy menyusidagi _Oʻrnatish > Ishlab chiqish > Docker DB_ orqali sozlashingiz mumkin.
+Mahalliy ishlab chiqish uchun keng tarqalgan maʼlumotlar bazalarini Docker da Unbloarchy menyusidagi _Oʻrnatish > Ishlab chiqish > Docker DB_ orqali sozlashingiz mumkin.
 
 ## GitHub CLI
 

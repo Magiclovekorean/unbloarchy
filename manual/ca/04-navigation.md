@@ -1,8 +1,8 @@
 # Navegació
 
-Tot a Omarchy passa pel teclat — _TOT!_ Quan el sistema s'inicia per primera vegada, literalment no pots fer res només amb el ratolí. Però pots prémer `Super + Space` per mostrar el menú d'Omarchy i des d'aquí pots fer pràcticament de tot.
+Tot a Unbloarchy passa pel teclat — _TOT!_ Quan el sistema s'inicia per primera vegada, literalment no pots fer res només amb el ratolí. Però pots prémer `Super + Space` per mostrar el menú d'Unbloarchy i des d'aquí pots fer pràcticament de tot.
 
-Però el menú d'Omarchy ni tan sols està pensat per ser la manera principal d'utilitzar el sistema la major part del temps. Podem anar més de pressa que això! Totes les aplicacions més importants estan vinculades directament a dreceres de teclat individuals. Inicies el terminal amb `Super + Return` i un navegador amb `Super + Shift + Return`. Prova de fer una cosa rere l'altra i veuràs la màgia del mosaic de Hyprland en acció:
+Però el menú d'Unbloarchy ni tan sols està pensat per ser la manera principal d'utilitzar el sistema la major part del temps. Podem anar més de pressa que això! Totes les aplicacions més importants estan vinculades directament a dreceres de teclat individuals. Inicies el terminal amb `Super + Return` i un navegador amb `Super + Shift + Return`. Prova de fer una cosa rere l'altra i veuràs la màgia del mosaic de Hyprland en acció:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ També pots posar-la a pantalla completa amb `Super + F`, o fins i tot només a 
 
 ### Disposició dwindle enfront de la disposició amb desplaçament
 
-La disposició per defecte d'Omarchy s'anomena dwindle. Manté totes les finestres que obres en un únic espai de treball visibles en tot moment, encara que hagi de reduir-les.
+La disposició per defecte d'Unbloarchy s'anomena dwindle. Manté totes les finestres que obres en un únic espai de treball visibles en tot moment, encara que hagi de reduir-les.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Un espai de treball flotant funciona com un escriptori tradicional: les finestres se superposen, i les mous i en canvies la mida tu mateix. Cada finestra rep una barra de títol amb els colors del teu tema, amb botons per minimitzar, maximitzar i tancar. `Super + M` també minimitza la finestra enfocada. Una finestra minimitzada espera al dock; fes clic a la seva aplicació per recuperar-la. Fes clic en una finestra per portar-la al davant. Redimensiona-la des de qualsevol vora o cantonada. Fes doble clic en una barra de títol per maximitzar la finestra mentre mantens la barra superior a la vista, i de nou per recuperar la seva mida antiga.
 
-Un espai de treball flotant també mostra un dock, amb les aplicacions fixades, tot el que s'està executant i una quadrícula de totes les aplicacions darrere del botó d'aplicacions, que `Super + Alt + Space` i _Aplicacions_ al menú d'Omarchy també obren. Fes clic amb el botó dret en una aplicació de la quadrícula, o prem `Delete`, per desinstal·lar-la. Fes clic en una aplicació per obrir-la, o per portar la seva finestra al davant; fes clic de nou per recórrer les seves finestres. El clic central obre una finestra nova. Arrossega una icona al llarg del dock per moure-la; arrossegar una aplicació en execució entre les altres la manté allà. Fes clic amb el botó dret per mantenir una aplicació al dock, treure-la'n o sortir-ne. El dock s'aparta del camí d'una finestra a pantalla completa. Fes clic amb el botó dret al botó d'aplicacions per moure el dock a una altra vora o fer que s'amagui fins que el punter arribi a la seva vora. La posició també es troba a _Aparença > Dock > Posició del Dock_, i `omarchy dock position left` i `omarchy dock autohide on` configuren totes dues coses des d'un terminal. Les aplicacions que mantens al dock apareixen esvaïdes mentre no s'estan executant.
+Un espai de treball flotant també mostra un dock, amb les aplicacions fixades, tot el que s'està executant i una quadrícula de totes les aplicacions darrere del botó d'aplicacions, que `Super + Alt + Space` i _Aplicacions_ al menú d'Unbloarchy també obren. Fes clic amb el botó dret en una aplicació de la quadrícula, o prem `Delete`, per desinstal·lar-la. Fes clic en una aplicació per obrir-la, o per portar la seva finestra al davant; fes clic de nou per recórrer les seves finestres. El clic central obre una finestra nova. Arrossega una icona al llarg del dock per moure-la; arrossegar una aplicació en execució entre les altres la manté allà. Fes clic amb el botó dret per mantenir una aplicació al dock, treure-la'n o sortir-ne. El dock s'aparta del camí d'una finestra a pantalla completa. Fes clic amb el botó dret al botó d'aplicacions per moure el dock a una altra vora o fer que s'amagui fins que el punter arribi a la seva vora. La posició també es troba a _Aparença > Dock > Posició del Dock_, i `unbloarchy dock position left` i `unbloarchy dock autohide on` configuren totes dues coses des d'un terminal. Les aplicacions que mantens al dock apareixen esvaïdes mentre no s'estan executant.
 
-Els espais de treball nous, i qualsevol al qual no hagis donat una disposició pròpia amb `Super + L`, utilitzen la disposició per defecte. Canviar la disposició per defecte restableix a aquesta disposició tots els espais de treball sense finestres, mentre que un espai amb finestres conserva la disposició que té. Una finestra minimitzada al dock continua comptant com una finestra a l'espai de treball que ha deixat. Tria-la a _Aparença > Disposició de l'espai de treball_: En mosaic, Amb desplaçament o Flotant. `omarchy-hyprland-workspace-layout-default scrolling` la configura des d'un terminal.
+Els espais de treball nous, i qualsevol al qual no hagis donat una disposició pròpia amb `Super + L`, utilitzen la disposició per defecte. Canviar la disposició per defecte restableix a aquesta disposició tots els espais de treball sense finestres, mentre que un espai amb finestres conserva la disposició que té. Una finestra minimitzada al dock continua comptant com una finestra a l'espai de treball que ha deixat. Tria-la a _Aparença > Disposició de l'espai de treball_: En mosaic, Amb desplaçament o Flotant. `unbloarchy-hyprland-workspace-layout-default scrolling` la configura des d'un terminal.
 
 ### Agrupació de finestres
 

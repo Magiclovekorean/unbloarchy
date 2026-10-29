@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# omarchy:summary=Prompt for required reboot or service restarts after updates
-# omarchy:args=[--services-only|--reboot-only]
+# unbloarchy:summary=Prompt for required reboot or service restarts after updates
+# unbloarchy:args=[--services-only|--reboot-only]
 
-kernel_modules_path="${OMARCHY_KERNEL_MODULES_PATH:-/usr/lib/modules}"
+kernel_modules_path="${UNBLOARCHY_KERNEL_MODULES_PATH:-/usr/lib/modules}"
 
 mode="${1:-all}"
 case "$mode" in
@@ -13,10 +13,10 @@ esac
 
 echo
 confirm_reboot() {
-  if [[ ${OMARCHY_UPDATE_UNATTENDED:-0} == "1" ]]; then
-    echo "$1 Run omarchy-system reboot when ready."
-  elif gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$1"; then
-    omarchy-system reboot
+  if [[ ${UNBLOARCHY_UPDATE_UNATTENDED:-0} == "1" ]]; then
+    echo "$1 Run unbloarchy-system reboot when ready."
+  elif gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$1"; then
+    unbloarchy-system reboot
     exit 0
   fi
 }
@@ -38,25 +38,25 @@ if [[ $mode != "--services-only" ]]; then
   done
 
   if [[ $kernel_updated == "true" ]]; then
-    confirm_reboot "$(omarchy-i18n update.kernelReboot)"
-  elif [[ -f $HOME/.local/state/omarchy/reboot-required ]]; then
-    confirm_reboot "$(omarchy-i18n update.rebootRequired)"
+    confirm_reboot "$(unbloarchy-i18n update.kernelReboot)"
+  elif [[ -f $HOME/.local/state/unbloarchy/reboot-required ]]; then
+    confirm_reboot "$(unbloarchy-i18n update.rebootRequired)"
   fi
 
   running_hyprland=$(readlink /proc/$(pgrep -x Hyprland)/exe 2>/dev/null)
   if [[ $running_hyprland == *"(deleted)"* ]]; then
-    confirm_reboot "$(omarchy-i18n update.hyprlandReboot)"
+    confirm_reboot "$(unbloarchy-i18n update.hyprlandReboot)"
   fi
 fi
 
 if [[ $mode != "--reboot-only" ]]; then
-  for file in "$HOME"/.local/state/omarchy/restart-*-required; do
+  for file in "$HOME"/.local/state/unbloarchy/restart-*-required; do
     if [[ -f $file ]]; then
       filename=$(basename "$file")
       service=$(echo "$filename" | sed 's/restart-\(.*\)-required/\1/')
       echo "Restarting $service"
-      omarchy-state clear "$filename"
-      omarchy-restart-"$service"
+      unbloarchy-state clear "$filename"
+      unbloarchy-restart-"$service"
     fi
   done
 
@@ -65,5 +65,5 @@ if [[ $mode != "--reboot-only" ]]; then
   # prints its reason: the next update or login gets a fresh shell anyway.
   echo -e "\e[32m\nRestarting shell\e[0m"
   echo "All plugins have been reloaded"
-  omarchy-restart-shell || true
+  unbloarchy-restart-shell || true
 fi

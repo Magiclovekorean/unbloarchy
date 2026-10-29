@@ -22,7 +22,7 @@ Redigeringsverktøyet for merknader kan tegne piler, linjer, former, uthevinger,
 
 Lagrede skjermbilder havner i `~/Pictures/Screenshots` som standard, med et navn som `screenshot-2026-08-13_14-22-05-firefox.png`. Sett `OMASNAP_SCREENSHOT_DIR` for å bruke en annen katalog — se [FAQ-en](46-faq.md) for hvor du skal plassere miljøvariabler for økten. Omasnap oppretter katalogen når det lagrer det første bildet. Sett `[output] autosave = false` i `~/.config/omasnap/omasnap.conf` for å deaktivere automatisk lagring; bildene kopieres da bare, og vises i en forhåndsvisning i 10 sekunder som du kan holde på skjermen med festeknappen eller `Ctrl + P`.
 
-Fra terminalen åpner `omarchy screenshot` det samme overlegget, og du kan velge startmodusen: `omarchy capture screenshot region`, `windows`, `fullscreen` eller `scroll`. Et andre argument med `copy` eller `save` sender bildet rett til det målet. For å redigere før utdata bruker du `omarchy screenshot --editor=overlay` for et redigeringsverktøy i fullskjerm eller `omarchy screenshot --editor=window` for et eget vindu.
+Fra terminalen åpner `unbloarchy screenshot` det samme overlegget, og du kan velge startmodusen: `unbloarchy capture screenshot region`, `windows`, `fullscreen` eller `scroll`. Et andre argument med `copy` eller `save` sender bildet rett til det målet. For å redigere før utdata bruker du `unbloarchy screenshot --editor=overlay` for et redigeringsverktøy i fullskjerm eller `unbloarchy screenshot --editor=window` for et eget vindu.
 
 ### Styre velgeren fra tastaturet
 
@@ -41,9 +41,9 @@ Disse bindingene finnes bare mens Omasnap er åpent, så de kan ikke kollidere m
 
 ## Skjermopptak
 
-`Alt + Print Screen` åpner _Trigger > Capture > Screenrecord_, som spør hva du vil ha på lydsporet: ingen lyd, skrivebordslyd, skrivebord pluss mikrofon, eller skrivebord pluss mikrofon pluss webkamera. Det siste alternativet vises bare hvis du faktisk har et kamera koblet til. Velg ett, så lar Omarchys opptaksvelger deg dra et område eller klikke på et vindu eller en skjerm.
+`Alt + Print Screen` åpner _Trigger > Capture > Screenrecord_, som spør hva du vil ha på lydsporet: ingen lyd, skrivebordslyd, skrivebord pluss mikrofon, eller skrivebord pluss mikrofon pluss webkamera. Det siste alternativet vises bare hvis du faktisk har et kamera koblet til. Velg ett, så lar Unbloarchys opptaksvelger deg dra et område eller klikke på et vindu eller en skjerm.
 
-Opptaket kjører på gpu-screen-recorder, som koder på GPU-en ved 60fps og faller tilbake til CPU-en hvis det må. Resultatet er en MP4 i `~/Videos`, med navn som `screenrecording-2026-08-13_14-22-05.mp4`. Sett `OMARCHY_SCREENRECORD_DIR` for å endre det — men merk at i motsetning til skjermbildekatalogen må denne finnes fra før, ellers nekter opptaket å starte.
+Opptaket kjører på gpu-screen-recorder, som koder på GPU-en ved 60fps og faller tilbake til CPU-en hvis det må. Resultatet er en MP4 i `~/Videos`, med navn som `screenrecording-2026-08-13_14-22-05.mp4`. Sett `UNBLOARCHY_SCREENRECORD_DIR` for å endre det — men merk at i motsetning til skjermbildekatalogen må denne finnes fra før, ellers nekter opptaket å starte.
 
 Mens du tar opp, dukker en liten indikator opp i linjen. Klikk på den for å stoppe. Du kan også stoppe med `Alt + Print Screen` igjen, eller med _Stop Screenrecording_-oppføringen under _Trigger > Capture > Screenrecord_, som bare vises mens noe faktisk tar opp.
 
@@ -60,7 +60,7 @@ Når du tar opp med et webkamera, vises kameraet som et festet, beskåret portre
 
 Det finnes tre størrelser — liten, middels og stor — og hurtigtastene går mellom dem. Middels er standarden. De er proporsjonale med opptaket, så kameraet tar samme andel av ruten enten du tar opp en 1080p-skjerm eller en 6K-skjerm. Og hvis du tok opp et område i stedet for en hel skjerm, forankres overlegget til hjørnet av det området i stedet for skjermens, slik at det blir værende inne i bildet.
 
-Du kan også kalle det direkte med `omarchy-capture-webcam-resize small`, eller `reset` for å gå tilbake til middels.
+Du kan også kalle det direkte med `unbloarchy-capture-webcam-resize small`, eller `reset` for å gå tilbake til middels.
 
 ## Tekst, QR-koder og farger
 
@@ -76,7 +76,7 @@ Et 4K-skjermopptak eller en rå HEIC fra telefonen er ofte for stor til bare å 
 
 Bilder går til jpg eller png på høy, middels eller lav, som begrenser bredden til 3160, 2160 og 1080 piksler. Videoer går til mp4 eller en animert gif på 4k, 1080p eller 720p. Den konverterte filen skrives ved siden av originalen med oppløsningen i navnet — `demo-1080p.mp4` — og stien kopieres til utklippstavlen som en fil-URI, slik at du kan lime den rett inn i en app som tar imot filslipp.
 
-Det fungerer fra terminalen også, hvis du allerede vet hva du vil ha: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Det finnes også `omarchy transcode ascii`, som gjør et bilde til ASCII-kunst — den er mest til [merkevarebygging](41-branding.md).
+Det fungerer fra terminalen også, hvis du allerede vet hva du vil ha: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Det finnes også `unbloarchy transcode ascii`, som gjør et bilde til ASCII-kunst — den er mest til [merkevarebygging](41-branding.md).
 
 ## Sende det et sted
 

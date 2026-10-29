@@ -6,7 +6,7 @@ Anda boleh melihat semua ikatan kekunci utama dengan `Super + K` (ikatan Tmux de
 
 | Kekunci Pintas                  | Fungsi              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menu Omarchy (aplikasi dan segala-galanya yang lain)    |
+| `Super + Space`           | Menu Unbloarchy (aplikasi dan segala-galanya yang lain)    |
 | `Super + Alt + Space` | Grid aplikasi |
 | `Super + Escape` | Menu sistem (gantung, mulakan semula, dsb)  |
 | `Super + Ctrl + L` | Kunci komputer |
@@ -143,7 +143,7 @@ Tukar/tambah ikatan dalam `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Tampal    |
 | `Super + Ctrl + V`           | Pengurus papan keratan    |
 
-Biasanya pada Linux, anda perlu `Ctrl + Shift + C/V` untuk menyalin dan menampal dalam terminal dan `Ctrl + C/V` untuk melakukannya di tempat lain. Kekunci pintas papan keratan bersepadu Omarchy ini berfungsi di mana-mana sahaja.
+Biasanya pada Linux, anda perlu `Ctrl + Shift + C/V` untuk menyalin dan menampal dalam terminal dan `Ctrl + C/V` untuk melakukannya di tempat lain. Kekunci pintas papan keratan bersepadu Unbloarchy ini berfungsi di mana-mana sahaja.
 
 ## Tangkapan
 
@@ -164,7 +164,7 @@ Biasanya pada Linux, anda perlu `Ctrl + Shift + C/V` untuk menyalin dan menampal
 
 Dengan rakaman skrin, kekunci pintas terlebih dahulu bertanya audio mana yang anda mahu, kemudian memulakan rakaman. Tekannya sekali lagi untuk berhenti. Lihat [tangkapan skrin dan rakaman](12-screenshots-recording.md) untuk butirannya.
 
-Semua pilihan tangkapan juga boleh diakses di bawah _Trigger > Capture_ dalam menu Omarchy (`Super + Space`).
+Semua pilihan tangkapan juga boleh diakses di bawah _Trigger > Capture_ dalam menu Unbloarchy (`Super + Space`).
 
 ## Pemberitahuan
 
@@ -186,9 +186,9 @@ Semua pilihan tangkapan juga boleh diakses di bawah _Trigger > Capture_ dalam me
 | `Super + Backspace` | Togol ketelusan pada tetingkap |
 | `Super + Ctrl + Backspace` | Togol aspek segi empat sama tetingkap tunggal |
 
-Imej latar belakang tambahan berada dalam `~/.config/omarchy/backgrounds/<theme name>`. Juga tersedia melalui _Install > Style > Background_ dalam menu Omarchy.
+Imej latar belakang tambahan berada dalam `~/.config/unbloarchy/backgrounds/<theme name>`. Juga tersedia melalui _Install > Style > Background_ dalam menu Unbloarchy.
 
-Semua pilihan gaya juga boleh diakses di bawah _Style_ dalam menu Omarchy (`Super + Space`).
+Semua pilihan gaya juga boleh diakses di bawah _Style_ dalam menu Unbloarchy (`Super + Space`).
 
 ## Togol
 
@@ -289,7 +289,7 @@ Fungsi ini mesti dijalankan di dalam sesi Tmux.
 
 ## Terminal Ghostty
 
-Terminal Ghostty dipasang menggunakan _Install > Terminal_ melalui menu Omarchy.
+Terminal Ghostty dipasang menggunakan _Install > Terminal_ melalui menu Unbloarchy.
 
 | Kekunci Pintas                  | Fungsi              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Anda boleh menggunakan `Super + Ctrl + E` untuk menunjukkan pemilih emoji lengka
 | `Shift + CapsLock Space N` | Nama anda (seperti yang dimasukkan semasa persediaan)  |
 | `Shift + CapsLock Space E` | E-mel anda (seperti yang dimasukkan semasa persediaan)  |
 
-Anda boleh menambah lebih banyak pilihan anda sendiri dengan mengedit `~/.XCompose`, kemudian menjalankan `omarchy-restart-xcompose` dalam terminal supaya perubahan itu diambil.
+Anda boleh menambah lebih banyak pilihan anda sendiri dengan mengedit `~/.XCompose`, kemudian menjalankan `unbloarchy-restart-xcompose` dalam terminal supaya perubahan itu diambil.

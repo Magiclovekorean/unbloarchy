@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# omarchy:summary=Control the Omarchy menu (toggle / summon / close / refresh)
-# omarchy:args=[toggle|summon|close|refresh|ping] [route]
-# omarchy:examples=omarchy menu | omarchy menu toggle system | omarchy menu summon appearance.theme | omarchy menu refresh
+# unbloarchy:summary=Control the Unbloarchy menu (toggle / summon / close / refresh)
+# unbloarchy:args=[toggle|summon|close|refresh|ping] [route]
+# unbloarchy:examples=unbloarchy menu | unbloarchy menu toggle system | unbloarchy menu summon appearance.theme | unbloarchy menu refresh
 
 # Thin wrapper around the standard plugin IPC surface. The menu is the
-# first-party `omarchy.menu` plugin; routes are passed as JSON payload.
+# first-party `unbloarchy.menu` plugin; routes are passed as JSON payload.
 
 set -euo pipefail
 
@@ -18,20 +18,20 @@ menu_payload() {
 
 case "$verb" in
   toggle)
-    exec omarchy-shell shell toggle omarchy.menu "$(menu_payload "$route")"
+    exec unbloarchy-shell shell toggle unbloarchy.menu "$(menu_payload "$route")"
     ;;
   summon)
-    exec omarchy-shell shell summon omarchy.menu "$(menu_payload "$route")"
+    exec unbloarchy-shell shell summon unbloarchy.menu "$(menu_payload "$route")"
     ;;
   close)
-    exec omarchy-shell shell hide omarchy.menu
+    exec unbloarchy-shell shell hide unbloarchy.menu
     ;;
   refresh | ping)
-    exec omarchy-shell shell call omarchy.menu "$verb" "{}"
+    exec unbloarchy-shell shell call unbloarchy.menu "$verb" "{}"
     ;;
   -h | --help | help)
     cat <<USAGE
-Usage: omarchy menu [verb] [route]
+Usage: unbloarchy menu [verb] [route]
 
 Verbs:
   toggle [route]   Open the menu at <route>, or close it if already open. Default verb.
@@ -46,7 +46,7 @@ USAGE
     exit 0
     ;;
   *)
-    echo "omarchy-menu: unknown verb '$verb'. Try 'omarchy menu --help'." >&2
+    echo "unbloarchy-menu: unknown verb '$verb'. Try 'unbloarchy menu --help'." >&2
     exit 2
     ;;
 esac

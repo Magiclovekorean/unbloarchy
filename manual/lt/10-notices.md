@@ -10,7 +10,7 @@ Kortelės siūlo tai, ką turi: _Kopijuoti kodą_ patvirtinimo kodams (nelaikoma
 
 Norėdami jais naudotis be pelės, paspauskite `Super + Ctrl + ,`. Pasirenkamas naujausias pranešimas, o jo mygtukai sunumeruojami: paspauskite skaičių, kad panaudotumėte vieną, `Enter`, kad spustelėtumėte pranešimą, `↑` ir `↓`, kad judėtumėte tarp pranešimų, `Delete`, kad atmestumėte vieną, ir `Esc`, kad grąžintumėte klaviatūrą. Po kelių neveiklumo sekundžių jis taip pat pats paleidžia.
 
-Nutildžius pranešimus, jie sulaikomi, išskyrus pačios Omarchy patvirtinimus, avarinius įspėjimus ir patvirtinimo kodus, kurių ką tik patys paprašėte. Paskutinius kelis vėl parodykite ekrane, sulaikytus ar ne, su `Super + Shift + Alt + ,`. Istorija saugoma vieną dieną.
+Nutildžius pranešimus, jie sulaikomi, išskyrus pačios Unbloarchy patvirtinimus, avarinius įspėjimus ir patvirtinimo kodus, kurių ką tik patys paprašėte. Paskutinius kelis vėl parodykite ekrane, sulaikytus ar ne, su `Super + Shift + Alt + ,`. Istorija saugoma vieną dieną.
 
 ## Spartųjų klavišų pranešimai
 
@@ -26,7 +26,7 @@ Nutildžius pranešimus, jie sulaikomi, išskyrus pačios Omarchy patvirtinimus,
 
  ![notice-weather](images/notice-weather.webp)
 
-Vieta nustatoma pagal jūsų IP adresą, kurio paprastai pakanka, bet ne visada. Galite ją patikslinti su `omarchy weather location --set Malibu` arba nurodyti tiksliai, pridėdami koordinates: `omarchy weather location --set Malibu 34.0259,-118.7798`. Paleiskite `omarchy weather location` atskirai, kad pamatytumėte, kur, jo manymu, esate, ir `--clear`, kad grįžtumėte prie automatinio nustatymo.
+Vieta nustatoma pagal jūsų IP adresą, kurio paprastai pakanka, bet ne visada. Galite ją patikslinti su `unbloarchy weather location --set Malibu` arba nurodyti tiksliai, pridėdami koordinates: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Paleiskite `unbloarchy weather location` atskirai, kad pamatytumėte, kur, jo manymu, esate, ir `--clear`, kad grįžtumėte prie automatinio nustatymo.
 
 ### Akumuliatorius
 

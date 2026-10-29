@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# omarchy:summary=Shared helpers for editing ~/.config/omarchy/shell.json (source this, don't run it).
-# omarchy:hidden=true
+# unbloarchy:summary=Shared helpers for editing ~/.config/unbloarchy/shell.json (source this, don't run it).
+# unbloarchy:hidden=true
 
-CONFIG_FILE="$HOME/.config/omarchy/shell.json"
-DEFAULTS_FILE="$OMARCHY_PATH/config/omarchy/shell.json"
+CONFIG_FILE="$HOME/.config/unbloarchy/shell.json"
+DEFAULTS_FILE="$UNBLOARCHY_PATH/config/unbloarchy/shell.json"
 
 fail() {
   echo "${0##*/}: $*" >&2
@@ -12,8 +12,8 @@ fail() {
 }
 
 refresh_shell_config() {
-  if ! omarchy-shell shell reloadConfig >/dev/null 2>&1; then
-    omarchy-shell -q shell rescanPlugins >/dev/null 2>&1 || true
+  if ! unbloarchy-shell shell reloadConfig >/dev/null 2>&1; then
+    unbloarchy-shell -q shell rescanPlugins >/dev/null 2>&1 || true
   fi
 }
 

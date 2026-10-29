@@ -8,19 +8,19 @@ trap 'rm -rf "$test_tmp"' EXIT
 mock_bin="$test_tmp/bin"
 mkdir -p "$mock_bin" "$test_tmp/home"
 
-cat >"$mock_bin/omarchy-done" <<'SH'
+cat >"$mock_bin/unbloarchy-done" <<'SH'
 #!/bin/bash
 [[ $1 == "check" && $2 == "first-run-user" ]]
 SH
-cat >"$mock_bin/omarchy-provision-user" <<'SH'
+cat >"$mock_bin/unbloarchy-provision-user" <<'SH'
 #!/bin/bash
-touch "$OMARCHY_TEST_FINALIZE_CALLED"
+touch "$UNBLOARCHY_TEST_FINALIZE_CALLED"
 SH
-chmod +x "$mock_bin/omarchy-done" "$mock_bin/omarchy-provision-user"
+chmod +x "$mock_bin/unbloarchy-done" "$mock_bin/unbloarchy-provision-user"
 
 finalize_called="$test_tmp/finalize-called"
-HOME="$test_tmp/home" PATH="$mock_bin:$PATH" OMARCHY_TEST_FINALIZE_CALLED="$finalize_called" \
-  bash "$ROOT/bin/omarchy-provision-first-run" >"$test_tmp/output"
+HOME="$test_tmp/home" PATH="$mock_bin:$PATH" UNBLOARCHY_TEST_FINALIZE_CALLED="$finalize_called" \
+  bash "$ROOT/bin/unbloarchy-provision-first-run" >"$test_tmp/output"
 
 [[ ! -e $finalize_called ]] || fail "completed first-run exits before any setup step"
 grep -F 'First-run already complete' "$test_tmp/output" >/dev/null || fail "completed first-run reports its lifecycle gate"
@@ -31,18 +31,18 @@ pass "completed first-run exits at its lifecycle gate"
 # missing from a build must cost first-run only that unit.
 cat >"$mock_bin/systemctl" <<'SH'
 #!/bin/bash
-[[ $* != *"$OMARCHY_TEST_MISSING_UNIT"* ]] || exit 1
-printf '%s\n' "$*" >>"$OMARCHY_TEST_CALLS"
+[[ $* != *"$UNBLOARCHY_TEST_MISSING_UNIT"* ]] || exit 1
+printf '%s\n' "$*" >>"$UNBLOARCHY_TEST_CALLS"
 SH
-cat >"$mock_bin/omarchy-hook-install" <<'SH'
+cat >"$mock_bin/unbloarchy-hook-install" <<'SH'
 #!/bin/bash
-echo "hook $*" >>"$OMARCHY_TEST_CALLS"
+echo "hook $*" >>"$UNBLOARCHY_TEST_CALLS"
 SH
-chmod +x "$mock_bin/systemctl" "$mock_bin/omarchy-hook-install"
+chmod +x "$mock_bin/systemctl" "$mock_bin/unbloarchy-hook-install"
 
 enable_user_units() {
   rm -f "$test_tmp/calls"
-  PATH="$mock_bin:$PATH" OMARCHY_TEST_CALLS="$test_tmp/calls" OMARCHY_TEST_MISSING_UNIT="$1" \
+  PATH="$mock_bin:$PATH" UNBLOARCHY_TEST_CALLS="$test_tmp/calls" UNBLOARCHY_TEST_MISSING_UNIT="$1" \
     bash "$ROOT/install/user/first-run/enable-user-units.sh"
 }
 
@@ -69,40 +69,40 @@ cat >"$mock_bin/nm-online" <<'SH'
 #!/bin/bash
 exit 0
 SH
-# Like the real one, it looks for Omarchy's package with checkupdates.
-cat >"$mock_bin/omarchy-update-available" <<'SH'
+# Like the real one, it looks for Unbloarchy's package with checkupdates.
+cat >"$mock_bin/unbloarchy-update-available" <<'SH'
 #!/bin/bash
 checkupdates >/dev/null
-exit "$OMARCHY_TEST_OMARCHY_UPDATE"
+exit "$UNBLOARCHY_TEST_UNBLOARCHY_UPDATE"
 SH
 cat >"$mock_bin/checkupdates" <<'SH'
 #!/bin/bash
-echo checkupdates >>"$OMARCHY_TEST_CALLS"
-exit "$OMARCHY_TEST_CHECKUPDATES"
+echo checkupdates >>"$UNBLOARCHY_TEST_CALLS"
+exit "$UNBLOARCHY_TEST_CHECKUPDATES"
 SH
-cat >"$mock_bin/omarchy-notification-send" <<'SH'
+cat >"$mock_bin/unbloarchy-notification-send" <<'SH'
 #!/bin/bash
-printf '%s\n' "$*" >>"$OMARCHY_TEST_CALLS"
+printf '%s\n' "$*" >>"$UNBLOARCHY_TEST_CALLS"
 SH
-cat >"$mock_bin/omarchy-i18n" <<'SH'
+cat >"$mock_bin/unbloarchy-i18n" <<'SH'
 #!/bin/bash
 echo "$1"
 SH
-chmod +x "$mock_bin/nm-online" "$mock_bin/omarchy-update-available" \
-  "$mock_bin/checkupdates" "$mock_bin/omarchy-notification-send" "$mock_bin/omarchy-i18n"
+chmod +x "$mock_bin/nm-online" "$mock_bin/unbloarchy-update-available" \
+  "$mock_bin/checkupdates" "$mock_bin/unbloarchy-notification-send" "$mock_bin/unbloarchy-i18n"
 
-# Arguments: OMARCHY_PATH, omarchy-update-available's exit status, then
+# Arguments: UNBLOARCHY_PATH, unbloarchy-update-available's exit status, then
 # checkupdates'.
 offers_update() {
   : >"$test_tmp/calls"
-  OMARCHY_PATH="$1" PATH="$mock_bin:$PATH" OMARCHY_TEST_CALLS="$test_tmp/calls" \
-    OMARCHY_TEST_OMARCHY_UPDATE="$2" OMARCHY_TEST_CHECKUPDATES="$3" \
+  UNBLOARCHY_PATH="$1" PATH="$mock_bin:$PATH" UNBLOARCHY_TEST_CALLS="$test_tmp/calls" \
+    UNBLOARCHY_TEST_UNBLOARCHY_UPDATE="$2" UNBLOARCHY_TEST_CHECKUPDATES="$3" \
     bash -c 'source "$1"; wait' _ "$ROOT/install/user/first-run/wifi.sh"
-  grep -Fq -- '--exec omarchy-launch-floating-terminal-with-presentation omarchy-update' "$test_tmp/calls"
+  grep -Fq -- '--exec unbloarchy-launch-floating-terminal-with-presentation unbloarchy-update' "$test_tmp/calls"
 }
 
 installed=/usr/share/omarchy
-checkout="$test_tmp/omarchy-checkout"
+checkout="$test_tmp/unbloarchy-checkout"
 
 if offers_update "$installed" 1 2; then
   fail "first run offers no update when nothing is pending"
@@ -124,9 +124,9 @@ offers_git_setup() {
   rm -rf "$home" && mkdir -p "$home"
   [[ -z $1 ]] || HOME="$home" git config --global user.name "$1"
   [[ -z $2 ]] || HOME="$home" git config --global user.email "$2"
-  HOME="$home" PATH="$mock_bin:$PATH" OMARCHY_TEST_CALLS="$test_tmp/calls" \
+  HOME="$home" PATH="$mock_bin:$PATH" UNBLOARCHY_TEST_CALLS="$test_tmp/calls" \
     bash "$ROOT/install/user/first-run/git.sh"
-  grep -Fq 'omarchy-setup-git' "$test_tmp/calls"
+  grep -Fq 'unbloarchy-setup-git' "$test_tmp/calls"
 }
 
 offers_git_setup "" "" || fail "first run offers git setup on a fresh account"

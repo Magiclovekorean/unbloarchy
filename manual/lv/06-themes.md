@@ -1,8 +1,8 @@
 # Motīvi
 
-Omarchy komplektā ir divdesmit divi skaisti motīvi. Varat izvēlēties starp tiem Omarchy izvēlnē (`Super + Space`) sadaļā _Izskats > Motīvs_ vai pāriet tieši uz motīvu atlasītāju ar `Super + Ctrl + T`.
+Unbloarchy komplektā ir divdesmit divi skaisti motīvi. Varat izvēlēties starp tiem Unbloarchy izvēlnē (`Super + Space`) sadaļā _Izskats > Motīvs_ vai pāriet tieši uz motīvu atlasītāju ar `Super + Ctrl + T`.
 
-Katrs motīvs noformē darbvirsmu, termināli, neovim, aktivitāšu ekrānu (btop), Chromium un visu Omarchy apvalku: augšējo joslu, izvēlni, paziņojumus, OSD un bloķēšanas ekrānu. (Obsidian gadījumā Omarchy motīvs lietotnē jāizvēlas manuāli sadaļā _Izskats > Motīvi_).
+Katrs motīvs noformē darbvirsmu, termināli, neovim, aktivitāšu ekrānu (btop), Chromium un visu Unbloarchy apvalku: augšējo joslu, izvēlni, paziņojumus, OSD un bloķēšanas ekrānu. (Obsidian gadījumā Unbloarchy motīvs lietotnē jāizvēlas manuāli sadaļā _Izskats > Motīvi_).
 
 Motīviem ir fona attēlu kopa, no kuras varat izvēlēties ar `Super + Ctrl + W`.
 

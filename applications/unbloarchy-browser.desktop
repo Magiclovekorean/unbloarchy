@@ -2,7 +2,7 @@
 Version=1.0
 Name=Browser
 Comment=Open links in the running default browser and focus it
-Exec=omarchy-launch-browser %U
+Exec=unbloarchy-launch-browser %U
 Terminal=false
 Type=Application
 NoDisplay=true

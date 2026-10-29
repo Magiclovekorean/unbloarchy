@@ -1,21 +1,21 @@
 #!/bin/bash
 
-# omarchy:summary=Remove preinstalled Omarchy applications (web apps, TUIs, and selected packages).
+# unbloarchy:summary=Remove preinstalled Unbloarchy applications (web apps, TUIs, and selected packages).
 
-if gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n preinstalls.confirmRemove)"; then
-  echo -e "Removing preinstalled Omarchy applications...\n"
+if gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n preinstalls.confirmRemove)"; then
+  echo -e "Removing preinstalled Unbloarchy applications...\n"
 
-  omarchy-webapp-remove-all
-  omarchy-tui-remove-all
+  unbloarchy-webapp-remove-all
+  unbloarchy-tui-remove-all
 
-  mkdir -p ~/.local/state/omarchy
-  touch ~/.local/state/omarchy/preinstalls-removed
+  mkdir -p ~/.local/state/unbloarchy
+  touch ~/.local/state/unbloarchy/preinstalls-removed
   hyprctl reload
 
-  # Disable Omarchy's default mise tools for this user and retire their shims.
-  omarchy-mise-default-tools disable || exit 1
+  # Disable Unbloarchy's default mise tools for this user and retire their shims.
+  unbloarchy-mise-default-tools disable || exit 1
 
-  # Remove wrappers left by older Omarchy releases.
+  # Remove wrappers left by older Unbloarchy releases.
   rm -f ~/.local/bin/codex ~/.local/bin/claude ~/.local/bin/agy ~/.local/bin/copilot \
        ~/.local/bin/gh ~/.local/bin/opencode ~/.local/bin/playwright ~/.local/bin/playwright-cli ~/.local/bin/pi \
        ~/.local/bin/omp ~/.local/bin/ori ~/.local/bin/cf ~/.local/bin/grok ~/.local/bin/crush ~/.local/bin/ghui ~/.local/bin/hunk
@@ -27,7 +27,7 @@ if gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-
   fi
 
   # Cursor's own installer links ~/.local/bin/cursor-agent as well, so only
-  # the mise wrapper omarchy-mise-install wrote is a preinstall.
+  # the mise wrapper unbloarchy-mise-install wrote is a preinstall.
   if [[ -f ~/.local/bin/cursor-agent && ! -L ~/.local/bin/cursor-agent ]] &&
     grep -Eq '^mise use -g .*"cursor-agent"' ~/.local/bin/cursor-agent; then
     rm -f ~/.local/bin/cursor-agent
@@ -39,7 +39,7 @@ if gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-
     rm -f ~/.local/bin/muse
   fi
 
-  omarchy-pkg-drop \
+  unbloarchy-pkg-drop \
     aether \
     cliamp \
     libreoffice-fresh \

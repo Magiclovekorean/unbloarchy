@@ -2,7 +2,7 @@
 
 In genere su Linux, per copiare e incollare nel terminale devi usare `Ctrl + Shift + C/V` e `Ctrl + C/V` per farlo ovunque altrove. È difficile abituarsi per chi non è nato e cresciuto su Linux! Lo è anche il passaggio da super a ctrl, se vieni dal Mac.
 
-Omarchy affronta entrambi i problemi con scorciatoie unificate per gli appunti che funzionano (quasi) ovunque. Sono:
+Unbloarchy affronta entrambi i problemi con scorciatoie unificate per gli appunti che funzionano (quasi) ovunque. Sono:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Usa `Super + A`, poi `Super + C` per copiare tutto in un campo di testo attivo o
 
 ### Cronologia degli appunti
 
-La cronologia degli appunti è fornita dalla shell di Omarchy e funziona sia per il testo che per le immagini. La attivi con `Super + Ctrl + V`, selezioni la voce con Invio, e poi quella verrà messa negli appunti pronta da incollare con `Super + V`.
+La cronologia degli appunti è fornita dalla shell di Unbloarchy e funziona sia per il testo che per le immagini. La attivi con `Super + Ctrl + V`, selezioni la voce con Invio, e poi quella verrà messa negli appunti pronta da incollare con `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

@@ -1,35 +1,35 @@
 # Toggle, Idle & Screensaver
 
-Banyak hal yang kamu ubah sehari-hari sebenarnya bukan pengaturan. Itu adalah mode yang kamu nyalakan selama satu jam lalu matikan lagi: cahaya malam saat kamu bekerja larut, jangan ganggu saat kamu presentasi, tetap terjaga saat kamu menonton sesuatu. Omarchy menyebutnya toggle, dan semuanya bekerja dengan cara yang sama — tombol pintas, entri menu, dan perintah, semuanya mengenai sakelar yang sama.
+Banyak hal yang kamu ubah sehari-hari sebenarnya bukan pengaturan. Itu adalah mode yang kamu nyalakan selama satu jam lalu matikan lagi: cahaya malam saat kamu bekerja larut, jangan ganggu saat kamu presentasi, tetap terjaga saat kamu menonton sesuatu. Unbloarchy menyebutnya toggle, dan semuanya bekerja dengan cara yang sama — tombol pintas, entri menu, dan perintah, semuanya mengenai sakelar yang sama.
 
 ### Menu toggle
 
-`Super + Ctrl + O` membuka _Trigger > Toggle_ secara langsung, atau kamu bisa berjalan ke sana dari menu Omarchy (`Super + Space`). Semua yang ada di daftar itu adalah sakelar yang bisa kamu alihkan tanpa memikirkan di mana keadaannya disimpan. Sakelar untuk tampilan desktop berada di sebelahnya, di bawah _Appearance_.
+`Super + Ctrl + O` membuka _Trigger > Toggle_ secara langsung, atau kamu bisa berjalan ke sana dari menu Unbloarchy (`Super + Space`). Semua yang ada di daftar itu adalah sakelar yang bisa kamu alihkan tanpa memikirkan di mana keadaannya disimpan. Sakelar untuk tampilan desktop berada di sebelahnya, di bawah _Appearance_.
 
-Dari terminal, sakelar yang sama adalah `omarchy toggle <thing>`. Jalankan `omarchy toggle` sendiri untuk melihat seluruh grupnya.
+Dari terminal, sakelar yang sama adalah `unbloarchy toggle <thing>`. Jalankan `unbloarchy toggle` sendiri untuk melihat seluruh grupnya.
 
 | Toggle | Tombol pintas | Perintah |
 | ------ | ------ | ------- |
-| Cahaya malam | — | `omarchy toggle nightlight` |
-| Senyapkan notifikasi | `Super + Ctrl + Alt + ,` | `omarchy toggle notification silencing` |
-| Tetap terjaga (tanpa kunci idle) | `Super + Ctrl + I` | `omarchy toggle idle` |
-| Tangkap crash | — | `omarchy toggle crash-capture` |
-| Screensaver | — | `omarchy toggle screensaver` |
-| [Herdr](https://herdr.dev) sinkronisasi tema | — | `omarchy toggle theme sync` |
-| Bilah menu | `Super + Shift + Space` | `omarchy toggle bar` |
-| Touchpad | `XF86TouchpadToggle` | `omarchy toggle touchpad` |
-| Layar sentuh | — | `omarchy toggle touchscreen` |
-| Suspend | — | `omarchy toggle suspend` |
-| GPU hybrid | — | `omarchy toggle hybrid gpu` |
+| Cahaya malam | — | `unbloarchy toggle nightlight` |
+| Senyapkan notifikasi | `Super + Ctrl + Alt + ,` | `unbloarchy toggle notification silencing` |
+| Tetap terjaga (tanpa kunci idle) | `Super + Ctrl + I` | `unbloarchy toggle idle` |
+| Tangkap crash | — | `unbloarchy toggle crash-capture` |
+| Screensaver | — | `unbloarchy toggle screensaver` |
+| [Herdr](https://herdr.dev) sinkronisasi tema | — | `unbloarchy toggle theme sync` |
+| Bilah menu | `Super + Shift + Space` | `unbloarchy toggle bar` |
+| Touchpad | `XF86TouchpadToggle` | `unbloarchy toggle touchpad` |
+| Layar sentuh | — | `unbloarchy toggle touchscreen` |
+| Suspend | — | `unbloarchy toggle suspend` |
+| GPU hybrid | — | `unbloarchy toggle hybrid gpu` |
 
 Sakelar touchpad, layar sentuh, dan GPU hybrid berada di bawah _Trigger > Hardware_ (`Super + Ctrl + H`) alih-alih di bawah Toggle, karena hanya muncul saat kamu memang punya perangkat keras itu. Sakelar touchpad dan layar sentuh tetap bertahan setelah Hyprland dimuat ulang — nama perangkat yang dinonaktifkan disimpan ke file state kecil yang dibaca Hyprland saat startup untuk menonaktifkannya lagi.
 
-_Appearance_ menampung bilah menu dan animasi, plus beberapa hal yang bukan perintah `omarchy toggle` tetapi berperilaku sama: persentase baterai di bilah, layout workspace default, dan di bawah _Windows_, celah jendela (`Super + Shift + Backspace`) dan aspek persegi 1-jendela (`Super + Ctrl + Backspace`).
+_Appearance_ menampung bilah menu dan animasi, plus beberapa hal yang bukan perintah `unbloarchy toggle` tetapi berperilaku sama: persentase baterai di bilah, layout workspace default, dan di bawah _Windows_, celah jendela (`Super + Shift + Backspace`) dan aspek persegi 1-jendela (`Super + Ctrl + Backspace`).
 
-Sebagian besar ini hanyalah file flag di bawah `~/.local/state/omarchy/toggles/`. Jika kamu ingin bercabang berdasarkan salah satunya dalam skrip, `omarchy-toggle-enabled` memberimu kode exit alih-alih memaksamu mencarinya:
+Sebagian besar ini hanyalah file flag di bawah `~/.local/state/unbloarchy/toggles/`. Jika kamu ingin bercabang berdasarkan salah satunya dalam skrip, `unbloarchy-toggle-enabled` memberimu kode exit alih-alih memaksamu mencarinya:
 
 ```bash
-omarchy-toggle-enabled screensaver-off && echo "screensaver is off"
+unbloarchy-toggle-enabled screensaver-off && echo "screensaver is off"
 ```
 
 Flag-flag ini dinamai untuk keadaan mati — `screensaver-off`, `suspend-off`, `bar-off` — jadi keberadaannya berarti fitur tersebut dinonaktifkan.
@@ -38,11 +38,11 @@ Flag-flag ini dinamai untuk keadaan mati — `screensaver-off`, `suspend-off`, `
 
 Saat sebuah mode aktif, kamu mendapatkan glif kecil di tengah bilah atas di sebelah jam. Itulah widget indikator, dan widget ini membawa dikte, perekaman layar, pengingat yang tertunda, cahaya malam, jangan ganggu, dan tetap terjaga.
 
-Indikator yang tidak aktif disembunyikan. Arahkan kursor ke mana saja di bilah dan indikator-indikator itu akan muncul redup, sehingga kamu bisa mengklik salah satunya untuk menyalakannya tanpa tahu tombol pintasnya. Mengklik indikator yang aktif akan mematikannya kembali. Jika kamu lebih suka melihat semuanya sepanjang waktu, atur `alwaysShow` menjadi `true` pada entri `omarchy.indicators` di `~/.config/omarchy/shell.json` — lihat [bilah atas](05-the-top-bar.md) untuk cara widget bilah dikonfigurasi.
+Indikator yang tidak aktif disembunyikan. Arahkan kursor ke mana saja di bilah dan indikator-indikator itu akan muncul redup, sehingga kamu bisa mengklik salah satunya untuk menyalakannya tanpa tahu tombol pintasnya. Mengklik indikator yang aktif akan mematikannya kembali. Jika kamu lebih suka melihat semuanya sepanjang waktu, atur `alwaysShow` menjadi `true` pada entri `unbloarchy.indicators` di `~/.config/unbloarchy/shell.json` — lihat [bilah atas](05-the-top-bar.md) untuk cara widget bilah dikonfigurasi.
 
 ### Cahaya malam
 
-Cahaya malam menghangatkan layar ke 4000K, dan mengalihkannya lagi mengembalikannya ke 6500K. Alihkan dari menu toggle (`Super + Ctrl + O`) atau dengan `omarchy toggle nightlight`. Ini digerakkan oleh hyprsunset, yang akan dijalankan oleh toggle untukmu jika belum berjalan.
+Cahaya malam menghangatkan layar ke 4000K, dan mengalihkannya lagi mengembalikannya ke 6500K. Alihkan dari menu toggle (`Super + Ctrl + O`) atau dengan `unbloarchy toggle nightlight`. Ini digerakkan oleh hyprsunset, yang akan dijalankan oleh toggle untukmu jika belum berjalan.
 
 Secara default hyprsunset tidak melakukan apa pun pada layarmu sama sekali. `~/.config/hypr/hyprsunset.conf` disertai profil identitas justru agar tampilan tetap tidak tersentuh sampai kamu meminta kehangatan. Jika kamu lebih suka profil ini beralih mengikuti jam, ganti itu dengan profil waktu:
 
@@ -61,11 +61,11 @@ Lalu jalankan hyprsunset saat login dengan menambahkan `o.launch_on_start("hyprs
 
 Namun, tidak ada yang hilang. Notifikasi yang disenyapkan ditahan: tampilkan kembali beberapa yang terakhir di layar dengan `Super + Shift + Alt + ,`. Lihat [pemberitahuan](10-notices.md) untuk selebihnya.
 
-Dua jenis pesan tetap bisa lolos: toast konfirmasi Omarchy sendiri untuk sesuatu yang baru saja kamu lakukan ("Theme changed", "Screenshot saved"), dan peringatan kritis yang dikirim dari baris perintah. Aplikasi chat yang menandai semuanya sebagai kritis untuk memaksa tampil di depanmu tidak termasuk.
+Dua jenis pesan tetap bisa lolos: toast konfirmasi Unbloarchy sendiri untuk sesuatu yang baru saja kamu lakukan ("Theme changed", "Screenshot saved"), dan peringatan kritis yang dikirim dari baris perintah. Aplikasi chat yang menandai semuanya sebagai kritis untuk memaksa tampil di depanmu tidak termasuk.
 
 ### Idle
 
-Shell Omarchy mengendalikan perilaku idle, dan waktunya adalah blok `idle` tingkat atas di `~/.config/omarchy/shell.json`:
+Shell Unbloarchy mengendalikan perilaku idle, dan waktunya adalah blok `idle` tingkat atas di `~/.config/unbloarchy/shell.json`:
 
 ```json
 {
@@ -81,22 +81,22 @@ Kedua angka adalah detik yang dihitung dari saat kamu mulai idle — bukan dari 
 
 Jika kamu menutup screensaver sebelum batas waktu kunci, itu dihitung sebagai aktivitas dan kunci yang tertunda dibatalkan. Kamu tidak akan terkunci hanya karena melirik mesinmu.
 
-Untuk menghentikan penguncian saat idle sepenuhnya, `Super + Ctrl + I` — atau `omarchy toggle idle` — mengaktifkan tetap terjaga, dan indikator cangkir kopi muncul di bilah. Itulah yang harus ditekan sebelum presentasi panjang atau build yang ingin kamu tonton. Tekan lagi untuk kembali normal. `omarchy toggle idle status` mencetak keadaan saat ini sebagai JSON jika kamu membutuhkannya dari skrip.
+Untuk menghentikan penguncian saat idle sepenuhnya, `Super + Ctrl + I` — atau `unbloarchy toggle idle` — mengaktifkan tetap terjaga, dan indikator cangkir kopi muncul di bilah. Itulah yang harus ditekan sebelum presentasi panjang atau build yang ingin kamu tonton. Tekan lagi untuk kembali normal. `unbloarchy toggle idle status` mencetak keadaan saat ini sebagai JSON jika kamu membutuhkannya dari skrip.
 
 Ini tentang penguncian dan screensaver, bukan daya. Suspend dan hibernasi memiliki pengaturannya sendiri di [tidur sistem](36-system-sleep.md).
 
 ### Screensaver
 
-Screensaver Omarchy adalah seni ASCII yang berjalan melalui efek teks acak, satu instance per monitor. Tombol apa pun atau gerakan mouse akan keluar darinya.
+Screensaver Unbloarchy adalah seni ASCII yang berjalan melalui efek teks acak, satu instance per monitor. Tombol apa pun atau gerakan mouse akan keluar darinya.
 
 Kamu bisa menjalankannya sesuai permintaan dari _System > Screensaver_ (`Super + Esc`), yang memaksanya tampil bahkan jika kamu telah mematikan screensaver idle. Secara default tidak ada tombol pintas yang terikat padanya.
 
-`omarchy toggle screensaver` adalah yang mematikan yang idle, jika kamu lebih suka langsung dari bekerja ke terkunci. Tombol apa pun, klik, scroll, atau gerakan mouse akan menutupnya.
+`unbloarchy toggle screensaver` adalah yang mematikan yang idle, jika kamu lebih suka langsung dari bekerja ke terkunci. Tombol apa pun, klik, scroll, atau gerakan mouse akan menutupnya.
 
-Logo yang digambarnya bisa kamu ubah, di bawah _Appearance > Branding > Screensaver_. Unggah png atau svg dan Omarchy akan mengonversinya ke ASCII. Lihat [branding](41-branding.md).
+Logo yang digambarnya bisa kamu ubah, di bawah _Appearance > Branding > Screensaver_. Unggah png atau svg dan Unbloarchy akan mengonversinya ke ASCII. Lihat [branding](41-branding.md).
 
 ### Layar kunci
 
-`Super + Ctrl + L` mengunci mesin. Itu menjalankan layar kunci dari shell Omarchy, mengosongkan tampilan, mengatur ulang layout keyboard-mu ke yang pertama agar kamu tidak mengetik kata sandi dalam alfabet yang salah, dan — jika kamu menjalankannya — mengunci 1Password saat keluar.
+`Super + Ctrl + L` mengunci mesin. Itu menjalankan layar kunci dari shell Unbloarchy, mengosongkan tampilan, mengatur ulang layout keyboard-mu ke yang pertama agar kamu tidak mengetik kata sandi dalam alfabet yang salah, dan — jika kamu menjalankannya — mengunci 1Password saat keluar.
 
 Layar kunci menerima kata sandi, dan juga akan menerima sidik jari setelah kamu mengaturnya. Itu, dan cara lain untuk mengautentikasi, dibahas di [autentikasi perangkat keras](37-hardware-authentication.md).

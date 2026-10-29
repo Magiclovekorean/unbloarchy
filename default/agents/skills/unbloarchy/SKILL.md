@@ -2,13 +2,13 @@
 name: unbloarchy
 description: >
   REQUIRED for end-user customization of Linux desktop, window manager, or system config.
-  Use when editing ANY file in ~/.config/, ~/.config/hypr/, ~/.config/omarchy/,
+  Use when editing ANY file in ~/.config/, ~/.config/hypr/, ~/.config/unbloarchy/,
   ~/.config/alacritty/, ~/.config/foot/, ~/.config/kitty/, or ~/.config/ghostty/.
   Triggers: Hyprland, window rules, window behavior, animations, keybindings, monitors, gaps, borders,
-  blur, opacity, omarchy-shell, bar, widgets, terminal config, themes, fonts, background,
+  blur, opacity, unbloarchy-shell, bar, widgets, terminal config, themes, fonts, background,
   night light, idle, lock screen, screenshots, screen recording, reminders, layer rules, workspace
-  settings, display config, appearance changes, and user-facing omarchy commands. Excludes Omarchy
-  source development through `omarchy dev link` workflows.
+  settings, display config, appearance changes, and user-facing unbloarchy commands. Excludes Unbloarchy
+  source development through `unbloarchy dev link` workflows.
 ---
 
 # Unbloarchy Skill

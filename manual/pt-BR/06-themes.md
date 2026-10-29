@@ -1,8 +1,8 @@
 # Temas
 
-O Omarchy vem com vinte e dois temas lindos. Você pode alternar entre eles em _Aparência > Tema_ no Menu do Omarchy (`Super + Space`) ou ir direto para o seletor de temas usando `Super + Ctrl + T`.
+O Unbloarchy vem com vinte e dois temas lindos. Você pode alternar entre eles em _Aparência > Tema_ no Menu do Unbloarchy (`Super + Space`) ou ir direto para o seletor de temas usando `Super + Ctrl + T`.
 
-Cada tema estiliza a área de trabalho, o terminal, o neovim, a tela de atividades (btop), o Chromium e todo o shell do Omarchy: barra superior, menu, notificações, OSD e a tela de bloqueio. (No Obsidian, você deve selecionar manualmente o tema do Omarchy em _Aparência > Temas_ dentro do aplicativo).
+Cada tema estiliza a área de trabalho, o terminal, o neovim, a tela de atividades (btop), o Chromium e todo o shell do Unbloarchy: barra superior, menu, notificações, OSD e a tela de bloqueio. (No Obsidian, você deve selecionar manualmente o tema do Unbloarchy em _Aparência > Temas_ dentro do aplicativo).
 
 Os temas têm um conjunto de imagens de fundo entre as quais você pode escolher usando `Super + Ctrl + W`.
 

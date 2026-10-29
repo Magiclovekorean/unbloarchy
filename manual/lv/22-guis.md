@@ -20,11 +20,11 @@ Obsidian ir bezmaksas visiem mērķiem, tostarp personīgai, komerciālai un bez
 
 Obsidian piedāvā arī [komerciālu papildinājumu sinhronizācijai](https://obsidian.md/sync) ar mobilajām lietotnēm iOS un Android. (https://obsidian.md/pricing).
 
-Tu palaid Obsidian ar `Super + Shift + O`. Lai izmantotu tēmu sinhronizāciju, iestatījumos jāizvēlas `Omarchy` tēma.
+Tu palaid Obsidian ar `Super + Shift + O`. Lai izmantotu tēmu sinhronizāciju, iestatījumos jāizvēlas `Unbloarchy` tēma.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) ir Omarchy paša pavisam vienkāršā Markdown rakstīšanas lietotne. Nekādu krātuvju, nekādu spraudņu, tikai tu un vārdi.
+[Omawrite](https://github.com/omacom-io/omawrite) ir Unbloarchy paša pavisam vienkāršā Markdown rakstīšanas lietotne. Nekādu krātuvju, nekādu spraudņu, tikai tu un vārdi.
 
 Tu palaid Omawrite ar `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Tu palaid Aether caur lietotņu palaidēju (`Super + Space`).
 
 [LocalSend](https://localsend.org/) ļauj sūtīt failus uz citām ierīcēm tajā pašā tīklā, kurās darbojas šī lietotne, līdzīgi Apple AirDrop. Taču tā ir starpplatformu, tāpēc vari sūtīt failus uz Windows, macOS, Android, iOS un, protams, Linux, un saņemt no tām.
 
-Kopīgošanas izvēlni vari atvērt ar `Super + Ctrl + S` vai Omarchy izvēlnē sadaļā _Trigger > Share_. Tā piedāvā četras iespējas:
+Kopīgošanas izvēlni vari atvērt ar `Super + Ctrl + S` vai Unbloarchy izvēlnē sadaļā _Trigger > Share_. Tā piedāvā četras iespējas:
 
 - **Clipboard** nosūta visu, ko esi nokopējis, kā teksta failu. Lieliski, lai tiktu pie saites vai fragmenta savā telefonā, nesūtot sev e-pastu.
 - **File** atver failu atlasītāju, kurā vari izvēlēties vairākus uzreiz.
 - **Folder** nosūta veselu direktoriju.
 - **Receive** atver pašu LocalSend, lai cita ierīce varētu kaut ko nosūtīt tev.
 
-Tas pats darbojas arī no termināļa ar `omarchy share clipboard`, `omarchy share file [path]` un `omarchy share folder [path]`. Atstāj ceļu tukšu, un iegūsi atlasītāju.
+Tas pats darbojas arī no termināļa ar `unbloarchy share clipboard`, `unbloarchy share file [path]` un `unbloarchy share folder [path]`. Atstāj ceļu tukšu, un iegūsi atlasītāju.
 
 Vari sūtīt arī tieši no failu pārvaldnieka: ar labo pogu noklikšķini uz jebkuras izvēles Nautilus un izvēlies _Send via LocalSend_.
 
-Omarchy ugunsmūris pēc noklusējuma ir slēgts, izņemot LocalSend portu, tāpēc tas darbojas uzreiz pēc uzstādīšanas. Skati [drošību](48-security.md).
+Unbloarchy ugunsmūris pēc noklusējuma ir slēgts, izņemot LocalSend portu, tāpēc tas darbojas uzreiz pēc uzstādīšanas. Skati [drošību](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ Tu palaid LibreOffice caur lietotņu palaidēju (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) ir Omarchy paša pavisam vienkāršā prezentāciju lietotne. Tavs materiāls ir viens Markdown fails, kuram blakus atrodas tā attēli un video: raksti katru slaidu zem tiešā priekšskatījuma, sakārto slaidus, velkot tos vajadzīgajā secībā, pēc tam prezentē pilnekrānā vai eksportē uz PDF un PowerPoint. Tā pat pārņem tavu Omarchy tēmu.
+[Hype](https://github.com/omacom/hype) ir Unbloarchy paša pavisam vienkāršā prezentāciju lietotne. Tavs materiāls ir viens Markdown fails, kuram blakus atrodas tā attēli un video: raksti katru slaidu zem tiešā priekšskatījuma, sakārto slaidus, velkot tos vajadzīgajā secībā, pēc tam prezentē pilnekrānā vai eksportē uz PDF un PowerPoint. Tā pat pārņem tavu Unbloarchy tēmu.
 
 Tu palaid Hype caur lietotņu palaidēju (`Super + Space`). Nospied `?` tajā, lai redzētu visus saīsnes taustiņus.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) ir Omarchy paša pavisam vienkāršais veids, kā parakstīt PDF un tos aizpildīt. Novieto savu saglabāto parakstu, tekstu un šodienas datumu jebkur uz lapas, pēc tam saglabā parakstītu kopiju blakus oriģinālam. Skati [PDF aizpildīšana](27-filling-out-pdfs.md), lai uzzinātu, kā.
+[Signed](https://github.com/omacom/signed) ir Unbloarchy paša pavisam vienkāršais veids, kā parakstīt PDF un tos aizpildīt. Novieto savu saglabāto parakstu, tekstu un šodienas datumu jebkur uz lapas, pēc tam saglabā parakstītu kopiju blakus oriģinālam. Skati [PDF aizpildīšana](27-filling-out-pdfs.md), lai uzzinātu, kā.
 
 Tu palaid Signed caur lietotņu palaidēju (`Super + Space`) vai atver ar to PDF no failu pārvaldnieka.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) ir Omarchy paša pavisam vienkāršais kalkulators, kas atveras peldošā logā.
+[Omacalc](https://github.com/omacom-io/omacalc) ir Unbloarchy paša pavisam vienkāršais kalkulators, kas atveras peldošā logā.
 
 Tu palaid Omacalc ar `Super + Shift + Q` (vai kalkulatora taustiņu, ja tavai tastatūrai tāds ir).
 
@@ -85,7 +85,7 @@ Tu palaid Omacalc ar `Super + Shift + Q` (vai kalkulatora taustiņu, ja tavai ta
 
 [Signal](https://signal.org/) ir E2E šifrētās ziņojumapmaiņas pionieris un lieliska saziņas iespēja ikvienam, kurš nevēlas iet caur kādu no lielajiem tehnoloģiju konglomerātiem.
 
-Tu palaid Signal ar `Super + Shift + G`. Tā nav daļa no pamata instalācijas, tāpēc pirmo reizi, nospiežot šo kombināciju, Omarchy piedāvās to instalēt tavā vietā (tā ir arī Omarchy izvēlnē sadaļā _Install > Service_).
+Tu palaid Signal ar `Super + Shift + G`. Tā nav daļa no pamata instalācijas, tāpēc pirmo reizi, nospiežot šo kombināciju, Unbloarchy piedāvās to instalēt tavā vietā (tā ir arī Unbloarchy izvēlnē sadaļā _Install > Service_).
 
 ## mpv
 
@@ -95,13 +95,13 @@ Tu palaid mpv caur lietotņu palaidēju (`Super + Space`) vai vienkārši veic d
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) ir Omarchy paša pavisam vienkāršais video apgriezējs. Kad tev vajag tikai nogriezt klipa sākumu un beigas, tas pārspēj pilnvērtīga video redaktora palaišanu.
+[Omacut](https://github.com/omacom-io/omacut) ir Unbloarchy paša pavisam vienkāršais video apgriezējs. Kad tev vajag tikai nogriezt klipa sākumu un beigas, tas pārspēj pilnvērtīga video redaktora palaišanu.
 
 Tu palaid Omacut caur lietotņu palaidēju (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) ir Omarchy paša pavisam vienkāršais tīmekļa kameras ierakstītājs. Vienreiz izvēlies kameru un mikrofonu, pēc tam nospied `Space`, lai ierakstītu, un vēlreiz, lai pauzētu un atsāktu to pašu ierakstu. Tas vienmēr ieraksta kameras augstākajā izšķirtspējā, ar tiešo mikrofona līmeņa mērītāju, lai pirms sākšanas varētu pārbaudīt līmeņus.
+[Monologue](https://github.com/omacom/monologue) ir Unbloarchy paša pavisam vienkāršais tīmekļa kameras ierakstītājs. Vienreiz izvēlies kameru un mikrofonu, pēc tam nospied `Space`, lai ierakstītu, un vēlreiz, lai pauzētu un atsāktu to pašu ierakstu. Tas vienmēr ieraksta kameras augstākajā izšķirtspējā, ar tiešo mikrofona līmeņa mērītāju, lai pirms sākšanas varētu pārbaudīt līmeņus.
 
 Pārtrauc ierakstu, un tas uzreiz atveras iebūvētajā redaktorā. Veic dubultklikšķi uz klipa, lai to sadalītu, velc rokturus, lai apgrieztu katru daļu, un noņem daļas, kuras nevēlies. Pēc tam saglabā to kā MP4. Tavs oriģinālais ieraksts tiek saglabāts, līdz tu to izmet, tāpēc vienmēr vari atgriezties un sagriezt to citādi.
 

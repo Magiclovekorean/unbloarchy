@@ -1,6 +1,6 @@
 """The plumbing every agent usage collector shares.
 
-Each `bin/omarchy-agent-usage-<id>` keeps what is its own: where its
+Each `bin/unbloarchy-agent-usage-<id>` keeps what is its own: where its
 credentials live, the endpoint it asks and how to read the answer, which
 providers' tokens it counts, and the quirks of its record. Everything the
 collector contract (docs/agent-usage-collectors.md) asks of all of them lives
@@ -11,7 +11,7 @@ Claude Code transcripts, Codex rollouts, DeepSeek Harness logs and MiniMax
 Code sessions, with the one rule each split follows.
 
 It ships with the agents panel the records feed, and a collector loads it
-from `$OMARCHY_PATH/shell/plugins/agents`. Nothing here prints a record, reads
+from `$UNBLOARCHY_PATH/shell/plugins/agents`. Nothing here prints a record, reads
 a credential, or talks to a service on its own.
 """
 
@@ -80,7 +80,7 @@ HTTP_BODY_LIMIT = 1_048_576
 
 def program() -> str:
   name = Path(sys.argv[0]).name if sys.argv and sys.argv[0] else ""
-  return name if name.startswith("omarchy-agent-usage-") else "omarchy-agent-usage"
+  return name if name.startswith("unbloarchy-agent-usage-") else "unbloarchy-agent-usage"
 
 
 def warn(message: str) -> None:
@@ -2625,7 +2625,7 @@ def read_codex_rollout(path: Path, stat_result: os.stat_result, previous: dict[s
   return record
 
 
-# How long a refresh's start, as omarchy-agent-usage-update hands it to the
+# How long a refresh's start, as unbloarchy-agent-usage-update hands it to the
 # collectors it runs, speaks for a forced read: longer than any refresh takes,
 # so a stamp inherited from elsewhere soon stops standing in for --force.
 CODEX_REFRESH_SECONDS = 300
@@ -2634,7 +2634,7 @@ CODEX_REFRESH_SECONDS = 300
 def _codex_refresh_started(now: float) -> float:
   """When the refresh this collector runs in began, or `now` outside one."""
   try:
-    started = float(os.environ.get("OMARCHY_AGENT_USAGE_REFRESH_AT", ""))
+    started = float(os.environ.get("UNBLOARCHY_AGENT_USAGE_REFRESH_AT", ""))
   except ValueError:
     return now
   return started if now - CODEX_REFRESH_SECONDS <= started <= now else now
@@ -2663,7 +2663,7 @@ def codex_rollouts(cache_file: Path | None, reuse: bool = True, native: bool = F
   cached record cannot have grown a turn since, and one that grew is read on
   from where its record stopped; `reuse=False` reads them all again, but
   takes what another forced read wrote since this one or its refresh
-  (OMARCHY_AGENT_USAGE_REFRESH_AT) began, so the collectors one refresh
+  (UNBLOARCHY_AGENT_USAGE_REFRESH_AT) began, so the collectors one refresh
   forces read every rollout once between them, whenever each starts. A
   record keeps every turn whatever its provider, so the caller decides which
   providers and models are its own, and every caller shares the cache
@@ -3743,7 +3743,7 @@ def cursor_token(auth_path: Path | None = None, state_db: Path | None = None) ->
 
 
 def registered_accounts(agent_id: str) -> list[dict[str, Any]]:
-  """The accounts `omarchy agent account` registered for the agent, read
+  """The accounts `unbloarchy agent account` registered for the agent, read
   straight from its registry, each marked `active` and carrying the
   registry's `switch` settings. Only a registry holding a second account
   matters: with one, the record is exactly what it always was."""
@@ -3755,7 +3755,7 @@ def registered_accounts(agent_id: str) -> list[dict[str, Any]]:
   active_id = registry.get("active") or accounts[0]["id"]
   if not any(a["id"] == active_id for a in accounts):
     active_id = accounts[0]["id"]
-  # The threshold reads as `omarchy agent account` reads it: a percentage
+  # The threshold reads as `unbloarchy agent account` reads it: a percentage
   # held to 50-100, 95 when it isn't one.
   try:
     threshold = max(50, min(100, int(registry.get("threshold"))))

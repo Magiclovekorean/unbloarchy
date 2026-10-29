@@ -1,5 +1,5 @@
 echo "Install Signed, the PDF signing app"
 
-if [[ ! -f $HOME/.local/state/omarchy/preinstalls-removed ]]; then
-  omarchy-pkg-add signed
+if [[ ! -f $HOME/.local/state/unbloarchy/preinstalls-removed ]]; then
+  unbloarchy-pkg-add signed
 fi

@@ -1,14 +1,14 @@
 # Thanh trên cùng
 
-Dải dọc theo cạnh trên của màn hình là thanh Omarchy. Nó không phải một thanh trạng thái gắn thêm vào, mà là một phần của shell Omarchy, tiến trình Quickshell duy nhất chạy lâu dài, cũng là tiến trình vẽ menu, các thông báo, các popup OSD và màn hình khóa. Đó là lý do nó ăn khớp hoàn hảo về giao diện với mọi thứ khác, và lý do một bảng mở ra ngay lập tức thay vì khởi chạy một ứng dụng mới.
+Dải dọc theo cạnh trên của màn hình là thanh Unbloarchy. Nó không phải một thanh trạng thái gắn thêm vào, mà là một phần của shell Unbloarchy, tiến trình Quickshell duy nhất chạy lâu dài, cũng là tiến trình vẽ menu, các thông báo, các popup OSD và màn hình khóa. Đó là lý do nó ăn khớp hoàn hảo về giao diện với mọi thứ khác, và lý do một bảng mở ra ngay lập tức thay vì khởi chạy một ứng dụng mới.
 
 Nó cũng là phần duy nhất của desktop luôn hiện trên màn hình, vì vậy đáng để biết tất cả những glyph nhỏ đó làm gì.
 
 ## Mặc định có những gì trên đó
 
-Thanh có ba phần. Ở bên trái là logo Omarchy (trình khởi chạy menu) và các chỉ báo không gian làm việc. Ở giữa, bạn có các chỉ báo trạng thái, đồng hồ, Elsewhen (một đồng hồ thế giới), thời tiết và huy hiệu cập nhật Omarchy. Ở bên phải: khay hệ thống, bố cục bàn phím (khi có nhiều hơn một bố cục được cấu hình), agents, bluetooth, mạng, âm thanh, màn hình và nguồn.
+Thanh có ba phần. Ở bên trái là logo Unbloarchy (trình khởi chạy menu) và các chỉ báo không gian làm việc. Ở giữa, bạn có các chỉ báo trạng thái, đồng hồ, Elsewhen (một đồng hồ thế giới), thời tiết và huy hiệu cập nhật Unbloarchy. Ở bên phải: khay hệ thống, bố cục bàn phím (khi có nhiều hơn một bố cục được cấu hình), agents, bluetooth, mạng, âm thanh, màn hình và nguồn.
 
-Một vài thứ trong số đó chỉ xuất hiện khi chúng có điều gì để nói. Bố cục bàn phím chỉ xuất hiện nếu bạn đã cấu hình nhiều hơn một bố cục. Huy hiệu cập nhật chỉ xuất hiện khi có một bản cập nhật Omarchy đang chờ. Và biểu tượng agents xuất hiện lần đầu tiên Omarchy tìm thấy mức sử dụng AI coding trên máy (xem [AI](17-ai.md)).
+Một vài thứ trong số đó chỉ xuất hiện khi chúng có điều gì để nói. Bố cục bàn phím chỉ xuất hiện nếu bạn đã cấu hình nhiều hơn một bố cục. Huy hiệu cập nhật chỉ xuất hiện khi có một bản cập nhật Unbloarchy đang chờ. Và biểu tượng agents xuất hiện lần đầu tiên Unbloarchy tìm thấy mức sử dụng AI coding trên máy (xem [AI](17-ai.md)).
 
 ## Nhấn chuột khắp nơi
 
@@ -16,7 +16,7 @@ Gần như mọi widget đều làm gì đó khi nhấn chuột trái, phải v�
 
 | Widget | Trái | Phải | Giữa / cuộn |
 | --- | --- | --- | --- |
-| Menu | Menu Omarchy | Terminal mới | — |
+| Menu | Menu Unbloarchy | Terminal mới | — |
 | Không gian làm việc | Tập trung vào không gian làm việc đó trên màn hình này | — | Cuộn: không gian làm việc tiếp theo/trước đó |
 | Đồng hồ | Popup lịch | Chuyển vòng định dạng nhãn | Giữa: bộ chọn múi giờ |
 | Thời tiết | Popup dự báo | Thời tiết đầy đủ dưới dạng thông báo | Giữa: làm mới |
@@ -29,7 +29,7 @@ Gần như mọi widget đều làm gì đó khi nhấn chuột trái, phải v�
 | Media | Phát/tạm dừng | Popup ảnh bìa | Giữa: tiếp theo · cuộn: trước/tiếp theo |
 | Agents | Bảng Agents | Khởi chạy agent của bạn | Giữa: gói đăng ký tiếp theo |
 | Khay | Di chuột để lộ ngăn kéo | Nhấn phải vào chevron để quản lý | — |
-| Cập nhật Omarchy | Chạy cập nhật | — | — |
+| Cập nhật Unbloarchy | Chạy cập nhật | — | — |
 
 Không phải mọi thứ trong bảng đó đều có trên thanh của bạn ngay từ đầu. Widget media (MPRIS đang phát, với track và nghệ sĩ cuộn) và widget microphone đều được tích hợp sẵn nhưng tắt theo mặc định — hãy thêm chúng nếu bạn muốn, như mô tả bên dưới.
 
@@ -66,7 +66,7 @@ Mọi bảng đều nhận cả bàn phím lẫn chuột: các phím mũi tên d
 
 Hai widget nữa chỉ xuất hiện trên thanh một khi bạn cài đặt dịch vụ tương ứng từ **Install → Service**, và cả hai đều đáng biết vì chúng làm được nhiều hơn là báo cáo trạng thái.
 
-Bảng **Tailscale** kết nối và ngắt kết nối tailnet, chuyển đổi giữa các tài khoản, và chọn một exit node (cả máy của chính bạn và các vùng Mullvad đều xuất hiện trong danh sách đó). Nó cũng duyệt các máy của bạn — và với một máy được chọn, `s` gửi file tới nó qua Taildrop, đó là cách nhanh nhất để chuyển một file tới điện thoại hoặc một laptop khác của bạn. `c` sao chép IP của máy, `n` sao chép tên của nó, và `d` sao chép tên DNS đầy đủ của nó. Cũng có một nút gửi trên mỗi hàng máy, nếu bạn thích nhấn chuột hơn. Điều tương tự từ terminal là `omarchy tailscale send <machine> [file...]`.
+Bảng **Tailscale** kết nối và ngắt kết nối tailnet, chuyển đổi giữa các tài khoản, và chọn một exit node (cả máy của chính bạn và các vùng Mullvad đều xuất hiện trong danh sách đó). Nó cũng duyệt các máy của bạn — và với một máy được chọn, `s` gửi file tới nó qua Taildrop, đó là cách nhanh nhất để chuyển một file tới điện thoại hoặc một laptop khác của bạn. `c` sao chép IP của máy, `n` sao chép tên của nó, và `d` sao chép tên DNS đầy đủ của nó. Cũng có một nút gửi trên mỗi hàng máy, nếu bạn thích nhấn chuột hơn. Điều tương tự từ terminal là `unbloarchy tailscale send <machine> [file...]`.
 
 Bảng **Dropbox** xử lý đăng nhập, hiển thị bạn đã dùng bao nhiêu dung lượng lưu trữ, và liệt kê các file được đồng bộ gần đây.
 
@@ -93,19 +93,19 @@ Nếu bạn thích chọn từ một menu hơn, **Appearance → Menu Bar** có 
 Những điều tương tự cũng có các lệnh, đó là điều bạn muốn cho một thiết lập [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Để thêm hoặc gỡ bỏ hoàn toàn một widget, hãy dùng các lệnh plugin. `omarchy plugin list` in ra mọi widget mà shell biết cùng với id của nó, và sau đó:
+Để thêm hoặc gỡ bỏ hoàn toàn một widget, hãy dùng các lệnh plugin. `unbloarchy plugin list` in ra mọi widget mà shell biết cùng với id của nó, và sau đó:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Ẩn thanh
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## File cấu hình
 
-Tất cả đều được lưu trong `~/.config/omarchy/shell.json`, dưới khóa `bar`. Đây là một phiên bản đã rút gọn:
+Tất cả đều được lưu trong `~/.config/unbloarchy/shell.json`, dưới khóa `bar`. Đây là một phiên bản đã rút gọn:
 
 ```json
 {
@@ -123,20 +123,20 @@ Tất cả đều được lưu trong `~/.config/omarchy/shell.json`, dưới kh
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Mỗi widget là một mục trong một trong năm mảng bố cục, và các cài đặt của nó nằm ngay trên mục đó — không có file cài đặt riêng và không có đối tượng con `config`. `format`, `formatAlt` (thứ mà nhấn chuột phải chuyển vòng tới) và `verticalFormat` của đồng hồ đều sống ngay tại đó trên `{ "id": "omarchy.clock" }`.
+Mỗi widget là một mục trong một trong năm mảng bố cục, và các cài đặt của nó nằm ngay trên mục đó — không có file cài đặt riêng và không có đối tượng con `config`. `format`, `formatAlt` (thứ mà nhấn chuột phải chuyển vòng tới) và `verticalFormat` của đồng hồ đều sống ngay tại đó trên `{ "id": "unbloarchy.clock" }`.
 
 `center` là hộp ở giữa thanh: mọi thứ trong đó đều được căn giữa trên màn hình như một nhóm. `centerBegin` và `centerEnd` treo ở hai phía của hộp, đó là cách đồng hồ giữ đúng ở chính giữa ngay cả khi thời tiết và huy hiệu cập nhật đến và đi. Đặt nhiều hơn một widget vào `center` và chúng được căn giữa cùng nhau; để nó trống và `centerBegin` cùng `centerEnd` gặp nhau ở giữa thanh.
 
-Một quy tắc đáng ghi nhớ: **một khi bạn có `shell.json` của riêng mình, nó là chuẩn duy nhất**. Cho đến khi bạn tùy chỉnh bất cứ thứ gì, shell đọc file mặc định của Omarchy. Ngay khoảnh khắc bạn kéo một widget, chạy `omarchy bar`, hoặc tự sửa file, bạn sở hữu nó — không có hợp nhất sâu, vì vậy các widget mặc định mới trong các bản phát hành Omarchy tương lai sẽ không tự động xuất hiện trên thanh của bạn. `omarchy bar defaults` đặt bố cục được phát hành kèm theo trở lại bất cứ khi nào bạn muốn một khởi đầu sạch sẽ.
+Một quy tắc đáng ghi nhớ: **một khi bạn có `shell.json` của riêng mình, nó là chuẩn duy nhất**. Cho đến khi bạn tùy chỉnh bất cứ thứ gì, shell đọc file mặc định của Unbloarchy. Ngay khoảnh khắc bạn kéo một widget, chạy `unbloarchy bar`, hoặc tự sửa file, bạn sở hữu nó — không có hợp nhất sâu, vì vậy các widget mặc định mới trong các bản phát hành Unbloarchy tương lai sẽ không tự động xuất hiện trên thanh của bạn. `unbloarchy bar defaults` đặt bố cục được phát hành kèm theo trở lại bất cứ khi nào bạn muốn một khởi đầu sạch sẽ.
 
 Cùng file đó cũng giữ các thời gian nhàn rỗi của bạn ở cấp trên cùng, bên ngoài khóa `bar`: `idle.screensaver` và `idle.lock`, cả hai đều tính bằng giây kể từ khi bạn đi vào trạng thái nhàn rỗi. Vì vậy trình bảo vệ màn hình mặc định khởi động ở 150 giây và khóa ở 300 giây.

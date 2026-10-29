@@ -2,23 +2,23 @@
 
 ### Ég eyðilagði kerfið mitt með uppfærslu!
 
-Reyndu fyrst að [færa kerfið þitt aftur](47-system-snapshots.md) í útgáfuna fyrir nýlegu uppfærsluna þína. Ef það virkar ekki skaltu nota `omarchy-debug` til að deila vandanum þínum á #omarchy-help á Discord. Og ef allt annað bregst geturðu sett upp sjálfgefnar stillingar og pakka aftur með `omarchy-reinstall`.
+Reyndu fyrst að [færa kerfið þitt aftur](47-system-snapshots.md) í útgáfuna fyrir nýlegu uppfærsluna þína. Ef það virkar ekki skaltu nota `unbloarchy-debug` til að deila vandanum þínum á #unbloarchy-help á Discord. Og ef allt annað bregst geturðu sett upp sjálfgefnar stillingar og pakka aftur með `unbloarchy-reinstall`.
 
 ### Af hverju eru sum forrit svona stór á skjánum mínum?
 
-Omarchy gerir ráð fyrir 2x háupplausnarskjá, sem krefst þess að `GDK_SCALE` sé stillt á 2 í `~/.config/hypr/monitors.lua`. En ef þú ert á 1x skjá geturðu breytt `local omarchy_gdk_scale = 2` í 1 (og endurræst síðan öll forrit sem eru of stór). Sjá [handbókina um skjái](33-monitors.md).
+Unbloarchy gerir ráð fyrir 2x háupplausnarskjá, sem krefst þess að `GDK_SCALE` sé stillt á 2 í `~/.config/hypr/monitors.lua`. En ef þú ert á 1x skjá geturðu breytt `local unbloarchy_gdk_scale = 2` í 1 (og endurræst síðan öll forrit sem eru of stór). Sjá [handbókina um skjái](33-monitors.md).
 
 Fyrir Spotify geturðu notað `Ctrl + Minus` til að minnka viðmótið (og `Ctrl + Plus` til að stækka það).
 
 ### Af hverju hættu allar Super-lyklabindingarnar mínar að virka?
 
-Á sumum ASUS ROG og TUF fartölvum er `Fn + Super` auðgleymanleg lyklasamsetning sem kveikir og slekkur á Windows-lyklalás í fastbúnaði (ætlað fyrir tölvuleiki svo þú farir ekki úr leik fyrir slysni). Ekkert á skjánum segir þér að þetta hafi gerst. Á meðan lásinn er á sendir Super alls ekkert frá sér — svo hver einasta Omarchy-binding sem notar Super hættir einfaldlega að virka, og það lítur út eins og Hyprland hafi bilað.
+Á sumum ASUS ROG og TUF fartölvum er `Fn + Super` auðgleymanleg lyklasamsetning sem kveikir og slekkur á Windows-lyklalás í fastbúnaði (ætlað fyrir tölvuleiki svo þú farir ekki úr leik fyrir slysni). Ekkert á skjánum segir þér að þetta hafi gerst. Á meðan lásinn er á sendir Super alls ekkert frá sér — svo hver einasta Unbloarchy-binding sem notar Super hættir einfaldlega að virka, og það lítur út eins og Hyprland hafi bilað.
 
 Ýttu einu sinni á `Fn + Super` áður en þú ferð að grafa í `~/.config/hypr/`, og ef það fær Super ekki til baka skaltu ýta aftur á það svo þú skiljir lásinn ekki eftir á. Þetta er ekki Fn-lock, sem breytir aðeins því hvað F-lyklaröðin gerir.
 
 ### Wi-Fi, Bluetooth, hljóð eða snertiborðið mitt hætti bara að virka
 
-Áður en þú endurræsir skaltu reyna að endurræsa viðkomandi undirkerfi eitt og sér. _Update > Hardware_ í Omarchy-valmyndinni er með Wi-Fi, Bluetooth, Audio og Trackpad, og að endurhlaða einum þeirra leysir meirihluta „þetta virkaði fyrir fimm mínútum“ tilvika — Bluetooth-heyrnartól sem vilja ekki tengjast aftur, snertiborð sem dó eftir svefn, hljóð sem hvarf þegar þú tókst skjá úr sambandi.
+Áður en þú endurræsir skaltu reyna að endurræsa viðkomandi undirkerfi eitt og sér. _Update > Hardware_ í Unbloarchy-valmyndinni er með Wi-Fi, Bluetooth, Audio og Trackpad, og að endurhlaða einum þeirra leysir meirihluta „þetta virkaði fyrir fimm mínútum“ tilvika — Bluetooth-heyrnartól sem vilja ekki tengjast aftur, snertiborð sem dó eftir svefn, hljóð sem hvarf þegar þú tókst skjá úr sambandi.
 
 ### Af hverju spila ytri hátalararnir mínir ekki?
 
@@ -26,7 +26,7 @@ Líklega vegna þess að þeir eru ekki stilltir sem aðalútgangur. Smelltu á 
 
 ### Hátalarar fartölvunnar minnar hljóma undarlega
 
-Á sumum fartölvum beitir Omarchy sjálfkrafa hátalarastillingu sem leiðréttir tíðnisvörun innbyggðu hátalaranna. `omarchy audio tuning status` segir þér hvort slík stilling sé virk á vélinni þinni, og `omarchy audio tuning off` slekkur á henni ef þú vilt frekar heyra hátalarana óbreytta.
+Á sumum fartölvum beitir Unbloarchy sjálfkrafa hátalarastillingu sem leiðréttir tíðnisvörun innbyggðu hátalaranna. `unbloarchy audio tuning status` segir þér hvort slík stilling sé virk á vélinni þinni, og `unbloarchy audio tuning off` slekkur á henni ef þú vilt frekar heyra hátalarana óbreytta.
 
 ### Af hverju get ég ekki skráð mig inn eða notað sudo með lykilorðinu mínu?
 

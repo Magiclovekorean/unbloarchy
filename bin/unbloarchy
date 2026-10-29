@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-OMARCHY_BIN_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+UNBLOARCHY_BIN_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 METADATA_SCAN_LIMIT=80
 
 COMMAND_KEYS=()
@@ -29,14 +29,14 @@ declare -A GROUP_DESCRIPTIONS
 GROUP_DESCRIPTIONS[agent]="AI coding agents, their usage, and subscription accounts"
 GROUP_DESCRIPTIONS[ascii]="Text drawn as ASCII art"
 GROUP_DESCRIPTIONS[audio]="Audio input and output controls"
-GROUP_DESCRIPTIONS[bar]="Omarchy shell bar layout and settings"
+GROUP_DESCRIPTIONS[bar]="Unbloarchy shell bar layout and settings"
 GROUP_DESCRIPTIONS[battery]="Battery status helpers"
 GROUP_DESCRIPTIONS[bluetooth]="Bluetooth device controls"
-GROUP_DESCRIPTIONS[branch]="Omarchy git branch management"
+GROUP_DESCRIPTIONS[branch]="Unbloarchy git branch management"
 GROUP_DESCRIPTIONS[branding]="About and screensaver branding"
 GROUP_DESCRIPTIONS[brightness]="Display and keyboard brightness"
 GROUP_DESCRIPTIONS[capture]="Screenshots and screen recording"
-GROUP_DESCRIPTIONS[channel]="Omarchy release channel management"
+GROUP_DESCRIPTIONS[channel]="Unbloarchy release channel management"
 GROUP_DESCRIPTIONS[clipboard]="Clipboard helpers"
 GROUP_DESCRIPTIONS[cmd]="Command and shortcut helpers"
 GROUP_DESCRIPTIONS[config]="System configuration helpers"
@@ -44,7 +44,7 @@ GROUP_DESCRIPTIONS[crash]="Crash notification controls"
 GROUP_DESCRIPTIONS[debug]="Diagnostics and support logs"
 GROUP_DESCRIPTIONS[finalize]="Finalize user setup"
 GROUP_DESCRIPTIONS[default]="Default application selection"
-GROUP_DESCRIPTIONS[dev]="Omarchy development tools"
+GROUP_DESCRIPTIONS[dev]="Unbloarchy development tools"
 GROUP_DESCRIPTIONS[disk]="Disk performance helpers"
 GROUP_DESCRIPTIONS[dictation]="Dictation recording"
 GROUP_DESCRIPTIONS[display]="Display and text scaling"
@@ -63,7 +63,7 @@ GROUP_DESCRIPTIONS[installed]="Installed optional service checks"
 GROUP_DESCRIPTIONS[launch]="Application launchers"
 GROUP_DESCRIPTIONS[kernel]="Default boot kernel selection"
 GROUP_DESCRIPTIONS[language]="Display language and system locale"
-GROUP_DESCRIPTIONS[menu]="Omarchy menu commands"
+GROUP_DESCRIPTIONS[menu]="Unbloarchy menu commands"
 GROUP_DESCRIPTIONS[migrate]="Migration runner"
 GROUP_DESCRIPTIONS[monitor]="Monitor status helpers"
 GROUP_DESCRIPTIONS[network]="Network status helpers"
@@ -72,7 +72,7 @@ GROUP_DESCRIPTIONS[mise]="Mise tool wrappers"
 GROUP_DESCRIPTIONS[openclaw]="OpenClaw agent platform setup"
 GROUP_DESCRIPTIONS[osd]="On-screen display status helpers"
 GROUP_DESCRIPTIONS[pkg]="Package management helpers"
-GROUP_DESCRIPTIONS[plugin]="Omarchy shell plugin and bar widget management"
+GROUP_DESCRIPTIONS[plugin]="Unbloarchy shell plugin and bar widget management"
 GROUP_DESCRIPTIONS[plymouth]="Plymouth boot theme management"
 GROUP_DESCRIPTIONS[power]="Power supply detection"
 GROUP_DESCRIPTIONS[powerprofiles]="Power profile management"
@@ -80,18 +80,18 @@ GROUP_DESCRIPTIONS[refresh]="Reset config to defaults"
 GROUP_DESCRIPTIONS[reinstall]="Reinstall and reset workflows"
 GROUP_DESCRIPTIONS[reminder]="Desktop notification reminders"
 GROUP_DESCRIPTIONS[remove]="Removal workflows"
-GROUP_DESCRIPTIONS[restart]="Restart Omarchy components"
+GROUP_DESCRIPTIONS[restart]="Restart Unbloarchy components"
 GROUP_DESCRIPTIONS[setup]="Interactive setup wizards"
-GROUP_DESCRIPTIONS[shell]="Omarchy shell IPC helpers"
+GROUP_DESCRIPTIONS[shell]="Unbloarchy shell IPC helpers"
 GROUP_DESCRIPTIONS[snapshot]="System snapshots"
 GROUP_DESCRIPTIONS[sudo]="Sudo configuration helpers"
 GROUP_DESCRIPTIONS[system]="System status, reboot, shutdown, logout, and lock"
 GROUP_DESCRIPTIONS[tailscale]="Tailscale helpers"
 GROUP_DESCRIPTIONS[theme]="Theme management"
-GROUP_DESCRIPTIONS[toggle]="Toggle Omarchy features"
+GROUP_DESCRIPTIONS[toggle]="Toggle Unbloarchy features"
 GROUP_DESCRIPTIONS[transcode]="Image and video transcoding"
 GROUP_DESCRIPTIONS[tui]="Terminal UI launchers"
-GROUP_DESCRIPTIONS[update]="Omarchy and system updates"
+GROUP_DESCRIPTIONS[update]="Unbloarchy and system updates"
 GROUP_DESCRIPTIONS[version]="Version and channel information"
 GROUP_DESCRIPTIONS[weather]="Weather status"
 GROUP_DESCRIPTIONS[webapp]="Web app launchers"
@@ -247,16 +247,16 @@ register_command() {
       fallback_summary="${fallback_summary%$'\r'}"
       fallback_summary="${fallback_summary//$'\t'/ }"
 
-      if [[ -z $fallback_summary || $fallback_summary == omarchy:* ]]; then
+      if [[ -z $fallback_summary || $fallback_summary == unbloarchy:* ]]; then
         fallback_summary=""
       fi
     fi
   done <"$file"
 
-  local stem="${file_binary#omarchy-}"
+  local stem="${file_binary#unbloarchy-}"
   local fallback_group="$stem"
   local fallback_name=""
-  local fallback_route="omarchy ${stem//-/ }"
+  local fallback_route="unbloarchy ${stem//-/ }"
 
   if [[ $stem == *-* ]]; then
     fallback_group="${stem%%-*}"
@@ -268,7 +268,7 @@ register_command() {
   [[ $name_seen != "true" ]] && name="$fallback_name"
   [[ -z $summary && -n $fallback_summary ]] && summary="$fallback_summary"
   [[ -z $summary ]] && summary="Run the ${stem//-/ } command"
-  local route="omarchy $group"
+  local route="unbloarchy $group"
   if [[ -n $name ]]; then
     route+=" $name"
   fi
@@ -333,7 +333,7 @@ load_commands() {
 
 }
 
-# Only a command whose route starts with "omarchy <first>" can resolve a route
+# Only a command whose route starts with "unbloarchy <first>" can resolve a route
 # beginning with that word: one in the <first> group by filename or metadata, or
 # one with an alias under it. Loading just those resolves aliases and
 # metadata-moved routes without reading every header. A superset is harmless,
@@ -345,12 +345,12 @@ load_route_candidates() {
 
   [[ $first =~ ^[[:alnum:]][[:alnum:]_-]*$ ]] || return 1
 
-  for file in "$OMARCHY_BIN_DIR/omarchy-$first"-*; do
+  for file in "$UNBLOARCHY_BIN_DIR/unbloarchy-$first"-*; do
     seen["$file"]=1
   done
   while IFS= read -r file; do
     seen["$file"]=1
-  done < <(grep -l -E -e "omarchy:group=$first([^[:alnum:]_-]|$)" -e "omarchy:alias(es)?=.*omarchy[[:space:]]+$first([[:space:]]|\||$)" "$OMARCHY_BIN_DIR"/omarchy-* 2>/dev/null)
+  done < <(grep -l -E -e "unbloarchy:group=$first([^[:alnum:]_-]|$)" -e "unbloarchy:alias(es)?=.*unbloarchy[[:space:]]+$first([[:space:]]|\||$)" "$OMARCHY_BIN_DIR"/omarchy-* 2>/dev/null)
 
   # The full load's own glob, so colliding routes register in the same order.
   for file in "$OMARCHY_BIN_DIR"/omarchy-*; do
@@ -361,7 +361,7 @@ load_route_candidates() {
 
 load_command_by_binary() {
   local binary="$1"
-  local file="$OMARCHY_BIN_DIR/$binary"
+  local file="$UNBLOARCHY_BIN_DIR/$binary"
 
   [[ -f $file && -x $file ]] || return 1
   register_command "$file"
@@ -371,7 +371,7 @@ load_child_commands_by_binary() {
   local binary="$1"
   local file=""
 
-  for file in "$OMARCHY_BIN_DIR/$binary"-*; do
+  for file in "$UNBLOARCHY_BIN_DIR/$binary"-*; do
     [[ -f $file && -x $file ]] || continue
     register_command "$file"
   done
@@ -381,7 +381,7 @@ group_has_child_commands() {
   local group="$1"
   local file=""
 
-  for file in "$OMARCHY_BIN_DIR/omarchy-$group"-*; do
+  for file in "$UNBLOARCHY_BIN_DIR/unbloarchy-$group"-*; do
     [[ -f $file && -x $file ]] && return 0
   done
 
@@ -391,7 +391,7 @@ group_has_child_commands() {
 group_has_binary_commands() {
   local group="$1"
 
-  [[ -x $OMARCHY_BIN_DIR/omarchy-$group ]] && return 0
+  [[ -x $UNBLOARCHY_BIN_DIR/unbloarchy-$group ]] && return 0
   group_has_child_commands "$group"
 }
 
@@ -409,8 +409,8 @@ command_requires_args() {
 }
 
 # A command whose documented arguments are all flags can't take a word, so a
-# word after it names something else: `omarchy agent account` is the account
-# commands, not an argument to omarchy-agent.
+# word after it names something else: `unbloarchy agent account` is the account
+# commands, not an argument to unbloarchy-agent.
 command_takes_only_flags() {
   local key="$1"
   local args="${COMMAND_ARGS[$key]}"
@@ -426,11 +426,11 @@ load_group_commands() {
   local group="$1"
   local file=""
 
-  if [[ -f $OMARCHY_BIN_DIR/omarchy-$group && -x $OMARCHY_BIN_DIR/omarchy-$group ]]; then
-    register_command "$OMARCHY_BIN_DIR/omarchy-$group"
+  if [[ -f $UNBLOARCHY_BIN_DIR/unbloarchy-$group && -x $UNBLOARCHY_BIN_DIR/unbloarchy-$group ]]; then
+    register_command "$UNBLOARCHY_BIN_DIR/unbloarchy-$group"
   fi
 
-  for file in "$OMARCHY_BIN_DIR/omarchy-$group"-*; do
+  for file in "$UNBLOARCHY_BIN_DIR/unbloarchy-$group"-*; do
     [[ -f $file && -x $file ]] || continue
     register_command "$file"
   done
@@ -447,10 +447,10 @@ resolve_direct_route() {
   local candidate=""
 
   for (( prefix_count = argc; prefix_count >= 1; prefix_count-- )); do
-    route="omarchy $(join_words " " "${args[@]:0:prefix_count}")"
+    route="unbloarchy $(join_words " " "${args[@]:0:prefix_count}")"
 
     binary="omarchy-$(join_words "-" "${args[@]:0:prefix_count}")"
-    candidate="$OMARCHY_BIN_DIR/$binary"
+    candidate="$UNBLOARCHY_BIN_DIR/$binary"
     if [[ -f $candidate && -x $candidate ]]; then
       DIRECT_RESOLVED_BINARY="$binary"
       DIRECT_RESOLVED_COUNT="$prefix_count"
@@ -476,7 +476,7 @@ sorted_keys() {
 
 fallback_group_for_key() {
   local key="$1"
-  local fallback="${COMMAND_FALLBACK_ROUTE[$key]#omarchy }"
+  local fallback="${COMMAND_FALLBACK_ROUTE[$key]#unbloarchy }"
 
   printf '%s' "${fallback%% *}"
 }
@@ -568,21 +568,21 @@ show_group_list() {
 
 show_main_help() {
   cat <<'EOF'
-Omarchy command center
+Unbloarchy command center
 
 Usage:
-  omarchy <command> [args...]
-  omarchy commands [--all] [--json] [--check]
-  omarchy <group> --help
-  omarchy <group> <command> --help
+  unbloarchy <command> [args...]
+  unbloarchy commands [--all] [--json] [--check]
+  unbloarchy <group> --help
+  unbloarchy <group> <command> --help
 
 Common commands:
-  omarchy update              Update Omarchy and system packages
-  omarchy theme list          List available themes
-  omarchy theme set <name>    Apply a theme
-  omarchy font list           List available fonts
-  omarchy screenshot          Take a screenshot
-  omarchy debug               Print debugging information
+  unbloarchy update              Update Unbloarchy and system packages
+  unbloarchy theme list          List available themes
+  unbloarchy theme set <name>    Apply a theme
+  unbloarchy font list           List available fonts
+  unbloarchy screenshot          Take a screenshot
+  unbloarchy debug               Print debugging information
 
 Groups:
 EOF
@@ -590,19 +590,19 @@ EOF
   cat <<'EOF'
 
 Discovery:
-  omarchy commands            List all commands
-  omarchy commands --all      Include commands explicitly marked hidden
-  omarchy commands --json     Machine-readable command list
-  omarchy commands --check    Validate command metadata and routes
+  unbloarchy commands            List all commands
+  unbloarchy commands --all      Include commands explicitly marked hidden
+  unbloarchy commands --json     Machine-readable command list
+  unbloarchy commands --check    Validate command metadata and routes
 EOF
 }
 
 show_commands_help() {
   cat <<'EOF'
 Usage:
-  omarchy commands [--all] [--json] [--markdown] [--check]
+  unbloarchy commands [--all] [--json] [--markdown] [--check]
 
-List commands known to the Omarchy command center.
+List commands known to the Unbloarchy command center.
 
 Options:
   --all       Include commands explicitly marked hidden
@@ -642,9 +642,9 @@ show_commands() {
   local alias_rows=""
 
   if [[ $include_all == "true" ]]; then
-    echo "Omarchy commands (all):"
+    echo "Unbloarchy commands (all):"
   else
-    echo "Omarchy commands:"
+    echo "Unbloarchy commands:"
   fi
 
   while IFS= read -r key; do
@@ -770,7 +770,7 @@ show_commands_check() {
       done < <(pipe_values_as_lines "${COMMAND_METADATA_ERRORS[$key]}")
     fi
 
-    if [[ ! -x $OMARCHY_BIN_DIR/${COMMAND_BINARY[$key]} ]]; then
+    if [[ ! -x $UNBLOARCHY_BIN_DIR/${COMMAND_BINARY[$key]} ]]; then
       echo "Missing binary: ${COMMAND_BINARY[$key]}" >&2
       failures=$((failures + 1))
     fi
@@ -815,7 +815,7 @@ parse_commands_args() {
       return 0
       ;;
     *)
-      echo "Unknown option for omarchy commands: $1" >&2
+      echo "Unknown option for unbloarchy commands: $1" >&2
       show_commands_help >&2
       return 2
       ;;
@@ -868,7 +868,7 @@ show_group_help() {
   if [[ -n $rows ]]; then
     print_command_table "$rows"
   else
-    echo "  No documented commands found. Try: omarchy commands --all"
+    echo "  No documented commands found. Try: unbloarchy commands --all"
   fi
 }
 
@@ -887,7 +887,7 @@ show_prefix_help() {
 
   [[ -n $rows ]] || return 1
 
-  echo "${prefix#omarchy } commands:"
+  echo "${prefix#unbloarchy } commands:"
   print_command_table "$rows"
 }
 
@@ -968,7 +968,7 @@ resolve_route() {
   local key=""
 
   for (( prefix_count = argc; prefix_count >= 1; prefix_count-- )); do
-    route="omarchy $(join_words " " "${args[@]:0:prefix_count}")"
+    route="unbloarchy $(join_words " " "${args[@]:0:prefix_count}")"
     key="${ROUTE_TO_KEY[$route]}"
 
     if [[ -n $key ]]; then
@@ -987,7 +987,7 @@ suggest_command() {
   local candidate=""
 
   for candidate in "${!ROUTE_TO_KEY[@]}"; do
-    candidate="${candidate#omarchy }"
+    candidate="${candidate#unbloarchy }"
     if [[ $candidate == "$first"* ]]; then
       printf '%s' "${candidate%% *}"
       return 0
@@ -1005,11 +1005,11 @@ dispatch_fast_or_help() {
 
   if resolve_direct_route "$#" "${args[@]}"; then
     remaining=("${args[@]:DIRECT_RESOLVED_COUNT}")
-    binary_path="$OMARCHY_BIN_DIR/$DIRECT_RESOLVED_BINARY"
+    binary_path="$UNBLOARCHY_BIN_DIR/$DIRECT_RESOLVED_BINARY"
 
     if (( ${#remaining[@]} == 1 || ${#remaining[@]} == 2 )) && [[ ${remaining[0]} != -* ]] &&
       { (( ${#remaining[@]} == 1 )) || remaining_has_help_flag "${remaining[1]}"; } &&
-      group_has_child_commands "${DIRECT_RESOLVED_BINARY#omarchy-}-${remaining[0]}"; then
+      group_has_child_commands "${DIRECT_RESOLVED_BINARY#unbloarchy-}-${remaining[0]}"; then
       load_command_by_binary "$DIRECT_RESOLVED_BINARY"
       key="${BINARY_TO_KEY[$DIRECT_RESOLVED_BINARY]}"
       if [[ -n $key ]] && command_takes_only_flags "$key"; then
@@ -1100,7 +1100,7 @@ dispatch_or_help() {
       return 0
     fi
 
-    binary_path="$OMARCHY_BIN_DIR/${COMMAND_BINARY[$key]}"
+    binary_path="$UNBLOARCHY_BIN_DIR/${COMMAND_BINARY[$key]}"
     if [[ ! -x $binary_path ]]; then
       echo "Binary is missing or not executable: ${COMMAND_BINARY[$key]}" >&2
       return 127
@@ -1128,16 +1128,16 @@ dispatch_or_help() {
     return 0
   fi
 
-  if show_prefix_help "omarchy ${args[*]}"; then
+  if show_prefix_help "unbloarchy ${args[*]}"; then
     return 0
   fi
 
-  echo "Unknown Omarchy command: omarchy ${args[*]}" >&2
+  echo "Unknown Unbloarchy command: unbloarchy ${args[*]}" >&2
   suggestion=$(suggest_command "${args[0]}")
   if [[ -n $suggestion ]]; then
-    echo "Did you mean: omarchy $suggestion ?" >&2
+    echo "Did you mean: unbloarchy $suggestion ?" >&2
   fi
-  echo "Run 'omarchy commands --all' to discover available commands." >&2
+  echo "Run 'unbloarchy commands --all' to discover available commands." >&2
   return 127
 }
 

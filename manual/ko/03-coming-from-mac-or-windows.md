@@ -1,12 +1,12 @@
 # Mac이나 Windows에서 오신 분들
 
-macOS나 Windows를 수년간 사용해 왔다면, 손가락은 뇌가 배웠다는 사실조차 잊은 백 가지 일을 알고 있습니다. 이 장은 그 번역 계층입니다. 그 본능이 Omarchy에서는 어디로 가는지 알려줍니다. 기능 자체는 다른 곳에서 깊이 다루므로, 여기는 지도일 뿐입니다.
+macOS나 Windows를 수년간 사용해 왔다면, 손가락은 뇌가 배웠다는 사실조차 잊은 백 가지 일을 알고 있습니다. 이 장은 그 번역 계층입니다. 그 본능이 Unbloarchy에서는 어디로 가는지 알려줍니다. 기능 자체는 다른 곳에서 깊이 다루므로, 여기는 지도일 뿐입니다.
 
 ### Super는 모든 것의 중심입니다
 
-Cmd나 Windows 키를 중심으로 쌓아 온 모든 근육 기억은 하나의 키로 옮겨갑니다. 바로 Super입니다. PC 키보드의 Windows 키이며, Omarchy의 거의 모든 단축키의 기준점입니다.
+Cmd나 Windows 키를 중심으로 쌓아 온 모든 근육 기억은 하나의 키로 옮겨갑니다. 바로 Super입니다. PC 키보드의 Windows 키이며, Unbloarchy의 거의 모든 단축키의 기준점입니다.
 
-Spotlight나 Raycast, Start 메뉴를 찾던 반사 신경은 `Super + Space`가 됩니다. Omarchy 메뉴가 열려 앱을 실행하고, 설정을 바꾸고, 소프트웨어를 설치하고, 화면을 캡처하는 등 거의 모든 일을 합니다. 입력을 시작하면 필터링됩니다. `Super + Alt + Space`는 Launchpad처럼 모든 앱을 하나의 그리드에 보여줍니다. [탐색](04-navigation.md)을 참조하세요.
+Spotlight나 Raycast, Start 메뉴를 찾던 반사 신경은 `Super + Space`가 됩니다. Unbloarchy 메뉴가 열려 앱을 실행하고, 설정을 바꾸고, 소프트웨어를 설치하고, 화면을 캡처하는 등 거의 모든 일을 합니다. 입력을 시작하면 필터링됩니다. `Super + Alt + Space`는 Launchpad처럼 모든 앱을 하나의 그리드에 보여줍니다. [탐색](04-navigation.md)을 참조하세요.
 
 ### 독도 없고 바탕화면 아이콘도 없습니다
 
@@ -22,27 +22,27 @@ Spotlight나 Raycast, Start 메뉴를 찾던 반사 신경은 `Super + Space`가
 
 ### 복사하고 붙여넣으면 그냥 됩니다
 
-Mac에서는 어디서나 Cmd + C를 사용했습니다. Windows에서는 어디서나 Ctrl + C를 사용했지만, 터미널에서는 실행 중인 프로그램이 종료됐습니다. Omarchy에서는 `Super + C`, `Super + X`, `Super + V`를 제공하며, 터미널을 포함해 어디서나 작동합니다. 셸을 위해 따로 반사 신경을 배울 필요가 없습니다.
+Mac에서는 어디서나 Cmd + C를 사용했습니다. Windows에서는 어디서나 Ctrl + C를 사용했지만, 터미널에서는 실행 중인 프로그램이 종료됐습니다. Unbloarchy에서는 `Super + C`, `Super + X`, `Super + V`를 제공하며, 터미널을 포함해 어디서나 작동합니다. 셸을 위해 따로 반사 신경을 배울 필요가 없습니다.
 
 Windows 사용자 여러분, Win + V 클립보드 기록은 `Super + Ctrl + V`에 있으며, 텍스트뿐 아니라 이미지도 보관합니다. [통합 클립보드 및 기록](08-unified-clipboard-history.md)을 참조하세요.
 
 ### 번역표
 
-| 찾던 것 | Omarchy에서는 |
+| 찾던 것 | Unbloarchy에서는 |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start 메뉴 | `Super + Space` — Omarchy 메뉴 |
+| Spotlight / Raycast / Start 메뉴 | `Super + Space` — Unbloarchy 메뉴 |
 | AirDrop | LocalSend, `Super + Ctrl + S` 사용 — [GUIs](22-guis.md) 참조 |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` 또는 `Print Screen` — [스크린샷 및 녹화](12-screenshots-recording.md) 참조 |
 | Notification Center | `Super + Shift + Alt + ,`의 알림 기록 |
 | Time Machine (시스템용) | 업데이트할 때마다 자동 [시스템 스냅샷](47-system-snapshots.md) |
-| App Store / 설치 프로그램 다운로드 | 메뉴의 _Install_, 또는 `omarchy pkg add` — [기타 패키지](29-other-packages.md) 참조 |
+| App Store / 설치 프로그램 다운로드 | 메뉴의 _Install_, 또는 `unbloarchy pkg add` — [기타 패키지](29-other-packages.md) 참조 |
 | System Settings / Control Panel | 일반 설정 파일을 편집하는 메뉴의 _Setup_ — [dotfiles](31-dotfiles.md) 참조 |
 
 ### 어떤 것들은 정말로 다릅니다
 
 많은 설정은 클릭하며 살펴보는 패널이 아니라, 직접 편집하는 텍스트 파일에 있습니다. 모든 조정 내용을 확인하고, 다음 컴퓨터로 복사하고, 버전 관리에 넣을 수 있다는 사실을 깨닫기 전까지는 원시적으로 들립니다. _Setup_ 메뉴는 곧바로 올바른 파일로 데려가며, 작업을 마치면 재시작이 필요한 항목을 재시작합니다.
 
-업데이트는 하나의 명령인 _Update > Omarchy_를 통해 이루어집니다. 먼저 스냅샷을 만든 뒤 Omarchy 자체와 시스템의 모든 패키지를 업데이트합니다. 앱마다 제멋대로 잔소리하는 업데이터는 없습니다. [업데이트](30-updates.md)를 참조하세요.
+업데이트는 하나의 명령인 _Update > Unbloarchy_를 통해 이루어집니다. 먼저 스냅샷을 만든 뒤 Unbloarchy 자체와 시스템의 모든 패키지를 업데이트합니다. 앱마다 제멋대로 잔소리하는 업데이터는 없습니다. [업데이트](30-updates.md)를 참조하세요.
 
 소프트웨어는 다운로드한 설치 프로그램이 아니라 패키지 관리자에서 가져옵니다.
 
@@ -50,7 +50,7 @@ Windows 사용자 여러분, Win + V 클립보드 기록은 `Super + Ctrl + V`�
 
 ### Mac 하드웨어에서
 
-Omarchy는 Intel Mac에서 잘 실행됩니다. [Mac 지원](44-mac-support.md)을 참조하세요. 키보드도 친절합니다. Omarchy는 아무것도 다시 매핑하지 않으며, Linux는 Command 키를 Super로 취급하므로 Super가 Cmd가 항상 있던 바로 그 자리에 있습니다. 엄지손가락은 이동을 눈치채지 못할 것입니다.
+Unbloarchy는 Intel Mac에서 잘 실행됩니다. [Mac 지원](44-mac-support.md)을 참조하세요. 키보드도 친절합니다. Unbloarchy는 아무것도 다시 매핑하지 않으며, Linux는 Command 키를 Super로 취급하므로 Super가 Cmd가 항상 있던 바로 그 자리에 있습니다. 엄지손가락은 이동을 눈치채지 못할 것입니다.
 
 ### 2주만 써 보세요
 

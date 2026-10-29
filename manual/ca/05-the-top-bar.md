@@ -1,14 +1,14 @@
 # La barra superior
 
-La franja de la part superior de la pantalla és la barra d'Omarchy. No és una barra d'estat acoblada, sinó part de l'intèrpret d'Omarchy, l'únic procés Quickshell de llarga durada que també dibuixa el menú, les notificacions, les finestres emergents OSD i la pantalla de bloqueig. Per això el tema combina perfectament amb tota la resta i per això un panell s'obre a l'instant en lloc d'iniciar una aplicació nova.
+La franja de la part superior de la pantalla és la barra d'Unbloarchy. No és una barra d'estat acoblada, sinó part de l'intèrpret d'Unbloarchy, l'únic procés Quickshell de llarga durada que també dibuixa el menú, les notificacions, les finestres emergents OSD i la pantalla de bloqueig. Per això el tema combina perfectament amb tota la resta i per això un panell s'obre a l'instant en lloc d'iniciar una aplicació nova.
 
 També és l'única peça de l'escriptori que sempre és a la pantalla, així que val la pena saber què fan tots aquells glifs petits.
 
 ## Què hi ha per defecte
 
-La barra té tres seccions. A l'esquerra hi ha el logotip d'Omarchy (el llançador del menú) i els indicadors dels espais de treball. Al centre hi tens els indicadors d'estat, el rellotge, Elsewhen (un rellotge mundial), el temps i una insígnia d'actualització d'Omarchy. A la dreta: la safata del sistema, la distribució del teclat (quan n'hi ha més d'una configurada), els agents, el bluetooth, la xarxa, l'àudio, la pantalla i l'energia.
+La barra té tres seccions. A l'esquerra hi ha el logotip d'Unbloarchy (el llançador del menú) i els indicadors dels espais de treball. Al centre hi tens els indicadors d'estat, el rellotge, Elsewhen (un rellotge mundial), el temps i una insígnia d'actualització d'Unbloarchy. A la dreta: la safata del sistema, la distribució del teclat (quan n'hi ha més d'una configurada), els agents, el bluetooth, la xarxa, l'àudio, la pantalla i l'energia.
 
-Alguns d'aquests només apareixen quan tenen alguna cosa a dir. La distribució del teclat només apareix si n'has configurat més d'una. La insígnia d'actualització només apareix quan hi ha una actualització d'Omarchy esperant. I la icona dels agents apareix la primera vegada que Omarchy troba ús de codificació amb AI a la màquina (vegeu [AI](17-ai.md)).
+Alguns d'aquests només apareixen quan tenen alguna cosa a dir. La distribució del teclat només apareix si n'has configurat més d'una. La insígnia d'actualització només apareix quan hi ha una actualització d'Unbloarchy esperant. I la icona dels agents apareix la primera vegada que Unbloarchy troba ús de codificació amb AI a la màquina (vegeu [AI](17-ai.md)).
 
 ## Fer clic
 
@@ -16,7 +16,7 @@ Gairebé tots els elements fan alguna cosa amb el clic esquerre, dret i mitjà, 
 
 | Element | Esquerre | Dret | Mitjà / desplaçament |
 | --- | --- | --- | --- |
-| Menú | Menú d'Omarchy | Terminal nou | — |
+| Menú | Menú d'Unbloarchy | Terminal nou | — |
 | Espais de treball | Enfoca aquell espai de treball en aquest monitor | — | Desplaçament: espai de treball següent/anterior |
 | Rellotge | Finestra emergent del calendari | Recorre els formats de l'etiqueta | Mitjà: selector de zona horària |
 | Temps | Finestra emergent de la previsió | Temps complet com a notificació | Mitjà: actualitza |
@@ -29,7 +29,7 @@ Gairebé tots els elements fan alguna cosa amb el clic esquerre, dret i mitjà, 
 | Multimèdia | Reprodueix/pausa | Finestra emergent de la caràtula | Mitjà: següent · desplaçament: anterior/següent |
 | Agents | Panell d'agents | Inicia el teu agent | Mitjà: subscripció següent |
 | Safata | Passa el cursor per sobre per revelar el calaix | Clic dret al galó per gestionar-lo | — |
-| Actualització d'Omarchy | Executa l'actualització | — | — |
+| Actualització d'Unbloarchy | Executa l'actualització | — | — |
 
 No tot el que hi ha en aquesta taula és a la teva barra d'entrada. L'element multimèdia (MPRIS del que s'està reproduint, amb una pista i un artista que es desplacen) i l'element del micròfon estan integrats però desactivats per defecte: afegeix-los si els vols, tal com s'explica més avall.
 
@@ -66,7 +66,7 @@ Tots els panells accepten el teclat a més del ratolí: les fletxes mouen, Retur
 
 Dos elements més apareixen a la barra només un cop instal·les el servei corresponent des d'**Install → Service**, i tots dos valen la pena perquè fan més que informar de l'estat.
 
-El panell de **Tailscale** connecta i desconnecta la tailnet, canvia entre comptes i tria un node de sortida (tant les teves màquines com les regions de Mullvad apareixen en aquella llista). També explora les teves màquines, i amb una seleccionada, `s` li envia fitxers mitjançant Taildrop, que és la manera més ràpida de moure un fitxer al teu telèfon o a un altre portàtil. `c` copia la IP de la màquina, `n` el seu nom i `d` el seu nom DNS complet. També hi ha un botó d'enviament a cada fila de màquina, si prefereixes fer clic. El mateix des del terminal és `omarchy tailscale send <machine> [file...]`.
+El panell de **Tailscale** connecta i desconnecta la tailnet, canvia entre comptes i tria un node de sortida (tant les teves màquines com les regions de Mullvad apareixen en aquella llista). També explora les teves màquines, i amb una seleccionada, `s` li envia fitxers mitjançant Taildrop, que és la manera més ràpida de moure un fitxer al teu telèfon o a un altre portàtil. `c` copia la IP de la màquina, `n` el seu nom i `d` el seu nom DNS complet. També hi ha un botó d'enviament a cada fila de màquina, si prefereixes fer clic. El mateix des del terminal és `unbloarchy tailscale send <machine> [file...]`.
 
 El panell de **Dropbox** gestiona l'inici de sessió, mostra quant emmagatzematge has fet servir i llista els fitxers sincronitzats recentment.
 
@@ -93,19 +93,19 @@ Si prefereixes triar des d'un menú, **Appearance → Menu Bar** té la posició
 Les mateixes coses tenen ordres, que és el que vols per a una configuració de [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Per afegir o eliminar un element completament, fes servir les ordres de connectors. `omarchy plugin list` imprimeix tots els elements que l'intèrpret coneix amb el seu id, i després:
+Per afegir o eliminar un element completament, fes servir les ordres de connectors. `unbloarchy plugin list` imprimeix tots els elements que l'intèrpret coneix amb el seu id, i després:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Amagar la barra
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## El fitxer de configuració
 
-Tot s'emmagatzema a `~/.config/omarchy/shell.json`, sota la clau `bar`. Aquí en tens una versió retallada:
+Tot s'emmagatzema a `~/.config/unbloarchy/shell.json`, sota la clau `bar`. Aquí en tens una versió retallada:
 
 ```json
 {
@@ -123,20 +123,20 @@ Tot s'emmagatzema a `~/.config/omarchy/shell.json`, sota la clau `bar`. Aquí en
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Cada element és una entrada en una de les cinc matrius de disposició, i els seus ajustos són inline en aquella entrada: no hi ha cap fitxer d'ajustos separat ni cap subobjecte `config`. El `format`, el `formatAlt` (allò a què el clic dret passa per torns) i el `verticalFormat` del rellotge viuen tots allà mateix a `{ "id": "omarchy.clock" }`.
+Cada element és una entrada en una de les cinc matrius de disposició, i els seus ajustos són inline en aquella entrada: no hi ha cap fitxer d'ajustos separat ni cap subobjecte `config`. El `format`, el `formatAlt` (allò a què el clic dret passa per torns) i el `verticalFormat` del rellotge viuen tots allà mateix a `{ "id": "unbloarchy.clock" }`.
 
 `center` és la caixa del mig de la barra: tot el que hi ha es centra a la pantalla com un sol grup. `centerBegin` i `centerEnd` pengen de cada costat de la caixa, que és com el rellotge es manté ben bé al centre encara que el temps i la insígnia d'actualització vinguin i vagin. Posa més d'un element a `center` i es centraran junts; deixa'l buit i `centerBegin` i `centerEnd` es trobaran al mig de la barra.
 
-Una regla que val la pena interioritzar: **un cop tens el teu propi `shell.json`, és canònic**. Fins que no personalitzes res, l'intèrpret llegeix el fitxer per defecte d'Omarchy. En el moment que arrossegues un element, executes `omarchy bar` o edites el fitxer tu mateix, és teu: no hi ha cap fusió profunda, així que els nous elements per defecte de futures versions d'Omarchy no apareixeran automàticament a la teva barra. `omarchy bar defaults` torna a posar la disposició subministrada sempre que vulguis partir de zero.
+Una regla que val la pena interioritzar: **un cop tens el teu propi `shell.json`, és canònic**. Fins que no personalitzes res, l'intèrpret llegeix el fitxer per defecte d'Unbloarchy. En el moment que arrossegues un element, executes `unbloarchy bar` o edites el fitxer tu mateix, és teu: no hi ha cap fusió profunda, així que els nous elements per defecte de futures versions d'Unbloarchy no apareixeran automàticament a la teva barra. `unbloarchy bar defaults` torna a posar la disposició subministrada sempre que vulguis partir de zero.
 
 El mateix fitxer també conté els teus temps d'inactivitat al nivell superior, fora de la clau `bar`: `idle.screensaver` i `idle.lock`, tots dos en segons des que vas quedar inactiu. Així, l'estalvi de pantalla per defecte entra als 150 segons i el bloqueig als 300.

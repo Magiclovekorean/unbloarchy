@@ -1,8 +1,8 @@
 # Mandhari
 
-Omarchy inakuja na mandhari ishirini na mbili nzuri. Unaweza kuchagua kati yazo kupitia _Muonekano > Mandhari_ katika Menyu ya Omarchy (`Super + Space`) au kwenda moja kwa moja hadi kwenye kichagua mandhari kwa kutumia `Super + Ctrl + T`.
+Unbloarchy inakuja na mandhari ishirini na mbili nzuri. Unaweza kuchagua kati yazo kupitia _Muonekano > Mandhari_ katika Menyu ya Unbloarchy (`Super + Space`) au kwenda moja kwa moja hadi kwenye kichagua mandhari kwa kutumia `Super + Ctrl + T`.
 
-Kila mandhari huweka mtindo kwenye eneo-kazi, terminali, neovim, skrini ya shughuli (btop), Chromium, na ganda zima la Omarchy: upau wa juu, menyu, arifa, OSD, na skrini ya kufunga. (Kwa Obsidian, lazima uchague mwenyewe mandhari ya Omarchy kupitia _Muonekano > Mandhari_ ndani ya programu).
+Kila mandhari huweka mtindo kwenye eneo-kazi, terminali, neovim, skrini ya shughuli (btop), Chromium, na ganda zima la Unbloarchy: upau wa juu, menyu, arifa, OSD, na skrini ya kufunga. (Kwa Obsidian, lazima uchague mwenyewe mandhari ya Unbloarchy kupitia _Muonekano > Mandhari_ ndani ya programu).
 
 Mandhari zina seti ya picha za usuli ambazo unaweza kuchagua kati yazo kwa kutumia `Super + Ctrl + W`.
 

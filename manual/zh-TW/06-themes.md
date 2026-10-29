@@ -1,8 +1,8 @@
 # 主題
 
-Omarchy 內建二十二套精美的主題。你可以透過 Omarchy Menu（`Super + Space`）中的 _Appearance > Theme_ 在它們之間做選擇，或使用 `Super + Ctrl + T` 直接跳到主題選擇器。
+Unbloarchy 內建二十二套精美的主題。你可以透過 Unbloarchy Menu（`Super + Space`）中的 _Appearance > Theme_ 在它們之間做選擇，或使用 `Super + Ctrl + T` 直接跳到主題選擇器。
 
-每套主題都會為桌面、終端機、neovim、活動畫面（btop）、Chromium 以及整個 Omarchy shell 設定樣式：頂部列、選單、通知、OSD 和鎖定畫面。（對於 Obsidian，你必須在應用程式內透過 _Appearance > Themes_ 手動選取 Omarchy 主題）。
+每套主題都會為桌面、終端機、neovim、活動畫面（btop）、Chromium 以及整個 Unbloarchy shell 設定樣式：頂部列、選單、通知、OSD 和鎖定畫面。（對於 Obsidian，你必須在應用程式內透過 _Appearance > Themes_ 手動選取 Unbloarchy 主題）。
 
 主題都有一組背景圖片，你可以使用 `Super + Ctrl + W` 在其中挑選。
 

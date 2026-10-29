@@ -1,8 +1,8 @@
 # Tema
 
-Omarchy disertakan dengan dua puluh dua tema yang cantik. Anda boleh memilih antaranya melalui _Appearance > Theme_ dalam Menu Omarchy (`Super + Space`) atau terus lompat ke pemilih tema menggunakan `Super + Ctrl + T`.
+Unbloarchy disertakan dengan dua puluh dua tema yang cantik. Anda boleh memilih antaranya melalui _Appearance > Theme_ dalam Menu Unbloarchy (`Super + Space`) atau terus lompat ke pemilih tema menggunakan `Super + Ctrl + T`.
 
-Setiap tema menggayakan desktop, terminal, neovim, skrin aktiviti (btop), Chromium, dan keseluruhan cangkerang Omarchy: bar atas, menu, pemberitahuan, OSD, dan skrin kunci. (Untuk Obsidian, anda mesti memilih tema Omarchy secara manual melalui _Appearance > Themes_ di dalam aplikasi).
+Setiap tema menggayakan desktop, terminal, neovim, skrin aktiviti (btop), Chromium, dan keseluruhan cangkerang Unbloarchy: bar atas, menu, pemberitahuan, OSD, dan skrin kunci. (Untuk Obsidian, anda mesti memilih tema Unbloarchy secara manual melalui _Appearance > Themes_ di dalam aplikasi).
 
 Tema mempunyai satu set imej latar belakang yang boleh anda pilih menggunakan `Super + Ctrl + W`.
 

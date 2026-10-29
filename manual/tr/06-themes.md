@@ -1,8 +1,8 @@
 # Temalar
 
-Omarchy yirmi iki güzel temayla birlikte gelir. Bunlar arasında Omarchy Menüsü'ndeki (`Super + Space`) _Appearance > Theme_ üzerinden seçim yapabilir veya `Super + Ctrl + T` kullanarak doğrudan tema seçiciye atlayabilirsiniz.
+Unbloarchy yirmi iki güzel temayla birlikte gelir. Bunlar arasında Unbloarchy Menüsü'ndeki (`Super + Space`) _Appearance > Theme_ üzerinden seçim yapabilir veya `Super + Ctrl + T` kullanarak doğrudan tema seçiciye atlayabilirsiniz.
 
-Her tema masaüstünü, terminali, neovim'i, etkinlik ekranını (btop), Chromium'u ve tüm Omarchy kabuğunu biçimlendirir: üst çubuk, menü, bildirimler, OSD ve kilit ekranı. (Obsidian için, uygulama içindeki _Appearance > Themes_ üzerinden Omarchy temasını manuel olarak seçmelisiniz).
+Her tema masaüstünü, terminali, neovim'i, etkinlik ekranını (btop), Chromium'u ve tüm Unbloarchy kabuğunu biçimlendirir: üst çubuk, menü, bildirimler, OSD ve kilit ekranı. (Obsidian için, uygulama içindeki _Appearance > Themes_ üzerinden Unbloarchy temasını manuel olarak seçmelisiniz).
 
 Temaların, `Super + Ctrl + W` kullanarak aralarında seçim yapabileceğiniz bir dizi arka plan görseli vardır.
 

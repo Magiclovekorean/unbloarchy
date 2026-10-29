@@ -25,7 +25,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.dont_write_bytecode = True
-sys.path.insert(0, os.path.join(os.environ["OMARCHY_PATH"], "shell", "plugins", "agents"))
+sys.path.insert(0, os.path.join(os.environ["UNBLOARCHY_PATH"], "shell", "plugins", "agents"))
 import collectors  # noqa: E402
 
 work = Path(os.environ["WORK"])

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Reset Omarchy user configs and shipped defaults in $HOME (destructive)
+# unbloarchy:summary=Reset Unbloarchy user configs and shipped defaults in $HOME (destructive)
 
 set -euo pipefail
 
@@ -9,7 +9,7 @@ if (( EUID == 0 )); then
   exit 1
 fi
 
-echo "Resetting Omarchy user configs to shipped defaults..."
+echo "Resetting Unbloarchy user configs to shipped defaults..."
 
 # /etc/skel is the same tree useradd -m copies to seed a fresh user's $HOME.
 # Replaying it over an existing user resyncs every package-shipped user
@@ -18,15 +18,15 @@ echo "Resetting Omarchy user configs to shipped defaults..."
 # Trailing dot copies dotfiles; the shell wouldn't glob them with /etc/skel/*.
 cp -af /etc/skel/. ~/
 
-omarchy-refresh-limine
-omarchy-refresh-plymouth
+unbloarchy-refresh-limine
+unbloarchy-refresh-plymouth
 
-if omarchy-cmd-present omarchy-nvim-refresh; then
+if unbloarchy-cmd-present omarchy-nvim-refresh; then
   omarchy-nvim-refresh
-elif omarchy-cmd-present omarchy-nvim-setup; then
+elif unbloarchy-cmd-present omarchy-nvim-setup; then
   omarchy-nvim-setup --force
 fi
 
 # /etc/skel holds the shared defaults, so put the Snapdragon video decoding
 # settings back.
-omarchy-install-video-decode
+unbloarchy-install-video-decode

@@ -22,7 +22,7 @@ Editor anotasi dapat menggambar panah, garis, bentuk, sorotan, penanda bernomor,
 
 Secara default, tangkapan layar yang tersimpan masuk ke `~/Pictures/Screenshots`, dengan nama seperti `screenshot-2026-08-13_14-22-05-firefox.png`. Atur `OMASNAP_SCREENSHOT_DIR` untuk menggunakan direktori lain — lihat [FAQ](46-faq.md) untuk mengetahui tempat menaruh variabel lingkungan sesi. Omasnap membuat direktori tersebut saat menyimpan tangkapan pertama. Atur `[output] autosave = false` di `~/.config/omasnap/omasnap.conf` untuk menonaktifkan penyimpanan otomatis; tangkapan kemudian hanya disalin, dan ditampilkan dalam pratinjau selama 10 detik yang dapat kamu pertahankan di layar dengan tombol pin-nya atau `Ctrl + P`.
 
-Dari terminal, `omarchy screenshot` membuka overlay yang sama, dan kamu dapat memilih mode awalnya: `omarchy capture screenshot region`, `windows`, `fullscreen`, atau `scroll`. Argumen kedua berupa `copy` atau `save` mengirim tangkapan langsung ke tujuan tersebut. Untuk mengedit sebelum menghasilkan keluaran, gunakan `omarchy screenshot --editor=overlay` untuk editor layar penuh atau `omarchy screenshot --editor=window` untuk jendela terpisah.
+Dari terminal, `unbloarchy screenshot` membuka overlay yang sama, dan kamu dapat memilih mode awalnya: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, atau `scroll`. Argumen kedua berupa `copy` atau `save` mengirim tangkapan langsung ke tujuan tersebut. Untuk mengedit sebelum menghasilkan keluaran, gunakan `unbloarchy screenshot --editor=overlay` untuk editor layar penuh atau `unbloarchy screenshot --editor=window` untuk jendela terpisah.
 
 ### Mengendalikan pemilih dari keyboard
 
@@ -41,9 +41,9 @@ Pengikatan ini hanya ada selagi Omasnap terbuka, jadi pengikatan tersebut tidak 
 
 ## Perekaman layar
 
-`Alt + Print Screen` membuka _Trigger > Capture > Screenrecord_, yang menanyakan apa yang kamu inginkan pada jalur suaranya: tanpa audio, audio desktop, desktop plus mikrofon, atau desktop plus mikrofon plus webcam. Pilihan terakhir itu hanya muncul jika kamu benar-benar memiliki kamera yang terhubung. Pilih salah satu dan pemilih perekaman Omarchy memungkinkanmu menyeret suatu wilayah atau mengklik jendela atau monitor.
+`Alt + Print Screen` membuka _Trigger > Capture > Screenrecord_, yang menanyakan apa yang kamu inginkan pada jalur suaranya: tanpa audio, audio desktop, desktop plus mikrofon, atau desktop plus mikrofon plus webcam. Pilihan terakhir itu hanya muncul jika kamu benar-benar memiliki kamera yang terhubung. Pilih salah satu dan pemilih perekaman Unbloarchy memungkinkanmu menyeret suatu wilayah atau mengklik jendela atau monitor.
 
-Perekaman berjalan pada gpu-screen-recorder, yang melakukan encoding pada GPU pada 60fps dan beralih kembali ke CPU jika terpaksa. Hasilnya adalah MP4 di `~/Videos`, bernama `screenrecording-2026-08-13_14-22-05.mp4`. Atur `OMARCHY_SCREENRECORD_DIR` untuk mengubahnya — tetapi perhatikan bahwa tidak seperti direktori tangkapan layar, direktori ini harus sudah ada, atau perekaman menolak untuk dimulai.
+Perekaman berjalan pada gpu-screen-recorder, yang melakukan encoding pada GPU pada 60fps dan beralih kembali ke CPU jika terpaksa. Hasilnya adalah MP4 di `~/Videos`, bernama `screenrecording-2026-08-13_14-22-05.mp4`. Atur `UNBLOARCHY_SCREENRECORD_DIR` untuk mengubahnya — tetapi perhatikan bahwa tidak seperti direktori tangkapan layar, direktori ini harus sudah ada, atau perekaman menolak untuk dimulai.
 
 Selagi kamu merekam, indikator kecil muncul di bar. Klik indikator tersebut untuk berhenti. Kamu juga dapat berhenti dengan `Alt + Print Screen` lagi, atau dengan entri _Stop Screenrecording_ di bawah _Trigger > Capture > Screenrecord_, yang hanya muncul selagi ada sesuatu yang benar-benar sedang direkam.
 
@@ -60,7 +60,7 @@ Saat kamu merekam dengan webcam, kamera muncul sebagai jendela potret yang disem
 
 Ada tiga ukuran — kecil, sedang, dan besar — dan tombol pintas melangkah di antaranya. Sedang adalah default-nya. Ukuran tersebut proporsional terhadap perekaman, jadi kamera mengambil bagian frame yang sama baik kamu merekam monitor 1080p maupun monitor 6K. Dan jika kamu merekam suatu wilayah alih-alih seluruh layar, overlay tersebut berlabuh ke sudut wilayah tersebut alih-alih sudut monitor, jadi overlay tetap berada di dalam tangkapan.
 
-Kamu juga dapat memanggilnya langsung dengan `omarchy-capture-webcam-resize small`, atau `reset` untuk kembali ke sedang.
+Kamu juga dapat memanggilnya langsung dengan `unbloarchy-capture-webcam-resize small`, atau `reset` untuk kembali ke sedang.
 
 ## Teks, kode QR, dan warna
 
@@ -76,7 +76,7 @@ Rekaman layar 4K atau HEIC mentah dari ponselmu sering kali terlalu besar untuk 
 
 Gambar menjadi jpg atau png pada tinggi, sedang, atau rendah, yang membatasi lebar pada 3160, 2160, dan 1080 piksel. Video menjadi mp4 atau gif animasi pada 4k, 1080p, atau 720p. File yang dikonversi ditulis di samping file aslinya dengan resolusi pada namanya — `demo-1080p.mp4` — dan jalurnya disalin ke clipboard sebagai URI file, jadi kamu dapat menempelkannya langsung ke aplikasi yang menerima file yang dijatuhkan.
 
-Ini juga berfungsi dari terminal, jika kamu sudah tahu apa yang kamu inginkan: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Ada juga `omarchy transcode ascii`, yang mengubah gambar menjadi seni ASCII — yang satu itu sebagian besar untuk [branding](41-branding.md).
+Ini juga berfungsi dari terminal, jika kamu sudah tahu apa yang kamu inginkan: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Ada juga `unbloarchy transcode ascii`, yang mengubah gambar menjadi seni ASCII — yang satu itu sebagian besar untuk [branding](41-branding.md).
 
 ## Mengirimnya ke suatu tempat
 

@@ -10,7 +10,7 @@ Les cartes proposent ce qu'elles transportent : _Copier le code_ pour les codes 
 
 Pour les utiliser sans la souris, appuie sur `Super + Ctrl + ,`. La notification la plus récente est sélectionnée et ses boutons sont numérotés : appuie sur un chiffre pour en utiliser un, sur `Enter` pour cliquer sur la notification, sur `↑` et `↓` pour passer d'une notification à l'autre, sur `Delete` pour en ignorer une, et sur `Esc` pour rendre le clavier. Elle lâche aussi prise d'elle-même au bout de quelques secondes d'inactivité.
 
-Mettre les notifications en silence les retient, sauf les confirmations d'Omarchy lui-même, les alertes d'urgence et les codes de vérification, que tu as demandés il y a un instant. Remets les dernières à l'écran, retenues ou non, avec `Super + Shift + Alt + ,`. L'historique est conservé pendant un jour.
+Mettre les notifications en silence les retient, sauf les confirmations d'Unbloarchy lui-même, les alertes d'urgence et les codes de vérification, que tu as demandés il y a un instant. Remets les dernières à l'écran, retenues ou non, avec `Super + Shift + Alt + ,`. L'historique est conservé pendant un jour.
 
 ## Notifications par raccourci clavier
 
@@ -26,7 +26,7 @@ Mettre les notifications en silence les retient, sauf les confirmations d'Omarch
 
  ![notice-weather](images/notice-weather.webp)
 
-L'emplacement est détecté à partir de ton adresse IP, ce qui est généralement assez proche, mais pas toujours. Tu peux le verrouiller avec `omarchy weather location --set Malibu`, ou être précis en ajoutant des coordonnées : `omarchy weather location --set Malibu 34.0259,-118.7798`. Lance `omarchy weather location` seul pour voir où il pense que tu es, et `--clear` pour revenir à la détection automatique.
+L'emplacement est détecté à partir de ton adresse IP, ce qui est généralement assez proche, mais pas toujours. Tu peux le verrouiller avec `unbloarchy weather location --set Malibu`, ou être précis en ajoutant des coordonnées : `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Lance `unbloarchy weather location` seul pour voir où il pense que tu es, et `--clear` pour revenir à la détection automatique.
 
 ### Batterie
 

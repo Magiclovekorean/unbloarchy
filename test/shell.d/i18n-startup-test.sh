@@ -67,7 +67,7 @@ def write_json(path, data):
 
 class Probe:
     def __init__(self, language=None, malformed=False, malformed_english=False):
-        self.tmp = tempfile.TemporaryDirectory(prefix='omarchy-i18n-startup-')
+        self.tmp = tempfile.TemporaryDirectory(prefix='unbloarchy-i18n-startup-')
         self.path = Path(self.tmp.name)
         self.config = self.path / 'config'
         self.config.mkdir()
@@ -101,8 +101,8 @@ class Probe:
         for key in ('WAYLAND_DISPLAY', 'HYPRLAND_INSTANCE_SIGNATURE', 'DISPLAY'):
             env.pop(key, None)
         env.update({
-            'OMARCHY_PATH': str(self.path / 'install'), 'OMARCHY_LANGUAGE_FILE': str(self.language),
-            'OMARCHY_TEST_PLUGIN_DIRECTORY': str(self.directory), 'OMARCHY_TEST_RESULT': str(self.result),
+            'UNBLOARCHY_PATH': str(self.path / 'install'), 'UNBLOARCHY_LANGUAGE_FILE': str(self.language),
+            'UNBLOARCHY_TEST_PLUGIN_DIRECTORY': str(self.directory), 'UNBLOARCHY_TEST_RESULT': str(self.result),
             'XDG_RUNTIME_DIR': str(self.path / 'runtime'), 'HOME': str(self.path / 'home'),
             'XDG_CONFIG_HOME': str(self.path / 'home/.config'), 'XDG_CACHE_HOME': str(self.path / 'cache'),
             'XDG_STATE_HOME': str(self.path / 'state'), 'QT_QPA_PLATFORM': 'offscreen',

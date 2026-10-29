@@ -2,7 +2,7 @@
 
 ## Alternatywne edytory
 
-Omarchy domyślnie jest dostarczane z [Neovim](https://neovim.io/), ale jeśli wolisz coś bardziej popularnego i znajomego, możesz uruchomić Menu Omarchy (`Super + Space`) i zobaczyć opcje w _Install > Editor_. Mamy tam wymienione VSCode, Cursor, Zed, Sublime Text, Helix, Vim i Emacs. Jeśli nie znajdziesz tego, czego szukasz, zajrzyj do _Install > Package_ i sprawdź, czy nie ma tego w pakiecie Arch (a jeśli nie, spróbuj _Install > AUR_, aby sprawdzić AUR).
+Unbloarchy domyślnie jest dostarczane z [Neovim](https://neovim.io/), ale jeśli wolisz coś bardziej popularnego i znajomego, możesz uruchomić Menu Unbloarchy (`Super + Space`) i zobaczyć opcje w _Install > Editor_. Mamy tam wymienione VSCode, Cursor, Zed, Sublime Text, Helix, Vim i Emacs. Jeśli nie znajdziesz tego, czego szukasz, zajrzyj do _Install > Package_ i sprawdź, czy nie ma tego w pakiecie Arch (a jeśli nie, spróbuj _Install > AUR_, aby sprawdzić AUR).
 
 Oryginalny edytor `vi` jest również dostępny od razu po instalacji. Uruchom `vi filename`, aby edytować plik w terminalu.
 
@@ -12,7 +12,7 @@ Ogólnosystemowy domyślny edytor możesz ustawić w `Setup > Defaults > Editor`
 
 ## Środowiska
 
-Omarchy obsługuje konfigurację całej gamy środowisk programistycznych za pośrednictwem sekcji _Install > Development_ Menu Omarchy (`Super + Space`). Znajdziesz tam oczywiście _Ruby on Rails_, ale także wszystkie trzy główne środowiska uruchomieniowe dla JavaScript (Node.js, Bun, Deno), a także popularne frameworki PHP, takie jak Laravel i Symfony. A, i jest też Go, Rust, Python, Java, Elixir (z Phoenix), .NET, OCaml, Zig, Clojure i Scala. To bardzo szeroki wybór!
+Unbloarchy obsługuje konfigurację całej gamy środowisk programistycznych za pośrednictwem sekcji _Install > Development_ Menu Unbloarchy (`Super + Space`). Znajdziesz tam oczywiście _Ruby on Rails_, ale także wszystkie trzy główne środowiska uruchomieniowe dla JavaScript (Node.js, Bun, Deno), a także popularne frameworki PHP, takie jak Laravel i Symfony. A, i jest też Go, Rust, Python, Java, Elixir (z Phoenix), .NET, OCaml, Zig, Clojure i Scala. To bardzo szeroki wybór!
 
 Większość tych środowisk jest zarządzana przez [Mise](https://mise.jdx.dev/). To narzędzie, które pozwala instalować i uruchamiać wiele wersji języka programowania na tym samym komputerze. Jest jak rbenv lub rvm dla Ruby albo virtualenv dla Pythona, ale działa dla całej gamy różnych środowisk.
 
@@ -20,7 +20,7 @@ Aby zainstalować, powiedzmy, Ruby, uruchomisz `mise use -g ruby`, co zarówno z
 
 ## Preinstalowane narzędzia CLI
 
-Omarchy udostępnia narzędzia takie jak `gh`, `uv` i większość [agentów kodujących](17-ai.md) dzięki [leniwemu instalowaniu mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Przy pierwszym uruchomieniu jednego z nich mise je instaluje. Kolejne uruchomienia ponownie wykorzystują zainstalowaną wersję; nie sprawdzają dostępności aktualizacji przy każdym uruchomieniu.
+Unbloarchy udostępnia narzędzia takie jak `gh`, `uv` i większość [agentów kodujących](17-ai.md) dzięki [leniwemu instalowaniu mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Przy pierwszym uruchomieniu jednego z nich mise je instaluje. Kolejne uruchomienia ponownie wykorzystują zainstalowaną wersję; nie sprawdzają dostępności aktualizacji przy każdym uruchomieniu.
 
 Możesz też sprawdzić ustawienia domyślne lub zainstalować je zawczasu:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Uruchom `omarchy update`, aby zaktualizować zainstalowane narzędzia wraz z resztą Omarchy. Alias `mup` aktualizuje tylko narzędzia zarządzane przez mise. Aby dodać kolejne narzędzie do własnej konfiguracji, użyj `mise use -g <tool>`.
+Uruchom `unbloarchy update`, aby zaktualizować zainstalowane narzędzia wraz z resztą Unbloarchy. Alias `mup` aktualizuje tylko narzędzia zarządzane przez mise. Aby dodać kolejne narzędzie do własnej konfiguracji, użyj `mise use -g <tool>`.
 
 Konfiguracja Pythona instaluje również `uv` za pośrednictwem mise. Usunięcie środowiska programistycznego Pythona pozostawia `uv` dostępne jako niezależne narzędzie.
 
@@ -47,15 +47,15 @@ Jeśli masz już tabelę `[settings]`, dodaj wpis właśnie tam; rozbuduj istnie
 
 ### Usuwanie i przywracanie ustawień domyślnych
 
-_Remove Preinstalls_ sprawia, że mise pomija deklaracje narzędzi Omarchy dla Twojego użytkownika, dodając je do `ignored_config_paths` w `~/.config/mise/miserc.toml`. _Restore Preinstalls_ ponownie usuwa ten wiersz. Narzędzia, które zadeklarujesz samodzielnie, we własnej konfiguracji lub w pliku `mise.toml` projektu, działają tak czy inaczej. Jeśli wybierzesz domyślnego agenta lub skonfigurujesz Pythona po usunięciu preinstalowanych narzędzi, to narzędzie zostanie dodane do Twojej własnej konfiguracji. Obie opcje dotyczą tylko Twojego użytkownika; inni użytkownicy na tym komputerze zachowują własny wybór.
+_Remove Preinstalls_ sprawia, że mise pomija deklaracje narzędzi Unbloarchy dla Twojego użytkownika, dodając je do `ignored_config_paths` w `~/.config/mise/miserc.toml`. _Restore Preinstalls_ ponownie usuwa ten wiersz. Narzędzia, które zadeklarujesz samodzielnie, we własnej konfiguracji lub w pliku `mise.toml` projektu, działają tak czy inaczej. Jeśli wybierzesz domyślnego agenta lub skonfigurujesz Pythona po usunięciu preinstalowanych narzędzi, to narzędzie zostanie dodane do Twojej własnej konfiguracji. Obie opcje dotyczą tylko Twojego użytkownika; inni użytkownicy na tym komputerze zachowują własny wybór.
 
 ## Docker
 
-[Docker](https://www.docker.com/) chyba nie wymaga żadnego wprowadzenia. Pozwala uruchamiać odizolowane kontenery, a Omarchy instaluje wszystko, co potrzebne, aby dobrze działał, w tym samego Dockera i [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) chyba nie wymaga żadnego wprowadzenia. Pozwala uruchamiać odizolowane kontenery, a Unbloarchy instaluje wszystko, co potrzebne, aby dobrze działał, w tym samego Dockera i [Docker Compose](https://docs.docker.com/compose/).
 
-Domyślnie Twój użytkownik *nie* należy do grupy `docker`. Ta grupa to w praktyce root bez hasła — wszystko, co do niej należy, może wykonać `docker run -v /:/host` i przejąć kontrolę nad komputerem — więc jeden nieuczciwy skrypt lub zależność działająca jako Ty byłaby w przeciwnym razie o jedno polecenie od roota. Dlatego w wierszu poleceń uruchamiasz Dockera za pomocą `sudo` (`sudo docker ps`, `sudo docker compose up`), a narzędzia graficzne, które komunikują się z demonem — VM z Windows — proszą o autoryzację, gdy jej potrzebują. Jeśli chcesz odzyskać wygodę konfiguracji bez grupy i rozumiesz kompromis, włącz ją w **Setup > Security > Sudoless Docker** (lub uruchom `omarchy-setup-security-sudoless-docker`), co po wyświetleniu ostrzeżenia doda Cię do grupy `docker`; wtedy zwykłe `docker` i alias `d` znów działają bez `sudo`.
+Domyślnie Twój użytkownik *nie* należy do grupy `docker`. Ta grupa to w praktyce root bez hasła — wszystko, co do niej należy, może wykonać `docker run -v /:/host` i przejąć kontrolę nad komputerem — więc jeden nieuczciwy skrypt lub zależność działająca jako Ty byłaby w przeciwnym razie o jedno polecenie od roota. Dlatego w wierszu poleceń uruchamiasz Dockera za pomocą `sudo` (`sudo docker ps`, `sudo docker compose up`), a narzędzia graficzne, które komunikują się z demonem — VM z Windows — proszą o autoryzację, gdy jej potrzebują. Jeśli chcesz odzyskać wygodę konfiguracji bez grupy i rozumiesz kompromis, włącz ją w **Setup > Security > Sudoless Docker** (lub uruchom `unbloarchy-setup-security-sudoless-docker`), co po wyświetleniu ostrzeżenia doda Cię do grupy `docker`; wtedy zwykłe `docker` i alias `d` znów działają bez `sudo`.
 
-Popularne bazy danych do lokalnego programowania w Dockerze możesz skonfigurować za pomocą _Install > Development > Docker DB_ w menu Omarchy.
+Popularne bazy danych do lokalnego programowania w Dockerze możesz skonfigurować za pomocą _Install > Development > Docker DB_ w menu Unbloarchy.
 
 ## GitHub CLI
 

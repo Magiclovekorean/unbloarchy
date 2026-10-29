@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# omarchy:summary=Sync Omarchy theme to VS Code, VSCodium, and Cursor
-# omarchy:hidden=true
+# unbloarchy:summary=Sync Unbloarchy theme to VS Code, VSCodium, and Cursor
+# unbloarchy:hidden=true
 
-VS_CODE_THEME_DESCRIPTOR="$HOME/.local/state/omarchy/current/theme/vscode.json"
-GENERATED_THEME="$HOME/.local/state/omarchy/current/theme/vscode-theme.json"
-GENERATED_EXTENSION_NAME="omarchy-theme"
+VS_CODE_THEME_DESCRIPTOR="$HOME/.local/state/unbloarchy/current/theme/vscode.json"
+GENERATED_THEME="$HOME/.local/state/unbloarchy/current/theme/vscode-theme.json"
+GENERATED_EXTENSION_NAME="unbloarchy-theme"
 GENERATED_EXTENSION_ID="local.$GENERATED_EXTENSION_NAME"
 GENERATED_EXTENSION_VERSION="1.0.0"
 
@@ -76,24 +76,24 @@ install_generated_extension() {
   mkdir -p "$ext_dir/themes"
   # A real file rather than a symlink into current/theme: the _watch watcher
   # below needs a same-inode rewrite to fire, and a symlink would dangle while
-  # omarchy-theme-set swaps current/theme via rm + mv.
-  rm -f "$ext_dir/themes/omarchy-color-theme.json"
-  cat "$GENERATED_THEME" >"$ext_dir/themes/omarchy-color-theme.json"
+  # unbloarchy-theme-set swaps current/theme via rm + mv.
+  rm -f "$ext_dir/themes/unbloarchy-color-theme.json"
+  cat "$GENERATED_THEME" >"$ext_dir/themes/unbloarchy-color-theme.json"
 
   cat > "$ext_dir/package.json" <<EOF
 {
     "name": "$GENERATED_EXTENSION_NAME",
-    "displayName": "Omarchy",
-    "description": "Omarchy color theme",
+    "displayName": "Unbloarchy",
+    "description": "Unbloarchy color theme",
     "publisher": "local",
     "version": "$GENERATED_EXTENSION_VERSION",
     "engines": { "vscode": "^1.70.0" },
     "categories": ["Themes"],
     "contributes": {
         "themes": [{
-            "label": "Omarchy",
+            "label": "Unbloarchy",
             "uiTheme": "$ui_theme",
-            "path": "./themes/omarchy-color-theme.json",
+            "path": "./themes/unbloarchy-color-theme.json",
             "_watch": true
         }]
     }
@@ -141,7 +141,7 @@ set_theme() {
   local settings_path="$2"
   local ext_base="$3"
 
-  omarchy-cmd-present "$editor_cmd" || return 0
+  unbloarchy-cmd-present "$editor_cmd" || return 0
 
   local theme_name=""
 
@@ -165,7 +165,7 @@ set_theme() {
   elif [[ -f "$GENERATED_THEME" ]]; then
     # VS Code only discovers local color themes through an extension package.
     install_generated_extension "$ext_base/$GENERATED_EXTENSION_NAME"
-    theme_name="Omarchy"
+    theme_name="Unbloarchy"
   fi
 
   if [[ -n "$theme_name" ]]; then
@@ -190,15 +190,15 @@ set_theme() {
   fi
 }
 
-if ! omarchy-toggle-enabled skip-vscode-theme-changes; then
+if ! unbloarchy-toggle-enabled skip-vscode-theme-changes; then
   set_theme "code" "$HOME/.config/Code/User/settings.json" "$HOME/.vscode/extensions"
 fi
-if ! omarchy-toggle-enabled skip-vscode-insiders-theme-changes; then
+if ! unbloarchy-toggle-enabled skip-vscode-insiders-theme-changes; then
   set_theme "code-insiders" "$HOME/.config/Code - Insiders/User/settings.json" "$HOME/.vscode-insiders/extensions"
 fi
-if ! omarchy-toggle-enabled skip-codium-theme-changes; then
+if ! unbloarchy-toggle-enabled skip-codium-theme-changes; then
   set_theme "codium" "$HOME/.config/VSCodium/User/settings.json" "$HOME/.vscode-oss/extensions"
 fi
-if ! omarchy-toggle-enabled skip-cursor-theme-changes; then
+if ! unbloarchy-toggle-enabled skip-cursor-theme-changes; then
   set_theme "/usr/bin/cursor" "$HOME/.config/Cursor/User/settings.json" "$HOME/.cursor/extensions"
 fi

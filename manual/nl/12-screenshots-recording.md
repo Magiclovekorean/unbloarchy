@@ -22,7 +22,7 @@ De annotatie-editor kan pijlen, lijnen, vormen, markeringen, genummerde markers 
 
 Opgeslagen schermafbeeldingen komen standaard terecht in `~/Pictures/Screenshots`, met een naam zoals `screenshot-2026-08-13_14-22-05-firefox.png`. Stel `OMASNAP_SCREENSHOT_DIR` in om een andere map te gebruiken — zie [de FAQ](46-faq.md) voor waar je omgevingsvariabelen voor de sessie moet plaatsen. Omasnap maakt de map aan wanneer het de eerste opname opslaat. Stel `[output] autosave = false` in in `~/.config/omasnap/omasnap.conf` om automatisch opslaan uit te schakelen; opnames worden dan alleen gekopieerd, en 10 seconden lang getoond in een voorbeeld dat je met de pinknop of `Ctrl + P` op het scherm kunt houden.
 
-Vanuit de terminal opent `omarchy screenshot` dezelfde overlay, en je kunt de startmodus kiezen: `omarchy capture screenshot region`, `windows`, `fullscreen` of `scroll`. Een tweede argument `copy` of `save` stuurt de opname rechtstreeks naar die bestemming. Om te bewerken vóór de uitvoer gebruik je `omarchy screenshot --editor=overlay` voor een editor op volledig scherm of `omarchy screenshot --editor=window` voor een apart venster.
+Vanuit de terminal opent `unbloarchy screenshot` dezelfde overlay, en je kunt de startmodus kiezen: `unbloarchy capture screenshot region`, `windows`, `fullscreen` of `scroll`. Een tweede argument `copy` of `save` stuurt de opname rechtstreeks naar die bestemming. Om te bewerken vóór de uitvoer gebruik je `unbloarchy screenshot --editor=overlay` voor een editor op volledig scherm of `unbloarchy screenshot --editor=window` voor een apart venster.
 
 ### De kiezer bedienen met het toetsenbord
 
@@ -41,9 +41,9 @@ Deze toetscombinaties bestaan alleen zolang Omasnap open is, dus ze kunnen nerge
 
 ## Schermopname
 
-`Alt + Print Screen` opent _Trigger > Capture > Screenrecord_, dat vraagt wat je op de soundtrack wilt: geen audio, desktopaudio, desktop plus microfoon, of desktop plus microfoon plus webcam. Die laatste verschijnt alleen als je daadwerkelijk een camera hebt aangesloten. Kies er een en met de opnamekiezer van Omarchy kun je een regio slepen of op een venster of monitor klikken.
+`Alt + Print Screen` opent _Trigger > Capture > Screenrecord_, dat vraagt wat je op de soundtrack wilt: geen audio, desktopaudio, desktop plus microfoon, of desktop plus microfoon plus webcam. Die laatste verschijnt alleen als je daadwerkelijk een camera hebt aangesloten. Kies er een en met de opnamekiezer van Unbloarchy kun je een regio slepen of op een venster of monitor klikken.
 
-De opname draait op gpu-screen-recorder, dat op de GPU encodeert met 60fps en terugvalt op de CPU als het moet. Het resultaat is een MP4 in `~/Videos`, met de naam `screenrecording-2026-08-13_14-22-05.mp4`. Stel `OMARCHY_SCREENRECORD_DIR` in om dat te wijzigen — maar let op: anders dan de map voor schermafbeeldingen moet deze al bestaan, anders weigert de opname te starten.
+De opname draait op gpu-screen-recorder, dat op de GPU encodeert met 60fps en terugvalt op de CPU als het moet. Het resultaat is een MP4 in `~/Videos`, met de naam `screenrecording-2026-08-13_14-22-05.mp4`. Stel `UNBLOARCHY_SCREENRECORD_DIR` in om dat te wijzigen — maar let op: anders dan de map voor schermafbeeldingen moet deze al bestaan, anders weigert de opname te starten.
 
 Terwijl je opneemt, verschijnt er een kleine indicator in de balk. Klik erop om te stoppen. Je kunt ook opnieuw stoppen met `Alt + Print Screen`, of met het item _Stop Screenrecording_ onder _Trigger > Capture > Screenrecord_, dat alleen verschijnt zolang er daadwerkelijk iets wordt opgenomen.
 
@@ -60,7 +60,7 @@ Wanneer je opneemt met een webcam, verschijnt de camera als een vastgezet, bijge
 
 Er zijn drie formaten — klein, medium en groot — en de sneltoetsen stappen ertussen. Medium is de standaard. Ze zijn proportioneel ten opzichte van de opname, dus de camera neemt hetzelfde deel van het frame in, of je nu een 1080p-monitor of een 6K-monitor opneemt. En als je een regio hebt opgenomen in plaats van een volledig scherm, verankert de overlay zich aan de hoek van die regio in plaats van aan die van de monitor, zodat hij binnen de opname blijft.
 
-Je kunt het ook rechtstreeks aanroepen met `omarchy-capture-webcam-resize small`, of `reset` om terug te gaan naar medium.
+Je kunt het ook rechtstreeks aanroepen met `unbloarchy-capture-webcam-resize small`, of `reset` om terug te gaan naar medium.
 
 ## Tekst, QR-codes en kleuren
 
@@ -76,7 +76,7 @@ Een 4K-schermopname of een rauwe HEIC van je telefoon is vaak te groot om zomaar
 
 Afbeeldingen gaan naar jpg of png op hoog, medium of laag, wat de breedte begrenst op 3160, 2160 en 1080 pixels. Video's gaan naar mp4 of een geanimeerde gif op 4k, 1080p of 720p. Het geconverteerde bestand wordt naast het origineel geschreven met de resolutie in de naam — `demo-1080p.mp4` — en het pad wordt als bestands-URI naar het klembord gekopieerd, zodat je het rechtstreeks kunt plakken in een app die bestandsdrops accepteert.
 
-Het werkt ook vanuit de terminal, als je al weet wat je wilt: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Er is ook `omarchy transcode ascii`, dat een afbeelding omzet in ASCII-kunst — die is vooral voor [branding](41-branding.md).
+Het werkt ook vanuit de terminal, als je al weet wat je wilt: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Er is ook `unbloarchy transcode ascii`, dat een afbeelding omzet in ASCII-kunst — die is vooral voor [branding](41-branding.md).
 
 ## Ergens naartoe sturen
 

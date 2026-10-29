@@ -1,6 +1,6 @@
 # Funkce shellu
 
-Omarchy je dodávána se sadou funkcí shellu, které zjednodušují běžné úkoly a zapouzdřují složitá volání parametrů.
+Unbloarchy je dodávána se sadou funkcí shellu, které zjednodušují běžné úkoly a zapouzdřují složitá volání parametrů.
 
 ## Komprese
 

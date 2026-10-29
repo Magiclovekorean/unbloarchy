@@ -1,16 +1,16 @@
 # Mac-tuki
 
-Omarchyssa on sisäänrakennettu tuki **Intel-Maceille**. Tällä hetkellä on pari tunnettua rajoitusta, mutta kunhan olet niistä tietoinen ja hyväksyt ne, voit puhaltaa vanhoihin Maceihisi uutta elämää asentamalla Omarchyn.
+Unbloarchyssa on sisäänrakennettu tuki **Intel-Maceille**. Tällä hetkellä on pari tunnettua rajoitusta, mutta kunhan olet niistä tietoinen ja hyväksyt ne, voit puhaltaa vanhoihin Maceihisi uutta elämää asentamalla Unbloarchyn.
 
 Huomaa, että asentamista M-sarjan Macille ei tueta suoraan tällä hetkellä. Saat lisätietoja tämän tilanteesta kanavalta #omarchy-on-other [Discordissamme](https://discord.gg/tXFUdasqhY).
 
-Yksinkertaisessa testissä saavutimme 36 % suorituskykyparannuksen vuoden 2019 MacBook Prolla pelkästään asentamalla Omarchyn.
+Yksinkertaisessa testissä saavutimme 36 % suorituskykyparannuksen vuoden 2019 MacBook Prolla pelkästään asentamalla Unbloarchyn.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Omarchyn asentaminen Macille
+### Unbloarchyn asentaminen Macille
 
-Omarchy tukee tällä hetkellä vain sitä, että se on **ainoa** asennettu käyttöjärjestelmä. Asennuksen aikana asema tyhjennetään eikä MacOS ole enää käynnistettävissä.
+Unbloarchy tukee tällä hetkellä vain sitä, että se on **ainoa** asennettu käyttöjärjestelmä. Asennuksen aikana asema tyhjennetään eikä MacOS ole enää käynnistettävissä.
 
 Voit silti palauttaa sen myöhemmin Internet Recoveryn kautta halutessasi.
 

@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# omarchy:summary=Sync the generated Omarchy theme to the Fcitx candidate window
-# omarchy:args=[--activate]
-# omarchy:hidden=true
+# unbloarchy:summary=Sync the generated Unbloarchy theme to the Fcitx candidate window
+# unbloarchy:args=[--activate]
+# unbloarchy:hidden=true
 
 set -euo pipefail
 
-THEME_SOURCE="$HOME/.local/state/omarchy/current/theme/fcitx5-theme.conf"
-THEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fcitx5/themes/omarchy"
+THEME_SOURCE="$HOME/.local/state/unbloarchy/current/theme/fcitx5-theme.conf"
+THEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fcitx5/themes/unbloarchy"
 CLASSICUI_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/fcitx5/conf/classicui.conf"
-PACKAGED_THEME="${OMARCHY_FCITX5_PACKAGED_THEME:-/usr/share/fcitx5/themes/default}"
+PACKAGED_THEME="${UNBLOARCHY_FCITX5_PACKAGED_THEME:-/usr/share/fcitx5/themes/default}"
 ACTIVATE=0
 
 usage() {
-  echo "Usage: omarchy-theme-set-fcitx5 [--activate]"
+  echo "Usage: unbloarchy-theme-set-fcitx5 [--activate]"
 }
 
 for arg in "$@"; do
@@ -46,17 +46,17 @@ select_theme() {
   for key in Theme DarkTheme; do
     value=$(sed -n "s/^$key=//p" <<<"$updated" | tail -n 1)
     if [[ -z $value ]]; then
-      updated+="${updated:+$'\n'}$key=omarchy"
+      updated+="${updated:+$'\n'}$key=unbloarchy"
     elif [[ $value == "default" || $value == "default-dark" ]]; then
-      updated=$(sed "s/^$key=.*/$key=omarchy/" <<<"$updated")
+      updated=$(sed "s/^$key=.*/$key=unbloarchy/" <<<"$updated")
     fi
   done
 
   if [[ $updated != "$original" ]]; then
     # Write through a dotfiles symlink rather than replacing it.
     mkdir -p "${conf%/*}"
-    printf '%s\n' "$updated" >"$conf.omarchy-tmp"
-    mv "$conf.omarchy-tmp" "$conf"
+    printf '%s\n' "$updated" >"$conf.unbloarchy-tmp"
+    mv "$conf.unbloarchy-tmp" "$conf"
   fi
 }
 

@@ -9,7 +9,7 @@ matching guide before starting:
 - [`agents/skills/shell-dev.md`](agents/skills/shell-dev.md) - editing the Quickshell desktop under `shell/`
 - [`agents/skills/icon-font.md`](agents/skills/icon-font.md) - adding branded glyphs to `default/fonts/omarchy/omarchy.ttf`
 - [`agents/skills/acceptance-tests.md`](agents/skills/acceptance-tests.md) - writing or running graphical acceptance tests under `test/acceptance.d/`
-- [`agents/skills/oligarchy-tests.md`](agents/skills/oligarchy-tests.md) - full omarchy tests that run in qemu to validate behavior
+- [`agents/skills/oligarchy-tests.md`](agents/skills/oligarchy-tests.md) - full unbloarchy tests that run in qemu to validate behavior
 - [`agents/skills/motion.md`](agents/skills/motion.md) - adding or changing any animation or transition in `shell/`
 - [`agents/skills/visual-verification.md`](agents/skills/visual-verification.md) - verifying any change with a visual effect in the running UI
 - [`agents/skills/migrations.md`](agents/skills/migrations.md) - creating or changing migrations under `migrations/`
@@ -59,8 +59,8 @@ most specific name. Ask a helper; don't read `uname -m` or the device tree in fe
 
 Ask a helper; don't read `uname -m` or the device tree in feature code:
 
-- `omarchy-hw-x86` / `omarchy-hw-aarch64` - the CPU architecture. Use them for binary and ABI availability: a package with no aarch64 build, an x86 guest VM, multilib.
-- `omarchy-hw-aarch64-apple`, `omarchy-hw-aarch64-qualcomm`, `omarchy-hw-aarch64-n1x`, `omarchy-hw-aarch64-gb10` (one per family) - built on `omarchy-hw-platform`, image-build aware. Use them for hardware behaviour that the whole family shares; a single model's quirks stay behind `omarchy-hw-match` on its DMI name, or behind `omarchy-hw-match-device-tree` on its device-tree compatible string where models share a DMI name. `omarchy-hw-apple-silicon` and `omarchy-hw-n1x` are hidden aliases kept for the omarchy-mac packages and older N1x images; don't use them in new code.
+- `unbloarchy-hw-x86` / `unbloarchy-hw-aarch64` - the CPU architecture. Use them for binary and ABI availability: a package with no aarch64 build, an x86 guest VM, multilib.
+- `unbloarchy-hw-aarch64-apple`, `unbloarchy-hw-aarch64-qualcomm`, `unbloarchy-hw-aarch64-n1x`, `unbloarchy-hw-aarch64-gb10` (one per family) - built on `unbloarchy-hw-platform`, image-build aware. Use them for hardware behaviour that the whole family shares; a single model's quirks stay behind `unbloarchy-hw-match` on its DMI name, or behind `unbloarchy-hw-match-device-tree` on its device-tree compatible string where models share a DMI name. `unbloarchy-hw-apple-silicon` and `unbloarchy-hw-n1x` are hidden aliases kept for the omarchy-mac packages and older N1x images; don't use them in new code.
 
 Where platform code lives:
 
@@ -86,12 +86,12 @@ follow it.
 Use these instead of raw shell commands. These are runtime invariants installed by Unbloarchy's default
 package set; invoke them directly without defensive presence checks:
 
-- `omarchy-cmd-missing` / `omarchy-cmd-present` - check for commands
-- `omarchy-pkg-missing` / `omarchy-pkg-present` - check for packages (don't use these if you can just use `omarchy-pkg-add`/`omarchy-pkg-drop`)
-- `omarchy-pkg-add` - install packages from the configured pacman repos, Omarchy's included; use `omarchy-pkg-aur-add` for AUR packages
-- `omarchy-pkg-drop` - remove packages; use this instead of raw `pacman -R*`
-- `omarchy-notification-send` - send desktop notifications; do not call `notify-send` directly
-- `omarchy-hw-asus-rog` - detect ASUS ROG hardware (and similar `hw-*` commands)
+- `unbloarchy-cmd-missing` / `unbloarchy-cmd-present` - check for commands
+- `unbloarchy-pkg-missing` / `unbloarchy-pkg-present` - check for packages (don't use these if you can just use `unbloarchy-pkg-add`/`unbloarchy-pkg-drop`)
+- `unbloarchy-pkg-add` - install packages from the configured pacman repos, Unbloarchy's included; use `unbloarchy-pkg-aur-add` for AUR packages
+- `unbloarchy-pkg-drop` - remove packages; use this instead of raw `pacman -R*`
+- `unbloarchy-notification-send` - send desktop notifications; do not call `notify-send` directly
+- `unbloarchy-hw-asus-rog` - detect ASUS ROG hardware (and similar `hw-*` commands)
 
 Use command-presence helpers only for genuinely optional dependencies or code that can run before the default
 package set is installed.
@@ -147,7 +147,7 @@ When to add a test. A test earns its place only by catching a regression nothing
 - No test for a migration. It runs once and is frozen once it ships; test logic it needs by moving that logic into a `bin/` command.
 - Do test real logic: parsing, routing, a guard on hardware without the feature, the edge case a fix handles. A bug fix with logic in it gets the one test that fails on the base branch and passes with the fix.
 
-New Omarchy shell tests should live in `test/shell.d/*-test.sh` so `./test/shell` picks them up automatically. Source `test/shell.d/base-test.sh` for shared root-path discovery, assertions, and Node test helpers.
+New Unbloarchy shell tests should live in `test/shell.d/*-test.sh` so `./test/shell` picks them up automatically. Source `test/shell.d/base-test.sh` for shared root-path discovery, assertions, and Node test helpers.
 
 The graphical acceptance suite runs in a disposable VM, not in the active development session.
 Visual changes must be verified in the running UI in addition to automated tests.

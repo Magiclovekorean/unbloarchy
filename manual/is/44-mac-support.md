@@ -1,16 +1,16 @@
 # Mac stuðningur
 
-Omarchy hefur innbyggðan stuðning fyrir **Intel Mac**. Það eru nokkrar þekktar takmarkanir í augnablikinu, en svo framarlega sem þú ert meðvitaður um þær og sættir þig við þær geturðu blásið nýju lífi í gömlu Mac-tölvurnar þínar með því að hlaða inn Omarchy.
+Unbloarchy hefur innbyggðan stuðning fyrir **Intel Mac**. Það eru nokkrar þekktar takmarkanir í augnablikinu, en svo framarlega sem þú ert meðvitaður um þær og sættir þig við þær geturðu blásið nýju lífi í gömlu Mac-tölvurnar þínar með því að hlaða inn Unbloarchy.
 
 Athugaðu að uppsetning á M-röð Mac er ekki studd beint eins og er. Þú getur fengið meira að vita um stöðu þess í #omarchy-on-other á [Discord](https://discord.gg/tXFUdasqhY) okkar.
 
-Í einföldu prófi náðum við 36% afkastaaukningu á 2019 MacBook Pro eingöngu með því að setja upp Omarchy.
+Í einföldu prófi náðum við 36% afkastaaukningu á 2019 MacBook Pro eingöngu með því að setja upp Unbloarchy.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Að setja upp Omarchy á Mac
+### Að setja upp Unbloarchy á Mac
 
-Omarchy styður aðeins að vera **eina** uppsetta stýrikerfið í augnablikinu. Við uppsetningu verður drifinu þurrkað út og MacOS verður ekki lengur ræsanlegt.
+Unbloarchy styður aðeins að vera **eina** uppsetta stýrikerfið í augnablikinu. Við uppsetningu verður drifinu þurrkað út og MacOS verður ekki lengur ræsanlegt.
 
 Þú getur samt endurheimt það síðar með Internet Recovery ef þú vilt.
 

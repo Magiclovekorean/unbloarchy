@@ -2,7 +2,7 @@
 
 在 Linux 上，通常你要在終端機裡用 `Ctrl + Shift + C/V` 複製貼上，在其他所有地方則用 `Ctrl + C/V`。對於不是在 Linux 環境下土生土長的人來說，這很難習慣！如果你是從 Mac 轉過來的，從 super 切換到 ctrl 也一樣難習慣。
 
-Omarchy 用統一的剪貼簿快捷鍵解決了這兩個問題，在（幾乎）所有地方都能用。它們是：
+Unbloarchy 用統一的剪貼簿快捷鍵解決了這兩個問題，在（幾乎）所有地方都能用。它們是：
 
 | 快捷鍵 | 操作 |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ _請注意，大多數 agent harnesses 會用 `Ctrl + V` 貼上圖片，但用 `
 
 ### 剪貼簿歷史紀錄
 
-剪貼簿歷史紀錄由 Omarchy shell 提供，文字和圖片都支援。你用 `Super + Ctrl + V` 觸發它，用 return 選取項目，接著該項目就會放到剪貼簿上，準備好讓你用 `Super + V` 貼上。
+剪貼簿歷史紀錄由 Unbloarchy shell 提供，文字和圖片都支援。你用 `Super + Ctrl + V` 觸發它，用 return 選取項目，接著該項目就會放到剪貼簿上，準備好讓你用 `Super + V` 貼上。
 
  ![clipboard-history](images/clipboard-history.webp)
 

@@ -22,7 +22,7 @@ A feljegyzésszerkesztő tud nyilakat, vonalakat, alakzatokat, kiemeléseket, sz
 
 A mentett képernyőképek alapértelmezés szerint a `~/Pictures/Screenshots` mappába kerülnek, olyan névvel, mint a `screenshot-2026-08-13_14-22-05-firefox.png`. Állítsd be az `OMASNAP_SCREENSHOT_DIR` változót másik könyvtár használatához — lásd [a GYIK-et](46-faq.md) arról, hová kell tenni a munkamenet környezeti változóit. Az Omasnap létrehozza a könyvtárat, amikor menti az első felvételt. Állítsd be a `[output] autosave = false` értéket a `~/.config/omasnap/omasnap.conf` fájlban az automatikus mentés letiltásához; a felvételek ilyenkor csak másolódnak, és 10 másodpercig megjelennek egy előnézetben, amelyet a rögzítés gombjával vagy a `Ctrl + P` kombinációval a képernyőn tarthatsz.
 
-Terminálból az `omarchy screenshot` ugyanazt az átfedő felületet nyitja meg, és kiválaszthatod a kezdő módját: `omarchy capture screenshot region`, `windows`, `fullscreen` vagy `scroll`. A `copy` vagy `save` második argumentum egyenesen az adott célhelyre küldi a felvételt. Ha a kimenet előtt szerkeszteni szeretnél, használd az `omarchy screenshot --editor=overlay` parancsot teljes képernyős szerkesztőhöz, vagy az `omarchy screenshot --editor=window` parancsot külön ablakhoz.
+Terminálból az `unbloarchy screenshot` ugyanazt az átfedő felületet nyitja meg, és kiválaszthatod a kezdő módját: `unbloarchy capture screenshot region`, `windows`, `fullscreen` vagy `scroll`. A `copy` vagy `save` második argumentum egyenesen az adott célhelyre küldi a felvételt. Ha a kimenet előtt szerkeszteni szeretnél, használd az `unbloarchy screenshot --editor=overlay` parancsot teljes képernyős szerkesztőhöz, vagy az `unbloarchy screenshot --editor=window` parancsot külön ablakhoz.
 
 ### A választó vezérlése billentyűzetről
 
@@ -41,9 +41,9 @@ Ezek a billentyűhozzárendelések csak addig léteznek, amíg az Omasnap nyitva
 
 ## Képernyőfelvétel
 
-Az `Alt + Print Screen` megnyitja a _Trigger > Capture > Screenrecord_ menüt, amely megkérdezi, mit szeretnél a hangsávra: semmilyen hangot, asztali hangot, asztali hangot plusz mikrofont, vagy asztali hangot plusz mikrofont plusz webkamerát. Ez utóbbi csak akkor jelenik meg, ha ténylegesen van bedugott kamerád. Válassz egyet, és az Omarchy felvételválasztója lehetővé teszi, hogy tartományt húzz, vagy ablakra vagy monitorra kattints.
+Az `Alt + Print Screen` megnyitja a _Trigger > Capture > Screenrecord_ menüt, amely megkérdezi, mit szeretnél a hangsávra: semmilyen hangot, asztali hangot, asztali hangot plusz mikrofont, vagy asztali hangot plusz mikrofont plusz webkamerát. Ez utóbbi csak akkor jelenik meg, ha ténylegesen van bedugott kamerád. Válassz egyet, és az Unbloarchy felvételválasztója lehetővé teszi, hogy tartományt húzz, vagy ablakra vagy monitorra kattints.
 
-A felvétel a gpu-screen-recorder programon fut, amely a GPU-n kódol 60fps sebességgel, és ha kell, visszaesik a CPU-ra. Az eredmény egy MP4 a `~/Videos` mappában, `screenrecording-2026-08-13_14-22-05.mp4` néven. Állítsd be az `OMARCHY_SCREENRECORD_DIR` változót ennek módosításához — de vedd figyelembe, hogy a képernyőkép-könyvtárral ellentétben ennek már léteznie kell, különben a felvétel nem hajlandó elindulni.
+A felvétel a gpu-screen-recorder programon fut, amely a GPU-n kódol 60fps sebességgel, és ha kell, visszaesik a CPU-ra. Az eredmény egy MP4 a `~/Videos` mappában, `screenrecording-2026-08-13_14-22-05.mp4` néven. Állítsd be az `UNBLOARCHY_SCREENRECORD_DIR` változót ennek módosításához — de vedd figyelembe, hogy a képernyőkép-könyvtárral ellentétben ennek már léteznie kell, különben a felvétel nem hajlandó elindulni.
 
 Amíg rögzítesz, egy kis jelző jelenik meg a sávban. Kattints rá a leállításhoz. Leállíthatod az `Alt + Print Screen` ismételt megnyomásával is, vagy a _Trigger > Capture > Screenrecord_ alatt található _Stop Screenrecording_ bejegyzéssel, amely csak akkor jelenik meg, amíg ténylegesen rögzít valami.
 
@@ -60,7 +60,7 @@ Amikor webkamerával rögzítesz, a kamera rögzített, körbevágott portréabl
 
 Három méret van — kicsi, közepes és nagy —, és a billentyűparancsok ezek között léptetnek. A közepes az alapértelmezett. Arányosak a felvételhez, így a kamera ugyanakkora részét foglalja el a képnek, akár 1080p monitort, akár 6K monitort rögzítesz. És ha tartományt rögzítettél az egész kijelző helyett, az átfedés annak a tartománynak a sarkához rögzül a monitoré helyett, így a felvételen belül marad.
 
-Közvetlenül is meghívhatod az `omarchy-capture-webcam-resize small` paranccsal, vagy a `reset` argumentummal visszatérhetsz a közepeshez.
+Közvetlenül is meghívhatod az `unbloarchy-capture-webcam-resize small` paranccsal, vagy a `reset` argumentummal visszatérhetsz a közepeshez.
 
 ## Szöveg, QR-kódok és színek
 
@@ -76,7 +76,7 @@ Egy 4K képernyőfelvétel vagy egy nyers HEIC a telefonodról gyakran túl nagy
 
 A képek jpg vagy png formátumba kerülnek magas, közepes vagy alacsony szinten, amelyek a szélességet 3160, 2160 és 1080 pixelben maximalizálják. A videók mp4 vagy animált gif formátumba kerülnek 4k, 1080p vagy 720p felbontásban. A konvertált fájl az eredeti mellé íródik, a felbontással a nevében — `demo-1080p.mp4` —, és az elérési út fájl-URI-ként a vágólapra másolódik, így közvetlenül beillesztheted egy olyan alkalmazásba, amely elfogad fájldobásokat.
 
-Terminálból is működik, ha már tudod, mit szeretnél: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Van egy `omarchy transcode ascii` is, amely egy képet ASCII-művészetté alakít — az leginkább [arculathoz](41-branding.md) való.
+Terminálból is működik, ha már tudod, mit szeretnél: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Van egy `unbloarchy transcode ascii` is, amely egy képet ASCII-művészetté alakít — az leginkább [arculathoz](41-branding.md) való.
 
 ## Elküldés valahová
 

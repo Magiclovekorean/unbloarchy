@@ -10,7 +10,7 @@
 
 要在不使用鼠标的情况下使用它们，请按 `Super + Ctrl + ,`。最新的通知会被选中，其按钮会被编号：按数字键可使用其中一个按钮，按 `Enter` 可点击该通知，按 `↑` 和 `↓` 可在通知之间移动，按 `Delete` 可关闭一条通知，按 `Esc` 可交还键盘控制。它也会在闲置几秒后自动释放。
 
-静默通知会将它们拦截，但 Omarchy 自身的确认、紧急警报和你刚刚请求的验证码除外。使用 `Super + Shift + Alt + ,` 可将最近几条重新显示在屏幕上，无论它们是否被拦截。历史记录会保留一天。
+静默通知会将它们拦截，但 Unbloarchy 自身的确认、紧急警报和你刚刚请求的验证码除外。使用 `Super + Shift + Alt + ,` 可将最近几条重新显示在屏幕上，无论它们是否被拦截。历史记录会保留一天。
 
 ## 快捷键通知
 
@@ -26,7 +26,7 @@
 
  ![notice-weather](images/notice-weather.webp)
 
-位置是根据你的 IP 地址检测的，通常足够接近，但并不总是如此。你可以使用 `omarchy weather location --set Malibu` 将其固定下来，或者通过添加坐标来精确指定：`omarchy weather location --set Malibu 34.0259,-118.7798`。单独运行 `omarchy weather location` 可查看它认为你所在的位置，使用 `--clear` 可恢复为自动检测。
+位置是根据你的 IP 地址检测的，通常足够接近，但并不总是如此。你可以使用 `unbloarchy weather location --set Malibu` 将其固定下来，或者通过添加坐标来精确指定：`unbloarchy weather location --set Malibu 34.0259,-118.7798`。单独运行 `unbloarchy weather location` 可查看它认为你所在的位置，使用 `--clear` 可恢复为自动检测。
 
 ### 电池
 

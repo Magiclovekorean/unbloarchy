@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# omarchy:summary=Close all open windows
-# omarchy:args=[--wait]
+# unbloarchy:summary=Close all open windows
+# unbloarchy:args=[--wait]
 
 clients=$(hyprctl clients -j) || exit 1
 

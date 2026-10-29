@@ -7,11 +7,11 @@
     "Create the user with the username prime. Exactly prime: all lowercase, nothing else.",
     "Set the password to prime. Exactly prime: all lowercase, nothing else.",
     "If the installer asks for a disk encryption passphrase, it is prime as well.",
-    "Do not use the mouse on the Omarchy installer. The mouse is only available after the account is created and the machine has rebooted.",
+    "Do not use the mouse on the Unbloarchy installer. The mouse is only available after the account is created and the machine has rebooted.",
     "When you see the green Reboot Now button, press Enter. Do not click it.",
     "After that reboot, answer prime to the passphrase or login prompt and reach the desktop.",
     "On the desktop, press Super+Enter. A terminal opens.",
-    "In the terminal, type `omarchy-pkg-add qemu-guest-agent && sudo systemctl start qemu-guest-agent; systemctl is-active qemu-guest-agent` and press Enter. When sudo asks for the password, type prime and press Enter. The last line printed is `active`.",
+    "In the terminal, type `unbloarchy-pkg-add qemu-guest-agent && sudo systemctl start qemu-guest-agent; systemctl is-active qemu-guest-agent` and press Enter. When sudo asks for the password, type prime and press Enter. The last line printed is `active`.",
     "Press Super+W. The terminal closes.",
     "Once the desktop is confirmed, leave it showing. Do not shut down, reboot or log out: the machine is kept running, as it is, after the last step."
   ],

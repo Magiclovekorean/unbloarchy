@@ -2,7 +2,7 @@
 set -euo pipefail
 source "$(dirname "$0")/base-test.sh"
 
-SCRIPT="$ROOT/bin/omarchy-capture-screenrecording-process"
+SCRIPT="$ROOT/bin/unbloarchy-capture-screenrecording-process"
 
 tmp=$(mktemp -d)
 cleanup() {
@@ -41,7 +41,7 @@ recorders() {
 
 run() {
   local status=0
-  OMARCHY_PROC_ROOT="$tmp/proc" PATH="$tmp/bin:$PATH" "$SCRIPT" "$@" 2>"$tmp/stderr" || status=$?
+  UNBLOARCHY_PROC_ROOT="$tmp/proc" PATH="$tmp/bin:$PATH" "$SCRIPT" "$@" 2>"$tmp/stderr" || status=$?
   echo "$status"
 }
 
@@ -159,7 +159,7 @@ for args in "--pid" "--pid abc" "--pid -1" "--pid 12x" "--signal" "--signal TERM
   "--pid 4194305" "--pid 12345678901" "--pid 18446744073709555959" "--pid 99999999999999999999"; do
   # shellcheck disable=SC2086
   [[ $(run $args) == 2 ]] || fail "invalid arguments exit 2: $args"
-  grep -q '^Usage: omarchy-capture-screenrecording-process ' "$tmp/stderr" || fail "invalid arguments print usage: $args"
+  grep -q '^Usage: unbloarchy-capture-screenrecording-process ' "$tmp/stderr" || fail "invalid arguments print usage: $args"
 done
 pass "invalid arguments print usage and exit 2"
 

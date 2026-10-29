@@ -1,6 +1,6 @@
 # Shell funkcijos
 
-Omarchy pristatoma su rinkiniu shell funkcijų, skirtų supaprastinti įprastas užduotis ir apibendrinti sudėtingus parametrų iškvietimus.
+Unbloarchy pristatoma su rinkiniu shell funkcijų, skirtų supaprastinti įprastas užduotis ir apibendrinti sudėtingus parametrų iškvietimus.
 
 ## Suspaudimas
 

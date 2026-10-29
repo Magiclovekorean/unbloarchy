@@ -10,7 +10,7 @@ Kartice ponujajo, kar prinašajo: _Kopiraj kodo_ za potrditvene kode (ne shranij
 
 Za uporabo brez miške pritisnite `Super + Ctrl + ,`. Izbrano je najnovejše obvestilo, njegovi gumbi pa so oštevilčeni: pritisnite številko, da uporabite enega, `Enter`, da kliknete obvestilo, `↑` in `↓`, da se premikate med obvestili, `Delete`, da zavrnete enega, in `Esc`, da vrnete tipkovnico. Po nekaj sekundah nedejavnosti se tudi samo sprosti.
 
-Utišanje obvestil jih zadrži, razen Omarchyjevih lastnih potrditev, nujnih opozoril in potrditvenih kod, ki ste jih zahtevali pred trenutkom. Zadnjih nekaj jih vrnete na zaslon, zadržanih ali ne, s `Super + Shift + Alt + ,`. Zgodovina se hrani en dan.
+Utišanje obvestil jih zadrži, razen Unbloarchyjevih lastnih potrditev, nujnih opozoril in potrditvenih kod, ki ste jih zahtevali pred trenutkom. Zadnjih nekaj jih vrnete na zaslon, zadržanih ali ne, s `Super + Shift + Alt + ,`. Zgodovina se hrani en dan.
 
 ## Obvestila z bližnjicami
 
@@ -26,7 +26,7 @@ Utišanje obvestil jih zadrži, razen Omarchyjevih lastnih potrditev, nujnih opo
 
  ![notice-weather](images/notice-weather.webp)
 
-Lokacija se zazna na podlagi vašega naslova IP, kar je običajno dovolj blizu, a ne vedno. Pritrdite jo lahko z `omarchy weather location --set Malibu`, ali bodite natančni z dodajanjem koordinat: `omarchy weather location --set Malibu 34.0259,-118.7798`. Zaženite `omarchy weather location` samo po sebi, da vidite, kje meni, da ste, in `--clear`, da se vrnete na samodejno zaznavanje.
+Lokacija se zazna na podlagi vašega naslova IP, kar je običajno dovolj blizu, a ne vedno. Pritrdite jo lahko z `unbloarchy weather location --set Malibu`, ali bodite natančni z dodajanjem koordinat: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Zaženite `unbloarchy weather location` samo po sebi, da vidite, kje meni, da ste, in `--clear`, da se vrnete na samodejno zaznavanje.
 
 ### Baterija
 

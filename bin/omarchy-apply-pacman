@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# omarchy:summary=Restore channel and regional pacman defaults in an installed target
-# omarchy:args=<stable|rc|edge> [target-root] | --render <stable|rc|edge> <output-dir> [target-root]
-# omarchy:requires-sudo=true
-# omarchy:hidden=true
+# unbloarchy:summary=Restore channel and regional pacman defaults in an installed target
+# unbloarchy:args=<stable|rc|edge> [target-root] | --render <stable|rc|edge> <output-dir> [target-root]
+# unbloarchy:requires-sudo=true
+# unbloarchy:hidden=true
 
 set -euo pipefail
 
 usage() {
-  echo "Usage: omarchy-apply-pacman <stable|rc|edge> [target-root]" >&2
-  echo "       omarchy-apply-pacman --render <stable|rc|edge> <output-dir> [target-root]" >&2
+  echo "Usage: unbloarchy-apply-pacman <stable|rc|edge> [target-root]" >&2
+  echo "       unbloarchy-apply-pacman --render <stable|rc|edge> <output-dir> [target-root]" >&2
   exit 1
 }
 
@@ -36,8 +36,8 @@ esac
 # The ISO writes this plain-text marker before target finalization. Missing
 # markers keep existing installations global; never source it as shell code.
 region=global
-if [[ -e $etc/omarchy/region ]]; then
-  region=$(<"$etc/omarchy/region")
+if [[ -e $etc/unbloarchy/region ]]; then
+  region=$(<"$etc/unbloarchy/region")
 fi
 case "$region" in
   global|cn) ;;
@@ -45,11 +45,11 @@ case "$region" in
 esac
 
 # Each platform has its own channel templates (install/helpers/pacman.sh).
-source "$OMARCHY_PATH/install/helpers/pacman.sh"
-platform=$(omarchy-hw-platform)
-templates=$(omarchy_pacman_templates "$platform")
+source "$UNBLOARCHY_PATH/install/helpers/pacman.sh"
+platform=$(unbloarchy-hw-platform)
+templates=$(unbloarchy_pacman_templates "$platform")
 if [[ ! -f $templates/pacman-$channel.conf || ! -f $templates/mirrorlist-$channel ]]; then
-  echo "Omarchy has no $channel channel for $platform." >&2
+  echo "Unbloarchy has no $channel channel for $platform." >&2
   exit 1
 fi
 
@@ -67,13 +67,13 @@ if [[ $region == "global" || $platform != "x86" ]]; then
   cp "$templates/pacman-$channel.conf" "$staging/pacman.conf"
   cp "$templates/mirrorlist-$channel" "$staging/mirrorlist"
 else
-  profile="$OMARCHY_PATH/default/regions/$region/pacman"
-  for fragment in "omarchy-$channel.prepend" "mirrorlist-$channel.prepend"; do
+  profile="$UNBLOARCHY_PATH/default/regions/$region/pacman"
+  for fragment in "unbloarchy-$channel.prepend" "mirrorlist-$channel.prepend"; do
     [[ -r $profile/$fragment ]] || { echo "Region $region lacks $profile/$fragment" >&2; exit 1; }
   done
   # pacman tries servers in order, so each regional mirror leads and the
   # channel's own server stays as the fallback, for [omarchy] and for Arch.
-  awk -v fragment="$profile/omarchy-$channel.prepend" '
+  awk -v fragment="$profile/unbloarchy-$channel.prepend" '
     { print }
     $0 == "[omarchy]" { while ((getline line < fragment) > 0) print line; found++ }
     END { exit found == 1 ? 0 : 1 }

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Toggle nightlight screen temperature
-# omarchy:args=[--status]
-# omarchy:examples=omarchy toggle nightlight
+# unbloarchy:summary=Toggle nightlight screen temperature
+# unbloarchy:args=[--status]
+# unbloarchy:examples=unbloarchy toggle nightlight
 
 ON_TEMP=4000
 OFF_TEMP=6500
@@ -65,4 +65,4 @@ for _ in {1..10}; do
   [[ $(current_temp) == "$TARGET_TEMP" ]] && break
 done
 
-omarchy-shell -q nightlight refresh
+unbloarchy-shell -q nightlight refresh

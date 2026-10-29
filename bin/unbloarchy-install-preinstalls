@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# omarchy:summary=Restore the preinstalled Omarchy applications (web apps, TUIs, and selected packages).
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Restore the preinstalled Unbloarchy applications (web apps, TUIs, and selected packages).
+# unbloarchy:requires-sudo=true
 
-if gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n preinstalls.confirmRestore)"; then
-  echo -e "Restoring preinstalled Omarchy applications...\n"
+if gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n preinstalls.confirmRestore)"; then
+  echo -e "Restoring preinstalled Unbloarchy applications...\n"
 
   # Recreates the shipped .desktop launchers (web apps and TUIs).
-  omarchy-refresh-applications || exit 1
+  unbloarchy-refresh-applications || exit 1
 
-  # Re-enable Omarchy's default mise tools for this user and rebuild their shims.
-  if ! omarchy-mise-default-tools enable; then
+  # Re-enable Unbloarchy's default mise tools for this user and rebuild their shims.
+  if ! unbloarchy-mise-default-tools enable; then
     echo -e "\nCould not restore mise tools. Preinstalls remain marked as removed."
     exit 1
   fi
 
-  # Mirrors the list in omarchy-remove-preinstalls; both track omarchy-base.packages
-  if ! omarchy-pkg-add \
+  # Mirrors the list in unbloarchy-remove-preinstalls; both track unbloarchy-base.packages
+  if ! unbloarchy-pkg-add \
     aether \
     cliamp \
     libreoffice-fresh \
@@ -35,6 +35,6 @@ if gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-
 
   # Last, so a failure above leaves the opt-out intact rather than restoring
   # keybindings for apps that never came back
-  rm -f ~/.local/state/omarchy/preinstalls-removed
+  rm -f ~/.local/state/unbloarchy/preinstalls-removed
   hyprctl reload
 fi

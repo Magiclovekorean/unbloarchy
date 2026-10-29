@@ -7,11 +7,11 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 test_tmp=$(mktemp -d)
 trap 'rm -rf "$test_tmp"' EXIT
 home="$test_tmp/home"
-state="$home/.local/state/omarchy/current"
-themes="$home/.config/omarchy/themes"
+state="$home/.local/state/unbloarchy/current"
+themes="$home/.config/unbloarchy/themes"
 commands="$test_tmp/bin"
 log="$test_tmp/commands"
-mkdir -p "$state" "$commands" "$home/.local/state/omarchy/theme-backgrounds"
+mkdir -p "$state" "$commands" "$home/.local/state/unbloarchy/theme-backgrounds"
 for theme in alpha beta; do
   mkdir -p "$themes/$theme/backgrounds/intros"
   cp "$ROOT/themes/tokyo-night/colors.toml" "$themes/$theme/colors.toml"
@@ -22,8 +22,8 @@ done
 cp -r "$themes/alpha" "$state/theme"
 printf 'alpha\n' >"$state/theme.name"
 ln -s "$state/theme/backgrounds/1-sky.webp" "$state/background"
-printf '%s\n' "$state/theme/backgrounds/2-road.webp" >"$home/.local/state/omarchy/theme-backgrounds/beta"
-printf 'already-consumed\n' >"$home/.local/state/omarchy/background-intro.session-id"
+printf '%s\n' "$state/theme/backgrounds/2-road.webp" >"$home/.local/state/unbloarchy/theme-backgrounds/beta"
+printf 'already-consumed\n' >"$home/.local/state/unbloarchy/background-intro.session-id"
 
 cat >"$commands/noop" <<'STUB'
 #!/bin/bash
@@ -32,11 +32,11 @@ STUB
 chmod +x "$commands/noop"
 # This fixture only exercises selection and presentation, so every retint is
 # a no-op except the compositor reload, whose timing it checks.
-for command in "$ROOT"/bin/omarchy-restart-* "$ROOT"/bin/omarchy-theme-set-* omarchy-hook omarchy-theme-bg-cache; do
+for command in "$ROOT"/bin/unbloarchy-restart-* "$ROOT"/bin/unbloarchy-theme-set-* unbloarchy-hook unbloarchy-theme-bg-cache; do
   command=${command##*/}
-  [[ $command == omarchy-restart-hyprctl ]] || ln -sf noop "$commands/$command"
+  [[ $command == unbloarchy-restart-hyprctl ]] || ln -sf noop "$commands/$command"
 done
-cat >"$commands/omarchy-restart-hyprctl" <<'STUB'
+cat >"$commands/unbloarchy-restart-hyprctl" <<'STUB'
 #!/bin/bash
 echo "hypr-reload" >>"$TEST_LOG"
 STUB
@@ -44,7 +44,7 @@ cat >"$commands/hyprctl" <<'STUB'
 #!/bin/bash
 printf '{"bool":%s}\n' "${TEST_ANIMATIONS:-true}"
 STUB
-cat >"$commands/omarchy-shell" <<'STUB'
+cat >"$commands/unbloarchy-shell" <<'STUB'
 #!/bin/bash
 printf 'shell: %s\n' "$*" >>"$TEST_LOG"
 # A shell from before the handover knows neither call.
@@ -106,12 +106,12 @@ if [[ $1 == intro && -n ${TEST_RELEASE:-} ]]; then
   exit 1
 fi
 STUB
-chmod +x "$commands/omarchy-restart-hyprctl" "$commands/hyprctl" "$commands/omarchy-shell" "$commands/owe"
+chmod +x "$commands/unbloarchy-restart-hyprctl" "$commands/hyprctl" "$commands/unbloarchy-shell" "$commands/owe"
 
 set_theme() {
   : >"$log"
-  HOME="$home" OMARCHY_PATH="$ROOT" PATH="$commands:$ROOT/bin:$PATH" XDG_RUNTIME_DIR="$test_tmp" TEST_LOG="$log" \
-    /bin/bash "$ROOT/bin/omarchy-theme-set" "$1" </dev/null >"$test_tmp/stdout" 2>"$test_tmp/stderr" || fail "theme selection completes" "$(cat "$test_tmp/stderr")"
+  HOME="$home" UNBLOARCHY_PATH="$ROOT" PATH="$commands:$ROOT/bin:$PATH" XDG_RUNTIME_DIR="$test_tmp" TEST_LOG="$log" \
+    /bin/bash "$ROOT/bin/unbloarchy-theme-set" "$1" </dev/null >"$test_tmp/stdout" 2>"$test_tmp/stderr" || fail "theme selection completes" "$(cat "$test_tmp/stderr")"
 }
 
 # Once a theme switch has put up its cover, the shell sequences the rest:
@@ -129,7 +129,7 @@ handed_over "$road $clip true" || fail "a theme switch hands the remembered back
 ! grep -qE '^shell: background (prepare|themeTransition)' "$log" || fail "an intro replaces the normal still transition"
 ! grep -qE '^owe: intro ' "$log" || fail "the shell plays the intro, not the command"
 ! grep -q '^hypr-reload$' "$log" || fail "the shell reloads Hyprland after the intro, not the command"
-[[ $(<"$home/.local/state/omarchy/background-intro.session-id") == already-consumed ]] || fail "a theme switch leaves login consumption unchanged"
+[[ $(<"$home/.local/state/unbloarchy/background-intro.session-id") == already-consumed ]] || fail "a theme switch leaves login consumption unchanged"
 pass "switching themes hands the remembered background's intro to the shell"
 
 set_theme beta
@@ -138,31 +138,31 @@ grep -q '^shell: background themeTransition ' "$log" || fail "cycling to a backg
 ! grep -q ' playThemeIntro ' "$log" || fail "cycling to a background without an intro plays none"
 set_theme beta
 handed_over "$road $clip true" || fail "cycling to a background with an intro plays it" "$(cat "$log")"
-OMARCHY_THEME_SKIP_BACKGROUND=1 set_theme alpha
+UNBLOARCHY_THEME_SKIP_BACKGROUND=1 set_theme alpha
 ! grep -q ' playThemeIntro ' "$log" || fail "theme refresh does not play an intro"
 pass "same-theme cycling plays the next background's intro and refresh keeps the still"
 
-printf '%s\n' "$road" >"$home/.local/state/omarchy/theme-backgrounds/beta"
-mkdir -p "$home/.local/state/omarchy/toggles"
-touch "$home/.local/state/omarchy/toggles/background-intros-off"
+printf '%s\n' "$road" >"$home/.local/state/unbloarchy/theme-backgrounds/beta"
+mkdir -p "$home/.local/state/unbloarchy/toggles"
+touch "$home/.local/state/unbloarchy/toggles/background-intros-off"
 set_theme beta
 grep -q '^shell: background themeTransition ' "$log" || fail "disabled intros use the normal still transition"
 ! grep -q ' playThemeIntro ' "$log" || fail "disabled intros do not play on theme selection"
-rm "$home/.local/state/omarchy/toggles/background-intros-off"
-printf '%s\n' "$road" >"$home/.local/state/omarchy/theme-backgrounds/alpha"
+rm "$home/.local/state/unbloarchy/toggles/background-intros-off"
+printf '%s\n' "$road" >"$home/.local/state/unbloarchy/theme-backgrounds/alpha"
 TEST_ANIMATIONS=false set_theme alpha
 grep -q '^shell: background themeTransition ' "$log" || fail "disabled animations use the normal still transition"
 ! grep -q ' playThemeIntro ' "$log" || fail "disabled animations do not play an intro"
-OMARCHY_THEME_HEADLESS=1 set_theme beta
+UNBLOARCHY_THEME_HEADLESS=1 set_theme beta
 ! grep -q ' playThemeIntro ' "$log" || fail "headless theme setup does not play an intro"
 pass "theme intros respect the global toggle, disabled animations, and headless setup"
 
-printf '%s\n' "$road" >"$home/.local/state/omarchy/theme-backgrounds/alpha"
+printf '%s\n' "$road" >"$home/.local/state/unbloarchy/theme-backgrounds/alpha"
 TEST_OWE_NO_PREPARE=true set_theme alpha
 handed_over "$road $clip false" || fail "a clip older OWE could not prepare starts the ordinary way" "$(cat "$log")"
 pass "older OWE keeps the ordinary intro startup path"
 
-printf '%s\n' "$road" >"$home/.local/state/omarchy/theme-backgrounds/beta"
+printf '%s\n' "$road" >"$home/.local/state/unbloarchy/theme-backgrounds/beta"
 TEST_LIVE_FRAME=true set_theme beta
 cover=$(awk '/^shell: shell prepareThemeIntro / { print $4; exit }' "$log")
 [[ -f $cover && $(<"$cover") == "live video frame" ]] || fail "an interrupted video supplies the outgoing cover instead of its final still"
@@ -185,8 +185,8 @@ pass "an older shell falls back to the ordinary theme transition"
 
 set_background() {
   : >"$log"
-  HOME="$home" OMARCHY_PATH="$ROOT" PATH="$commands:$ROOT/bin:$PATH" XDG_RUNTIME_DIR="$test_tmp" TEST_LOG="$log" \
-    /bin/bash "$ROOT/bin/omarchy-theme-bg-set" "$1" </dev/null >"$test_tmp/stdout" 2>"$test_tmp/stderr" || fail "background selection completes" "$(cat "$test_tmp/stderr")"
+  HOME="$home" UNBLOARCHY_PATH="$ROOT" PATH="$commands:$ROOT/bin:$PATH" XDG_RUNTIME_DIR="$test_tmp" TEST_LOG="$log" \
+    /bin/bash "$ROOT/bin/unbloarchy-theme-bg-set" "$1" </dev/null >"$test_tmp/stdout" 2>"$test_tmp/stderr" || fail "background selection completes" "$(cat "$test_tmp/stderr")"
 }
 set_background "$road"
 grep -Fxq "shell: shell switchBackground $road $clip" "$log" || fail "a background change is handed to the shell with its intro" "$(cat "$log")"
@@ -199,7 +199,7 @@ pass "background changes go to the shell, or straight to the link without it"
 # A theme switch repoints the background too, so a background change waits
 # for one still holding the theme selection lock.
 release="$test_tmp/theme-lock-release"
-( flock 9; for attempt in {1..150}; do [[ -f $release ]] && break; sleep 0.02; done ) 9>"$test_tmp/omarchy-theme-set.lock" &
+( flock 9; for attempt in {1..150}; do [[ -f $release ]] && break; sleep 0.02; done ) 9>"$test_tmp/unbloarchy-theme-set.lock" &
 holder=$!
 sleep 0.2
 set_background "$sky" &
@@ -214,8 +214,8 @@ pass "background changes take turns with theme switches"
 # Cycling moves on from a selection the shell has not linked yet.
 next_background() {
   : >"$log"
-  HOME="$home" OMARCHY_PATH="$ROOT" PATH="$commands:$ROOT/bin:$PATH" XDG_RUNTIME_DIR="$test_tmp" TEST_LOG="$log" \
-    /bin/bash "$ROOT/bin/omarchy-theme-bg-next" </dev/null >"$test_tmp/stdout" 2>"$test_tmp/stderr" || fail "background cycling completes" "$(cat "$test_tmp/stderr")"
+  HOME="$home" UNBLOARCHY_PATH="$ROOT" PATH="$commands:$ROOT/bin:$PATH" XDG_RUNTIME_DIR="$test_tmp" TEST_LOG="$log" \
+    /bin/bash "$ROOT/bin/unbloarchy-theme-bg-next" </dev/null >"$test_tmp/stdout" 2>"$test_tmp/stderr" || fail "background cycling completes" "$(cat "$test_tmp/stderr")"
 }
 ln -nsf "$road" "$state/background"
 TEST_SELECTED="$sky" next_background
@@ -227,7 +227,7 @@ pass "background cycling moves on from a selection that is still being applied"
 # A playing intro hides the shell's background, so a theme switch to a still
 # without an intro hands the shell its cover to open with the ordinary cut.
 if [[ $(<"$state/theme.name") == alpha ]]; then next_theme=beta; else next_theme=alpha; fi
-printf '%s\n' "$sky" >"$home/.local/state/omarchy/theme-backgrounds/$next_theme"
+printf '%s\n' "$sky" >"$home/.local/state/unbloarchy/theme-backgrounds/$next_theme"
 TEST_INTRO_PLAYING=true set_theme "$next_theme"
 handed_over "$sky  false" || fail "a theme switch during an intro hands its cover over with no clip" "$(cat "$log")"
 ! grep -q '^shell: background themeTransition ' "$log" || fail "no ordinary transition runs under the playing intro"

@@ -22,7 +22,7 @@ Is féidir leis an eagarthóir nótaí saigheada, línte, cruthanna, buaicphoint
 
 Téann gabhálacha scáileáin sábháilte go dtí `~/Pictures/Screenshots` de réir réamhshocraithe, le hainm amhail `screenshot-2026-08-13_14-22-05-firefox.png`. Socraigh `OMASNAP_SCREENSHOT_DIR` chun eolaire eile a úsáid — féach [na Ceisteanna Coitianta](46-faq.md) chun a fháil amach cá gcuirtear athróga timpeallachta seisiúin. Cruthaíonn Omasnap an t-eolaire nuair a shábhálann sé an chéad seat. Socraigh `[output] autosave = false` in `~/.config/omasnap/omasnap.conf` chun sábháil uathoibríoch a dhíchumasú; ní chóipeáiltear na gabhálacha ansin ach amháin, agus taispeántar iad i réamhamharc ar feadh 10 soicind ar féidir leat a choinneáil ar an scáileán lena chnaipe pionnála nó le `Ctrl + P`.
 
-Ón teirminéal, osclaíonn `omarchy screenshot` an forleagan céanna, agus is féidir leat a mhodh tosaigh a roghnú: `omarchy capture screenshot region`, `windows`, `fullscreen`, nó `scroll`. Cuireann an dara hargóint, `copy` nó `save`, an seat díreach chuig an gceann scríbe sin. Chun eagarthóireacht a dhéanamh roimh an aschur, úsáid `omarchy screenshot --editor=overlay` d'eagarthóir lánscáileáin nó `omarchy screenshot --editor=window` d'fhuinneog ar leith.
+Ón teirminéal, osclaíonn `unbloarchy screenshot` an forleagan céanna, agus is féidir leat a mhodh tosaigh a roghnú: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, nó `scroll`. Cuireann an dara hargóint, `copy` nó `save`, an seat díreach chuig an gceann scríbe sin. Chun eagarthóireacht a dhéanamh roimh an aschur, úsáid `unbloarchy screenshot --editor=overlay` d'eagarthóir lánscáileáin nó `unbloarchy screenshot --editor=window` d'fhuinneog ar leith.
 
 ### An roghnóir a thiomáint ón méarchlár
 
@@ -41,9 +41,9 @@ Níl na ceangail seo ann ach amháin fad a bhíonn Omasnap ar oscailt, mar sin n
 
 ## Taifeadadh scáileáin
 
-Osclaíonn `Alt + Print Screen` _Trigger > Capture > Screenrecord_, a fhiafraíonn cad ba mhaith leat ar an bhfuaimrian: gan fuaim ar bith, fuaim an deisce, deasc móide micreafón, nó deasc móide micreafón móide ceamara gréasáin. Ní thaispeántar an ceann deireanach sin ach amháin má tá ceamara plugáilte isteach agat i ndáiríre. Roghnaigh ceann amháin agus ligeann roghnóir taifeadta Omarchy duit réigiún a tharraingt nó fuinneog nó monatóir a chliceáil.
+Osclaíonn `Alt + Print Screen` _Trigger > Capture > Screenrecord_, a fhiafraíonn cad ba mhaith leat ar an bhfuaimrian: gan fuaim ar bith, fuaim an deisce, deasc móide micreafón, nó deasc móide micreafón móide ceamara gréasáin. Ní thaispeántar an ceann deireanach sin ach amháin má tá ceamara plugáilte isteach agat i ndáiríre. Roghnaigh ceann amháin agus ligeann roghnóir taifeadta Unbloarchy duit réigiún a tharraingt nó fuinneog nó monatóir a chliceáil.
 
-Ritheann an taifeadadh ar gpu-screen-recorder, a ionchódaíonn ar an GPU ag 60fps agus a thiteann siar ar an CPU más gá dó. Is é an toradh ná MP4 in `~/Videos`, darbh ainm `screenrecording-2026-08-13_14-22-05.mp4`. Socraigh `OMARCHY_SCREENRECORD_DIR` chun é sin a athrú — ach tabhair faoi deara, murab ionann agus eolaire na ngabhálacha scáileáin, go gcaithfidh an ceann seo a bheith ann cheana féin, nó diúltóidh an taifeadadh tosú.
+Ritheann an taifeadadh ar gpu-screen-recorder, a ionchódaíonn ar an GPU ag 60fps agus a thiteann siar ar an CPU más gá dó. Is é an toradh ná MP4 in `~/Videos`, darbh ainm `screenrecording-2026-08-13_14-22-05.mp4`. Socraigh `UNBLOARCHY_SCREENRECORD_DIR` chun é sin a athrú — ach tabhair faoi deara, murab ionann agus eolaire na ngabhálacha scáileáin, go gcaithfidh an ceann seo a bheith ann cheana féin, nó diúltóidh an taifeadadh tosú.
 
 Agus tú ag taifeadadh, tagann táscaire beag i láthair sa bharra. Cliceáil é chun stopadh. Is féidir leat stopadh freisin le `Alt + Print Screen` arís, nó leis an iontráil _Stop Screenrecording_ faoi _Trigger > Capture > Screenrecord_, nach dtagann i láthair ach amháin fad a bhíonn rud éigin á thaifeadadh i ndáiríre.
 
@@ -60,7 +60,7 @@ Nuair a dhéanann tú taifeadadh le ceamara gréasáin, tagann an ceamara i lát
 
 Tá trí mhéid ann — beag, meánach, agus mór — agus céimníonn na heochracha aicearra eatarthu. Is é an meánach an réamhshocrú. Tá siad comhréireach leis an taifeadadh, mar sin tógann an ceamara an sciar céanna den fhráma cibé an bhfuil tú ag taifeadadh monatóir 1080p nó monatóir 6K. Agus má thaifead tú réigiún seachas taispeáint iomlán, ancaireann an forleagan go cúinne an réigiúin sin seachas cúinne an mhonatóra, mar sin fanann sé taobh istigh den seat.
 
-Is féidir leat é a ghlaoch go díreach freisin le `omarchy-capture-webcam-resize small`, nó `reset` chun dul ar ais go dtí an meánach.
+Is féidir leat é a ghlaoch go díreach freisin le `unbloarchy-capture-webcam-resize small`, nó `reset` chun dul ar ais go dtí an meánach.
 
 ## Téacs, cóid QR, agus dathanna
 
@@ -76,7 +76,7 @@ Is minic a bhíonn taifeadadh scáileáin 4K nó HEIC amh ó do ghuthán rómhó
 
 Téann pictiúir go jpg nó png ag ard, meánach, nó íseal, a chuireann uasteorainn 3160, 2160, agus 1080 picteilín ar an leithead. Téann físeáin go mp4 nó gif beoite ag 4k, 1080p, nó 720p. Scríobhtar an comhad tiontaithe in aice leis an mbunchomhad agus an taifeach san ainm — `demo-1080p.mp4` — agus cóipeáiltear an cosán chuig an ngearrthaisce mar URI comhaid, mar sin is féidir leat é a ghreamú go díreach isteach in aip a ghlacann le comhaid a thiteann isteach.
 
-Oibríonn sé ón teirminéal freisin, má tá a fhios agat cheana féin cad ba mhaith leat: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Tá `omarchy transcode ascii` ann freisin, a chasann íomhá ina healaín ASCII — is don [bhrandáil](41-branding.md) is mó a úsáidtear an ceann sin.
+Oibríonn sé ón teirminéal freisin, má tá a fhios agat cheana féin cad ba mhaith leat: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Tá `unbloarchy transcode ascii` ann freisin, a chasann íomhá ina healaín ASCII — is don [bhrandáil](41-branding.md) is mó a úsáidtear an ceann sin.
 
 ## É a chur áit éigin
 

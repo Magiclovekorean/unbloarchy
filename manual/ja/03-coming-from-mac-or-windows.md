@@ -1,12 +1,12 @@
 # MacやWindowsから乗り換えたら
 
-macOSやWindowsを何年も使ってきたなら、指は、脳が覚えたことさえ忘れてしまったようなことを山ほど覚えている。この章はその翻訳レイヤーだ。その直感がOmarchyではどこへ行くのかを示す。機能そのものは他の章で詳しく扱っている。ここはただの地図だ。
+macOSやWindowsを何年も使ってきたなら、指は、脳が覚えたことさえ忘れてしまったようなことを山ほど覚えている。この章はその翻訳レイヤーだ。その直感がUnbloarchyではどこへ行くのかを示す。機能そのものは他の章で詳しく扱っている。ここはただの地図だ。
 
 ### Superがすべての中心だ
 
-CmdやWindowsキーの周りに築いてきたすべての筋肉の記憶は、1つのキーへ移る。Superだ。PCキーボードではWindowsキーのことであり、Omarchyのほぼすべてのホットキーの要だ。
+CmdやWindowsキーの周りに築いてきたすべての筋肉の記憶は、1つのキーへ移る。Superだ。PCキーボードではWindowsキーのことであり、Unbloarchyのほぼすべてのホットキーの要だ。
 
-SpotlightやRaycastやスタートメニューを開こうとする反射は、`Super + Space`になる。これでOmarchyメニューが開く。アプリの起動、設定の変更、ソフトウェアのインストール、画面のキャプチャ、ほぼ何でもできる。入力し始めれば絞り込める。`Super + Alt + Space`はすべてのアプリを1つのグリッドに表示する。Launchpadと同じやり方だ。[ナビゲーション](04-navigation.md)を見てほしい。
+SpotlightやRaycastやスタートメニューを開こうとする反射は、`Super + Space`になる。これでUnbloarchyメニューが開く。アプリの起動、設定の変更、ソフトウェアのインストール、画面のキャプチャ、ほぼ何でもできる。入力し始めれば絞り込める。`Super + Alt + Space`はすべてのアプリを1つのグリッドに表示する。Launchpadと同じやり方だ。[ナビゲーション](04-navigation.md)を見てほしい。
 
 ### ドックもデスクトップアイコンもない
 
@@ -22,27 +22,27 @@ SpotlightやRaycastやスタートメニューを開こうとする反射は、`
 
 ### コピーとペーストはそのまま動く
 
-MacではどこでもCmd + Cだった。WindowsではどこでもCtrl + Cだった。ただしターミナルでは例外で、プログラムを終了させてしまう。Omarchyでは`Super + C`、`Super + X`、`Super + V`が使え、ターミナルを含めどこでも動く。シェル用に別の反射を覚える必要はない。
+MacではどこでもCmd + Cだった。WindowsではどこでもCtrl + Cだった。ただしターミナルでは例外で、プログラムを終了させてしまう。Unbloarchyでは`Super + C`、`Super + X`、`Super + V`が使え、ターミナルを含めどこでも動く。シェル用に別の反射を覚える必要はない。
 
 Windows出身者へ。Win + Vのクリップボード履歴は`Super + Ctrl + V`にある。テキストだけでなく画像も保持する。[統合クリップボードと履歴](08-unified-clipboard-history.md)を見てほしい。
 
 ### 翻訳表
 
-| 探しているもの | Omarchyでは |
+| 探しているもの | Unbloarchyでは |
 | ------------- | ---------- |
-| Spotlight / Raycast / スタートメニュー | `Super + Space` — Omarchyメニュー |
+| Spotlight / Raycast / スタートメニュー | `Super + Space` — Unbloarchyメニュー |
 | AirDrop | LocalSend、`Super + Ctrl + S`経由 — [GUIアプリ](22-guis.md)を見てほしい |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C`または`Print Screen` — [スクリーンショットと録画](12-screenshots-recording.md)を見てほしい |
 | Notification Center | `Super + Shift + Alt + ,`の通知履歴 |
 | Time Machine（システム用） | アップデートごとの自動[システムスナップショット](47-system-snapshots.md) |
-| App Store / インストーラーのダウンロード | メニューの_Install_、または`omarchy pkg add` — [その他のパッケージ](29-other-packages.md)を見てほしい |
+| App Store / インストーラーのダウンロード | メニューの_Install_、または`unbloarchy pkg add` — [その他のパッケージ](29-other-packages.md)を見てほしい |
 | システム設定 / コントロールパネル | メニューの_Setup_。プレーンな設定ファイルを編集する — [ドットファイル](31-dotfiles.md)を見てほしい |
 
 ### 本当に違うこともある
 
 多くの設定は、クリックして回るパネルではなく、編集するテキストファイルの中にある。原始的に聞こえる。だがそれは、すべての微調整が見え、次のマシンへコピーでき、バージョン管理に入れられるということだと気づくまでは、だ。_Setup_メニューは正しいファイルへ直接連れて行き、終わったら再起動が必要なものを再起動する。
 
-アップデートは1つのコマンド、_Update > Omarchy_、を通して来る。Omarchy自体とシステム上のすべてのパッケージをアップデートし、まずスナップショットを取る。ランダムなタイミングでうるさく言ってくるアプリごとのアップデーターはない。[アップデート](30-updates.md)を見てほしい。
+アップデートは1つのコマンド、_Update > Unbloarchy_、を通して来る。Unbloarchy自体とシステム上のすべてのパッケージをアップデートし、まずスナップショットを取る。ランダムなタイミングでうるさく言ってくるアプリごとのアップデーターはない。[アップデート](30-updates.md)を見てほしい。
 
 ソフトウェアはダウンロードしたインストーラーからではなく、パッケージマネージャーから来る。
 
@@ -50,7 +50,7 @@ Windows出身者へ。Win + Vのクリップボード履歴は`Super + Ctrl + V`
 
 ### Macハードウェアでは
 
-OmarchyはIntel Macで快適に動く。[Macサポート](44-mac-support.md)を見てほしい。そしてキーボードは優しい。Omarchyは何も再割り当てせず、LinuxはCommandキーをSuperとして扱う。だからSuperはCmdが常にあった場所にちょうど座っている。親指は引っ越しに気づかないだろう。
+UnbloarchyはIntel Macで快適に動く。[Macサポート](44-mac-support.md)を見てほしい。そしてキーボードは優しい。Unbloarchyは何も再割り当てせず、LinuxはCommandキーをSuperとして扱う。だからSuperはCmdが常にあった場所にちょうど座っている。親指は引っ越しに気づかないだろう。
 
 ### 2週間使ってみてほしい
 

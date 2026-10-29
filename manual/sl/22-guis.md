@@ -20,11 +20,11 @@ Obsidian je brezplačen za vse namene, vključno z osebno, komercialno in neprof
 
 Obsidian ponuja tudi [komercialni dodatek za sinhronizacijo](https://obsidian.md/sync) z mobilnimi aplikacijami v sistemih iOS in Android. (https://obsidian.md/pricing).
 
-Obsidian zaženete s `Super + Shift + O`. Za uporabo sinhronizacije tem morate v nastavitvah izbrati temo `Omarchy`.
+Obsidian zaženete s `Super + Shift + O`. Za uporabo sinhronizacije tem morate v nastavitvah izbrati temo `Unbloarchy`.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) je mrtvo preprosta aplikacija za pisanje v Markdownu, lastna aplikacija sistema Omarchy. Brez trezorjev, brez vtičnikov, samo vi in besede.
+[Omawrite](https://github.com/omacom-io/omawrite) je mrtvo preprosta aplikacija za pisanje v Markdownu, lastna aplikacija sistema Unbloarchy. Brez trezorjev, brez vtičnikov, samo vi in besede.
 
 Omawrite zaženete s `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Aether zaženete prek zaganjalnika aplikacij (`Super + Space`).
 
 [LocalSend](https://localsend.org/) vam omogoča pošiljanje datotek drugim napravam v istem omrežju, v katerih je zagnana aplikacija, podobno kot Applov AirDrop. Je pa medplatformska, zato lahko datoteke pošiljate v sisteme Windows, macOS, Android, iOS in seveda Linux ter iz njih.
 
-Meni Share lahko odprete s `Super + Ctrl + S` ali prek _Trigger > Share_ v meniju Omarchy. Ponudi vam štiri možnosti:
+Meni Share lahko odprete s `Super + Ctrl + S` ali prek _Trigger > Share_ v meniju Unbloarchy. Ponudi vam štiri možnosti:
 
 - **Clipboard** pošlje vse, kar ste kopirali, kot besedilno datoteko. Odlično, če želite povezavo ali izrezek spraviti na telefon, ne da bi si pošiljali e-pošto.
 - **File** odpre izbirnik datotek, v katerem lahko izberete več datotek hkrati.
 - **Folder** pošlje celoten imenik.
 - **Receive** odpre pravi LocalSend, da vam lahko druga naprava kaj pošlje.
 
-Isto deluje iz terminala z `omarchy share clipboard`, `omarchy share file [path]` in `omarchy share folder [path]`. Če pot izpustite, dobite izbirnik.
+Isto deluje iz terminala z `unbloarchy share clipboard`, `unbloarchy share file [path]` in `unbloarchy share folder [path]`. Če pot izpustite, dobite izbirnik.
 
 Pošiljate lahko tudi neposredno iz upravitelja datotek: v Nautilusu z desno tipko kliknite katerikoli izbor in izberite _Send via LocalSend_.
 
-Požarni zid sistema Omarchy je privzeto zaprt, razen za vrata aplikacije LocalSend, zato to deluje že takoj po sveži namestitvi. Glejte [varnost](48-security.md).
+Požarni zid sistema Unbloarchy je privzeto zaprt, razen za vrata aplikacije LocalSend, zato to deluje že takoj po sveži namestitvi. Glejte [varnost](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice zaženete prek zaganjalnika aplikacij (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) je mrtvo preprosta aplikacija za predstavitve, lastna aplikacija sistema Omarchy. Vaš komplet je ena sama datoteka Markdown s slikami in videoposnetki ob njej: vsak diapozitiv napišite pod sprotnim predogledom, diapozitive povlecite v vrstni red, nato predstavite celozaslonsko ali izvozite v PDF in PowerPoint. Pobere celo vašo temo Omarchy.
+[Hype](https://github.com/omacom/hype) je mrtvo preprosta aplikacija za predstavitve, lastna aplikacija sistema Unbloarchy. Vaš komplet je ena sama datoteka Markdown s slikami in videoposnetki ob njej: vsak diapozitiv napišite pod sprotnim predogledom, diapozitive povlecite v vrstni red, nato predstavite celozaslonsko ali izvozite v PDF in PowerPoint. Pobere celo vašo temo Unbloarchy.
 
 Hype zaženete prek zaganjalnika aplikacij (`Super + Space`). V njej pritisnite `?`, da vidite vse bližnjice.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) je mrtvo preprost način sistema Omarchy za podpisovanje in izpolnjevanje PDF-jev. Shranjeni podpis, besedilo in današnji datum postavite kamorkoli na stran, nato shranite podpisano kopijo ob izvirnik. Glejte [Izpolnjevanje PDF-jev](27-filling-out-pdfs.md) za navodila.
+[Signed](https://github.com/omacom/signed) je mrtvo preprost način sistema Unbloarchy za podpisovanje in izpolnjevanje PDF-jev. Shranjeni podpis, besedilo in današnji datum postavite kamorkoli na stran, nato shranite podpisano kopijo ob izvirnik. Glejte [Izpolnjevanje PDF-jev](27-filling-out-pdfs.md) za navodila.
 
 Signed zaženete prek zaganjalnika aplikacij (`Super + Space`) ali z njim odprete PDF iz upravitelja datotek.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) je mrtvo preprosto računalo, lastna aplikacija sistema Omarchy, ki se odpre v lebdečem oknu.
+[Omacalc](https://github.com/omacom-io/omacalc) je mrtvo preprosto računalo, lastna aplikacija sistema Unbloarchy, ki se odpre v lebdečem oknu.
 
 Omacalc zaženete s `Super + Shift + Q` (ali s tipko za računalo, če jo vaša tipkovnica ima).
 
@@ -85,7 +85,7 @@ Omacalc zaženete s `Super + Shift + Q` (ali s tipko za računalo, če jo vaša 
 
 [Signal](https://signal.org/) je pionir sporočanja s šifriranjem E2E in odlična komunikacijska možnost za vsakogar, ki raje ne bi šel prek enega od velikih tehnoloških konglomeratov.
 
-Signal zaženete s `Super + Shift + G`. Ni del osnovne namestitve, zato vam bo Omarchy ob prvem pritisku ponudil, da ga namesti namesto vas (na voljo je tudi pod _Install > Service_ v meniju Omarchy).
+Signal zaženete s `Super + Shift + G`. Ni del osnovne namestitve, zato vam bo Unbloarchy ob prvem pritisku ponudil, da ga namesti namesto vas (na voljo je tudi pod _Install > Service_ v meniju Unbloarchy).
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv zaženete prek zaganjalnika aplikacij (`Super + Space`) ali preprosto dvokli
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) je mrtvo preprost rezalnik videoposnetkov, lastna aplikacija sistema Omarchy. Ko morate le odrezati začetek in konec posnetka, premaga zagon polnega urejevalnika videoposnetkov.
+[Omacut](https://github.com/omacom-io/omacut) je mrtvo preprost rezalnik videoposnetkov, lastna aplikacija sistema Unbloarchy. Ko morate le odrezati začetek in konec posnetka, premaga zagon polnega urejevalnika videoposnetkov.
 
 Omacut zaženete prek zaganjalnika aplikacij (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) je mrtvo preprost snemalnik s spletno kamero, lastna aplikacija sistema Omarchy. Enkrat izberite kamero in mikrofon, nato pritisnite `Space` za snemanje in še enkrat za premor in nadaljevanje istega posnetka. Vedno snema v najvišji ločljivosti vaše kamere, z živim merilnikom mikrofona, da lahko pred začetkom preverite ravni.
+[Monologue](https://github.com/omacom/monologue) je mrtvo preprost snemalnik s spletno kamero, lastna aplikacija sistema Unbloarchy. Enkrat izberite kamero in mikrofon, nato pritisnite `Space` za snemanje in še enkrat za premor in nadaljevanje istega posnetka. Vedno snema v najvišji ločljivosti vaše kamere, z živim merilnikom mikrofona, da lahko pred začetkom preverite ravni.
 
 Ustavite posnetek in takoj se odpre v vgrajenem urejevalniku. Dvokliknite posnetek, da ga razdelite, povlecite ročice, da obrežete vsak del, in odstranite dele, ki jih ne želite. Nato ga shranite kot MP4. Vaš izvirni posnetek se hrani, dokler ga ne zavržete, zato se lahko vedno vrnete in ga odrežete drugače.
 

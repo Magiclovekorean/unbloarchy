@@ -2,7 +2,7 @@
 
 Normaal gesproken heb je op Linux `Ctrl + Shift + C/V` nodig om te kopiëren en plakken in de terminal en `Ctrl + C/V` om dat overal elders te doen. Dat is moeilijk om aan te wennen voor iedereen die niet op Linux is geboren en getogen! Dat geldt ook voor de overstap van super naar ctrl als je van de Mac komt.
 
-Omarchy pakt beide problemen aan met uniforme klembordsneltoetsen die (bijna) overal werken. Dat zijn:
+Unbloarchy pakt beide problemen aan met uniforme klembordsneltoetsen die (bijna) overal werken. Dat zijn:
 
 | Sneltoets | Opdracht |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Gebruik `Super + A` en daarna `Super + C` om alles te kopiëren in een gefocust 
 
 ### Klembordgeschiedenis
 
-De klembordgeschiedenis wordt geleverd door de Omarchy shell en werkt voor zowel tekst als afbeeldingen. Je activeert hem met `Super + Ctrl + V`, selecteert je item met return, en dat wordt dan op het klembord geplaatst, klaar om te plakken met `Super + V`.
+De klembordgeschiedenis wordt geleverd door de Unbloarchy shell en werkt voor zowel tekst als afbeeldingen. Je activeert hem met `Super + Ctrl + V`, selecteert je item met return, en dat wordt dan op het klembord geplaatst, klaar om te plakken met `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

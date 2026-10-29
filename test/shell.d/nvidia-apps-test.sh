@@ -7,8 +7,8 @@ calls="$scratch/calls"
 
 run_setup() (
   failure=$1
-  export OMARCHY_IMAGE_DEFERRED_HARDWARE=$2
-  omarchy-pkg-present() { [[ -z ${NONE_INSTALLED:-} ]]; }
+  export UNBLOARCHY_IMAGE_DEFERRED_HARDWARE=$2
+  unbloarchy-pkg-present() { [[ -z ${NONE_INSTALLED:-} ]]; }
   nvidia-ctk() { echo "nvidia-ctk $*" >> "$calls"; }
   systemctl() {
     echo "systemctl $*" >> "$calls"

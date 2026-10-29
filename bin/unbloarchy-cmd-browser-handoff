@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Hand a command line to the running Chromium-based browser
-# omarchy:args=<browser-command> [browser-args...]
-# omarchy:hidden=true
+# unbloarchy:summary=Hand a command line to the running Chromium-based browser
+# unbloarchy:args=<browser-command> [browser-args...]
+# unbloarchy:hidden=true
 
 # A second browser process spends ~165ms starting up only to pass its command
 # line to the running one over the profile's singleton socket, then exits. Send
@@ -22,7 +22,7 @@ case $(type -P "$1") in
 esac
 shift
 
-# The running browser already has the process flags Omarchy ships in the flags
+# The running browser already has the process flags Unbloarchy ships in the flags
 # file. Any other flag there may be meant for each launch, and a data directory
 # from the environment is another browser, so leave those to the launcher.
 if [[ -n ${CHROME_USER_DATA_DIR:-}${CHROME_CONFIG_HOME:-} ]] ||

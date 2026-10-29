@@ -1,16 +1,16 @@
 # Mac palaikymas
 
-Omarchy turi įmontuotą palaikymą **Intel Macams**. Šiuo metu yra pora žinomų apribojimų, bet kol žinai juos ir tau jie tinka, gali įkvėpti naujos gyvybės savo seniems Macams įkeldamas Omarchy.
+Unbloarchy turi įmontuotą palaikymą **Intel Macams**. Šiuo metu yra pora žinomų apribojimų, bet kol žinai juos ir tau jie tinka, gali įkvėpti naujos gyvybės savo seniems Macams įkeldamas Unbloarchy.
 
 Atkreipk dėmesį, kad įdiegimas M serijos Mac šiuo metu tiesiogiai nepalaikomas. Daugiau apie šios būsenos padėtį sužinosi #omarchy-on-other mūsų [Discord](https://discord.gg/tXFUdasqhY).
 
-Paprastame teste vien įdiegę Omarchy 2019 MacBook Pro pasiekėme 36% našumo prieaugį.
+Paprastame teste vien įdiegę Unbloarchy 2019 MacBook Pro pasiekėme 36% našumo prieaugį.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Omarchy įdiegimas Mac
+### Unbloarchy įdiegimas Mac
 
-Omarchy šiuo metu palaiko buvimą **vienintele** įdiegta OS. Įdiegimo metu diskas bus išvalytas ir MacOS nebebus galima įkrauti.
+Unbloarchy šiuo metu palaiko buvimą **vienintele** įdiegta OS. Įdiegimo metu diskas bus išvalytas ir MacOS nebebus galima įkrauti.
 
 Jei norėsi, vėliau vis tiek galėsi ją atkurti per Internet Recovery.
 

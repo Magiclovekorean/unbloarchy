@@ -6,7 +6,7 @@
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy 選單（應用程式與其他所有功能）    |
+| `Super + Space`           | Unbloarchy 選單（應用程式與其他所有功能）    |
 | `Super + Alt + Space` | 應用程式格狀清單 |
 | `Super + Escape` | 系統選單（暫停、重新啟動等）  |
 | `Super + Ctrl + L` | 鎖定電腦 |
@@ -143,7 +143,7 @@
 | `Super + V`           | 貼上    |
 | `Super + Ctrl + V`           | 剪貼簿管理員    |
 
-在 Linux 上，通常你需要用 `Ctrl + Shift + C/V` 在終端機中複製貼上，在其他地方則用 `Ctrl + C/V`。這些 Omarchy 統一剪貼簿快捷鍵到哪裡都能用。
+在 Linux 上，通常你需要用 `Ctrl + Shift + C/V` 在終端機中複製貼上，在其他地方則用 `Ctrl + C/V`。這些 Unbloarchy 統一剪貼簿快捷鍵到哪裡都能用。
 
 ## 擷取
 
@@ -164,7 +164,7 @@
 
 進行螢幕錄影時，第一次按下快捷鍵會先詢問你要錄哪種音訊，然後開始錄影。再按一次即可停止。詳情見 [截圖與錄影](12-screenshots-recording.md)。
 
-所有擷取選項也可以在 Omarchy 選單（`Super + Space`）的 _Trigger > Capture_ 下找到。
+所有擷取選項也可以在 Unbloarchy 選單（`Super + Space`）的 _Trigger > Capture_ 下找到。
 
 ## 通知
 
@@ -186,9 +186,9 @@
 | `Super + Backspace` | 切換視窗透明度 |
 | `Super + Ctrl + Backspace` | 切換單一視窗正方形比例 |
 
-額外的背景圖片位於 `~/.config/omarchy/backgrounds/<theme name>`。也可以透過 Omarchy 選單中的 _Install > Style > Background_ 取得。
+額外的背景圖片位於 `~/.config/unbloarchy/backgrounds/<theme name>`。也可以透過 Unbloarchy 選單中的 _Install > Style > Background_ 取得。
 
-所有樣式選項也可以在 Omarchy 選單（`Super + Space`）的 _Style_ 下找到。
+所有樣式選項也可以在 Unbloarchy 選單（`Super + Space`）的 _Style_ 下找到。
 
 ## 切換
 
@@ -289,7 +289,7 @@
 
 ## Ghostty 終端機
 
-Ghostty 終端機是透過 Omarchy 選單中的 _Install > Terminal_ 安裝的。
+Ghostty 終端機是透過 Unbloarchy 選單中的 _Install > Terminal_ 安裝的。
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Ghostty 終端機是透過 Omarchy 選單中的 _Install > Terminal_ 安裝的�
 | `Shift + CapsLock Space N` | 你的姓名（依設定時輸入的內容）  |
 | `Shift + CapsLock Space E` | 你的電子郵件（依設定時輸入的內容）  |
 
-你可以透過編輯 `~/.XCompose` 新增更多自己的內容，然後在終端機中執行 `omarchy-restart-xcompose`，讓變更被套用。
+你可以透過編輯 `~/.XCompose` 新增更多自己的內容，然後在終端機中執行 `unbloarchy-restart-xcompose`，讓變更被套用。

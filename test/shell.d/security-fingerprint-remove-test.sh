@@ -4,8 +4,8 @@ set -euo pipefail
 
 source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 
-remove="$ROOT/bin/omarchy-remove-security-fingerprint"
-test_tmp=$(mktemp -d /tmp/omarchy-fingerprint-remove.XXXXXX)
+remove="$ROOT/bin/unbloarchy-remove-security-fingerprint"
+test_tmp=$(mktemp -d /tmp/unbloarchy-fingerprint-remove.XXXXXX)
 trap 'rm -rf "$test_tmp"' EXIT
 mkdir -p "$test_tmp/bin" "$test_tmp/etc/pam.d" "$test_tmp/fprint"
 copy="$test_tmp/remove.sh"
@@ -47,7 +47,7 @@ if [[ $* == "fprintd-delete $TEST_EXPECTED_USER" ]]; then
   (( ${TEST_PRINTS_FAIL:-0} == 0 )) || echo "${TEST_PRINTS_OUTPUT:-delete failed}"
   exit "${TEST_PRINTS_FAIL:-0}"
 fi
-if [[ $* == "omarchy-lifecycle-dispatch disable-fingerprint" ]]; then
+if [[ $* == "unbloarchy-lifecycle-dispatch disable-fingerprint" ]]; then
   exit "${TEST_HOOK_FAIL:-0}"
 fi
 [[ $# == 4 && $1 == rm && $2 == -rf && $3 == -- && $4 == "$TEST_FPRINT/$TEST_EXPECTED_USER" ]] || exit 91
@@ -55,17 +55,17 @@ fi
 exec /usr/bin/rm -rf -- "$4"
 SH
 # TEST_DISABLE_HOOK is what disable-fingerprint resolves to as the user.
-cat >"$test_tmp/bin/omarchy-lifecycle-dispatch" <<'SH'
+cat >"$test_tmp/bin/unbloarchy-lifecycle-dispatch" <<'SH'
 #!/bin/bash
 printf 'resolve %s\n' "${*:2}" >>"$TEST_LOG"
 (( ${TEST_RESOLVE_FAIL:-0} == 0 )) || { echo "Error: cannot resolve" >&2; exit 1; }
-printf '%s\n' "${TEST_DISABLE_HOOK-/usr/lib/omarchy/mac/disable-fingerprint}"
+printf '%s\n' "${TEST_DISABLE_HOOK-/usr/lib/unbloarchy/mac/disable-fingerprint}"
 SH
-cat >"$test_tmp/bin/omarchy-cmd-present" <<'SH'
+cat >"$test_tmp/bin/unbloarchy-cmd-present" <<'SH'
 #!/bin/bash
 [[ $1 == fprintd-delete && ${TEST_FPRINTD:-1} == 1 ]]
 SH
-cat >"$test_tmp/bin/omarchy-pkg-drop" <<'SH'
+cat >"$test_tmp/bin/unbloarchy-pkg-drop" <<'SH'
 #!/bin/bash
 printf 'package %s\n' "$*" >>"$TEST_LOG"
 [[ ${TEST_PACKAGE_FAIL:-0} == 0 ]]
@@ -98,7 +98,7 @@ run_remove() {
     "TEST_PACKAGE_FAIL=${package_fail:-0}" "TEST_PRINTS_FAIL=${prints_fail:-0}" "TEST_FPRINTD=${fprintd:-1}"
     "TEST_PRINTS_OUTPUT=${prints_output:-}" "TEST_SUDO_CACHED=${sudo_cached:-0}" "TEST_SUDO_V_FAIL=${sudo_v_fail:-0}"
     "TEST_HOOK_FAIL=${hook_fail:-0}" "TEST_RESOLVE_FAIL=${resolve_fail:-0}"
-    "TEST_DISABLE_HOOK=${disable_hook-/usr/lib/omarchy/mac/disable-fingerprint}"
+    "TEST_DISABLE_HOOK=${disable_hook-/usr/lib/unbloarchy/mac/disable-fingerprint}"
     "USER=spoofed" "SUDO_USER=spoofed"
     "PATH=$test_tmp/bin:/usr/bin:/bin"
   )
@@ -148,8 +148,8 @@ pass "prints are deleted in the reader first, and a delete that can't run doesn'
 # A platform that turned its reader on for setup turns it off again, after the
 # local files go and before the packages; a failure is reported, not fatal.
 run_remove || fail "removal on a platform with the hook succeeds" "$(cat "$output")"
-calls=$(grep -E '^(sudo rm|sudo omarchy-lifecycle-dispatch|package )' "$log")
-[[ $calls == "sudo rm -rf -- $test_tmp/fprint/alice"$'\nsudo omarchy-lifecycle-dispatch disable-fingerprint\npackage fprintd libfprint libfprint-git' ]] ||
+calls=$(grep -E '^(sudo rm|sudo unbloarchy-lifecycle-dispatch|package )' "$log")
+[[ $calls == "sudo rm -rf -- $test_tmp/fprint/alice"$'\nsudo unbloarchy-lifecycle-dispatch disable-fingerprint\npackage fprintd libfprint libfprint-git' ]] ||
   fail "the platform turns its reader off after the local files go and before the packages" "$calls"
 ! grep -q 'may still be turned on' "$output" || fail "a hook that worked warns about nothing" "$(cat "$output")"
 hook_fail=1
@@ -158,13 +158,13 @@ grep -q 'may still be turned on' "$output" || fail "a failed platform hook is re
 unset hook_fail
 resolve_fail=1
 run_remove || fail "a platform hook that can't be resolved does not stop removal" "$(cat "$output")"
-! grep -q '^sudo omarchy-lifecycle-dispatch' "$log" && grep -q 'cannot resolve' "$output" && grep -q 'may still be turned on' "$output" ||
+! grep -q '^sudo unbloarchy-lifecycle-dispatch' "$log" && grep -q 'cannot resolve' "$output" && grep -q 'may still be turned on' "$output" ||
   fail "a platform hook that can't be resolved is reported, and nothing runs it" "$(cat "$log"; cat "$output")"
 unset resolve_fail
 disable_hook=
 run_remove || fail "removal on a platform without the hook succeeds" "$(cat "$output")"
 ! grep -q 'may' "$output" || fail "a platform without the hook warns about nothing" "$(cat "$output")"
-grep -qx 'resolve disable-fingerprint' "$log" && ! grep -q '^sudo omarchy-lifecycle-dispatch' "$log" ||
+grep -qx 'resolve disable-fingerprint' "$log" && ! grep -q '^sudo unbloarchy-lifecycle-dispatch' "$log" ||
   fail "a platform without the hook runs nothing as root for it" "$(cat "$log")"
 unset disable_hook
 pass "the platform turns its reader off before the packages go, and a platform without the hook runs nothing for it"

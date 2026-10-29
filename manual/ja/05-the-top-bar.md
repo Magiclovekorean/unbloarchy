@@ -1,14 +1,14 @@
 # トップバー
 
-画面の上部に沿った帯がOmarchyバーだ。これは後付けのステータスバーではなく、Omarchyシェルの一部であり、メニュー、通知、OSDポップアップ、ロック画面も描画する、単一の常駐Quickshellプロセスだ。だからこそ他のすべてと完璧にテーマが揃い、パネルも新しいアプリを起動するのではなく瞬時に開く。
+画面の上部に沿った帯がUnbloarchyバーだ。これは後付けのステータスバーではなく、Unbloarchyシェルの一部であり、メニュー、通知、OSDポップアップ、ロック画面も描画する、単一の常駐Quickshellプロセスだ。だからこそ他のすべてと完璧にテーマが揃い、パネルも新しいアプリを起動するのではなく瞬時に開く。
 
 また、デスクトップ上で常に画面に表示されている唯一の要素でもある。だから、あの小さなグリフがそれぞれ何をするのか知っておく価値がある。
 
 ## デフォルトで表示されるもの
 
-バーには3つのセクションがある。左側にはOmarchyロゴ（メニューランチャー）とワークスペースインジケーターがある。中央にはステータスインジケーター、時計、Elsewhen（世界時計）、天気、そしてOmarchyアップデートバッジがある。右側には、システムトレイ、キーボードレイアウト（複数が設定されている場合）、agents、bluetooth、ネットワーク、オーディオ、ディスプレイ、電源がある。
+バーには3つのセクションがある。左側にはUnbloarchyロゴ（メニューランチャー）とワークスペースインジケーターがある。中央にはステータスインジケーター、時計、Elsewhen（世界時計）、天気、そしてUnbloarchyアップデートバッジがある。右側には、システムトレイ、キーボードレイアウト（複数が設定されている場合）、agents、bluetooth、ネットワーク、オーディオ、ディスプレイ、電源がある。
 
-そのうちいくつかは、伝えることがあるときにだけ表示される。キーボードレイアウトは、複数のレイアウトを設定している場合にのみ表示される。アップデートバッジは、Omarchyのアップデートが待機しているときにのみ表示される。そしてagentsアイコンは、Omarchyがマシン上でAIコーディングの使用を初めて検出したときに表示される（[AI](17-ai.md)を参照）。
+そのうちいくつかは、伝えることがあるときにだけ表示される。キーボードレイアウトは、複数のレイアウトを設定している場合にのみ表示される。アップデートバッジは、Unbloarchyのアップデートが待機しているときにのみ表示される。そしてagentsアイコンは、Unbloarchyがマシン上でAIコーディングの使用を初めて検出したときに表示される（[AI](17-ai.md)を参照）。
 
 ## クリックしてみる
 
@@ -16,7 +16,7 @@
 
 | ウィジェット | 左 | 右 | 中 / スクロール |
 | --- | --- | --- | --- |
-| メニュー | Omarchyメニュー | 新しいターミナル | — |
+| メニュー | Unbloarchyメニュー | 新しいターミナル | — |
 | ワークスペース | このモニターでそのワークスペースにフォーカス | — | スクロール：次/前のワークスペース |
 | 時計 | カレンダーポップアップ | ラベル形式を切り替え | 中：タイムゾーンピッカー |
 | 天気 | 予報ポップアップ | 通知として完全な天気を表示 | 中：更新 |
@@ -29,7 +29,7 @@
 | メディア | 再生/一時停止 | カバーアートのポップアップ | 中：次へ · スクロール：前/次 |
 | Agents | Agentsパネル | エージェントを起動 | 中：次のサブスクリプション |
 | トレイ | ホバーでドロワーを表示 | シェブロンを右クリックして管理 | — |
-| Omarchyアップデート | アップデートを実行 | — | — |
+| Unbloarchyアップデート | アップデートを実行 | — | — |
 
 その表にあるすべてが、最初からバーにあるわけではない。メディアウィジェット（MPRISの再生中表示で、トラックとアーティストがスクロールする）とマイクウィジェットはどちらも組み込みだが、デフォルトではオフになっている — 欲しければ、以下で説明するように追加できる。
 
@@ -66,7 +66,7 @@
 
 さらに2つのウィジェットは、**Install → Service**から対応するサービスをインストールしたときにだけバーに表示され、どちらもステータスを報告する以上のことをするので知っておく価値がある。
 
-**Tailscale**パネルはtailnetへの接続と切断、アカウント間の切り替え、出口ノードの選択を行う（自分のマシンとMullvadリージョンの両方がそのリストに表示される）。マシンの閲覧もでき、1つを選択した状態で`s`を押すとTaildrop経由でファイルを送信する。これはファイルを携帯電話や別のラップトップへ移動する最速の方法だ。`c`はマシンのIPを、`n`はその名前を、`d`はその完全なDNS名をコピーする。各マシンの行には送信ボタンもあるので、クリックしたい場合はそちらでもよい。ターミナルから同じことを行うのは`omarchy tailscale send <machine> [file...]`だ。
+**Tailscale**パネルはtailnetへの接続と切断、アカウント間の切り替え、出口ノードの選択を行う（自分のマシンとMullvadリージョンの両方がそのリストに表示される）。マシンの閲覧もでき、1つを選択した状態で`s`を押すとTaildrop経由でファイルを送信する。これはファイルを携帯電話や別のラップトップへ移動する最速の方法だ。`c`はマシンのIPを、`n`はその名前を、`d`はその完全なDNS名をコピーする。各マシンの行には送信ボタンもあるので、クリックしたい場合はそちらでもよい。ターミナルから同じことを行うのは`unbloarchy tailscale send <machine> [file...]`だ。
 
 **Dropbox**パネルはログインを処理し、使用したストレージ容量を表示し、最近同期されたファイルを一覧表示する。
 
@@ -93,19 +93,19 @@
 同じことにはコマンドもある。これは[dotfiles](31-dotfiles.md)セットアップで欲しくなるものだ：
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-ウィジェットを entirely 追加または削除するには、プラグインコマンドを使う。`omarchy plugin list`はシェルが知っているすべてのウィジェットをそのid付きで表示し、その後：
+ウィジェットを entirely 追加または削除するには、プラグインコマンドを使う。`unbloarchy plugin list`はシェルが知っているすべてのウィジェットをそのid付きで表示し、その後：
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## バーを隠す
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## 設定ファイル
 
-すべては`~/.config/omarchy/shell.json`に、`bar`キーの下に保存される。以下は切り詰めたバージョンだ：
+すべては`~/.config/unbloarchy/shell.json`に、`bar`キーの下に保存される。以下は切り詰めたバージョンだ：
 
 ```json
 {
@@ -123,20 +123,20 @@ omarchy plugin disable omarchy.weather
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-すべてのウィジェットは5つのレイアウト配列のいずれかの中の1つのエントリであり、その設定はそのエントリにインラインで置かれる — 別個の設定ファイルはなく、`config`サブオブジェクトもない。時計の`format`、`formatAlt`（右クリックで切り替わる先）、そして`verticalFormat`はすべて`{ "id": "omarchy.clock" }`の上にそのまま存在する。
+すべてのウィジェットは5つのレイアウト配列のいずれかの中の1つのエントリであり、その設定はそのエントリにインラインで置かれる — 別個の設定ファイルはなく、`config`サブオブジェクトもない。時計の`format`、`formatAlt`（右クリックで切り替わる先）、そして`verticalFormat`はすべて`{ "id": "unbloarchy.clock" }`の上にそのまま存在する。
 
 `center`はバーの中央にあるボックスだ：その中にあるすべては、1つのグループとして画面の中央に配置される。`centerBegin`と`centerEnd`はボックスの両側からぶら下がり、これにより天気やアップデートバッジが出入りしても時計はど真ん中に留まる。`center`に複数のウィジェットを入れれば一緒に中央に配置される；空にしておけば`centerBegin`と`centerEnd`はバーの中央で出会う。
 
-内面化する価値のあるルールが1つある：**自分自身の`shell.json`を持った瞬間、それが正となる**。何もカスタマイズしていない間は、シェルはOmarchyのデフォルトファイルを読み込む。ウィジェットをドラッグしたり、`omarchy bar`を実行したり、自分でファイルを編集したりした瞬間、それはあなたのものになる — 深いマージはないので、将来のOmarchyリリースで追加される新しいデフォルトウィジェットは自動的にはバーに表示されない。`omarchy bar defaults`はいつでも出荷時のレイアウトに戻し、きれいな状態にできる。
+内面化する価値のあるルールが1つある：**自分自身の`shell.json`を持った瞬間、それが正となる**。何もカスタマイズしていない間は、シェルはUnbloarchyのデフォルトファイルを読み込む。ウィジェットをドラッグしたり、`unbloarchy bar`を実行したり、自分でファイルを編集したりした瞬間、それはあなたのものになる — 深いマージはないので、将来のUnbloarchyリリースで追加される新しいデフォルトウィジェットは自動的にはバーに表示されない。`unbloarchy bar defaults`はいつでも出荷時のレイアウトに戻し、きれいな状態にできる。
 
 同じファイルは、`bar`キーの外側のトップレベルに、アイドル時のタイミングも保持する：`idle.screensaver`と`idle.lock`で、どちらもアイドルになってからの秒数だ。だからデフォルトのスクリーンセーバーは150秒で開始し、ロックは300秒で開始する。

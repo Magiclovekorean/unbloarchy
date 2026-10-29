@@ -26,7 +26,7 @@ mkdir -p "$PROVISIONING_DIR"
 printf 'wheel\ninput\ndocker\n' >"$PROVISIONING_DIR/groups"
 
 # Load the real user_groups() from the provisioning command and run it.
-eval "$(sed -n '/^user_groups() {/,/^}/p' "$ROOT/bin/omarchy-provision-owner")"
+eval "$(sed -n '/^user_groups() {/,/^}/p' "$ROOT/bin/unbloarchy-provision-owner")"
 groups=$(user_groups)
 
 [[ ",$groups," == *",wheel,"* ]] || fail "user_groups always includes wheel"
@@ -46,6 +46,6 @@ grants=$(rg -n --no-heading -e '(usermod|gpasswd|groupmems|adduser)\b.*\bdocker\
   "$ROOT/bin" "$ROOT/install" "$ROOT/migrations" "$ROOT/default" "$ROOT/config" |
   grep -vE '^[^:]+:[0-9]+:\s*#' |
   grep -vE 'gpasswd (-d|--delete)' |
-  grep -vF "$ROOT/bin/omarchy-setup-security-sudoless-docker:" || true)
+  grep -vF "$ROOT/bin/unbloarchy-setup-security-sudoless-docker:" || true)
 [[ -z $grants ]] || fail "only the sudoless Docker setup adds a user to the docker group" "$grants"
 pass "only the sudoless Docker setup adds a user to the docker group"

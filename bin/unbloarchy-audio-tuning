@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# omarchy:summary=Manage the speaker tuning for this laptop
-# omarchy:args=<on|off|status|match|fronted-sink> [--force]
-# omarchy:group=audio
-# omarchy:examples=omarchy audio tuning status | omarchy audio tuning on | omarchy audio tuning off
+# unbloarchy:summary=Manage the speaker tuning for this laptop
+# unbloarchy:args=<on|off|status|match|fronted-sink> [--force]
+# unbloarchy:group=audio
+# unbloarchy:examples=unbloarchy audio tuning status | unbloarchy audio tuning on | unbloarchy audio tuning off
 
 set -uo pipefail
 
-tunings_dir="$OMARCHY_PATH/default/audio/tunings"
+tunings_dir="$UNBLOARCHY_PATH/default/audio/tunings"
 config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 # The tuning is hosted by its own PipeWire client, under its own config name, so
@@ -16,22 +16,22 @@ config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
 # restarted by hand. The name is deliberately not PipeWire's stock
 # filter-chain.conf, which merges every fragment in filter-chain.conf.d/ and would
 # make this service host unrelated user filters too.
-host_config_name=omarchy-speaker-tuning.conf
+host_config_name=unbloarchy-speaker-tuning.conf
 host_config="$config_home/pipewire/$host_config_name"
-host_source="$OMARCHY_PATH/default/audio/filter-chain-host.conf"
+host_source="$UNBLOARCHY_PATH/default/audio/filter-chain-host.conf"
 fragment="$config_home/pipewire/$host_config_name.d/90-tuning.conf"
-unit_name=omarchy-speaker-tuning.service
+unit_name=unbloarchy-speaker-tuning.service
 unit="$config_home/systemd/user/$unit_name"
-unit_source="$OMARCHY_PATH/default/systemd/user/$unit_name"
+unit_source="$UNBLOARCHY_PATH/default/systemd/user/$unit_name"
 
 # Earlier revisions loaded the tuning into the daemon, as a WirePlumber smart
 # filter, or into the shared filter-chain.conf.d namespace. Remove all three so
 # they cannot be loaded alongside the current one.
-stale_daemon="$config_home/pipewire/pipewire.conf.d/90-omarchy-speaker-tuning.conf"
-stale_wireplumber="$config_home/wireplumber/wireplumber.conf.d/90-omarchy-speaker-tuning.conf"
-stale_shared="$config_home/pipewire/filter-chain.conf.d/90-omarchy-speaker-tuning.conf"
+stale_daemon="$config_home/pipewire/pipewire.conf.d/90-unbloarchy-speaker-tuning.conf"
+stale_wireplumber="$config_home/wireplumber/wireplumber.conf.d/90-unbloarchy-speaker-tuning.conf"
+stale_shared="$config_home/pipewire/filter-chain.conf.d/90-unbloarchy-speaker-tuning.conf"
 
-sink_name=omarchy_speaker_tuning
+sink_name=unbloarchy_speaker_tuning
 
 action="${1:-status}"
 force=0
@@ -59,7 +59,7 @@ sku_matches() {
 dmi_matches() {
   local want
   for want in "$@"; do
-    omarchy-hw-match "$want" 2>/dev/null && return 0
+    unbloarchy-hw-match "$want" 2>/dev/null && return 0
   done
   return 1
 }
@@ -148,7 +148,7 @@ move_apps_to() {
 # WirePlumber can link the output elsewhere if the target is missing when the host
 # starts. node.dont-fallback guards against it, but verify rather than assume.
 tuning_downstream_sink() {
-  omarchy-audio-output-sink "$sink_name" 2>/dev/null
+  unbloarchy-audio-output-sink "$sink_name" 2>/dev/null
 }
 
 easyeffects_running() {
@@ -162,7 +162,7 @@ easyeffects_running() {
 drop_stale_daemon_config() {
   [[ -e $stale_daemon || -e $stale_wireplumber ]] || return 0
   rm -f "$stale_daemon" "$stale_wireplumber"
-  omarchy-restart-audio >/dev/null 2>&1
+  unbloarchy-restart-audio >/dev/null 2>&1
   local _
   for _ in {1..40}; do
     pactl info >/dev/null 2>&1 && break
@@ -180,7 +180,7 @@ case "$action" in
     # the graph. Selecting the physical one would only bypass the tuning, so
     # callers keep it out of the output list while the tuning is up. This answers
     # "is a tuning in place", not "where should volume go" -- for the latter see
-    # omarchy-audio-output-sink, which follows the current default output.
+    # unbloarchy-audio-output-sink, which follows the current default output.
     tuning_present || exit 1
     tuned_hardware_sink
     ;;
@@ -265,7 +265,7 @@ case "$action" in
     [[ -n ${speaker_sink:-} ]] || {
       echo "A tuning applies to this laptop but no sink matching $sink_pattern" >&2
       echo "is present, so there is no audio server yet. Re-run after login:" >&2
-      echo "  omarchy audio tuning on" >&2
+      echo "  unbloarchy audio tuning on" >&2
       exit 1
     }
 
@@ -352,7 +352,7 @@ EOF
     ;;
 
   *)
-    echo "Usage: omarchy-audio-tuning <on|off|status|match|fronted-sink> [--force]" >&2
+    echo "Usage: unbloarchy-audio-tuning <on|off|status|match|fronted-sink> [--force]" >&2
     exit 2
     ;;
 esac

@@ -20,11 +20,11 @@ Obsidian je besplatan za sve namjene, uključujući osobnu, komercijalnu i nepro
 
 Obsidian nudi i [komercijalni dodatak za sinkronizaciju](https://obsidian.md/sync) s mobilnim aplikacijama na iOS-u i Androidu. (https://obsidian.md/pricing).
 
-Obsidian pokrećete sa `Super + Shift + O`. Da biste koristili sinkronizaciju teme, morate odabrati temu `Omarchy` u postavkama.
+Obsidian pokrećete sa `Super + Shift + O`. Da biste koristili sinkronizaciju teme, morate odabrati temu `Unbloarchy` u postavkama.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) je Omarchyjeva vlastita krajnje jednostavna aplikacija za pisanje u Markdownu. Bez trezora, bez dodataka, samo vi i riječi.
+[Omawrite](https://github.com/omacom-io/omawrite) je Unbloarchyjeva vlastita krajnje jednostavna aplikacija za pisanje u Markdownu. Bez trezora, bez dodataka, samo vi i riječi.
 
 Omawrite pokrećete sa `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Aether pokrećete putem pokretača aplikacija (`Super + Space`).
 
 [LocalSend](https://localsend.org/) omogućuje vam slanje datoteka na druge uređaje na istoj mreži koji pokreću aplikaciju, poput Appleova AirDropa. Međutim, radi na više platformi, pa možete slati datoteke na Windows, macOS, Android, iOS i, naravno, Linux te ih primati s njih.
 
-Izbornik Share možete otvoriti sa `Super + Ctrl + S` ili pod _Trigger > Share_ u Omarchy izborniku. Nudi vam četiri opcije:
+Izbornik Share možete otvoriti sa `Super + Ctrl + S` ili pod _Trigger > Share_ u Unbloarchy izborniku. Nudi vam četiri opcije:
 
 - **Clipboard** šalje sve što ste kopirali kao tekstualnu datoteku. Odlično za slanje poveznice ili isječka na telefon bez slanja e-pošte samome sebi.
 - **File** otvara birač datoteka u kojem ih možete odabrati nekoliko odjednom.
 - **Folder** šalje cijeli direktorij.
 - **Receive** otvara pravi LocalSend kako bi vam drugi uređaj mogao nešto poslati.
 
-Isto funkcionira iz terminala s `omarchy share clipboard`, `omarchy share file [path]` i `omarchy share folder [path]`. Izostavite putanju i dobit ćete birač.
+Isto funkcionira iz terminala s `unbloarchy share clipboard`, `unbloarchy share file [path]` i `unbloarchy share folder [path]`. Izostavite putanju i dobit ćete birač.
 
 Možete slati i izravno iz upravitelja datoteka: desnom tipkom miša kliknite bilo koji odabir u Nautilusu i odaberite _Send via LocalSend_.
 
-Omarchyjev vatrozid zatvoren je prema zadanim postavkama, osim za port LocalSenda, pa ovo radi odmah nakon svježe instalacije. Pogledajte [sigurnost](48-security.md).
+Unbloarchyjev vatrozid zatvoren je prema zadanim postavkama, osim za port LocalSenda, pa ovo radi odmah nakon svježe instalacije. Pogledajte [sigurnost](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice pokrećete putem pokretača aplikacija (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) je Omarchyjeva vlastita krajnje jednostavna aplikacija za prezentacije. Vaša prezentacija je jedna Markdown datoteka sa slikama i videozapisima pokraj nje: svaki slajd pišete ispod pregleda uživo, povlačite slajdove u redoslijed, zatim prezentirate preko cijelog zaslona ili izvozite u PDF i PowerPoint. Čak preuzima i vašu Omarchy temu.
+[Hype](https://github.com/omacom/hype) je Unbloarchyjeva vlastita krajnje jednostavna aplikacija za prezentacije. Vaša prezentacija je jedna Markdown datoteka sa slikama i videozapisima pokraj nje: svaki slajd pišete ispod pregleda uživo, povlačite slajdove u redoslijed, zatim prezentirate preko cijelog zaslona ili izvozite u PDF i PowerPoint. Čak preuzima i vašu Unbloarchy temu.
 
 Hype pokrećete putem pokretača aplikacija (`Super + Space`). Pritisnite `?` unutar njega da biste vidjeli sve prečace.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) je Omarchyjev vlastiti krajnje jednostavan način za potpisivanje PDF-ova i njihovo ispunjavanje. Postavite svoj spremljeni potpis, tekst i današnji datum bilo gdje na stranicu, zatim spremite potpisanu kopiju pokraj izvornika. Pogledajte [Ispunjavanje PDF-ova](27-filling-out-pdfs.md) za upute.
+[Signed](https://github.com/omacom/signed) je Unbloarchyjev vlastiti krajnje jednostavan način za potpisivanje PDF-ova i njihovo ispunjavanje. Postavite svoj spremljeni potpis, tekst i današnji datum bilo gdje na stranicu, zatim spremite potpisanu kopiju pokraj izvornika. Pogledajte [Ispunjavanje PDF-ova](27-filling-out-pdfs.md) za upute.
 
 Signed pokrećete putem pokretača aplikacija (`Super + Space`) ili s njim otvorite PDF iz upravitelja datoteka.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) je Omarchyjev vlastiti krajnje jednostavan kalkulator, koji se otvara u plutajućem prozoru.
+[Omacalc](https://github.com/omacom-io/omacalc) je Unbloarchyjev vlastiti krajnje jednostavan kalkulator, koji se otvara u plutajućem prozoru.
 
 Omacalc pokrećete sa `Super + Shift + Q` (ili tipkom kalkulatora, ako je vaša tipkovnica ima).
 
@@ -85,7 +85,7 @@ Omacalc pokrećete sa `Super + Shift + Q` (ili tipkom kalkulatora, ako je vaša 
 
 [Signal](https://signal.org/) je pionir E2E šifriranih poruka i odlična komunikacijska opcija za svakoga tko radije ne bi išao preko jednog od velikih tehnoloških konglomerata.
 
-Signal pokrećete sa `Super + Shift + G`. Nije dio osnovne instalacije, pa će vam Omarchy prvi put kad to pritisnete ponuditi da ga instalira za vas (nalazi se i pod _Install > Service_ u Omarchy izborniku).
+Signal pokrećete sa `Super + Shift + G`. Nije dio osnovne instalacije, pa će vam Unbloarchy prvi put kad to pritisnete ponuditi da ga instalira za vas (nalazi se i pod _Install > Service_ u Unbloarchy izborniku).
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv pokrećete putem pokretača aplikacija (`Super + Space`) ili jednostavno dvo
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) je Omarchyjev vlastiti krajnje jednostavan alat za obrezivanje videozapisa. Kad vam treba samo odrezati početak i kraj isječka, bolje je od pokretanja potpunog uređivača videozapisa.
+[Omacut](https://github.com/omacom-io/omacut) je Unbloarchyjev vlastiti krajnje jednostavan alat za obrezivanje videozapisa. Kad vam treba samo odrezati početak i kraj isječka, bolje je od pokretanja potpunog uređivača videozapisa.
 
 Omacut pokrećete putem pokretača aplikacija (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) je Omarchyjev vlastiti krajnje jednostavan snimač web-kamerom. Odaberite kameru i mikrofon jednom, zatim pritisnite `Space` za snimanje, i ponovno za pauziranje i nastavak istog snimanja. Uvijek snima u najvišoj razlučivosti vaše kamere, s mjeračem mikrofona uživo kako biste mogli provjeriti razine prije početka.
+[Monologue](https://github.com/omacom/monologue) je Unbloarchyjev vlastiti krajnje jednostavan snimač web-kamerom. Odaberite kameru i mikrofon jednom, zatim pritisnite `Space` za snimanje, i ponovno za pauziranje i nastavak istog snimanja. Uvijek snima u najvišoj razlučivosti vaše kamere, s mjeračem mikrofona uživo kako biste mogli provjeriti razine prije početka.
 
 Zaustavite snimanje i odmah se otvara u ugrađenom uređivaču. Dvokliknite isječak da biste ga podijelili, povucite ručke za obrezivanje svakog dijela i uklonite dijelove koje ne želite. Zatim ga spremite kao MP4. Vaša izvorna snimka čuva se dok je ne odbacite, pa se uvijek možete vratiti i izrezati je drugačije.
 

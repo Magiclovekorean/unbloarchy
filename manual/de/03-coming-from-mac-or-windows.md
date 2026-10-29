@@ -1,12 +1,12 @@
 # Von Mac oder Windows kommen
 
-Wenn du jahrelang macOS oder Windows genutzt hast, kennen deine Finger hundert Dinge, von denen dein Gehirn vergessen hat, dass es sie je gelernt hat. Dieses Kapitel ist die Übersetzungsschicht: wohin diese Instinkte in Omarchy führen. Die Funktionen selbst werden anderswo ausführlich behandelt — das hier ist nur die Landkarte.
+Wenn du jahrelang macOS oder Windows genutzt hast, kennen deine Finger hundert Dinge, von denen dein Gehirn vergessen hat, dass es sie je gelernt hat. Dieses Kapitel ist die Übersetzungsschicht: wohin diese Instinkte in Unbloarchy führen. Die Funktionen selbst werden anderswo ausführlich behandelt — das hier ist nur die Landkarte.
 
 ### Super ist das Zentrum von allem
 
-All das Muskelgedächtnis, das du rund um Cmd oder die Windows-Taste aufgebaut hast, überträgt sich auf eine Taste: Super. Das ist die Windows-Taste auf einer PC-Tastatur, und sie ist der Anker für fast jeden Hotkey in Omarchy.
+All das Muskelgedächtnis, das du rund um Cmd oder die Windows-Taste aufgebaut hast, überträgt sich auf eine Taste: Super. Das ist die Windows-Taste auf einer PC-Tastatur, und sie ist der Anker für fast jeden Hotkey in Unbloarchy.
 
-Dein Reflex für Spotlight oder Raycast oder das Startmenü wird zu `Super + Space`. Das öffnet das Omarchy-Menü, das Apps startet, Einstellungen ändert, Software installiert, den Bildschirm aufnimmt — so ziemlich alles. Fange einfach an zu tippen, um zu filtern. `Super + Alt + Space` zeigt jede App in einem Raster, so wie Launchpad es tut. Siehe [Navigation](04-navigation.md).
+Dein Reflex für Spotlight oder Raycast oder das Startmenü wird zu `Super + Space`. Das öffnet das Unbloarchy-Menü, das Apps startet, Einstellungen ändert, Software installiert, den Bildschirm aufnimmt — so ziemlich alles. Fange einfach an zu tippen, um zu filtern. `Super + Alt + Space` zeigt jede App in einem Raster, so wie Launchpad es tut. Siehe [Navigation](04-navigation.md).
 
 ### Es gibt kein Dock und keine Desktop-Symbole
 
@@ -22,27 +22,27 @@ Workspaces werden sich vertraut anfühlen: Sie sind macOS Spaces oder virtuelle 
 
 ### Kopieren und Einfügen funktionieren einfach
 
-Auf dem Mac hattest du Cmd + C überall. Unter Windows hattest du Ctrl + C überall — außer im Terminal, wo es dein Programm beendet. Omarchy gibt dir `Super + C`, `Super + X` und `Super + V`, und sie funktionieren überall, auch im Terminal. Kein separater Reflex, den du für die Shell lernen musst.
+Auf dem Mac hattest du Cmd + C überall. Unter Windows hattest du Ctrl + C überall — außer im Terminal, wo es dein Programm beendet. Unbloarchy gibt dir `Super + C`, `Super + X` und `Super + V`, und sie funktionieren überall, auch im Terminal. Kein separater Reflex, den du für die Shell lernen musst.
 
 Windows-Leute: Dein Verlauf der Zwischenablage mit Win + V lebt auf `Super + Ctrl + V`, und er speichert Bilder ebenso wie Text. Siehe [einheitliche Zwischenablage & Verlauf](08-unified-clipboard-history.md).
 
 ### Die Übersetzungstabelle
 
-| Du greifst nach | In Omarchy |
+| Du greifst nach | In Unbloarchy |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start menu | `Super + Space` — das Omarchy-Menü |
+| Spotlight / Raycast / Start menu | `Super + Space` — das Unbloarchy-Menü |
 | AirDrop | LocalSend, über `Super + Ctrl + S` — siehe [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` oder `Print Screen` — siehe [Screenshots & Aufnahme](12-screenshots-recording.md) |
 | Notification Center | Benachrichtigungsverlauf auf `Super + Shift + Alt + ,` |
 | Time Machine (für das System) | Automatische [System-Snapshots](47-system-snapshots.md) bei jedem Update |
-| App Store / einen Installer herunterladen | _Install_ im Menü, oder `omarchy pkg add` — siehe [andere Pakete](29-other-packages.md) |
+| App Store / einen Installer herunterladen | _Install_ im Menü, oder `unbloarchy pkg add` — siehe [andere Pakete](29-other-packages.md) |
 | System Settings / Control Panel | _Setup_ im Menü, das einfache Konfigurationsdateien bearbeitet — siehe [Dotfiles](31-dotfiles.md) |
 
 ### Manche Dinge sind wirklich anders
 
 Viele Einstellungen leben in Textdateien, die du bearbeitest, nicht in Panels, durch die du dich klickst. Das klingt primitiv, bis dir klar wird, dass es bedeutet, dass jede Anpassung gesehen, auf deine nächste Maschine kopiert und in Versionskontrolle gelegt werden kann. Das _Setup_-Menü wirft dich direkt in die richtige Datei und startet neu, was neu gestartet werden muss, wenn du fertig bist.
 
-Updates kommen über einen Befehl — _Update > Omarchy_ — der Omarchy selbst und jedes Paket auf dem System aktualisiert und vorher einen Snapshot erstellt. Keine Updater pro App, die dich zu zufälligen Zeiten nerven. Siehe [Updates](30-updates.md).
+Updates kommen über einen Befehl — _Update > Unbloarchy_ — der Unbloarchy selbst und jedes Paket auf dem System aktualisiert und vorher einen Snapshot erstellt. Keine Updater pro App, die dich zu zufälligen Zeiten nerven. Siehe [Updates](30-updates.md).
 
 Software kommt von einem Paketmanager, nicht von heruntergeladenen Installern.
 
@@ -50,7 +50,7 @@ Und wenn du ein Fenster schließt, beendet sich die App tatsächlich. Es gibt ke
 
 ### Auf Mac-Hardware
 
-Omarchy läuft gut auf Intel Macs — siehe [Mac-Support](44-mac-support.md). Und die Tastatur ist freundlich zu dir: Omarchy belegt nichts um, und Linux behandelt die Command-Taste als Super, also sitzt Super genau dort, wo Cmd immer war. Dein Daumen wird den Umzug nicht bemerken.
+Unbloarchy läuft gut auf Intel Macs — siehe [Mac-Support](44-mac-support.md). Und die Tastatur ist freundlich zu dir: Unbloarchy belegt nichts um, und Linux behandelt die Command-Taste als Super, also sitzt Super genau dort, wo Cmd immer war. Dein Daumen wird den Umzug nicht bemerken.
 
 ### Gib ihm zwei Wochen
 

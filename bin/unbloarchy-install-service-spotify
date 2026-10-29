@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# omarchy:summary=Install Spotify, as its web player where Spotify has no Linux client.
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Install Spotify, as its web player where Spotify has no Linux client.
+# unbloarchy:requires-sudo=true
 
 set -e
 
-if omarchy-hw-x86; then
+if unbloarchy-hw-x86; then
   echo "Installing Spotify..."
-  omarchy-pkg-add spotify
+  unbloarchy-pkg-add spotify
 
   echo "Opening Spotify..."
   setsid uwsm-app -- /usr/bin/spotify >/dev/null 2>&1 &
@@ -16,10 +16,10 @@ else
   # and i386), so ARM gets the web player, which Chromium plays with the Widevine
   # module it fetches itself.
   echo "Installing Spotify as a web app..."
-  omarchy-webapp-install "Spotify" "https://open.spotify.com/" "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/spotify.png"
+  unbloarchy-webapp-install "Spotify" "https://open.spotify.com/" "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/spotify.png"
 
   echo "Opening Spotify..."
-  setsid omarchy-launch-webapp "https://open.spotify.com/" >/dev/null 2>&1 &
+  setsid unbloarchy-launch-webapp "https://open.spotify.com/" >/dev/null 2>&1 &
 fi
 
 echo ""

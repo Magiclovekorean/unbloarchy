@@ -17,7 +17,7 @@ mkdir -p "$system_dir"
 cp -r "$ROOT/etc/mise/conf.d" "$system_dir/"
 
 run_migration() {
-  local test_home="$1" tools_config="${2:-$system_dir/conf.d/omarchy-tools.toml}"
+  local test_home="$1" tools_config="${2:-$system_dir/conf.d/unbloarchy-tools.toml}"
 
   (
     cd "$test_home"
@@ -28,7 +28,7 @@ run_migration() {
       XDG_DATA_HOME="$test_home/.local/share" \
       XDG_STATE_HOME="$test_home/.local/state" \
       MISE_SYSTEM_DIR="$system_dir" \
-      OMARCHY_MISE_CONFIG_PATH="$tools_config" \
+      UNBLOARCHY_MISE_CONFIG_PATH="$tools_config" \
       PATH="$ROOT/bin:/usr/bin" \
       bash -euo pipefail "$migration"
   )
@@ -51,15 +51,15 @@ pass "migration builds the lazy shims for the newly declared agents"
 
 # Until the settings package declares the agents, the migration stays pending.
 waiting_home=$(new_home waiting)
-if run_migration "$waiting_home" "$test_tmp/missing/omarchy-tools.toml" >/dev/null 2>&1; then
+if run_migration "$waiting_home" "$test_tmp/missing/unbloarchy-tools.toml" >/dev/null 2>&1; then
   fail "migration waits for the settings package's declarations"
 fi
 [[ ! -e $waiting_home/.local/share/mise/shims/qwen ]] || fail "migration builds nothing before the declarations arrive"
 pass "migration stays pending until the declarations arrive"
 
-# Remove Preinstalls opts the user out of Omarchy's declarations.
+# Remove Preinstalls opts the user out of Unbloarchy's declarations.
 opted_out_home=$(new_home opted-out)
-printf 'ignored_config_paths = ["%s"]\n' "$system_dir/conf.d/omarchy-tools.toml" >"$opted_out_home/.config/mise/miserc.toml"
+printf 'ignored_config_paths = ["%s"]\n' "$system_dir/conf.d/unbloarchy-tools.toml" >"$opted_out_home/.config/mise/miserc.toml"
 run_migration "$opted_out_home" >/dev/null 2>&1 || fail "migration completes after Remove Preinstalls"
 [[ ! -e $opted_out_home/.local/share/mise/shims/qwen ]] || fail "migration builds no shims after Remove Preinstalls"
 pass "migration leaves a user who removed the preinstalls alone"

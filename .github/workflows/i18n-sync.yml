@@ -19,7 +19,7 @@ on:
     branches: [quattro]
     paths:
       - 'default/i18n/en/**'
-      - 'default/omarchy/omarchy-menu.jsonc'
+      - 'default/unbloarchy/unbloarchy-menu.jsonc'
       - 'default/hypr/bindings/**'
       - 'manual/*.md'
       - 'shell/**'

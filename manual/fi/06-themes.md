@@ -1,8 +1,8 @@
 # Teemat
 
-Omarchyn mukana tulee kaksikymmentäkaksi kaunista teemaa. Voit valita niiden välillä Omarchy-valikon kohdasta _Ulkoasu > Teema_ (`Super + Space`) tai siirtyä suoraan teemanvalitsimeen näppäinyhdistelmällä `Super + Ctrl + T`.
+Unbloarchyn mukana tulee kaksikymmentäkaksi kaunista teemaa. Voit valita niiden välillä Unbloarchy-valikon kohdasta _Ulkoasu > Teema_ (`Super + Space`) tai siirtyä suoraan teemanvalitsimeen näppäinyhdistelmällä `Super + Ctrl + T`.
 
-Jokainen teema tyylittää työpöydän, terminaalin, neovimin, aktiivisuusnäytön (btop), Chromiumin ja koko Omarchy-kuoren: yläpalkin, valikon, ilmoitukset, OSD:n ja lukitusnäytön. (Obsidianissa sinun täytyy valita Omarchy-teema manuaalisesti sovelluksen sisältä kohdasta _Ulkoasu > Teemat_). 
+Jokainen teema tyylittää työpöydän, terminaalin, neovimin, aktiivisuusnäytön (btop), Chromiumin ja koko Unbloarchy-kuoren: yläpalkin, valikon, ilmoitukset, OSD:n ja lukitusnäytön. (Obsidianissa sinun täytyy valita Unbloarchy-teema manuaalisesti sovelluksen sisältä kohdasta _Ulkoasu > Teemat_). 
 
 Teemoissa on joukko taustakuvia, joista voit valita näppäinyhdistelmällä `Super + Ctrl + W`.
 

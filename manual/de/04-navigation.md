@@ -1,8 +1,8 @@
 # Navigation
 
-Alles in Omarchy läuft über die Tastatur — _ALLES!_ Wenn das System zum ersten Mal startet, kannst du mit der Maus allein buchstäblich nichts ausrichten. Aber du kannst `Super + Space` drücken, um das Omarchy-Menü einzublenden, und von hier aus kannst du so gut wie alles machen.
+Alles in Unbloarchy läuft über die Tastatur — _ALLES!_ Wenn das System zum ersten Mal startet, kannst du mit der Maus allein buchstäblich nichts ausrichten. Aber du kannst `Super + Space` drücken, um das Unbloarchy-Menü einzublenden, und von hier aus kannst du so gut wie alles machen.
 
-Aber das Omarchy-Menü ist die meiste Zeit nicht einmal als Hauptweg gedacht, um das System zu bedienen. Wir können schneller sein als das! Alle wichtigsten Anwendungen sind direkt an einzelne Tastenkürzel gebunden. Du startest das Terminal mit `Super + Return` und einen Browser mit `Super + Shift + Return`. Probiere, das eine nach dem anderen zu tun, und du wirst die Magie von Hyprlands Tiling in Aktion sehen:
+Aber das Unbloarchy-Menü ist die meiste Zeit nicht einmal als Hauptweg gedacht, um das System zu bedienen. Wir können schneller sein als das! Alle wichtigsten Anwendungen sind direkt an einzelne Tastenkürzel gebunden. Du startest das Terminal mit `Super + Return` und einen Browser mit `Super + Shift + Return`. Probiere, das eine nach dem anderen zu tun, und du wirst die Magie von Hyprlands Tiling in Aktion sehen:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Du kannst auch mit `Super + F` in den Vollbildmodus gehen oder mit `Super + Alt 
 
 ### Dwindle vs. Scrolling-Layout
 
-Omarchys Standardlayout heißt dwindle. Es hält alle Fenster, die du auf einem einzelnen Arbeitsbereich öffnest, jederzeit sichtbar, selbst wenn es sie dafür verkleinern muss.
+Unbloarchys Standardlayout heißt dwindle. Es hält alle Fenster, die du auf einem einzelnen Arbeitsbereich öffnest, jederzeit sichtbar, selbst wenn es sie dafür verkleinern muss.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Ein schwebender Arbeitsbereich funktioniert wie ein traditioneller Desktop: Fenster überlappen sich, und du verschiebst und dimensionierst sie selbst. Jedes Fenster erhält eine Titelleiste in den Farben deines Themes, mit Schaltflächen zum Minimieren, Maximieren und Schließen. `Super + M` minimiert auch das fokussierte Fenster. Ein minimiertes Fenster wartet im Dock; klicke seine App, um es zurückzubringen. Klicke ein Fenster, um es nach vorne zu bringen. Ändere seine Größe von jeder Kante oder Ecke aus. Doppelklicke eine Titelleiste, um das Fenster zu maximieren, während die obere Leiste sichtbar bleibt, und erneut, um seine alte Größe zurückzubekommen.
 
-Ein schwebender Arbeitsbereich zeigt auch ein Dock, mit deinen angehefteten Apps, allem, was läuft, und einem Raster jeder App hinter der Apps-Schaltfläche, die `Super + Alt + Space` und _Apps_ im Omarchy-Menü ebenfalls öffnen. Klicke mit der rechten Maustaste auf eine App im Raster, oder drücke `Delete`, um sie zu deinstallieren. Klicke eine App, um sie zu öffnen oder ihr Fenster nach vorne zu bringen; klicke erneut, um ihre Fenster zu durchlaufen. Ein Mittelklick öffnet ein neues Fenster. Ziehe ein Symbol entlang des Docks, um es zu verschieben; ein Ziehen einer laufenden App zwischen die anderen behält sie dort. Klicke mit der rechten Maustaste, um eine App im Dock zu behalten, sie herauszunehmen oder sie zu beenden. Das Dock macht einem Vollbildfenster Platz. Klicke mit der rechten Maustaste auf die Apps-Schaltfläche, um das Dock an eine andere Kante zu verschieben oder es verstecken zu lassen, bis der Zeiger seine Kante erreicht. Die Position befindet sich auch unter _Appearance > Dock > Dock Position_, und `omarchy dock position left` und `omarchy dock autohide on` stellen beides von einem Terminal aus ein. Apps, die du im Dock behältst, sind ausgegraut, solange sie nicht laufen.
+Ein schwebender Arbeitsbereich zeigt auch ein Dock, mit deinen angehefteten Apps, allem, was läuft, und einem Raster jeder App hinter der Apps-Schaltfläche, die `Super + Alt + Space` und _Apps_ im Unbloarchy-Menü ebenfalls öffnen. Klicke mit der rechten Maustaste auf eine App im Raster, oder drücke `Delete`, um sie zu deinstallieren. Klicke eine App, um sie zu öffnen oder ihr Fenster nach vorne zu bringen; klicke erneut, um ihre Fenster zu durchlaufen. Ein Mittelklick öffnet ein neues Fenster. Ziehe ein Symbol entlang des Docks, um es zu verschieben; ein Ziehen einer laufenden App zwischen die anderen behält sie dort. Klicke mit der rechten Maustaste, um eine App im Dock zu behalten, sie herauszunehmen oder sie zu beenden. Das Dock macht einem Vollbildfenster Platz. Klicke mit der rechten Maustaste auf die Apps-Schaltfläche, um das Dock an eine andere Kante zu verschieben oder es verstecken zu lassen, bis der Zeiger seine Kante erreicht. Die Position befindet sich auch unter _Appearance > Dock > Dock Position_, und `unbloarchy dock position left` und `unbloarchy dock autohide on` stellen beides von einem Terminal aus ein. Apps, die du im Dock behältst, sind ausgegraut, solange sie nicht laufen.
 
-Neue Arbeitsbereiche, und alle, denen du mit `Super + L` kein eigenes Layout gegeben hast, verwenden das Standardlayout. Das Ändern des Standards setzt jeden Arbeitsbereich ohne Fenster darauf zurück, während einer mit Fenstern darauf das Layout behält, das er hat. Ein zum Dock minimiertes Fenster zählt weiterhin als Fenster auf dem Arbeitsbereich, den es verlassen hat. Wähle es unter _Appearance > Workspace Layout_: Tiling, Scrolling oder Floating. `omarchy-hyprland-workspace-layout-default scrolling` stellt es von einem Terminal aus ein.
+Neue Arbeitsbereiche, und alle, denen du mit `Super + L` kein eigenes Layout gegeben hast, verwenden das Standardlayout. Das Ändern des Standards setzt jeden Arbeitsbereich ohne Fenster darauf zurück, während einer mit Fenstern darauf das Layout behält, das er hat. Ein zum Dock minimiertes Fenster zählt weiterhin als Fenster auf dem Arbeitsbereich, den es verlassen hat. Wähle es unter _Appearance > Workspace Layout_: Tiling, Scrolling oder Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` stellt es von einem Terminal aus ein.
 
 ### Fenster gruppieren
 

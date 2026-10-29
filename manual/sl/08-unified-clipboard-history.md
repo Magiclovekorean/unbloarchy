@@ -2,7 +2,7 @@
 
 Običajno v Linuxu potrebuješ `Ctrl + Shift + C/V` za kopiranje in lepljenje v terminalu in `Ctrl + C/V`, da to storiš povsod drugje. Na to se težko navadi vsak, ki ni bil rojen in vzgojen z Linuxom! Enako velja za preklop s Super na Ctrl, če prihajaš z Maca.
 
-Omarchy obe težavi rešuje s poenotenimi bližnjicami za odložišče, ki delujejo (skoraj) povsod. To so:
+Unbloarchy obe težavi rešuje s poenotenimi bližnjicami za odložišče, ki delujejo (skoraj) povsod. To so:
 
 | Bližnjica | Ukaz |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Uporabi `Super + A` in nato `Super + C`, da kopiraš vse v osredotočenem besedi
 
 ### Zgodovina odložišča
 
-Zgodovino odložišča zagotavlja lupina Omarchy in deluje tako za besedilo kot za slike. Sprožiš jo s `Super + Ctrl + V`, z vrnitvijo izbereš vnos, nato pa bo ta nameščen v odložišče in pripravljen za lepljenje s `Super + V`.
+Zgodovino odložišča zagotavlja lupina Unbloarchy in deluje tako za besedilo kot za slike. Sprožiš jo s `Super + Ctrl + V`, z vrnitvijo izbereš vnos, nato pa bo ta nameščen v odložišče in pripravljen za lepljenje s `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

@@ -20,11 +20,11 @@ Obsidian 适用于所有用途，包括个人、商业和非营利用途，全�
 
 Obsidian 还提供[用于同步的商业附加组件](https://obsidian.md/sync)，可与 iOS 和 Android 上的移动应用同步。(https://obsidian.md/pricing)。
 
-你可以用 `Super + Shift + O` 启动 Obsidian。要使用主题同步，你必须在设置下选择 `Omarchy` 主题。
+你可以用 `Super + Shift + O` 启动 Obsidian。要使用主题同步，你必须在设置下选择 `Unbloarchy` 主题。
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) 是 Omarchy 自家的极简 Markdown 写作应用。没有仓库，没有插件，只有你和文字。
+[Omawrite](https://github.com/omacom-io/omawrite) 是 Unbloarchy 自家的极简 Markdown 写作应用。没有仓库，没有插件，只有你和文字。
 
 你可以用 `Super + Shift + W` 启动 Omawrite。
 
@@ -44,18 +44,18 @@ Obsidian 还提供[用于同步的商业附加组件](https://obsidian.md/sync)�
 
 [LocalSend](https://localsend.org/) 让你向同一网络上运行该应用的其他设备发送文件，就像 Apple 的 AirDrop。不过它是跨平台的，所以你可以在 Windows、macOS、Android、iOS，当然还有 Linux 之间互发文件。
 
-你可以用 `Super + Ctrl + S` 打开 Share 菜单，或在 Omarchy 菜单的 _Trigger > Share_ 下打开。它为你提供四个选项：
+你可以用 `Super + Ctrl + S` 打开 Share 菜单，或在 Unbloarchy 菜单的 _Trigger > Share_ 下打开。它为你提供四个选项：
 
 - **Clipboard** 将你复制的任何内容作为文本文件发送。非常适合把链接或代码片段弄到手机上，不用给自己发邮件。
 - **File** 打开文件选择器，你可以一次选择多个文件。
 - **Folder** 发送整个目录。
 - **Receive** 打开 LocalSend 本体，这样其他设备就能向你发送东西。
 
-在终端中也可以用 `omarchy share clipboard`、`omarchy share file [path]` 和 `omarchy share folder [path]` 做同样的事情。省略路径，你就会得到选择器。
+在终端中也可以用 `unbloarchy share clipboard`、`unbloarchy share file [path]` 和 `unbloarchy share folder [path]` 做同样的事情。省略路径，你就会得到选择器。
 
 你也可以直接从文件管理器发送：在 Nautilus 中右键点击任意选中的内容，选择 _Send via LocalSend_。
 
-Omarchy 的防火墙默认关闭，LocalSend 的端口除外，所以这在全新安装时开箱即用。参见[安全](48-security.md)。
+Unbloarchy 的防火墙默认关闭，LocalSend 的端口除外，所以这在全新安装时开箱即用。参见[安全](48-security.md)。
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ Omarchy 的防火墙默认关闭，LocalSend 的端口除外，所以这在全�
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) 是 Omarchy 自家的极简演示应用。你的幻灯片是一个单独的 Markdown 文件，图片和视频就放在它旁边：在实时预览下方编写每一张幻灯片，拖动幻灯片调整顺序，然后全屏演示或导出为 PDF 和 PowerPoint。它甚至会采用你的 Omarchy 主题。
+[Hype](https://github.com/omacom/hype) 是 Unbloarchy 自家的极简演示应用。你的幻灯片是一个单独的 Markdown 文件，图片和视频就放在它旁边：在实时预览下方编写每一张幻灯片，拖动幻灯片调整顺序，然后全屏演示或导出为 PDF 和 PowerPoint。它甚至会采用你的 Unbloarchy 主题。
 
 你可以通过应用启动器（`Super + Space`）启动 Hype。在里面按 `?` 查看每个快捷键。
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) 是 Omarchy 自家的极简 PDF 签名和填写工具。把你保存的签名、文本和今天的日期放在页面上的任意位置，然后在原件旁边保存一份已签名的副本。有关操作方法，参见[填写 PDF](27-filling-out-pdfs.md)。
+[Signed](https://github.com/omacom/signed) 是 Unbloarchy 自家的极简 PDF 签名和填写工具。把你保存的签名、文本和今天的日期放在页面上的任意位置，然后在原件旁边保存一份已签名的副本。有关操作方法，参见[填写 PDF](27-filling-out-pdfs.md)。
 
 你可以通过应用启动器（`Super + Space`）启动 Signed，或从文件管理器中用它打开 PDF。
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) 是 Omarchy 自家的极简计算器，会在浮动窗口中打开。
+[Omacalc](https://github.com/omacom-io/omacalc) 是 Unbloarchy 自家的极简计算器，会在浮动窗口中打开。
 
 你可以用 `Super + Shift + Q` 启动 Omacalc（如果你的键盘有计算器键，也可以用那个键）。
 
@@ -85,7 +85,7 @@ Omarchy 的防火墙默认关闭，LocalSend 的端口除外，所以这在全�
 
 [Signal](https://signal.org/) 是 E2E 加密消息的先驱，对于任何不想通过大型科技集团的人来说，都是一个绝佳的通信选择。
 
-你可以用 `Super + Shift + G` 启动 Signal。它不属于基础安装的一部分，所以你第一次按下那个组合键时，Omarchy 会主动为你安装它（它也位于 Omarchy 菜单的 _Install > Service_ 下）。
+你可以用 `Super + Shift + G` 启动 Signal。它不属于基础安装的一部分，所以你第一次按下那个组合键时，Unbloarchy 会主动为你安装它（它也位于 Unbloarchy 菜单的 _Install > Service_ 下）。
 
 ## mpv
 
@@ -95,13 +95,13 @@ Omarchy 的防火墙默认关闭，LocalSend 的端口除外，所以这在全�
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) 是 Omarchy 自家的极简视频修剪工具。当你只需要剪掉片段的开头和结尾时，它比启动一个完整的视频编辑器要好得多。
+[Omacut](https://github.com/omacom-io/omacut) 是 Unbloarchy 自家的极简视频修剪工具。当你只需要剪掉片段的开头和结尾时，它比启动一个完整的视频编辑器要好得多。
 
 你可以通过应用启动器（`Super + Space`）启动 Omacut。
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) 是 Omarchy 自家的极简网络摄像头录制工具。选择一次你的摄像头和麦克风，然后按 `Space` 录制，再按一次暂停并继续同一段录制。它始终以你摄像头的最高分辨率录制，并带有实时麦克风电平表，这样你在开始前就可以检查音量。
+[Monologue](https://github.com/omacom/monologue) 是 Unbloarchy 自家的极简网络摄像头录制工具。选择一次你的摄像头和麦克风，然后按 `Space` 录制，再按一次暂停并继续同一段录制。它始终以你摄像头的最高分辨率录制，并带有实时麦克风电平表，这样你在开始前就可以检查音量。
 
 停止录制后，它会立即在内置编辑器中打开。双击片段将其分割，拖动手柄修剪每一部分，并删除你不想要的部分。然后将其保存为 MP4。你的原始录制会保留，直到你丢弃它，所以你随时可以回来以不同的方式剪辑。
 

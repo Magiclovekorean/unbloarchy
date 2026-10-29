@@ -1,14 +1,14 @@
 # De bovenbalk
 
-De strook langs de bovenkant van je scherm is de Omarchy-balk. Het is geen achteraf vastgeschroefde statusbalk, maar een onderdeel van de Omarchy-shell, het ene langlopende Quickshell-proces dat ook het menu, de meldingen, de OSD-popups en het vergrendelscherm tekent. Daarom past het qua thema perfect bij al het andere en opent een paneel direct, in plaats van een nieuwe app te starten.
+De strook langs de bovenkant van je scherm is de Unbloarchy-balk. Het is geen achteraf vastgeschroefde statusbalk, maar een onderdeel van de Unbloarchy-shell, het ene langlopende Quickshell-proces dat ook het menu, de meldingen, de OSD-popups en het vergrendelscherm tekent. Daarom past het qua thema perfect bij al het andere en opent een paneel direct, in plaats van een nieuwe app te starten.
 
 Het is ook het enige onderdeel van het bureaublad dat altijd in beeld is, dus het is de moeite waard om te weten wat al die kleine tekens doen.
 
 ## Wat er standaard op staat
 
-De balk heeft drie secties. Links staat het Omarchy-logo (de menustarter) en de werkruimte-indicatoren. In het midden staan de statusindicatoren, de klok, Elsewhen (een wereldklok), het weer en een Omarchy-updatebadge. Rechts: het systeemvak, de toetsenbordindeling (wanneer er meer dan één is geconfigureerd), agents, bluetooth, netwerk, audio, beeldscherm en energie.
+De balk heeft drie secties. Links staat het Unbloarchy-logo (de menustarter) en de werkruimte-indicatoren. In het midden staan de statusindicatoren, de klok, Elsewhen (een wereldklok), het weer en een Unbloarchy-updatebadge. Rechts: het systeemvak, de toetsenbordindeling (wanneer er meer dan één is geconfigureerd), agents, bluetooth, netwerk, audio, beeldscherm en energie.
 
-Een paar daarvan verschijnen alleen wanneer ze iets te melden hebben. De toetsenbordindeling verschijnt alleen als je meer dan één indeling hebt geconfigureerd. De updatebadge verschijnt alleen wanneer er een Omarchy-update klaarstaat. En het agents-pictogram verschijnt zodra Omarchy voor het eerst AI-codeergebruik op de machine aantreft (zie [AI](17-ai.md)).
+Een paar daarvan verschijnen alleen wanneer ze iets te melden hebben. De toetsenbordindeling verschijnt alleen als je meer dan één indeling hebt geconfigureerd. De updatebadge verschijnt alleen wanneer er een Unbloarchy-update klaarstaat. En het agents-pictogram verschijnt zodra Unbloarchy voor het eerst AI-codeergebruik op de machine aantreft (zie [AI](17-ai.md)).
 
 ## Rondklikken
 
@@ -16,7 +16,7 @@ Bijna elke widget doet iets bij links, rechts en in het midden klikken, en versc
 
 | Widget | Links | Rechts | Midden / scrollen |
 | --- | --- | --- | --- |
-| Menu | Omarchy-menu | Nieuwe terminal | — |
+| Menu | Unbloarchy-menu | Nieuwe terminal | — |
 | Werkruimten | Focus die werkruimte op deze monitor | — | Scrollen: volgende/vorige werkruimte |
 | Klok | Kalenderpopup | Doorloop de labelindelingen | Midden: tijdzonekiezer |
 | Weer | Weersverwachtingspopup | Volledig weer als melding | Midden: vernieuwen |
@@ -29,7 +29,7 @@ Bijna elke widget doet iets bij links, rechts en in het midden klikken, en versc
 | Media | Afspelen/pauzeren | Popup met coverafbeelding | Midden: volgende · scrollen: vorige/volgende |
 | Agents | Agents-paneel | Start je agent | Midden: volgende abonnement |
 | Systeemvak | Beweeg erover om de lade te tonen | Rechts op de chevron om te beheren | — |
-| Omarchy-update | Voer de update uit | — | — |
+| Unbloarchy-update | Voer de update uit | — | — |
 
 Niet alles in die tabel staat standaard op je balk. De mediawidget (MPRIS speelt-nu, met een scrollende track en artiest) en de microfoonwidget zijn allebei ingebouwd maar standaard uitgeschakeld — voeg ze toe als je ze wilt, zoals hieronder beschreven.
 
@@ -66,7 +66,7 @@ Elk paneel werkt net zo goed met het toetsenbord als met de muis: pijltjes verpl
 
 Er verschijnen nog twee widgets op de balk zodra je de bijbehorende service installeert via **Install → Service**, en beide zijn het kennen waard omdat ze meer doen dan alleen de status melden.
 
-Het **Tailscale**-paneel verbindt en verbreekt het tailnet, wisselt tussen accounts en kiest een exit node (je eigen machines en Mullvad-regio's staan allebei in die lijst). Het bladert ook door je machines — en met er een geselecteerd stuurt `s` er bestanden naartoe via Taildrop, wat de snelste manier is om een bestand naar je telefoon of een andere laptop te verplaatsen. `c` kopieert het IP-adres van de machine, `n` de naam en `d` de volledige DNS-naam. Er staat ook een verzendknop op elke machinerij, als je liever klikt. Hetzelfde vanuit de terminal is `omarchy tailscale send <machine> [file...]`.
+Het **Tailscale**-paneel verbindt en verbreekt het tailnet, wisselt tussen accounts en kiest een exit node (je eigen machines en Mullvad-regio's staan allebei in die lijst). Het bladert ook door je machines — en met er een geselecteerd stuurt `s` er bestanden naartoe via Taildrop, wat de snelste manier is om een bestand naar je telefoon of een andere laptop te verplaatsen. `c` kopieert het IP-adres van de machine, `n` de naam en `d` de volledige DNS-naam. Er staat ook een verzendknop op elke machinerij, als je liever klikt. Hetzelfde vanuit de terminal is `unbloarchy tailscale send <machine> [file...]`.
 
 Het **Dropbox**-paneel regelt het inloggen, toont hoeveel opslag je hebt gebruikt en geeft recent gesynchroniseerde bestanden weer.
 
@@ -93,19 +93,19 @@ Als je liever uit een menu kiest, heeft **Appearance → Menu Bar** de positie, 
 Dezelfde dingen hebben commando's, en dat is wat je wilt voor een [dotfiles](31-dotfiles.md)-setup:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Om een widget helemaal toe te voegen of te verwijderen, gebruik je de plugincommando's. `omarchy plugin list` drukt elke widget af die de shell kent, met zijn id, en daarna:
+Om een widget helemaal toe te voegen of te verwijderen, gebruik je de plugincommando's. `unbloarchy plugin list` drukt elke widget af die de shell kent, met zijn id, en daarna:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## De balk verbergen
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Het configuratiebestand
 
-Dit alles wordt opgeslagen in `~/.config/omarchy/shell.json`, onder de sleutel `bar`. Hier is een ingekorte versie:
+Dit alles wordt opgeslagen in `~/.config/unbloarchy/shell.json`, onder de sleutel `bar`. Hier is een ingekorte versie:
 
 ```json
 {
@@ -123,20 +123,20 @@ Dit alles wordt opgeslagen in `~/.config/omarchy/shell.json`, onder de sleutel `
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Elke widget is één item in een van de vijf layout-arrays, en zijn instellingen staan inline op dat item — er is geen apart instellingenbestand en geen `config`-subobject. De `format`, `formatAlt` (waar rechtsklikken naartoe doorloopt) en `verticalFormat` van de klok staan allemaal precies daar op `{ "id": "omarchy.clock" }`.
+Elke widget is één item in een van de vijf layout-arrays, en zijn instellingen staan inline op dat item — er is geen apart instellingenbestand en geen `config`-subobject. De `format`, `formatAlt` (waar rechtsklikken naartoe doorloopt) en `verticalFormat` van de klok staan allemaal precies daar op `{ "id": "unbloarchy.clock" }`.
 
 `center` is de box in het midden van de balk: alles daarin wordt als één groep op het scherm gecentreerd. `centerBegin` en `centerEnd` hangen aan weerszijden van de box, en zo blijft de klok precies in het midden, ook terwijl het weer en de updatebadge komen en gaan. Zet meer dan één widget in `center` en ze worden samen gecentreerd; laat hem leeg en `centerBegin` en `centerEnd` komen in het midden van de balk bij elkaar.
 
-Eén regel die het waard is om je eigen te maken: **zodra je je eigen `shell.json` hebt, is die leidend**. Totdat je iets aanpast, leest de shell het standaardbestand van Omarchy. Zodra je een widget sleept, `omarchy bar` uitvoert of het bestand zelf bewerkt, is hij van jou — er is geen diepe samenvoeging, dus nieuwe standaardwidgets in toekomstige Omarchy-releases verschijnen niet automatisch op je balk. `omarchy bar defaults` zet de meegeleverde layout terug wanneer je met een schone lei wilt beginnen.
+Eén regel die het waard is om je eigen te maken: **zodra je je eigen `shell.json` hebt, is die leidend**. Totdat je iets aanpast, leest de shell het standaardbestand van Unbloarchy. Zodra je een widget sleept, `unbloarchy bar` uitvoert of het bestand zelf bewerkt, is hij van jou — er is geen diepe samenvoeging, dus nieuwe standaardwidgets in toekomstige Unbloarchy-releases verschijnen niet automatisch op je balk. `unbloarchy bar defaults` zet de meegeleverde layout terug wanneer je met een schone lei wilt beginnen.
 
 Dezelfde file bevat ook je idle-timings op het hoogste niveau, buiten de sleutel `bar`: `idle.screensaver` en `idle.lock`, allebei in seconden sinds je idle bent. De standaard screensaver treedt dus in werking na 150 seconden en de vergrendeling na 300.

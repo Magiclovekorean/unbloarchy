@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# omarchy:summary=Regenerate the AI agent usage data files
-# omarchy:args=[--force] [--limits-only] [--except <agent>] [agent...]
-# omarchy:examples=omarchy agent usage-update | omarchy agent usage-update claude | omarchy agent usage-update --except codex
+# unbloarchy:summary=Regenerate the AI agent usage data files
+# unbloarchy:args=[--force] [--limits-only] [--except <agent>] [agent...]
+# unbloarchy:examples=unbloarchy agent usage-update | unbloarchy agent usage-update claude | unbloarchy agent usage-update --except codex
 
-# Each omarchy-agent-usage-<agent> collector prints one display-ready JSON
-# record; this writes them to ~/.local/state/omarchy/agents/usage/ where the
+# Each unbloarchy-agent-usage-<agent> collector prints one display-ready JSON
+# record; this writes them to ~/.local/state/unbloarchy/agents/usage/ where the
 # agents panel watches them. Adding an agent is adding a collector — the
 # panel picks up any record that appears here.
 
-USAGE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/agents/usage"
+USAGE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/unbloarchy/agents/usage"
 mkdir -p "$USAGE_DIR"
 
 flags=()
@@ -43,7 +43,7 @@ collect() {
   local collector="$1" agent="$2"
   local record tmp
   if ! record=$("$collector" "${flags[@]}") || [[ -z $record ]] || ! jq -e . >/dev/null 2>&1 <<<"$record"; then
-    echo "omarchy-agent-usage-update: $agent collector failed" >&2
+    echo "unbloarchy-agent-usage-update: $agent collector failed" >&2
     return 1
   fi
   tmp=$(mktemp "$USAGE_DIR/.$agent.XXXXXX")
@@ -53,20 +53,20 @@ collect() {
 
 # Accounts can be signed in to someone else since they were added; the
 # records name them from the registry, so bring it up to date first.
-accounts_dir="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/agents/accounts"
+accounts_dir="${XDG_STATE_HOME:-$HOME/.local/state}/unbloarchy/agents/accounts"
 if [[ -d $accounts_dir ]]; then
-  "$OMARCHY_PATH/bin/omarchy-agent-account-state" refresh
+  "$UNBLOARCHY_PATH/bin/unbloarchy-agent-account-state" refresh
 fi
 
 # Collectors forced together read the Codex rollouts they share once between
 # them, whenever each gets to them, by knowing when this refresh began.
 # EPOCHREALTIME uses the locale's decimal separator, a comma in many.
-export OMARCHY_AGENT_USAGE_REFRESH_AT=${EPOCHREALTIME/,/.}
+export UNBLOARCHY_AGENT_USAGE_REFRESH_AT=${EPOCHREALTIME/,/.}
 
 pids=()
-for collector in "$OMARCHY_PATH"/bin/omarchy-agent-usage-*; do
+for collector in "$OMARCHY_PATH"/bin/unbloarchy-agent-usage-*; do
   [[ -x $collector ]] || continue
-  agent="${collector##*/omarchy-agent-usage-}"
+  agent="${collector##*/unbloarchy-agent-usage-}"
   [[ $agent == "update" ]] && continue
   wanted "$agent" || continue
   collect "$collector" "$agent" &
@@ -83,10 +83,10 @@ done
 # collected once more; the limits probes it repeats are still cached.
 for agent in claude codex grok; do
   if wanted "$agent" && [[ -f $accounts_dir/$agent.json ]]; then
-    switched=$("$OMARCHY_PATH/bin/omarchy-agent-account-state" autoswitch "$agent")
+    switched=$("$UNBLOARCHY_PATH/bin/unbloarchy-agent-account-state" autoswitch "$agent")
     if [[ -n $switched ]]; then
       flags=(--limits-only)
-      collect "$OMARCHY_PATH/bin/omarchy-agent-usage-$agent" "$agent" || status=1
+      collect "$UNBLOARCHY_PATH/bin/unbloarchy-agent-usage-$agent" "$agent" || status=1
     fi
   fi
 done

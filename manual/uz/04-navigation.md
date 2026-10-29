@@ -1,8 +1,8 @@
 # Navigatsiya
 
-Omarchy'da hamma narsa klaviatura orqali amalga oshiriladi — _HAMMA NARSA!_ Tizim birinchi marta ishga tushganda, sichqonchaning o'zi bilan tom ma'noda hech narsa qila olmaysiz. Lekin Omarchy Menu'ni ochish uchun `Super + Space` tugmalarini bosishingiz mumkin va bu yerdan deyarli hamma narsani qila olasiz.
+Unbloarchy'da hamma narsa klaviatura orqali amalga oshiriladi — _HAMMA NARSA!_ Tizim birinchi marta ishga tushganda, sichqonchaning o'zi bilan tom ma'noda hech narsa qila olmaysiz. Lekin Unbloarchy Menu'ni ochish uchun `Super + Space` tugmalarini bosishingiz mumkin va bu yerdan deyarli hamma narsani qila olasiz.
 
-Lekin Omarchy menyusi hatto ko'p vaqt davomida tizimni boshqarishning asosiy usuli bo'lishi ham mo'ljallanmagan. Biz bundan ham tezroq qila olamiz! Eng muhim ilovalarning barchasi to'g'ridan-to'g'ri alohida tezkor tugmalarga bog'langan. Terminalni `Super + Return` bilan, brauzerni esa `Super + Shift + Return` bilan ishga tushirasiz. Birin-ketin qilib ko'ring, shunda Hyprland plitkalashining sehrini amalda ko'rasiz:
+Lekin Unbloarchy menyusi hatto ko'p vaqt davomida tizimni boshqarishning asosiy usuli bo'lishi ham mo'ljallanmagan. Biz bundan ham tezroq qila olamiz! Eng muhim ilovalarning barchasi to'g'ridan-to'g'ri alohida tezkor tugmalarga bog'langan. Terminalni `Super + Return` bilan, brauzerni esa `Super + Shift + Return` bilan ishga tushirasiz. Birin-ketin qilib ko'ring, shunda Hyprland plitkalashining sehrini amalda ko'rasiz:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Shuningdek, `Super + F` bilan to'liq ekranga o'tishingiz, yoki `Super + Alt + F`
 
 ### Dwindle va scrolling tartibi
 
-Omarchy'ning standart tartibi dwindle deb ataladi. U bitta ish maydonida ochgan barcha oynalaringizni doim ko'rinadigan qilib turadi, hatto ularni kichraytirishga to'g'ri kelsa ham.
+Unbloarchy'ning standart tartibi dwindle deb ataladi. U bitta ish maydonida ochgan barcha oynalaringizni doim ko'rinadigan qilib turadi, hatto ularni kichraytirishga to'g'ri kelsa ham.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Suzuvchi ish maydoni an'anaviy ish stoli kabi ishlaydi: oynalar bir-birini qoplaydi, ularni o'zingiz ko'chirasiz va o'lchamini o'zgartirasiz. Har bir oyna mavzuingiz ranglaridagi sarlavha paneliga ega bo'ladi, unda kichraytirish, kattalashtirish va yopish tugmalari bo'ladi. `Super + M` ham fokusdagi oynani kichraytiradi. Kichraytirilgan oyna dock'da kutadi; uni qaytarish uchun ilovasini bosing. Oynani oldinga chiqarish uchun uni bosing. Uning o'lchamini istalgan chet yoki burchakdan o'zgartiring. Yuqori panelni ko'rinishda saqlagan holda oynani kattalashtirish uchun sarlavha panelini ikki marta bosing, eski o'lchamini qaytarish uchun yana ikki marta bosing.
 
-Suzuvchi ish maydoni shuningdek dock'ni ham ko'rsatadi, unda mahkamlangan ilovalaringiz, ishlayotgan hamma narsa va ilovalar tugmasi ortidagi har bir ilovaning to'ri bo'ladi, uni `Super + Alt + Space` va Omarchy menyusidagi _Apps_ ham ochadi. Ilovani o'chirib tashlash uchun to'rdagi ilovani o'ng tugma bilan bosing yoki `Delete` tugmasini bosing. Ilovani ochish yoki uning oynasini oldinga chiqarish uchun uni bosing; uning oynalari bo'ylab aylanib o'tish uchun yana bosing. O'rta tugma bilan bosish yangi oyna ochadi. Belgini ko'chirish uchun uni dock bo'ylab sudrab boring; ishlayotgan ilovani boshqalar orasiga sudrab kiritsangiz, u o'sha yerda qoladi. Ilovani dock'da saqlash, undan chiqarib olish yoki undan chiqish uchun o'ng tugma bilan bosing. Dock to'liq ekranli oynaga yo'l bo'shatadi. Dock'ni boshqa chetga ko'chirish yoki ko'rsatkich uning chetiga yetguncha yashirinib turishini ta'minlash uchun ilovalar tugmasini o'ng tugma bilan bosing. Joylashuv shuningdek _Appearance > Dock > Dock Position_ ostida ham bor, `omarchy dock position left` va `omarchy dock autohide on` esa ikkalasini ham terminaldan o'rnatadi. Dock'da saqlagan ilovalaringiz ishlamayotgan paytda xira ko'rinadi.
+Suzuvchi ish maydoni shuningdek dock'ni ham ko'rsatadi, unda mahkamlangan ilovalaringiz, ishlayotgan hamma narsa va ilovalar tugmasi ortidagi har bir ilovaning to'ri bo'ladi, uni `Super + Alt + Space` va Unbloarchy menyusidagi _Apps_ ham ochadi. Ilovani o'chirib tashlash uchun to'rdagi ilovani o'ng tugma bilan bosing yoki `Delete` tugmasini bosing. Ilovani ochish yoki uning oynasini oldinga chiqarish uchun uni bosing; uning oynalari bo'ylab aylanib o'tish uchun yana bosing. O'rta tugma bilan bosish yangi oyna ochadi. Belgini ko'chirish uchun uni dock bo'ylab sudrab boring; ishlayotgan ilovani boshqalar orasiga sudrab kiritsangiz, u o'sha yerda qoladi. Ilovani dock'da saqlash, undan chiqarib olish yoki undan chiqish uchun o'ng tugma bilan bosing. Dock to'liq ekranli oynaga yo'l bo'shatadi. Dock'ni boshqa chetga ko'chirish yoki ko'rsatkich uning chetiga yetguncha yashirinib turishini ta'minlash uchun ilovalar tugmasini o'ng tugma bilan bosing. Joylashuv shuningdek _Appearance > Dock > Dock Position_ ostida ham bor, `unbloarchy dock position left` va `unbloarchy dock autohide on` esa ikkalasini ham terminaldan o'rnatadi. Dock'da saqlagan ilovalaringiz ishlamayotgan paytda xira ko'rinadi.
 
-Yangi ish maydonlari va `Super + L` bilan o'z tartibini bermaganlaringiz standart tartibdan foydalanadi. Standartni o'zgartirish oynalari yo'q har bir ish maydonini unga qayta o'rnatadi, oynalari bor ish maydoni esa o'zidagi tartibni saqlab qoladi. Dock'ga kichraytirilgan oyna hamon u tark etgan ish maydonidagi oyna sifatida hisoblanadi. Uni _Appearance > Workspace Layout_ ostida tanlang: Tiling, Scrolling yoki Floating. `omarchy-hyprland-workspace-layout-default scrolling` uni terminaldan o'rnatadi.
+Yangi ish maydonlari va `Super + L` bilan o'z tartibini bermaganlaringiz standart tartibdan foydalanadi. Standartni o'zgartirish oynalari yo'q har bir ish maydonini unga qayta o'rnatadi, oynalari bor ish maydoni esa o'zidagi tartibni saqlab qoladi. Dock'ga kichraytirilgan oyna hamon u tark etgan ish maydonidagi oyna sifatida hisoblanadi. Uni _Appearance > Workspace Layout_ ostida tanlang: Tiling, Scrolling yoki Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` uni terminaldan o'rnatadi.
 
 ### Oynalarni guruhlash
 

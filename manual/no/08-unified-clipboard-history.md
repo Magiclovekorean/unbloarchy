@@ -2,7 +2,7 @@
 
 Vanligvis på Linux må du bruke `Ctrl + Shift + C/V` for å kopiere og lime inn i terminalen, og `Ctrl + C/V` for å gjøre det alle andre steder. Det er vanskelig å venne seg til for alle som ikke er født og oppvokst på Linux! Det samme gjelder byttet fra Super til Ctrl hvis du kommer fra Mac.
 
-Omarchy løser begge problemene med enhetlige hurtigtaster for utklippstavlen som fungerer (nesten) overalt. De er:
+Unbloarchy løser begge problemene med enhetlige hurtigtaster for utklippstavlen som fungerer (nesten) overalt. De er:
 
 | Hurtigtast | Kommando |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Bruk `Super + A`, og deretter `Super + C`, for å kopiere alt i et fokusert teks
 
 ### Utklippstavlehistorikk
 
-Utklippstavlehistorikken leveres av Omarchy-skallet og fungerer for både tekst og bilder. Du utløser den med `Super + Ctrl + V`, velger oppføringen din med Enter, og så legges den på utklippstavlen, klar til å limes inn med `Super + V`.
+Utklippstavlehistorikken leveres av Unbloarchy-skallet og fungerer for både tekst og bilder. Du utløser den med `Super + Ctrl + V`, velger oppføringen din med Enter, og så legges den på utklippstavlen, klar til å limes inn med `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

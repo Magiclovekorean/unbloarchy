@@ -9,7 +9,7 @@ trap 'rm -rf "$test_tmp"' EXIT
 # mise drops "tool[...]" bracket options from a key whose value is a table, so
 # such a declaration installs without its options: Kiro and Devin found no
 # versions at all. Backend options belong inside the table.
-tools_config="$ROOT/etc/mise/conf.d/omarchy-tools.toml"
+tools_config="$ROOT/etc/mise/conf.d/unbloarchy-tools.toml"
 bracketed=$(awk '/^\[/ { in_tools = ($0 == "[tools]"); next } in_tools && /^"[^"]*\[[^"]*" = \{/' "$tools_config")
 [[ -z $bracketed ]] || fail "no table-valued mise declaration carries bracket options" "$bracketed"
 pass "mise declarations keep their backend options inside the table"
@@ -38,7 +38,7 @@ for key, spec in tomllib.load(open(sys.argv[1], "rb"))["tools"].items():
   if options:
     print(key, tool, *options, sep="\t")
 ' "$tools_config")
-  [[ -n $declared_options ]] || fail "Omarchy declares tools with backend options"
+  [[ -n $declared_options ]] || fail "Unbloarchy declares tools with backend options"
 
   while IFS=$'\t' read -r key tool options; do
     mise_root="$test_tmp/real-mise/${tool//[^a-z]/-}"
@@ -50,8 +50,8 @@ for key, spec in tomllib.load(open(sys.argv[1], "rb"))["tools"].items():
       MISE_SYSTEM_DIR="$mise_root/etc/mise" timeout 60 "$real_mise" tool --tool-options "$tool" 2>/dev/null || true)
     for option in $options; do
       [[ $resolved == *"$option="* ]] ||
-        fail "mise resolves $option for $tool from Omarchy's declaration" "mise resolved: ${resolved:-nothing}"
+        fail "mise resolves $option for $tool from Unbloarchy's declaration" "mise resolved: ${resolved:-nothing}"
     done
   done <<<"$declared_options"
-  pass "mise resolves the backend options of Omarchy's declarations"
+  pass "mise resolves the backend options of Unbloarchy's declarations"
 fi

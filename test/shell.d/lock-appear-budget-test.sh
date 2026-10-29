@@ -5,7 +5,7 @@
 # the same LockView as the real lock without engaging the session lock
 # (a real WlrSessionLock in a test would lock the developer's own
 # session and need a password to leave). The real lock-before-suspend
-# path is bounded separately by omarchy-system-sleep-lock and its
+# path is bounded separately by unbloarchy-system-sleep-lock and its
 # sleep-lock test. Fastest of three; the appearances are scaled to machine
 # process speed, the view build to how fast the shell itself starts.
 
@@ -16,8 +16,8 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 require_quickshell "lock appear budget"
 require_comparable_speed "lock appear budget"
 
-BUDGET_MS=$(( ${OMARCHY_LOCK_APPEAR_BUDGET_MS:-300} * SPEED_PERCENT / 100 ))
-REOPEN_BUDGET_MS=$(( ${OMARCHY_LOCK_REAPPEAR_BUDGET_MS:-150} * SPEED_PERCENT / 100 ))
+BUDGET_MS=$(( ${UNBLOARCHY_LOCK_APPEAR_BUDGET_MS:-300} * SPEED_PERCENT / 100 ))
+REOPEN_BUDGET_MS=$(( ${UNBLOARCHY_LOCK_REAPPEAR_BUDGET_MS:-150} * SPEED_PERCENT / 100 ))
 
 setup_scratch_shell
 
@@ -112,7 +112,7 @@ pass "lock preview never engages the session lock"
 # the lock answers once the plugin services are built after that, both QML
 # work on the same thread. Process starts do not scale like it: an Intel VM
 # starts them a third faster than an AMD one and builds the shell no faster.
-READY_BUDGET_MS=$(( answer_best * ${OMARCHY_LOCK_READY_BUDGET_PERCENT:-400} / 100 ))
+READY_BUDGET_MS=$(( answer_best * ${UNBLOARCHY_LOCK_READY_BUDGET_PERCENT:-400} / 100 ))
 (( ready_best <= READY_BUDGET_MS )) || fail "lock view is built within ${READY_BUDGET_MS}ms of shell start" "Fastest of three starts answered after ${ready_best}ms; the shell itself answered after ${answer_best}ms."
 pass "lock view is built within ${READY_BUDGET_MS}ms of shell start (${ready_best}ms; the shell answered after ${answer_best}ms)"
 (( first_best <= BUDGET_MS )) || fail "lock screen first appears within ${BUDGET_MS}ms" "Fastest of three first appearances took ${first_best}ms."

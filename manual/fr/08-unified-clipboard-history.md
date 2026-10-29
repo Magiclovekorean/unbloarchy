@@ -2,7 +2,7 @@
 
 D'habitude sous Linux, il faut `Ctrl + Shift + C/V` pour copier-coller dans le terminal et `Ctrl + C/V` pour le faire partout ailleurs. C'est difficile à adopter pour quiconque n'est pas né et n'a pas grandi sous Linux ! Il en va de même pour le passage de super à ctrl, si vous venez du Mac.
 
-Omarchy s'attaque à ces deux problèmes avec des raccourcis de presse-papiers unifiés qui fonctionnent (presque) partout. Les voici :
+Unbloarchy s'attaque à ces deux problèmes avec des raccourcis de presse-papiers unifiés qui fonctionnent (presque) partout. Les voici :
 
 | Raccourci | Commande |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Utilisez `Super + A`, puis `Super + C` pour tout copier dans un champ de texte a
 
 ### Historique du presse-papiers
 
-L'historique du presse-papiers est fourni par le shell Omarchy et fonctionne pour le texte comme pour les images. Vous l'ouvrez avec `Super + Ctrl + V`, vous sélectionnez votre entrée avec Entrée, et elle sera alors placée dans le presse-papiers, prête à être collée avec `Super + V`.
+L'historique du presse-papiers est fourni par le shell Unbloarchy et fonctionne pour le texte comme pour les images. Vous l'ouvrez avec `Super + Ctrl + V`, vous sélectionnez votre entrée avec Entrée, et elle sera alors placée dans le presse-papiers, prête à être collée avec `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

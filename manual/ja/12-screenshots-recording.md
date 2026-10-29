@@ -22,7 +22,7 @@
 
 保存されたスクリーンショットは、デフォルトでは `~/Pictures/Screenshots` に、`screenshot-2026-08-13_14-22-05-firefox.png` のような名前で保存される。別のディレクトリを使うには `OMASNAP_SCREENSHOT_DIR` を設定する。セッション環境変数をどこに書くかについては [FAQ](46-faq.md) を参照すること。Omasnap は最初の画像を保存するときにそのディレクトリを作成する。自動保存を無効にするには、`~/.config/omasnap/omasnap.conf` で `[output] autosave = false` を設定する。その場合、キャプチャはコピーされるだけになり、10 秒間プレビューが表示される。ピンボタンまたは `Ctrl + P` でそのプレビューを画面に固定しておける。
 
-ターミナルからは、`omarchy screenshot` で同じオーバーレイを開ける。開始モードも選べる。`omarchy capture screenshot region`、`windows`、`fullscreen`、`scroll` だ。第 2 引数に `copy` または `save` を指定すると、画像はその送信先に直接送られる。出力前に編集するには、フルスクリーンエディターには `omarchy screenshot --editor=overlay` を、別ウィンドウには `omarchy screenshot --editor=window` を使う。
+ターミナルからは、`unbloarchy screenshot` で同じオーバーレイを開ける。開始モードも選べる。`unbloarchy capture screenshot region`、`windows`、`fullscreen`、`scroll` だ。第 2 引数に `copy` または `save` を指定すると、画像はその送信先に直接送られる。出力前に編集するには、フルスクリーンエディターには `unbloarchy screenshot --editor=overlay` を、別ウィンドウには `unbloarchy screenshot --editor=window` を使う。
 
 ### キーボードでピッカーを操作する
 
@@ -41,9 +41,9 @@
 
 ## 画面録画
 
-`Alt + Print Screen` を押すと _Trigger > Capture > Screenrecord_ が開き、サウンドトラックに何を入れるか聞かれる。音声なし、デスクトップ音声、デスクトップとマイク、またはデスクトップとマイクとウェブカメラだ。最後のものは、実際にカメラが接続されている場合にのみ表示される。1 つ選ぶと、Omarchy の録画ピッカーで領域をドラッグしたり、ウィンドウやモニターをクリックしたりできる。
+`Alt + Print Screen` を押すと _Trigger > Capture > Screenrecord_ が開き、サウンドトラックに何を入れるか聞かれる。音声なし、デスクトップ音声、デスクトップとマイク、またはデスクトップとマイクとウェブカメラだ。最後のものは、実際にカメラが接続されている場合にのみ表示される。1 つ選ぶと、Unbloarchy の録画ピッカーで領域をドラッグしたり、ウィンドウやモニターをクリックしたりできる。
 
-録画は gpu-screen-recorder で動作し、GPU で 60fps でエンコードし、必要なら CPU にフォールバックする。結果は `~/Videos` に MP4 として保存され、`screenrecording-2026-08-13_14-22-05.mp4` のような名前が付けられる。それを変更するには `OMARCHY_SCREENRECORD_DIR` を設定する。ただし、スクリーンショットのディレクトリとは違い、こちらはあらかじめ存在していなければならない。そうでなければ録画は開始を拒否するので注意すること。
+録画は gpu-screen-recorder で動作し、GPU で 60fps でエンコードし、必要なら CPU にフォールバックする。結果は `~/Videos` に MP4 として保存され、`screenrecording-2026-08-13_14-22-05.mp4` のような名前が付けられる。それを変更するには `UNBLOARCHY_SCREENRECORD_DIR` を設定する。ただし、スクリーンショットのディレクトリとは違い、こちらはあらかじめ存在していなければならない。そうでなければ録画は開始を拒否するので注意すること。
 
 録画中は、バーに小さなインジケーターが表示される。それをクリックすると停止する。`Alt + Print Screen` をもう一度押して停止することもできるし、_Trigger > Capture > Screenrecord_ の下にある _Stop Screenrecording_ 項目でも停止できる。こちらは実際に何かを録画している間だけ表示される。
 
@@ -60,7 +60,7 @@
 
 サイズは小、中、大の 3 種類で、ホットキーでその間を段階的に切り替える。デフォルトは中だ。これらは録画に対して比例するので、1080p のモニターを録画しても 6K のモニターを録画しても、カメラがフレームに占める割合は同じになる。また、ディスプレイ全体ではなく領域を録画した場合は、オーバーレイはモニターではなくその領域の隅に固定されるので、ショットの中に収まり続ける。
 
-`omarchy-capture-webcam-resize small` で直接呼び出すこともできるし、`reset` で中に戻すこともできる。
+`unbloarchy-capture-webcam-resize small` で直接呼び出すこともできるし、`reset` で中に戻すこともできる。
 
 ## テキスト、QR コード、色
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ は QR コードに対して同じ技を使う。�
 
 画像は jpg または png になり、高、中、低で幅の上限がそれぞれ 3160、2160、1080 ピクセルになる。動画は mp4 またはアニメーション gif になり、4k、1080p、720p から選べる。変換されたファイルは元のファイルの隣に、解像度を名前に含めて書き込まれる。`demo-1080p.mp4` のようにだ。そのパスはファイル URI としてクリップボードにコピーされるので、ファイルのドロップを受け付けるアプリに直接貼り付けられる。
 
-やりたいことがすでに決まっている場合は、ターミナルからも使える。`omarchy transcode ~/Videos/demo.mov mp4 1080p` だ。画像を ASCII アートに変換する `omarchy transcode ascii` もある。こちらは主に [ブランディング](41-branding.md) 用だ。
+やりたいことがすでに決まっている場合は、ターミナルからも使える。`unbloarchy transcode ~/Videos/demo.mov mp4 1080p` だ。画像を ASCII アートに変換する `unbloarchy transcode ascii` もある。こちらは主に [ブランディング](41-branding.md) 用だ。
 
 ## どこかへ送信する
 

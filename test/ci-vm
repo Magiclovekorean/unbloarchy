@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Runs ./test/all on a real Omarchy install: a throwaway copy of an installed
+# Runs ./test/all on a real Unbloarchy install: a throwaway copy of an installed
 # VM image, booted for this run, the checkouts copied in, the tests run in the
 # desktop session as the logged-in user. Nothing is left behind.
 #
@@ -8,7 +8,7 @@
 #
 #   image_dir    base.qcow2 with vmlinuz, initrd and cmdline beside it: a VM
 #                image omarchy-iso publishes, and its unpacked/ files
-#   sources_dir  holds omarchy/ (what is tested) and omarchy-pkgs/
+#   sources_dir  holds unbloarchy/ (what is tested) and unbloarchy-pkgs/
 #   out_dir      gets run.log (every test file's output, whole) and the boot analysis
 #
 # Env: SMP (default 4), MEM (default 8G), VM_STATE_DIR (where the run's disk
@@ -25,21 +25,21 @@ ssh_vm() {
   ssh -i "$state/id_ed25519" -p "$port" -o BatchMode=yes -o IdentitiesOnly=yes \
     -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     -o ConnectTimeout="${CONNECT_TIMEOUT:-5}" -o LogLevel=ERROR \
-    -o ControlMaster=auto -o ControlPath="$state/ssh.sock" -o ControlPersist=600 omarchy@127.0.0.1 "$@"
+    -o ControlMaster=auto -o ControlPath="$state/ssh.sock" -o ControlPersist=600 unbloarchy@127.0.0.1 "$@"
 }
 seconds() { echo $(( SECONDS - started )); }
 # Every test file's log. test/shell prints them into run.log only once all
 # files have finished, so after a hang these are the only output there is.
 pull_shell_logs() {
-  ssh_vm 'mkdir -p ~/shell-logs && find /tmp -maxdepth 1 -name "omarchy-test-shell.*" -newer ~/started -exec cp -r {} ~/shell-logs/ \; && tar cf - -C ~ shell-logs' |
+  ssh_vm 'mkdir -p ~/shell-logs && find /tmp -maxdepth 1 -name "unbloarchy-test-shell.*" -newer ~/started -exec cp -r {} ~/shell-logs/ \; && tar cf - -C ~ shell-logs' |
     tar xf - --no-same-owner -C "$out" || true
 }
 # test/shell prints each file's output only once every file has finished, so
 # meanwhile report from its log directory, where each file leaves a .code file
 # the moment it ends: how many are done, and which have failed so far.
 shell_progress() {
-  ssh_vm 'total=$(( $(ls ~/src/omarchy/test/shell.d/*-test.sh | wc -l) - 1 ))
-    dir=$(for d in $(find /tmp -maxdepth 1 -name "omarchy-test-shell.*" -newer ~/started); do
+  ssh_vm 'total=$(( $(ls ~/src/unbloarchy/test/shell.d/*-test.sh | wc -l) - 1 ))
+    dir=$(for d in $(find /tmp -maxdepth 1 -name "unbloarchy-test-shell.*" -newer ~/started); do
       echo "$(find "$d" -maxdepth 1 -name "*.code" | wc -l) $d"
     done | sort -rn | head -n 1 | cut -d" " -f2)
     if [[ -n $dir ]]; then
@@ -49,7 +49,7 @@ shell_progress() {
     fi'
 }
 cleanup() {
-  ssh -o ControlPath="$state/ssh.sock" -O exit omarchy@127.0.0.1 2>/dev/null || true
+  ssh -o ControlPath="$state/ssh.sock" -O exit unbloarchy@127.0.0.1 2>/dev/null || true
   if [[ -f $state/qemu.pid ]]; then
     kill "$(cat "$state/qemu.pid")" 2>/dev/null || true
   fi
@@ -60,7 +60,7 @@ trap cleanup EXIT
 # A key made for this run only, handed in through the firmware tables as a
 # systemd credential: the image holds no key, and no run can reuse another's.
 ssh-keygen -q -t ed25519 -N '' -C ci-vm -f "$state/id_ed25519"
-keys=$(printf 'd /home/omarchy/.ssh 0700 omarchy omarchy -\nf+ /home/omarchy/.ssh/authorized_keys 0600 omarchy omarchy - %s\n' \
+keys=$(printf 'd /home/unbloarchy/.ssh 0700 unbloarchy unbloarchy -\nf+ /home/unbloarchy/.ssh/authorized_keys 0600 unbloarchy unbloarchy - %s\n' \
   "$(cat "$state/id_ed25519.pub")" | base64 -w0)
 
 qemu-img create -qf qcow2 -b "$(realpath "$image/base.qcow2")" -F qcow2 "$state/run.qcow2"
@@ -88,7 +88,7 @@ until CONNECT_TIMEOUT=1 ssh_vm true 2>/dev/null; do
 done
 echo "test/ci-vm: SSH after $(seconds) s"
 
-(cd "$sources" && tar cf - --exclude=.git/objects/pack/tmp_* omarchy omarchy-pkgs) |
+(cd "$sources" && tar cf - --exclude=.git/objects/pack/tmp_* unbloarchy unbloarchy-pkgs) |
   ssh_vm 'mkdir -p ~/src && tar xf - -C ~/src'
 
 # The tests keep the environment they start with, so wait for the session to
@@ -103,23 +103,23 @@ until ssh_vm 'systemctl --user show-environment | grep -q ^HYPRLAND_INSTANCE_SIG
 done
 echo "test/ci-vm: sources copied and desktop up after $(seconds) s"
 
-# Nobody touches this machine, and after a few minutes without input Omarchy
+# Nobody touches this machine, and after a few minutes without input Unbloarchy
 # turns the screen off. The tests that read the screen then read black.
-if ! ssh_vm 'systemd-run --user --quiet --collect --wait omarchy-toggle-idle stay-awake' >/dev/null; then
+if ! ssh_vm 'systemd-run --user --quiet --collect --wait unbloarchy-toggle-idle stay-awake' >/dev/null; then
   echo "test/ci-vm: could not keep the session awake" >&2
   exit 1
 fi
 
-# From the user manager: what an Omarchy terminal sees, with default signals.
-# A session whose OMARCHY_PATH is this checkout, with its bin/ first as
+# From the user manager: what an Unbloarchy terminal sees, with default signals.
+# A session whose UNBLOARCHY_PATH is this checkout, with its bin/ first as
 # default/bash/env-bootstrap puts it: the tests call commands by name, and the
-# commands read their files from OMARCHY_PATH. The installed release has
+# commands read their files from UNBLOARCHY_PATH. The installed release has
 # neither the commands nor the files added since.
 # The exit status goes to a file of its own, renamed into place whole: the
 # tests print lines like "rc=0" themselves, so the log cannot carry it.
-command='export OMARCHY_PATH=~/src/omarchy PATH=~/src/omarchy/bin:$PATH; cd ~/src/omarchy && date +%s.%N >~/started && ./test/all >~/run.log 2>&1; echo "$?" >~/rc.next && mv ~/rc.next ~/rc'
+command='export UNBLOARCHY_PATH=~/src/unbloarchy PATH=~/src/unbloarchy/bin:$PATH; cd ~/src/unbloarchy && date +%s.%N >~/started && ./test/all >~/run.log 2>&1; echo "$?" >~/rc.next && mv ~/rc.next ~/rc'
 ssh_vm "systemd-run --user --quiet --collect --same-dir \
-  -E OMARCHY_PKGS_PATH=\$HOME/src/omarchy-pkgs bash -c $(printf %q "$command")"
+  -E UNBLOARCHY_PKGS_PATH=\$HOME/src/unbloarchy-pkgs bash -c $(printf %q "$command")"
 last_report="" next_report=0
 until ssh_vm '[[ -s ~/rc ]]' 2>/dev/null; do
   if (( $(seconds) >= ${CI_VM_TIMEOUT:-1500} )); then
@@ -145,7 +145,7 @@ rc=$(ssh_vm 'cat ~/rc')
 ssh_vm 'cat ~/run.log' >"$out/run.log"
 echo "rc=$rc" >>"$out/run.log"
 ssh_vm 'systemd-analyze; systemd-analyze blame | head -25' >"$out/boot.txt" 2>&1 || true
-ssh_vm 'echo "source tree: $(cd ~/src/omarchy && git status --porcelain | wc -l) changed files"'
+ssh_vm 'echo "source tree: $(cd ~/src/unbloarchy && git status --porcelain | wc -l) changed files"'
 pull_shell_logs
 
 sed -n '/^Skipped checks in/,$p' "$out/run.log"

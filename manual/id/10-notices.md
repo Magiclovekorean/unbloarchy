@@ -10,7 +10,7 @@ Kartu menawarkan apa yang dibawanya: _Salin kode_ untuk kode verifikasi (disimpa
 
 Untuk menggunakannya tanpa mouse, tekan `Super + Ctrl + ,`. Notifikasi terbaru dipilih dan tombol-tombolnya diberi nomor: tekan nomor untuk menggunakan salah satu tombol, `Enter` untuk mengklik notifikasi, `↑` dan `↓` untuk berpindah antar-notifikasi, `Delete` untuk menutup satu notifikasi, dan `Esc` untuk mengembalikan keyboard. Ia juga lepas dengan sendirinya setelah beberapa detik tidak digunakan.
 
-Mendiamkan notifikasi menahannya, kecuali konfirmasi milik Omarchy sendiri, peringatan darurat, dan kode verifikasi, yang baru saja Anda minta beberapa saat lalu. Tampilkan kembali beberapa notifikasi terakhir di layar, ditahan atau tidak, dengan `Super + Shift + Alt + ,`. Riwayat disimpan selama sehari.
+Mendiamkan notifikasi menahannya, kecuali konfirmasi milik Unbloarchy sendiri, peringatan darurat, dan kode verifikasi, yang baru saja Anda minta beberapa saat lalu. Tampilkan kembali beberapa notifikasi terakhir di layar, ditahan atau tidak, dengan `Super + Shift + Alt + ,`. Riwayat disimpan selama sehari.
 
 ## Pemberitahuan hotkey
 
@@ -26,7 +26,7 @@ Mendiamkan notifikasi menahannya, kecuali konfirmasi milik Omarchy sendiri, peri
 
  ![notice-weather](images/notice-weather.webp)
 
-Lokasi terdeteksi dari alamat IP Anda, yang biasanya cukup dekat, tetapi tidak selalu. Anda dapat menetapkannya dengan `omarchy weather location --set Malibu`, atau bersikap tepat mengenainya dengan menambahkan koordinat: `omarchy weather location --set Malibu 34.0259,-118.7798`. Jalankan `omarchy weather location` sendiri untuk melihat di mana ia mengira Anda berada, dan `--clear` untuk kembali ke deteksi otomatis.
+Lokasi terdeteksi dari alamat IP Anda, yang biasanya cukup dekat, tetapi tidak selalu. Anda dapat menetapkannya dengan `unbloarchy weather location --set Malibu`, atau bersikap tepat mengenainya dengan menambahkan koordinat: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Jalankan `unbloarchy weather location` sendiri untuk melihat di mana ia mengira Anda berada, dan `--clear` untuk kembali ke deteksi otomatis.
 
 ### Baterai
 

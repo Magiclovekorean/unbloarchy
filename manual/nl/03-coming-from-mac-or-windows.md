@@ -1,12 +1,12 @@
 # Kom je van Mac of Windows
 
-Als je jaren op macOS of Windows hebt doorgebracht, kennen je vingers honderd dingen waarvan je brein is vergeten dat het ze ooit heeft geleerd. Dit hoofdstuk is de vertaallaag: waar die instincten in Omarchy terechtkomen. De functies zelf worden elders uitgebreid behandeld — dit is alleen de kaart.
+Als je jaren op macOS of Windows hebt doorgebracht, kennen je vingers honderd dingen waarvan je brein is vergeten dat het ze ooit heeft geleerd. Dit hoofdstuk is de vertaallaag: waar die instincten in Unbloarchy terechtkomen. De functies zelf worden elders uitgebreid behandeld — dit is alleen de kaart.
 
 ### Super is het middelpunt van alles
 
-Al het spiergeheugen dat je rond Cmd of de Windows-toets hebt opgebouwd, gaat over naar één toets: Super. Dat is de Windows-toets op een pc-toetsenbord, en het anker voor bijna elke sneltoets in Omarchy.
+Al het spiergeheugen dat je rond Cmd of de Windows-toets hebt opgebouwd, gaat over naar één toets: Super. Dat is de Windows-toets op een pc-toetsenbord, en het anker voor bijna elke sneltoets in Unbloarchy.
 
-Je Spotlight-, Raycast- of Startmenu-reflex wordt `Super + Space`. Daarmee open je het Omarchy-menu, waarmee je apps start, instellingen wijzigt, software installeert, het scherm vastlegt — zo'n beetje alles. Begin met typen om te filteren. `Super + Alt + Space` toont elke app op één raster, zoals Launchpad dat doet. Zie [navigatie](04-navigation.md).
+Je Spotlight-, Raycast- of Startmenu-reflex wordt `Super + Space`. Daarmee open je het Unbloarchy-menu, waarmee je apps start, instellingen wijzigt, software installeert, het scherm vastlegt — zo'n beetje alles. Begin met typen om te filteren. `Super + Alt + Space` toont elke app op één raster, zoals Launchpad dat doet. Zie [navigatie](04-navigation.md).
 
 ### Er is geen dock en geen bureaubladpictogrammen
 
@@ -22,27 +22,27 @@ Werkruimtes zullen vertrouwd aanvoelen: het zijn macOS Spaces of virtuele bureau
 
 ### Kopiëren en plakken werkt gewoon
 
-Op de Mac had je overal Cmd + C. Op Windows had je overal Ctrl + C — behalve in de terminal, waar het je programma beëindigt. Omarchy geeft je `Super + C`, `Super + X` en `Super + V`, en ze werken overal, ook in de terminal. Geen aparte reflex om voor de shell te leren.
+Op de Mac had je overal Cmd + C. Op Windows had je overal Ctrl + C — behalve in de terminal, waar het je programma beëindigt. Unbloarchy geeft je `Super + C`, `Super + X` en `Super + V`, en ze werken overal, ook in de terminal. Geen aparte reflex om voor de shell te leren.
 
 Windows-mensen: je Win + V-klembordgeschiedenis zit op `Super + Ctrl + V`, en die bewaart zowel afbeeldingen als tekst. Zie [uniform klembord en geschiedenis](08-unified-clipboard-history.md).
 
 ### De vertaaltabel
 
-| Je grijpt naar | In Omarchy |
+| Je grijpt naar | In Unbloarchy |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start menu | `Super + Space` — het Omarchy-menu |
+| Spotlight / Raycast / Start menu | `Super + Space` — het Unbloarchy-menu |
 | AirDrop | LocalSend, via `Super + Ctrl + S` — zie [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` of `Print Screen` — zie [schermafbeeldingen en opnames](12-screenshots-recording.md) |
 | Notification Center | Meldingsgeschiedenis op `Super + Shift + Alt + ,` |
 | Time Machine (voor het systeem) | Automatische [systeemsnapshots](47-system-snapshots.md) bij elke update |
-| App Store / een installatieprogramma downloaden | _Install_ in het menu, of `omarchy pkg add` — zie [andere pakketten](29-other-packages.md) |
+| App Store / een installatieprogramma downloaden | _Install_ in het menu, of `unbloarchy pkg add` — zie [andere pakketten](29-other-packages.md) |
 | System Settings / Control Panel | _Setup_ in het menu, dat gewone configuratiebestanden bewerkt — zie [dotfiles](31-dotfiles.md) |
 
 ### Sommige dingen zijn echt anders
 
 Veel instellingen staan in tekstbestanden die je bewerkt, niet in panelen waar je doorheen klikt. Dat klinkt primitief, tot je beseft dat het betekent dat elke aanpassing kan worden bekeken, naar je volgende machine kan worden gekopieerd en in versiebeheer kan worden gezet. Het _Setup_-menu zet je meteen in het juiste bestand en herstart wat herstart moet worden als je klaar bent.
 
-Updates komen via één opdracht — _Update > Omarchy_ — die Omarchy zelf en elk pakket op het systeem bijwerkt, en eerst een snapshot maakt. Geen updaters per app die je op willekeurige momenten lastigvallen. Zie [updates](30-updates.md).
+Updates komen via één opdracht — _Update > Unbloarchy_ — die Unbloarchy zelf en elk pakket op het systeem bijwerkt, en eerst een snapshot maakt. Geen updaters per app die je op willekeurige momenten lastigvallen. Zie [updates](30-updates.md).
 
 Software komt van een pakketbeheerder, niet van gedownloade installatieprogramma's.
 
@@ -50,7 +50,7 @@ En als je een venster sluit, stopt de app ook echt. Er is geen macOS-limbo waari
 
 ### Op Mac-hardware
 
-Omarchy draait goed op Intel Macs — zie [Mac-ondersteuning](44-mac-support.md). En het toetsenbord is vriendelijk voor je: Omarchy wijst niets opnieuw toe, en Linux behandelt de Command-toets als Super, dus Super zit precies waar Cmd altijd zat. Je duim merkt de overstap niet.
+Unbloarchy draait goed op Intel Macs — zie [Mac-ondersteuning](44-mac-support.md). En het toetsenbord is vriendelijk voor je: Unbloarchy wijst niets opnieuw toe, en Linux behandelt de Command-toets als Super, dus Super zit precies waar Cmd altijd zat. Je duim merkt de overstap niet.
 
 ### Geef het twee weken
 

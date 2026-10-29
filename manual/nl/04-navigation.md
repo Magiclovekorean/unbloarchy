@@ -1,8 +1,8 @@
 # Navigatie
 
-Alles in Omarchy gebeurt via het toetsenbord — _ALLES!_ Wanneer het systeem voor het eerst opstart, kun je letterlijk niets doen met alleen de muis. Maar je kunt op `Super + Space` drukken om het Omarchy Menu tevoorschijn te halen en vanaf daar kun je vrijwel alles doen.
+Alles in Unbloarchy gebeurt via het toetsenbord — _ALLES!_ Wanneer het systeem voor het eerst opstart, kun je letterlijk niets doen met alleen de muis. Maar je kunt op `Super + Space` drukken om het Unbloarchy Menu tevoorschijn te halen en vanaf daar kun je vrijwel alles doen.
 
-Maar het Omarchy-menu is niet eens bedoeld als de belangrijkste manier om het systeem meestal te bedienen. We kunnen sneller dan dat! Alle belangrijkste applicaties zijn direct aan individuele sneltoetsen gebonden. Je start de terminal met `Super + Return` en een browser met `Super + Shift + Return`. Probeer ze na elkaar te doen, en je ziet de magie van Hyprland's tiling in actie:
+Maar het Unbloarchy-menu is niet eens bedoeld als de belangrijkste manier om het systeem meestal te bedienen. We kunnen sneller dan dat! Alle belangrijkste applicaties zijn direct aan individuele sneltoetsen gebonden. Je start de terminal met `Super + Return` en een browser met `Super + Shift + Return`. Probeer ze na elkaar te doen, en je ziet de magie van Hyprland's tiling in actie:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Je kunt ook volledig scherm gaan met `Super + F` of zelfs gewoon volledige breed
 
 ### Dwindle versus scrolling-layout
 
-De standaardlayout van Omarchy heet dwindle. Die houdt alle vensters die je op een enkele werkruimte opent te allen tijde zichtbaar, zelfs als hij ze daarvoor moet verkleinen.
+De standaardlayout van Unbloarchy heet dwindle. Die houdt alle vensters die je op een enkele werkruimte opent te allen tijde zichtbaar, zelfs als hij ze daarvoor moet verkleinen.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Een zwevende werkruimte werkt als een traditioneel bureaublad: vensters overlappen, en je verplaatst ze en past hun formaat zelf aan. Elk venster krijgt een titelbalk in de kleuren van je thema, met knoppen om te minimaliseren, te maximaliseren en te sluiten. `Super + M` minimaliseert het gefocuste venster ook. Een geminimaliseerd venster wacht in de dock; klik op zijn app om het terug te brengen. Klik op een venster om het naar voren te brengen. Pas het formaat aan vanaf elke rand of hoek. Dubbelklik op een titelbalk om het venster te maximaliseren terwijl de bovenste balk in beeld blijft, en nogmaals om het oude formaat terug te krijgen.
 
-Een zwevende werkruimte toont ook een dock, met je vastgezette apps, alles wat draait, en een raster van elke app achter de apps-knop, die `Super + Alt + Space` en _Apps_ in het Omarchy-menu ook openen. Rechtsklik op een app op het raster, of druk op `Delete`, om hem te verwijderen. Klik op een app om hem te openen, of om zijn venster naar voren te brengen; klik nogmaals om door zijn vensters te doorlopen. Middelklik opent een nieuw venster. Sleep een pictogram langs de dock om het te verplaatsen; een draaiende app tussen de anderen in slepen houdt hem daar. Rechtsklik om een app in de dock te houden, hem eruit te halen of hem af te sluiten. De dock maakt plaats voor een venster in volledig scherm. Rechtsklik op de apps-knop om de dock naar een andere rand te verplaatsen of hem te laten verbergen totdat de aanwijzer zijn rand bereikt. De positie staat ook onder _Appearance > Dock > Dock Position_, en `omarchy dock position left` en `omarchy dock autohide on` stellen beide in vanaf een terminal. Apps die je in de dock houdt zijn vervaagd zolang ze niet draaien.
+Een zwevende werkruimte toont ook een dock, met je vastgezette apps, alles wat draait, en een raster van elke app achter de apps-knop, die `Super + Alt + Space` en _Apps_ in het Unbloarchy-menu ook openen. Rechtsklik op een app op het raster, of druk op `Delete`, om hem te verwijderen. Klik op een app om hem te openen, of om zijn venster naar voren te brengen; klik nogmaals om door zijn vensters te doorlopen. Middelklik opent een nieuw venster. Sleep een pictogram langs de dock om het te verplaatsen; een draaiende app tussen de anderen in slepen houdt hem daar. Rechtsklik om een app in de dock te houden, hem eruit te halen of hem af te sluiten. De dock maakt plaats voor een venster in volledig scherm. Rechtsklik op de apps-knop om de dock naar een andere rand te verplaatsen of hem te laten verbergen totdat de aanwijzer zijn rand bereikt. De positie staat ook onder _Appearance > Dock > Dock Position_, en `unbloarchy dock position left` en `unbloarchy dock autohide on` stellen beide in vanaf een terminal. Apps die je in de dock houdt zijn vervaagd zolang ze niet draaien.
 
-Nieuwe werkruimtes, en elke werkruimte waaraan je geen eigen layout hebt gegeven met `Super + L`, gebruiken de standaardlayout. De standaard wijzigen zet elke werkruimte zonder vensters terug naar hem, terwijl een werkruimte met vensters erop de layout behoudt die hij heeft. Een venster dat naar de dock is geminimaliseerd, telt nog steeds als een venster op de werkruimte die hij verliet. Kies hem onder _Appearance > Workspace Layout_: Tiling, Scrolling of Floating. `omarchy-hyprland-workspace-layout-default scrolling` stelt hem in vanaf een terminal.
+Nieuwe werkruimtes, en elke werkruimte waaraan je geen eigen layout hebt gegeven met `Super + L`, gebruiken de standaardlayout. De standaard wijzigen zet elke werkruimte zonder vensters terug naar hem, terwijl een werkruimte met vensters erop de layout behoudt die hij heeft. Een venster dat naar de dock is geminimaliseerd, telt nog steeds als een venster op de werkruimte die hij verliet. Kies hem onder _Appearance > Workspace Layout_: Tiling, Scrolling of Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` stelt hem in vanaf een terminal.
 
 ### Vensters groeperen
 

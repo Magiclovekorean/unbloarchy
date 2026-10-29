@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# omarchy-realtime-repair, which the rtkit migration runs, must leave no
+# unbloarchy-realtime-repair, which the rtkit migration runs, must leave no
 # logged-in user's process with a hard RLIMIT_RTTIME of 0 at the moment rtkit
 # lands or after the portals restart, must touch nothing else, must fail, so
 # the repair fails, whenever it could not repair or inspect
@@ -15,7 +15,7 @@ set -euo pipefail
 
 source "$(dirname "${BASH_SOURCE[0]}")/base-test.sh"
 
-repair_command="$ROOT/bin/omarchy-realtime-repair"
+repair_command="$ROOT/bin/unbloarchy-realtime-repair"
 test_dir=$(mktemp -d)
 trap 'rm -rf "$test_dir"' EXIT
 
@@ -27,7 +27,7 @@ mkdir -p "$stub_bin"
 
 # The caller is a stubbed regular user, whoever runs the suite: as root, the
 # caller and root's own services would otherwise be the same account.
-me=omarchy-test
+me=unbloarchy-test
 my_uid=1000
 other_uid=1001
 
@@ -43,10 +43,10 @@ STUB
 # Writes a fake process: pid uid start-time soft hard.
 cat >"$stub_bin/fake-proc" <<'STUB'
 #!/bin/bash
-mkdir -p "$OMARCHY_PROC_ROOT/$1"
-printf 'Name:\tfake\nUid:\t%s\t%s\t%s\t%s\n' "$2" "$2" "$2" "$2" >"$OMARCHY_PROC_ROOT/$1/status"
-echo "$1 (fake proc) S $(printf '0 %.0s' {1..18})$3 0 0" >"$OMARCHY_PROC_ROOT/$1/stat"
-echo "Max realtime timeout $4 $5 us" >"$OMARCHY_PROC_ROOT/$1/limits"
+mkdir -p "$UNBLOARCHY_PROC_ROOT/$1"
+printf 'Name:\tfake\nUid:\t%s\t%s\t%s\t%s\n' "$2" "$2" "$2" "$2" >"$UNBLOARCHY_PROC_ROOT/$1/status"
+echo "$1 (fake proc) S $(printf '0 %.0s' {1..18})$3 0 0" >"$UNBLOARCHY_PROC_ROOT/$1/stat"
+echo "Max realtime timeout $4 $5 us" >"$UNBLOARCHY_PROC_ROOT/$1/limits"
 STUB
 cat >"$stub_bin/loginctl" <<'STUB'
 #!/bin/bash
@@ -64,15 +64,15 @@ shift
 [[ -z ${SUDO_EXPIRES_AT_INSTALL:-} || ! -e $STATE/rtkit ]] || exit 1
 # The process scan must run as root, or hidepid hides other users' processes.
 [[ $* != *SCAN_ROOT* ]] || echo scan >>"$STATE/root-scans"
-[[ -z ${STALE_BEFORE_PRLIMIT:-} || $* != *PROC_ROOT* ]] || sed -i 's/ 0 us$/ 100000 us/' "$OMARCHY_PROC_ROOT/$STALE_BEFORE_PRLIMIT/limits"
-[[ -z ${OWNER_CHANGES_BEFORE_PRLIMIT:-} || $* != *PROC_ROOT* ]] || sed -i 's/^Uid:.*/Uid:\t0\t0\t0\t0/' "$OMARCHY_PROC_ROOT/$OWNER_CHANGES_BEFORE_PRLIMIT/status"
+[[ -z ${STALE_BEFORE_PRLIMIT:-} || $* != *PROC_ROOT* ]] || sed -i 's/ 0 us$/ 100000 us/' "$UNBLOARCHY_PROC_ROOT/$STALE_BEFORE_PRLIMIT/limits"
+[[ -z ${OWNER_CHANGES_BEFORE_PRLIMIT:-} || $* != *PROC_ROOT* ]] || sed -i 's/^Uid:.*/Uid:\t0\t0\t0\t0/' "$UNBLOARCHY_PROC_ROOT/$OWNER_CHANGES_BEFORE_PRLIMIT/status"
 AS_ROOT=1 exec "$@"
 STUB
 cat >"$stub_bin/prlimit" <<'STUB'
 #!/bin/bash
 pid=${2:?} limit=${3#--rttime=}
 echo "prlimit $pid" >>"$CALLS"
-sed -i "s/^Max realtime timeout .*/Max realtime timeout ${limit%:*} ${limit#*:} us/" "$OMARCHY_PROC_ROOT/$pid/limits"
+sed -i "s/^Max realtime timeout .*/Max realtime timeout ${limit%:*} ${limit#*:} us/" "$UNBLOARCHY_PROC_ROOT/$pid/limits"
 # An app that keeps starting clients at the stale portal's zero.
 if [[ -n ${ZEROS_KEEP_COMING:-} ]]; then
   next=$(( $(cat "$STATE/spawned" 2>/dev/null || echo 100) + 1 ))
@@ -105,7 +105,7 @@ case $* in
   *"restart xdg-desktop-portal.service")
     echo "restart portal $user" >>"$CALLS"
     # A client that read the old portal just before it went away.
-    [[ -z ${ZERO_DURING_RESTART:-} || -e $OMARCHY_PROC_ROOT/77 ]] || fake-proc 77 1000 7700 0 0
+    [[ -z ${ZERO_DURING_RESTART:-} || -e $UNBLOARCHY_PROC_ROOT/77 ]] || fake-proc 77 1000 7700 0 0
     [[ -z ${PORTAL_RESTART_FAILS:-} && ${PORTAL_RESTART_FAILS_FOR:-} != $user ]] || exit 1
     [[ -n ${PORTAL_STAYS_ZERO:-} ]] || cat "$STATE/budget" >"$STATE/portal-$user" ;;
   *"show -p MainPID --value pipewire.service")
@@ -120,7 +120,7 @@ case $* in
   *) exit 2 ;;
 esac
 STUB
-cat >"$stub_bin/omarchy-pkg-missing" <<'STUB'
+cat >"$stub_bin/unbloarchy-pkg-missing" <<'STUB'
 #!/bin/bash
 [[ ! -e $STATE/rtkit ]]
 STUB
@@ -144,7 +144,7 @@ fi
 [[ -e $STATE/rtkit-masked ]] || echo "rtkit installed unmasked" >>"$CALLS"
 [[ -z ${PACMAN_FAILS:-} ]] || exit 1
 # rtkit can make any user's zero-limit thread realtime from here on.
-for dir in "$OMARCHY_PROC_ROOT"/*; do
+for dir in "$UNBLOARCHY_PROC_ROOT"/*; do
   [[ $(awk '/^Uid:/ { print $2 }' "$dir/status") != "0" ]] || continue
   [[ $(awk '/^Max realtime timeout/ { print $5 }' "$dir/limits") == "0" ]] && echo "zero at install ${dir##*/}" >>"$CALLS"
 done
@@ -181,11 +181,11 @@ fresh_machine() {
   echo 0 >"$state/portal-user2"
   echo TS >"$state/pipewire"
   local fake="$stub_bin/fake-proc"
-  OMARCHY_PROC_ROOT=$proc_root "$fake" 10 "$my_uid" 1000 0 0
-  OMARCHY_PROC_ROOT=$proc_root "$fake" 11 "$my_uid" 1100 0 0
-  OMARCHY_PROC_ROOT=$proc_root "$fake" 12 "$my_uid" 1200 50000 100000
-  OMARCHY_PROC_ROOT=$proc_root "$fake" 20 "$other_uid" 2000 0 0
-  OMARCHY_PROC_ROOT=$proc_root "$fake" 30 0 3000 0 0
+  UNBLOARCHY_PROC_ROOT=$proc_root "$fake" 10 "$my_uid" 1000 0 0
+  UNBLOARCHY_PROC_ROOT=$proc_root "$fake" 11 "$my_uid" 1100 0 0
+  UNBLOARCHY_PROC_ROOT=$proc_root "$fake" 12 "$my_uid" 1200 50000 100000
+  UNBLOARCHY_PROC_ROOT=$proc_root "$fake" 20 "$other_uid" 2000 0 0
+  UNBLOARCHY_PROC_ROOT=$proc_root "$fake" 30 0 3000 0 0
 }
 
 # The caller's session bus; a run without one has no session to repair.
@@ -195,8 +195,8 @@ python3 -c 'import socket, sys; socket.socket(socket.AF_UNIX).bind(sys.argv[1])'
 
 repair() {
   XDG_RUNTIME_DIR=${run_runtime_dir:-$runtime_dir} DBUS_SESSION_BUS_ADDRESS='' \
-    OMARCHY_PROC_ROOT=$proc_root OMARCHY_REALTIME_REPAIR_PENDING=$state/pending \
-    OMARCHY_REALTIME_REPAIR_LOCK=$state/lock \
+    UNBLOARCHY_PROC_ROOT=$proc_root UNBLOARCHY_REALTIME_REPAIR_PENDING=$state/pending \
+    UNBLOARCHY_REALTIME_REPAIR_LOCK=$state/lock \
     STATE=$state CALLS=$calls RTKIT_BUDGET=200000 MY_UID=${run_uid:-$my_uid} ME=${run_user:-$me} \
     PATH="$stub_bin:$ROOT/bin:$PATH" "$repair_command" >"${run_out:-$test_dir/out}" 2>&1
 }
@@ -283,7 +283,7 @@ pass "the repair fails when a live process's owner cannot be read"
 
 fresh_machine
 if NO_SUDO=1 repair; then fail "the repair fails without sudo"; fi
-grep -q "next omarchy update finishes it" "$test_dir/out" || fail "it says the next update finishes it" "$(cat "$test_dir/out")"
+grep -q "next unbloarchy update finishes it" "$test_dir/out" || fail "it says the next update finishes it" "$(cat "$test_dir/out")"
 ! grep -q '^prlimit\|^sudo without' "$calls" || fail "nothing is raised and nothing prompts without sudo" "$(cat "$calls")"
 pass "the repair fails without sudo, and says why"
 
@@ -377,8 +377,8 @@ pass "a user's own zeros are raised before their portal repair"
 # of rtkit failed, is raised for this user only, and needs sudo to raise.
 fresh_machine
 repair || fail "the repair succeeds on a fresh machine" "$(cat "$test_dir/out")"
-OMARCHY_PROC_ROOT=$proc_root "$stub_bin/fake-proc" 13 "$my_uid" 1300 0 0
-OMARCHY_PROC_ROOT=$proc_root "$stub_bin/fake-proc" 21 "$other_uid" 2100 0 0
+UNBLOARCHY_PROC_ROOT=$proc_root "$stub_bin/fake-proc" 13 "$my_uid" 1300 0 0
+UNBLOARCHY_PROC_ROOT=$proc_root "$stub_bin/fake-proc" 21 "$other_uid" 2100 0 0
 if NO_SUDO=1 repair; then fail "a later zero of the user's own needs sudo to raise"; fi
 repair || fail "a later zero of the user's own is raised" "$(cat "$test_dir/out")"
 [[ $(hard_of 13):$(hard_of 21) == "200000:0" ]] ||
@@ -390,7 +390,7 @@ repair || fail "the repair succeeds on a fresh machine" "$(cat "$test_dir/out")"
 if MAINPID_FAILS=1 repair; then fail "the repair fails when PipeWire's main process cannot be read"; fi
 pass "the repair fails when PipeWire's main process cannot be read"
 
-# omarchy-upgrade-to-quattro runs the repair as root: the machine-wide part
+# unbloarchy-upgrade-to-quattro runs the repair as root: the machine-wide part
 # alone, since root has no desktop session of its own.
 fresh_machine
 run_uid=0 run_user=root repair || fail "the repair succeeds as root" "$(cat "$test_dir/out")"
@@ -476,7 +476,7 @@ pass "a user's own run skips entries it cannot read"
 # nothing, says so, and the next run with sudo releases it.
 fresh_machine
 if SUDO_EXPIRES_AT_INSTALL=1 repair; then fail "the repair fails when sudo expires during the install"; fi
-[[ -e $state/rtkit-masked && -e $state/pending ]] && grep -q "rtkit stays masked until the next omarchy update or a reboot" "$test_dir/out" ||
+[[ -e $state/rtkit-masked && -e $state/pending ]] && grep -q "rtkit stays masked until the next unbloarchy update or a reboot" "$test_dir/out" ||
   fail "a mask that cannot be released stays pending and says so" "$(cat "$test_dir/out")"
 repair || fail "the next run with sudo succeeds" "$(cat "$test_dir/out")"
 [[ ! -e $state/rtkit-masked && ! -e $state/pending ]] ||

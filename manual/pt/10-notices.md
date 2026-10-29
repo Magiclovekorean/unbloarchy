@@ -10,7 +10,7 @@ Os cartões oferecem o que trazem: _Copiar código_ para códigos de verificaç�
 
 Para as usar sem o rato, prima `Super + Ctrl + ,`. A notificação mais recente fica selecionada e os seus botões numerados: prima um número para usar um deles, `Enter` para clicar na notificação, `↑` e `↓` para se mover entre notificações, `Delete` para dispensar uma e `Esc` para devolver o teclado. Também se desativa sozinho ao fim de alguns segundos sem atividade.
 
-Silenciar as notificações retém-nas, exceto as confirmações do próprio Omarchy, os alertas de emergência e os códigos de verificação, que pediu há instantes. Volte a colocar as últimas no ecrã, retidas ou não, com `Super + Shift + Alt + ,`. O histórico é mantido durante um dia.
+Silenciar as notificações retém-nas, exceto as confirmações do próprio Unbloarchy, os alertas de emergência e os códigos de verificação, que pediu há instantes. Volte a colocar as últimas no ecrã, retidas ou não, com `Super + Shift + Alt + ,`. O histórico é mantido durante um dia.
 
 ## Avisos por tecla de atalho
 
@@ -26,7 +26,7 @@ Silenciar as notificações retém-nas, exceto as confirmações do próprio Oma
 
  ![notice-weather](images/notice-weather.webp)
 
-A localização é detetada a partir do seu endereço IP, o que normalmente é suficientemente próximo, mas nem sempre. Pode fixá-la com `omarchy weather location --set Malibu`, ou ser exato ao adicionar coordenadas: `omarchy weather location --set Malibu 34.0259,-118.7798`. Execute `omarchy weather location` sozinho para ver onde pensa que está, e `--clear` para voltar à deteção automática.
+A localização é detetada a partir do seu endereço IP, o que normalmente é suficientemente próximo, mas nem sempre. Pode fixá-la com `unbloarchy weather location --set Malibu`, ou ser exato ao adicionar coordenadas: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Execute `unbloarchy weather location` sozinho para ver onde pensa que está, e `--clear` para voltar à deteção automática.
 
 ### Bateria
 

@@ -8,10 +8,10 @@ authdir=${authfile%/*}
 report_unrepairable() {
   echo "  $1"
   local recovery="Review this path with an administrator. Before using Remove > Security > Fido2 and Setup > Security > Fido2, verify that your password can authenticate sudo with the token unplugged and cached authorization cleared. If the token is your only credential, an administrator must retain root access throughout recovery instead."
-  local retry="After recovery, retry omarchy update if it was interrupted; otherwise re-run omarchy-migrate. This migration remains pending."
+  local retry="After recovery, retry unbloarchy update if it was interrupted; otherwise re-run unbloarchy-migrate. This migration remains pending."
   echo "  $recovery"
   echo "  $retry"
-  omarchy-notification-send -u critical -g  "FIDO2 authfile needs attention" "$1 $recovery $retry" || true
+  unbloarchy-notification-send -u critical -g  "FIDO2 authfile needs attention" "$1 $recovery $retry" || true
   exit 1
 }
 
@@ -44,7 +44,7 @@ if [[ ! -L $authfile && ! -e $authfile ]]; then
   # a missing path with failed authorization, which must leave this pending.
   if ! registration=$(sudo find "$authdir" -mindepth 1 -maxdepth 1 -name "${authfile##*/}" -print); then
     echo "  Could not inspect $authdir; this migration remains pending." >&2
-    echo "  Retry omarchy update if it was interrupted; otherwise re-run omarchy-migrate." >&2
+    echo "  Retry unbloarchy update if it was interrupted; otherwise re-run unbloarchy-migrate." >&2
     exit 1
   fi
 

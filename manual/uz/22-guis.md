@@ -20,11 +20,11 @@ Obsidian barcha maqsadlar uchun, jumladan shaxsiy, tijorat va notijorat foydalan
 
 Obsidian shuningdek iOS va Android dagi mobil ilovalar bilan sinxronlash uchun [tijorat qo'shimchasini](https://obsidian.md/sync) taklif qiladi. (https://obsidian.md/pricing).
 
-Obsidian ni `Super + Shift + O` bilan ishga tushirasiz. Mavzuni sinxronlashdan foydalanish uchun sozlamalarda `Omarchy` mavzusini tanlashingiz kerak.
+Obsidian ni `Super + Shift + O` bilan ishga tushirasiz. Mavzuni sinxronlashdan foydalanish uchun sozlamalarda `Unbloarchy` mavzusini tanlashingiz kerak.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) — Omarchy ning o'zining o'lik darajada oddiy Markdown yozish dasturi. Vaultlar yo'q, plaginlar yo'q, faqat siz va so'zlar.
+[Omawrite](https://github.com/omacom-io/omawrite) — Unbloarchy ning o'zining o'lik darajada oddiy Markdown yozish dasturi. Vaultlar yo'q, plaginlar yo'q, faqat siz va so'zlar.
 
 Omawrite ni `Super + Shift + W` bilan ishga tushirasiz.
 
@@ -44,18 +44,18 @@ Aether ni dastur ishga tushirgichi (`Super + Space`) orqali ishga tushirasiz.
 
 [LocalSend](https://localsend.org/) sizga Apple ning AirDrop i kabi, ilovani ishlatayotgan bir xil tarmoqdagi boshqa qurilmalarga fayllar yuborish imkonini beradi. Lekin u ko'p platformali, shuning uchun siz Windows, macOS, Android, iOS va albatta Linux ga va ulardan fayllar yuborishingiz mumkin.
 
-Ulashish menyusini `Super + Ctrl + S` da yoki Omarchy menyusida _Trigger > Share_ ostida ochishingiz mumkin. U sizga to'rtta variantni beradi:
+Ulashish menyusini `Super + Ctrl + S` da yoki Unbloarchy menyusida _Trigger > Share_ ostida ochishingiz mumkin. U sizga to'rtta variantni beradi:
 
 - **Clipboard** nusxa olgan narsangizni matn fayli sifatida yuboradi. Havola yoki parcha kodi o'zingizga elektron pochta yubormasdan telefoningizga o'tkazish uchun ajoyib.
 - **File** bir vaqtning o'zida bir nechtasini tanlashingiz mumkin bo'lgan fayl tanlagichni ochadi.
 - **Folder** butun katalogni yuboradi.
 - **Receive** LocalSend ning o'zini ochadi, shunda boshqa qurilma sizga biror narsa yuborishi mumkin.
 
-Xuddi shu narsa terminaldan `omarchy share clipboard`, `omarchy share file [path]` va `omarchy share folder [path]` bilan ham ishlaydi. Yo'lni qoldirib yuboring va sizga tanlagich chiqadi.
+Xuddi shu narsa terminaldan `unbloarchy share clipboard`, `unbloarchy share file [path]` va `unbloarchy share folder [path]` bilan ham ishlaydi. Yo'lni qoldirib yuboring va sizga tanlagich chiqadi.
 
 Shuningdek, to'g'ridan-to'g'ri fayl menejeridan yuborishingiz mumkin: Nautilus da istalgan tanlovni o'ng tugma bilan bosing va _Send via LocalSend_ ni tanlang.
 
-Omarchy ning firewall i LocalSend portidan tashqari standart bo'yicha yopiq, shuning uchun bu yangi o'rnatishda qutidan chiqqan holda ishlaydi. Qarang [xavfsizlik](48-security.md).
+Unbloarchy ning firewall i LocalSend portidan tashqari standart bo'yicha yopiq, shuning uchun bu yangi o'rnatishda qutidan chiqqan holda ishlaydi. Qarang [xavfsizlik](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice ni dastur ishga tushirgichi (`Super + Space`) orqali ishga tushirasi
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) — Omarchy ning o'zining o'lik darajada oddiy taqdimot dasturi. Sizning taqdimotingiz — rasmlari va videolari yonida yotgan bitta Markdown fayl: har bir slaydni jonli oldindan ko'rish ostida yozing, slaydlarni tartibga tortib o'tkazing, keyin to'liq ekranda taqdim eting yoki PDF va PowerPoint ga eksport qiling. U hatto Omarchy mavzungizni ham oladi.
+[Hype](https://github.com/omacom/hype) — Unbloarchy ning o'zining o'lik darajada oddiy taqdimot dasturi. Sizning taqdimotingiz — rasmlari va videolari yonida yotgan bitta Markdown fayl: har bir slaydni jonli oldindan ko'rish ostida yozing, slaydlarni tartibga tortib o'tkazing, keyin to'liq ekranda taqdim eting yoki PDF va PowerPoint ga eksport qiling. U hatto Unbloarchy mavzungizni ham oladi.
 
 Hype ni dastur ishga tushirgichi (`Super + Space`) orqali ishga tushirasiz. Har bir tezkor tugmani ko'rish uchun uning ichida `?` ni bosing.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) — Omarchy ning PDFlarni imzolash va ularni to'ldirishning o'zining o'lik darajada oddiy usuli. Saqlangan imzoingizni, matnni va bugungi sanani sahifaning istalgan joyiga qo'ying, keyin imzolangan nusxani asl nusxa yoniga saqlang. Qanday qilishni bilish uchun [PDFlarni to'ldirish](27-filling-out-pdfs.md) ga qarang.
+[Signed](https://github.com/omacom/signed) — Unbloarchy ning PDFlarni imzolash va ularni to'ldirishning o'zining o'lik darajada oddiy usuli. Saqlangan imzoingizni, matnni va bugungi sanani sahifaning istalgan joyiga qo'ying, keyin imzolangan nusxani asl nusxa yoniga saqlang. Qanday qilishni bilish uchun [PDFlarni to'ldirish](27-filling-out-pdfs.md) ga qarang.
 
 Signed ni dastur ishga tushirgichi (`Super + Space`) orqali ishga tushirasiz yoki u bilan fayl menejeridan PDF ochasiz.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) — suzuvchi oynada ochiladigan Omarchy ning o'zining o'lik darajada oddiy kalkulyatori.
+[Omacalc](https://github.com/omacom-io/omacalc) — suzuvchi oynada ochiladigan Unbloarchy ning o'zining o'lik darajada oddiy kalkulyatori.
 
 Omacalc ni `Super + Shift + Q` bilan ishga tushirasiz (yoki klaviaturangizda bo'lsa, kalkulyator tugmasi bilan).
 
@@ -85,7 +85,7 @@ Omacalc ni `Super + Shift + Q` bilan ishga tushirasiz (yoki klaviaturangizda bo'
 
 [Signal](https://signal.org/) — E2E shifrlangan xabar almashinuvining kashshofi va yirik texnologik konglomeratlardan biri orqali o'tishni istamaydigan har kim uchun ajoyib aloqa varianti.
 
-Signal ni `Super + Shift + G` bilan ishga tushirasiz. U asosiy o'rnatishning bir qismi emas, shuning uchun birinchi marta buni bossangiz, Omarchy uni siz uchun o'rnatishni taklif qiladi (u shuningdek Omarchy menyusida _Install > Service_ ostida ham bor).
+Signal ni `Super + Shift + G` bilan ishga tushirasiz. U asosiy o'rnatishning bir qismi emas, shuning uchun birinchi marta buni bossangiz, Unbloarchy uni siz uchun o'rnatishni taklif qiladi (u shuningdek Unbloarchy menyusida _Install > Service_ ostida ham bor).
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv ni dastur ishga tushirgichi (`Super + Space`) orqali yoki shunchaki fayl men
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) — Omarchy ning o'zining o'lik darajada oddiy video kesuvchisi. Sizga faqat klipning boshi va oxirini kesish kerak bo'lganda, u to'liq video tahrirlagichni ishga tushirishdan ustun keladi.
+[Omacut](https://github.com/omacom-io/omacut) — Unbloarchy ning o'zining o'lik darajada oddiy video kesuvchisi. Sizga faqat klipning boshi va oxirini kesish kerak bo'lganda, u to'liq video tahrirlagichni ishga tushirishdan ustun keladi.
 
 Omacut ni dastur ishga tushirgichi (`Super + Space`) orqali ishga tushirasiz.
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) — Omarchy ning o'zining o'lik darajada oddiy veb-kamera yozib oluvchisi. Kamera va mikrofoningizni bir marta tanlang, keyin yozib olish uchun `Space` ni bosing, xuddi shu dubleni pauza qilish va davom ettirish uchun yana bosing. U har doim kamerangizning eng yuqori aniqligida yozib oladi, boshlashdan oldin darajangizni tekshirishingiz uchun jonli mikrofon o'lchagichi bilan.
+[Monologue](https://github.com/omacom/monologue) — Unbloarchy ning o'zining o'lik darajada oddiy veb-kamera yozib oluvchisi. Kamera va mikrofoningizni bir marta tanlang, keyin yozib olish uchun `Space` ni bosing, xuddi shu dubleni pauza qilish va davom ettirish uchun yana bosing. U har doim kamerangizning eng yuqori aniqligida yozib oladi, boshlashdan oldin darajangizni tekshirishingiz uchun jonli mikrofon o'lchagichi bilan.
 
 Dubleni to'xtating va u darhol o'rnatilgan tahrirlagichda ochiladi. Klipni bo'lish uchun uni ikki marta bosing, har bir qismni kesish uchun tutqichlarni torting va kerak bo'lmagan qismlarni olib tashlang. Keyin uni MP4 sifatida saqlang. Asl yozuvingiz uni tashlab yuborguningizcha saqlanadi, shuning uchun siz har doim qaytib kelib, uni boshqacha kesishingiz mumkin.
 

@@ -1,13 +1,13 @@
 echo "Give the ASUS ProArt P14 (NVIDIA N1x) the RAM its firmware reserves for Windows' GPU"
 
 # See install/hardware/asus/fix-asus-proart-p14-gpu-memory.sh. The kernel option
-# takes effect with linux-omarchy-n1x; older N1x kernels ignore it.
-dropin="${OMARCHY_PROART_GPU_MEMORY_CONF:-/etc/limine-entry-tool.d/omarchy-n1x-gpu-memory.conf}"
-iomem="${OMARCHY_IOMEM:-/proc/iomem}"
-running_cmdline="${OMARCHY_RUNNING_CMDLINE:-/proc/cmdline}"
+# takes effect with linux-unbloarchy-n1x; older N1x kernels ignore it.
+dropin="${UNBLOARCHY_PROART_GPU_MEMORY_CONF:-/etc/limine-entry-tool.d/unbloarchy-n1x-gpu-memory.conf}"
+iomem="${UNBLOARCHY_IOMEM:-/proc/iomem}"
+running_cmdline="${UNBLOARCHY_RUNNING_CMDLINE:-/proc/cmdline}"
 rebuild_marker="${OMARCHY_LIMINE_REBUILD_MARKER:-/var/lib/omarchy/migrations/1790953795}"
 
-if ! omarchy-hw-match "H7407BA"; then
+if ! unbloarchy-hw-match "H7407BA"; then
   exit 0
 fi
 

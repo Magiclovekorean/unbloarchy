@@ -3,16 +3,16 @@
 # unbloarchy:summary=Prompt for confirmation before starting an update
 
 gum style --border normal --padding "1 2" \
-  "$(omarchy-i18n update.ready)" \
+  "$(unbloarchy-i18n update.ready)" \
   "" \
-  "• $(omarchy-i18n update.cannotStop)" \
-  "• $(omarchy-i18n update.connectPower)" \
+  "• $(unbloarchy-i18n update.cannotStop)" \
+  "• $(unbloarchy-i18n update.connectPower)" \
   "" \
-  "$(omarchy-i18n update.whatsNew "https://github.com/Magiclovekorean/unbloarchy/releases/latest")"
+  "$(unbloarchy-i18n update.whatsNew "https://github.com/Magiclovekorean/unbloarchy/releases/latest")"
 
 echo
 
-if ! gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n update.continue)"; then
+if ! gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n update.continue)"; then
   echo "Update cancelled"
   exit 1
 fi

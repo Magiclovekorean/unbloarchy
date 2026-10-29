@@ -2,7 +2,7 @@
 
 ## Editores Alternativos
 
-O Omarchy vem com o [Neovim](https://neovim.io/) por padrão, mas se você quiser algo um pouco mais popular e familiar, pode abrir o Omarchy Menu (`Super + Space`) e ver as opções em _Install > Editor_. Temos VSCode, Cursor, Zed, Sublime Text, Helix, Vim e Emacs listados lá. Se você não encontrar o que está procurando, confira _Install > Package_ e veja se ele não está em um pacote do Arch (e, se não estiver, tente _Install > AUR_ para verificar o AUR).
+O Unbloarchy vem com o [Neovim](https://neovim.io/) por padrão, mas se você quiser algo um pouco mais popular e familiar, pode abrir o Unbloarchy Menu (`Super + Space`) e ver as opções em _Install > Editor_. Temos VSCode, Cursor, Zed, Sublime Text, Helix, Vim e Emacs listados lá. Se você não encontrar o que está procurando, confira _Install > Package_ e veja se ele não está em um pacote do Arch (e, se não estiver, tente _Install > AUR_ para verificar o AUR).
 
 O editor `vi` original também está disponível de fábrica. Execute `vi filename` para editar um arquivo no terminal.
 
@@ -12,7 +12,7 @@ Você pode definir o editor padrão de todo o sistema em `Setup > Defaults > Edi
 
 ## Ambiente
 
-O Omarchy permite configurar uma porção inteira de ambientes de desenvolvimento por meio da seção _Install > Development_ do Omarchy Menu (`Super + Space`). Você vai encontrar, é claro, o _Ruby on Rails_, mas também os três principais runtimes para JavaScript (Node.js, Bun, Deno), além de frameworks PHP populares como Laravel e Symfony. Ah, e também tem Go, Rust, Python, Java, Elixir (com Phoenix), .NET, OCaml, Zig, Clojure e Scala. É uma seleção bem ampla!
+O Unbloarchy permite configurar uma porção inteira de ambientes de desenvolvimento por meio da seção _Install > Development_ do Unbloarchy Menu (`Super + Space`). Você vai encontrar, é claro, o _Ruby on Rails_, mas também os três principais runtimes para JavaScript (Node.js, Bun, Deno), além de frameworks PHP populares como Laravel e Symfony. Ah, e também tem Go, Rust, Python, Java, Elixir (com Phoenix), .NET, OCaml, Zig, Clojure e Scala. É uma seleção bem ampla!
 
 A maioria desses ambientes é gerenciada pelo [Mise](https://mise.jdx.dev/). É uma ferramenta que permite instalar e executar várias versões de uma linguagem de programação na mesma máquina. É como o rbenv ou o rvm para Ruby ou o virtualenv para Python, mas funciona para um monte de ambientes diferentes.
 
@@ -20,7 +20,7 @@ Para instalar, digamos, o Ruby, você executaria `mise use -g ruby`, que vai ins
 
 ## Ferramentas de CLI pré-instaladas
 
-O Omarchy disponibiliza ferramentas como `gh`, `uv` e a maioria dos [agentes de código](17-ai.md) por meio da [instalação preguiçosa do mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Na primeira vez que você executa uma delas, o mise a instala. As execuções posteriores reutilizam a versão instalada; elas não verificam se há uma atualização a cada inicialização.
+O Unbloarchy disponibiliza ferramentas como `gh`, `uv` e a maioria dos [agentes de código](17-ai.md) por meio da [instalação preguiçosa do mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Na primeira vez que você executa uma delas, o mise a instala. As execuções posteriores reutilizam a versão instalada; elas não verificam se há uma atualização a cada inicialização.
 
 Você também pode inspecionar os padrões ou instalá-los com antecedência:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Execute `omarchy update` para atualizar as ferramentas instaladas junto com o restante do Omarchy. O alias `mup` atualiza apenas as ferramentas gerenciadas pelo mise. Para adicionar outra ferramenta à sua própria configuração, use `mise use -g <tool>`.
+Execute `unbloarchy update` para atualizar as ferramentas instaladas junto com o restante do Unbloarchy. O alias `mup` atualiza apenas as ferramentas gerenciadas pelo mise. Para adicionar outra ferramenta à sua própria configuração, use `mise use -g <tool>`.
 
 A configuração do Python também instala o `uv` por meio do mise. Remover o ambiente de desenvolvimento Python mantém o `uv` disponível como uma ferramenta independente.
 
@@ -47,15 +47,15 @@ Se você já tiver uma tabela `[settings]`, adicione a entrada lá; estenda uma 
 
 ### Removendo e restaurando os padrões
 
-_Remove Preinstalls_ faz o mise ignorar as declarações de ferramentas do Omarchy para o seu usuário, adicionando-as a `ignored_config_paths` em `~/.config/mise/miserc.toml`. _Restore Preinstalls_ remove essa linha novamente. As ferramentas que você declara por conta própria, na sua própria configuração ou no `mise.toml` de um projeto, continuam funcionando de qualquer maneira. Se você escolher um agente padrão ou configurar o Python depois de remover as pré-instalações, essa ferramenta é adicionada à sua própria configuração. Ambas se aplicam apenas ao seu usuário; os outros usuários da máquina mantêm a própria escolha.
+_Remove Preinstalls_ faz o mise ignorar as declarações de ferramentas do Unbloarchy para o seu usuário, adicionando-as a `ignored_config_paths` em `~/.config/mise/miserc.toml`. _Restore Preinstalls_ remove essa linha novamente. As ferramentas que você declara por conta própria, na sua própria configuração ou no `mise.toml` de um projeto, continuam funcionando de qualquer maneira. Se você escolher um agente padrão ou configurar o Python depois de remover as pré-instalações, essa ferramenta é adicionada à sua própria configuração. Ambas se aplicam apenas ao seu usuário; os outros usuários da máquina mantêm a própria escolha.
 
 ## Docker
 
-O [Docker](https://www.docker.com/) dispensa apresentações. Ele permite executar contêineres isolados, e o Omarchy instala tudo o que é necessário para executá-lo bem, incluindo o próprio Docker e o [Docker Compose](https://docs.docker.com/compose/).
+O [Docker](https://www.docker.com/) dispensa apresentações. Ele permite executar contêineres isolados, e o Unbloarchy instala tudo o que é necessário para executá-lo bem, incluindo o próprio Docker e o [Docker Compose](https://docs.docker.com/compose/).
 
-Por padrão, seu usuário *não* está no grupo `docker`. Esse grupo é, na prática, root sem senha — qualquer coisa nele pode executar `docker run -v /:/host` e tomar conta da máquina —, então um único script ou dependência maliciosa executado como você estaria, de outra forma, a um comando de distância do root. Então, na linha de comando, você executa o Docker com `sudo` (`sudo docker ps`, `sudo docker compose up`), e as ferramentas gráficas que se comunicam com o daemon — a Windows VM — pedem autorização quando precisam. Se você quiser de volta a conveniência de uma configuração sem grupo e entender o compromisso envolvido, ative-a em **Setup > Security > Sudoless Docker** (ou execute `omarchy-setup-security-sudoless-docker`), que adiciona você ao grupo `docker` depois de um aviso; aí o `docker` simples e o alias `d` voltam a funcionar sem `sudo`.
+Por padrão, seu usuário *não* está no grupo `docker`. Esse grupo é, na prática, root sem senha — qualquer coisa nele pode executar `docker run -v /:/host` e tomar conta da máquina —, então um único script ou dependência maliciosa executado como você estaria, de outra forma, a um comando de distância do root. Então, na linha de comando, você executa o Docker com `sudo` (`sudo docker ps`, `sudo docker compose up`), e as ferramentas gráficas que se comunicam com o daemon — a Windows VM — pedem autorização quando precisam. Se você quiser de volta a conveniência de uma configuração sem grupo e entender o compromisso envolvido, ative-a em **Setup > Security > Sudoless Docker** (ou execute `unbloarchy-setup-security-sudoless-docker`), que adiciona você ao grupo `docker` depois de um aviso; aí o `docker` simples e o alias `d` voltam a funcionar sem `sudo`.
 
-Você pode configurar os bancos de dados comuns para desenvolvimento local no Docker usando _Install > Development > Docker DB_ no menu do Omarchy.
+Você pode configurar os bancos de dados comuns para desenvolvimento local no Docker usando _Install > Development > Docker DB_ no menu do Unbloarchy.
 
 ## GitHub CLI
 

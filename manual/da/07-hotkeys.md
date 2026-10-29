@@ -6,7 +6,7 @@ Du kan se alle de vigtigste tastaturbindinger med `Super + K` (Tmux-bindinger me
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy-menu (apps og alt andet)    |
+| `Super + Space`           | Unbloarchy-menu (apps og alt andet)    |
 | `Super + Alt + Space` | Appoversigt |
 | `Super + Escape` | Systemmenu (dvale, genstart osv.)  |
 | `Super + Ctrl + L` | Lås computeren |
@@ -143,7 +143,7 @@ Skift/tilføj bindinger i `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Sæt ind    |
 | `Super + Ctrl + V`           | Udklipsholderhåndtering    |
 
-Normalt på Linux skal du bruge `Ctrl + Shift + C/V` for at kopiere og sætte ind i terminalen og `Ctrl + C/V` for at gøre det alle andre steder. Disse samlede Omarchy-genveje til udklipsholderen virker overalt.
+Normalt på Linux skal du bruge `Ctrl + Shift + C/V` for at kopiere og sætte ind i terminalen og `Ctrl + C/V` for at gøre det alle andre steder. Disse samlede Unbloarchy-genveje til udklipsholderen virker overalt.
 
 ## Optagelse
 
@@ -164,7 +164,7 @@ Normalt på Linux skal du bruge `Ctrl + Shift + C/V` for at kopiere og sætte in
 
 Ved skærmoptagelser spørger genvejen først, hvilken lyd du vil have, og starter derefter optagelsen. Tryk på den igen for at stoppe. Se [skærmbilleder og optagelse](12-screenshots-recording.md) for detaljerne.
 
-Alle optagemuligheder er også tilgængelige under _Udløser > Optagelse_ i Omarchy-menuen (`Super + Space`).
+Alle optagemuligheder er også tilgængelige under _Udløser > Optagelse_ i Unbloarchy-menuen (`Super + Space`).
 
 ## Notifikationer
 
@@ -186,9 +186,9 @@ Alle optagemuligheder er også tilgængelige under _Udløser > Optagelse_ i Omar
 | `Super + Backspace` | Slå gennemsigtighed til/fra på et vindue |
 | `Super + Ctrl + Backspace` | Slå kvadratisk format til/fra for et enkelt vindue |
 
-Ekstra baggrundsbilleder ligger i `~/.config/omarchy/backgrounds/<theme name>`. Også tilgængelig via _Installér > Stil > Baggrund_ i Omarchy-menuen.
+Ekstra baggrundsbilleder ligger i `~/.config/unbloarchy/backgrounds/<theme name>`. Også tilgængelig via _Installér > Stil > Baggrund_ i Unbloarchy-menuen.
 
-Alle stilmuligheder er også tilgængelige under _Stil_ i Omarchy-menuen (`Super + Space`).
+Alle stilmuligheder er også tilgængelige under _Stil_ i Unbloarchy-menuen (`Super + Space`).
 
 ## Til/fra
 
@@ -289,7 +289,7 @@ Disse funktioner skal køres inde i en Tmux-session.
 
 ## Ghostty Terminal
 
-Ghostty-terminalen installeres ved hjælp af _Installér > Terminal_ via Omarchy-menuen.
+Ghostty-terminalen installeres ved hjælp af _Installér > Terminal_ via Unbloarchy-menuen.
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Du kan bruge `Super + Ctrl + E` til at vise en komplet emoji-vælger, som lægge
 | `Shift + CapsLock Space N` | Dit navn (som angivet under opsætningen)  |
 | `Shift + CapsLock Space E` | Din e-mail (som angivet under opsætningen)  |
 
-Du kan tilføje flere af dine egne ved at redigere `~/.XCompose` og derefter køre `omarchy-restart-xcompose` i terminalen for at få ændringerne registreret.
+Du kan tilføje flere af dine egne ved at redigere `~/.XCompose` og derefter køre `unbloarchy-restart-xcompose` i terminalen for at få ændringerne registreret.

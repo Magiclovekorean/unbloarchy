@@ -22,7 +22,7 @@
 
 저장된 스크린샷은 기본적으로 `~/Pictures/Screenshots`에 들어가며, 이름은 `screenshot-2026-08-13_14-22-05-firefox.png`와 같은 식이다. 다른 디렉터리를 사용하려면 `OMASNAP_SCREENSHOT_DIR`를 설정하라. 세션 환경 변수를 어디에 넣어야 하는지는 [자주 묻는 질문](46-faq.md)을 참고하라. Omasnap은 첫 번째 사진을 저장할 때 그 디렉터리를 만든다. 자동 저장을 끄려면 `~/.config/omasnap/omasnap.conf`에서 `[output] autosave = false`로 설정하라. 그러면 캡처는 복사만 되고, 10초 동안 미리 보기로 표시되며, 고정 버튼이나 `Ctrl + P`로 화면에 계속 띄워 둘 수 있다.
 
-터미널에서는 `omarchy screenshot`이 같은 오버레이를 열며, 시작 모드를 선택할 수 있다: `omarchy capture screenshot region`, `windows`, `fullscreen`, 또는 `scroll`. 두 번째 인자로 `copy` 또는 `save`를 주면 사진이 곧바로 해당 대상으로 전송된다. 출력 전에 편집하려면 전체 화면 편집기에는 `omarchy screenshot --editor=overlay`를, 별도 창에는 `omarchy screenshot --editor=window`를 사용하라.
+터미널에서는 `unbloarchy screenshot`이 같은 오버레이를 열며, 시작 모드를 선택할 수 있다: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, 또는 `scroll`. 두 번째 인자로 `copy` 또는 `save`를 주면 사진이 곧바로 해당 대상으로 전송된다. 출력 전에 편집하려면 전체 화면 편집기에는 `unbloarchy screenshot --editor=overlay`를, 별도 창에는 `unbloarchy screenshot --editor=window`를 사용하라.
 
 ### 키보드로 선택 도구 조작하기
 
@@ -41,9 +41,9 @@
 
 ## 화면 녹화
 
-`Alt + Print Screen`을 누르면 _Trigger > Capture > Screenrecord_가 열리고, 사운드트랙에 무엇을 넣을지 묻는다: 오디오 없음, 데스크톱 오디오, 데스크톱과 마이크, 또는 데스크톱과 마이크와 웹캠. 마지막 항목은 카메라가 실제로 연결되어 있을 때만 나타난다. 하나를 고르면 Omarchy의 녹화 선택 도구로 영역을 드래그하거나 창이나 모니터를 클릭할 수 있다.
+`Alt + Print Screen`을 누르면 _Trigger > Capture > Screenrecord_가 열리고, 사운드트랙에 무엇을 넣을지 묻는다: 오디오 없음, 데스크톱 오디오, 데스크톱과 마이크, 또는 데스크톱과 마이크와 웹캠. 마지막 항목은 카메라가 실제로 연결되어 있을 때만 나타난다. 하나를 고르면 Unbloarchy의 녹화 선택 도구로 영역을 드래그하거나 창이나 모니터를 클릭할 수 있다.
 
-녹화는 gpu-screen-recorder로 실행되며, GPU에서 60fps로 인코딩하고 어쩔 수 없으면 CPU로 대체한다. 결과는 `~/Videos`에 있는 MP4이며, 이름은 `screenrecording-2026-08-13_14-22-05.mp4`와 같다. 이를 변경하려면 `OMARCHY_SCREENRECORD_DIR`를 설정하라. 단, 스크린샷 디렉터리와 달리 이 디렉터리는 이미 존재해야 하며, 그렇지 않으면 녹화가 시작을 거부한다는 점에 유의하라.
+녹화는 gpu-screen-recorder로 실행되며, GPU에서 60fps로 인코딩하고 어쩔 수 없으면 CPU로 대체한다. 결과는 `~/Videos`에 있는 MP4이며, 이름은 `screenrecording-2026-08-13_14-22-05.mp4`와 같다. 이를 변경하려면 `UNBLOARCHY_SCREENRECORD_DIR`를 설정하라. 단, 스크린샷 디렉터리와 달리 이 디렉터리는 이미 존재해야 하며, 그렇지 않으면 녹화가 시작을 거부한다는 점에 유의하라.
 
 녹화 중에는 바에 작은 표시기가 나타난다. 클릭하면 중지된다. `Alt + Print Screen`을 다시 눌러 중지할 수도 있고, 실제로 녹화 중일 때만 나타나는 _Trigger > Capture > Screenrecord_ 아래의 _Stop Screenrecording_ 항목으로 중지할 수도 있다.
 
@@ -60,7 +60,7 @@
 
 크기는 small, medium, large 세 가지이며, 단축키로 그 사이를 오간다. Medium이 기본값이다. 녹화에 비례하므로, 1080p 모니터를 녹화하든 6K 모니터를 녹화하든 카메라가 프레임에서 차지하는 비율은 같다. 그리고 전체 디스플레이가 아니라 영역을 녹화했다면 오버레이는 모니터의 모서리가 아니라 그 영역의 모서리에 고정되므로, 사진 안에 그대로 들어간다.
 
-`omarchy-capture-webcam-resize small`로 직접 호출할 수도 있고, `reset`으로 medium으로 돌아갈 수도 있다.
+`unbloarchy-capture-webcam-resize small`로 직접 호출할 수도 있고, `reset`으로 medium으로 돌아갈 수도 있다.
 
 ## 텍스트, QR 코드 및 색상
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_도 QR 코드에 대해 같은 요령을 부린다.
 
 사진은 high, medium, low로 jpg 또는 png가 되며, 너비는 각각 최대 3160, 2160, 1080 픽셀로 제한된다. 동영상은 4k, 1080p, 720p로 mp4 또는 애니메이션 gif가 된다. 변환된 파일은 원본 옆에 해상도를 이름에 넣어 기록된다. 예를 들어 `demo-1080p.mp4`와 같으며, 경로는 파일 URI로 클립보드에 복사되므로 파일 드롭을 받는 앱에 직접 붙여넣을 수 있다.
 
-이미 원하는 것을 알고 있다면 터미널에서도 동작한다: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. 이미지를 ASCII 아트로 바꾸는 `omarchy transcode ascii`도 있는데, 이는 주로 [브랜딩](41-branding.md)을 위한 것이다.
+이미 원하는 것을 알고 있다면 터미널에서도 동작한다: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. 이미지를 ASCII 아트로 바꾸는 `unbloarchy transcode ascii`도 있는데, 이는 주로 [브랜딩](41-branding.md)을 위한 것이다.
 
 ## 어딘가로 보내기
 

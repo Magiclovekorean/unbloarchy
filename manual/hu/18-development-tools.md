@@ -2,7 +2,7 @@
 
 ## Alternatív szerkesztők
 
-Az Omarchy alapértelmezetten a [Neovim](https://neovim.io/) szerkesztővel érkezik, de ha valami elterjedtebbre és ismerősebbre vágysz, indítsd el az Omarchy Menu menüt (`Super + Space`), és nézd meg a lehetőségeket a _Telepítés > Szerkesztő_ alatt. Ott szerepel a VSCode, a Cursor, a Zed, a Sublime Text, a Helix, a Vim és az Emacs. Ha nem találod, amit keresel, nézd meg a _Telepítés > Csomag_ menüpontot, és ellenőrizd, nincs-e benne egy Arch-csomagban (ha pedig nincs, próbáld ki a _Telepítés > AUR_ lehetőséget az AUR ellenőrzéséhez).
+Az Unbloarchy alapértelmezetten a [Neovim](https://neovim.io/) szerkesztővel érkezik, de ha valami elterjedtebbre és ismerősebbre vágysz, indítsd el az Unbloarchy Menu menüt (`Super + Space`), és nézd meg a lehetőségeket a _Telepítés > Szerkesztő_ alatt. Ott szerepel a VSCode, a Cursor, a Zed, a Sublime Text, a Helix, a Vim és az Emacs. Ha nem találod, amit keresel, nézd meg a _Telepítés > Csomag_ menüpontot, és ellenőrizd, nincs-e benne egy Arch-csomagban (ha pedig nincs, próbáld ki a _Telepítés > AUR_ lehetőséget az AUR ellenőrzéséhez).
 
 Az eredeti `vi` szerkesztő is azonnal használható. Fájl terminálban történő szerkesztéséhez futtasd a `vi filename` parancsot.
 
@@ -12,7 +12,7 @@ A rendszer szintű alapértelmezett szerkesztőt a `Beállítás > Alapértelmez
 
 ## Környezet
 
-Az Omarchy rengeteg fejlesztői környezet beállítását támogatja az Omarchy Menu (`Super + Space`) _Telepítés > Fejlesztés_ szakaszán keresztül. Természetesen megtalálod ott a _Ruby on Rails_ keretrendszert, de a JavaScript három fő futtatókörnyezetét (Node.js, Bun, Deno) is, valamint népszerű PHP-keretrendszereket, például a Laravelt és a Symfonyt. Ja, és van Go, Rust, Python, Java, Elixir (Phoenixszel), .NET, OCaml, Zig, Clojure és Scala is. Ez egy nagyon széles választék!
+Az Unbloarchy rengeteg fejlesztői környezet beállítását támogatja az Unbloarchy Menu (`Super + Space`) _Telepítés > Fejlesztés_ szakaszán keresztül. Természetesen megtalálod ott a _Ruby on Rails_ keretrendszert, de a JavaScript három fő futtatókörnyezetét (Node.js, Bun, Deno) is, valamint népszerű PHP-keretrendszereket, például a Laravelt és a Symfonyt. Ja, és van Go, Rust, Python, Java, Elixir (Phoenixszel), .NET, OCaml, Zig, Clojure és Scala is. Ez egy nagyon széles választék!
 
 Ezeknek a környezeteknek a többségét a [Mise](https://mise.jdx.dev/) kezeli. Ez egy olyan eszköz, amellyel egy programozási nyelv több verzióját telepítheted és futtathatod ugyanazon a gépen. Olyan, mint az rbenv vagy az rvm Rubyhoz, vagy a virtualenv Pythonhoz, de egy csomó különböző környezettel működik.
 
@@ -20,7 +20,7 @@ Ha például Rubyt szeretnél telepíteni, futtasd a `mise use -g ruby` parancso
 
 ## Előre telepített CLI-eszközök
 
-Az Omarchy olyan eszközöket tesz elérhetővé, mint a `gh`, az `uv` és a legtöbb [kódolóügynök](17-ai.md), a [mise lusta telepítésén](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools) keresztül. Amikor először futtatsz egyet, a mise telepíti. A későbbi futtatások a telepített verziót használják újra; nem ellenőriznek frissítést minden indításkor.
+Az Unbloarchy olyan eszközöket tesz elérhetővé, mint a `gh`, az `uv` és a legtöbb [kódolóügynök](17-ai.md), a [mise lusta telepítésén](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools) keresztül. Amikor először futtatsz egyet, a mise telepíti. A későbbi futtatások a telepített verziót használják újra; nem ellenőriznek frissítést minden indításkor.
 
 Megnézheted az alapértelmezéseket is, vagy előre telepítheted őket:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Futtasd az `omarchy update` parancsot a telepített eszközök frissítéséhez az Omarchy többi részével együtt. A `mup` alias csak a mise által kezelt eszközöket frissíti. Ha egy másik eszközt szeretnél hozzáadni a saját konfigurációdhoz, használd a `mise use -g <tool>` parancsot.
+Futtasd az `unbloarchy update` parancsot a telepített eszközök frissítéséhez az Unbloarchy többi részével együtt. A `mup` alias csak a mise által kezelt eszközöket frissíti. Ha egy másik eszközt szeretnél hozzáadni a saját konfigurációdhoz, használd a `mise use -g <tool>` parancsot.
 
 A Python beállítása az `uv` eszközt is telepíti a mise segítségével. A Python fejlesztői környezet eltávolítása után az `uv` független eszközként továbbra is elérhető marad.
 
@@ -47,15 +47,15 @@ Ha már van `[settings]` táblád, oda add hozzá a bejegyzést; egy meglévő `
 
 ### Az alapértelmezések eltávolítása és visszaállítása
 
-Az _Előre telepítettek eltávolítása_ hatására a mise kihagyja az Omarchy eszközdeklarációit a felhasználódnál azáltal, hogy hozzáadja őket az `ignored_config_paths` beállításhoz a `~/.config/mise/miserc.toml` fájlban. Az _Előre telepítettek visszaállítása_ ismét eltávolítja ezt a sort. Az általad deklarált eszközök, a saját konfigurációdban vagy egy projekt `mise.toml` fájljában, mindkét esetben tovább működnek. Ha az előre telepítettek eltávolítása után választasz alapértelmezett ügynököt vagy beállítod a Pythont, az eszköz bekerül a saját konfigurációdba. Mindkettő csak a te felhasználódra vonatkozik; a gép többi felhasználója megtartja a saját választását.
+Az _Előre telepítettek eltávolítása_ hatására a mise kihagyja az Unbloarchy eszközdeklarációit a felhasználódnál azáltal, hogy hozzáadja őket az `ignored_config_paths` beállításhoz a `~/.config/mise/miserc.toml` fájlban. Az _Előre telepítettek visszaállítása_ ismét eltávolítja ezt a sort. Az általad deklarált eszközök, a saját konfigurációdban vagy egy projekt `mise.toml` fájljában, mindkét esetben tovább működnek. Ha az előre telepítettek eltávolítása után választasz alapértelmezett ügynököt vagy beállítod a Pythont, az eszköz bekerül a saját konfigurációdba. Mindkettő csak a te felhasználódra vonatkozik; a gép többi felhasználója megtartja a saját választását.
 
 ## Docker
 
-A [Docker](https://www.docker.com/) aligha szorul bemutatásra. Lehetővé teszi elszigetelt konténerek futtatását, és az Omarchy mindent telepít, ami a megfelelő működéséhez szükséges, beleértve magát a Dockert és a [Docker Compose](https://docs.docker.com/compose/) eszközt is.
+A [Docker](https://www.docker.com/) aligha szorul bemutatásra. Lehetővé teszi elszigetelt konténerek futtatását, és az Unbloarchy mindent telepít, ami a megfelelő működéséhez szükséges, beleértve magát a Dockert és a [Docker Compose](https://docs.docker.com/compose/) eszközt is.
 
-Alapértelmezetten a felhasználód *nem* tagja a `docker` csoportnak. Ez a csoport gyakorlatilag jelszó nélküli root hozzáférést jelent — minden, ami tagja, futtathatja a `docker run -v /:/host` parancsot, és átveheti az irányítást a gép felett —, így egyetlen, a nevedben futó rosszindulatú szkript vagy függőség egyébként egyetlen parancsra lenne a root hozzáféréstől. Ezért a parancssorban a Dockert `sudo` segítségével futtatod (`sudo docker ps`, `sudo docker compose up`), a démonnal kommunikáló grafikus eszközök — a Windows VM — pedig engedélyt kérnek, amikor szükségük van rá. Ha vissza szeretnéd kapni a csoport nélküli beállítás kényelmét, és érted a kompromisszumot, engedélyezd a **Beállítás > Biztonság > Sudoless Docker** menüpontban (vagy futtasd az `omarchy-setup-security-sudoless-docker` parancsot), amely egy figyelmeztetés után hozzáad a `docker` csoporthoz; ezután az egyszerű `docker` parancs és a `d` alias ismét `sudo` nélkül működik.
+Alapértelmezetten a felhasználód *nem* tagja a `docker` csoportnak. Ez a csoport gyakorlatilag jelszó nélküli root hozzáférést jelent — minden, ami tagja, futtathatja a `docker run -v /:/host` parancsot, és átveheti az irányítást a gép felett —, így egyetlen, a nevedben futó rosszindulatú szkript vagy függőség egyébként egyetlen parancsra lenne a root hozzáféréstől. Ezért a parancssorban a Dockert `sudo` segítségével futtatod (`sudo docker ps`, `sudo docker compose up`), a démonnal kommunikáló grafikus eszközök — a Windows VM — pedig engedélyt kérnek, amikor szükségük van rá. Ha vissza szeretnéd kapni a csoport nélküli beállítás kényelmét, és érted a kompromisszumot, engedélyezd a **Beállítás > Biztonság > Sudoless Docker** menüpontban (vagy futtasd az `unbloarchy-setup-security-sudoless-docker` parancsot), amely egy figyelmeztetés után hozzáad a `docker` csoporthoz; ezután az egyszerű `docker` parancs és a `d` alias ismét `sudo` nélkül működik.
 
-A helyi fejlesztéshez használt gyakori adatbázisokat Dockerben az Omarchy menü _Telepítés > Fejlesztés > Docker DB_ menüpontjával állíthatod be.
+A helyi fejlesztéshez használt gyakori adatbázisokat Dockerben az Unbloarchy menü _Telepítés > Fejlesztés > Docker DB_ menüpontjával állíthatod be.
 
 ## GitHub CLI
 

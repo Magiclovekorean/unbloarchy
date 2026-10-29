@@ -2,7 +2,7 @@
 
 Paprastai „Linux“ sistemoje, norėdami kopijuoti ir įklijuoti terminale, turite naudoti `Ctrl + Shift + C/V`, o visur kitur – `Ctrl + C/V`. Prie to sunku priprasti kiekvienam, kuris nėra gimęs ir užaugęs su „Linux“! Tas pats galioja ir perėjimui nuo super prie ctrl, jei ateinate iš „Mac“.
 
-Omarchy abi problemas sprendžia suvienodintais iškarpinės sparčiaisiais klavišais, kurie veikia (beveik) visur. Jie yra:
+Unbloarchy abi problemas sprendžia suvienodintais iškarpinės sparčiaisiais klavišais, kurie veikia (beveik) visur. Jie yra:
 
 | Spartusis klavišas | Komanda |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Naudokite `Super + A`, tada `Super + C`, kad nukopijuotumėte viską aktyviame t
 
 ### Iškarpinės istorija
 
-Iškarpinės istoriją teikia Omarchy apvalkalas ir ji veikia tiek tekstui, tiek vaizdams. Ją iškviečiate paspaudę `Super + Ctrl + V`, pasirenkate įrašą paspaudę return, ir tada jis bus įdėtas į iškarpinę, paruoštas įklijuoti paspaudus `Super + V`.
+Iškarpinės istoriją teikia Unbloarchy apvalkalas ir ji veikia tiek tekstui, tiek vaizdams. Ją iškviečiate paspaudę `Super + Ctrl + V`, pasirenkate įrašą paspaudę return, ir tada jis bus įdėtas į iškarpinę, paruoštas įklijuoti paspaudus `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

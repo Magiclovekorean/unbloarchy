@@ -10,7 +10,7 @@ Kartlar taşıdıklarını sunar: doğrulama kodları için _Kodu kopyala_ ([pan
 
 Bunları fare olmadan kullanmak için `Super + Ctrl + ,` tuşlarına bas. En yeni bildirim seçilir ve düğmeleri numaralandırılır: birini kullanmak için bir sayıya bas, bildirime tıklamak için `Enter`, bildirimler arasında gezinmek için `↑` ve `↓`, birini kapatmak için `Delete` ve klavyeyi geri vermek için `Esc` tuşuna bas. Birkaç saniye boşta kaldıktan sonra kendiliğinden de bırakır.
 
-Bildirimleri sessize almak, az önce senin istediğin Omarchy'nin kendi onayları, acil durum uyarıları ve doğrulama kodları dışında onları geri tutar. Son birkaçını, geri tutulmuş olsun ya da olmasın, `Super + Shift + Alt + ,` ile tekrar ekrana getir. Geçmiş bir gün boyunca saklanır.
+Bildirimleri sessize almak, az önce senin istediğin Unbloarchy'nin kendi onayları, acil durum uyarıları ve doğrulama kodları dışında onları geri tutar. Son birkaçını, geri tutulmuş olsun ya da olmasın, `Super + Shift + Alt + ,` ile tekrar ekrana getir. Geçmiş bir gün boyunca saklanır.
 
 ## Kısayol uyarıları
 
@@ -26,7 +26,7 @@ Bildirimleri sessize almak, az önce senin istediğin Omarchy'nin kendi onaylar�
 
  ![notice-weather](images/notice-weather.webp)
 
-Konum, IP adresinden tespit edilir; bu genellikle yeterince yakındır ama her zaman değil. `omarchy weather location --set Malibu` ile sabitleyebilir veya koordinat ekleyerek tam olarak belirtebilirsin: `omarchy weather location --set Malibu 34.0259,-118.7798`. Nerede olduğunu düşündüğünü görmek için `omarchy weather location` komutunu tek başına çalıştır, otomatik tespite geri dönmek için `--clear` kullan.
+Konum, IP adresinden tespit edilir; bu genellikle yeterince yakındır ama her zaman değil. `unbloarchy weather location --set Malibu` ile sabitleyebilir veya koordinat ekleyerek tam olarak belirtebilirsin: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Nerede olduğunu düşündüğünü görmek için `unbloarchy weather location` komutunu tek başına çalıştır, otomatik tespite geri dönmek için `--clear` kullan.
 
 ### Pil
 

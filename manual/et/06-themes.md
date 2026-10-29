@@ -1,8 +1,8 @@
 # Teemad
 
-Omarchyga on kaasas kakskümmend kaks ilusat teemat. Saad nende vahel valida Omarchy menüüs (`Super + Space`) valiku _Välimus > Teema_ kaudu või hüpata otse teemavalijasse, kasutades klahve `Super + Ctrl + T`.
+Unbloarchyga on kaasas kakskümmend kaks ilusat teemat. Saad nende vahel valida Unbloarchy menüüs (`Super + Space`) valiku _Välimus > Teema_ kaudu või hüpata otse teemavalijasse, kasutades klahve `Super + Ctrl + T`.
 
-Iga teema kujundab töölaua, terminali, neovimi, tegevusekraani (btop), Chromiumi ja kogu Omarchy kesta: ülemise riba, menüü, teavitused, OSD ja lukustuskuva. (Obsidiani puhul pead Omarchy teema käsitsi valima rakendusesiseselt valiku _Välimus > Teemad_ kaudu).
+Iga teema kujundab töölaua, terminali, neovimi, tegevusekraani (btop), Chromiumi ja kogu Unbloarchy kesta: ülemise riba, menüü, teavitused, OSD ja lukustuskuva. (Obsidiani puhul pead Unbloarchy teema käsitsi valima rakendusesiseselt valiku _Välimus > Teemad_ kaudu).
 
 Teemadel on hulk taustapilte, mille vahel saad valida, kasutades klahve `Super + Ctrl + W`.
 

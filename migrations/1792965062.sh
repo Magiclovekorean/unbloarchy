@@ -5,7 +5,7 @@ echo "Name the hibernation resume device by its filesystem UUID"
 # finds no image and the session is lost. Setup now writes the filesystem UUID,
 # and on a configured machine renames the device and rebuilds the boot image.
 drop_in=/etc/limine-entry-tool.d/resume.conf
-hook=/etc/mkinitcpio.conf.d/omarchy_resume.conf
+hook=/etc/mkinitcpio.conf.d/unbloarchy_resume.conf
 pending=/var/lib/omarchy/hibernation-resume-rebuild
 
 # A pending marker means setup renamed the device but the boot image was not
@@ -18,5 +18,5 @@ fi
 [[ -f $hook ]] && grep -q '^HOOKS+=(resume)$' "$hook" || exit 0
 
 # Setup leaves the marker if the boot image is not rebuilt and exits 1, which
-# keeps this migration pending for the next omarchy-migrate.
-omarchy-hibernation-setup
+# keeps this migration pending for the next unbloarchy-migrate.
+unbloarchy-hibernation-setup

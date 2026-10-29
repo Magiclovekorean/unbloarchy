@@ -22,7 +22,7 @@ Editor anotasi boleh melukis anak panah, garisan, bentuk, sorotan, penanda berno
 
 Tangkapan skrin yang disimpan mendarat di `~/Pictures/Screenshots` secara lalai, dengan nama seperti `screenshot-2026-08-13_14-22-05-firefox.png`. Tetapkan `OMASNAP_SCREENSHOT_DIR` untuk menggunakan direktori lain — lihat [Soalan Lazim](46-faq.md) untuk tempat meletakkan pemboleh ubah persekitaran sesi. Omasnap mencipta direktori itu apabila ia menyimpan tangkapan pertama. Tetapkan `[output] autosave = false` dalam `~/.config/omasnap/omasnap.conf` untuk melumpuhkan penyimpanan automatik; tangkapan kemudian hanya disalin, dan ditunjukkan dalam pratonton selama 10 saat yang boleh anda kekalkan pada skrin dengan butang pinnya atau `Ctrl + P`.
 
-Dari terminal, `omarchy screenshot` membuka lapisan yang sama, dan anda boleh memilih mod permulaannya: `omarchy capture screenshot region`, `windows`, `fullscreen`, atau `scroll`. Argumen kedua `copy` atau `save` menghantar tangkapan terus ke destinasi itu. Untuk mengedit sebelum output, gunakan `omarchy screenshot --editor=overlay` untuk editor skrin penuh atau `omarchy screenshot --editor=window` untuk tetingkap berasingan.
+Dari terminal, `unbloarchy screenshot` membuka lapisan yang sama, dan anda boleh memilih mod permulaannya: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, atau `scroll`. Argumen kedua `copy` atau `save` menghantar tangkapan terus ke destinasi itu. Untuk mengedit sebelum output, gunakan `unbloarchy screenshot --editor=overlay` untuk editor skrin penuh atau `unbloarchy screenshot --editor=window` untuk tetingkap berasingan.
 
 ### Memandu pemilih dari papan kekunci
 
@@ -41,9 +41,9 @@ Ikatan ini hanya wujud semasa Omasnap terbuka, jadi ia tidak boleh bertembung de
 
 ## Rakaman skrin
 
-`Alt + Print Screen` membuka _Trigger > Capture > Screenrecord_, yang bertanya apa yang anda mahu pada runut bunyi: tiada audio, audio desktop, desktop tambah mikrofon, atau desktop tambah mikrofon tambah kamera web. Yang terakhir itu hanya muncul jika anda memang ada kamera yang dipasang. Pilih satu dan pemilih rakaman Omarchy membolehkan anda menyeret kawasan atau mengklik tetingkap atau monitor.
+`Alt + Print Screen` membuka _Trigger > Capture > Screenrecord_, yang bertanya apa yang anda mahu pada runut bunyi: tiada audio, audio desktop, desktop tambah mikrofon, atau desktop tambah mikrofon tambah kamera web. Yang terakhir itu hanya muncul jika anda memang ada kamera yang dipasang. Pilih satu dan pemilih rakaman Unbloarchy membolehkan anda menyeret kawasan atau mengklik tetingkap atau monitor.
 
-Rakaman berjalan pada gpu-screen-recorder, yang mengekod pada GPU pada 60fps dan berundur kepada CPU jika terpaksa. Hasilnya ialah MP4 dalam `~/Videos`, dinamakan `screenrecording-2026-08-13_14-22-05.mp4`. Tetapkan `OMARCHY_SCREENRECORD_DIR` untuk mengubahnya — tetapi ambil perhatian bahawa tidak seperti direktori tangkapan skrin, direktori ini mesti sudah wujud, atau rakaman enggan bermula.
+Rakaman berjalan pada gpu-screen-recorder, yang mengekod pada GPU pada 60fps dan berundur kepada CPU jika terpaksa. Hasilnya ialah MP4 dalam `~/Videos`, dinamakan `screenrecording-2026-08-13_14-22-05.mp4`. Tetapkan `UNBLOARCHY_SCREENRECORD_DIR` untuk mengubahnya — tetapi ambil perhatian bahawa tidak seperti direktori tangkapan skrin, direktori ini mesti sudah wujud, atau rakaman enggan bermula.
 
 Semasa anda merakam, penunjuk kecil muncul dalam bar. Klik padanya untuk berhenti. Anda juga boleh berhenti dengan `Alt + Print Screen` sekali lagi, atau dengan entri _Stop Screenrecording_ di bawah _Trigger > Capture > Screenrecord_, yang hanya muncul semasa sesuatu memang sedang dirakam.
 
@@ -60,7 +60,7 @@ Apabila anda merakam dengan kamera web, kamera itu muncul sebagai tetingkap potr
 
 Ada tiga saiz — kecil, sederhana, dan besar — dan kekunci pintas bergerak antara saiz itu. Sederhana ialah lalai. Saiz itu berkadar dengan rakaman, jadi kamera mengambil bahagian bingkai yang sama sama ada anda merakam monitor 1080p atau monitor 6K. Dan jika anda merakam kawasan dan bukannya keseluruhan paparan, lapisan itu berlabuh pada sudut kawasan itu dan bukannya sudut monitor, jadi ia kekal di dalam tangkapan.
 
-Anda juga boleh memanggilnya terus dengan `omarchy-capture-webcam-resize small`, atau `reset` untuk kembali kepada sederhana.
+Anda juga boleh memanggilnya terus dengan `unbloarchy-capture-webcam-resize small`, atau `reset` untuk kembali kepada sederhana.
 
 ## Teks, kod QR, dan warna
 
@@ -76,7 +76,7 @@ Rakaman skrin 4K atau HEIC mentah daripada telefon anda selalunya terlalu besar 
 
 Gambar pergi ke jpg atau png pada tinggi, sederhana, atau rendah, yang mengehadkan lebar pada 3160, 2160, dan 1080 piksel. Video pergi ke mp4 atau gif beranimasi pada 4k, 1080p, atau 720p. Fail yang ditukar ditulis di sebelah fail asal dengan resolusi dalam nama — `demo-1080p.mp4` — dan laluan disalin ke papan klip sebagai URI fail, jadi anda boleh menampalnya terus ke dalam aplikasi yang menerima jatuhan fail.
 
-Ia juga berfungsi dari terminal, jika anda sudah tahu apa yang anda mahu: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Ada juga `omarchy transcode ascii`, yang menukar imej menjadi seni ASCII — yang itu kebanyakannya untuk [penjenamaan](41-branding.md).
+Ia juga berfungsi dari terminal, jika anda sudah tahu apa yang anda mahu: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Ada juga `unbloarchy transcode ascii`, yang menukar imej menjadi seni ASCII — yang itu kebanyakannya untuk [penjenamaan](41-branding.md).
 
 ## Menghantarnya ke suatu tempat
 

@@ -2,7 +2,7 @@
 
 Biasanya di Linux, kamu perlu `Ctrl + Shift + C/V` untuk menyalin dan menempel di terminal dan `Ctrl + C/V` untuk melakukannya di semua tempat lain. Itu sulit dibiasakan oleh siapa pun yang tidak lahir dan besar di Linux! Begitu juga perpindahan dari Super ke Ctrl, jika kamu datang dari Mac.
 
-Omarchy mengatasi kedua masalah itu dengan tombol pintas papan klip terpadu yang berfungsi (hampir) di semua tempat. Tombol pintas tersebut adalah:
+Unbloarchy mengatasi kedua masalah itu dengan tombol pintas papan klip terpadu yang berfungsi (hampir) di semua tempat. Tombol pintas tersebut adalah:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Gunakan `Super + A`, lalu `Super + C` untuk menyalin semua isi kolom teks yang s
 
 ### Riwayat papan klip
 
-Riwayat papan klip disediakan oleh shell Omarchy dan berfungsi untuk teks maupun gambar. Kamu membukanya dengan `Super + Ctrl + V`, memilih entri dengan return, lalu entri tersebut akan ditempatkan di papan klip dan siap ditempel dengan `Super + V`.
+Riwayat papan klip disediakan oleh shell Unbloarchy dan berfungsi untuk teks maupun gambar. Kamu membukanya dengan `Super + Ctrl + V`, memilih entri dengan return, lalu entri tersebut akan ditempatkan di papan klip dan siap ditempel dengan `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

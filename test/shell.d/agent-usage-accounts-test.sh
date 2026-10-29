@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Several accounts registered with `omarchy agent account`: the Claude and
+# Several accounts registered with `unbloarchy agent account`: the Claude and
 # Codex records list each one with its own plan and limits, asked with its
 # own sign-in, while the record's own fields describe the active account.
 # Grok's accounts are covered in its own test, and the registry's reading in
@@ -118,7 +118,7 @@ PY
 # -------------------------------------------------------------------- codex
 
 home=$(new_home codex)
-accounts="$home/.local/state/omarchy/agents/accounts"
+accounts="$home/.local/state/unbloarchy/agents/accounts"
 mkdir -p "$home/.codex/sessions" "$accounts/codex/side"
 touch "$home/.codex/auth.json" "$accounts/codex/side/auth.json"
 cat >"$accounts/codex.json" <<JSON

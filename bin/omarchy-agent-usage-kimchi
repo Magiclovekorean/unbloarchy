@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-# omarchy:summary=Print the Kimchi usage record as JSON
-# omarchy:args=[--force] [--limits-only]
-# omarchy:hidden=true
+# unbloarchy:summary=Print the Kimchi usage record as JSON
+# unbloarchy:args=[--force] [--limits-only]
+# unbloarchy:hidden=true
 """Collect Kimchi usage into one display-ready JSON record.
 
 The plan, prepaid credits, and spend budgets come from the gateway endpoints
@@ -25,7 +25,7 @@ from pathlib import Path
 
 # The shared collector plumbing ships with the agents panel.
 sys.dont_write_bytecode = True
-sys.path.insert(0, os.path.join(os.environ["OMARCHY_PATH"], "shell", "plugins", "agents"))
+sys.path.insert(0, os.path.join(os.environ["UNBLOARCHY_PATH"], "shell", "plugins", "agents"))
 from collectors import (  # noqa: E402
   HttpError,
   LimitsCache,
@@ -156,7 +156,7 @@ def gateway():
 
 
 def get_json(url, key):
-  request = urllib.request.Request(url, headers={"Authorization": f"Bearer {key}", "Accept": "application/json", "User-Agent": "omarchy-agent-usage-kimchi"})
+  request = urllib.request.Request(url, headers={"Authorization": f"Bearer {key}", "Accept": "application/json", "User-Agent": "unbloarchy-agent-usage-kimchi"})
   return open_json(request, timeout=8)
 
 

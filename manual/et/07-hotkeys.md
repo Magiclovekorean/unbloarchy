@@ -6,7 +6,7 @@ Kõiki peamisi klahvikombinatsioone näed klahvidega `Super + K` (Tmuxi kombinat
 
 | Kiirklahv                  | Funktsioon              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy menüü (rakendused ja kõik muu)    |
+| `Super + Space`           | Unbloarchy menüü (rakendused ja kõik muu)    |
 | `Super + Alt + Space` | Rakenduste ruudustik |
 | `Super + Escape` | Süsteemimenüü (peatamine, taaskäivitus jne)  |
 | `Super + Ctrl + L` | Lukusta arvuti |
@@ -143,7 +143,7 @@ Muuda/lisa seoseid failis `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Kleebi    |
 | `Super + Ctrl + V`           | Lõikelaua haldur    |
 
-Linuxis on tavaliselt vaja terminalis kopeerimiseks ja kleepimiseks `Ctrl + Shift + C/V` ja kõikjal mujal `Ctrl + C/V`. Need Omarchy ühtsed lõikelaua kiirklahvid töötavad kõikjal.
+Linuxis on tavaliselt vaja terminalis kopeerimiseks ja kleepimiseks `Ctrl + Shift + C/V` ja kõikjal mujal `Ctrl + C/V`. Need Unbloarchy ühtsed lõikelaua kiirklahvid töötavad kõikjal.
 
 ## Hõive
 
@@ -164,7 +164,7 @@ Linuxis on tavaliselt vaja terminalis kopeerimiseks ja kleepimiseks `Ctrl + Shif
 
 Ekraanisalvestuste puhul küsib kiirklahv esmalt, millist heli soovid, seejärel alustab salvestamist. Peatamiseks vajuta seda uuesti. Üksikasju vaata jaotisest [ekraanipildid ja salvestamine](12-screenshots-recording.md).
 
-Kõik hõivevalikud on saadaval ka Omarchy menüüs (`Super + Space`) jaotises _Trigger > Capture_.
+Kõik hõivevalikud on saadaval ka Unbloarchy menüüs (`Super + Space`) jaotises _Trigger > Capture_.
 
 ## Teavitused
 
@@ -186,9 +186,9 @@ Kõik hõivevalikud on saadaval ka Omarchy menüüs (`Super + Space`) jaotises _
 | `Super + Backspace` | Lülita akna läbipaistvust |
 | `Super + Ctrl + Backspace` | Lülita ühe akna ruudukujulist kuvasuhet |
 
-Lisataustapildid asuvad kaustas `~/.config/omarchy/backgrounds/<theme name>`. Saadaval ka Omarchy menüüs jaotises _Install > Style > Background_.
+Lisataustapildid asuvad kaustas `~/.config/unbloarchy/backgrounds/<theme name>`. Saadaval ka Unbloarchy menüüs jaotises _Install > Style > Background_.
 
-Kõik stiilivalikud on saadaval ka Omarchy menüüs (`Super + Space`) jaotises _Style_.
+Kõik stiilivalikud on saadaval ka Unbloarchy menüüs (`Super + Space`) jaotises _Style_.
 
 ## Lülitid
 
@@ -289,7 +289,7 @@ Neid funktsioone tuleb käitada Tmuxi seansi sees.
 
 ## Ghostty Terminal
 
-Ghostty terminal installitakse Omarchy menüü kaudu jaotises _Install > Terminal_.
+Ghostty terminal installitakse Unbloarchy menüü kaudu jaotises _Install > Terminal_.
 
 | Kiirklahv                  | Funktsioon              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Saad kasutada klahve `Super + Ctrl + E`, et näidata täielikku emoji valijat, m
 | `Shift + CapsLock Space N` | Sinu nimi (nagu seadistamisel sisestatud)  |
 | `Shift + CapsLock Space E` | Sinu e-post (nagu seadistamisel sisestatud)  |
 
-Saad ise juurde lisada, muutes faili `~/.XCompose`, seejärel käita terminalis `omarchy-restart-xcompose`, et muudatused kasutusele võetaks.
+Saad ise juurde lisada, muutes faili `~/.XCompose`, seejärel käita terminalis `unbloarchy-restart-xcompose`, et muudatused kasutusele võetaks.

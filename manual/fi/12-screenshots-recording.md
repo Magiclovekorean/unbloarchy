@@ -22,7 +22,7 @@ Merkintäeditorilla voi piirtää nuolia, viivoja, muotoja, korostuksia, numeroi
 
 Tallennetut kuvakaappaukset päätyvät oletuksena kansioon `~/Pictures/Screenshots` nimellä kuten `screenshot-2026-08-13_14-22-05-firefox.png`. Aseta `OMASNAP_SCREENSHOT_DIR` käyttääksesi toista kansiota — katso [UKK](46-faq.md), niin tiedät, minne istunnon ympäristömuuttujat laitetaan. Omasnap luo kansion tallentaessaan ensimmäisen kuvan. Aseta `[output] autosave = false` tiedostossa `~/.config/omasnap/omasnap.conf` poistaaksesi automaattisen tallennuksen käytöstä; kaappaukset sitten vain kopioidaan ja näytetään 10 sekunnin esikatselussa, jonka voit pitää näytöllä sen kiinnityspainikkeella tai `Ctrl + P` -näppäimillä.
 
-Päätteestä `omarchy screenshot` avaa saman päällyskuvan, ja voit valita sen aloitustilan: `omarchy capture screenshot region`, `windows`, `fullscreen` tai `scroll`. Toinen argumentti `copy` tai `save` lähettää kuvan suoraan kyseiseen kohteeseen. Jos haluat muokata ennen tulostusta, käytä komentoa `omarchy screenshot --editor=overlay` koko näytön editoriin tai `omarchy screenshot --editor=window` erilliseen ikkunaan.
+Päätteestä `unbloarchy screenshot` avaa saman päällyskuvan, ja voit valita sen aloitustilan: `unbloarchy capture screenshot region`, `windows`, `fullscreen` tai `scroll`. Toinen argumentti `copy` tai `save` lähettää kuvan suoraan kyseiseen kohteeseen. Jos haluat muokata ennen tulostusta, käytä komentoa `unbloarchy screenshot --editor=overlay` koko näytön editoriin tai `unbloarchy screenshot --editor=window` erilliseen ikkunaan.
 
 ### Valitsimen käyttäminen näppäimistöllä
 
@@ -41,9 +41,9 @@ Nämä sidonnat ovat olemassa vain Omasnapin ollessa auki, joten ne eivät voi t
 
 ## Näytön tallennus
 
-`Alt + Print Screen` avaa _Trigger > Capture > Screenrecord_, joka kysyy, mitä ääniraidalle haluat: ei ääntä, työpöydän äänen, työpöydän ja mikrofonin tai työpöydän, mikrofonin ja verkkokameran. Viimeinen näkyy vain, jos sinulla on oikeasti kamera kytkettynä. Valitse yksi, niin Omarchyn tallennusvalitsin antaa vetää alueen tai napsauttaa ikkunaa tai näyttöä.
+`Alt + Print Screen` avaa _Trigger > Capture > Screenrecord_, joka kysyy, mitä ääniraidalle haluat: ei ääntä, työpöydän äänen, työpöydän ja mikrofonin tai työpöydän, mikrofonin ja verkkokameran. Viimeinen näkyy vain, jos sinulla on oikeasti kamera kytkettynä. Valitse yksi, niin Unbloarchyn tallennusvalitsin antaa vetää alueen tai napsauttaa ikkunaa tai näyttöä.
 
-Tallennus toimii gpu-screen-recorderilla, joka koodaa GPU:lla 60 fps:n nopeudella ja palaa CPU:hun, jos sen on pakko. Tuloksena on MP4 kansiossa `~/Videos` nimellä `screenrecording-2026-08-13_14-22-05.mp4`. Aseta `OMARCHY_SCREENRECORD_DIR` muuttaaksesi sitä — mutta huomaa, että toisin kuin kuvakaappauskansio, tämän on oltava jo olemassa, tai tallennus kieltäytyy käynnistymästä.
+Tallennus toimii gpu-screen-recorderilla, joka koodaa GPU:lla 60 fps:n nopeudella ja palaa CPU:hun, jos sen on pakko. Tuloksena on MP4 kansiossa `~/Videos` nimellä `screenrecording-2026-08-13_14-22-05.mp4`. Aseta `UNBLOARCHY_SCREENRECORD_DIR` muuttaaksesi sitä — mutta huomaa, että toisin kuin kuvakaappauskansio, tämän on oltava jo olemassa, tai tallennus kieltäytyy käynnistymästä.
 
 Tallentaessasi palkkiin ilmestyy pieni ilmaisin. Napsauta sitä lopettaaksesi. Voit lopettaa myös painamalla `Alt + Print Screen` uudelleen tai kohdasta _Stop Screenrecording_ valikossa _Trigger > Capture > Screenrecord_, joka näkyy vain, kun jotain oikeasti tallennetaan.
 
@@ -60,7 +60,7 @@ Kun tallennat verkkokameran kanssa, kamera näkyy kiinnitettynä, rajattuna muot
 
 Kokoja on kolme — pieni, keskikokoinen ja suuri — ja pikanäppäimet liikkuvat niiden välillä. Keskikokoinen on oletus. Ne ovat suhteessa tallenteeseen, joten kamera vie saman osuuden ruudusta, tallensitpa 1080p-näyttöä tai 6K-näyttöä. Ja jos tallensit alueen koko näytön sijaan, päällyskuva ankkuroituu kyseisen alueen kulmaan näytön kulman sijaan, joten se pysyy kuvan sisällä.
 
-Voit kutsua sitä myös suoraan komennolla `omarchy-capture-webcam-resize small` tai `reset` palataksesi keskikokoiseen.
+Voit kutsua sitä myös suoraan komennolla `unbloarchy-capture-webcam-resize small` tai `reset` palataksesi keskikokoiseen.
 
 ## Teksti, QR-koodit ja värit
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ tekee saman tempun QR-koodeille. Valitse alue, jos
 
 Kuvat menevät jpg:ksi tai png:ksi korkealla, keskitasoisella tai matalalla laadulla, jotka rajoittavat leveyden 3160, 2160 ja 1080 pikseliin. Videot menevät mp4:ksi tai animoiduksi gif:ksi tarkkuuksilla 4k, 1080p tai 720p. Muunnettu tiedosto kirjoitetaan alkuperäisen viereen resoluutio nimessään — `demo-1080p.mp4` — ja polku kopioidaan leikepöydälle tiedoston URI:na, joten voit liittää sen suoraan sovellukseen, joka ottaa vastaan tiedostopudotuksia.
 
-Se toimii myös päätteestä, jos tiedät jo, mitä haluat: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. On myös `omarchy transcode ascii`, joka muuttaa kuvan ASCII-taiteeksi — se on lähinnä [brändäystä](41-branding.md) varten.
+Se toimii myös päätteestä, jos tiedät jo, mitä haluat: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. On myös `unbloarchy transcode ascii`, joka muuttaa kuvan ASCII-taiteeksi — se on lähinnä [brändäystä](41-branding.md) varten.
 
 ## Lähettäminen jonnekin
 

@@ -1,6 +1,6 @@
 # Shellfunktioner
 
-Omarchy levereras med en uppsättning shellfunktioner för att förenkla vanliga uppgifter och kapsla in invecklade parameteranrop.
+Unbloarchy levereras med en uppsättning shellfunktioner för att förenkla vanliga uppgifter och kapsla in invecklade parameteranrop.
 
 ## Komprimering
 

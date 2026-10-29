@@ -1,8 +1,8 @@
 # සංචලනය
 
-Omarchy තුළ සෑම දෙයක්ම සිදුවන්නේ යතුරුපුවරුව හරහායි — _සෑම දෙයක්ම!_ පද්ධතිය මුලින්ම ආරම්භ වන විට, මූසිකය පමණක් භාවිතයෙන් ඔබට වචනාර්ථයෙන්ම කිසිවක් කළ නොහැකිය. නමුත් ඔබට `Super + Space` එබීමෙන් Omarchy Menu එක දිස් කරවාගත හැකි අතර මෙතැනින් සිට ඔබට බොහෝමයක් සෑම දෙයක්ම පාහේ කළ හැකිය.
+Unbloarchy තුළ සෑම දෙයක්ම සිදුවන්නේ යතුරුපුවරුව හරහායි — _සෑම දෙයක්ම!_ පද්ධතිය මුලින්ම ආරම්භ වන විට, මූසිකය පමණක් භාවිතයෙන් ඔබට වචනාර්ථයෙන්ම කිසිවක් කළ නොහැකිය. නමුත් ඔබට `Super + Space` එබීමෙන් Unbloarchy Menu එක දිස් කරවාගත හැකි අතර මෙතැනින් සිට ඔබට බොහෝමයක් සෑම දෙයක්ම පාහේ කළ හැකිය.
 
-නමුත් Omarchy menu එක බොහෝ වේලාවට පද්ධතිය ක්‍රියාත්මක කරන ප්‍රධාන ක්‍රමය වීමට පවා අදහස් කර නැත. අපට ඊට වඩා වේගවත් විය හැකිය! වඩාත්ම වැදගත් යෙදුම් සියල්ලම තනි hotkeys වලට කෙලින්ම බැඳී ඇත. ඔබ `Super + Return` සමඟ terminal එකත් `Super + Shift + Return` සමඟ browser එකත් ආරම්භ කරයි. එකක් පිටුපස එකක් ලෙස උත්සාහ කර බලන්න, එවිට Hyprland's tiling හි මැජික් එක ක්‍රියාවෙන් දැකගත හැකිය:
+නමුත් Unbloarchy menu එක බොහෝ වේලාවට පද්ධතිය ක්‍රියාත්මක කරන ප්‍රධාන ක්‍රමය වීමට පවා අදහස් කර නැත. අපට ඊට වඩා වේගවත් විය හැකිය! වඩාත්ම වැදගත් යෙදුම් සියල්ලම තනි hotkeys වලට කෙලින්ම බැඳී ඇත. ඔබ `Super + Return` සමඟ terminal එකත් `Super + Shift + Return` සමඟ browser එකත් ආරම්භ කරයි. එකක් පිටුපස එකක් ලෙස උත්සාහ කර බලන්න, එවිට Hyprland's tiling හි මැජික් එක ක්‍රියාවෙන් දැකගත හැකිය:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ monitor එකකට වැඩිය ඇති විට, සෑම monitor එ�
 
 ### Dwindle එදිරිව scrolling layout
 
-Omarchy හි default layout එක dwindle ලෙස හැඳින්වේ. එය ඔබ තනි workspace එකක විවෘත කරන සියලුම කවුළු සෑම විටම දෘශ්‍යමානව තබයි, ඒවා හැකිලීමට සිදු වුවද.
+Unbloarchy හි default layout එක dwindle ලෙස හැඳින්වේ. එය ඔබ තනි workspace එකක විවෘත කරන සියලුම කවුළු සෑම විටම දෘශ්‍යමානව තබයි, ඒවා හැකිලීමට සිදු වුවද.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 පාවෙන workspace එකක් සාම්ප්‍රදායික desktop එකක් මෙන් ක්‍රියා කරයි: කවුළු එක මත එක වැටෙන අතර, ඔබ ඒවාම ගෙන ගොස් size කරයි. සෑම කවුළුවකටම ඔබේ theme එකේ වර්ණවලින් titlebar එකක් ලැබෙන අතර, minimize, maximize, සහ close කිරීමට බොත්තම් ඇත. `Super + M` focused කවුළුවද minimize කරයි. minimize කළ කවුළුවක් dock එකේ බලා සිටියි; එය ආපසු ගෙන ඒමට එහි app එක click කරන්න. කවුළුවක් ඉදිරියට ගෙන ඒමට එය click කරන්න. ඕනෑම කෙළවරකින් හෝ කොනකින් එය resize කරන්න. ඉහළ තීරුව දෘශ්‍යමානව තබාගෙන කවුළුව maximize කිරීමට titlebar එකක් double-click කරන්න, සහ එහි පැරණි size එක ආපසු ලබා ගැනීමට නැවත එසේ කරන්න.
 
-පාවෙන workspace එකක් dock එකක්ද පෙන්වයි, ඔබේ pinned apps, ක්‍රියාත්මක වන සියල්ල, සහ apps button එක පිටුපස ඇති සෑම app එකකම grid එකක් සමඟ, එය `Super + Alt + Space` සහ Omarchy menu එකේ _Apps_ ද විවෘත කරයි. grid එකේ app එකක් right-click කරන්න, හෝ `Delete` ඔබන්න, එය uninstall කිරීමට. app එකක් විවෘත කිරීමට, හෝ එහි කවුළුව ඉදිරියට ගෙන ඒමට එය click කරන්න; එහි කවුළු හරහා චක්‍රීයව යාමට නැවත click කරන්න. Middle-click නව කවුළුවක් විවෘත කරයි. icon එකක් dock එක දිගේ ගෙන ගොස් එය ගෙන යන්න; ක්‍රියාත්මක වන app එකක් අනෙක් ඒවා අතරට ඇදගෙන යාමෙන් එය එහි රඳවා ගනියි. app එකක් dock එකේ තබා ගැනීමට, එය ඉවත් කිරීමට, හෝ එය quit කිරීමට right-click කරන්න. dock එක fullscreen කවුළුවකට ඉඩ දී පසෙකට වේ. dock එක වෙනත් කෙළවරකට ගෙන යාමට හෝ pointer එක එහි කෙළවරට ළඟා වන තුරු එය සැඟවී තිබීමට apps button එක right-click කරන්න. ස්ථානය _Appearance > Dock > Dock Position_ යටතේද ඇති අතර, `omarchy dock position left` සහ `omarchy dock autohide on` දෙකම terminal එකකින් සකසයි. ඔබ dock එකේ තබා ගන්නා Apps ඒවා ක්‍රියාත්මක නොවන විට මැකී ගොස් ඇත.
+පාවෙන workspace එකක් dock එකක්ද පෙන්වයි, ඔබේ pinned apps, ක්‍රියාත්මක වන සියල්ල, සහ apps button එක පිටුපස ඇති සෑම app එකකම grid එකක් සමඟ, එය `Super + Alt + Space` සහ Unbloarchy menu එකේ _Apps_ ද විවෘත කරයි. grid එකේ app එකක් right-click කරන්න, හෝ `Delete` ඔබන්න, එය uninstall කිරීමට. app එකක් විවෘත කිරීමට, හෝ එහි කවුළුව ඉදිරියට ගෙන ඒමට එය click කරන්න; එහි කවුළු හරහා චක්‍රීයව යාමට නැවත click කරන්න. Middle-click නව කවුළුවක් විවෘත කරයි. icon එකක් dock එක දිගේ ගෙන ගොස් එය ගෙන යන්න; ක්‍රියාත්මක වන app එකක් අනෙක් ඒවා අතරට ඇදගෙන යාමෙන් එය එහි රඳවා ගනියි. app එකක් dock එකේ තබා ගැනීමට, එය ඉවත් කිරීමට, හෝ එය quit කිරීමට right-click කරන්න. dock එක fullscreen කවුළුවකට ඉඩ දී පසෙකට වේ. dock එක වෙනත් කෙළවරකට ගෙන යාමට හෝ pointer එක එහි කෙළවරට ළඟා වන තුරු එය සැඟවී තිබීමට apps button එක right-click කරන්න. ස්ථානය _Appearance > Dock > Dock Position_ යටතේද ඇති අතර, `unbloarchy dock position left` සහ `unbloarchy dock autohide on` දෙකම terminal එකකින් සකසයි. ඔබ dock එකේ තබා ගන්නා Apps ඒවා ක්‍රියාත්මක නොවන විට මැකී ගොස් ඇත.
 
-නව workspaces, සහ `Super + L` සමඟ ඔබ තමාගේම layout එකක් දී නැති ඕනෑම එකක්, default layout එක භාවිතා කරයි. default එක වෙනස් කිරීමෙන් කවුළු නැති සෑම workspace එකක්ම එයට reset වන අතර, කවුළු ඇති එකක් එහි ඇති layout එක තබා ගනියි. dock එකට minimize කළ කවුළුවක් තවමත් එය හැර ගිය workspace එකේ කවුළුවක් ලෙස ගණන් ගනු ලැබේ. එය _Appearance > Workspace Layout_ යටතේ තෝරන්න: Tiling, Scrolling, හෝ Floating. `omarchy-hyprland-workspace-layout-default scrolling` එය terminal එකකින් සකසයි.
+නව workspaces, සහ `Super + L` සමඟ ඔබ තමාගේම layout එකක් දී නැති ඕනෑම එකක්, default layout එක භාවිතා කරයි. default එක වෙනස් කිරීමෙන් කවුළු නැති සෑම workspace එකක්ම එයට reset වන අතර, කවුළු ඇති එකක් එහි ඇති layout එක තබා ගනියි. dock එකට minimize කළ කවුළුවක් තවමත් එය හැර ගිය workspace එකේ කවුළුවක් ලෙස ගණන් ගනු ලැබේ. එය _Appearance > Workspace Layout_ යටතේ තෝරන්න: Tiling, Scrolling, හෝ Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` එය terminal එකකින් සකසයි.
 
 ### කවුළු කාණ්ඩ කිරීම
 

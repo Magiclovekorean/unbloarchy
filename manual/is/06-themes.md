@@ -1,8 +1,8 @@
 # Þemu
 
-Omarchy kemur með tuttugu og tvö falleg þemu. Þú getur valið á milli þeirra í gegnum _Útlit > Þema_ í Omarchy-valmyndinni (`Super + Space`) eða farið beint í þemavalið með `Super + Ctrl + T`.
+Unbloarchy kemur með tuttugu og tvö falleg þemu. Þú getur valið á milli þeirra í gegnum _Útlit > Þema_ í Unbloarchy-valmyndinni (`Super + Space`) eða farið beint í þemavalið með `Super + Ctrl + T`.
 
-Hvert þema stílar skjáborðið, útstöðina, neovim, virkniskjáinn (btop), Chromium og alla Omarchy-skelina: efstu stikuna, valmyndina, tilkynningar, OSD og læsiskjáinn. (Í Obsidian verður þú að velja Omarchy-þemað handvirkt í gegnum _Útlit > Þemu_ inni í forritinu).
+Hvert þema stílar skjáborðið, útstöðina, neovim, virkniskjáinn (btop), Chromium og alla Unbloarchy-skelina: efstu stikuna, valmyndina, tilkynningar, OSD og læsiskjáinn. (Í Obsidian verður þú að velja Unbloarchy-þemað handvirkt í gegnum _Útlit > Þemu_ inni í forritinu).
 
 Þemu eru með safn bakgrunnsmynda sem þú getur valið á milli með `Super + Ctrl + W`.
 

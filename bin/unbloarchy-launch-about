@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Launch the fastfetch TUI that gives information about the current system.
+# unbloarchy:summary=Launch the fastfetch TUI that gives information about the current system.
 
 # The size that hugs the About content depends on the terminal font and the user's
 # logo, so it can only be measured from inside the terminal. We remember the size
@@ -8,12 +8,12 @@
 # it instead of resizing after the first paint. Bash defers WINCH traps while read
 # blocks, so poll for size changes and re-render fastfetch whenever it is resized.
 
-LOGO_FILE="$HOME/.config/omarchy/branding/about.txt"
-FIT_FILE="$HOME/.local/state/omarchy/windows/about.fit"
-OMARCHY_FASTFETCH_DIR=/etc/fastfetch
+LOGO_FILE="$HOME/.config/unbloarchy/branding/about.txt"
+FIT_FILE="$HOME/.local/state/unbloarchy/windows/about.fit"
+UNBLOARCHY_FASTFETCH_DIR=/etc/fastfetch
 # Without a runtime directory there is nowhere private to put the translated
 # copy, so the untranslated config runs as it is.
-ABOUT_CONFIG=${XDG_RUNTIME_DIR:+$XDG_RUNTIME_DIR/omarchy/about-fastfetch.jsonc}
+ABOUT_CONFIG=${XDG_RUNTIME_DIR:+$XDG_RUNTIME_DIR/unbloarchy/about-fastfetch.jsonc}
 
 # The logo block in the fastfetch config. The fit below reproduces this layout to
 # size the window, and the sheen has to repaint the very cells fastfetch drew the
@@ -35,11 +35,11 @@ POLL_SECONDS=0.5
 
 # fastfetch has no animation of its own, so the sheen is ours. It knows about a
 # logo and nothing about About, which is why it is a file of its own.
-source omarchy-branding-about-animation
+source unbloarchy-branding-about-animation
 
 # A user's own fastfetch config can relocate or restyle the logo in ways this
 # measurement cannot see, so leave sizing to the float rule in that case. It can
-# sit in any of several directories fastfetch searches ahead of Omarchy's own, so
+# sit in any of several directories fastfetch searches ahead of Unbloarchy's own, so
 # ask fastfetch for that order rather than keep a copy here for its next release
 # to outdate.
 custom_fastfetch_config() {
@@ -50,7 +50,7 @@ custom_fastfetch_config() {
   while IFS= read -r directory; do
     listed=true
     directory=${directory% (\*)}
-    [[ ${directory%/} == "$OMARCHY_FASTFETCH_DIR" ]] && return 1
+    [[ ${directory%/} == "$UNBLOARCHY_FASTFETCH_DIR" ]] && return 1
     [[ -f ${directory%/}/config.jsonc ]] && return 0
   done < <(fastfetch --list-config-paths 2>/dev/null)
 
@@ -80,7 +80,7 @@ about_heading() {
 }
 
 # fastfetch has no translations of its own, so the About box runs from a copy of
-# Omarchy's config with its section headings and keys in the current language.
+# Unbloarchy's config with its section headings and keys in the current language.
 # Rows the copy does not recognise, as after a user edit, stay as they are.
 write_about_config() {
   local headings keys
@@ -88,12 +88,12 @@ write_about_config() {
   [[ -n $ABOUT_CONFIG ]] || return 0
 
   headings=$(jq -n \
-    --arg hardware "$(about_heading Hardware)" --arg hardware_to "$(about_heading "$(omarchy-i18n about.hardware)")" \
-    --arg software "$(about_heading Software)" --arg software_to "$(about_heading "$(omarchy-i18n about.software)")" \
-    --arg age "$(about_heading "Age / Uptime / Update")" --arg age_to "$(about_heading "$(omarchy-i18n about.ageUptimeUpdate)")" \
+    --arg hardware "$(about_heading Hardware)" --arg hardware_to "$(about_heading "$(unbloarchy-i18n about.hardware)")" \
+    --arg software "$(about_heading Software)" --arg software_to "$(about_heading "$(unbloarchy-i18n about.software)")" \
+    --arg age "$(about_heading "Age / Uptime / Update")" --arg age_to "$(about_heading "$(unbloarchy-i18n about.ageUptimeUpdate)")" \
     '{($hardware): $hardware_to, ($software): $software_to, ($age): $age_to}')
   keys=$(jq -n \
-    --arg age "$(omarchy-i18n about.osAge)" --arg uptime "$(omarchy-i18n about.uptime)" --arg update "$(omarchy-i18n about.update)" \
+    --arg age "$(unbloarchy-i18n about.osAge)" --arg uptime "$(unbloarchy-i18n about.uptime)" --arg update "$(unbloarchy-i18n about.update)" \
     '{"OS Age": $age, "Uptime": $uptime, "Update": $update}')
 
   mkdir -p "${ABOUT_CONFIG%/*}"
@@ -104,7 +104,7 @@ write_about_config() {
         (.key | capture("^(?<icon>\\S+) (?<label>.+)$")) as $k
         | if $keys[$k.label] then .key = "\($k.icon) \($keys[$k.label])" else . end
       else . end
-    )' "$OMARCHY_FASTFETCH_DIR/config.jsonc" >"$ABOUT_CONFIG.new"
+    )' "$UNBLOARCHY_FASTFETCH_DIR/config.jsonc" >"$ABOUT_CONFIG.new"
   then
     mv "$ABOUT_CONFIG.new" "$ABOUT_CONFIG"
   else
@@ -148,9 +148,9 @@ remember_fit() {
 # starting size — where a Hyprland without the Lua API stays too.
 apply_size_rule() {
   local rule=""
-  (( $# == 2 )) && rule="omarchy_about_size_rule = hl.window_rule({ match = { class = \"org.omarchy.about\" }, size = { $1, $2 } })"
+  (( $# == 2 )) && rule="unbloarchy_about_size_rule = hl.window_rule({ match = { class = \"org.unbloarchy.about\" }, size = { $1, $2 } })"
 
-  hyprctl eval "if omarchy_about_size_rule then omarchy_about_size_rule:set_enabled(false) end; omarchy_about_size_rule = nil; $rule" >/dev/null 2>&1
+  hyprctl eval "if unbloarchy_about_size_rule then unbloarchy_about_size_rule:set_enabled(false) end; unbloarchy_about_size_rule = nil; $rule" >/dev/null 2>&1
 }
 
 # Sized before the terminal is spawned, so the window maps at its final size.
@@ -219,7 +219,7 @@ fit_window() {
   local nudges=0 rows cols address width height shift_w shift_h target_w target_h
   while :; do
     read -r rows cols <<<"$(stty size)"
-    read -r address width height <<<"$(hyprctl clients -j | jq -r '.[] | select(.class == "org.omarchy.about") | "\(.address) \(.size[0]) \(.size[1])"')"
+    read -r address width height <<<"$(hyprctl clients -j | jq -r '.[] | select(.class == "org.unbloarchy.about") | "\(.address) \(.size[0]) \(.size[1])"')"
     [[ -n ${address:-} ]] || return 1
     (( cols > 0 && rows > 0 && width > 0 && height > 0 )) || return 1
 
@@ -421,4 +421,4 @@ if [[ ${1:-} == "--render" ]]; then
 fi
 
 presize_window
-exec omarchy-launch-or-focus-tui --app-id=org.omarchy.about omarchy-launch-about --render
+exec unbloarchy-launch-or-focus-tui --app-id=org.unbloarchy.about unbloarchy-launch-about --render

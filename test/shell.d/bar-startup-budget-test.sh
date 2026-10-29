@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Login to a drawn bar, the segment a test can own: from the session
-# launching bin/omarchy-launch-shell (what uwsm starts at login) until the
+# launching bin/unbloarchy-launch-shell (what uwsm starts at login) until the
 # compositor maps the default bar at a real size. Greetd and the uwsm
 # compositor start are not in here -- they need a real boot and belong to
 # image/acceptance testing; this guards everything after the compositor
@@ -16,7 +16,7 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 require_quickshell "shell startup budget"
 require_comparable_speed "shell startup budget"
 
-BUDGET_MS=$(( ${OMARCHY_BAR_STARTUP_BUDGET_MS:-750} * SPEED_PERCENT / 100 ))
+BUDGET_MS=$(( ${UNBLOARCHY_BAR_STARTUP_BUDGET_MS:-750} * SPEED_PERCENT / 100 ))
 
 setup_scratch_shell
 
@@ -51,7 +51,7 @@ cold_login_ms() {
 
   reset_scratch_home
   start=$EPOCHREALTIME
-  (scratch_exec setsid "$ROOT/bin/omarchy-launch-shell") >"$SCRATCH_LOG" 2>&1 &
+  (scratch_exec setsid "$ROOT/bin/unbloarchy-launch-shell") >"$SCRATCH_LOG" 2>&1 &
   LAUNCHER_PID=$!
 
   elapsed=""
@@ -62,7 +62,7 @@ cold_login_ms() {
       SCRATCH_PID=""
     fi
     [[ -n $SCRATCH_PID ]] || SCRATCH_PID=$(launcher_shell_pid || true)
-    if [[ -n $SCRATCH_PID && $(scratch_layer_state omarchy-bar) == "mapped" ]]; then
+    if [[ -n $SCRATCH_PID && $(scratch_layer_state unbloarchy-bar) == "mapped" ]]; then
       end=$EPOCHREALTIME
       elapsed=$(( (${end/[.,]/} - ${start/[.,]/}) / 1000 ))
       break

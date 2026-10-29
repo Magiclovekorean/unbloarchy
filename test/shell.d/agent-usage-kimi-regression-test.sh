@@ -8,7 +8,7 @@
 #
 # Each case runs in a fresh sandbox against a real stand-in for Kimi's
 # services, which every https:// request is carried to. Set
-# OMARCHY_TEST_KIMI_CASE to run one case.
+# UNBLOARCHY_TEST_KIMI_CASE to run one case.
 
 set -euo pipefail
 
@@ -443,7 +443,7 @@ cases = {"contract": contract, "env_key": env_key, "stores": stores, "share_dir"
          "quota": modern_quota, "legacy_quota": legacy_quota, "cache_identity": cache_identity,
          "rotation_cache": rotated_cache, "switched_cache": switched_cache, "empty_answer": empty_answer,
          "odd_answer": odd_answer, "odd_resets": odd_resets}
-selected = os.environ.get("OMARCHY_TEST_KIMI_CASE")
+selected = os.environ.get("UNBLOARCHY_TEST_KIMI_CASE")
 for name, case in cases.items():
   if selected and name != selected:
     continue

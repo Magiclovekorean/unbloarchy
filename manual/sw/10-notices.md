@@ -10,7 +10,7 @@ Kadi hutoa kile zinachobeba: _Nakili msimbo_ kwa misimbo ya uthibitishaji (hutun
 
 Kuzitumia bila kipanya, bonyeza `Super + Ctrl + ,`. Arifa mpya zaidi huchaguliwa na vitufe vyake hupewa namba: bonyeza namba kutumia kimojawapo, `Enter` kubofya arifa, `↑` na `↓` kusogea kati ya arifa, `Delete` kuondoa moja, na `Esc` kurudisha kibodi. Pia huachilia yenyewe baada ya sekunde chache bila shughuli.
 
-Kunyamazisha arifa huzizuia, isipokuwa uthibitishaji wa Omarchy yenyewe, tahadhari za dharura, na misimbo ya uthibitishaji, ambayo uliiomba muda mfupi uliopita. Rudisha chache za mwisho kwenye skrini, ziwe zimezuiwa au la, kwa `Super + Shift + Alt + ,`. Historia huhifadhiwa kwa siku moja.
+Kunyamazisha arifa huzizuia, isipokuwa uthibitishaji wa Unbloarchy yenyewe, tahadhari za dharura, na misimbo ya uthibitishaji, ambayo uliiomba muda mfupi uliopita. Rudisha chache za mwisho kwenye skrini, ziwe zimezuiwa au la, kwa `Super + Shift + Alt + ,`. Historia huhifadhiwa kwa siku moja.
 
 ## Ilani za vitufe vya haraka
 
@@ -26,7 +26,7 @@ Kunyamazisha arifa huzizuia, isipokuwa uthibitishaji wa Omarchy yenyewe, tahadha
 
  ![notice-weather](images/notice-weather.webp)
 
-Mahali hugunduliwa kutoka kwenye anwani yako ya IP, ambayo kwa kawaida huwa karibu vya kutosha, lakini si kila wakati. Unaweza kuweka mahali kamili kwa `omarchy weather location --set Malibu`, au kuwa sahihi zaidi kwa kuongeza viwianishi: `omarchy weather location --set Malibu 34.0259,-118.7798`. Endesha `omarchy weather location` yenyewe kuona inakodhani kuwa uko, na `--clear` kurudi kwenye ugunduzi wa kiotomatiki.
+Mahali hugunduliwa kutoka kwenye anwani yako ya IP, ambayo kwa kawaida huwa karibu vya kutosha, lakini si kila wakati. Unaweza kuweka mahali kamili kwa `unbloarchy weather location --set Malibu`, au kuwa sahihi zaidi kwa kuongeza viwianishi: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Endesha `unbloarchy weather location` yenyewe kuona inakodhani kuwa uko, na `--clear` kurudi kwenye ugunduzi wa kiotomatiki.
 
 ### Betri
 

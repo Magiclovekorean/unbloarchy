@@ -1,6 +1,6 @@
 # Shell funkcie
 
-Omarchy sa dodáva so sadou shell funkcií, ktoré zjednodušujú bežné úlohy a zapuzdrujú komplikované volania parametrov.
+Unbloarchy sa dodáva so sadou shell funkcií, ktoré zjednodušujú bežné úlohy a zapuzdrujú komplikované volania parametrov.
 
 ## Kompresia
 

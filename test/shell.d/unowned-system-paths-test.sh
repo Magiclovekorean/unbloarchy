@@ -17,8 +17,8 @@ set -euo pipefail
 source "$(dirname "$0")/base-test.sh"
 
 # The PKGBUILDs live in the omarchy-pkgs checkout, wherever this machine keeps it.
-if find_omarchy_pkgs; then
-  python3 - "$ROOT" "$OMARCHY_PKGS_ROOT" <<'PYTHON'
+if find_unbloarchy_pkgs; then
+  python3 - "$ROOT" "$UNBLOARCHY_PKGS_ROOT" <<'PYTHON'
 import os, re, sys
 from pathlib import Path
 
@@ -63,12 +63,12 @@ packaged = "\n".join(p.read_text() for p in pkgs_root.glob("*/PKGBUILD"))
 # Commands that put a file somewhere, as opposed to reading one.
 # /etc is administrator territory that Unbloarchy legitimately edits. /usr is
 # package territory, where writing anything is the thing worth catching.
-# The command itself, not a word inside a longer name: omarchy-hook-install
+# The command itself, not a word inside a longer name: unbloarchy-hook-install
 # copies a package's file out of /usr, which is reading it.
 writer = re.compile(r"(?<![\w.-])(tee|cp|install|ln)(?![\w.-])|>\s*/usr/")
 target = re.compile(r"/usr/[A-Za-z0-9._@/+-]+")
 for code, writes in (
-  ("omarchy-hook-install theme-set /usr/share/owe/10-owe-sync", False),
+  ("unbloarchy-hook-install theme-set /usr/share/owe/10-owe-sync", False),
   ("sudo install -Dm644 10-owe-sync /usr/share/owe/10-owe-sync", True),
   ("cp -f hook /usr/lib/systemd/system-sleep/hook", True),
   ("printf x | sudo tee /usr/share/x/y", True),
@@ -139,9 +139,9 @@ if problems:
   )
   sys.exit(1)
 PYTHON
-  pass "no Omarchy script writes a path under /usr that no package owns"
+  pass "no Unbloarchy script writes a path under /usr that no package owns"
 else
-  skip "no Omarchy script writes a path under /usr that no package owns: needs the omarchy-pkgs checkout; set OMARCHY_PKGS_PATH to it"
+  skip "no Unbloarchy script writes a path under /usr that no package owns: needs the omarchy-pkgs checkout; set UNBLOARCHY_PKGS_PATH to it"
 fi
 
 for script in bin/unbloarchy-hibernation-setup bin/unbloarchy-toggle-hybrid-gpu; do

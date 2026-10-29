@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# omarchy:summary=Check whether a webcam is available
+# unbloarchy:summary=Check whether a webcam is available
 
 # The menu asks this on every open. Read the capture capability udev already
 # recorded for each video node rather than opening the nodes with v4l2-ctl, which
 # powers up every camera on the bus just to answer a menu guard. Without a recorded
 # capture node (no udev database, as in a container) it falls back to asking them.
-v4l_class_path="${OMARCHY_V4L_CLASS_PATH:-/sys/class/video4linux}"
-udev_data_path="${OMARCHY_UDEV_DATA_PATH:-/run/udev/data}"
-dev_path="${OMARCHY_DEV_PATH:-/dev}"
+v4l_class_path="${UNBLOARCHY_V4L_CLASS_PATH:-/sys/class/video4linux}"
+udev_data_path="${UNBLOARCHY_UDEV_DATA_PATH:-/run/udev/data}"
+dev_path="${UNBLOARCHY_DEV_PATH:-/dev}"
 
 shopt -s nullglob
 nodes=("$v4l_class_path"/video*)
@@ -40,4 +40,4 @@ for node in "${nodes[@]}"; do
 done
 
 # No capture node recorded: ask the devices.
-[[ -n $(omarchy-capture-webcam-list) ]]
+[[ -n $(unbloarchy-capture-webcam-list) ]]

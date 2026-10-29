@@ -16,9 +16,9 @@ sed -e "s|/sys/power/|$rtmp/sys/|g" \
   -e "s|/swap/swapfile|$rtmp/swapfile|g" \
   -e "s|/usr/lib/systemd/system-sleep|$rtmp/sleep|g" \
   -e "s|/var/lib/omarchy|$rtmp/var-lib|g" \
-  "$ROOT/bin/omarchy-hibernation-setup" >"$rtmp/setup"
+  "$ROOT/bin/unbloarchy-hibernation-setup" >"$rtmp/setup"
 
-for command in omarchy-hw-aarch64-apple omarchy-sleep-disabled omarchy-cmd-missing gum; do
+for command in unbloarchy-hw-aarch64-apple unbloarchy-sleep-disabled unbloarchy-cmd-missing gum; do
   printf '#!/bin/bash\nexit 1\n' >"$rtmp/bin/$command"
 done
 printf '#!/bin/bash\nexit 0\n' >"$rtmp/bin/swaplabel"
@@ -48,7 +48,7 @@ SH
 cat >"$rtmp/bin/limine-mkinitcpio" <<'SH'
 #!/bin/bash
 case ${REBUILD_RESULT:-ok} in
-  skip) echo "==> ERROR: mkinitcpio failed for kernel 7.2.8-9-omarchy, skipping." >&2 ;;
+  skip) echo "==> ERROR: mkinitcpio failed for kernel 7.2.8-9-unbloarchy, skipping." >&2 ;;
   interrupt) kill -TERM "$PPID"; exit 0 ;;
 esac
 cat "$DROP_IN" >>"$REBUILD_LOG"
@@ -69,7 +69,7 @@ machine() {
   : >"$rtmp/rebuilds"
   if (($#)); then
     mkdir -p "$rtmp/limine-entry-tool.d" "$rtmp/mkinitcpio.conf.d"
-    printf 'HOOKS+=(resume)\n' >"$rtmp/mkinitcpio.conf.d/omarchy_resume.conf"
+    printf 'HOOKS+=(resume)\n' >"$rtmp/mkinitcpio.conf.d/unbloarchy_resume.conf"
     printf '%s\n' "$1" >"$drop_in"
   fi
 }
@@ -142,7 +142,7 @@ tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 mkdir -p "$tmpdir/bin"
 
-cat >"$tmpdir/bin/omarchy-cmd-missing" <<'EOF'
+cat >"$tmpdir/bin/unbloarchy-cmd-missing" <<'EOF'
 #!/bin/bash
 exit 1
 EOF
@@ -170,7 +170,7 @@ EOF
 chmod +x "$tmpdir/bin/"*
 
 env -u LC_ALL PROMPT_LOG="$tmpdir/prompt" PATH="$tmpdir/bin:$PATH" \
-  "$ROOT/bin/omarchy-hibernation-setup"
+  "$ROOT/bin/unbloarchy-hibernation-setup"
 
 [[ $(<"$tmpdir/prompt") == "confirm Use 31Gi on boot drive to make hibernation available?" ]] ||
   fail "hibernation setup reads memory size independently of the user's locale"

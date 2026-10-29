@@ -1,14 +1,14 @@
 # Topplinjen
 
-Stripen langs toppen av skjermen er Omarchy-linjen. Det er ikke en påskrudd statuslinje, men en del av Omarchy-skallet, den ene langvarige Quickshell-prosessen som også tegner menyen, varslene, OSD-popupene og låseskjermen. Derfor får den perfekt tema sammen med alt annet, og derfor åpnes et panel øyeblikkelig i stedet for å starte en ny app.
+Stripen langs toppen av skjermen er Unbloarchy-linjen. Det er ikke en påskrudd statuslinje, men en del av Unbloarchy-skallet, den ene langvarige Quickshell-prosessen som også tegner menyen, varslene, OSD-popupene og låseskjermen. Derfor får den perfekt tema sammen med alt annet, og derfor åpnes et panel øyeblikkelig i stedet for å starte en ny app.
 
 Det er også den ene delen av skrivebordet som alltid er på skjermen, så det er verdt å vite hva alle de små tegnene gjør.
 
 ## Hva som er på den som standard
 
-Linjen har tre seksjoner. Til venstre sitter Omarchy-logoen (menystarteren) og arbeidsområdeindikatorene. I midten får du statusindikatorene, klokken, Elsewhen (en verdensklokke), været og et merke for Omarchy-oppdatering. Til høyre: systemkurven, tastaturoppsettet (når mer enn ett er konfigurert), agenter, bluetooth, nettverk, lyd, skjerm og strøm.
+Linjen har tre seksjoner. Til venstre sitter Unbloarchy-logoen (menystarteren) og arbeidsområdeindikatorene. I midten får du statusindikatorene, klokken, Elsewhen (en verdensklokke), været og et merke for Unbloarchy-oppdatering. Til høyre: systemkurven, tastaturoppsettet (når mer enn ett er konfigurert), agenter, bluetooth, nettverk, lyd, skjerm og strøm.
 
-Noen av dem dukker bare opp når de har noe å si. Tastaturoppsettet vises bare hvis du har konfigurert mer enn ett oppsett. Oppdateringsmerket vises bare når det venter en Omarchy-oppdatering. Og agentikonet vises første gang Omarchy finner AI-kodebruk på maskinen (se [AI](17-ai.md)).
+Noen av dem dukker bare opp når de har noe å si. Tastaturoppsettet vises bare hvis du har konfigurert mer enn ett oppsett. Oppdateringsmerket vises bare når det venter en Unbloarchy-oppdatering. Og agentikonet vises første gang Unbloarchy finner AI-kodebruk på maskinen (se [AI](17-ai.md)).
 
 ## Å klikke rundt
 
@@ -16,7 +16,7 @@ Nesten hver widget gjør noe ved venstre-, høyre- og midtklikk, og flere reager
 
 | Widget | Venstre | Høyre | Midten / rulling |
 | --- | --- | --- | --- |
-| Meny | Omarchy-meny | Ny terminal | — |
+| Meny | Unbloarchy-meny | Ny terminal | — |
 | Arbeidsområder | Fokuser det arbeidsområdet på denne skjermen | — | Rulling: neste/forrige arbeidsområde |
 | Klokke | Kalender-popup | Bytt etikettformat | Midten: tidssonevelger |
 | Vær | Værmelding-popup | Fullt vær som et varsel | Midten: oppdater |
@@ -29,7 +29,7 @@ Nesten hver widget gjør noe ved venstre-, høyre- og midtklikk, og flere reager
 | Medier | Spill av / pause | Cover-popup | Midten: neste · rulling: forrige/neste |
 | Agenter | Agentpanel | Start agenten din | Midten: neste abonnement |
 | Systemkurv | Hold musepekeren over for å vise skuffen | Høyreklikk på chevronen for å administrere | — |
-| Omarchy-oppdatering | Kjør oppdateringen | — | — |
+| Unbloarchy-oppdatering | Kjør oppdateringen | — | — |
 
 Ikke alt i den tabellen er på linjen din rett ut av boksen. Mediewidgeten (MPRIS som spilles nå, med en rullende tittel og artist) og mikrofonwidgeten er begge innebygd, men av som standard — legg dem til hvis du vil ha dem, som beskrevet nedenfor.
 
@@ -66,7 +66,7 @@ Hvert panel tar tastaturet så vel som musen: piler flytter, Return aktiverer, T
 
 To widgeter til vises på linjen bare når du installerer den tilhørende tjenesten fra **Install → Service**, og begge er verdt å kjenne til fordi de gjør mer enn å rapportere status.
 
-**Tailscale**-panelet kobler til og fra tailnet-et, bytter mellom kontoer og velger en exit node (både dine egne maskiner og Mullvad-regioner dukker opp i den listen). Det blar også gjennom maskinene dine — og med én valgt sender `s` filer til den over Taildrop, som er den raskeste måten å flytte en fil til telefonen din eller en annen bærbar PC på. `c` kopierer maskinens IP, `n` navnet dens, og `d` det fulle DNS-navnet dens. Det er en sendeknapp på hver maskinrad også, hvis du heller vil klikke. Det samme fra terminalen er `omarchy tailscale send <machine> [file...]`.
+**Tailscale**-panelet kobler til og fra tailnet-et, bytter mellom kontoer og velger en exit node (både dine egne maskiner og Mullvad-regioner dukker opp i den listen). Det blar også gjennom maskinene dine — og med én valgt sender `s` filer til den over Taildrop, som er den raskeste måten å flytte en fil til telefonen din eller en annen bærbar PC på. `c` kopierer maskinens IP, `n` navnet dens, og `d` det fulle DNS-navnet dens. Det er en sendeknapp på hver maskinrad også, hvis du heller vil klikke. Det samme fra terminalen er `unbloarchy tailscale send <machine> [file...]`.
 
 **Dropbox**-panelet håndterer innlogging, viser hvor mye lagringsplass du har brukt, og lister nylig synkroniserte filer.
 
@@ -93,19 +93,19 @@ Hvis du heller vil velge fra en meny, har **Appearance → Menu Bar** posisjonen
 De samme tingene har kommandoer, som er det du vil ha for et [dotfiles](31-dotfiles.md)-oppsett:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-For å legge til eller fjerne en widget helt bruker du plugin-kommandoene. `omarchy plugin list` skriver ut hver widget skallet kjenner til med id-en dens, og deretter:
+For å legge til eller fjerne en widget helt bruker du plugin-kommandoene. `unbloarchy plugin list` skriver ut hver widget skallet kjenner til med id-en dens, og deretter:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Å skjule linjen
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Konfigurasjonsfilen
 
-Alt er lagret i `~/.config/omarchy/shell.json`, under nøkkelen `bar`. Her er en trimmet versjon:
+Alt er lagret i `~/.config/unbloarchy/shell.json`, under nøkkelen `bar`. Her er en trimmet versjon:
 
 ```json
 {
@@ -123,20 +123,20 @@ Alt er lagret i `~/.config/omarchy/shell.json`, under nøkkelen `bar`. Her er en
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Hver widget er én oppføring i ett av de fem layout-arrayene, og innstillingene dens sitter innebygd på den oppføringen — det er ingen egen innstillingsfil og ingen `config`-underobjekt. Klokkens `format`, `formatAlt` (det høyreklikk bytter til), og `verticalFormat` lever alle rett der på `{ "id": "omarchy.clock" }`.
+Hver widget er én oppføring i ett av de fem layout-arrayene, og innstillingene dens sitter innebygd på den oppføringen — det er ingen egen innstillingsfil og ingen `config`-underobjekt. Klokkens `format`, `formatAlt` (det høyreklikk bytter til), og `verticalFormat` lever alle rett der på `{ "id": "unbloarchy.clock" }`.
 
 `center` er boksen i midten av linjen: alt i den er sentrert på skjermen som én gruppe. `centerBegin` og `centerEnd` henger på hver side av boksen, og det er slik klokken holder seg midt i sentrum selv mens været og oppdateringsmerket kommer og går. Sett mer enn én widget i `center`, og de sentreres sammen; la den være tom, og `centerBegin` og `centerEnd` møtes i midten av linjen.
 
-Én regel verdt å internalisere: **når du først har din egen `shell.json`, er den kanonisk**. Helt til du tilpasser noe, leser skallet Omarchys standardfil. I det øyeblikket du drar en widget, kjører `omarchy bar`, eller redigerer filen selv, eier du den — det er ingen dyp sammenslåing, så nye standardwidgeter i fremtidige Omarchy-utgivelser vil ikke dukke opp på linjen din automatisk. `omarchy bar defaults` setter det medfølgende oppsettet tilbake når du vil ha et rent ark.
+Én regel verdt å internalisere: **når du først har din egen `shell.json`, er den kanonisk**. Helt til du tilpasser noe, leser skallet Unbloarchys standardfil. I det øyeblikket du drar en widget, kjører `unbloarchy bar`, eller redigerer filen selv, eier du den — det er ingen dyp sammenslåing, så nye standardwidgeter i fremtidige Unbloarchy-utgivelser vil ikke dukke opp på linjen din automatisk. `unbloarchy bar defaults` setter det medfølgende oppsettet tilbake når du vil ha et rent ark.
 
 Samme fil holder også inaktivitetstidene dine på øverste nivå, utenfor nøkkelen `bar`: `idle.screensaver` og `idle.lock`, begge i sekunder siden du ble inaktiv. Så standard skjermspareren slår inn ved 150 sekunder og låsen ved 300.

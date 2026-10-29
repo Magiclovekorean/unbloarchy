@@ -234,7 +234,7 @@ ShellRoot {
     }
     tray.fixedEdge = "end"
     tray.bar = mockBar
-    tray.moduleName = "omarchy.indicators"
+    tray.moduleName = "unbloarchy.indicators"
     tray.settings = { items: ids }
 
     function slots() {
@@ -301,7 +301,7 @@ ShellRoot {
     // what sets the indicators that are already active reporting in.
     tray.fixedEdge = edge
     tray.bar = mockBar
-    tray.moduleName = "omarchy.indicators"
+    tray.moduleName = "unbloarchy.indicators"
     tray.settings = { items: ["NightLight", "StayAwake"] }
 
     function extent() {

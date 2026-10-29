@@ -2,7 +2,7 @@
 
 ## Vihariri Mbadala
 
-Omarchy huja na [Neovim](https://neovim.io/) kwa chaguo-msingi, lakini kama ungependa kitu kilichozoeleka zaidi na kinachofahamika sana, unaweza kufungua Menyu ya Omarchy (`Super + Space`) na kuona chaguo zilizo chini ya _Install > Editor_. Tuna VSCode, Cursor, Zed, Sublime Text, Helix, Vim, na Emacs vilivyoorodheshwa hapo. Kama huoni unachokitafuta, angalia _Install > Package_, na uone kama hakiko katika kifurushi cha Arch (na kama hakiko, jaribu _Install > AUR_ kuangalia AUR).
+Unbloarchy huja na [Neovim](https://neovim.io/) kwa chaguo-msingi, lakini kama ungependa kitu kilichozoeleka zaidi na kinachofahamika sana, unaweza kufungua Menyu ya Unbloarchy (`Super + Space`) na kuona chaguo zilizo chini ya _Install > Editor_. Tuna VSCode, Cursor, Zed, Sublime Text, Helix, Vim, na Emacs vilivyoorodheshwa hapo. Kama huoni unachokitafuta, angalia _Install > Package_, na uone kama hakiko katika kifurushi cha Arch (na kama hakiko, jaribu _Install > AUR_ kuangalia AUR).
 
 Kihariri asili cha `vi` pia kinapatikana mara moja. Endesha `vi filename` kuhariri faili kwenye terminal.
 
@@ -12,7 +12,7 @@ Unaweza kuweka kihariri chaguo-msingi cha mfumo mzima chini ya `Setup > Defaults
 
 ## Mazingira
 
-Omarchy inasaidia kusanidi mazingira mengi sana ya uendelezaji kupitia sehemu ya _Install > Development_ ya Menyu ya Omarchy (`Super + Space`). Bila shaka utapata _Ruby on Rails_, lakini pia runtimes zote tatu kuu za JavaScript (Node.js, Bun, Deno), pamoja na frameworks maarufu za PHP kama Laravel na Symfony. Oh, na pia kuna Go, Rust, Python, Java, Elixir (pamoja na Phoenix), .NET, OCaml, Zig, Clojure, na Scala pia. Ni uteuzi mpana sana!
+Unbloarchy inasaidia kusanidi mazingira mengi sana ya uendelezaji kupitia sehemu ya _Install > Development_ ya Menyu ya Unbloarchy (`Super + Space`). Bila shaka utapata _Ruby on Rails_, lakini pia runtimes zote tatu kuu za JavaScript (Node.js, Bun, Deno), pamoja na frameworks maarufu za PHP kama Laravel na Symfony. Oh, na pia kuna Go, Rust, Python, Java, Elixir (pamoja na Phoenix), .NET, OCaml, Zig, Clojure, na Scala pia. Ni uteuzi mpana sana!
 
 Nyingi ya mazingira haya husimamiwa na [Mise](https://mise.jdx.dev/). Ni zana inayokuwezesha kusakinisha na kuendesha matoleo mengi ya lugha ya programu kwenye mashine moja. Ni kama rbenv au rvm kwa Ruby au virtualenv kwa Python, lakini inafanya kazi kwa mazingira mengi tofauti.
 
@@ -20,7 +20,7 @@ Kusakinisha, kwa mfano, Ruby, ungeendesha `mise use -g ruby`, ambayo itasakinish
 
 ## Zana za CLI zilizosakinishwa awali
 
-Omarchy hufanya zana kama vile `gh`, `uv`, na [mawakala](17-ai.md) wengi wa kuandika msimbo zipatikane kupitia [usakinishaji wa mise wa kusakinisha inapohitajika tu](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Mara ya kwanza unapoendesha mojawapo, mise huisakinisha. Uendeshaji wa baadaye hutumia tena toleo lililosakinishwa; hauangalia sasisho katika kila uzinduzi.
+Unbloarchy hufanya zana kama vile `gh`, `uv`, na [mawakala](17-ai.md) wengi wa kuandika msimbo zipatikane kupitia [usakinishaji wa mise wa kusakinisha inapohitajika tu](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Mara ya kwanza unapoendesha mojawapo, mise huisakinisha. Uendeshaji wa baadaye hutumia tena toleo lililosakinishwa; hauangalia sasisho katika kila uzinduzi.
 
 Unaweza pia kukagua chaguo-msingi au kuzisakinisha kabla ya wakati:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Endesha `omarchy update` kusasisha zana zilizosakinishwa pamoja na Omarchy yote. Lakabu ya `mup` husasisha zana zinazosimamiwa na mise pekee. Kuongeza zana nyingine kwenye usanidi wako mwenyewe, tumia `mise use -g <tool>`.
+Endesha `unbloarchy update` kusasisha zana zilizosakinishwa pamoja na Unbloarchy yote. Lakabu ya `mup` husasisha zana zinazosimamiwa na mise pekee. Kuongeza zana nyingine kwenye usanidi wako mwenyewe, tumia `mise use -g <tool>`.
 
 Usanidi wa Python pia husakinisha `uv` kupitia mise. Kuondoa mazingira ya uendelezaji wa Python huacha `uv` ipatikane kama zana huru.
 
@@ -47,15 +47,15 @@ Kama tayari una jedwali la `[settings]`, ongeza ingizo hapo; panua orodha iliyop
 
 ### Kuondoa na kurejesha chaguo-msingi
 
-_Remove Preinstalls_ hufanya mise iruke matamko ya zana za Omarchy kwa mtumiaji wako, kwa kuyaongeza kwenye `ignored_config_paths` katika `~/.config/mise/miserc.toml`. _Restore Preinstalls_ huondoa mstari huo tena. Zana unazotamka mwenyewe, katika usanidi wako mwenyewe au katika `mise.toml` ya mradi, huendelea kufanya kazi kwa njia yoyote. Kama unachagua wakala chaguo-msingi au kusanidi Python baada ya kuondoa zilizosakinishwa awali, zana hiyo huongezwa kwenye usanidi wako mwenyewe. Zote mbili hutumika kwa mtumiaji wako pekee; watumiaji wengine kwenye mashine huhifadhi chaguo lao wenyewe.
+_Remove Preinstalls_ hufanya mise iruke matamko ya zana za Unbloarchy kwa mtumiaji wako, kwa kuyaongeza kwenye `ignored_config_paths` katika `~/.config/mise/miserc.toml`. _Restore Preinstalls_ huondoa mstari huo tena. Zana unazotamka mwenyewe, katika usanidi wako mwenyewe au katika `mise.toml` ya mradi, huendelea kufanya kazi kwa njia yoyote. Kama unachagua wakala chaguo-msingi au kusanidi Python baada ya kuondoa zilizosakinishwa awali, zana hiyo huongezwa kwenye usanidi wako mwenyewe. Zote mbili hutumika kwa mtumiaji wako pekee; watumiaji wengine kwenye mashine huhifadhi chaguo lao wenyewe.
 
 ## Docker
 
-[Docker](https://www.docker.com/) haihitaji utangulizi wowote. Inakuwezesha kuendesha kontena zilizotengwa, na Omarchy husakinisha kila kitu kinachohitajika kuiendesha vizuri, ikiwa ni pamoja na Docker yenyewe na [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) haihitaji utangulizi wowote. Inakuwezesha kuendesha kontena zilizotengwa, na Unbloarchy husakinisha kila kitu kinachohitajika kuiendesha vizuri, ikiwa ni pamoja na Docker yenyewe na [Docker Compose](https://docs.docker.com/compose/).
 
-Kwa chaguo-msingi mtumiaji wako *hayuko* katika kikundi cha `docker`. Kikundi hicho kwa vitendo ni root isiyohitaji nenosiri — chochote kilicho ndani yake kinaweza `docker run -v /:/host` na kuchukua udhibiti wa mashine — kwa hiyo hati moja mbaya au tegemezi moja inayoendeshwa kama wewe vinginevyo ingekuwa amri moja tu kutoka kuwa root. Kwa hiyo kwenye mstari wa amri unaendesha Docker kwa `sudo` (`sudo docker ps`, `sudo docker compose up`), na zana za kigraphiki zinazozungumza na daemon — Windows VM — huomba idhini zinapoihitaji. Kama unataka urahisi wa usanidi usio na kikundi urudi na unaelewa mabadilishano yake, uwashe kutoka **Setup > Security > Sudoless Docker** (au endesha `omarchy-setup-security-sudoless-docker`), ambayo inakuongeza kwenye kikundi cha `docker` baada ya onyo; kisha `docker` ya kawaida na lakabu ya `d` hufanya kazi bila `sudo` tena.
+Kwa chaguo-msingi mtumiaji wako *hayuko* katika kikundi cha `docker`. Kikundi hicho kwa vitendo ni root isiyohitaji nenosiri — chochote kilicho ndani yake kinaweza `docker run -v /:/host` na kuchukua udhibiti wa mashine — kwa hiyo hati moja mbaya au tegemezi moja inayoendeshwa kama wewe vinginevyo ingekuwa amri moja tu kutoka kuwa root. Kwa hiyo kwenye mstari wa amri unaendesha Docker kwa `sudo` (`sudo docker ps`, `sudo docker compose up`), na zana za kigraphiki zinazozungumza na daemon — Windows VM — huomba idhini zinapoihitaji. Kama unataka urahisi wa usanidi usio na kikundi urudi na unaelewa mabadilishano yake, uwashe kutoka **Setup > Security > Sudoless Docker** (au endesha `unbloarchy-setup-security-sudoless-docker`), ambayo inakuongeza kwenye kikundi cha `docker` baada ya onyo; kisha `docker` ya kawaida na lakabu ya `d` hufanya kazi bila `sudo` tena.
 
-Unaweza kusanidi hifadhidata za kawaida za uendelezaji wa ndani katika Docker kwa kutumia _Install > Development > Docker DB_ katika menyu ya Omarchy.
+Unaweza kusanidi hifadhidata za kawaida za uendelezaji wa ndani katika Docker kwa kutumia _Install > Development > Docker DB_ katika menyu ya Unbloarchy.
 
 ## GitHub CLI
 

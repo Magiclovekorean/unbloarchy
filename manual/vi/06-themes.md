@@ -1,8 +1,8 @@
 # Chủ đề
 
-Omarchy đi kèm với hai mươi hai chủ đề tuyệt đẹp. Bạn có thể chọn giữa chúng qua _Giao diện > Chủ đề_ trong Omarchy Menu (`Super + Space`) hoặc nhảy thẳng tới trình chọn chủ đề bằng `Super + Ctrl + T`.
+Unbloarchy đi kèm với hai mươi hai chủ đề tuyệt đẹp. Bạn có thể chọn giữa chúng qua _Giao diện > Chủ đề_ trong Unbloarchy Menu (`Super + Space`) hoặc nhảy thẳng tới trình chọn chủ đề bằng `Super + Ctrl + T`.
 
-Mỗi chủ đề tạo phong cách cho desktop, terminal, neovim, màn hình hoạt động (btop), Chromium, và toàn bộ Omarchy shell: thanh trên cùng, menu, thông báo, OSD, và màn hình khóa. (Đối với Obsidian, bạn phải tự chọn chủ đề Omarchy qua _Giao diện > Chủ đề_ bên trong ứng dụng).
+Mỗi chủ đề tạo phong cách cho desktop, terminal, neovim, màn hình hoạt động (btop), Chromium, và toàn bộ Unbloarchy shell: thanh trên cùng, menu, thông báo, OSD, và màn hình khóa. (Đối với Obsidian, bạn phải tự chọn chủ đề Unbloarchy qua _Giao diện > Chủ đề_ bên trong ứng dụng).
 
 Các chủ đề có một bộ hình nền mà bạn có thể chọn qua lại bằng `Super + Ctrl + W`.
 

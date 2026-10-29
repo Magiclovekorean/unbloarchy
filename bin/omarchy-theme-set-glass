@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Give terminals, btop, and GTK apps a see-through background while windows are glassy
-# omarchy:args=[theme-dir]
-# omarchy:hidden=true
+# unbloarchy:summary=Give terminals, btop, and GTK apps a see-through background while windows are glassy
+# unbloarchy:args=[theme-dir]
+# unbloarchy:hidden=true
 
 # A Hyprland opacity rule fades a terminal's text along with its background,
 # and foot turns compositor blur down unless its own config asks for it, so the
@@ -10,8 +10,8 @@
 # (#14726). The lines sit between markers so leaving glassy takes them out
 # again, and a theme that sets its own opacity keeps it.
 
-THEME_DIR="${1:-$HOME/.local/state/omarchy/current/theme}"
-TOGGLES_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/toggles/hypr"
+THEME_DIR="${1:-$HOME/.local/state/unbloarchy/current/theme}"
+TOGGLES_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/unbloarchy/toggles/hypr"
 GLASSY=false
 [[ -f $TOGGLES_DIR/window-glassy.lua ]] && GLASSY=true
 status=0
@@ -30,12 +30,12 @@ remove_block() {
   local begin end
   # Theme switches wait on this, and a freshly rendered file has no block, so
   # look for one before building its sed addresses.
-  [[ -f $file ]] && grep -qF "$open omarchy-glass begin" "$file" || return 0
-  begin=$(regex "$open omarchy-glass begin")
-  end=$(regex "$open omarchy-glass end$close")
+  [[ -f $file ]] && grep -qF "$open unbloarchy-glass begin" "$file" || return 0
+  begin=$(regex "$open unbloarchy-glass begin")
+  end=$(regex "$open unbloarchy-glass end$close")
 
   local added_newline=false
-  grep -qxF "$open omarchy-glass begin after a line without a newline$close" "$file" && added_newline=true
+  grep -qxF "$open unbloarchy-glass begin after a line without a newline$close" "$file" && added_newline=true
   sed -i "/^$begin/,/^$end\$/d" "$file" || return 1
   if [[ $added_newline == "true" && -s $file && -z $(tail -c 1 "$file") ]]; then
     truncate -s -1 "$file" || return 1
@@ -45,9 +45,9 @@ remove_block() {
 append_block() {
   local file="$1" open="$2" close="$3" lines="$4"
   if [[ -s $file && -n $(tail -c 1 "$file") ]]; then
-    printf '\n%s\n%s\n%s\n' "$open omarchy-glass begin after a line without a newline$close" "$lines" "$open omarchy-glass end$close" >>"$file"
+    printf '\n%s\n%s\n%s\n' "$open unbloarchy-glass begin after a line without a newline$close" "$lines" "$open unbloarchy-glass end$close" >>"$file"
   else
-    printf '%s\n%s\n%s\n' "$open omarchy-glass begin$close" "$lines" "$open omarchy-glass end$close" >>"$file"
+    printf '%s\n%s\n%s\n' "$open unbloarchy-glass begin$close" "$lines" "$open unbloarchy-glass end$close" >>"$file"
   fi
 }
 
@@ -78,7 +78,7 @@ glass() {
   if [[ -n $section ]] && grep -qE "$header" "$file"; then
     local block
     block=$(mktemp) || return 1
-    printf '# omarchy-glass begin\n%s\n# omarchy-glass end\n' "$lines" >"$block"
+    printf '# unbloarchy-glass begin\n%s\n# unbloarchy-glass end\n' "$lines" >"$block"
     sed -i -E "0,/$header/{/$header/r $block
 }" "$file"
     local result=$?
@@ -107,7 +107,7 @@ glass btop.theme '' \
 # blur protocol.
 glass ghostty.conf '' \
   '^[[:space:]]*background-opacity[[:space:]]*=' 'background-opacity = 0.65' \
-  '' "gtk-custom-css = $OMARCHY_PATH/default/gtk/glass.css" || status=1
+  '' "gtk-custom-css = $UNBLOARCHY_PATH/default/gtk/glass.css" || status=1
 
 # Other GTK apps, such as Nautilus, read the user's gtk.css at launch, so the
 # same backdrop blur is imported there. It follows the mode alone, so a theme
@@ -117,7 +117,7 @@ if (( $# == 0 )); then
   remove_block "$gtk_css" "/*" " */" || status=1
   if [[ $GLASSY == "true" ]]; then
     { mkdir -p "${gtk_css%/*}" &&
-      append_block "$gtk_css" "/*" " */" "@import url(\"file://$OMARCHY_PATH/default/gtk/glass.css\");"; } || status=1
+      append_block "$gtk_css" "/*" " */" "@import url(\"file://$UNBLOARCHY_PATH/default/gtk/glass.css\");"; } || status=1
   fi
 fi
 

@@ -1,16 +1,16 @@
 # Prise en charge Mac
 
-Omarchy prend en charge nativement les **Mac Intel**. Il y a pour le moment quelques limitations connues, mais tant que vous en êtes conscient et que cela vous convient, vous pouvez insuffler une nouvelle vie à vos vieux Mac en chargeant Omarchy.
+Unbloarchy prend en charge nativement les **Mac Intel**. Il y a pour le moment quelques limitations connues, mais tant que vous en êtes conscient et que cela vous convient, vous pouvez insuffler une nouvelle vie à vos vieux Mac en chargeant Unbloarchy.
 
 Notez que l'installation sur un Mac à puce M n'est pas directement prise en charge pour le moment. Vous pouvez en savoir plus sur l'état de la chose dans #omarchy-on-other sur notre [Discord](https://discord.gg/tXFUdasqhY).
 
-Lors d'un test simple, nous avons réussi à obtenir des gains de performance de 36 % sur un MacBook Pro 2019 rien qu'en installant Omarchy.
+Lors d'un test simple, nous avons réussi à obtenir des gains de performance de 36 % sur un MacBook Pro 2019 rien qu'en installant Unbloarchy.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Installer Omarchy sur Mac
+### Installer Unbloarchy sur Mac
 
-Omarchy ne prend en charge pour le moment que le fait d'être le **seul** système d'exploitation installé. Pendant l'installation, le disque sera effacé et MacOS ne sera plus amorçable.
+Unbloarchy ne prend en charge pour le moment que le fait d'être le **seul** système d'exploitation installé. Pendant l'installation, le disque sera effacé et MacOS ne sera plus amorçable.
 
 Vous pourrez toujours le restaurer plus tard via la Récupération par Internet si vous le souhaitez.
 

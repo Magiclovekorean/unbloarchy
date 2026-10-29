@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# omarchy:summary=Add a feature to Chromium's --enable-features in the user's flags file
-# omarchy:args=<feature>
-# omarchy:hidden=true
+# unbloarchy:summary=Add a feature to Chromium's --enable-features in the user's flags file
+# unbloarchy:args=<feature>
+# unbloarchy:hidden=true
 
 set -euo pipefail
 
 feature=${1:-}
 if [[ ! $feature =~ ^[A-Za-z0-9]+$ ]]; then
-  echo "Usage: omarchy-chromium-add-feature <feature>" >&2
+  echo "Usage: unbloarchy-chromium-add-feature <feature>" >&2
   exit 1
 fi
 

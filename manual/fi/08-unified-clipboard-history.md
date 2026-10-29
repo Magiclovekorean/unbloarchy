@@ -2,7 +2,7 @@
 
 Yleensä Linuxissa tarvitset terminaalissa kopioimiseen ja liittämiseen `Ctrl + Shift + C/V` ja kaikkialla muualla `Ctrl + C/V`. Siihen on vaikea tottua kenelle tahansa, joka ei ole syntynyt ja kasvanut Linuxin parissa! Samoin on vaihtamisen laita Superista Ctrliin, jos tulet Macista.
 
-Omarchy ratkaisee molemmat ongelmat yhtenäisillä leikepöydän pikanäppäimillä, jotka toimivat (lähes) kaikkialla. Ne ovat:
+Unbloarchy ratkaisee molemmat ongelmat yhtenäisillä leikepöydän pikanäppäimillä, jotka toimivat (lähes) kaikkialla. Ne ovat:
 
 | Pikanäppäin | Komento |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Käytä `Super + A` ja sitten `Super + C` kopioidaksesi kaiken kohdistettuna ole
 
 ### Leikepöydän historia
 
-Leikepöydän historian tarjoaa Omarchy shell, ja se toimii sekä tekstille että kuville. Käynnistät sen näppäimillä `Super + Ctrl + V`, valitset kohteesi Return-näppäimellä, ja se asetetaan leikepöydälle valmiiksi liitettäväksi näppäimillä `Super + V`.
+Leikepöydän historian tarjoaa Unbloarchy shell, ja se toimii sekä tekstille että kuville. Käynnistät sen näppäimillä `Super + Ctrl + V`, valitset kohteesi Return-näppäimellä, ja se asetetaan leikepöydälle valmiiksi liitettäväksi näppäimillä `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

@@ -36,11 +36,11 @@ printf 'sudo %s\n' "$*" >>"$CALL_LOG"
 [[ ${TEST_SUDO_STATUS:-0} == 0 ]] || exit "$TEST_SUDO_STATUS"
 exec "$@"
 SH
-cat >"$scratch/bin/omarchy-notification-send" <<'SH'
+cat >"$scratch/bin/unbloarchy-notification-send" <<'SH'
 #!/bin/bash
 printf 'notify %s\n' "$*" >>"$CALL_LOG"
 SH
-cat >"$scratch/bin/omarchy-toggle" <<'SH'
+cat >"$scratch/bin/unbloarchy-toggle" <<'SH'
 #!/bin/bash
 printf 'toggle %s\n' "$*" >>"$CALL_LOG"
 SH
@@ -54,13 +54,13 @@ run() {
   local machine=$1 config_dir=$2
   shift 2
   : >"$CALL_LOG"
-  PATH="$scratch/hw/$machine/bin:$scratch/bin:$ROOT/bin:$PATH" OMARCHY_PATH="$ROOT" \
-    OMARCHY_PROC_ROOT="$scratch/hw/$machine/proc" OMARCHY_SYS_ROOT="$scratch/hw/$machine/sys" \
-    OMARCHY_SLEEP_CONFIG_DIR="$config_dir" "$@"
+  PATH="$scratch/hw/$machine/bin:$scratch/bin:$ROOT/bin:$PATH" UNBLOARCHY_PATH="$ROOT" \
+    UNBLOARCHY_PROC_ROOT="$scratch/hw/$machine/proc" UNBLOARCHY_SYS_ROOT="$scratch/hw/$machine/sys" \
+    UNBLOARCHY_SLEEP_CONFIG_DIR="$config_dir" "$@"
 }
 
 run spark "$scratch/spark" bash "$setup"
-config="$scratch/spark/omarchy-sleep-disabled.conf"
+config="$scratch/spark/unbloarchy-sleep-disabled.conf"
 [[ $(head -n 1 "$config") == "[Sleep]" ]] || fail "GB10 sleep settings are in the [Sleep] section"
 for setting in AllowSuspend AllowHibernation AllowSuspendThenHibernate AllowHybridSleep; do
   grep -Fxq "$setting=no" "$config" || fail "a GB10 disallows $setting"
@@ -74,16 +74,16 @@ for machine in n1x other; do
 done
 pass "the GB10 setting disallows every sleep operation and leaves the N1x and other machines alone"
 
-run spark "$scratch/spark" omarchy-sleep-disabled || fail "sleep reads as disabled with the setting in place"
-run spark "$scratch/none" omarchy-sleep-disabled && fail "sleep reads as enabled without the setting"
-pass "omarchy-sleep-disabled follows the sleep setting"
+run spark "$scratch/spark" unbloarchy-sleep-disabled || fail "sleep reads as disabled with the setting in place"
+run spark "$scratch/none" unbloarchy-sleep-disabled && fail "sleep reads as enabled without the setting"
+pass "unbloarchy-sleep-disabled follows the sleep setting"
 
-run spark "$scratch/spark" bash "$ROOT/bin/omarchy-toggle-suspend"
+run spark "$scratch/spark" bash "$ROOT/bin/unbloarchy-toggle-suspend"
 ! grep -q '^toggle ' "$CALL_LOG" || fail "the suspend toggle does nothing while sleep is disabled"
 grep -q '^notify .*Suspend is turned off on this machine' "$CALL_LOG" ||
   fail "the suspend toggle says suspend is turned off"
 # Refuse sudo so a missing check cannot reach this machine's swap or boot files.
-hibernation=$(TEST_SUDO_STATUS=1 run spark "$scratch/spark" bash "$ROOT/bin/omarchy-hibernation-setup" 2>&1) ||
+hibernation=$(TEST_SUDO_STATUS=1 run spark "$scratch/spark" bash "$ROOT/bin/unbloarchy-hibernation-setup" 2>&1) ||
   fail "hibernation setup exits cleanly while sleep is disabled"
 [[ $hibernation == *"Hibernation is turned off on this machine"* ]] ||
   fail "hibernation setup says hibernation is turned off" "$hibernation"
@@ -93,16 +93,16 @@ pass "the suspend toggle and hibernation setup respect the disabled setting"
 
 # The Suspend and Hibernate rows run their real menu guards on the fixture
 # machines: hidden while the setting is in place, back once it is gone.
-menu="$ROOT/default/omarchy/omarchy-menu.jsonc"
+menu="$ROOT/default/unbloarchy/unbloarchy-menu.jsonc"
 
 guard() {
   grep -F "\"$1\"" "$menu" | sed -E 's/.*"when":"([^"]*)".*/\1/'
 }
-cat >"$scratch/bin/omarchy-toggle-enabled" <<'SH'
+cat >"$scratch/bin/unbloarchy-toggle-enabled" <<'SH'
 #!/bin/bash
 [[ ${TEST_SUSPEND_OFF:-0} == 1 ]]
 SH
-cat >"$scratch/bin/omarchy-hibernation-available" <<'SH'
+cat >"$scratch/bin/unbloarchy-hibernation-available" <<'SH'
 #!/bin/bash
 [[ ${TEST_HIBERNATION_OFF:-0} != 1 ]]
 SH

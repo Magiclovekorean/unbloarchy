@@ -20,7 +20,7 @@ trap 'rm -rf "$TMPDIR"' EXIT
 
 mkdir -p "$TMPDIR/bin"
 STATE="$TMPDIR/hyprsunset-temp"
-SHELL_LOG="$TMPDIR/omarchy-shell-log"
+SHELL_LOG="$TMPDIR/unbloarchy-shell-log"
 
 cat >"$TMPDIR/bin/hyprctl" <<'SH'
 #!/bin/bash
@@ -42,18 +42,18 @@ cat >"$TMPDIR/bin/pgrep" <<'SH'
 exit 0
 SH
 
-cat >"$TMPDIR/bin/omarchy-shell" <<'SH'
+cat >"$TMPDIR/bin/unbloarchy-shell" <<'SH'
 #!/bin/bash
-printf '%s\n' "$*" >>"$OMARCHY_SHELL_LOG"
+printf '%s\n' "$*" >>"$UNBLOARCHY_SHELL_LOG"
 SH
 
-chmod +x "$TMPDIR/bin/hyprctl" "$TMPDIR/bin/pgrep" "$TMPDIR/bin/omarchy-shell"
+chmod +x "$TMPDIR/bin/hyprctl" "$TMPDIR/bin/pgrep" "$TMPDIR/bin/unbloarchy-shell"
 
 nightlight_cli() {
   PATH="$TMPDIR/bin:$PATH" \
   HYPRSUNSET_STATE="$STATE" \
-  OMARCHY_SHELL_LOG="$SHELL_LOG" \
-    "$ROOT/bin/omarchy-toggle-nightlight" "$@"
+  UNBLOARCHY_SHELL_LOG="$SHELL_LOG" \
+    "$ROOT/bin/unbloarchy-toggle-nightlight" "$@"
 }
 
 nightlight_status() {
@@ -92,7 +92,7 @@ BOOT_PENDING="$TMPDIR/boot-pending"
 printf '#!/bin/bash\n[[ $* == *etimes* ]] && echo "${HYPRSUNSET_AGE:-100}"\n' >"$TMPDIR/bin/ps"
 cat >"$TMPDIR/bin/sleep" <<'SH'
 #!/bin/bash
-printf 'sleep %s\n' "$*" >>"$OMARCHY_SHELL_LOG"
+printf 'sleep %s\n' "$*" >>"$UNBLOARCHY_SHELL_LOG"
 if [[ -e $BOOT_PENDING ]]; then
   rm -f "$BOOT_PENDING"
   printf '6000\n' >"$HYPRSUNSET_STATE"

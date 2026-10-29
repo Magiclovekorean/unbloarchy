@@ -1,8 +1,8 @@
 # Instal·lacions desateses
 
-La ISO d'Omarchy es pot instal·lar tota sola, sense ningú al teclat. Si l'instal·lador troba una segona unitat amb l'etiqueta `cidata` que contingui els seus fitxers de configuració, els copia, se salta completament l'assistent de configuració i es reinicia tot sol en el sistema acabat. Cap compilació especial de la ISO, cap entrada addicional al menú d'arrencada: sense una unitat així connectada, res no canvia i obtens l'assistent normal.
+La ISO d'Unbloarchy es pot instal·lar tota sola, sense ningú al teclat. Si l'instal·lador troba una segona unitat amb l'etiqueta `cidata` que contingui els seus fitxers de configuració, els copia, se salta completament l'assistent de configuració i es reinicia tot sol en el sistema acabat. Cap compilació especial de la ISO, cap entrada addicional al menú d'arrencada: sense una unitat així connectada, res no canvia i obtens l'assistent normal.
 
-Això fa que Omarchy sigui fantàstic com a imatge base per a entorns de desenvolupament d'un sol ús: crea una VM a Proxmox o amb Packer, arrenca-la, ves-te'n i entra-hi per SSH. `cidata` és l'etiqueta `NoCloud` de cloud-init, així que totes les eines de virtualització habituals ja saben com connectar una unitat així.
+Això fa que Unbloarchy sigui fantàstic com a imatge base per a entorns de desenvolupament d'un sol ús: crea una VM a Proxmox o amb Packer, arrenca-la, ves-te'n i entra-hi per SSH. `cidata` és l'etiqueta `NoCloud` de cloud-init, així que totes les eines de virtualització habituals ja saben com connectar una unitat així.
 
 ## Els fitxers de configuració
 
@@ -18,13 +18,13 @@ Els fitxers són exactament els que escriu el mateix assistent de l'instal·lado
 
 Genera el hash de contrasenya per a `user_credentials.json` amb `openssl passwd -6 "yourpassword"`.
 
-El nom i el correu electrònic per als commits de git no formen part de la instal·lació. Configura'ls un cop la màquina estigui en marxa, per SSH per exemple, amb `omarchy setup git --name "Jane Doe" --email jane@example.com`.
+El nom i el correu electrònic per als commits de git no formen part de la instal·lació. Configura'ls un cop la màquina estigui en marxa, per SSH per exemple, amb `unbloarchy setup git --name "Jane Doe" --email jane@example.com`.
 
 També pots deixar-hi un fitxer buit anomenat `defer-provisioning` en lloc de `user_credentials.json`. Això executa la mateixa [instal·lació de preparació per a un altre propietari](02-getting-started.md) que pots activar interactivament: la màquina s'instal·la sense cap dada personal, i qui l'arrenqui primer tria el seu teclat i crea el seu usuari. Aquest és el mode per als equips de creació d'imatges, on la unitat no hauria de portar les credencials de ningú.
 
 ## Accés SSH
 
-Quan `authorized_keys` hi és present, la instal·lació configura les claus com a `~/.ssh/authorized_keys` de l'usuari, activa `sshd` i obre el tallafoc per a aquest servei. (Una instal·lació estàndard d'Omarchy inclou openssh amb el servei desactivat i el port tancat, així que una màquina desatesa seria altrament inabastable.) La instal·lació només afegeix les teves claus: no relaxa cap altra configuració d'autenticació del dimoni SSH.
+Quan `authorized_keys` hi és present, la instal·lació configura les claus com a `~/.ssh/authorized_keys` de l'usuari, activa `sshd` i obre el tallafoc per a aquest servei. (Una instal·lació estàndard d'Unbloarchy inclou openssh amb el servei desactivat i el port tancat, així que una màquina desatesa seria altrament inabastable.) La instal·lació només afegeix les teves claus: no relaxa cap altra configuració d'autenticació del dimoni SSH.
 
 Quan `tailscale_authkey` hi és present, la màquina s'uneix a la teva tailnet a la primera arrencada: Tailscale s'instal·la des dels paquets inclosos a la ISO, el tallafoc permet la interfície de la tailnet i una tasca en segon pla executa la unió tan bon punt la màquina té xarxa de debò, i ho reintenta fins que ho aconsegueix. Fes servir una clau reutilitzable i preautoritzada perquè una sola imatge d'unitat pugui servir per a moltes màquines.
 
@@ -38,16 +38,16 @@ cp user_configuration.json user_credentials.json authorized_keys cidata/
 genisoimage -output cidata.iso -volid cidata -joliet -rock cidata/
 ```
 
-Després connecta-la a la VM juntament amb la ISO d'Omarchy. Aquí tens un exemple complet de Proxmox:
+Després connecta-la a la VM juntament amb la ISO d'Unbloarchy. Aquí tens un exemple complet de Proxmox:
 
 ```bash
-qm create 101 --name my-omarchy \
+qm create 101 --name my-unbloarchy \
   --bios ovmf --machine q35 --cpu host --cores 4 --memory 8192 \
   --ostype l26 --scsihw virtio-scsi-single \
   --efidisk0 local-lvm:0,efitype=4m,pre-enrolled-keys=0 \
   --scsi0 local-lvm:40,discard=on,iothread=1 \
   --net0 virtio,bridge=vmbr0 --vga virtio --serial0 socket \
-  --ide2 local:iso/omarchy.iso,media=cdrom \
+  --ide2 local:iso/unbloarchy.iso,media=cdrom \
   --ide3 local:iso/cidata.iso,media=cdrom \
   --boot order='scsi0;ide2'
 

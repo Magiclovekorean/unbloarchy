@@ -1,14 +1,14 @@
 # शीर्ष पट्टी
 
-आपकी स्क्रीन के शीर्ष पर बनी पट्टी Omarchy बार है। यह कोई ऊपर से जोड़ी गई status bar नहीं है, बल्कि Omarchy shell का हिस्सा है, वही एकल, लंबे समय तक चलने वाली Quickshell process जो menu, notifications, OSD popups और lock screen भी बनाती है। इसीलिए यह बाकी हर चीज़ के साथ पूरी तरह मेल खाती है और इसीलिए कोई panel किसी नए app को शुरू करने के बजाय तुरंत खुल जाता है।
+आपकी स्क्रीन के शीर्ष पर बनी पट्टी Unbloarchy बार है। यह कोई ऊपर से जोड़ी गई status bar नहीं है, बल्कि Unbloarchy shell का हिस्सा है, वही एकल, लंबे समय तक चलने वाली Quickshell process जो menu, notifications, OSD popups और lock screen भी बनाती है। इसीलिए यह बाकी हर चीज़ के साथ पूरी तरह मेल खाती है और इसीलिए कोई panel किसी नए app को शुरू करने के बजाय तुरंत खुल जाता है।
 
 यह desktop का वह एकमात्र हिस्सा भी है जो हमेशा स्क्रीन पर रहता है, इसलिए यह जानना फ़ायदेमंद है कि वे सभी छोटे-छोटे glyphs करते क्या हैं।
 
 ## डिफ़ॉल्ट रूप से इस पर क्या होता है
 
-बार के तीन हिस्से हैं। बाईं ओर Omarchy logo (menu launcher) और workspace indicators बैठते हैं। बीच में आपको status indicators, घड़ी, Elsewhen (एक विश्व घड़ी), मौसम और Omarchy update badge मिलते हैं। दाईं ओर: system tray, keyboard layout (जब एक से अधिक कॉन्फ़िगर किया गया हो), agents, bluetooth, network, audio, display और power।
+बार के तीन हिस्से हैं। बाईं ओर Unbloarchy logo (menu launcher) और workspace indicators बैठते हैं। बीच में आपको status indicators, घड़ी, Elsewhen (एक विश्व घड़ी), मौसम और Unbloarchy update badge मिलते हैं। दाईं ओर: system tray, keyboard layout (जब एक से अधिक कॉन्फ़िगर किया गया हो), agents, bluetooth, network, audio, display और power।
 
-इनमें से कुछ तभी दिखाई देते हैं जब उनके पास कहने को कुछ हो। Keyboard layout तभी दिखाई देता है जब आपने एक से अधिक layout कॉन्फ़िगर किया हो। Update badge तभी दिखाई देता है जब कोई Omarchy update प्रतीक्षा कर रहा हो। और agents icon पहली बार तब दिखाई देता है जब Omarchy को मशीन पर AI coding का उपयोग मिलता है (देखें [AI](17-ai.md))।
+इनमें से कुछ तभी दिखाई देते हैं जब उनके पास कहने को कुछ हो। Keyboard layout तभी दिखाई देता है जब आपने एक से अधिक layout कॉन्फ़िगर किया हो। Update badge तभी दिखाई देता है जब कोई Unbloarchy update प्रतीक्षा कर रहा हो। और agents icon पहली बार तब दिखाई देता है जब Unbloarchy को मशीन पर AI coding का उपयोग मिलता है (देखें [AI](17-ai.md))।
 
 ## इधर-उधर क्लिक करना
 
@@ -16,7 +16,7 @@
 
 | Widget | Left | Right | Middle / scroll |
 | --- | --- | --- | --- |
-| Menu | Omarchy menu | नया terminal | — |
+| Menu | Unbloarchy menu | नया terminal | — |
 | Workspaces | इस monitor पर उस workspace पर focus करें | — | Scroll: अगला/पिछला workspace |
 | Clock | Calendar popup | Label format बदलें | Middle: timezone picker |
 | Weather | Forecast popup | Notification के रूप में पूरा मौसम | Middle: refresh |
@@ -29,7 +29,7 @@
 | Media | Play/pause | Cover-art popup | Middle: अगला · scroll: पिछला/अगला |
 | Agents | Agents panel | अपना agent लॉन्च करें | Middle: अगली subscription |
 | Tray | Drawer दिखाने के लिए hover करें | प्रबंधित करने के लिए chevron पर right click करें | — |
-| Omarchy update | Update चलाएँ | — | — |
+| Unbloarchy update | Update चलाएँ | — | — |
 
 उस तालिका में मौजूद हर चीज़ शुरुआत से आपके बार पर नहीं होती। Media widget (MPRIS now-playing, scrolling track और artist के साथ) और microphone widget दोनों अंतर्निहित हैं लेकिन डिफ़ॉल्ट रूप से बंद हैं — अगर आप उन्हें चाहते हैं तो उन्हें जोड़ें, जैसा कि नीचे बताया गया है।
 
@@ -66,7 +66,7 @@ Panels सिर्फ़ जानकारी दिखाने के लि
 
 दो और widgets बार पर तभी दिखाई देते हैं जब आप **Install → Service** से मेल खाने वाली service install करते हैं, और दोनों के बारे में जानना ज़रूरी है क्योंकि वे सिर्फ़ status बताने से ज़्यादा करते हैं।
 
-**Tailscale** panel tailnet को connect और disconnect करता है, accounts के बीच बदलता है, और exit node चुनता है (आपकी अपनी machines और Mullvad regions दोनों उस सूची में दिखाई देते हैं)। यह आपकी machines को भी browse करता है — और किसी एक को चुने होने पर, `s` Taildrop के ज़रिए उसे files भेजता है, जो किसी file को अपने phone या दूसरे laptop पर ले जाने का सबसे तेज़ तरीका है। `c` मशीन का IP copy करता है, `n` उसका नाम, और `d` उसका पूरा DNS नाम। हर machine row पर एक send button भी है, अगर आप क्लिक करना पसंद करें। Terminal से वही काम `omarchy tailscale send <machine> [file...]` है।
+**Tailscale** panel tailnet को connect और disconnect करता है, accounts के बीच बदलता है, और exit node चुनता है (आपकी अपनी machines और Mullvad regions दोनों उस सूची में दिखाई देते हैं)। यह आपकी machines को भी browse करता है — और किसी एक को चुने होने पर, `s` Taildrop के ज़रिए उसे files भेजता है, जो किसी file को अपने phone या दूसरे laptop पर ले जाने का सबसे तेज़ तरीका है। `c` मशीन का IP copy करता है, `n` उसका नाम, और `d` उसका पूरा DNS नाम। हर machine row पर एक send button भी है, अगर आप क्लिक करना पसंद करें। Terminal से वही काम `unbloarchy tailscale send <machine> [file...]` है।
 
 **Dropbox** panel login संभालता है, दिखाता है कि आपने कितना storage इस्तेमाल किया है, और हाल में sync की गई files सूचीबद्ध करता है।
 
@@ -93,19 +93,19 @@ Panels सिर्फ़ जानकारी दिखाने के लि
 उन्हीं चीज़ों के commands भी हैं, जो [dotfiles](31-dotfiles.md) setup के लिए आपकी पसंद होंगे:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-किसी widget को पूरी तरह जोड़ने या हटाने के लिए, plugin commands का उपयोग करें। `omarchy plugin list` shell को ज्ञात हर widget को उसकी id के साथ छापता है, और फिर:
+किसी widget को पूरी तरह जोड़ने या हटाने के लिए, plugin commands का उपयोग करें। `unbloarchy plugin list` shell को ज्ञात हर widget को उसकी id के साथ छापता है, और फिर:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## बार को छिपाना
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Config file
 
-यह सब `~/.config/omarchy/shell.json` में, `bar` key के अंतर्गत संग्रहीत है। यहाँ एक छोटा किया गया संस्करण है:
+यह सब `~/.config/unbloarchy/shell.json` में, `bar` key के अंतर्गत संग्रहीत है। यहाँ एक छोटा किया गया संस्करण है:
 
 ```json
 {
@@ -123,20 +123,20 @@ omarchy plugin disable omarchy.weather
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-हर widget पाँच layout arrays में से किसी एक में एक entry है, और उसकी settings उसी entry पर inline बैठती हैं — कोई अलग settings file नहीं है और कोई `config` sub-object नहीं है। Clock का `format`, `formatAlt` (जिस पर right-click बदलता है), और `verticalFormat` सभी ठीक वहीं `{ "id": "omarchy.clock" }` पर रहते हैं।
+हर widget पाँच layout arrays में से किसी एक में एक entry है, और उसकी settings उसी entry पर inline बैठती हैं — कोई अलग settings file नहीं है और कोई `config` sub-object नहीं है। Clock का `format`, `formatAlt` (जिस पर right-click बदलता है), और `verticalFormat` सभी ठीक वहीं `{ "id": "unbloarchy.clock" }` पर रहते हैं।
 
 `center` बार के बीच में बना box है: उसमें मौजूद हर चीज़ स्क्रीन पर एक समूह के रूप में केंद्रित होती है। `centerBegin` और `centerEnd` box के दोनों ओर लटके रहते हैं, इसी तरह घड़ी ठीक केंद्र में बनी रहती है, जबकि मौसम और update badge आते-जाते रहते हैं। `center` में एक से अधिक widget रखें और वे एक साथ केंद्रित होते हैं; इसे खाली छोड़ दें और `centerBegin` और `centerEnd` बार के बीच में मिल जाते हैं।
 
-एक नियम जिसे आत्मसात करना फ़ायदेमंद है: **एक बार जब आपके पास अपना `shell.json` हो जाता है, तो वह canonical है**। जब तक आप कुछ भी customize नहीं करते, shell Omarchy की default file पढ़ता है। जिस क्षण आप कोई widget खींचते हैं, `omarchy bar` चलाते हैं, या file को खुद संपादित करते हैं, आप उसके मालिक बन जाते हैं — कोई deep merge नहीं होता, इसलिए भविष्य के Omarchy releases में नए default widgets आपके बार पर अपने आप दिखाई नहीं देंगे। जब भी आप एक साफ़ शुरुआत चाहते हैं, `omarchy bar defaults` shipped layout वापस रख देता है।
+एक नियम जिसे आत्मसात करना फ़ायदेमंद है: **एक बार जब आपके पास अपना `shell.json` हो जाता है, तो वह canonical है**। जब तक आप कुछ भी customize नहीं करते, shell Unbloarchy की default file पढ़ता है। जिस क्षण आप कोई widget खींचते हैं, `unbloarchy bar` चलाते हैं, या file को खुद संपादित करते हैं, आप उसके मालिक बन जाते हैं — कोई deep merge नहीं होता, इसलिए भविष्य के Unbloarchy releases में नए default widgets आपके बार पर अपने आप दिखाई नहीं देंगे। जब भी आप एक साफ़ शुरुआत चाहते हैं, `unbloarchy bar defaults` shipped layout वापस रख देता है।
 
 वही file शीर्ष स्तर पर, `bar` key के बाहर, आपकी idle timings भी रखती है: `idle.screensaver` और `idle.lock`, दोनों आपके idle होने के बाद के seconds में। इसलिए default screensaver 150 seconds पर शुरू होता है और lock 300 पर।

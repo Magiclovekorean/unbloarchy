@@ -51,21 +51,21 @@ fs.writeFileSync(`${stage}/network/Panel.qml`, source)
 JS
   printf '#!/bin/bash\nexit 0\n' >"$stage/bin/noop"
   chmod +x "$stage/bin/noop"
-  for command in omarchy-dns omarchy-network-band; do
+  for command in unbloarchy-dns unbloarchy-network-band; do
     ln -s noop "$stage/bin/$command"
   done
   # Preview uses only synthetic details, never the host's SSID or addresses.
   # Normal assertions keep the details empty to exercise missing-route handling.
-  printf '#!/bin/bash\nif [[ -n ${NETWORK_TEST_PREVIEW:-} ]]; then\n  printf "type\\twifi\\niface\\ttest-wifi\\nssid\\tGuest Wi-Fi\\nip\\t192.0.2.10\\ngateway\\t192.0.2.1\\n"\nfi\n' >"$stage/bin/omarchy-network-status"
-  chmod +x "$stage/bin/omarchy-network-status"
-  printf '#!/bin/bash\nprintf "%%s\\n" "$@" >> "$NETWORK_TEST_BROWSER_LOG"\n' >"$stage/bin/omarchy-network-captive-portal"
-  chmod +x "$stage/bin/omarchy-network-captive-portal"
+  printf '#!/bin/bash\nif [[ -n ${NETWORK_TEST_PREVIEW:-} ]]; then\n  printf "type\\twifi\\niface\\ttest-wifi\\nssid\\tGuest Wi-Fi\\nip\\t192.0.2.10\\ngateway\\t192.0.2.1\\n"\nfi\n' >"$stage/bin/unbloarchy-network-status"
+  chmod +x "$stage/bin/unbloarchy-network-status"
+  printf '#!/bin/bash\nprintf "%%s\\n" "$@" >> "$NETWORK_TEST_BROWSER_LOG"\n' >"$stage/bin/unbloarchy-network-captive-portal"
+  chmod +x "$stage/bin/unbloarchy-network-captive-portal"
 }
 
 # run_panel <description>: run the staged fixture to completion.
 run_panel() {
   local output
-  output=$(HOME="$stage/home" OMARCHY_PATH="$ROOT" PATH="$stage/bin:$PATH" \
+  output=$(HOME="$stage/home" UNBLOARCHY_PATH="$ROOT" PATH="$stage/bin:$PATH" \
     NETWORK_TEST_BROWSER_LOG="$stage/browser.log" NETWORK_TEST_NMCLI_LOG="$stage/nmcli.log" \
     timeout 30 quickshell -p "$stage" --no-color 2>&1) || fail "$1 fixture exits cleanly" "$output"
   [[ $output == *"RESULT pass"* ]] || fail "$1 runtime assertions pass" "$output"

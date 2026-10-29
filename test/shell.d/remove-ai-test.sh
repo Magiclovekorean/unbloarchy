@@ -129,7 +129,7 @@ touch "$HOME/.local/share/t3code/T3-Code.AppImage" "$HOME/.local/share/applicati
   "$HOME/.local/share/applications/com.t3tools.T3Code.desktop" "$HOME/.local/share/icons/com.t3tools.T3Code.desktop.png" \
   "$HOME/.local/share/icons/hicolor/512x512/apps/t3code.png" "$HOME/.local/share/applications/other.desktop"
 ln -s "$HOME/.t3/bin/t3" "$HOME/.local/bin/t3"
-"$ROOT/bin/omarchy-remove-ai-t3-code" >/dev/null
+"$ROOT/bin/unbloarchy-remove-ai-t3-code" >/dev/null
 
 for gone in .local/share/t3code .local/share/applications/t3code.desktop .local/share/applications/com.t3tools.T3Code.desktop \
   .local/share/icons/com.t3tools.T3Code.desktop.png .local/share/icons/hicolor/512x512/apps/t3code.png \
@@ -143,7 +143,7 @@ pass "T3 Code removal deletes the app, its launchers, icons, update cache and t3
 fresh_home
 mkdir -p "$HOME/.local/bin"
 echo "#!/bin/sh" >"$HOME/.local/bin/t3"
-"$ROOT/bin/omarchy-remove-ai-t3-code" >/dev/null
+"$ROOT/bin/unbloarchy-remove-ai-t3-code" >/dev/null
 [[ -f $HOME/.local/bin/t3 ]] || fail "T3 Code removal keeps a t3 the user put there"
 pass "T3 Code removal keeps a t3 the user put there"
 
@@ -270,7 +270,7 @@ fresh_openclaw_home() {
   fresh_home
   mkdir -p "$HOME/.config/systemd/user/default.target.wants" "$HOME/.openclaw" \
     "$HOME/.local/share/applications" "$HOME/.local/share/icons/hicolor/256x256/apps" \
-    "$HOME/.local/state/omarchy/openclaw-stopped"
+    "$HOME/.local/state/unbloarchy/openclaw-stopped"
   touch "$HOME/.config/systemd/user/openclaw-gateway.service" \
     "$HOME/.config/systemd/user/openclaw-gateway.service.bak" \
     "$HOME/.config/systemd/user/openclaw-gateway.service.reconcile-0f1e.bak" \
@@ -279,7 +279,7 @@ fresh_openclaw_home() {
     "$HOME/.openclaw/openclaw.json" \
     "$HOME/.local/share/applications/OpenClaw.desktop" \
     "$HOME/.local/share/icons/hicolor/256x256/apps/openclaw.png" \
-    "$HOME/.local/state/omarchy/openclaw-stopped/gateway"
+    "$HOME/.local/state/unbloarchy/openclaw-stopped/gateway"
   ln -s ../openclaw-gateway.service \
     "$HOME/.config/systemd/user/default.target.wants/openclaw-gateway.service"
   ln -s ../openclaw-node.service \
@@ -307,7 +307,7 @@ for gone in .config/systemd/user/openclaw-gateway.service \
   .config/systemd/user/default.target.wants/openclaw-node.service \
   .local/share/applications/OpenClaw.desktop \
   .local/share/icons/hicolor/256x256/apps/openclaw.png \
-  .local/state/omarchy/openclaw-stopped; do
+  .local/state/unbloarchy/openclaw-stopped; do
   [[ ! -e $HOME/$gone && ! -L $HOME/$gone ]] || fail "OpenClaw removal deletes the service and launcher it installed" "$gone"
 done
 pass "OpenClaw removal deletes the service and launcher it installed"
@@ -439,13 +439,13 @@ cat >"$tmp_dir/bin/systemctl" <<'SCRIPT'
 printf 'systemctl:%s\n' "$*" >>"$TEST_LOG"
 SCRIPT
 chmod +x "$tmp_dir/bin/systemctl"
-mv "$tmp_dir/bin/omarchy-pkg-drop" "$tmp_dir/omarchy-pkg-drop.real"
-printf '#!/bin/bash\nexit 1\n' >"$tmp_dir/bin/omarchy-pkg-drop"
-chmod +x "$tmp_dir/bin/omarchy-pkg-drop"
-if "$ROOT/bin/omarchy-remove-ai-openclaw" >/dev/null 2>&1; then
+mv "$tmp_dir/bin/unbloarchy-pkg-drop" "$tmp_dir/unbloarchy-pkg-drop.real"
+printf '#!/bin/bash\nexit 1\n' >"$tmp_dir/bin/unbloarchy-pkg-drop"
+chmod +x "$tmp_dir/bin/unbloarchy-pkg-drop"
+if "$ROOT/bin/unbloarchy-remove-ai-openclaw" >/dev/null 2>&1; then
   fail "OpenClaw removal fails when the package cannot be dropped"
 fi
-[[ ! -e $HOME/.local/state/omarchy/openclaw-stopped/gateway ]] ||
+[[ ! -e $HOME/.local/state/unbloarchy/openclaw-stopped/gateway ]] ||
   fail "OpenClaw removal drops a service's restart record with the service, before anything else can fail"
-mv "$tmp_dir/omarchy-pkg-drop.real" "$tmp_dir/bin/omarchy-pkg-drop"
+mv "$tmp_dir/unbloarchy-pkg-drop.real" "$tmp_dir/bin/unbloarchy-pkg-drop"
 pass "OpenClaw removal drops a service's restart record with the service, before anything else can fail"

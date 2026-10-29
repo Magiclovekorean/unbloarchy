@@ -2,7 +2,7 @@
 
 Normalmente no Linux, você precisa de `Ctrl + Shift + C/V` para copiar e colar no terminal e de `Ctrl + C/V` para fazer isso em todo o resto. É difícil de se acostumar para quem não nasceu e foi criado no Linux! O mesmo vale para a troca do super pelo ctrl, se você está vindo do Mac.
 
-O Omarchy resolve os dois problemas com atalhos de área de transferência unificados que funcionam (quase) em todo lugar. São eles:
+O Unbloarchy resolve os dois problemas com atalhos de área de transferência unificados que funcionam (quase) em todo lugar. São eles:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Use `Super + A` e depois `Super + C` para copiar tudo em um campo de texto focad
 
 ### Histórico da área de transferência
 
-O histórico da área de transferência é fornecido pelo shell do Omarchy e funciona tanto para texto quanto para imagens. Você o aciona com `Super + Ctrl + V`, seleciona a entrada com Enter, e ela será colocada na área de transferência, pronta para colar com `Super + V`.
+O histórico da área de transferência é fornecido pelo shell do Unbloarchy e funciona tanto para texto quanto para imagens. Você o aciona com `Super + Ctrl + V`, seleciona a entrada com Enter, e ela será colocada na área de transferência, pronta para colar com `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

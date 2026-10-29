@@ -2,23 +2,23 @@
 
 ### Nimeharibu mfumo wangu kwa kusasisha!
 
-Kwanza jaribu [kurudisha mfumo wako](47-system-snapshots.md) kwenye toleo la kabla ya usasishaji wako wa hivi karibuni. Ikiwa hiyo haifanyi kazi, tumia `omarchy-debug` kushiriki tatizo lako kwenye #omarchy-help katika Discord. Na ikiwa yote hayo yatashindikana, unaweza kusakinisha upya usanidi na vifurushi chaguo-msingi kwa kutumia `omarchy-reinstall`.
+Kwanza jaribu [kurudisha mfumo wako](47-system-snapshots.md) kwenye toleo la kabla ya usasishaji wako wa hivi karibuni. Ikiwa hiyo haifanyi kazi, tumia `unbloarchy-debug` kushiriki tatizo lako kwenye #unbloarchy-help katika Discord. Na ikiwa yote hayo yatashindikana, unaweza kusakinisha upya usanidi na vifurushi chaguo-msingi kwa kutumia `unbloarchy-reinstall`.
 
 ### Kwa nini baadhi ya programu ni kubwa sana kwenye skrini yangu?
 
-Omarchy huchukulia kuwa una skrini yenye ubora wa juu ya 2x, ambayo inahitaji kuweka `GDK_SCALE` kuwa 2 katika `~/.config/hypr/monitors.lua`. Lakini ikiwa uko kwenye skrini ya 1x, unaweza kubadilisha `local omarchy_gdk_scale = 2` kuwa 1 (kisha uanzishe upya programu yoyote iliyo kubwa kupita kiasi). Tazama [mwongozo kuhusu skrini](33-monitors.md).
+Unbloarchy huchukulia kuwa una skrini yenye ubora wa juu ya 2x, ambayo inahitaji kuweka `GDK_SCALE` kuwa 2 katika `~/.config/hypr/monitors.lua`. Lakini ikiwa uko kwenye skrini ya 1x, unaweza kubadilisha `local unbloarchy_gdk_scale = 2` kuwa 1 (kisha uanzishe upya programu yoyote iliyo kubwa kupita kiasi). Tazama [mwongozo kuhusu skrini](33-monitors.md).
 
 Kwa Spotify, unaweza kutumia `Ctrl + Minus` kupunguza ukubwa wa kiolesura (na `Ctrl + Plus` kuifanya iwe kubwa zaidi).
 
 ### Kwa nini vifungo vyote vya kitufe cha Super vimeacha kufanya kazi?
 
-Kwenye baadhi ya kompyuta mpakato za ASUS ROG na TUF, `Fn + Super` ni mchanganyiko rahisi kupitwa ambao huwasha na kuzima kufuli ya programu dhibiti ya kitufe cha Windows (iliyokusudiwa kwa michezo ili usiondoke kwenye mchezo kwa bahati mbaya). Hakuna kinachoonekana kwenye skrini kukwambia kuwa imetokea. Kufuli ikiwa imewashwa, Super haitoi chochote kabisa — kwa hivyo kila kifungo cha Omarchy kinachotumia Super huacha tu kufanya kazi, na inaonekana kama Hyprland imeharibika.
+Kwenye baadhi ya kompyuta mpakato za ASUS ROG na TUF, `Fn + Super` ni mchanganyiko rahisi kupitwa ambao huwasha na kuzima kufuli ya programu dhibiti ya kitufe cha Windows (iliyokusudiwa kwa michezo ili usiondoke kwenye mchezo kwa bahati mbaya). Hakuna kinachoonekana kwenye skrini kukwambia kuwa imetokea. Kufuli ikiwa imewashwa, Super haitoi chochote kabisa — kwa hivyo kila kifungo cha Unbloarchy kinachotumia Super huacha tu kufanya kazi, na inaonekana kama Hyprland imeharibika.
 
 Bonyeza `Fn + Super` mara moja kabla ya kuanza kuchimba katika `~/.config/hypr/`, na ikiwa hiyo hairudishi Super, ibonyeze tena ili usiache kufuli ikiwa imewashwa. Hii si Fn-lock, ambayo hubadilisha tu jinsi safu ya vitufe vya F inavyofanya kazi.
 
 ### Wi-Fi, Bluetooth, sauti, au padi yangu ya kugusa imeacha kufanya kazi ghafla
 
-Kabla ya kuwasha upya, jaribu kuwasha upya mfumo mdogo unaosumbua peke yake. _Update > Hardware_ kwenye menyu ya Omarchy ina Wi-Fi, Bluetooth, Audio, na Trackpad, na kupakia upya mojawapo ya hizo hutatua hali nyingi za "ilikuwa inafanya kazi dakika tano zilizopita" — vifaa vya sauti vya Bluetooth vinavyokataa kuunganishwa tena, padi ya kugusa iliyokufa baada ya kusimamisha, sauti iliyopotea ulipochomoa skrini.
+Kabla ya kuwasha upya, jaribu kuwasha upya mfumo mdogo unaosumbua peke yake. _Update > Hardware_ kwenye menyu ya Unbloarchy ina Wi-Fi, Bluetooth, Audio, na Trackpad, na kupakia upya mojawapo ya hizo hutatua hali nyingi za "ilikuwa inafanya kazi dakika tano zilizopita" — vifaa vya sauti vya Bluetooth vinavyokataa kuunganishwa tena, padi ya kugusa iliyokufa baada ya kusimamisha, sauti iliyopotea ulipochomoa skrini.
 
 ### Kwa nini spika zangu za nje hazichezi sauti?
 
@@ -26,7 +26,7 @@ Pengine ni kwa sababu hazijawekwa kama kifaa kikuu cha kutoa sauti. Bofya aikoni
 
 ### Spika za kompyuta yangu mpakato zinasikika vibaya
 
-Kwenye baadhi ya kompyuta mpakato, Omarchy hutumia kiotomatiki urekebishaji wa spika unaosahihisha mwitikio wa masafa wa spika zilizojengwa ndani. `omarchy audio tuning status` hukwambia ikiwa mmoja unafanya kazi kwenye mashine yako, na `omarchy audio tuning off` huuzima ikiwa ungependa kusikia spika zikiwa mbichi.
+Kwenye baadhi ya kompyuta mpakato, Unbloarchy hutumia kiotomatiki urekebishaji wa spika unaosahihisha mwitikio wa masafa wa spika zilizojengwa ndani. `unbloarchy audio tuning status` hukwambia ikiwa mmoja unafanya kazi kwenye mashine yako, na `unbloarchy audio tuning off` huuzima ikiwa ungependa kusikia spika zikiwa mbichi.
 
 ### Kwa nini siwezi kuingia au kutumia sudo kwa nenosiri langu?
 

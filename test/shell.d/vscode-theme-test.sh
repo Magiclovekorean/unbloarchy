@@ -47,12 +47,12 @@ EXTENSIONS="$TEST_HOME/.vscode/extensions"
 EDITOR_LOG="$TEST_HOME/editor.log"
 mkdir -p "$EDITOR_BIN"
 
-cat >"$EDITOR_BIN/omarchy-cmd-present" <<'EOF'
+cat >"$EDITOR_BIN/unbloarchy-cmd-present" <<'EOF'
 #!/bin/bash
 [[ $1 == "code" ]]
 EOF
 
-cat >"$EDITOR_BIN/omarchy-toggle-enabled" <<'EOF'
+cat >"$EDITOR_BIN/unbloarchy-toggle-enabled" <<'EOF'
 #!/bin/bash
 exit 1
 EOF
@@ -73,27 +73,27 @@ run_vscode_sync() {
     LISTED_EXTENSIONS="${LISTED_EXTENSIONS:-}" \
     PATH="$EDITOR_BIN:$ROOT/bin:$PATH" \
     HOME="$TEST_HOME" \
-    "$ROOT/bin/omarchy-theme-set-vscode"
+    "$ROOT/bin/unbloarchy-theme-set-vscode"
 }
 
 editor_calls() {
   [[ -f $EDITOR_LOG ]] && cat "$EDITOR_LOG"
 }
 
-mkdir -p "$EXTENSIONS/bjarne.hackerman-omarchy-1.0.0"
-printf '[{"identifier":{"id":"bjarne.hackerman-omarchy"},"version":"1.0.0","relativeLocation":"bjarne.hackerman-omarchy-1.0.0"}]\n' >"$EXTENSIONS/extensions.json"
+mkdir -p "$EXTENSIONS/bjarne.hackerman-unbloarchy-1.0.0"
+printf '[{"identifier":{"id":"bjarne.hackerman-omarchy"},"version":"1.0.0","relativeLocation":"bjarne.hackerman-unbloarchy-1.0.0"}]\n' >"$EXTENSIONS/extensions.json"
 run_vscode_sync
 [[ -z $(editor_calls) ]] || fail "VS Code theme sync finds a registered extension without starting the editor" "$(editor_calls)"
 grep -q '"workbench.colorTheme": "Hackerman"' "$TEST_HOME/.config/Code/User/settings.json" || fail "VS Code theme sync selects the theme of a registered extension"
 pass "VS Code theme sync finds a registered extension without starting the editor"
 
-printf '{"bjarne.hackerman-omarchy-1.0.0":true}\n' >"$EXTENSIONS/.obsolete"
+printf '{"bjarne.hackerman-unbloarchy-1.0.0":true}\n' >"$EXTENSIONS/.obsolete"
 run_vscode_sync
 [[ $(editor_calls) == "--install-extension Bjarne.hackerman-omarchy" ]] || fail "VS Code theme sync reinstalls an extension marked obsolete" "$(editor_calls)"
 rm -f "$EXTENSIONS/.obsolete"
 pass "VS Code theme sync reinstalls an extension marked obsolete"
 
-rm -rf "$EXTENSIONS/bjarne.hackerman-omarchy-1.0.0"
+rm -rf "$EXTENSIONS/bjarne.hackerman-unbloarchy-1.0.0"
 run_vscode_sync
 [[ $(editor_calls) == "--install-extension Bjarne.hackerman-omarchy" ]] || fail "VS Code theme sync reinstalls a registered extension whose directory is gone" "$(editor_calls)"
 pass "VS Code theme sync reinstalls a registered extension whose directory is gone"
@@ -108,15 +108,15 @@ LISTED_EXTENSIONS="bjarne.hackerman-omarchy" run_vscode_sync
 [[ $(editor_calls) == "--list-extensions" ]] || fail "VS Code theme sync asks the editor when it has no extension registry" "$(editor_calls)"
 pass "VS Code theme sync asks the editor when it has no extension registry"
 
-# omarchy-theme-set reports a retint that exits non-zero, so skipping an
+# unbloarchy-theme-set reports a retint that exits non-zero, so skipping an
 # editor by its toggle must still succeed.
 SKIP_BIN="$TEST_HOME/skip-bin"
 mkdir -p "$SKIP_BIN"
-cat >"$SKIP_BIN/omarchy-toggle-enabled" <<'EOF2'
+cat >"$SKIP_BIN/unbloarchy-toggle-enabled" <<'EOF2'
 #!/bin/bash
 [[ $1 == "skip-cursor-theme-changes" ]]
 EOF2
-chmod +x "$SKIP_BIN/omarchy-toggle-enabled"
+chmod +x "$SKIP_BIN/unbloarchy-toggle-enabled"
 EDITOR_PROBE_LOG="$TEST_HOME/editor-probes.log" PATH="$SKIP_BIN:$FAKE_BIN:$ROOT/bin:$PATH" HOME="$TEST_HOME" \
-  "$ROOT/bin/omarchy-theme-set-vscode" || fail "VS Code theme sync succeeds when the last editor is skipped by its toggle"
+  "$ROOT/bin/unbloarchy-theme-set-vscode" || fail "VS Code theme sync succeeds when the last editor is skipped by its toggle"
 pass "VS Code theme sync succeeds when the last editor is skipped by its toggle"

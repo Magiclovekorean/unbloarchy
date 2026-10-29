@@ -20,11 +20,11 @@ Obsidian je bezplatný na všetky účely vrátane osobného, komerčného a nez
 
 Obsidian ponúka aj [komerčný doplnok na synchronizáciu](https://obsidian.md/sync) s mobilnými aplikáciami pre iOS a Android. (https://obsidian.md/pricing).
 
-Obsidian spustíte pomocou `Super + Shift + O`. Ak chcete používať synchronizáciu tém, musíte v nastaveniach vybrať tému `Omarchy`.
+Obsidian spustíte pomocou `Super + Shift + O`. Ak chcete používať synchronizáciu tém, musíte v nastaveniach vybrať tému `Unbloarchy`.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) je vlastná úplne jednoduchá aplikácia Omarchy na písanie v Markdowne. Žiadne trezory, žiadne pluginy, len vy a slová.
+[Omawrite](https://github.com/omacom-io/omawrite) je vlastná úplne jednoduchá aplikácia Unbloarchy na písanie v Markdowne. Žiadne trezory, žiadne pluginy, len vy a slová.
 
 Omawrite spustíte pomocou `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Aether spustíte cez spúšťač aplikácií (`Super + Space`).
 
 [LocalSend](https://localsend.org/) vám umožňuje odosielať súbory do iných zariadení v rovnakej sieti, na ktorých je spustená táto aplikácia, podobne ako AirDrop od Apple. Je však multiplatformový, takže môžete odosielať súbory do a zo systémov Windows, macOS, Android, iOS a samozrejme Linux.
 
-Ponuku Zdieľať môžete otvoriť pomocou `Super + Ctrl + S` alebo v ponuke Omarchy pod _Trigger > Share_. Ponúka vám štyri možnosti:
+Ponuku Zdieľať môžete otvoriť pomocou `Super + Ctrl + S` alebo v ponuke Unbloarchy pod _Trigger > Share_. Ponúka vám štyri možnosti:
 
 - **Clipboard** odošle všetko, čo ste skopírovali, ako textový súbor. Skvelé na to, aby ste dostali odkaz alebo úryvok do telefónu bez toho, aby ste si posielali e-mail.
 - **File** otvorí výber súborov, kde môžete vybrať niekoľko naraz.
 - **Folder** odošle celý adresár.
 - **Receive** otvorí samotný LocalSend, aby vám iné zariadenie mohlo niečo poslať.
 
-To isté funguje z terminálu pomocou `omarchy share clipboard`, `omarchy share file [path]` a `omarchy share folder [path]`. Vynechajte cestu a zobrazí sa vám výber.
+To isté funguje z terminálu pomocou `unbloarchy share clipboard`, `unbloarchy share file [path]` a `unbloarchy share folder [path]`. Vynechajte cestu a zobrazí sa vám výber.
 
 Môžete odosielať aj priamo zo správcu súborov: kliknite pravým tlačidlom myši na ľubovoľný výber v Nautilus a vyberte _Send via LocalSend_.
 
-Firewall Omarchy je predvolene zatvorený s výnimkou portu LocalSend, takže to funguje hneď po čerstvej inštalácii. Pozrite si [zabezpečenie](48-security.md).
+Firewall Unbloarchy je predvolene zatvorený s výnimkou portu LocalSend, takže to funguje hneď po čerstvej inštalácii. Pozrite si [zabezpečenie](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice spustíte cez spúšťač aplikácií (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) je vlastná úplne jednoduchá prezentačná aplikácia Omarchy. Vaša prezentácia je jeden súbor vo formáte Markdown s obrázkami a videami vedľa neho: každú snímku píšete pod živým náhľadom, snímky presúvate do požadovaného poradia a potom prezentujete na celú obrazovku alebo exportujete do PDF a PowerPoint. Dokonca preberie aj vašu tému Omarchy.
+[Hype](https://github.com/omacom/hype) je vlastná úplne jednoduchá prezentačná aplikácia Unbloarchy. Vaša prezentácia je jeden súbor vo formáte Markdown s obrázkami a videami vedľa neho: každú snímku píšete pod živým náhľadom, snímky presúvate do požadovaného poradia a potom prezentujete na celú obrazovku alebo exportujete do PDF a PowerPoint. Dokonca preberie aj vašu tému Unbloarchy.
 
 Hype spustíte cez spúšťač aplikácií (`Super + Space`). Stlačte `?` vnútri aplikácie, aby ste videli všetky skratky.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) je vlastný úplne jednoduchý spôsob Omarchy, ako podpisovať PDF súbory a vypĺňať ich. Umiestnite svoj uložený podpis, text a dnešný dátum kamkoľvek na stránku a potom uložte podpísanú kópiu vedľa originálu. Pozrite si [Vypĺňanie PDF súborov](27-filling-out-pdfs.md), kde sa dozviete ako.
+[Signed](https://github.com/omacom/signed) je vlastný úplne jednoduchý spôsob Unbloarchy, ako podpisovať PDF súbory a vypĺňať ich. Umiestnite svoj uložený podpis, text a dnešný dátum kamkoľvek na stránku a potom uložte podpísanú kópiu vedľa originálu. Pozrite si [Vypĺňanie PDF súborov](27-filling-out-pdfs.md), kde sa dozviete ako.
 
 Signed spustíte cez spúšťač aplikácií (`Super + Space`) alebo s ním otvoríte PDF zo správcu súborov.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) je vlastná úplne jednoduchá kalkulačka Omarchy, ktorá sa otvára v plávajúcom okne.
+[Omacalc](https://github.com/omacom-io/omacalc) je vlastná úplne jednoduchá kalkulačka Unbloarchy, ktorá sa otvára v plávajúcom okne.
 
 Omacalc spustíte pomocou `Super + Shift + Q` (alebo klávesom kalkulačky, ak ho vaša klávesnica má).
 
@@ -85,7 +85,7 @@ Omacalc spustíte pomocou `Super + Shift + Q` (alebo klávesom kalkulačky, ak h
 
 [Signal](https://signal.org/) je pionierom E2E šifrovaných správ a skvelou komunikačnou možnosťou pre každého, kto by radšej nešiel cez jeden z veľkých technologických konglomerátov.
 
-Signal spustíte pomocou `Super + Shift + G`. Nie je súčasťou základnej inštalácie, takže keď to stlačíte prvýkrát, Omarchy vám ponúkne, že vám ho nainštaluje (nachádza sa aj v ponuke Omarchy pod _Install > Service_).
+Signal spustíte pomocou `Super + Shift + G`. Nie je súčasťou základnej inštalácie, takže keď to stlačíte prvýkrát, Unbloarchy vám ponúkne, že vám ho nainštaluje (nachádza sa aj v ponuke Unbloarchy pod _Install > Service_).
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv spustíte cez spúšťač aplikácií (`Super + Space`) alebo jednoducho dvo
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) je vlastný úplne jednoduchý strihač videa Omarchy. Keď potrebujete len odrezať začiatok a koniec klipu, je to lepšie ako spúšťať plnohodnotný editor videa.
+[Omacut](https://github.com/omacom-io/omacut) je vlastný úplne jednoduchý strihač videa Unbloarchy. Keď potrebujete len odrezať začiatok a koniec klipu, je to lepšie ako spúšťať plnohodnotný editor videa.
 
 Omacut spustíte cez spúšťač aplikácií (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) je vlastný úplne jednoduchý rekordér webkamery Omarchy. Raz si vyberte kameru a mikrofón, potom stlačte `Space` na nahrávanie a znova na pozastavenie a pokračovanie toho istého záberu. Vždy nahráva v najvyššom rozlíšení vašej kamery so živým meračom mikrofónu, takže si pred začiatkom môžete skontrolovať úrovne.
+[Monologue](https://github.com/omacom/monologue) je vlastný úplne jednoduchý rekordér webkamery Unbloarchy. Raz si vyberte kameru a mikrofón, potom stlačte `Space` na nahrávanie a znova na pozastavenie a pokračovanie toho istého záberu. Vždy nahráva v najvyššom rozlíšení vašej kamery so živým meračom mikrofónu, takže si pred začiatkom môžete skontrolovať úrovne.
 
 Zastavte záber a okamžite sa otvorí vo vstavanom editore. Dvojitým kliknutím na klip ho rozdelíte, potiahnutím úchytov orežete každý kus a odstránite časti, ktoré nechcete. Potom ho uložte ako MP4. Vaša pôvodná nahrávka sa zachová, kým ju nezahodíte, takže sa k nej môžete kedykoľvek vrátiť a zostrihať ju inak.
 

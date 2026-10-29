@@ -94,7 +94,7 @@ config/**                      ──►  omarchy-settings    /etc/skel/.config/
 etc/fastfetch/config.jsonc     ──►  omarchy-settings    /etc/fastfetch/config.jsonc
 etc/xdg/kitty/kitty.conf       ──►  omarchy-settings    /etc/xdg/kitty/kitty.conf
 etc/mpv/mpv.conf               ──►  omarchy-settings    /etc/mpv/mpv.conf            (hardware decoding; ~/.config/mpv wins)
-etc/xkb/{rules/evdev,symbols/omarchy}
+etc/xkb/{rules/evdev,symbols/unbloarchy}
                                ──►  omarchy-settings    /etc/xkb/                    (Shift + Caps Lock compose option)
 
 applications/*.desktop         ──►  omarchy-settings    /etc/skel/.local/share/applications/
@@ -105,9 +105,9 @@ default/applications/*.desktop
 applications/icons/*           ──►  omarchy-settings    /usr/share/icons/hicolor/{48,256,scalable}/apps/
 
 etc/**                         ──►  omarchy-settings    /etc/**           (drop-ins we own outright)
-  ├─ mkinitcpio.conf.d/{00-omarchy-hooks,omarchy_hooks,thunderbolt_module}.conf
-  ├─ limine-entry-tool.d/{omarchy-defaults,omarchy-uki}.conf
-  ├─ mise/conf.d/{omarchy,omarchy-tools,omarchy-agent-accounts}.toml
+  ├─ mkinitcpio.conf.d/{00-unbloarchy-hooks,unbloarchy_hooks,thunderbolt_module}.conf
+  ├─ limine-entry-tool.d/{unbloarchy-defaults,unbloarchy-uki}.conf
+  ├─ mise/conf.d/{unbloarchy,unbloarchy-tools,unbloarchy-agent-accounts}.toml
   ├─ NetworkManager/, sudoers.d/, sysctl.d/, tmpfiles.d/,
   │  profile.d/unbloarchy.sh, …                            (a summary — `ls etc/` for the full ~17-entry tree)
   └─ security/faillock.conf, nsswitch.conf,
@@ -137,10 +137,10 @@ default/**                     ──►  omarchy-settings    /usr/share/unbloar
   ├─ systemd/user/*.service                             /usr/lib/systemd/user/
   ├─ systemd/user/app.slice.d/10-oomd.conf              /usr/lib/systemd/user/app.slice.d/
   ├─ systemd/system-sleep/unmount-fuse                  /usr/lib/systemd/system-sleep/
-  ├─ systemd/zram-generator.conf.d/90-omarchy.conf      /usr/lib/systemd/zram-generator.conf.d/
-  ├─ systemd/timesyncd.conf.d/10-omarchy.conf          /usr/lib/systemd/timesyncd.conf.d/
-  ├─ fonts/omarchy/omarchy.ttf                          /usr/share/fonts/omarchy/
-  ├─ sddm/omarchy/                                      /usr/share/sddm/themes/omarchy/
+  ├─ systemd/zram-generator.conf.d/90-unbloarchy.conf      /usr/lib/systemd/zram-generator.conf.d/
+  ├─ systemd/timesyncd.conf.d/10-unbloarchy.conf          /usr/lib/systemd/timesyncd.conf.d/
+  ├─ fonts/unbloarchy/unbloarchy.ttf                          /usr/share/fonts/omarchy/
+  ├─ sddm/unbloarchy/                                      /usr/share/sddm/themes/omarchy/
   ├─ sddm/hyprland.lua                                  /usr/share/sddm/hyprland.lua
   ├─ wayland-sessions/unbloarchy.desktop                   /usr/local/share/wayland-sessions/
   └─ plymouth/                                          /usr/share/plymouth/themes/unbloarchy/
@@ -169,7 +169,7 @@ A platform's runtime package (unbloarchy-mac on Apple Silicon, say) adds its des
 
 See [lifecycle-dispatch.md](lifecycle-dispatch.md#platform-files).
 
-`omarchy-update-keyring` refreshes each installed package `keyrings` names (`#` comments and blank lines skipped, and a line that isn't a `*-keyring` package name skipped with a warning) along with Arch's, before the system upgrade, installing any newer version the repository has, so a key rotation in the platform's own repository never fails that upgrade's signature checks. On Apple Silicon, omarchy-mac names `asahi-alarm-keyring` there.
+`unbloarchy-update-keyring` refreshes each installed package `keyrings` names (`#` comments and blank lines skipped, and a line that isn't a `*-keyring` package name skipped with a warning) along with Arch's, before the system upgrade, installing any newer version the repository has, so a key rotation in the platform's own repository never fails that upgrade's signature checks. On Apple Silicon, omarchy-mac names `asahi-alarm-keyring` there.
 
 #### Display hints (`displays.conf`)
 
@@ -183,9 +183,9 @@ No environment variable moves the file: these commands also run under `sudo` and
 
 #### Fingerprint readers (`fingerprint-readers`)
 
-`omarchy-hw-fingerprint` finds USB readers by their product string or vendor. A reader the kernel drives some other way (a Mac's Touch ID sensor, behind its Secure Enclave) is named by the platform package in `/usr/share/omarchy-platform/fingerprint-readers`; Omarchy ships none. Each line is an absolute path, a shell glob, then the value that file reads once the reader is usable; the reader is present when any file the glob matches reads that value. The value must be the file's whole content, not part of it (Touch ID reads `not-ready` before it reads `ready`). Three details decide a match: the file's trailing newlines are dropped before comparing (sysfs ends every value with one), fields are split on whitespace (so neither the glob nor the value can contain a space), and the file is read as the user running the check, the session user, so it must be readable by that user and not only by root. Blank lines, whole-line `#` comments, relative paths and lines with a missing or extra word are ignored. A platform file never hides a USB reader: when no platform-named file matches, the USB scan still runs. On Apple Silicon, omarchy-mac names `/run/omarchy-mac/touchid` twice, with `ready` and with `available`. Its own units write that file (`0644`): `available` at boot on a Mac that can set up Touch ID but whose owner hasn't turned it on, since nothing loads the Secure Enclave driver before the owner agrees, and `ready` once the driver's attributes say Touch ID can enrol and match; anything else is a reason, which no line names. A reader that is only `available` is turned on by setup's `enable-fingerprint` hook ([lifecycle-dispatch.md](lifecycle-dispatch.md)), which asks the owner first. The file follows the kernel's names for the Secure Enclave driver (`apple_sep`) and its `diag` attributes, read by omarchy-mac, so a kernel rename is that package's to follow.
+`unbloarchy-hw-fingerprint` finds USB readers by their product string or vendor. A reader the kernel drives some other way (a Mac's Touch ID sensor, behind its Secure Enclave) is named by the platform package in `/usr/share/unbloarchy-platform/fingerprint-readers`; Unbloarchy ships none. Each line is an absolute path, a shell glob, then the value that file reads once the reader is usable; the reader is present when any file the glob matches reads that value. The value must be the file's whole content, not part of it (Touch ID reads `not-ready` before it reads `ready`). Three details decide a match: the file's trailing newlines are dropped before comparing (sysfs ends every value with one), fields are split on whitespace (so neither the glob nor the value can contain a space), and the file is read as the user running the check, the session user, so it must be readable by that user and not only by root. Blank lines, whole-line `#` comments, relative paths and lines with a missing or extra word are ignored. A platform file never hides a USB reader: when no platform-named file matches, the USB scan still runs. On Apple Silicon, omarchy-mac names `/run/unbloarchy-mac/touchid` twice, with `ready` and with `available`. Its own units write that file (`0644`): `available` at boot on a Mac that can set up Touch ID but whose owner hasn't turned it on, since nothing loads the Secure Enclave driver before the owner agrees, and `ready` once the driver's attributes say Touch ID can enrol and match; anything else is a reason, which no line names. A reader that is only `available` is turned on by setup's `enable-fingerprint` hook ([lifecycle-dispatch.md](lifecycle-dispatch.md)), which asks the owner first. The file follows the kernel's names for the Secure Enclave driver (`apple_sep`) and its `diag` attributes, read by omarchy-mac, so a kernel rename is that package's to follow.
 
-The rest of the fingerprint path is the same for every reader: the setup's first-run invitation follows `omarchy-hw-fingerprint`, so it reaches a machine once its platform's reader is usable or can be turned on, and `omarchy-setup-security-fingerprint` installs `libfprint-git`, runs the platform's `enable-fingerprint` hook (a no-op where there is none) and enrolls. Removal (`omarchy-remove-security-fingerprint`) authenticates `sudo` in view, then deletes the user's prints through `fprintd-delete` while fprintd still runs, since a match-on-chip reader (a Mac's Touch ID among them) keeps them in the device too; a delete that fails, or finds no reader, is reported and doesn't stop the removal. It runs `disable-fingerprint` before the packages go. Setup can only enroll a platform's reader once that package carries its driver; for a Mac's Touch ID that is the aarch64 build from omacom/omarchy-pkgs#806. `test/shell.d/hw-fingerprint-test.sh` runs a copy rewritten to read a fixture in place of the file.
+The rest of the fingerprint path is the same for every reader: the setup's first-run invitation follows `unbloarchy-hw-fingerprint`, so it reaches a machine once its platform's reader is usable or can be turned on, and `unbloarchy-setup-security-fingerprint` installs `libfprint-git`, runs the platform's `enable-fingerprint` hook (a no-op where there is none) and enrolls. Removal (`unbloarchy-remove-security-fingerprint`) authenticates `sudo` in view, then deletes the user's prints through `fprintd-delete` while fprintd still runs, since a match-on-chip reader (a Mac's Touch ID among them) keeps them in the device too; a delete that fails, or finds no reader, is reported and doesn't stop the removal. It runs `disable-fingerprint` before the packages go. Setup can only enroll a platform's reader once that package carries its driver; for a Mac's Touch ID that is the aarch64 build from omacom/omarchy-pkgs#806. `test/shell.d/hw-fingerprint-test.sh` runs a copy rewritten to read a fixture in place of the file.
 
 #### Audio hints (`audio.json`)
 
@@ -391,7 +391,7 @@ finalization. It sources:
 Logging goes to `/var/log/unbloarchy-install.log` via
 `install/helpers/logging.sh`.
 
-Platform-specific setup asks `omarchy-hw-platform`, which prints `x86`, `aarch64`, `aarch64-apple`, `aarch64-qualcomm`, `aarch64-n1x` or `aarch64-gb10` (the naming standard is in AGENTS.md under Platforms). It reads the vendor prefix of each token in the device tree's root `compatible` (`apple,` or `qcom,`, from `/proc/device-tree` or `/sys/firmware/devicetree/base`) and the CPU architecture, and fails when they contradict each other. A Snapdragon laptop's `qcom,` tree is `aarch64-qualcomm`. The NVIDIA N1x boots with ACPI and no device tree; it is `aarch64-n1x` when its MediaTek I2C controllers (ACPI `NVDA0200`) or its GPU (PCI `10de:2e06`) are present, and a device tree naming Apple or Qualcomm alongside them is a contradiction. An NVIDIA GB10 desktop, such as the DGX Spark, also boots with ACPI; it is `aarch64-gb10` when its GPU (PCI `10de:2e12`) is present, with the same contradictions, and an N1x signature alongside it is one too. A manifest written by an older image builder may still say `apple-silicon`, `generic-aarch64`, `generic` or `qualcomm`, which read as `aarch64-apple`, `aarch64`, `x86` and `aarch64-qualcomm`.
+Platform-specific setup asks `unbloarchy-hw-platform`, which prints `x86`, `aarch64`, `aarch64-apple`, `aarch64-qualcomm`, `aarch64-n1x` or `aarch64-gb10` (the naming standard is in AGENTS.md under Platforms). It reads the vendor prefix of each token in the device tree's root `compatible` (`apple,` or `qcom,`, from `/proc/device-tree` or `/sys/firmware/devicetree/base`) and the CPU architecture, and fails when they contradict each other. A Snapdragon laptop's `qcom,` tree is `aarch64-qualcomm`. The NVIDIA N1x boots with ACPI and no device tree; it is `aarch64-n1x` when its MediaTek I2C controllers (ACPI `NVDA0200`) or its GPU (PCI `10de:2e06`) are present, and a device tree naming Apple or Qualcomm alongside them is a contradiction. An NVIDIA GB10 desktop, such as the DGX Spark, also boots with ACPI; it is `aarch64-gb10` when its GPU (PCI `10de:2e12`) is present, with the same contradictions, and an N1x signature alongside it is one too. A manifest written by an older image builder may still say `apple-silicon`, `generic-aarch64`, `generic` or `qualcomm`, which read as `aarch64-apple`, `aarch64`, `x86` and `aarch64-qualcomm`.
 
 An image built away from the machine it will run on names its target in a root-owned manifest, `/var/lib/omarchy/image/target` (`format=1`, `platform=<unbloarchy-hw-platform value>`, unknown keys ignored). While the root is being built rather than booted, the detector answers from the manifest and never reads the build host's device tree. The root counts as built when it shows it: no `/run/systemd/system`, PID 1's root is another one (a chroot), or PID 1 is not systemd (a PID namespace). A booted system always answers from its hardware, even with a manifest left behind, so no unit that asks the detector may use `PrivatePIDs=`. As root the detector restarts in an empty environment and ignores the fixture variables its tests use.
 
@@ -399,7 +399,7 @@ The package lists the ISO pacstraps live at `install/unbloarchy-base.packages`
 and `install/unbloarchy-other.packages`; the ISO builder also reads them when
 constructing its offline mirror.
 
-A platform's default package set is the base list, then its architecture's additions, then its own: `install/omarchy-aarch64.packages` on every aarch64 platform, then `install/omarchy-<platform>.packages` when that platform has one (`install/omarchy-aarch64-apple.packages` on Apple Silicon, `install/omarchy-aarch64-qualcomm.packages` on Snapdragon, `install/omarchy-aarch64-n1x.packages` on the N1x, `install/omarchy-aarch64-gb10.packages` on the GB10). x86 installs the base list alone. `omarchy-pkg-defaults [platform]` prints the composed set, for the running machine by default (via `omarchy-hw-platform`, so an image build gets its target's set), and `omarchy-reinstall-pkgs` installs it.
+A platform's default package set is the base list, then its architecture's additions, then its own: `install/unbloarchy-aarch64.packages` on every aarch64 platform, then `install/unbloarchy-<platform>.packages` when that platform has one (`install/unbloarchy-aarch64-apple.packages` on Apple Silicon, `install/unbloarchy-aarch64-qualcomm.packages` on Snapdragon, `install/unbloarchy-aarch64-n1x.packages` on the N1x, `install/unbloarchy-aarch64-gb10.packages` on the GB10). x86 installs the base list alone. `unbloarchy-pkg-defaults [platform]` prints the composed set, for the running machine by default (via `unbloarchy-hw-platform`, so an image build gets its target's set), and `unbloarchy-reinstall-pkgs` installs it.
 
 ## Platform display hints (`/usr/share/unbloarchy-platform/displays.conf`)
 

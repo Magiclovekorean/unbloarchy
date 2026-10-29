@@ -1,14 +1,14 @@
 # 顶栏
 
-屏幕顶部那条就是 Omarchy 栏。它不是外挂上去的状态栏，而是 Omarchy shell 的一部分；这个长期运行的单个 Quickshell 进程还负责绘制菜单、通知、OSD 弹窗和锁屏。这就是它能与所有其他部分完美统一主题、面板也能瞬间打开而无需启动新应用的原因。
+屏幕顶部那条就是 Unbloarchy 栏。它不是外挂上去的状态栏，而是 Unbloarchy shell 的一部分；这个长期运行的单个 Quickshell 进程还负责绘制菜单、通知、OSD 弹窗和锁屏。这就是它能与所有其他部分完美统一主题、面板也能瞬间打开而无需启动新应用的原因。
 
 它也是桌面上唯一始终显示在屏幕上的部分，所以值得了解一下那些小图标都做些什么。
 
 ## 默认有哪些
 
-栏分为三个区域。左侧是 Omarchy 标志（菜单启动器）和工作区指示器。中间是状态指示器、时钟、Elsewhen（世界时钟）、天气和 Omarchy 更新徽章。右侧依次是：系统托盘、键盘布局（配置了多个布局时）、agents、蓝牙、网络、音频、显示和电源。
+栏分为三个区域。左侧是 Unbloarchy 标志（菜单启动器）和工作区指示器。中间是状态指示器、时钟、Elsewhen（世界时钟）、天气和 Unbloarchy 更新徽章。右侧依次是：系统托盘、键盘布局（配置了多个布局时）、agents、蓝牙、网络、音频、显示和电源。
 
-其中几个只在有事要说时才出现。键盘布局仅在你配置了多个布局时出现。更新徽章仅在有 Omarchy 更新等待安装时出现。agents 图标则在 Omarchy 首次在机器上发现 AI 编程用量时出现（见 [AI](17-ai.md)）。
+其中几个只在有事要说时才出现。键盘布局仅在你配置了多个布局时出现。更新徽章仅在有 Unbloarchy 更新等待安装时出现。agents 图标则在 Unbloarchy 首次在机器上发现 AI 编程用量时出现（见 [AI](17-ai.md)）。
 
 ## 到处点一点
 
@@ -16,7 +16,7 @@
 
 | 小部件 | 左键 | 右键 | 中键 / 滚动 |
 | --- | --- | --- | --- |
-| 菜单 | Omarchy 菜单 | 新终端 | — |
+| 菜单 | Unbloarchy 菜单 | 新终端 | — |
 | 工作区 | 在此显示器上聚焦该工作区 | — | 滚动：上一个/下一个工作区 |
 | 时钟 | 日历弹窗 | 循环切换标签格式 | 中键：时区选择器 |
 | 天气 | 天气预报弹窗 | 以通知形式显示完整天气 | 中键：刷新 |
@@ -29,7 +29,7 @@
 | 媒体 | 播放/暂停 | 封面弹窗 | 中键：下一曲 · 滚动：上一曲/下一曲 |
 | Agents | Agents 面板 | 启动你的 agent | 中键：下一个订阅 |
 | 托盘 | 悬停以展开抽屉 | 在箭头图标上点右键进行管理 | — |
-| Omarchy 更新 | 运行更新 | — | — |
+| Unbloarchy 更新 | 运行更新 | — | — |
 
 那张表里的内容并非全都开箱即用地出现在你的栏上。媒体小部件（MPRIS 正在播放，带滚动显示的曲目和艺人）和麦克风小部件都已内置，但默认关闭——想要的话按下面的说明添加即可。
 
@@ -66,7 +66,7 @@
 
 还有两个小部件只有在你从 **Install → Service** 安装对应服务后才会出现在栏上，而且两者都值得了解，因为它们不只是报告状态。
 
-**Tailscale** 面板可以连接和断开 tailnet、在账户之间切换，并选择一个出口节点（你自己的机器和 Mullvad 地区都会出现在那个列表里）。它还能浏览你的机器——选中一台后，按 `s` 就能通过 Taildrop 向它发送文件，这是把文件传到手机或另一台笔记本电脑最快的方法。`c` 复制该机器的 IP，`n` 复制其名称，`d` 复制其完整 DNS 名称。每行机器上也有一个发送按钮，如果你更喜欢点击的话。从终端做同样的事是 `omarchy tailscale send <machine> [file...]`。
+**Tailscale** 面板可以连接和断开 tailnet、在账户之间切换，并选择一个出口节点（你自己的机器和 Mullvad 地区都会出现在那个列表里）。它还能浏览你的机器——选中一台后，按 `s` 就能通过 Taildrop 向它发送文件，这是把文件传到手机或另一台笔记本电脑最快的方法。`c` 复制该机器的 IP，`n` 复制其名称，`d` 复制其完整 DNS 名称。每行机器上也有一个发送按钮，如果你更喜欢点击的话。从终端做同样的事是 `unbloarchy tailscale send <machine> [file...]`。
 
 **Dropbox** 面板处理登录、显示你已用了多少存储空间，并列出最近同步的文件。
 
@@ -93,19 +93,19 @@
 同样的事情也有命令，这正是 [dotfiles](31-dotfiles.md) 配置想要的方式：
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-要彻底添加或移除一个小部件，用插件命令。`omarchy plugin list` 会打印 shell 所知道的每个小部件及其 id，然后：
+要彻底添加或移除一个小部件，用插件命令。`unbloarchy plugin list` 会打印 shell 所知道的每个小部件及其 id，然后：
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## 隐藏栏
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## 配置文件
 
-所有这些都存储在 `~/.config/omarchy/shell.json` 中，位于 `bar` 键下。这是一个精简后的版本：
+所有这些都存储在 `~/.config/unbloarchy/shell.json` 中，位于 `bar` 键下。这是一个精简后的版本：
 
 ```json
 {
@@ -123,20 +123,20 @@ omarchy plugin disable omarchy.weather
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-每个小部件都是五个布局数组之一中的一个条目，它的设置就内联在该条目上——没有单独的设置文件，也没有 `config` 子对象。时钟的 `format`、`formatAlt`（右键循环切换到的格式）和 `verticalFormat` 全都直接位于 `{ "id": "omarchy.clock" }` 上。
+每个小部件都是五个布局数组之一中的一个条目，它的设置就内联在该条目上——没有单独的设置文件，也没有 `config` 子对象。时钟的 `format`、`formatAlt`（右键循环切换到的格式）和 `verticalFormat` 全都直接位于 `{ "id": "unbloarchy.clock" }` 上。
 
 `center` 就是栏中间的那个盒子：里面的所有内容作为一个整体在屏幕上居中。`centerBegin` 和 `centerEnd` 挂在盒子的两侧，这就是为什么天气和更新徽章来来去去时，时钟仍能保持正中央。把多个小部件放进 `center`，它们会一起居中；把它留空，`centerBegin` 和 `centerEnd` 就会在栏的中间相遇。
 
-有一条规则值得牢记：**一旦你有了自己的 `shell.json`，它就是权威的**。在你自定义任何东西之前，shell 读取的是 Omarchy 的默认文件。从你拖动小部件、运行 `omarchy bar` 或自己编辑文件的那一刻起，它就归你所有了——不会有深度合并，所以未来 Omarchy 版本中的新默认小部件不会自动出现在你的栏上。每当你想要一块干净的白板时，`omarchy bar defaults` 都会把出厂布局恢复回来。
+有一条规则值得牢记：**一旦你有了自己的 `shell.json`，它就是权威的**。在你自定义任何东西之前，shell 读取的是 Unbloarchy 的默认文件。从你拖动小部件、运行 `unbloarchy bar` 或自己编辑文件的那一刻起，它就归你所有了——不会有深度合并，所以未来 Unbloarchy 版本中的新默认小部件不会自动出现在你的栏上。每当你想要一块干净的白板时，`unbloarchy bar defaults` 都会把出厂布局恢复回来。
 
 同一个文件还在顶层、`bar` 键之外保存了你的空闲计时：`idle.screensaver` 和 `idle.lock`，两者都是自你进入空闲状态起的秒数。所以默认的屏幕保护程序在 150 秒时启动，锁定在 300 秒时启动。

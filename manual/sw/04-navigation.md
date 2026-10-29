@@ -1,8 +1,8 @@
 # Urambazaji
 
-Kila kitu katika Omarchy hutokea kupitia kibodi — _KILA KITU!_ Mfumo unapoanza kwa mara ya kwanza, kihalisi huwezi kufanya chochote kwa kutumia kipanya pekee. Lakini unaweza kubonyeza `Super + Space` ili kufunua Menyu ya Omarchy na kuanzia hapa unaweza kufanya karibu kila kitu.
+Kila kitu katika Unbloarchy hutokea kupitia kibodi — _KILA KITU!_ Mfumo unapoanza kwa mara ya kwanza, kihalisi huwezi kufanya chochote kwa kutumia kipanya pekee. Lakini unaweza kubonyeza `Super + Space` ili kufunua Menyu ya Unbloarchy na kuanzia hapa unaweza kufanya karibu kila kitu.
 
-Lakini menyu ya Omarchy hata haijakusudiwa kuwa njia kuu ya kuendesha mfumo kwa sehemu kubwa ya muda. Tunaweza kuwa wepesi zaidi kuliko hivyo! Programu zote muhimu zaidi zimefungwa moja kwa moja kwenye vitufe vya haraka vya kibinafsi. Unaanzisha terminal kwa `Super + Return` na kivinjari kwa `Super + Shift + Return`. Jaribu kufanya moja baada ya jingine, na utaona uchawi wa kupanga madirisha kama vigae wa Hyprland ukifanya kazi:
+Lakini menyu ya Unbloarchy hata haijakusudiwa kuwa njia kuu ya kuendesha mfumo kwa sehemu kubwa ya muda. Tunaweza kuwa wepesi zaidi kuliko hivyo! Programu zote muhimu zaidi zimefungwa moja kwa moja kwenye vitufe vya haraka vya kibinafsi. Unaanzisha terminal kwa `Super + Return` na kivinjari kwa `Super + Shift + Return`. Jaribu kufanya moja baada ya jingine, na utaona uchawi wa kupanga madirisha kama vigae wa Hyprland ukifanya kazi:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Unaweza pia kwenda skrini nzima kwa `Super + F` au hata upana kamili tu (ukihifa
 
 ### Dwindle dhidi ya mpangilio wa scrolling
 
-Mpangilio chaguomsingi wa Omarchy unaitwa dwindle. Huhifadhi madirisha yote unayofungua kwenye eneo moja la kazi yakiwa yanaonekana wakati wote, hata ikiwa inabidi kuyapunguza ukubwa.
+Mpangilio chaguomsingi wa Unbloarchy unaitwa dwindle. Huhifadhi madirisha yote unayofungua kwenye eneo moja la kazi yakiwa yanaonekana wakati wote, hata ikiwa inabidi kuyapunguza ukubwa.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Eneo la kazi linaloelea hufanya kazi kama eneo-kazi la kitamaduni: madirisha huingiliana, na unayasogeza na kuyabadilisha ukubwa mwenyewe. Kila dirisha hupata upau wa kichwa katika rangi za mandhari yako, wenye vitufe vya kupunguza, kupanua hadi ukubwa wa juu, na kufunga. `Super + M` pia hupunguza dirisha lililolengwa. Dirisha lililopunguzwa husubiri katika dock; bofya programu yake ili kulirejesha. Bofya dirisha ili kulileta mbele. Libadilishe ukubwa kutoka kwenye ukingo au kona yoyote. Bofya mara mbili upau wa kichwa ili kupanua dirisha hadi ukubwa wa juu huku ukiweka upau wa juu ukionekana, na tena ili kupata ukubwa wake wa zamani.
 
-Eneo la kazi linaloelea pia huonyesha dock, yenye programu zako zilizobandikwa, kila kitu kinachoendeshwa, na gridi ya kila programu nyuma ya kitufe cha programu, ambacho `Super + Alt + Space` na _Apps_ katika menyu ya Omarchy pia huvifungua. Bofya kulia programu kwenye gridi, au bonyeza `Delete`, ili kuiondoa. Bofya programu ili kuifungua, au kuleta dirisha lake mbele; bofya tena ili kuzunguka kupitia madirisha yake. Bofya kati hufungua dirisha jipya. Buruta aikoni kando ya dock ili kuisogeza; kuburuta programu inayoendeshwa kati ya nyingine huiweka hapo. Bofya kulia ili kuweka programu katika dock, kuitoa, au kuiacha. Dock huondoka njiani mwa dirisha la skrini nzima. Bofya kulia kitufe cha programu ili kusogeza dock hadi ukingo mwingine au kuifanya ifichike hadi kielekezi kifike ukingoni mwake. Nafasi pia iko chini ya _Appearance > Dock > Dock Position_, na `omarchy dock position left` na `omarchy dock autohide on` huweka yote mawili kutoka kwenye terminal. Programu unazoweka katika dock hufifia zikiwa haziendeshwi.
+Eneo la kazi linaloelea pia huonyesha dock, yenye programu zako zilizobandikwa, kila kitu kinachoendeshwa, na gridi ya kila programu nyuma ya kitufe cha programu, ambacho `Super + Alt + Space` na _Apps_ katika menyu ya Unbloarchy pia huvifungua. Bofya kulia programu kwenye gridi, au bonyeza `Delete`, ili kuiondoa. Bofya programu ili kuifungua, au kuleta dirisha lake mbele; bofya tena ili kuzunguka kupitia madirisha yake. Bofya kati hufungua dirisha jipya. Buruta aikoni kando ya dock ili kuisogeza; kuburuta programu inayoendeshwa kati ya nyingine huiweka hapo. Bofya kulia ili kuweka programu katika dock, kuitoa, au kuiacha. Dock huondoka njiani mwa dirisha la skrini nzima. Bofya kulia kitufe cha programu ili kusogeza dock hadi ukingo mwingine au kuifanya ifichike hadi kielekezi kifike ukingoni mwake. Nafasi pia iko chini ya _Appearance > Dock > Dock Position_, na `unbloarchy dock position left` na `unbloarchy dock autohide on` huweka yote mawili kutoka kwenye terminal. Programu unazoweka katika dock hufifia zikiwa haziendeshwi.
 
-Maeneo mapya ya kazi, na yoyote ambayo hujayapa mpangilio wake yenyewe kwa `Super + L`, hutumia mpangilio chaguomsingi. Kubadilisha chaguomsingi huweka upya kila eneo la kazi lisilo na madirisha kwake, ilhali lenye madirisha juu yake huhifadhi mpangilio lililo nao. Dirisha lililopunguzwa hadi kwenye dock bado huhesabika kama dirisha kwenye eneo la kazi lililoliacha. Ichague chini ya _Appearance > Workspace Layout_: Tiling, Scrolling, au Floating. `omarchy-hyprland-workspace-layout-default scrolling` huiweka kutoka kwenye terminal.
+Maeneo mapya ya kazi, na yoyote ambayo hujayapa mpangilio wake yenyewe kwa `Super + L`, hutumia mpangilio chaguomsingi. Kubadilisha chaguomsingi huweka upya kila eneo la kazi lisilo na madirisha kwake, ilhali lenye madirisha juu yake huhifadhi mpangilio lililo nao. Dirisha lililopunguzwa hadi kwenye dock bado huhesabika kama dirisha kwenye eneo la kazi lililoliacha. Ichague chini ya _Appearance > Workspace Layout_: Tiling, Scrolling, au Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` huiweka kutoka kwenye terminal.
 
 ### Kupanga madirisha katika vikundi
 

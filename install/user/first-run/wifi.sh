@@ -1,13 +1,13 @@
 notify_update() {
-  omarchy-notification-send -u critical -g  "$(omarchy-i18n firstRun.updateTitle)" "$(omarchy-i18n firstRun.updateBody)" \
-    --exec omarchy-launch-floating-terminal-with-presentation omarchy-update
+  unbloarchy-notification-send -u critical -g  "$(unbloarchy-i18n firstRun.updateTitle)" "$(unbloarchy-i18n firstRun.updateBody)" \
+    --exec unbloarchy-launch-floating-terminal-with-presentation unbloarchy-update
 }
 
-# Something for omarchy-update to install: any repository package, Omarchy's
+# Something for unbloarchy-update to install: any repository package, Unbloarchy's
 # own among them, or a development checkout behind its upstream. checkupdates
 # exits 2 when every package is current and 1 when it could not tell, so only
 # a definite "nothing" holds the prompt back. It syncs the package databases,
-# so it runs once; omarchy-update-available would run it again, and is asked
+# so it runs once; unbloarchy-update-available would run it again, and is asked
 # only about a checkout, which checkupdates cannot see.
 update_pending() {
   local status=0
@@ -16,15 +16,15 @@ update_pending() {
   if (( status != 2 )); then
     return 0
   elif [[ $OMARCHY_PATH != "/usr/share/omarchy" ]]; then
-    omarchy-update-available >/dev/null 2>&1
+    unbloarchy-update-available >/dev/null 2>&1
   else
     return 1
   fi
 }
 
 notify_wifi() {
-  omarchy-notification-send -u critical -g 󰖩 "$(omarchy-i18n firstRun.wifiTitle)" "$(omarchy-i18n firstRun.wifiBody)" \
-    --exec omarchy-shell shell toggle omarchy.network
+  unbloarchy-notification-send -u critical -g 󰖩 "$(unbloarchy-i18n firstRun.wifiTitle)" "$(unbloarchy-i18n firstRun.wifiBody)" \
+    --exec unbloarchy-shell shell toggle unbloarchy.network
 }
 
 announce_network() {

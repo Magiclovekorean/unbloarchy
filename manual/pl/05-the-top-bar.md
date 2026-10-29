@@ -1,14 +1,14 @@
 # Górny pasek
 
-Pasek wzdłuż górnej krawędzi ekranu to pasek Omarchy. Nie jest przykręconym paskiem stanu, lecz częścią powłoki Omarchy, tego jednego, długotrwałego procesu Quickshell, który rysuje też menu, powiadomienia, wyskakujące okna OSD i ekran blokady. Dlatego idealnie współgra motywem z całą resztą i dlatego panel otwiera się natychmiast, zamiast uruchamiać nową aplikację.
+Pasek wzdłuż górnej krawędzi ekranu to pasek Unbloarchy. Nie jest przykręconym paskiem stanu, lecz częścią powłoki Unbloarchy, tego jednego, długotrwałego procesu Quickshell, który rysuje też menu, powiadomienia, wyskakujące okna OSD i ekran blokady. Dlatego idealnie współgra motywem z całą resztą i dlatego panel otwiera się natychmiast, zamiast uruchamiać nową aplikację.
 
 To także jedyny element pulpitu, który jest zawsze na ekranie, więc warto wiedzieć, co robią te wszystkie małe glify.
 
 ## Co znajduje się na nim domyślnie
 
-Pasek ma trzy sekcje. Po lewej stronie znajduje się logo Omarchy (program uruchamiający menu) oraz wskaźniki obszarów roboczych. Na środku znajdują się wskaźniki stanu, zegar, Elsewhen (zegar światowy), pogoda oraz odznaka aktualizacji Omarchy. Po prawej stronie: zasobnik systemowy, układ klawiatury (gdy skonfigurowano więcej niż jeden), agenci, bluetooth, sieć, dźwięk, ekran oraz zasilanie.
+Pasek ma trzy sekcje. Po lewej stronie znajduje się logo Unbloarchy (program uruchamiający menu) oraz wskaźniki obszarów roboczych. Na środku znajdują się wskaźniki stanu, zegar, Elsewhen (zegar światowy), pogoda oraz odznaka aktualizacji Unbloarchy. Po prawej stronie: zasobnik systemowy, układ klawiatury (gdy skonfigurowano więcej niż jeden), agenci, bluetooth, sieć, dźwięk, ekran oraz zasilanie.
 
-Kilka z tych elementów pojawia się tylko wtedy, gdy mają coś do powiedzenia. Układ klawiatury pojawia się tylko wtedy, gdy skonfigurowano więcej niż jeden układ. Odznaka aktualizacji pojawia się tylko wtedy, gdy oczekuje aktualizacja Omarchy. Natomiast ikona agentów pojawia się po raz pierwszy, gdy Omarchy znajdzie na maszynie użycie agentów kodujących AI (zobacz [AI](17-ai.md)).
+Kilka z tych elementów pojawia się tylko wtedy, gdy mają coś do powiedzenia. Układ klawiatury pojawia się tylko wtedy, gdy skonfigurowano więcej niż jeden układ. Odznaka aktualizacji pojawia się tylko wtedy, gdy oczekuje aktualizacja Unbloarchy. Natomiast ikona agentów pojawia się po raz pierwszy, gdy Unbloarchy znajdzie na maszynie użycie agentów kodujących AI (zobacz [AI](17-ai.md)).
 
 ## Klikanie
 
@@ -16,7 +16,7 @@ Prawie każdy widżet robi coś po kliknięciu lewym, prawym i środkowym przyci
 
 | Widget | Left | Right | Middle / scroll |
 | --- | --- | --- | --- |
-| Menu | Menu Omarchy | Nowy terminal | — |
+| Menu | Menu Unbloarchy | Nowy terminal | — |
 | Workspaces | Przejdź do tego obszaru roboczego na tym monitorze | — | Przewijanie: następny/poprzedni obszar roboczy |
 | Clock | Wyskakujące okno kalendarza | Przełącz format etykiety | Środkowy: wybór strefy czasowej |
 | Weather | Wyskakujące okno prognozy | Pełna pogoda jako powiadomienie | Środkowy: odśwież |
@@ -29,7 +29,7 @@ Prawie każdy widżet robi coś po kliknięciu lewym, prawym i środkowym przyci
 | Media | Odtwórz/wstrzymaj | Wyskakujące okno okładki | Środkowy: następny · przewijanie: poprzedni/następny |
 | Agents | Panel agentów | Uruchom swojego agenta | Środkowy: następna subskrypcja |
 | Tray | Najedź, aby odsłonić szufladę | Prawy przycisk na strzałce, aby zarządzać | — |
-| Omarchy update | Uruchom aktualizację | — | — |
+| Unbloarchy update | Uruchom aktualizację | — | — |
 
 Nie wszystko z tej tabeli znajduje się na pasku od razu po instalacji. Widżet multimediów (MPRIS now-playing, z przewijającym się utworem i artystą) oraz widżet mikrofonu są wbudowane, ale domyślnie wyłączone — dodaj je, jeśli ich chcesz, w sposób opisany poniżej.
 
@@ -66,7 +66,7 @@ Każdy panel obsługuje klawiaturę, a także mysz: strzałki poruszają, Return
 
 Dwa kolejne widżety pojawiają się na pasku dopiero po zainstalowaniu odpowiadającej im usługi z **Install → Service** i oba warto znać, ponieważ robią więcej niż tylko zgłaszają stan.
 
-Panel **Tailscale** łączy i rozłącza tailnet, przełącza między kontami oraz wybiera węzeł wyjściowy (na tej liście pojawiają się zarówno twoje własne maszyny, jak i regiony Mullvad). Przegląda też twoje maszyny — a po wybraniu jednej z nich `s` wysyła do niej pliki przez Taildrop, co jest najszybszym sposobem przeniesienia pliku na telefon lub inny laptop. `c` kopiuje adres IP maszyny, `n` jej nazwę, a `d` jej pełną nazwę DNS. Na każdym wierszu maszyny znajduje się też przycisk wysyłania, jeśli wolisz klikać. To samo z terminala to `omarchy tailscale send <machine> [file...]`.
+Panel **Tailscale** łączy i rozłącza tailnet, przełącza między kontami oraz wybiera węzeł wyjściowy (na tej liście pojawiają się zarówno twoje własne maszyny, jak i regiony Mullvad). Przegląda też twoje maszyny — a po wybraniu jednej z nich `s` wysyła do niej pliki przez Taildrop, co jest najszybszym sposobem przeniesienia pliku na telefon lub inny laptop. `c` kopiuje adres IP maszyny, `n` jej nazwę, a `d` jej pełną nazwę DNS. Na każdym wierszu maszyny znajduje się też przycisk wysyłania, jeśli wolisz klikać. To samo z terminala to `unbloarchy tailscale send <machine> [file...]`.
 
 Panel **Dropbox** obsługuje logowanie, pokazuje, ile miejsca wykorzystano, oraz wyświetla listę ostatnio zsynchronizowanych plików.
 
@@ -93,19 +93,19 @@ Jeśli wolisz wybierać z menu, **Appearance → Menu Bar** zawiera pozycję, a 
 Te same rzeczy mają polecenia, co jest tym, czego chcesz w konfiguracji [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Aby całkowicie dodać lub usunąć widżet, użyj poleceń wtyczek. `omarchy plugin list` wypisuje każdy widżet znany powłoce wraz z jego identyfikatorem, a potem:
+Aby całkowicie dodać lub usunąć widżet, użyj poleceń wtyczek. `unbloarchy plugin list` wypisuje każdy widżet znany powłoce wraz z jego identyfikatorem, a potem:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Ukrywanie paska
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Plik konfiguracyjny
 
-Wszystko jest przechowywane w `~/.config/omarchy/shell.json`, pod kluczem `bar`. Oto przycięta wersja:
+Wszystko jest przechowywane w `~/.config/unbloarchy/shell.json`, pod kluczem `bar`. Oto przycięta wersja:
 
 ```json
 {
@@ -123,20 +123,20 @@ Wszystko jest przechowywane w `~/.config/omarchy/shell.json`, pod kluczem `bar`.
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Każdy widżet to jeden wpis w jednej z pięciu tablic układu, a jego ustawienia znajdują się bezpośrednio w tym wpisie — nie ma oddzielnego pliku ustawień ani podobiektu `config`. `format`, `formatAlt` (to, do czego przechodzi kliknięcie prawym przyciskiem) oraz `verticalFormat` zegara znajdują się właśnie tam, w `{ "id": "omarchy.clock" }`.
+Każdy widżet to jeden wpis w jednej z pięciu tablic układu, a jego ustawienia znajdują się bezpośrednio w tym wpisie — nie ma oddzielnego pliku ustawień ani podobiektu `config`. `format`, `formatAlt` (to, do czego przechodzi kliknięcie prawym przyciskiem) oraz `verticalFormat` zegara znajdują się właśnie tam, w `{ "id": "unbloarchy.clock" }`.
 
 `center` to pudełko na środku paska: wszystko, co się w nim znajduje, jest wyśrodkowane na ekranie jako jedna grupa. `centerBegin` i `centerEnd` zwisają po obu stronach pudełka, dzięki czemu zegar pozostaje dokładnie na środku, nawet gdy pogoda i odznaka aktualizacji pojawiają się i znikają. Umieść więcej niż jeden widżet w `center`, a zostaną wyśrodkowane razem; pozostaw je puste, a `centerBegin` i `centerEnd` spotkają się na środku paska.
 
-Jedna zasada, którą warto sobie przyswoić: **gdy masz własny `shell.json`, jest on kanoniczny**. Dopóki niczego nie dostosujesz, powłoka odczytuje domyślny plik Omarchy. W momencie, gdy przeciągniesz widżet, uruchomisz `omarchy bar` lub sam edytujesz plik, należy on do ciebie — nie ma głębokiego łączenia, więc nowe domyślne widżety w przyszłych wydaniach Omarchy nie pojawią się automatycznie na twoim pasku. `omarchy bar defaults` przywraca dostarczony układ, kiedykolwiek chcesz mieć czystą kartę.
+Jedna zasada, którą warto sobie przyswoić: **gdy masz własny `shell.json`, jest on kanoniczny**. Dopóki niczego nie dostosujesz, powłoka odczytuje domyślny plik Unbloarchy. W momencie, gdy przeciągniesz widżet, uruchomisz `unbloarchy bar` lub sam edytujesz plik, należy on do ciebie — nie ma głębokiego łączenia, więc nowe domyślne widżety w przyszłych wydaniach Unbloarchy nie pojawią się automatycznie na twoim pasku. `unbloarchy bar defaults` przywraca dostarczony układ, kiedykolwiek chcesz mieć czystą kartę.
 
 Ten sam plik przechowuje także czasy bezczynności na najwyższym poziomie, poza kluczem `bar`: `idle.screensaver` oraz `idle.lock`, oba w sekundach od przejścia w stan bezczynności. Domyślny wygaszacz ekranu włącza się więc po 150 sekundach, a blokada po 300.

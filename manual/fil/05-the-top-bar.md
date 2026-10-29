@@ -1,14 +1,14 @@
 # Ang Bar sa Itaas
 
-Ang strip sa tuktok ng screen mo ay ang Omarchy bar. Hindi ito isang bolted-on na status bar kundi bahagi ng Omarchy shell, ang iisang matagal nang tumatakbong proseso ng Quickshell na gumuguhit din ng menu, mga notification, mga OSD popup, at lock screen. Kaya perpekto itong tumutugma sa tema ng lahat ng iba pa at kaya agad nagbubukas ang isang panel imbes na maglunsad ng bagong app.
+Ang strip sa tuktok ng screen mo ay ang Unbloarchy bar. Hindi ito isang bolted-on na status bar kundi bahagi ng Unbloarchy shell, ang iisang matagal nang tumatakbong proseso ng Quickshell na gumuguhit din ng menu, mga notification, mga OSD popup, at lock screen. Kaya perpekto itong tumutugma sa tema ng lahat ng iba pa at kaya agad nagbubukas ang isang panel imbes na maglunsad ng bagong app.
 
 Ito rin ang iisang bahagi ng desktop na laging nasa screen, kaya sulit alamin kung ano ang ginagawa ng lahat ng maliliit na glyph na iyon.
 
 ## Ano ang nasa ibabaw nito bilang default
 
-May tatlong seksyon ang bar. Sa kaliwa naroon ang logo ng Omarchy (ang launcher ng menu) at mga indicator ng workspace. Sa gitna makukuha mo ang mga indicator ng status, ang orasan, ang Elsewhen (isang world clock), ang panahon, at isang badge ng update ng Omarchy. Sa kanan: ang system tray, ang layout ng keyboard (kapag higit sa isa ang naka-configure), agents, bluetooth, network, audio, display, at power.
+May tatlong seksyon ang bar. Sa kaliwa naroon ang logo ng Unbloarchy (ang launcher ng menu) at mga indicator ng workspace. Sa gitna makukuha mo ang mga indicator ng status, ang orasan, ang Elsewhen (isang world clock), ang panahon, at isang badge ng update ng Unbloarchy. Sa kanan: ang system tray, ang layout ng keyboard (kapag higit sa isa ang naka-configure), agents, bluetooth, network, audio, display, at power.
 
-Ilan sa mga iyon ay lumalabas lang kapag may sasabihin sila. Lumalabas lang ang layout ng keyboard kung higit sa isang layout ang na-configure mo. Lumalabas lang ang badge ng update kapag may update ng Omarchy na naghihintay. At lumalabas ang icon ng agents sa unang pagkakataong makakita ang Omarchy ng paggamit ng AI coding sa machine (tingnan ang [AI](17-ai.md)).
+Ilan sa mga iyon ay lumalabas lang kapag may sasabihin sila. Lumalabas lang ang layout ng keyboard kung higit sa isang layout ang na-configure mo. Lumalabas lang ang badge ng update kapag may update ng Unbloarchy na naghihintay. At lumalabas ang icon ng agents sa unang pagkakataong makakita ang Unbloarchy ng paggamit ng AI coding sa machine (tingnan ang [AI](17-ai.md)).
 
 ## Pag-click sa paligid
 
@@ -16,7 +16,7 @@ Halos bawat widget ay may ginagawa sa left, right, at middle click, at ilan ay t
 
 | Widget | Kaliwa | Kanan | Gitna / scroll |
 | --- | --- | --- | --- |
-| Menu | Menu ng Omarchy | Bagong terminal | — |
+| Menu | Menu ng Unbloarchy | Bagong terminal | — |
 | Workspaces | Ituon sa workspace na iyon sa monitor na ito | — | Scroll: susunod/nakaraang workspace |
 | Clock | Popup ng kalendaryo | I-cycle ang format ng label | Gitna: tagapili ng timezone |
 | Weather | Popup ng forecast | Buong panahon bilang notification | Gitna: i-refresh |
@@ -29,7 +29,7 @@ Halos bawat widget ay may ginagawa sa left, right, at middle click, at ilan ay t
 | Media | Play/pause | Popup ng cover-art | Gitna: susunod · scroll: nakaraan/susunod |
 | Agents | Panel ng Agents | Ilunsad ang agent mo | Gitna: susunod na subscription |
 | Tray | I-hover para ipakita ang drawer | Mag-right click sa chevron para pamahalaan | — |
-| Omarchy update | Patakbuhin ang update | — | — |
+| Unbloarchy update | Patakbuhin ang update | — | — |
 
 Hindi lahat ng nasa talahanayang iyon ay nasa bar mo agad. Ang media widget (MPRIS now-playing, na may nag-i-scroll na track at artist) at ang microphone widget ay parehong built in pero naka-off bilang default — idagdag mo sila kung gusto mo, gaya ng inilarawan sa ibaba.
 
@@ -66,7 +66,7 @@ Binibilang ng `Super + Ctrl + 1-9` ang mga panel mula kaliwa pakanan sa right se
 
 Dalawa pang widget ang lumalabas sa bar kapag na-install mo lang ang katugmang serbisyo mula sa **Install → Service**, at parehong sulit malaman dahil higit pa sa pag-uulat ng status ang ginagawa nila.
 
-Ikinokonekta at idini-disconnect ng **Tailscale** panel ang tailnet, nagpapalit ito sa pagitan ng mga account, at pumipili ng exit node (lumalabas sa listahang iyon ang sarili mong mga machine at mga rehiyon ng Mullvad). Nagba-browse din ito ng mga machine mo — at kapag may napili, ipinapadala ng `s` ang mga file papunta roon sa pamamagitan ng Taildrop, na pinakamabilis na paraan para maglipat ng file papunta sa telepono mo o sa ibang laptop. Kinokopya ng `c` ang IP ng machine, ng `n` ang pangalan nito, at ng `d` ang buong DNS name nito. May send button din sa bawat row ng machine, kung mas gusto mong mag-click. Ang parehong bagay mula sa terminal ay `omarchy tailscale send <machine> [file...]`.
+Ikinokonekta at idini-disconnect ng **Tailscale** panel ang tailnet, nagpapalit ito sa pagitan ng mga account, at pumipili ng exit node (lumalabas sa listahang iyon ang sarili mong mga machine at mga rehiyon ng Mullvad). Nagba-browse din ito ng mga machine mo — at kapag may napili, ipinapadala ng `s` ang mga file papunta roon sa pamamagitan ng Taildrop, na pinakamabilis na paraan para maglipat ng file papunta sa telepono mo o sa ibang laptop. Kinokopya ng `c` ang IP ng machine, ng `n` ang pangalan nito, at ng `d` ang buong DNS name nito. May send button din sa bawat row ng machine, kung mas gusto mong mag-click. Ang parehong bagay mula sa terminal ay `unbloarchy tailscale send <machine> [file...]`.
 
 Pinamamahalaan ng **Dropbox** panel ang login, ipinapakita nito kung gaano karaming storage ang nagamit mo, at inililista ang mga kamakailang na-sync na file.
 
@@ -93,19 +93,19 @@ Kung mas gusto mong pumili mula sa isang menu, nasa **Appearance → Menu Bar** 
 May mga command ang parehong mga bagay, na siyang gusto mo para sa isang [dotfiles](31-dotfiles.md) setup:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Para magdagdag o mag-alis ng widget nang buo, gamitin ang mga plugin command. Ini-print ng `omarchy plugin list` ang bawat widget na alam ng shell kasama ang id nito, at pagkatapos:
+Para magdagdag o mag-alis ng widget nang buo, gamitin ang mga plugin command. Ini-print ng `unbloarchy plugin list` ang bawat widget na alam ng shell kasama ang id nito, at pagkatapos:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Pagtatago ng bar
@@ -114,7 +114,7 @@ Ino-toggle ng `Super + Shift + Space` ang bar off at pabalik on nang hindi pinap
 
 ## Ang config file
 
-Naka-store ang lahat ng ito sa `~/.config/omarchy/shell.json`, sa ilalim ng `bar` key. Narito ang isang pinaikling bersyon:
+Naka-store ang lahat ng ito sa `~/.config/unbloarchy/shell.json`, sa ilalim ng `bar` key. Narito ang isang pinaikling bersyon:
 
 ```json
 {
@@ -123,20 +123,20 @@ Naka-store ang lahat ng ito sa `~/.config/omarchy/shell.json`, sa ilalim ng `bar
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Bawat widget ay isang entry sa isa sa limang layout array, at nakaupo nang inline sa entry na iyon ang mga setting nito — walang hiwalay na settings file at walang `config` sub-object. Ang `format`, `formatAlt` (kung ano ang pini-cycle ng right-click), at `verticalFormat` ng clock ay pawang naroon mismo sa `{ "id": "omarchy.clock" }`.
+Bawat widget ay isang entry sa isa sa limang layout array, at nakaupo nang inline sa entry na iyon ang mga setting nito — walang hiwalay na settings file at walang `config` sub-object. Ang `format`, `formatAlt` (kung ano ang pini-cycle ng right-click), at `verticalFormat` ng clock ay pawang naroon mismo sa `{ "id": "unbloarchy.clock" }`.
 
 Ang `center` ay ang kahon sa gitna ng bar: lahat ng nasa loob nito ay nakagitna sa screen bilang isang grupo. Nakasabit ang `centerBegin` at `centerEnd` sa magkabilang panig ng kahon, na siyang dahilan kung paano nananatiling nasa mismong gitna ang orasan kahit dumarating at umaalis ang panahon at update badge. Maglagay ng higit sa isang widget sa `center` at magkakasama silang magigitna; iwan itong walang laman at magtatagpo ang `centerBegin` at `centerEnd` sa gitna ng bar.
 
-Isang panuntunang sulit tandaan: **kapag mayroon ka nang sariling `shell.json`, ito ay canonical**. Hanggang wala ka pang kino-customize, binabasa ng shell ang default file ng Omarchy. Sa sandaling mag-drag ka ng widget, magpatakbo ng `omarchy bar`, o ikaw mismo ang mag-edit ng file, pagmamay-ari mo na ito — walang deep merge, kaya hindi awtomatikong lilitaw sa bar mo ang mga bagong default widget sa mga susunod na release ng Omarchy. Ibinabalik ng `omarchy bar defaults` ang shipped layout tuwing gusto mo ng malinis na simula.
+Isang panuntunang sulit tandaan: **kapag mayroon ka nang sariling `shell.json`, ito ay canonical**. Hanggang wala ka pang kino-customize, binabasa ng shell ang default file ng Unbloarchy. Sa sandaling mag-drag ka ng widget, magpatakbo ng `unbloarchy bar`, o ikaw mismo ang mag-edit ng file, pagmamay-ari mo na ito — walang deep merge, kaya hindi awtomatikong lilitaw sa bar mo ang mga bagong default widget sa mga susunod na release ng Unbloarchy. Ibinabalik ng `unbloarchy bar defaults` ang shipped layout tuwing gusto mo ng malinis na simula.
 
 Hawak din ng parehong file ang idle timings mo sa top level, sa labas ng `bar` key: `idle.screensaver` at `idle.lock`, parehong nasa segundo mula nang naging idle ka. Kaya pumapasok ang default screensaver sa 150 segundo at ang lock sa 300.

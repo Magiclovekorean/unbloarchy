@@ -1,14 +1,14 @@
 # An Barra Uachtarach
 
-Is é an stiall feadh bharr do scáileáin barra Omarchy. Ní barra stádais breise é ach cuid de bhlaosc Omarchy, an próiseas fadréimseach aonair Quickshell a tharraingíonn an roghchlár, na fógraí, na preabfhuinneoga OSD, agus an scáileán glais freisin. Sin an fáth a dtéamaíonn sé go foirfe le gach rud eile agus a n-osclaíonn painéal láithreach in ionad aip nua a sceitheadh.
+Is é an stiall feadh bharr do scáileáin barra Unbloarchy. Ní barra stádais breise é ach cuid de bhlaosc Unbloarchy, an próiseas fadréimseach aonair Quickshell a tharraingíonn an roghchlár, na fógraí, na preabfhuinneoga OSD, agus an scáileán glais freisin. Sin an fáth a dtéamaíonn sé go foirfe le gach rud eile agus a n-osclaíonn painéal láithreach in ionad aip nua a sceitheadh.
 
 Is é an píosa amháin den deasc é atá ar an scáileán i gcónaí freisin, mar sin is fiú a fhios a bheith agat cad a dhéanann na glifi beaga sin go léir.
 
 ## Cad atá air de réir réamhshocraithe
 
-Tá trí chuid sa bharra. Ar chlé tá lógó Omarchy (lainseálaí an roghchláir) agus táscairí na spásanna oibre. Sa lár faigheann tú na táscairí stádais, an clog, Elsewhen (clog domhanda), an aimsir, agus suaitheantas nuashonraithe Omarchy. Ar dheis: tráidire an chórais, leagan amach an mhéarchláir (nuair a bhíonn níos mó ná ceann amháin cumraithe), gníomhairí, bluetooth, líonra, fuaim, taispeáint, agus cumhacht.
+Tá trí chuid sa bharra. Ar chlé tá lógó Unbloarchy (lainseálaí an roghchláir) agus táscairí na spásanna oibre. Sa lár faigheann tú na táscairí stádais, an clog, Elsewhen (clog domhanda), an aimsir, agus suaitheantas nuashonraithe Unbloarchy. Ar dheis: tráidire an chórais, leagan amach an mhéarchláir (nuair a bhíonn níos mó ná ceann amháin cumraithe), gníomhairí, bluetooth, líonra, fuaim, taispeáint, agus cumhacht.
 
-Ní thaispeántar cuid acu sin ach amháin nuair atá rud éigin le rá acu. Ní thaispeántar leagan amach an mhéarchláir ach amháin má tá níos mó ná leagan amach amháin cumraithe agat. Ní thaispeántar suaitheantas an nuashonraithe ach amháin nuair a bhíonn nuashonrú Omarchy ag fanacht. Agus taispeántar deilbhín na ngníomhairí an chéad uair a fhaigheann Omarchy úsáid códaithe AI ar an meaisín (féach [AI](17-ai.md)).
+Ní thaispeántar cuid acu sin ach amháin nuair atá rud éigin le rá acu. Ní thaispeántar leagan amach an mhéarchláir ach amháin má tá níos mó ná leagan amach amháin cumraithe agat. Ní thaispeántar suaitheantas an nuashonraithe ach amháin nuair a bhíonn nuashonrú Unbloarchy ag fanacht. Agus taispeántar deilbhín na ngníomhairí an chéad uair a fhaigheann Unbloarchy úsáid códaithe AI ar an meaisín (féach [AI](17-ai.md)).
 
 ## Ag cliceáil thart
 
@@ -16,7 +16,7 @@ Déanann beagnach gach giuirléid rud éigin ar chliceáil chlé, dheas, agus l�
 
 | Giuirléid | Clé | Deas | Lár / scrollú |
 | --- | --- | --- | --- |
-| Roghchlár | Roghchlár Omarchy | Teirminéal nua | — |
+| Roghchlár | Roghchlár Unbloarchy | Teirminéal nua | — |
 | Spásanna oibre | Dírigh ar an spás oibre sin ar an monatóir seo | — | Scrollú: an chéad spás oibre eile/roimhe |
 | Clog | Preabfhuinneog an fhéilire | Timthriallaigh formáid an lipéid | Lár: roghnóir crios ama |
 | Aimsir | Preabfhuinneog na réamhaisnéise | An aimsir iomlán mar fhógra | Lár: athnuaigh |
@@ -29,7 +29,7 @@ Déanann beagnach gach giuirléid rud éigin ar chliceáil chlé, dheas, agus l�
 | Meáin | Seinn/cuir ar sos | Preabfhuinneog ealaín an chlúdaigh | Lár: an chéad cheann eile · scrollú: roimhe/seo chugainn |
 | Gníomhairí | Painéal gníomhairí | Lainseáil do ghníomhaire | Lár: an chéad síntiús eile |
 | Tráidire | Fan os a chionn chun an tarraiceán a nochtadh | Cliceáil dheas ar an seabhán chun é a bhainistiú | — |
-| Nuashonrú Omarchy | Rith an nuashonrú | — | — |
+| Nuashonrú Unbloarchy | Rith an nuashonrú | — | — |
 
 Níl gach rud sa tábla sin ar do bharra as an mbosca. Tá an ghiuirléid meán (MPRIS anois ag seinm, le rian agus ealaíontóir ag scrollú) agus an ghiuirléid micreafóin araon ionsuite ach múchta de réir réamhshocraithe — cuir leo iad más mian leat iad, mar a thuairiscítear thíos.
 
@@ -66,7 +66,7 @@ Comhaireann `Super + Ctrl + 1-9` painéil ó chlé go deas sa chuid dheas, ag sc
 
 Taispeántar dhá ghiuirléid eile ar an mbarra ach amháin nuair a shuiteálann tú an tseirbhís mheaitseála ó **Suiteáil → Seirbhís**, agus is fiú eolas a bheith agat ar an dá cheann mar go ndéanann siad níos mó ná stádas a thuairisciú.
 
-Nascann agus dícheanglaíonn painéal **Tailscale** an tailnet, malartaíonn sé idir cuntais, agus roghnaíonn sé nód fágála (taispeántar do mheaisíní féin agus réigiúin Mullvad araon sa liosta sin). Brabhsálann sé do mheaisíní freisin — agus le ceann amháin roghnaithe, seolann `s` comhaid chuige thar Taildrop, arb é an bealach is tapúla é chun comhad a bhogadh chuig do ghuthán nó ríomhaire glúine eile. Cóipeálann `c` IP an mheaisín, `n` a ainm, agus `d` a ainm iomlán DNS. Tá cnaipe seolta ar gach ró meaisín freisin, más fearr leat cliceáil. Is é an rud céanna ón teirminéal ná `omarchy tailscale send <machine> [file...]`.
+Nascann agus dícheanglaíonn painéal **Tailscale** an tailnet, malartaíonn sé idir cuntais, agus roghnaíonn sé nód fágála (taispeántar do mheaisíní féin agus réigiúin Mullvad araon sa liosta sin). Brabhsálann sé do mheaisíní freisin — agus le ceann amháin roghnaithe, seolann `s` comhaid chuige thar Taildrop, arb é an bealach is tapúla é chun comhad a bhogadh chuig do ghuthán nó ríomhaire glúine eile. Cóipeálann `c` IP an mheaisín, `n` a ainm, agus `d` a ainm iomlán DNS. Tá cnaipe seolta ar gach ró meaisín freisin, más fearr leat cliceáil. Is é an rud céanna ón teirminéal ná `unbloarchy tailscale send <machine> [file...]`.
 
 Láimhseálann painéal **Dropbox** logáil isteach, taispeánann sé an méid stórála atá úsáidte agat, agus liostaíonn sé comhaid a sioncronaíodh le déanaí.
 
@@ -93,19 +93,19 @@ Más fearr leat roghnú ó roghchlár, tá an suíomh ag **Dealramh → Barra Ro
 Tá orduithe ag na rudaí céanna, agus is é sin a theastaíonn uait do shuiteáil [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Chun giuirléid a chur leis nó a bhaint go hiomlán, úsáid orduithe na mbreiseán. Clónn `omarchy plugin list` gach giuirléid atá ar eolas ag an mblaosc lena id, agus ansin:
+Chun giuirléid a chur leis nó a bhaint go hiomlán, úsáid orduithe na mbreiseán. Clónn `unbloarchy plugin list` gach giuirléid atá ar eolas ag an mblaosc lena id, agus ansin:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## An barra a cheilt
@@ -114,7 +114,7 @@ Casann `Super + Shift + Space` an barra as agus ar ais air gan an bhlaosc a mhar
 
 ## An comhad cumraíochta
 
-Stóráiltear é go léir in `~/.config/omarchy/shell.json`, faoin eochair `bar`. Seo leagan bearrtha:
+Stóráiltear é go léir in `~/.config/unbloarchy/shell.json`, faoin eochair `bar`. Seo leagan bearrtha:
 
 ```json
 {
@@ -123,20 +123,20 @@ Stóráiltear é go léir in `~/.config/omarchy/shell.json`, faoin eochair `bar`
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Is iontráil amháin in aon cheann de na cúig eagar leagan amach gach giuirléid, agus suíonn a socruithe inlíne ar an iontráil sin — níl comhad socruithe ar leith ann agus níl fo-oibiacht `config` ann. Maireann `format`, `formatAlt` (an rud chuig a dtimthriallaíonn cliceáil dheas), agus `verticalFormat` an chloig díreach ann ar `{ "id": "omarchy.clock" }`.
+Is iontráil amháin in aon cheann de na cúig eagar leagan amach gach giuirléid, agus suíonn a socruithe inlíne ar an iontráil sin — níl comhad socruithe ar leith ann agus níl fo-oibiacht `config` ann. Maireann `format`, `formatAlt` (an rud chuig a dtimthriallaíonn cliceáil dheas), agus `verticalFormat` an chloig díreach ann ar `{ "id": "unbloarchy.clock" }`.
 
 Is é `center` an bosca i lár an bharra: lárnaítear gach rud ann ar an scáileán mar ghrúpa amháin. Crochann `centerBegin` agus `centerEnd` ar gach taobh den bhosca, agus is é sin mar a fhanann an clog díreach sa lár fiú agus an aimsir agus suaitheantas an nuashonraithe ag teacht agus ag imeacht. Cuir níos mó ná giuirléid amháin in `center` agus lárnaítear le chéile iad; fág folamh é agus buaileann `centerBegin` agus `centerEnd` le chéile i lár an bharra.
 
-Riail amháin is fiú a ionsú: **nuair a bhíonn do `shell.json` féin agat, is é an leagan canónta é**. Go dtí go saincheapann tú rud ar bith, léann an bhlaosc comhad réamhshocraithe Omarchy. A thúisce a tharraingíonn tú giuirléid, a ritheann tú `omarchy bar`, nó a chuireann tú an comhad in eagar tú féin, is leatsa é — níl cumasc domhain ann, mar sin ní thaispeánfar giuirléidí réamhshocraithe nua in eisiúintí Omarchy amach anseo ar do bharra go huathoibríoch. Cuireann `omarchy bar defaults` an leagan amach seolta ar ais aon uair is mian leat clár glan.
+Riail amháin is fiú a ionsú: **nuair a bhíonn do `shell.json` féin agat, is é an leagan canónta é**. Go dtí go saincheapann tú rud ar bith, léann an bhlaosc comhad réamhshocraithe Unbloarchy. A thúisce a tharraingíonn tú giuirléid, a ritheann tú `unbloarchy bar`, nó a chuireann tú an comhad in eagar tú féin, is leatsa é — níl cumasc domhain ann, mar sin ní thaispeánfar giuirléidí réamhshocraithe nua in eisiúintí Unbloarchy amach anseo ar do bharra go huathoibríoch. Cuireann `unbloarchy bar defaults` an leagan amach seolta ar ais aon uair is mian leat clár glan.
 
 Coinníonn an comhad céanna do chuid uainiúchán díomhaoin ag an leibhéal barr, lasmuigh den eochair `bar`: `idle.screensaver` agus `idle.lock`, araon ina soicindí ó chuaigh tú díomhaoin. Mar sin tosaíonn an spárálaí scáileáin réamhshocraithe ag 150 soicind agus an glas ag 300.

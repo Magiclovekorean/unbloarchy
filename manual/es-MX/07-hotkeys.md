@@ -6,7 +6,7 @@ Puedes ver todos los atajos de teclado principales con `Super + K` (los atajos d
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menú de Omarchy (aplicaciones y todo lo demás)    |
+| `Super + Space`           | Menú de Unbloarchy (aplicaciones y todo lo demás)    |
 | `Super + Alt + Space` | Cuadrícula de aplicaciones |
 | `Super + Escape` | Menú del sistema (suspender, reiniciar, etc)  |
 | `Super + Ctrl + L` | Bloquear la computadora |
@@ -143,7 +143,7 @@ Cambia/agrega atajos en `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Pegar    |
 | `Super + Ctrl + V`           | Administrador del portapapeles    |
 
-Normalmente en Linux necesitas `Ctrl + Shift + C/V` para copiar y pegar en la terminal y `Ctrl + C/V` para hacerlo en cualquier otro lugar. Estos atajos unificados del portapapeles de Omarchy funcionan en todas partes.
+Normalmente en Linux necesitas `Ctrl + Shift + C/V` para copiar y pegar en la terminal y `Ctrl + C/V` para hacerlo en cualquier otro lugar. Estos atajos unificados del portapapeles de Unbloarchy funcionan en todas partes.
 
 ## Captura
 
@@ -164,7 +164,7 @@ Normalmente en Linux necesitas `Ctrl + Shift + C/V` para copiar y pegar en la te
 
 En las grabaciones de pantalla, el atajo primero te pregunta qué audio quieres y luego empieza a grabar. Presiónalo otra vez para detener la grabación. Consulta [capturas de pantalla y grabación](12-screenshots-recording.md) para conocer los detalles.
 
-Todas las opciones de captura también están disponibles en _Activar > Captura_ en el menú de Omarchy (`Super + Space`).
+Todas las opciones de captura también están disponibles en _Activar > Captura_ en el menú de Unbloarchy (`Super + Space`).
 
 ## Notificaciones
 
@@ -186,9 +186,9 @@ Todas las opciones de captura también están disponibles en _Activar > Captura_
 | `Super + Backspace` | Activar/desactivar la transparencia en una ventana |
 | `Super + Ctrl + Backspace` | Activar/desactivar la proporción cuadrada de una sola ventana |
 
-Las imágenes de fondo adicionales están en `~/.config/omarchy/backgrounds/<theme name>`. También están disponibles mediante _Instalar > Estilo > Fondo_ en el menú de Omarchy.
+Las imágenes de fondo adicionales están en `~/.config/unbloarchy/backgrounds/<theme name>`. También están disponibles mediante _Instalar > Estilo > Fondo_ en el menú de Unbloarchy.
 
-Todas las opciones de estilo también están disponibles en _Estilo_ en el menú de Omarchy (`Super + Space`).
+Todas las opciones de estilo también están disponibles en _Estilo_ en el menú de Unbloarchy (`Super + Space`).
 
 ## Activar/desactivar
 
@@ -289,7 +289,7 @@ Estas funciones deben ejecutarse dentro de una sesión de Tmux.
 
 ## Terminal Ghostty
 
-La terminal Ghostty se instala con _Instalar > Terminal_ mediante el menú de Omarchy.
+La terminal Ghostty se instala con _Instalar > Terminal_ mediante el menú de Unbloarchy.
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Puedes usar `Super + Ctrl + E` para mostrar un selector de emojis completo que c
 | `Shift + CapsLock Space N` | Tu nombre (como lo escribiste en la configuración)  |
 | `Shift + CapsLock Space E` | Tu correo electrónico (como lo escribiste en la configuración)  |
 
-Puedes agregar más por tu cuenta editando `~/.XCompose` y luego ejecutando `omarchy-restart-xcompose` en la terminal para que se apliquen los cambios.
+Puedes agregar más por tu cuenta editando `~/.XCompose` y luego ejecutando `unbloarchy-restart-xcompose` en la terminal para que se apliquen los cambios.

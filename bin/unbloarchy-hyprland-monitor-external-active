@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# omarchy:summary=Returns true when Hyprland has an active external monitor
-# omarchy:hidden=true
+# unbloarchy:summary=Returns true when Hyprland has an active external monitor
+# unbloarchy:hidden=true
 
 # Hyprland stands in a FALLBACK output when no real monitor is enabled. It is
 # not an external display, so counting it would keep the internal panel off

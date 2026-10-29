@@ -1,8 +1,8 @@
 # Teme
 
-Omarchy vine cu douăzeci și două de teme frumoase. Poți alege dintre ele din _Aspect > Temă_ în Meniul Omarchy (`Super + Space`) sau poți merge direct la selectorul de teme folosind `Super + Ctrl + T`.
+Unbloarchy vine cu douăzeci și două de teme frumoase. Poți alege dintre ele din _Aspect > Temă_ în Meniul Unbloarchy (`Super + Space`) sau poți merge direct la selectorul de teme folosind `Super + Ctrl + T`.
 
-Fiecare temă stilizează desktopul, terminalul, neovim, ecranul de activitate (btop), Chromium și întregul shell Omarchy: bara superioară, meniul, notificările, OSD și ecranul de blocare. (Pentru Obsidian, trebuie să selectezi manual tema Omarchy din _Aspect > Teme_ în interiorul aplicației).
+Fiecare temă stilizează desktopul, terminalul, neovim, ecranul de activitate (btop), Chromium și întregul shell Unbloarchy: bara superioară, meniul, notificările, OSD și ecranul de blocare. (Pentru Obsidian, trebuie să selectezi manual tema Unbloarchy din _Aspect > Teme_ în interiorul aplicației).
 
 Temele au un set de imagini de fundal între care poți alege folosind `Super + Ctrl + W`.
 

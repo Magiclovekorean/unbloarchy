@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-# omarchy:summary=Print the MiniMax Token Plan usage record as JSON
-# omarchy:args=[--force] [--limits-only]
-# omarchy:hidden=true
+# unbloarchy:summary=Print the MiniMax Token Plan usage record as JSON
+# unbloarchy:args=[--force] [--limits-only]
+# unbloarchy:hidden=true
 """Collect MiniMax usage into a display-ready JSON record.
 
 The 5-hour session and weekly windows come from MiniMax's Token Plan API with
@@ -27,7 +27,7 @@ from typing import Any
 
 # The shared collector plumbing ships with the agents panel.
 sys.dont_write_bytecode = True
-sys.path.insert(0, os.path.join(os.environ["OMARCHY_PATH"], "shell", "plugins", "agents"))
+sys.path.insert(0, os.path.join(os.environ["UNBLOARCHY_PATH"], "shell", "plugins", "agents"))
 from collectors import (  # noqa: E402
   HttpError,
   LimitsCache,

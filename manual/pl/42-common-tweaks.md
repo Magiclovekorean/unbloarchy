@@ -1,8 +1,8 @@
 # Typowe dostosowania
 
-To zbiór typowych dostosowań konfiguracji Omarchy. Wiedz, że aktualizacje systemu mogą czasem wymagać przywrócenia niektórych konfiguracji do ich pierwotnego stanu. Jeśli tak się stanie, twoje zmiany nie przepadną, tylko trafią do pliku `.bak` w tym samym katalogu.
+To zbiór typowych dostosowań konfiguracji Unbloarchy. Wiedz, że aktualizacje systemu mogą czasem wymagać przywrócenia niektórych konfiguracji do ich pierwotnego stanu. Jeśli tak się stanie, twoje zmiany nie przepadną, tylko trafią do pliku `.bak` w tym samym katalogu.
 
-Jeśli coś zepsujesz, możesz przywrócić poszczególne konfiguracje do ich pierwotnego stanu przez _Aktualizuj > Konfiguracja_ w menu Omarchy. Jeśli _naprawdę_ zepsujesz wszystko, możesz zresetować wszystkie konfiguracje poleceniem `omarchy-reinstall`.
+Jeśli coś zepsujesz, możesz przywrócić poszczególne konfiguracje do ich pierwotnego stanu przez _Aktualizuj > Konfiguracja_ w menu Unbloarchy. Jeśli _naprawdę_ zepsujesz wszystko, możesz zresetować wszystkie konfiguracje poleceniem `unbloarchy-reinstall`.
 
 ### Pokazywanie wszystkich ikon zasobnika przez cały czas
 
@@ -10,7 +10,7 @@ Domyślnie ikony zasobnika, takie jak Dropbox, 1password albo Steam, są ukryte 
 
 ### Zaokrąglone narożniki okien
 
-Domyślny wygląd Omarchy opiera się na prostych narożnikach, ale jeśli chcesz go trochę zmiękczyć, możesz zmienić `~/.config/hypr/looknfeel.lua` tak, aby zaokrąglenie nie było już zakomentowane:
+Domyślny wygląd Unbloarchy opiera się na prostych narożnikach, ale jeśli chcesz go trochę zmiękczyć, możesz zmienić `~/.config/hypr/looknfeel.lua` tak, aby zaokrąglenie nie było już zakomentowane:
 
 ```
 hl.config({

@@ -1,8 +1,8 @@
 # Navigasi
 
-Semua hal di Omarchy terjadi melalui keyboard — _SEMUA!_ Saat sistem pertama kali menyala, Anda benar-benar tidak bisa melakukan apa pun hanya dengan mouse. Tetapi Anda bisa menekan `Super + Space` untuk menampilkan Menu Omarchy dan dari sini Anda bisa melakukan hampir semua hal.
+Semua hal di Unbloarchy terjadi melalui keyboard — _SEMUA!_ Saat sistem pertama kali menyala, Anda benar-benar tidak bisa melakukan apa pun hanya dengan mouse. Tetapi Anda bisa menekan `Super + Space` untuk menampilkan Menu Unbloarchy dan dari sini Anda bisa melakukan hampir semua hal.
 
-Namun menu Omarchy bahkan tidak dimaksudkan menjadi cara utama untuk mengoperasikan sistem hampir sepanjang waktu. Kita bisa lebih cepat dari itu! Semua aplikasi terpenting terikat langsung ke hotkey tersendiri. Anda memulai terminal dengan `Super + Return` dan browser dengan `Super + Shift + Return`. Coba lakukan satu demi satu, dan Anda akan melihat keajaiban tiling Hyprland bekerja:
+Namun menu Unbloarchy bahkan tidak dimaksudkan menjadi cara utama untuk mengoperasikan sistem hampir sepanjang waktu. Kita bisa lebih cepat dari itu! Semua aplikasi terpenting terikat langsung ke hotkey tersendiri. Anda memulai terminal dengan `Super + Return` dan browser dengan `Super + Shift + Return`. Coba lakukan satu demi satu, dan Anda akan melihat keajaiban tiling Hyprland bekerja:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Anda juga bisa masuk layar penuh dengan `Super + F` atau bahkan hanya selebar la
 
 ### Tata letak dwindle vs scrolling
 
-Tata letak default Omarchy disebut dwindle. Ia membuat semua jendela yang Anda buka di satu workspace tetap terlihat setiap saat, bahkan jika harus mengecilkannya.
+Tata letak default Unbloarchy disebut dwindle. Ia membuat semua jendela yang Anda buka di satu workspace tetap terlihat setiap saat, bahkan jika harus mengecilkannya.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Workspace floating bekerja seperti desktop tradisional: jendela-jendela tumpang tindih, dan Anda memindahkan dan mengubah ukurannya sendiri. Setiap jendela mendapatkan titlebar dengan warna tema Anda, dengan tombol untuk minimize, maximize, dan close. `Super + M` juga me-minimize jendela yang fokus. Jendela yang di-minimize menunggu di dock; klik aplikasinya untuk membawanya kembali. Klik sebuah jendela untuk membawanya ke depan. Ubah ukurannya dari tepi atau sudut mana pun. Klik dua kali titlebar untuk memaksimalkan jendela sambil tetap menampilkan top bar, dan klik dua kali lagi untuk mendapatkan kembali ukuran lamanya.
 
-Workspace floating juga menampilkan dock, dengan aplikasi yang Anda sematkan, semua yang sedang berjalan, dan grid berisi setiap aplikasi di balik tombol apps, yang juga dibuka oleh `Super + Alt + Space` dan _Apps_ di menu Omarchy. Klik kanan aplikasi di grid, atau tekan `Delete`, untuk menghapus instalasinya. Klik aplikasi untuk membukanya, atau membawa jendelanya ke depan; klik lagi untuk bergilir melalui jendela-jendelanya. Klik tengah membuka jendela baru. Seret ikon di sepanjang dock untuk memindahkannya; menyeret aplikasi yang sedang berjalan di antara aplikasi lain akan mempertahankannya di sana. Klik kanan untuk menyimpan aplikasi di dock, mengeluarkannya, atau menutupnya. Dock menyingkir dari jendela fullscreen. Klik kanan tombol apps untuk memindahkan dock ke tepi lain atau membuatnya bersembunyi sampai pointer mencapai tepinya. Posisinya juga ada di bawah _Appearance > Dock > Dock Position_, dan `omarchy dock position left` dan `omarchy dock autohide on` mengatur keduanya dari terminal. Aplikasi yang Anda simpan di dock tampak pudar saat tidak berjalan.
+Workspace floating juga menampilkan dock, dengan aplikasi yang Anda sematkan, semua yang sedang berjalan, dan grid berisi setiap aplikasi di balik tombol apps, yang juga dibuka oleh `Super + Alt + Space` dan _Apps_ di menu Unbloarchy. Klik kanan aplikasi di grid, atau tekan `Delete`, untuk menghapus instalasinya. Klik aplikasi untuk membukanya, atau membawa jendelanya ke depan; klik lagi untuk bergilir melalui jendela-jendelanya. Klik tengah membuka jendela baru. Seret ikon di sepanjang dock untuk memindahkannya; menyeret aplikasi yang sedang berjalan di antara aplikasi lain akan mempertahankannya di sana. Klik kanan untuk menyimpan aplikasi di dock, mengeluarkannya, atau menutupnya. Dock menyingkir dari jendela fullscreen. Klik kanan tombol apps untuk memindahkan dock ke tepi lain atau membuatnya bersembunyi sampai pointer mencapai tepinya. Posisinya juga ada di bawah _Appearance > Dock > Dock Position_, dan `unbloarchy dock position left` dan `unbloarchy dock autohide on` mengatur keduanya dari terminal. Aplikasi yang Anda simpan di dock tampak pudar saat tidak berjalan.
 
-Workspace baru, dan workspace mana pun yang belum Anda beri tata letak sendiri dengan `Super + L`, menggunakan tata letak default. Mengubah default mengatur ulang setiap workspace tanpa jendela ke tata letak itu, sementara workspace dengan jendela di dalamnya tetap mempertahankan tata letak yang dimilikinya. Jendela yang di-minimize ke dock tetap dihitung sebagai jendela di workspace yang ditinggalkannya. Pilih di bawah _Appearance > Workspace Layout_: Tiling, Scrolling, atau Floating. `omarchy-hyprland-workspace-layout-default scrolling` mengaturnya dari terminal.
+Workspace baru, dan workspace mana pun yang belum Anda beri tata letak sendiri dengan `Super + L`, menggunakan tata letak default. Mengubah default mengatur ulang setiap workspace tanpa jendela ke tata letak itu, sementara workspace dengan jendela di dalamnya tetap mempertahankan tata letak yang dimilikinya. Jendela yang di-minimize ke dock tetap dihitung sebagai jendela di workspace yang ditinggalkannya. Pilih di bawah _Appearance > Workspace Layout_: Tiling, Scrolling, atau Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` mengaturnya dari terminal.
 
 ### Mengelompokkan jendela
 

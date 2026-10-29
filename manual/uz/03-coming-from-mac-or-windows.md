@@ -1,12 +1,12 @@
 # Mac yoki Windows'dan kelayotganlar uchun
 
-Agar yillar davomida macOS yoki Windows'da ishlagan bo'lsangiz, barmoqlaringiz miyangiz qachonlardir o'rganganini unutib yuborgan yuzlab narsani biladi. Bu bob — tarjima qatlami: o'sha instinktlar Omarchy'da qayerga tushadi. Xususiyatlarning o'zlari boshqa joylarda chuqur yoritilgan — bu shunchaki xarita.
+Agar yillar davomida macOS yoki Windows'da ishlagan bo'lsangiz, barmoqlaringiz miyangiz qachonlardir o'rganganini unutib yuborgan yuzlab narsani biladi. Bu bob — tarjima qatlami: o'sha instinktlar Unbloarchy'da qayerga tushadi. Xususiyatlarning o'zlari boshqa joylarda chuqur yoritilgan — bu shunchaki xarita.
 
 ### Super — hamma narsaning markazi
 
-Cmd yoki Windows tugmasi atrofida shakllantirgan barcha mushak xotirangiz bitta tugmaga o'tadi: Super. Bu PC klaviaturasidagi Windows tugmasi va u Omarchy'dagi deyarli har bir tezkor tugma uchun tayanchdir.
+Cmd yoki Windows tugmasi atrofida shakllantirgan barcha mushak xotirangiz bitta tugmaga o'tadi: Super. Bu PC klaviaturasidagi Windows tugmasi va u Unbloarchy'dagi deyarli har bir tezkor tugma uchun tayanchdir.
 
-Spotlight yoki Raycast yoki Start menyusiga intilish refleksingiz `Super + Space` ga aylanadi. Bu ilovalarni ishga tushiradigan, sozlamalarni o'zgartiradigan, dasturlarni o'rnatadigan, ekranni suratga oladigan — deyarli hamma narsani qiladigan Omarchy menyusini ochadi. Filtrlash uchun yozishni boshlang. `Super + Alt + Space` barcha ilovalarni Launchpad qilganidek bitta panjarada ko'rsatadi. [navigatsiya](04-navigation.md) ga qarang.
+Spotlight yoki Raycast yoki Start menyusiga intilish refleksingiz `Super + Space` ga aylanadi. Bu ilovalarni ishga tushiradigan, sozlamalarni o'zgartiradigan, dasturlarni o'rnatadigan, ekranni suratga oladigan — deyarli hamma narsani qiladigan Unbloarchy menyusini ochadi. Filtrlash uchun yozishni boshlang. `Super + Alt + Space` barcha ilovalarni Launchpad qilganidek bitta panjarada ko'rsatadi. [navigatsiya](04-navigation.md) ga qarang.
 
 ### Dock ham, ish stoli piktogrammalari ham yo'q
 
@@ -22,27 +22,27 @@ Ish maydonlari tanish tuyuladi: ular macOS Spaces yoki Windows virtual ish stoll
 
 ### Nusxalash va qo'yish shunchaki ishlaydi
 
-Mac'da sizda hamma joyda Cmd + C bor edi. Windows'da sizda hamma joyda Ctrl + C bor edi — terminaldan tashqari, u yerda u dasturingizni o'ldiradi. Omarchy sizga `Super + C`, `Super + X` va `Super + V` ni beradi va ular hamma joyda, jumladan terminalda ham ishlaydi. Shell uchun alohida refleks o'rganish shart emas.
+Mac'da sizda hamma joyda Cmd + C bor edi. Windows'da sizda hamma joyda Ctrl + C bor edi — terminaldan tashqari, u yerda u dasturingizni o'ldiradi. Unbloarchy sizga `Super + C`, `Super + X` va `Super + V` ni beradi va ular hamma joyda, jumladan terminalda ham ishlaydi. Shell uchun alohida refleks o'rganish shart emas.
 
 Windows'dan kelganlar: Win + V bufer tarixingiz `Super + Ctrl + V` da yashaydi va u matn bilan birga tasvirlarni ham saqlaydi. [yagona bufer va tarix](08-unified-clipboard-history.md) ga qarang.
 
 ### Tarjima jadvali
 
-| Siz intiladigan narsa | Omarchy'da |
+| Siz intiladigan narsa | Unbloarchy'da |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start menyusi | `Super + Space` — Omarchy menyusi |
+| Spotlight / Raycast / Start menyusi | `Super + Space` — Unbloarchy menyusi |
 | AirDrop | LocalSend, `Super + Ctrl + S` orqali — [GUI'lar](22-guis.md) ga qarang |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` yoki `Print Screen` — [skrinshotlar va yozib olish](12-screenshots-recording.md) ga qarang |
 | Notification Center | `Super + Shift + Alt + ,` dagi bildirishnomalar tarixi |
 | Time Machine (tizim uchun) | Har bir yangilanishda avtomatik [tizim suratlari](47-system-snapshots.md) |
-| App Store / o'rnatuvchini yuklab olish | Menyudagi _Install_ yoki `omarchy pkg add` — [boshqa paketlar](29-other-packages.md) ga qarang |
+| App Store / o'rnatuvchini yuklab olish | Menyudagi _Install_ yoki `unbloarchy pkg add` — [boshqa paketlar](29-other-packages.md) ga qarang |
 | System Settings / Control Panel | Oddiy konfiguratsiya fayllarini tahrirlaydigan menyudagi _Setup_ — [dotfiles](31-dotfiles.md) ga qarang |
 
 ### Ba'zi narsalar chindan ham boshqacha
 
 Ko'p sozlamalar siz bosib o'tadigan panellarda emas, tahrir qiladigan matn fayllarida yashaydi. Bu ibtidoiy tuyuladi, toki har bir o'zgarishni ko'rish, keyingi mashinangizga nusxalash va versiya nazoratiga qo'yish mumkinligini anglamaguningizcha. _Setup_ menyusi sizni to'g'ridan-to'g'ri kerakli faylga tushiradi va tugatganingizda qayta ishga tushirish kerak bo'lgan narsani qayta ishga tushiradi.
 
-Yangilanishlar bitta buyruq — _Update > Omarchy_ — orqali keladi, u Omarchy'ning o'zini va tizimdagi har bir paketni yangilaydi, avval surat oladi. Tasodifiy paytlarda bezovta qiladigan ilova bo'yicha yangilovchilar yo'q. [yangilanishlar](30-updates.md) ga qarang.
+Yangilanishlar bitta buyruq — _Update > Unbloarchy_ — orqali keladi, u Unbloarchy'ning o'zini va tizimdagi har bir paketni yangilaydi, avval surat oladi. Tasodifiy paytlarda bezovta qiladigan ilova bo'yicha yangilovchilar yo'q. [yangilanishlar](30-updates.md) ga qarang.
 
 Dasturlar yuklab olingan o'rnatuvchilardan emas, paket menejeridan keladi.
 
@@ -50,7 +50,7 @@ Va derazani yopganingizda, ilova chindan ham chiqib ketadi. Dastur derazasiz ish
 
 ### Mac qurilmalarida
 
-Omarchy Intel Mac'larda yaxshi ishlaydi — [Mac qo'llab-quvvatlovi](44-mac-support.md) ga qarang. Va klaviatura sizga mehribon: Omarchy hech narsani qayta bog'lamaydi va Linux Command tugmasini Super sifatida qabul qiladi, shuning uchun Super aynan Cmd doim bo'lgan joyda o'tiradi. Bosh barmog'ingiz ko'chishni sezmaydi ham.
+Unbloarchy Intel Mac'larda yaxshi ishlaydi — [Mac qo'llab-quvvatlovi](44-mac-support.md) ga qarang. Va klaviatura sizga mehribon: Unbloarchy hech narsani qayta bog'lamaydi va Linux Command tugmasini Super sifatida qabul qiladi, shuning uchun Super aynan Cmd doim bo'lgan joyda o'tiradi. Bosh barmog'ingiz ko'chishni sezmaydi ham.
 
 ### Unga ikki hafta bering
 

@@ -12,7 +12,7 @@ ShellRoot {
   property var services: ({})
   property string snapshotSeen: ""
   readonly property string stage: Quickshell.env("SWITCH_STAGE")
-  readonly property string link: Quickshell.env("HOME") + "/.local/state/omarchy/current/background"
+  readonly property string link: Quickshell.env("HOME") + "/.local/state/unbloarchy/current/background"
   function firstPartyServiceFor(id) { return services[id] || null }
   function check(ok, message) {
     if (!ok) {
@@ -54,7 +54,7 @@ ShellRoot {
   property int step: 0
   readonly property var steps: [
     { delay: 100, run: function() {
-      test.services = ({ "omarchy.background": background })
+      test.services = ({ "unbloarchy.background": background })
       test.check(sw.switchTo(test.stage + "/new.png", test.stage + "/intros/new.mp4") === "ok", "a background with an intro is accepted")
     } },
     { delay: 300, run: function() {

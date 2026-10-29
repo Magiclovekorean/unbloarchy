@@ -41,7 +41,7 @@ assertEqual(media.labelFor({ trackTitle: 'Song', identity: 'Spotify' }), 'Song',
 assertEqual(media.osdMessage({ trackTitle: 'Song', trackArtist: 'Artist' }, 'Fallback'), 'Song - Artist', 'media builds OSD messages')
 assertEqual(media.osdMessage(null, 'Fallback'), 'Fallback', 'media falls back OSD messages')
 
-// The in-shell volume keys follow omarchy-audio-output-volume's rules.
+// The in-shell volume keys follow unbloarchy-audio-output-volume's rules.
 assertDeepEqual(media.volumeKeyStep('raise', 43, true), { percent: 48, muted: false }, 'volume raise steps 5 and unmutes')
 assertDeepEqual(media.volumeKeyStep('lower', 48, true), { percent: 43, muted: false }, 'volume lower steps 5 and unmutes')
 assertDeepEqual(media.volumeKeyStep('raise', 98, false), { percent: 100, muted: false }, 'volume raise clamps at 100')

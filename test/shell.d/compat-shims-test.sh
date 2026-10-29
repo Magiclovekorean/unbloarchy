@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -13,15 +13,15 @@ touch "$repo/default/wayland-sessions/unbloarchy.desktop"
 touch "$repo/default/sddm/unbloarchy/Main.qml"
 
 cat >"$bin/unbloarchy" <<'ROUTER'
-#!/bin/bash
+#!/usr/bin/env bash
 printf 'router:%s\n' "$*"
 ROUTER
 cat >"$bin/unbloarchy-test-tool" <<'COMMAND'
-#!/bin/bash
+#!/usr/bin/env bash
 printf 'command:%s:%s\n' "$UNBLOARCHY_PATH" "$*"
 COMMAND
 cat >"$bin/unbloarchy-security-functions" <<'LIBRARY'
-#!/bin/bash
+#!/usr/bin/env bash
 compat_test_function() { printf 'sourced:%s\n' "$1"; }
 LIBRARY
 cat >"$bin/unbloarchy-dev-font" <<'PYTHON'
@@ -69,7 +69,7 @@ cmp -s "$test_tmp/first-generation" "$bin/omarchy-test-tool" || fail "regenerati
 pass "regeneration leaves identical compatibility shims"
 
 cat >"$bin/unbloarchy-new-tool" <<'COMMAND'
-#!/bin/bash
+#!/usr/bin/env bash
 exit 0
 COMMAND
 chmod +x "$bin/unbloarchy-new-tool"
@@ -81,14 +81,14 @@ bash "$generator" "$repo"
 pass "new commands are shimmed and stale generated shims are removed"
 
 cat >"$bin/unbloarchy-manual-tool" <<'COMMAND'
-#!/bin/bash
+#!/usr/bin/env bash
 exit 0
 COMMAND
 chmod +x "$bin/unbloarchy-manual-tool"
-printf '#!/bin/bash\necho user file\n' >"$bin/omarchy-manual-tool"
+printf '#!/usr/bin/env bash\necho user file\n' >"$bin/omarchy-manual-tool"
 chmod +x "$bin/omarchy-manual-tool"
 if bash "$generator" "$repo" >"$test_tmp/conflict.out" 2>&1; then
   fail "generator refuses to overwrite an unmanaged compatibility path"
 fi
-[[ $(<"$bin/omarchy-manual-tool") == $'#!/bin/bash\necho user file' ]] || fail "unmanaged compatibility file remains unchanged"
+[[ $(<"$bin/omarchy-manual-tool") == $'#!/usr/bin/env bash\necho user file' ]] || fail "unmanaged compatibility file remains unchanged"
 pass "unmanaged compatibility paths are never overwritten"

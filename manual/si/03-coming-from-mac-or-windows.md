@@ -1,12 +1,12 @@
 # Mac හෝ Windows වලින් එන විට
 
-ඔබ macOS හෝ Windows මත වසර ගණනාවක් ගත කර ඇත්නම්, ඔබේ මොළය කවදා ඉගෙන ගත්තාද කියලා අමතක වී ඇති දේවල් සියයක් ඔබේ ඇඟිලි දන්නවා. මේ පරිච්ඡේදය ඒ පරිවර්තන තට්ටුවයි: Omarchy වල ඒ සහජ හැසිරීම් යන්නේ කොහෙටද කියන එක. විශේෂාංග ගැනම වෙනත් තැන්වල ගැඹුරින් ආවරණය කර තිබෙනවා — මෙය නිකම්ම සිතියම විතරයි.
+ඔබ macOS හෝ Windows මත වසර ගණනාවක් ගත කර ඇත්නම්, ඔබේ මොළය කවදා ඉගෙන ගත්තාද කියලා අමතක වී ඇති දේවල් සියයක් ඔබේ ඇඟිලි දන්නවා. මේ පරිච්ඡේදය ඒ පරිවර්තන තට්ටුවයි: Unbloarchy වල ඒ සහජ හැසිරීම් යන්නේ කොහෙටද කියන එක. විශේෂාංග ගැනම වෙනත් තැන්වල ගැඹුරින් ආවරණය කර තිබෙනවා — මෙය නිකම්ම සිතියම විතරයි.
 
 ### Super තමයි හැමදේම මධ්‍යස්ථානය
 
-Cmd හෝ Windows යතුර වටා ඔබ ගොඩනඟා ගත් සියලුම මාංශ මතකය එක් යතුරකට මාරු වෙනවා: Super. ඒක PC යතුරු පුවරුවක තියෙන Windows යතුර, ඒ වගේම Omarchy වල සෑම hotkey එකකම වාගේ නැංගුරම එයයි.
+Cmd හෝ Windows යතුර වටා ඔබ ගොඩනඟා ගත් සියලුම මාංශ මතකය එක් යතුරකට මාරු වෙනවා: Super. ඒක PC යතුරු පුවරුවක තියෙන Windows යතුර, ඒ වගේම Unbloarchy වල සෑම hotkey එකකම වාගේ නැංගුරම එයයි.
 
-ඔබේ Spotlight හෝ Raycast හෝ Start-menu සහජ හැසිරීම `Super + Space` බවට පත් වෙනවා. ඒකෙන් Omarchy මෙනුව විවෘත වෙනවා, එයින් apps දියත් කරනවා, සැකසීම් වෙනස් කරනවා, මෘදුකාංග ස්ථාපනය කරනවා, තිරය ග්‍රහණය කරනවා — හැමදේම වාගේ. පෙරහන් කිරීමට ටයිප් කරන්න පටන් ගන්න. `Super + Alt + Space` එකම ජාලයක හැම app එකක්ම පෙන්වනවා, Launchpad කරන ආකාරයටම. [සැරිසැරීම](04-navigation.md) බලන්න.
+ඔබේ Spotlight හෝ Raycast හෝ Start-menu සහජ හැසිරීම `Super + Space` බවට පත් වෙනවා. ඒකෙන් Unbloarchy මෙනුව විවෘත වෙනවා, එයින් apps දියත් කරනවා, සැකසීම් වෙනස් කරනවා, මෘදුකාංග ස්ථාපනය කරනවා, තිරය ග්‍රහණය කරනවා — හැමදේම වාගේ. පෙරහන් කිරීමට ටයිප් කරන්න පටන් ගන්න. `Super + Alt + Space` එකම ජාලයක හැම app එකක්ම පෙන්වනවා, Launchpad කරන ආකාරයටම. [සැරිසැරීම](04-navigation.md) බලන්න.
 
 ### dock එකක්වත් desktop icons වත් නැහැ
 
@@ -22,27 +22,27 @@ Workspaces හුරුපුරුදු බවක් දැනේවි: ඒ�
 
 ### Copy සහ paste නිකම්ම වැඩ කරනවා
 
-Mac එකේ ඔබට හැම තැනම Cmd + C තිබුණා. Windows වල ඔබට හැම තැනම Ctrl + C තිබුණා — terminal එකේ හැර, එහිදී එය ඔබේ program එක නවත්වනවා. Omarchy ඔබට `Super + C`, `Super + X`, සහ `Super + V` දෙනවා, ඒවා terminal එක ඇතුළුව හැම තැනම වැඩ කරනවා. Shell එක සඳහා වෙනම සහජ හැසිරීමක් ඉගෙන ගන්න නැහැ.
+Mac එකේ ඔබට හැම තැනම Cmd + C තිබුණා. Windows වල ඔබට හැම තැනම Ctrl + C තිබුණා — terminal එකේ හැර, එහිදී එය ඔබේ program එක නවත්වනවා. Unbloarchy ඔබට `Super + C`, `Super + X`, සහ `Super + V` දෙනවා, ඒවා terminal එක ඇතුළුව හැම තැනම වැඩ කරනවා. Shell එක සඳහා වෙනම සහජ හැසිරීමක් ඉගෙන ගන්න නැහැ.
 
 Windows ජනතාවනි: ඔබේ Win + V clipboard ඉතිහාසය `Super + Ctrl + V` මත ජීවත් වෙනවා, ඒ වගේම එය පෙළ වගේම රූපත් රඳවා ගන්නවා. [ඒකාබද්ධ clipboard සහ ඉතිහාසය](08-unified-clipboard-history.md) බලන්න.
 
 ### පරිවර්තන වගුව
 
-| ඔබ අත දිගු කරන්නේ | Omarchy වල |
+| ඔබ අත දිගු කරන්නේ | Unbloarchy වල |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start menu | `Super + Space` — Omarchy මෙනුව |
+| Spotlight / Raycast / Start menu | `Super + Space` — Unbloarchy මෙනුව |
 | AirDrop | LocalSend, `Super + Ctrl + S` හරහා — [GUIs](22-guis.md) බලන්න |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` හෝ `Print Screen` — [තිරරූප සහ පටිගත කිරීම](12-screenshots-recording.md) බලන්න |
 | Notification Center | `Super + Shift + Alt + ,` මත දැනුම්දීම් ඉතිහාසය |
 | Time Machine (පද්ධතිය සඳහා) | සෑම යාවත්කාලීනයකදීම ස්වයංක්‍රීය [පද්ධති snapshots](47-system-snapshots.md) |
-| App Store / installer එකක් බාගත කිරීම | මෙනුවේ _Install_, හෝ `omarchy pkg add` — [වෙනත් packages](29-other-packages.md) බලන්න |
+| App Store / installer එකක් බාගත කිරීම | මෙනුවේ _Install_, හෝ `unbloarchy pkg add` — [වෙනත් packages](29-other-packages.md) බලන්න |
 | System Settings / Control Panel | මෙනුවේ _Setup_, එය සරල config ගොනු සංස්කරණය කරනවා — [dotfiles](31-dotfiles.md) බලන්න |
 
 ### සමහර දේවල් ඇත්තටම වෙනස්
 
 බොහෝ සැකසීම් ජීවත් වෙන්නේ ඔබ ක්ලික් කරමින් යන panels වල නොව, ඔබ සංස්කරණය කරන පෙළ ගොනු වලයි. එය ප්‍රාථමික දෙයක් වගේ ඇහෙනවා, සෑම වෙනස්කමක්ම දැකිය හැකි බව, ඔබේ ඊළඟ machine එකට පිටපත් කළ හැකි බව, සහ version control එකට දැමිය හැකි බව ඔබට වැටහෙන තෙක්. _Setup_ මෙනුව ඔබව කෙලින්ම නිවැරදි ගොනුවට දමනවා, ඔබ අවසන් කළ විට නැවත ආරම්භ කළ යුතු දේ නැවත ආරම්භ කරනවා.
 
-යාවත්කාලීන එන්නේ එක් විධානයක් හරහා — _Update > Omarchy_ — එය Omarchy ම සහ පද්ධතියේ සෑම package එකක්ම යාවත්කාලීන කරනවා, මුලින්ම snapshot එකක් අරගෙන. අහඹු වෙලාවලදී ඔබට කරදර කරන per-app updaters නැහැ. [යාවත්කාලීන](30-updates.md) බලන්න.
+යාවත්කාලීන එන්නේ එක් විධානයක් හරහා — _Update > Unbloarchy_ — එය Unbloarchy ම සහ පද්ධතියේ සෑම package එකක්ම යාවත්කාලීන කරනවා, මුලින්ම snapshot එකක් අරගෙන. අහඹු වෙලාවලදී ඔබට කරදර කරන per-app updaters නැහැ. [යාවත්කාලීන](30-updates.md) බලන්න.
 
 මෘදුකාංග එන්නේ බාගත කළ installers වලින් නොව, package manager එකකින්.
 
@@ -50,7 +50,7 @@ Windows ජනතාවනි: ඔබේ Win + V clipboard ඉතිහාසය
 
 ### Mac hardware මත
 
-Omarchy Intel Macs මත හොඳින් දුවනවා — [Mac සහාය](44-mac-support.md) බලන්න. ඒ වගේම keyboard එක ඔබට කරුණාවන්ත වෙනවා: Omarchy කිසිවක් remap කරන්නේ නැහැ, ඒ වගේම Linux Command යතුර Super ලෙස සලකනවා, ඒ නිසා Super වාඩි වෙන්නේ Cmd හැමදාම හිටපු තැනමයි. ඔබේ මාපටැඟිල්ලට මාරුව දැනෙන්නේවත් නැහැ.
+Unbloarchy Intel Macs මත හොඳින් දුවනවා — [Mac සහාය](44-mac-support.md) බලන්න. ඒ වගේම keyboard එක ඔබට කරුණාවන්ත වෙනවා: Unbloarchy කිසිවක් remap කරන්නේ නැහැ, ඒ වගේම Linux Command යතුර Super ලෙස සලකනවා, ඒ නිසා Super වාඩි වෙන්නේ Cmd හැමදාම හිටපු තැනමයි. ඔබේ මාපටැඟිල්ලට මාරුව දැනෙන්නේවත් නැහැ.
 
 ### සති දෙකක් දෙන්න
 

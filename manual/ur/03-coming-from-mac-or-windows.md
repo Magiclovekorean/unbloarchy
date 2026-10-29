@@ -1,12 +1,12 @@
 # Mac یا Windows سے آنا
 
-اگر آپ نے برسوں macOS یا Windows پر گزارے ہیں، تو آپ کی انگلیاں سو ایسی چیزیں جانتی ہیں جنہیں آپ کا دماغ بھول چکا ہے کہ اس نے کبھی سیکھی تھیں۔ یہ باب وہی ترجمے کی پرت ہے: Omarchy میں وہ جبلتیں کہاں جاتی ہیں۔ خصوصیات خود دوسری جگہوں پر تفصیل سے بیان کی گئی ہیں — یہ صرف نقشہ ہے۔
+اگر آپ نے برسوں macOS یا Windows پر گزارے ہیں، تو آپ کی انگلیاں سو ایسی چیزیں جانتی ہیں جنہیں آپ کا دماغ بھول چکا ہے کہ اس نے کبھی سیکھی تھیں۔ یہ باب وہی ترجمے کی پرت ہے: Unbloarchy میں وہ جبلتیں کہاں جاتی ہیں۔ خصوصیات خود دوسری جگہوں پر تفصیل سے بیان کی گئی ہیں — یہ صرف نقشہ ہے۔
 
 ### Super ہر چیز کا مرکز ہے
 
-Cmd یا Windows key کے گرد بنی آپ کی تمام پٹھوں کی یادداشت ایک ہی key پر منتقل ہو جاتی ہے: Super۔ PC keyboard پر یہی Windows key ہے، اور یہ Omarchy میں تقریباً ہر hotkey کا مرکز ہے۔
+Cmd یا Windows key کے گرد بنی آپ کی تمام پٹھوں کی یادداشت ایک ہی key پر منتقل ہو جاتی ہے: Super۔ PC keyboard پر یہی Windows key ہے، اور یہ Unbloarchy میں تقریباً ہر hotkey کا مرکز ہے۔
 
-Spotlight یا Raycast یا Start-menu والا آپ کا اضطراری عمل `Super + Space` بن جاتا ہے۔ اس سے Omarchy menu کھلتا ہے، جو apps لانچ کرتا ہے، settings بدلتا ہے، software انسٹال کرتا ہے، اسکرین capture کرتا ہے — تقریباً ہر کام کرتا ہے۔ فلٹر کرنے کے لیے بس ٹائپ کرنا شروع کر دیں۔ `Super + Alt + Space` تمام apps کو ایک ہی grid پر دکھاتا ہے، بالکل Launchpad کی طرح۔ دیکھیں [نیویگیشن](04-navigation.md)۔
+Spotlight یا Raycast یا Start-menu والا آپ کا اضطراری عمل `Super + Space` بن جاتا ہے۔ اس سے Unbloarchy menu کھلتا ہے، جو apps لانچ کرتا ہے، settings بدلتا ہے، software انسٹال کرتا ہے، اسکرین capture کرتا ہے — تقریباً ہر کام کرتا ہے۔ فلٹر کرنے کے لیے بس ٹائپ کرنا شروع کر دیں۔ `Super + Alt + Space` تمام apps کو ایک ہی grid پر دکھاتا ہے، بالکل Launchpad کی طرح۔ دیکھیں [نیویگیشن](04-navigation.md)۔
 
 ### نہ کوئی dock ہے اور نہ desktop icons
 
@@ -22,27 +22,27 @@ Workspaces مانوس محسوس ہوں گے: یہ macOS Spaces یا Windows vir
 
 ### Copy اور paste بس کام کرتے ہیں
 
-Mac پر آپ کے پاس ہر جگہ Cmd + C تھا۔ Windows پر آپ کے پاس ہر جگہ Ctrl + C تھا — سوائے terminal کے، جہاں یہ آپ کے program کو ختم کر دیتا ہے۔ Omarchy آپ کو `Super + C`، `Super + X`، اور `Super + V` دیتا ہے، اور یہ ہر جگہ کام کرتے ہیں، terminal سمیت۔ shell کے لیے کوئی الگ اضطراری عمل سیکھنے کی ضرورت نہیں۔
+Mac پر آپ کے پاس ہر جگہ Cmd + C تھا۔ Windows پر آپ کے پاس ہر جگہ Ctrl + C تھا — سوائے terminal کے، جہاں یہ آپ کے program کو ختم کر دیتا ہے۔ Unbloarchy آپ کو `Super + C`، `Super + X`، اور `Super + V` دیتا ہے، اور یہ ہر جگہ کام کرتے ہیں، terminal سمیت۔ shell کے لیے کوئی الگ اضطراری عمل سیکھنے کی ضرورت نہیں۔
 
 Windows والو: آپ کی Win + V clipboard history `Super + Ctrl + V` پر موجود ہے، اور یہ متن کے ساتھ ساتھ تصاویر بھی رکھتی ہے۔ دیکھیں [unified clipboard & history](08-unified-clipboard-history.md)۔
 
 ### ترجمے کی جدول
 
-| آپ جس کی طرف ہاتھ بڑھاتے ہیں | Omarchy میں |
+| آپ جس کی طرف ہاتھ بڑھاتے ہیں | Unbloarchy میں |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start menu | `Super + Space` — Omarchy menu |
+| Spotlight / Raycast / Start menu | `Super + Space` — Unbloarchy menu |
 | AirDrop | LocalSend، بذریعہ `Super + Ctrl + S` — دیکھیں [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` یا `Print Screen` — دیکھیں [screenshots & recording](12-screenshots-recording.md) |
 | Notification Center | Notification history، `Super + Shift + Alt + ,` پر |
 | Time Machine (سسٹم کے لیے) | ہر update پر خودکار [system snapshots](47-system-snapshots.md) |
-| App Store / کوئی installer ڈاؤن لوڈ کرنا | menu میں _Install_، یا `omarchy pkg add` — دیکھیں [other packages](29-other-packages.md) |
+| App Store / کوئی installer ڈاؤن لوڈ کرنا | menu میں _Install_، یا `unbloarchy pkg add` — دیکھیں [other packages](29-other-packages.md) |
 | System Settings / Control Panel | menu میں _Setup_، جو سادہ config files میں ترمیم کرتا ہے — دیکھیں [dotfiles](31-dotfiles.md) |
 
 ### کچھ چیزیں واقعی مختلف ہیں
 
 بہت سی settings متن والی files میں رہتی ہیں جن میں آپ ترمیم کرتے ہیں، ایسے panels میں نہیں جن میں کلک کرتے پھریں۔ یہ اس وقت تک قدیم لگتا ہے جب تک آپ کو احساس نہ ہو کہ اس کا مطلب ہے کہ ہر تبدیلی دیکھی جا سکتی ہے، آپ کی اگلی machine پر copy کی جا سکتی ہے، اور version control میں رکھی جا سکتی ہے۔ _Setup_ menu آپ کو سیدھا درست file میں پہنچا دیتا ہے اور جب آپ کام مکمل کر لیتے ہیں تو جس چیز کو restart کرنے کی ضرورت ہو اسے restart کر دیتا ہے۔
 
-Updates ایک ہی command سے آتی ہیں — _Update > Omarchy_ — جو Omarchy کو خود بھی update کرتی ہے اور سسٹم کے ہر package کو بھی، اور پہلے ایک snapshot لیتی ہے۔ بے ترتیب اوقات میں تنگ کرنے والے فی app updaters نہیں ہیں۔ دیکھیں [updates](30-updates.md)۔
+Updates ایک ہی command سے آتی ہیں — _Update > Unbloarchy_ — جو Unbloarchy کو خود بھی update کرتی ہے اور سسٹم کے ہر package کو بھی، اور پہلے ایک snapshot لیتی ہے۔ بے ترتیب اوقات میں تنگ کرنے والے فی app updaters نہیں ہیں۔ دیکھیں [updates](30-updates.md)۔
 
 Software ڈاؤن لوڈ کیے گئے installers سے نہیں، ایک package manager سے آتا ہے۔
 
@@ -50,7 +50,7 @@ Software ڈاؤن لوڈ کیے گئے installers سے نہیں، ایک package
 
 ### Mac hardware پر
 
-Omarchy Intel Macs پر اچھی طرح چلتا ہے — دیکھیں [Mac support](44-mac-support.md)۔ اور keyboard آپ کے ساتھ نرمی برتتا ہے: Omarchy کسی چیز کو remap نہیں کرتا، اور Linux Command key کو Super کے طور پر لیتا ہے، اس لیے Super بالکل وہیں بیٹھتا ہے جہاں Cmd ہمیشہ تھا۔ آپ کے انگوٹھے کو یہ تبدیلی محسوس ہی نہیں ہو گی۔
+Unbloarchy Intel Macs پر اچھی طرح چلتا ہے — دیکھیں [Mac support](44-mac-support.md)۔ اور keyboard آپ کے ساتھ نرمی برتتا ہے: Unbloarchy کسی چیز کو remap نہیں کرتا، اور Linux Command key کو Super کے طور پر لیتا ہے، اس لیے Super بالکل وہیں بیٹھتا ہے جہاں Cmd ہمیشہ تھا۔ آپ کے انگوٹھے کو یہ تبدیلی محسوس ہی نہیں ہو گی۔
 
 ### اسے دو ہفتے دیں
 

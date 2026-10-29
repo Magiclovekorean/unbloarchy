@@ -1,14 +1,14 @@
 # Gornja traka
 
-Traka duž vrha vašeg zaslona je Omarchy traka. To nije naknadno pričvršćena statusna traka, nego dio Omarchy ljuske, jedinog dugotrajnog Quickshell procesa koji također crta izbornik, obavijesti, OSD skočne prozore i zaključani zaslon. Zato se savršeno uklapa u temu sa svime ostalim i zato se panel otvara trenutačno umjesto da pokreće novu aplikaciju.
+Traka duž vrha vašeg zaslona je Unbloarchy traka. To nije naknadno pričvršćena statusna traka, nego dio Unbloarchy ljuske, jedinog dugotrajnog Quickshell procesa koji također crta izbornik, obavijesti, OSD skočne prozore i zaključani zaslon. Zato se savršeno uklapa u temu sa svime ostalim i zato se panel otvara trenutačno umjesto da pokreće novu aplikaciju.
 
 To je ujedno jedini dio radne površine koji je uvijek na zaslonu, pa vrijedi znati što svi ti mali glifovi rade.
 
 ## Što je na njoj prema zadanim postavkama
 
-Traka ima tri dijela. S lijeve strane nalaze se Omarchy logotip (pokretač izbornika) i indikatori radnih prostora. U sredini dobivate indikatore statusa, sat, Elsewhen (svjetski sat), vremensku prognozu i značku za Omarchy ažuriranje. S desne strane: ladica sustava, raspored tipkovnice (kada je konfigurirano više od jednog), agenti, bluetooth, mreža, zvuk, zaslon i napajanje.
+Traka ima tri dijela. S lijeve strane nalaze se Unbloarchy logotip (pokretač izbornika) i indikatori radnih prostora. U sredini dobivate indikatore statusa, sat, Elsewhen (svjetski sat), vremensku prognozu i značku za Unbloarchy ažuriranje. S desne strane: ladica sustava, raspored tipkovnice (kada je konfigurirano više od jednog), agenti, bluetooth, mreža, zvuk, zaslon i napajanje.
 
-Nekoliko njih pojavljuje se samo kada imaju što reći. Raspored tipkovnice pojavljuje se samo ako ste konfigurirali više od jednog rasporeda. Značka za ažuriranje pojavljuje se samo kada čeka Omarchy ažuriranje. A ikona agenata pojavljuje se prvi put kada Omarchy pronađe korištenje AI kodiranja na računalu (pogledajte [AI](17-ai.md)).
+Nekoliko njih pojavljuje se samo kada imaju što reći. Raspored tipkovnice pojavljuje se samo ako ste konfigurirali više od jednog rasporeda. Značka za ažuriranje pojavljuje se samo kada čeka Unbloarchy ažuriranje. A ikona agenata pojavljuje se prvi put kada Unbloarchy pronađe korištenje AI kodiranja na računalu (pogledajte [AI](17-ai.md)).
 
 ## Klikanje uokolo
 
@@ -16,7 +16,7 @@ Gotovo svaki widget nešto radi na lijevi, desni i srednji klik, a nekoliko ih r
 
 | Widget | Lijevi | Desni | Srednji / kotačić |
 | --- | --- | --- | --- |
-| Izbornik | Omarchy izbornik | Novi terminal | — |
+| Izbornik | Unbloarchy izbornik | Novi terminal | — |
 | Radni prostori | Fokusiraj taj radni prostor na ovom monitoru | — | Kotačić: sljedeći/prethodni radni prostor |
 | Sat | Skočni prozor kalendara | Kruži kroz formate oznake | Srednji: birač vremenske zone |
 | Vremenska prognoza | Skočni prozor prognoze | Puna prognoza kao obavijest | Srednji: osvježi |
@@ -29,7 +29,7 @@ Gotovo svaki widget nešto radi na lijevi, desni i srednji klik, a nekoliko ih r
 | Mediji | Reproduciraj/pauziraj | Skočni prozor naslovnice | Srednji: sljedeće · kotačić: prethodno/sljedeće |
 | Agenti | Panel agenata | Pokreni svog agenta | Srednji: sljedeća pretplata |
 | Ladica | Zadrži pokazivač za otkrivanje ladice | Desni klik na chevron za upravljanje | — |
-| Omarchy ažuriranje | Pokreni ažuriranje | — | — |
+| Unbloarchy ažuriranje | Pokreni ažuriranje | — | — |
 
 Nije sve u toj tablici na vašoj traci odmah po instalaciji. Widget za medije (MPRIS trenutna reprodukcija, s pomičnom pjesmom i izvođačem) i widget za mikrofon ugrađeni su, ali prema zadanim postavkama isključeni — dodajte ih ako ih želite, kako je opisano u nastavku.
 
@@ -66,7 +66,7 @@ Svaki panel prihvaća tipkovnicu kao i miš: strelice pomiču, Return aktivira, 
 
 Još dva widgeta pojavljuju se na traci tek kada instalirate odgovarajuću uslugu iz **Instalacija → Usluga**, i oba vrijedi poznavati jer rade više od izvještavanja o statusu.
 
-Panel **Tailscale** povezuje i odspaja tailnet, mijenja račune i bira izlazni čvor (vaša vlastita računala i Mullvad regije pojavljuju se na tom popisu). Također pregledava vaša računala — a kada je jedno odabrano, `s` mu šalje datoteke preko Taildropa, što je najbrži način da premjestite datoteku na telefon ili drugo prijenosno računalo. `c` kopira IP računala, `n` njegovo ime, a `d` njegovo puno DNS ime. Na svakom retku računala postoji i gumb za slanje, ako radije klikate. Isto iz terminala je `omarchy tailscale send <machine> [file...]`.
+Panel **Tailscale** povezuje i odspaja tailnet, mijenja račune i bira izlazni čvor (vaša vlastita računala i Mullvad regije pojavljuju se na tom popisu). Također pregledava vaša računala — a kada je jedno odabrano, `s` mu šalje datoteke preko Taildropa, što je najbrži način da premjestite datoteku na telefon ili drugo prijenosno računalo. `c` kopira IP računala, `n` njegovo ime, a `d` njegovo puno DNS ime. Na svakom retku računala postoji i gumb za slanje, ako radije klikate. Isto iz terminala je `unbloarchy tailscale send <machine> [file...]`.
 
 Panel **Dropbox** upravlja prijavom, prikazuje koliko ste prostora za pohranu iskoristili i navodi nedavno sinkronizirane datoteke.
 
@@ -93,19 +93,19 @@ Ako radije birate iz izbornika, **Izgled → Traka izbornika** ima položaj, a *
 Iste stvari imaju naredbe, što želite za postavke s [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Za dodavanje ili uklanjanje widgeta u cijelosti upotrijebite naredbe za dodatke. `omarchy plugin list` ispisuje svaki widget koji ljuska poznaje s njegovim id-om, a zatim:
+Za dodavanje ili uklanjanje widgeta u cijelosti upotrijebite naredbe za dodatke. `unbloarchy plugin list` ispisuje svaki widget koji ljuska poznaje s njegovim id-om, a zatim:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Sakrivanje trake
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Konfiguracijska datoteka
 
-Sve je pohranjeno u `~/.config/omarchy/shell.json`, pod ključem `bar`. Evo skraćene verzije:
+Sve je pohranjeno u `~/.config/unbloarchy/shell.json`, pod ključem `bar`. Evo skraćene verzije:
 
 ```json
 {
@@ -123,20 +123,20 @@ Sve je pohranjeno u `~/.config/omarchy/shell.json`, pod ključem `bar`. Evo skra
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Svaki widget je jedan unos u jednom od pet nizova rasporeda, a njegove postavke nalaze se izravno na tom unosu — nema zasebne datoteke postavki i nema podobjekta `config`. Satov `format`, `formatAlt` (na što desni klik kruži) i `verticalFormat` svi žive upravo tamo na `{ "id": "omarchy.clock" }`.
+Svaki widget je jedan unos u jednom od pet nizova rasporeda, a njegove postavke nalaze se izravno na tom unosu — nema zasebne datoteke postavki i nema podobjekta `config`. Satov `format`, `formatAlt` (na što desni klik kruži) i `verticalFormat` svi žive upravo tamo na `{ "id": "unbloarchy.clock" }`.
 
 `center` je okvir u sredini trake: sve u njemu centrirano je na zaslonu kao jedna skupina. `centerBegin` i `centerEnd` vise s obje strane okvira, što je način kako sat ostaje točno u sredini čak i dok vremenska prognoza i značka za ažuriranje dolaze i odlaze. Stavite više od jednog widgeta u `center` i oni se centriraju zajedno; ostavite ga praznim i `centerBegin` i `centerEnd` susreću se u sredini trake.
 
-Jedno pravilo koje vrijedi usvojiti: **kada imate vlastiti `shell.json`, on je kanonski**. Dok ne prilagodite ništa, ljuska čita zadanu Omarchy datoteku. U trenutku kada povučete widget, pokrenete `omarchy bar` ili sami uredite datoteku, ona je vaša — nema dubokog spajanja, pa se novi zadani widgeti u budućim Omarchy izdanjima neće automatski pojaviti na vašoj traci. `omarchy bar defaults` vraća isporučeni raspored kad god želite čist početak.
+Jedno pravilo koje vrijedi usvojiti: **kada imate vlastiti `shell.json`, on je kanonski**. Dok ne prilagodite ništa, ljuska čita zadanu Unbloarchy datoteku. U trenutku kada povučete widget, pokrenete `unbloarchy bar` ili sami uredite datoteku, ona je vaša — nema dubokog spajanja, pa se novi zadani widgeti u budućim Unbloarchy izdanjima neće automatski pojaviti na vašoj traci. `unbloarchy bar defaults` vraća isporučeni raspored kad god želite čist početak.
 
 Ista datoteka također sadrži vaša vremena mirovanja na najvišoj razini, izvan ključa `bar`: `idle.screensaver` i `idle.lock`, oboje u sekundama od kada ste postali neaktivni. Pa zadani čuvar zaslona uključuje se nakon 150 sekundi, a zaključavanje nakon 300.

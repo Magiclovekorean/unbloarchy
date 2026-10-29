@@ -2,7 +2,7 @@
 
 Linux'ta genelde terminalde kopyala-yapıştır için `Ctrl + Shift + C/V`, diğer her yerde yapmak için `Ctrl + C/V` kullanmanız gerekir. Linux'ta doğup büyümemiş hiç kimse için buna alışmak zor! Mac'ten geliyorsanız super'dan ctrl'e geçiş de öyle.
 
-Omarchy, (neredeyse) her yerde çalışan birleşik pano kısayollarıyla her iki sorunu da çözer. Bunlar:
+Unbloarchy, (neredeyse) her yerde çalışan birleşik pano kısayollarıyla her iki sorunu da çözer. Bunlar:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Odaklanılmış bir metin alanındaki veya `Ctrl + A` destekleyen başka bir uyg
 
 ### Pano geçmişi
 
-Pano geçmişi Omarchy kabuğu tarafından sağlanır ve hem metin hem de görseller için çalışır. `Super + Ctrl + V` ile tetiklersiniz, girişinizi return ile seçersiniz ve ardından bu, `Super + V` ile yapıştırmaya hazır şekilde panoya yerleştirilir.
+Pano geçmişi Unbloarchy kabuğu tarafından sağlanır ve hem metin hem de görseller için çalışır. `Super + Ctrl + V` ile tetiklersiniz, girişinizi return ile seçersiniz ve ardından bu, `Super + V` ile yapıştırmaya hazır şekilde panoya yerleştirilir.
 
  ![clipboard-history](images/clipboard-history.webp)
 

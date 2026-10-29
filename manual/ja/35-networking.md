@@ -1,30 +1,30 @@
 # ネットワーキング
 
-Omarchy のネットワーキングは NetworkManager が担当し、[トップバー](05-the-top-bar.md) のネットワークアイコンから、または `Super + Ctrl + N` で操作します。
+Unbloarchy のネットワーキングは NetworkManager が担当し、[トップバー](05-the-top-bar.md) のネットワークアイコンから、または `Super + Ctrl + N` で操作します。
 
-そのパネルは Wi-Fi ネットワークをスキャンし、信号強度を表示して、接続します。Ethernet は何もする必要がありません。差し込むだけで動作します。ターミナルで済ませたいなら、`nmtui` で同じ操作ができ、`omarchy network` コマンドグループもあります。
+そのパネルは Wi-Fi ネットワークをスキャンし、信号強度を表示して、接続します。Ethernet は何もする必要がありません。差し込むだけで動作します。ターミナルで済ませたいなら、`nmtui` で同じ操作ができ、`unbloarchy network` コマンドグループもあります。
 
 ## Wi-Fi を共有する
 
 長いパスワードを声に出して読むのではなく、Wi-Fi に接続中に _Setup > Network > QR Code_ を実行してください。画面に QR コードが表示され、どのスマートフォンのカメラでもスキャンして参加できます。一度知ってしまえば、思った以上によく使う機能のひとつです。
 
-パスワードそのものが必要な場合は、`omarchy network password <interface>` で表示できます。
+パスワードそのものが必要な場合は、`unbloarchy network password <interface>` で表示できます。
 
 ## DNS
 
-Omarchy は、ネットワークが DHCP 経由で配布する DNS をそのまま使います。マシン全体に対してこれを上書きするには _Setup > Network > DNS_ を開きます。Cloudflare と Google はワンクリックで選べます。自分でサーバーを入力するには _Custom_ を選んでください。
+Unbloarchy は、ネットワークが DHCP 経由で配布する DNS をそのまま使います。マシン全体に対してこれを上書きするには _Setup > Network > DNS_ を開きます。Cloudflare と Google はワンクリックで選べます。自分でサーバーを入力するには _Custom_ を選んでください。
 
-ターミナルからは、`omarchy dns` で現在のプロバイダーを表示し、`omarchy dns Cloudflare` で設定できます。
+ターミナルからは、`unbloarchy dns` で現在のプロバイダーを表示し、`unbloarchy dns Cloudflare` で設定できます。
 
 ## Wi-Fi の帯域を固定する
 
-ルーターが 2.4GHz、5GHz、6GHz を同じネットワーク名で提供していると、ノートパソコンが低速な方にしがみつくことがあります。`omarchy network band` で現在どの帯域にいるかを表示し、`omarchy network band 5` で固定します。再び自動で選ばせたい場合は `auto` を使ってください。
+ルーターが 2.4GHz、5GHz、6GHz を同じネットワーク名で提供していると、ノートパソコンが低速な方にしがみつくことがあります。`unbloarchy network band` で現在どの帯域にいるかを表示し、`unbloarchy network band 5` で固定します。再び自動で選ばせたい場合は `auto` を使ってください。
 
 これは特定のアクセスポイントではなく帯域を固定するので、AP 間のローミングは通常どおり行われます。
 
 ## どれくらい速いのか？
 
-_Trigger > Speed Test > Network Speed Test_ は、2 つのダイヤルで実際の上りと下りの速度を測定します。ターミナルからは `omarchy network speedtest down` または `up` です。Omarchy 独自のサービスに対して測定し、そのテスト転送だけをカウントします。他のダウンロードが帯域を奪い合うことはありますが、スピードテストの結果には加算されません。（そのメニューの隣にはディスク速度テストもあります。もう一方のボトルネックをベンチマークしたい場合にどうぞ。）
+_Trigger > Speed Test > Network Speed Test_ は、2 つのダイヤルで実際の上りと下りの速度を測定します。ターミナルからは `unbloarchy network speedtest down` または `up` です。Unbloarchy 独自のサービスに対して測定し、そのテスト転送だけをカウントします。他のダウンロードが帯域を奪い合うことはありますが、スピードテストの結果には加算されません。（そのメニューの隣にはディスク速度テストもあります。もう一方のボトルネックをベンチマークしたい場合にどうぞ。）
 
 ## ファイアウォール
 
@@ -36,7 +36,7 @@ SSH は _Setup > Security > SSHD_ で有効にするまでオフです。これ�
 
 [Tailscale](https://tailscale.com/) はメッシュ VPN で、インターネット経由で自分のすべてのコンピューターやサーバーに簡単かつ安全に到達できるようにします。_Install > Service > Tailscale_ でインストールしてください。
 
-これによりバーに Tailscale パネルが追加されます。tailnet への接続と切断、アカウントの切り替え、exit node の選択ができます。自分のマシンも Mullvad の地域もリストに表示されます。マシンの参照もここで行い、Taildrop もここにあります。マシンを選択して `s` を押すとファイルを送信でき、`c`、`n`、`d` でその IP、名前、完全な DNS 名をコピーできます。ターミナルでの同等の操作は `omarchy tailscale send <machine> [file...]` で、送信されたファイルは自動的に `~/Downloads` に届きます。到着を知らせる通知は、クリックして開くか閉じるまで待機します。席を外している間に届いたファイルも、戻ってきたときにまだそこにあって対応できます。
+これによりバーに Tailscale パネルが追加されます。tailnet への接続と切断、アカウントの切り替え、exit node の選択ができます。自分のマシンも Mullvad の地域もリストに表示されます。マシンの参照もここで行い、Taildrop もここにあります。マシンを選択して `s` を押すとファイルを送信でき、`c`、`n`、`d` でその IP、名前、完全な DNS 名をコピーできます。ターミナルでの同等の操作は `unbloarchy tailscale send <machine> [file...]` で、送信されたファイルは自動的に `~/Downloads` に届きます。到着を知らせる通知は、クリックして開くか閉じるまで待機します。席を外している間に届いたファイルも、戻ってきたときにまだそこにあって対応できます。
 
 インストールすると、Tailscale 管理コンソール用の Web アプリも追加されます。
 

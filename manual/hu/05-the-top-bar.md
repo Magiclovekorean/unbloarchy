@@ -1,14 +1,14 @@
 # A felső sáv
 
-A képernyőd tetején végigfutó csík az Omarchy sáv. Nem egy utólag felcsavarozott állapotsáv, hanem az Omarchy shell része, azé az egyetlen, hosszan futó Quickshell folyamaté, amely a menüt, az értesítéseket, az OSD felugrókat és a zárolási képernyőt is rajzolja. Ezért illeszkedik tökéletesen minden máshoz, és ezért nyílik meg egy panel azonnal, új alkalmazás indítása helyett.
+A képernyőd tetején végigfutó csík az Unbloarchy sáv. Nem egy utólag felcsavarozott állapotsáv, hanem az Unbloarchy shell része, azé az egyetlen, hosszan futó Quickshell folyamaté, amely a menüt, az értesítéseket, az OSD felugrókat és a zárolási képernyőt is rajzolja. Ezért illeszkedik tökéletesen minden máshoz, és ezért nyílik meg egy panel azonnal, új alkalmazás indítása helyett.
 
 Ez az egyetlen része az asztalnak, amely mindig a képernyőn van, így érdemes tudni, mit csinálnak azok a kis jelek.
 
 ## Mi van rajta alapértelmezés szerint
 
-A sávnak három szakasza van. Bal oldalon ül az Omarchy logó (a menüindító) és a munkaterület-jelzők. Középen kapod az állapotjelzőket, az órát, az Elsewhen-t (egy világórát), az időjárást és egy Omarchy-frissítési jelvényt. Jobb oldalon: a rendszertálca, a billentyűzetkiosztás (ha egynél több van beállítva), az ágensek, a bluetooth, a hálózat, a hang, a kijelző és az energia.
+A sávnak három szakasza van. Bal oldalon ül az Unbloarchy logó (a menüindító) és a munkaterület-jelzők. Középen kapod az állapotjelzőket, az órát, az Elsewhen-t (egy világórát), az időjárást és egy Unbloarchy-frissítési jelvényt. Jobb oldalon: a rendszertálca, a billentyűzetkiosztás (ha egynél több van beállítva), az ágensek, a bluetooth, a hálózat, a hang, a kijelző és az energia.
 
-Néhány ezek közül csak akkor jelenik meg, ha van mondanivalója. A billentyűzetkiosztás csak akkor jelenik meg, ha egynél több kiosztást állítottál be. A frissítési jelvény csak akkor jelenik meg, ha Omarchy-frissítés vár rád. Az ágensek ikonja pedig akkor jelenik meg először, amikor az Omarchy AI coding használatot talál a gépen (lásd [MI](17-ai.md)).
+Néhány ezek közül csak akkor jelenik meg, ha van mondanivalója. A billentyűzetkiosztás csak akkor jelenik meg, ha egynél több kiosztást állítottál be. A frissítési jelvény csak akkor jelenik meg, ha Unbloarchy-frissítés vár rád. Az ágensek ikonja pedig akkor jelenik meg először, amikor az Unbloarchy AI coding használatot talál a gépen (lásd [MI](17-ai.md)).
 
 ## Kattintgatás
 
@@ -16,7 +16,7 @@ Szinte minden widget csinál valamit bal, jobb és középső kattintásra, és 
 
 | Widget | Bal | Jobb | Középső / görgetés |
 | --- | --- | --- | --- |
-| Menü | Omarchy menü | Új terminál | — |
+| Menü | Unbloarchy menü | Új terminál | — |
 | Munkaterületek | Az adott munkaterületre fókuszál ezen a monitoron | — | Görgetés: következő/előző munkaterület |
 | Óra | Naptár felugró | A címkeformátum váltása | Középső: időzóna-választó |
 | Időjárás | Előrejelzés felugró | Teljes időjárás értesítésként | Középső: frissítés |
@@ -29,7 +29,7 @@ Szinte minden widget csinál valamit bal, jobb és középső kattintásra, és 
 | Média | Lejátszás/szünet | Borítókép felugró | Középső: következő · görgetés: előző/következő |
 | Ágensek | Ágensek panel | Az ágensed indítása | Középső: következő előfizetés |
 | Tálca | Lebegtetés a fiók felfedéséhez | Jobb kattintás a chevronra a kezeléshez | — |
-| Omarchy-frissítés | A frissítés futtatása | — | — |
+| Unbloarchy-frissítés | A frissítés futtatása | — | — |
 
 A táblázatban szereplő dolgok közül nem minden van alapból a sávodon. A médiawidget (MPRIS most szóló, görgetődő számmal és előadóval) és a mikrofonwidget is be van építve, de alapértelmezés szerint ki van kapcsolva — add hozzá őket, ha akarod, az alábbiak szerint.
 
@@ -66,7 +66,7 @@ A `Super + Ctrl + 1-9` balról jobbra számolja a paneleket a jobb oldali szakas
 
 Két további widget csak akkor jelenik meg a sávon, ha telepíted a hozzá tartozó szolgáltatást az **Install → Service** menüből, és mindkettőt érdemes ismerni, mert nem csak állapotot jelentenek.
 
-A **Tailscale** panel csatlakoztatja és leválasztja a tailnetet, vált a fiókok között, és kilépési csomópontot választ (a saját gépeid és a Mullvad régiók is megjelennek azon a listán). Tallózza a gépeidet is — és ha egy ki van választva, az `s` fájlokat küld rá Taildrop segítségével, ami a leggyorsabb módja annak, hogy fájlt juttass a telefonodra vagy egy másik laptopra. A `c` másolja a gép IP-címét, az `n` a nevét, a `d` pedig a teljes DNS-nevét. Minden gépsoron van egy küldés gomb is, ha inkább kattintanál. Ugyanez a terminálból: `omarchy tailscale send <machine> [file...]`.
+A **Tailscale** panel csatlakoztatja és leválasztja a tailnetet, vált a fiókok között, és kilépési csomópontot választ (a saját gépeid és a Mullvad régiók is megjelennek azon a listán). Tallózza a gépeidet is — és ha egy ki van választva, az `s` fájlokat küld rá Taildrop segítségével, ami a leggyorsabb módja annak, hogy fájlt juttass a telefonodra vagy egy másik laptopra. A `c` másolja a gép IP-címét, az `n` a nevét, a `d` pedig a teljes DNS-nevét. Minden gépsoron van egy küldés gomb is, ha inkább kattintanál. Ugyanez a terminálból: `unbloarchy tailscale send <machine> [file...]`.
 
 A **Dropbox** panel kezeli a bejelentkezést, mutatja, mennyi tárhelyet használtál, és kilistázza a nemrég szinkronizált fájlokat.
 
@@ -93,19 +93,19 @@ Ha inkább menüből választanál, az **Appearance → Menu Bar** tartalmazza a
 Ugyanezeknek parancsaik is vannak, ami egy [dotfiles](31-dotfiles.md) felálláshoz kell:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Egy widget teljes hozzáadásához vagy eltávolításához használd a plugin parancsokat. Az `omarchy plugin list` kiír minden widgetet, amelyet a shell ismer, az azonosítójával együtt, és aztán:
+Egy widget teljes hozzáadásához vagy eltávolításához használd a plugin parancsokat. Az `unbloarchy plugin list` kiír minden widgetet, amelyet a shell ismer, az azonosítójával együtt, és aztán:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## A sáv elrejtése
@@ -114,7 +114,7 @@ A `Super + Shift + Space` ki-/bekapcsolja a sávot a shell leölése nélkül �
 
 ## A konfigurációs fájl
 
-Mindez a `~/.config/omarchy/shell.json` fájlban tárolódik, a `bar` kulcs alatt. Íme egy rövidített változat:
+Mindez a `~/.config/unbloarchy/shell.json` fájlban tárolódik, a `bar` kulcs alatt. Íme egy rövidített változat:
 
 ```json
 {
@@ -123,20 +123,20 @@ Mindez a `~/.config/omarchy/shell.json` fájlban tárolódik, a `bar` kulcs alat
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Minden widget egy bejegyzés az öt elrendezési tömb egyikében, és a beállításai soron belül, azon a bejegyzésen ülnek — nincs külön beállításfájl, és nincs `config` alobjektum. Az óra `format`, `formatAlt` (amire a jobb kattintás léptet), és `verticalFormat` értéke mind ott él, közvetlenül a `{ "id": "omarchy.clock" }` bejegyzésen.
+Minden widget egy bejegyzés az öt elrendezési tömb egyikében, és a beállításai soron belül, azon a bejegyzésen ülnek — nincs külön beállításfájl, és nincs `config` alobjektum. Az óra `format`, `formatAlt` (amire a jobb kattintás léptet), és `verticalFormat` értéke mind ott él, közvetlenül a `{ "id": "unbloarchy.clock" }` bejegyzésen.
 
 A `center` a doboz a sáv közepén: minden, ami benne van, egy csoportként a képernyő közepére kerül. A `centerBegin` és a `centerEnd` a doboz két oldaláról lóg le, így marad az óra holtpontosan középen, miközben az időjárás és a frissítési jelvény jön-megy. Tegyél egynél több widgetet a `center`-be, és együtt kerülnek középre; hagyd üresen, és a `centerBegin` és a `centerEnd` a sáv közepén találkozik.
 
-Egy szabály, amelyet érdemes megjegyezni: **ha egyszer megvan a saját `shell.json` fájlod, az a mérvadó**. Amíg semmit nem szabtál testre, a shell az Omarchy alapértelmezett fájlját olvassa. Abban a pillanatban, hogy elhúzol egy widgetet, futtatod az `omarchy bar` parancsot, vagy magad szerkeszted a fájlt, a tiéd lesz — nincs mély összefésülés, így a jövőbeli Omarchy kiadások új alapértelmezett widgetjei nem jelennek meg automatikusan a sávodon. Az `omarchy bar defaults` visszaállítja a szállított elrendezést, amikor tiszta lappal akarsz indulni.
+Egy szabály, amelyet érdemes megjegyezni: **ha egyszer megvan a saját `shell.json` fájlod, az a mérvadó**. Amíg semmit nem szabtál testre, a shell az Unbloarchy alapértelmezett fájlját olvassa. Abban a pillanatban, hogy elhúzol egy widgetet, futtatod az `unbloarchy bar` parancsot, vagy magad szerkeszted a fájlt, a tiéd lesz — nincs mély összefésülés, így a jövőbeli Unbloarchy kiadások új alapértelmezett widgetjei nem jelennek meg automatikusan a sávodon. Az `unbloarchy bar defaults` visszaállítja a szállított elrendezést, amikor tiszta lappal akarsz indulni.
 
 Ugyanez a fájl tartalmazza a tétlenségi időzítéseidet is a legfelső szinten, a `bar` kulcson kívül: `idle.screensaver` és `idle.lock`, mindkettő másodpercben mérve azóta, hogy tétlenné váltál. Így az alapértelmezett képernyővédő 150 másodpercnél kapcsol be, a zárolás pedig 300-nál.

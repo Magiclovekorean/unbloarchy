@@ -1,12 +1,12 @@
 # Macist või Windowsist tulles
 
-Kui oled aastaid macOS-i või Windowsi kasutanud, teavad su sõrmed sadat asja, mille õppimise su aju on ammu unustanud. See peatükk on tõlkekiht: kuhu need instinktid Omarchys lähevad. Funktsioone endid käsitletakse põhjalikult mujal — see on lihtsalt kaart.
+Kui oled aastaid macOS-i või Windowsi kasutanud, teavad su sõrmed sadat asja, mille õppimise su aju on ammu unustanud. See peatükk on tõlkekiht: kuhu need instinktid Unbloarchys lähevad. Funktsioone endid käsitletakse põhjalikult mujal — see on lihtsalt kaart.
 
 ### Super on kõige keskmes
 
-Kogu lihasmälu, mille oled Cmd või Windowsi klahvi ümber ehitanud, kandub üle ühele klahvile: Super. See on PC klaviatuuril Windowsi klahv ja see on peaaegu iga Omarchy kiirklahvi ankur.
+Kogu lihasmälu, mille oled Cmd või Windowsi klahvi ümber ehitanud, kandub üle ühele klahvile: Super. See on PC klaviatuuril Windowsi klahv ja see on peaaegu iga Unbloarchy kiirklahvi ankur.
 
-Sinu Spotlighti, Raycasti või Start-menüü refleksist saab `Super + Space`. See avab Omarchy menüü, mis käivitab rakendusi, muudab sätteid, paigaldab tarkvara, jäädvustab ekraani — peaaegu kõike. Alusta tippimist, et filtreerida. `Super + Alt + Space` näitab kõiki rakendusi ühel ruudustikul, nagu Launchpad teeb. Vaata [navigatsioon](04-navigation.md).
+Sinu Spotlighti, Raycasti või Start-menüü refleksist saab `Super + Space`. See avab Unbloarchy menüü, mis käivitab rakendusi, muudab sätteid, paigaldab tarkvara, jäädvustab ekraani — peaaegu kõike. Alusta tippimist, et filtreerida. `Super + Alt + Space` näitab kõiki rakendusi ühel ruudustikul, nagu Launchpad teeb. Vaata [navigatsioon](04-navigation.md).
 
 ### Dokki ega töölauaikoone ei ole
 
@@ -22,27 +22,27 @@ Tööruumid tunduvad tuttavad: need on macOS-i Spaces või Windowsi virtuaalsed 
 
 ### Kopeerimine ja kleepimine lihtsalt töötavad
 
-Macis oli sul kõikjal Cmd + C. Windowsis oli sul kõikjal Ctrl + C — välja arvatud terminalis, kus see tapab su programmi. Omarchy annab sulle `Super + C`, `Super + X` ja `Super + V` ning need töötavad kõikjal, ka terminalis. Kesta jaoks pole vaja eraldi refleksi õppida.
+Macis oli sul kõikjal Cmd + C. Windowsis oli sul kõikjal Ctrl + C — välja arvatud terminalis, kus see tapab su programmi. Unbloarchy annab sulle `Super + C`, `Super + X` ja `Super + V` ning need töötavad kõikjal, ka terminalis. Kesta jaoks pole vaja eraldi refleksi õppida.
 
 Windowsi rahvas: sinu Win + V lõikelaua ajalugu elab `Super + Ctrl + V` all ja see hoiab lisaks tekstile ka pilte. Vaata [ühendatud lõikelaud ja ajalugu](08-unified-clipboard-history.md).
 
 ### Tõlketabel
 
-| Mille järele haarad | Omarchys |
+| Mille järele haarad | Unbloarchys |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start-menüü | `Super + Space` — Omarchy menüü |
+| Spotlight / Raycast / Start-menüü | `Super + Space` — Unbloarchy menüü |
 | AirDrop | LocalSend, `Super + Ctrl + S` kaudu — vaata [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` või `Print Screen` — vaata [ekraanipildid ja salvestamine](12-screenshots-recording.md) |
 | Notification Center | Teavituste ajalugu `Super + Shift + Alt + ,` all |
 | Time Machine (süsteemi jaoks) | Automaatsed [süsteemitõmmised](47-system-snapshots.md) igal värskendusel |
-| App Store / paigaldaja allalaadimine | _Install_ menüüs või `omarchy pkg add` — vaata [muud paketid](29-other-packages.md) |
+| App Store / paigaldaja allalaadimine | _Install_ menüüs või `unbloarchy pkg add` — vaata [muud paketid](29-other-packages.md) |
 | System Settings / Control Panel | _Setup_ menüüs, mis redigeerib lihtsaid konfiguratsioonifaile — vaata [dotfiles](31-dotfiles.md) |
 
 ### Mõned asjad ongi tõesti teisiti
 
 Paljud sätted elavad tekstifailides, mida redigeerid, mitte paneelides, mida läbi klõpsad. See kõlab primitiivselt, kuni taipad, et see tähendab, et iga muudatust saab näha, oma järgmisse masinasse kopeerida ja versioonihaldusesse panna. Menüü _Setup_ viskab su otse õigesse faili ja taaskäivitab lõpetamisel kõik, mis taaskäivitamist vajab.
 
-Värskendused tulevad ühe käsu kaudu — _Update > Omarchy_ — mis värskendab Omarchyt ennast ja iga süsteemi paketti, tehes enne tõmmise. Ükski rakendusesisene värskendaja ei kiusa sind suvalistel hetkedel. Vaata [värskendused](30-updates.md).
+Värskendused tulevad ühe käsu kaudu — _Update > Unbloarchy_ — mis värskendab Unbloarchyt ennast ja iga süsteemi paketti, tehes enne tõmmise. Ükski rakendusesisene värskendaja ei kiusa sind suvalistel hetkedel. Vaata [värskendused](30-updates.md).
 
 Tarkvara tuleb paketihaldurist, mitte allalaaditud paigaldajatest.
 
@@ -50,7 +50,7 @@ Ja kui akna sulged, sulgub rakendus ka päriselt. Pole mingit macOS-i vahepealse
 
 ### Maci riistvaral
 
-Omarchy töötab Intel Macidel hästi — vaata [Maci tugi](44-mac-support.md). Ja klaviatuur on sinu vastu lahke: Omarchy ei kaardista midagi ümber ja Linux käsitleb Command klahvi Superina, nii et Super istub täpselt seal, kus Cmd alati oli. Su pöial ei märkagi kolimist.
+Unbloarchy töötab Intel Macidel hästi — vaata [Maci tugi](44-mac-support.md). Ja klaviatuur on sinu vastu lahke: Unbloarchy ei kaardista midagi ümber ja Linux käsitleb Command klahvi Superina, nii et Super istub täpselt seal, kus Cmd alati oli. Su pöial ei märkagi kolimist.
 
 ### Anna sellele kaks nädalat
 

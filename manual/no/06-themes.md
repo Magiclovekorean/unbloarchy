@@ -1,8 +1,8 @@
 # Temaer
 
-Omarchy kommer med tjueto vakre temaer. Du kan velge mellom dem via _Utseende > Tema_ i Omarchy-menyen (`Super + Space`) eller hoppe rett til temavelgeren med `Super + Ctrl + T`.
+Unbloarchy kommer med tjueto vakre temaer. Du kan velge mellom dem via _Utseende > Tema_ i Unbloarchy-menyen (`Super + Space`) eller hoppe rett til temavelgeren med `Super + Ctrl + T`.
 
-Hvert tema styler skrivebordet, terminalen, neovim, aktivitetsskjermen (btop), Chromium og hele Omarchy-skallet: topplinjen, menyen, varsler, OSD og låseskjermen. (For Obsidian må du manuelt velge Omarchy-temaet via _Utseende > Temaer_ inne i appen).
+Hvert tema styler skrivebordet, terminalen, neovim, aktivitetsskjermen (btop), Chromium og hele Unbloarchy-skallet: topplinjen, menyen, varsler, OSD og låseskjermen. (For Obsidian må du manuelt velge Unbloarchy-temaet via _Utseende > Temaer_ inne i appen).
 
 Temaer har et sett med bakgrunnsbilder som du kan velge mellom med `Super + Ctrl + W`.
 

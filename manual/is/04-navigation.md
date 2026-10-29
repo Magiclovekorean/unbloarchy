@@ -1,8 +1,8 @@
 # Flakk
 
-Allt í Omarchy gerist með lyklaborðinu — _ALLT!_ Þegar kerfið ræsist í fyrsta sinn geturðu bókstaflega ekkert gert með músinni einni saman. En þú getur ýtt á `Super + Space` til að birta Omarchy-valmyndina og þaðan geturðu gert næstum allt.
+Allt í Unbloarchy gerist með lyklaborðinu — _ALLT!_ Þegar kerfið ræsist í fyrsta sinn geturðu bókstaflega ekkert gert með músinni einni saman. En þú getur ýtt á `Super + Space` til að birta Unbloarchy-valmyndina og þaðan geturðu gert næstum allt.
 
-En Omarchy-valmyndin er ekki einu sinni ætluð sem aðalleiðin til að stjórna kerfinu mestan tímann. Við getum verið fljótari en það! Öll mikilvægustu forritin eru bundin beint við einstaka flýtilykla. Þú ræsir skjáherminn með `Super + Return` og vafra með `Super + Shift + Return`. Prófaðu að gera annað á eftir hinu og þú sérð töfra flísaskipunar Hyprland í verki:
+En Unbloarchy-valmyndin er ekki einu sinni ætluð sem aðalleiðin til að stjórna kerfinu mestan tímann. Við getum verið fljótari en það! Öll mikilvægustu forritin eru bundin beint við einstaka flýtilykla. Þú ræsir skjáherminn með `Super + Return` og vafra með `Super + Shift + Return`. Prófaðu að gera annað á eftir hinu og þú sérð töfra flísaskipunar Hyprland í verki:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Ef þú heldur `Super` niðri og notar músina til að smella á glugga geturðu
 
 ### Dwindle á móti rúllandi skipan
 
-Sjálfgefin skipan Omarchy heitir dwindle. Hún heldur öllum gluggum sem þú opnar á einu vinnusvæði sýnilegum öllum stundum, jafnvel þótt hún þurfi að minnka þá.
+Sjálfgefin skipan Unbloarchy heitir dwindle. Hún heldur öllum gluggum sem þú opnar á einu vinnusvæði sýnilegum öllum stundum, jafnvel þótt hún þurfi að minnka þá.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Fljótandi vinnusvæði virkar eins og hefðbundið skjáborð: gluggar skarast og þú færir þá og breytir stærð þeirra sjálfur. Sérhver gluggi fær titilstiku í litum þemans þíns, með hnöppum til að lágmarka, hámarka og loka. `Super + M` lágmarkar líka gluggann sem er í fókusi. Lágmarkaður gluggi bíður í bryggjunni; smelltu á forrit hans til að fá hann til baka. Smelltu á glugga til að færa hann fram. Breyttu stærð hans frá hvaða jaðri eða horni sem er. Tvísmelltu á titilstiku til að hámarka gluggann en halda efstu stikunni sýnilegri, og aftur til að fá gömlu stærðina hans til baka.
 
-Fljótandi vinnusvæði sýnir líka bryggju, með festum forritunum þínum, öllu sem er í gangi og hnitaneti allra forrita á bak við forritahnappinn, sem `Super + Alt + Space` og _Forrit_ í Omarchy-valmyndinni opna líka. Hægrismelltu á forrit á hnitanetinu, eða ýttu á `Delete`, til að fjarlægja það. Smelltu á forrit til að opna það, eða til að færa glugga þess fram; smelltu aftur til að fara í gegnum glugga þess. Miðjusmellur opnar nýjan glugga. Dragðu tákn eftir bryggjunni til að færa það; að draga forrit í gangi inn á milli hinna heldur því þar. Hægrismelltu til að halda forriti í bryggjunni, taka það út eða hætta í því. Bryggjan víkur fyrir glugga á fullum skjá. Hægrismelltu á forritahnappinn til að færa bryggjuna á annan jaðar eða láta hana fela sig þar til bendillinn nær að jaðri hennar. Staðsetningin er líka undir _Útlit > Bryggja > Staðsetning bryggju_, og `omarchy dock position left` og `omarchy dock autohide on` stilla hvort tveggja frá skjáhermi. Forrit sem þú heldur í bryggjunni eru dauf meðan þau eru ekki í gangi.
+Fljótandi vinnusvæði sýnir líka bryggju, með festum forritunum þínum, öllu sem er í gangi og hnitaneti allra forrita á bak við forritahnappinn, sem `Super + Alt + Space` og _Forrit_ í Unbloarchy-valmyndinni opna líka. Hægrismelltu á forrit á hnitanetinu, eða ýttu á `Delete`, til að fjarlægja það. Smelltu á forrit til að opna það, eða til að færa glugga þess fram; smelltu aftur til að fara í gegnum glugga þess. Miðjusmellur opnar nýjan glugga. Dragðu tákn eftir bryggjunni til að færa það; að draga forrit í gangi inn á milli hinna heldur því þar. Hægrismelltu til að halda forriti í bryggjunni, taka það út eða hætta í því. Bryggjan víkur fyrir glugga á fullum skjá. Hægrismelltu á forritahnappinn til að færa bryggjuna á annan jaðar eða láta hana fela sig þar til bendillinn nær að jaðri hennar. Staðsetningin er líka undir _Útlit > Bryggja > Staðsetning bryggju_, og `unbloarchy dock position left` og `unbloarchy dock autohide on` stilla hvort tveggja frá skjáhermi. Forrit sem þú heldur í bryggjunni eru dauf meðan þau eru ekki í gangi.
 
-Ný vinnusvæði, og öll sem þú hefur ekki gefið sína eigin skipan með `Super + L`, nota sjálfgefnu skipanina. Að breyta sjálfgefinni skipan endurstillir hvert vinnusvæði án glugga á hana, en vinnusvæði með glugga á heldur skipaninni sem það hefur. Gluggi sem hefur verið lágmarkaður í bryggjuna telst enn sem gluggi á vinnusvæðinu sem hann fór frá. Veldu hana undir _Útlit > Skipan vinnusvæðis_: Flísaskipan, Rúllandi eða Fljótandi. `omarchy-hyprland-workspace-layout-default scrolling` stillir hana frá skjáhermi.
+Ný vinnusvæði, og öll sem þú hefur ekki gefið sína eigin skipan með `Super + L`, nota sjálfgefnu skipanina. Að breyta sjálfgefinni skipan endurstillir hvert vinnusvæði án glugga á hana, en vinnusvæði með glugga á heldur skipaninni sem það hefur. Gluggi sem hefur verið lágmarkaður í bryggjuna telst enn sem gluggi á vinnusvæðinu sem hann fór frá. Veldu hana undir _Útlit > Skipan vinnusvæðis_: Flísaskipan, Rúllandi eða Fljótandi. `unbloarchy-hyprland-workspace-layout-default scrolling` stillir hana frá skjáhermi.
 
 ### Að hópa glugga
 

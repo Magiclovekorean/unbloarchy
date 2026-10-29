@@ -1,8 +1,8 @@
 # Navigacija
 
-Vse v sistemu Omarchy se dogaja prek tipkovnice — _VSE!_ Ko se sistem prvič zažene, z miško samo dobesedno ne morete storiti ničesar. Lahko pa pritisnete `Super + Space`, da prikažete meni Omarchy, in od tu lahko storite skoraj vse.
+Vse v sistemu Unbloarchy se dogaja prek tipkovnice — _VSE!_ Ko se sistem prvič zažene, z miško samo dobesedno ne morete storiti ničesar. Lahko pa pritisnete `Super + Space`, da prikažete meni Unbloarchy, in od tu lahko storite skoraj vse.
 
-Toda meni Omarchy večino časa niti ni namenjen kot glavni način upravljanja sistema. Lahko smo hitrejši od tega! Vse najpomembnejše aplikacije so vezane neposredno na posamezne bližnjice. Terminal zaženete s `Super + Return`, brskalnik pa s `Super + Shift + Return`. Poskusite storiti eno za drugim in videli boste čarobnost ploščenja v Hyprland v akciji:
+Toda meni Unbloarchy večino časa niti ni namenjen kot glavni način upravljanja sistema. Lahko smo hitrejši od tega! Vse najpomembnejše aplikacije so vezane neposredno na posamezne bližnjice. Terminal zaženete s `Super + Return`, brskalnik pa s `Super + Shift + Return`. Poskusite storiti eno za drugim in videli boste čarobnost ploščenja v Hyprland v akciji:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Lahko greste tudi na cel zaslon s `Super + F` ali celo samo na celotno širino (
 
 ### Postavitev dwindle v primerjavi z drsno postavitvijo
 
-Privzeta postavitev sistema Omarchy se imenuje dwindle. Vsa okna, ki jih odprete na enem delovnem prostoru, ves čas ohranja vidna, tudi če jih mora za to pomanjšati.
+Privzeta postavitev sistema Unbloarchy se imenuje dwindle. Vsa okna, ki jih odprete na enem delovnem prostoru, ves čas ohranja vidna, tudi če jih mora za to pomanjšati.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Plavajoči delovni prostor deluje kot tradicionalno namizje: okna se prekrivajo, vi pa jih premikate in jim spreminjate velikost sami. Vsako okno dobi naslovno vrstico v barvah vaše teme, z gumbi za minimiziranje, maksimiziranje in zapiranje. `Super + M` minimizira tudi fokusirano okno. Minimizirano okno čaka v doku; kliknite njegovo aplikacijo, da ga vrnete. Kliknite okno, da ga prinesete v ospredje. Velikost mu spreminjajte s katerega koli roba ali kota. Dvokliknite naslovno vrstico, da maksimizirate okno, pri čemer zgornja vrstica ostane v pogledu, in znova, da dobite nazaj njegovo staro velikost.
 
-Plavajoči delovni prostor prikazuje tudi dok, z vašimi pripetimi aplikacijami, vsemi, ki se izvajajo, in mrežo vseh aplikacij za gumbom za aplikacije, ki ga odpreta tudi `Super + Alt + Space` in _Aplikacije_ v meniju Omarchy. Z desno miškino tipko kliknite aplikacijo na mreži ali pritisnite `Delete`, da jo odstranite. Kliknite aplikacijo, da jo odprete ali da njeno okno prinesete v ospredje; kliknite znova, da krožite med njenimi okni. Srednji klik odpre novo okno. Povlecite ikono vzdolž doka, da jo premaknete; če aplikacijo, ki se izvaja, povlečete med druge, tam ostane. Kliknite z desno miškino tipko, da aplikacijo obdržite v doku, jo vzamete iz njega ali jo zaprete. Dok se umakne celozaslonskemu oknu. Kliknite gumb za aplikacije z desno miškino tipko, da dok premaknete na drug rob ali da se skriva, dokler kazalec ne doseže njegovega roba. Položaj je tudi pod _Videz > Dok > Položaj doka_, `omarchy dock position left` in `omarchy dock autohide on` pa oboje nastavita iz terminala. Aplikacije, ki jih obdržite v doku, so zbledele, medtem ko se ne izvajajo.
+Plavajoči delovni prostor prikazuje tudi dok, z vašimi pripetimi aplikacijami, vsemi, ki se izvajajo, in mrežo vseh aplikacij za gumbom za aplikacije, ki ga odpreta tudi `Super + Alt + Space` in _Aplikacije_ v meniju Unbloarchy. Z desno miškino tipko kliknite aplikacijo na mreži ali pritisnite `Delete`, da jo odstranite. Kliknite aplikacijo, da jo odprete ali da njeno okno prinesete v ospredje; kliknite znova, da krožite med njenimi okni. Srednji klik odpre novo okno. Povlecite ikono vzdolž doka, da jo premaknete; če aplikacijo, ki se izvaja, povlečete med druge, tam ostane. Kliknite z desno miškino tipko, da aplikacijo obdržite v doku, jo vzamete iz njega ali jo zaprete. Dok se umakne celozaslonskemu oknu. Kliknite gumb za aplikacije z desno miškino tipko, da dok premaknete na drug rob ali da se skriva, dokler kazalec ne doseže njegovega roba. Položaj je tudi pod _Videz > Dok > Položaj doka_, `unbloarchy dock position left` in `unbloarchy dock autohide on` pa oboje nastavita iz terminala. Aplikacije, ki jih obdržite v doku, so zbledele, medtem ko se ne izvajajo.
 
-Novi delovni prostori in vsi, ki jim s `Super + L` niste dali lastne postavitve, uporabljajo privzeto postavitev. Sprememba privzete postavitve ponastavi vsak delovni prostor brez oken nanjo, medtem ko tisti z okni na njem obdrži postavitev, ki jo ima. Okno, minimizirano v dok, še vedno šteje kot okno na delovnem prostoru, ki ga je zapustilo. Izberite jo pod _Videz > Postavitev delovnega prostora_: Ploščenje, Drsna ali Plavajoča. `omarchy-hyprland-workspace-layout-default scrolling` jo nastavi iz terminala.
+Novi delovni prostori in vsi, ki jim s `Super + L` niste dali lastne postavitve, uporabljajo privzeto postavitev. Sprememba privzete postavitve ponastavi vsak delovni prostor brez oken nanjo, medtem ko tisti z okni na njem obdrži postavitev, ki jo ima. Okno, minimizirano v dok, še vedno šteje kot okno na delovnem prostoru, ki ga je zapustilo. Izberite jo pod _Videz > Postavitev delovnega prostora_: Ploščenje, Drsna ali Plavajoča. `unbloarchy-hyprland-workspace-layout-default scrolling` jo nastavi iz terminala.
 
 ### Združevanje oken v skupine
 

@@ -1,14 +1,14 @@
 # A Barra Superior
 
-A faixa ao longo do topo da sua tela é a barra do Omarchy. Não é uma barra de status anexada depois, mas parte do shell do Omarchy, o único processo Quickshell de longa duração que também desenha o menu, as notificações, os popups OSD e a tela de bloqueio. É por isso que ela combina perfeitamente com todo o resto e por que um painel abre instantaneamente em vez de iniciar um novo aplicativo.
+A faixa ao longo do topo da sua tela é a barra do Unbloarchy. Não é uma barra de status anexada depois, mas parte do shell do Unbloarchy, o único processo Quickshell de longa duração que também desenha o menu, as notificações, os popups OSD e a tela de bloqueio. É por isso que ela combina perfeitamente com todo o resto e por que um painel abre instantaneamente em vez de iniciar um novo aplicativo.
 
 Ela também é a única parte do desktop que está sempre na tela, então vale a pena saber o que todos aqueles pequenos glifos fazem.
 
 ## O que vem nela por padrão
 
-A barra tem três seções. À esquerda ficam o logotipo do Omarchy (o lançador do menu) e os indicadores de workspaces. No centro você tem os indicadores de status, o relógio, o Elsewhen (um relógio mundial), o clima e um distintivo de atualização do Omarchy. À direita: a bandeja do sistema, o layout do teclado (quando mais de um está configurado), agentes, bluetooth, rede, áudio, display e energia.
+A barra tem três seções. À esquerda ficam o logotipo do Unbloarchy (o lançador do menu) e os indicadores de workspaces. No centro você tem os indicadores de status, o relógio, o Elsewhen (um relógio mundial), o clima e um distintivo de atualização do Unbloarchy. À direita: a bandeja do sistema, o layout do teclado (quando mais de um está configurado), agentes, bluetooth, rede, áudio, display e energia.
 
-Alguns deles só aparecem quando têm algo a dizer. O layout do teclado aparece somente se você configurou mais de um layout. O distintivo de atualização aparece somente quando há uma atualização do Omarchy esperando. E o ícone de agentes aparece na primeira vez que o Omarchy encontra uso de codificação com AI na máquina (veja [IA](17-ai.md)).
+Alguns deles só aparecem quando têm algo a dizer. O layout do teclado aparece somente se você configurou mais de um layout. O distintivo de atualização aparece somente quando há uma atualização do Unbloarchy esperando. E o ícone de agentes aparece na primeira vez que o Unbloarchy encontra uso de codificação com AI na máquina (veja [IA](17-ai.md)).
 
 ## Clicando por aí
 
@@ -16,7 +16,7 @@ Quase todos os widgets fazem algo com o clique esquerdo, direito e do meio, e v�
 
 | Widget | Esquerdo | Direito | Meio / rolagem |
 | --- | --- | --- | --- |
-| Menu | Menu Omarchy | Novo terminal | — |
+| Menu | Menu Unbloarchy | Novo terminal | — |
 | Workspaces | Focaliza aquele workspace neste monitor | — | Rolagem: workspace seguinte/anterior |
 | Relógio | Popup de calendário | Alterna o formato do rótulo | Meio: seletor de fuso horário |
 | Clima | Popup de previsão | Clima completo como notificação | Meio: atualizar |
@@ -29,7 +29,7 @@ Quase todos os widgets fazem algo com o clique esquerdo, direito e do meio, e v�
 | Mídia | Reproduzir/pausar | Popup da arte da capa | Meio: seguinte · rolagem: anterior/seguinte |
 | Agentes | Painel Agentes | Inicia seu agente | Meio: próxima assinatura |
 | Bandeja | Passe o cursor para revelar a gaveta | Clique com o botão direito no chevron para gerenciar | — |
-| Atualização do Omarchy | Executa a atualização | — | — |
+| Atualização do Unbloarchy | Executa a atualização | — | — |
 
 Nem tudo nessa tabela está na sua barra de fábrica. O widget de mídia (MPRIS tocando agora, com faixa e artista rolando) e o widget de microfone são ambos integrados, mas desligados por padrão — adicione-os se quiser, como descrito abaixo.
 
@@ -66,7 +66,7 @@ Todo painel aceita o teclado além do mouse: as setas movem, Return ativa, Tab p
 
 Mais dois widgets aparecem na barra somente depois que você instala o serviço correspondente em **Install → Service**, e vale a pena conhecer os dois porque eles fazem mais do que relatar status.
 
-O painel **Tailscale** conecta e desconecta a tailnet, alterna entre contas e escolhe um nó de saída (suas próprias máquinas e regiões Mullvad aparecem nessa lista). Ele também navega pelas suas máquinas — e, com uma selecionada, `s` envia arquivos para ela pelo Taildrop, que é a forma mais rápida de mover um arquivo para seu telefone ou outro laptop. `c` copia o IP da máquina, `n` seu nome e `d` seu nome DNS completo. Há também um botão de envio em cada linha de máquina, se você preferir clicar. A mesma coisa pelo terminal é `omarchy tailscale send <machine> [file...]`.
+O painel **Tailscale** conecta e desconecta a tailnet, alterna entre contas e escolhe um nó de saída (suas próprias máquinas e regiões Mullvad aparecem nessa lista). Ele também navega pelas suas máquinas — e, com uma selecionada, `s` envia arquivos para ela pelo Taildrop, que é a forma mais rápida de mover um arquivo para seu telefone ou outro laptop. `c` copia o IP da máquina, `n` seu nome e `d` seu nome DNS completo. Há também um botão de envio em cada linha de máquina, se você preferir clicar. A mesma coisa pelo terminal é `unbloarchy tailscale send <machine> [file...]`.
 
 O painel **Dropbox** cuida do login, mostra quanto armazenamento você usou e lista arquivos sincronizados recentemente.
 
@@ -93,19 +93,19 @@ Se preferir escolher em um menu, **Appearance → Menu Bar** tem a posição, e 
 As mesmas coisas têm comandos, que é o que você quer para uma configuração de [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Para adicionar ou remover um widget por completo, use os comandos de plugin. `omarchy plugin list` imprime todos os widgets que o shell conhece com seu id, e então:
+Para adicionar ou remover um widget por completo, use os comandos de plugin. `unbloarchy plugin list` imprime todos os widgets que o shell conhece com seu id, e então:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Escondendo a barra
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## O arquivo de configuração
 
-Tudo isso é armazenado em `~/.config/omarchy/shell.json`, sob a chave `bar`. Aqui está uma versão reduzida:
+Tudo isso é armazenado em `~/.config/unbloarchy/shell.json`, sob a chave `bar`. Aqui está uma versão reduzida:
 
 ```json
 {
@@ -123,20 +123,20 @@ Tudo isso é armazenado em `~/.config/omarchy/shell.json`, sob a chave `bar`. Aq
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Todo widget é uma entrada em um dos cinco arrays de layout, e suas configurações ficam inline nessa entrada — não há arquivo de configurações separado nem subobjeto `config`. O `format`, o `formatAlt` (para o qual o clique com o botão direito alterna) e o `verticalFormat` do relógio vivem todos ali mesmo em `{ "id": "omarchy.clock" }`.
+Todo widget é uma entrada em um dos cinco arrays de layout, e suas configurações ficam inline nessa entrada — não há arquivo de configurações separado nem subobjeto `config`. O `format`, o `formatAlt` (para o qual o clique com o botão direito alterna) e o `verticalFormat` do relógio vivem todos ali mesmo em `{ "id": "unbloarchy.clock" }`.
 
 `center` é a caixa no meio da barra: tudo nela é centrado na tela como um grupo. `centerBegin` e `centerEnd` pendem de cada lado da caixa, que é como o relógio fica bem no centro mesmo enquanto o clima e o distintivo de atualização vêm e vão. Coloque mais de um widget em `center` e eles são centrados juntos; deixe-a vazia e `centerBegin` e `centerEnd` se encontram no meio da barra.
 
-Uma regra que vale a pena internalizar: **depois que você tem seu próprio `shell.json`, ele é canônico**. Até você personalizar qualquer coisa, o shell lê o arquivo padrão do Omarchy. No momento em que você arrasta um widget, executa `omarchy bar` ou edita o arquivo por conta própria, ele é seu — não há merge profundo, então novos widgets padrão em versões futuras do Omarchy não aparecerão automaticamente na sua barra. `omarchy bar defaults` restaura o layout original sempre que você quiser uma lousa limpa.
+Uma regra que vale a pena internalizar: **depois que você tem seu próprio `shell.json`, ele é canônico**. Até você personalizar qualquer coisa, o shell lê o arquivo padrão do Unbloarchy. No momento em que você arrasta um widget, executa `unbloarchy bar` ou edita o arquivo por conta própria, ele é seu — não há merge profundo, então novos widgets padrão em versões futuras do Unbloarchy não aparecerão automaticamente na sua barra. `unbloarchy bar defaults` restaura o layout original sempre que você quiser uma lousa limpa.
 
 O mesmo arquivo também guarda seus tempos de ociosidade no nível superior, fora da chave `bar`: `idle.screensaver` e `idle.lock`, ambos em segundos desde que você ficou ocioso. Então a proteção de tela padrão entra aos 150 segundos e o bloqueio aos 300.

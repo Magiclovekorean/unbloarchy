@@ -20,11 +20,11 @@ Obsidian kişisel, ticari ve kâr amacı gütmeyen kullanım da dahil olmak üze
 
 Obsidian ayrıca iOS ve Android'deki mobil uygulamalarla [senkronizasyon için ticari bir eklenti](https://obsidian.md/sync) de sunar. (https://obsidian.md/pricing).
 
-Obsidian'ı `Super + Shift + O` ile başlatırsınız. Tema senkronizasyonunu kullanmak için ayarlar altında `Omarchy` temasını seçmelisiniz.
+Obsidian'ı `Super + Shift + O` ile başlatırsınız. Tema senkronizasyonunu kullanmak için ayarlar altında `Unbloarchy` temasını seçmelisiniz.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite), Omarchy'nin kendi son derece basit Markdown yazma uygulamasıdır. Kasalar yok, eklentiler yok; sadece siz ve kelimeler var.
+[Omawrite](https://github.com/omacom-io/omawrite), Unbloarchy'nin kendi son derece basit Markdown yazma uygulamasıdır. Kasalar yok, eklentiler yok; sadece siz ve kelimeler var.
 
 Omawrite'ı `Super + Shift + W` ile başlatırsınız.
 
@@ -44,18 +44,18 @@ Aether'i uygulama başlatıcı (`Super + Space`) aracılığıyla başlatırsın
 
 [LocalSend](https://localsend.org/), Apple'ın AirDrop'u gibi, aynı ağda uygulamayı çalıştıran diğer cihazlara dosya göndermenizi sağlar. Ancak platformlar arası çalışır, böylece Windows, macOS, Android, iOS ve elbette Linux'a ve bunlardan dosya gönderebilirsiniz.
 
-Paylaş menüsünü `Super + Ctrl + S` ile veya Omarchy menüsünde _Trigger > Share_ altında açabilirsiniz. Size dört seçenek sunar:
+Paylaş menüsünü `Super + Ctrl + S` ile veya Unbloarchy menüsünde _Trigger > Share_ altında açabilirsiniz. Size dört seçenek sunar:
 
 - **Clipboard**, kopyaladığınız her şeyi bir metin dosyası olarak gönderir. Kendinize e-posta göndermeden telefonunuza bir bağlantı veya bir kod parçacığı ulaştırmak için harikadır.
 - **File**, birden fazlasını aynı anda seçebileceğiniz bir dosya seçici açar.
 - **Folder** tüm bir dizini gönderir.
 - **Receive**, başka bir cihazın size bir şey gönderebilmesi için LocalSend'in kendisini açar.
 
-Aynı şey terminalden `omarchy share clipboard`, `omarchy share file [path]` ve `omarchy share folder [path]` ile de çalışır. Yolu atlarsanız seçiciyi alırsınız.
+Aynı şey terminalden `unbloarchy share clipboard`, `unbloarchy share file [path]` ve `unbloarchy share folder [path]` ile de çalışır. Yolu atlarsanız seçiciyi alırsınız.
 
 Dosya yöneticisinden de doğrudan gönderebilirsiniz: Nautilus'ta herhangi bir seçime sağ tıklayın ve _Send via LocalSend_'i seçin.
 
-Omarchy'nin güvenlik duvarı, LocalSend'in bağlantı noktası dışında varsayılan olarak kapalıdır, bu yüzden bu yeni bir kurulumda kutudan çıktığı gibi çalışır. Bkz. [güvenlik](48-security.md).
+Unbloarchy'nin güvenlik duvarı, LocalSend'in bağlantı noktası dışında varsayılan olarak kapalıdır, bu yüzden bu yeni bir kurulumda kutudan çıktığı gibi çalışır. Bkz. [güvenlik](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice'i uygulama başlatıcı (`Super + Space`) aracılığıyla başlatı
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype), Omarchy'nin kendi son derece basit sunum uygulamasıdır. Sunumunuz, yanında görüntüleri ve videoları olan tek bir Markdown dosyasıdır: her slaytı canlı bir önizlemenin altında yazın, slaytları sıraya sürükleyin, ardından tam ekran sunun veya PDF ve PowerPoint olarak dışa aktarın. Hatta Omarchy temanızı bile alır.
+[Hype](https://github.com/omacom/hype), Unbloarchy'nin kendi son derece basit sunum uygulamasıdır. Sunumunuz, yanında görüntüleri ve videoları olan tek bir Markdown dosyasıdır: her slaytı canlı bir önizlemenin altında yazın, slaytları sıraya sürükleyin, ardından tam ekran sunun veya PDF ve PowerPoint olarak dışa aktarın. Hatta Unbloarchy temanızı bile alır.
 
 Hype'ı uygulama başlatıcı (`Super + Space`) aracılığıyla başlatırsınız. Her kısayolu görmek için içinde `?` tuşuna basın.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed), Omarchy'nin PDF'leri imzalamanın ve doldurmanın kendi son derece basit yoludur. Kaydedilmiş imzanızı, metni ve bugünün tarihini bir sayfada istediğiniz yere koyun, ardından imzalı bir kopyayı orijinalin yanına kaydedin. Nasıl yapılacağı için bkz. [PDF'leri Doldurma](27-filling-out-pdfs.md).
+[Signed](https://github.com/omacom/signed), Unbloarchy'nin PDF'leri imzalamanın ve doldurmanın kendi son derece basit yoludur. Kaydedilmiş imzanızı, metni ve bugünün tarihini bir sayfada istediğiniz yere koyun, ardından imzalı bir kopyayı orijinalin yanına kaydedin. Nasıl yapılacağı için bkz. [PDF'leri Doldurma](27-filling-out-pdfs.md).
 
 Signed'i uygulama başlatıcı (`Super + Space`) aracılığıyla başlatırsınız veya dosya yöneticisinden onunla bir PDF açarsınız.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc), yüzen bir pencerede açılan, Omarchy'nin kendi son derece basit hesap makinesidir.
+[Omacalc](https://github.com/omacom-io/omacalc), yüzen bir pencerede açılan, Unbloarchy'nin kendi son derece basit hesap makinesidir.
 
 Omacalc'ı `Super + Shift + Q` ile (veya klavyenizde varsa hesap makinesi tuşuyla) başlatırsınız.
 
@@ -85,7 +85,7 @@ Omacalc'ı `Super + Shift + Q` ile (veya klavyenizde varsa hesap makinesi tuşuy
 
 [Signal](https://signal.org/), E2E şifreli mesajlaşmanın öncüsüdür ve büyük teknoloji holdinglerinden biri aracılığıyla gitmemeyi tercih eden herkes için harika bir iletişim seçeneğidir.
 
-Signal'i `Super + Shift + G` ile başlatırsınız. Temel kurulumun bir parçası değildir, bu yüzden buna ilk kez bastığınızda Omarchy size onu kurmayı teklif edecektir (ayrıca Omarchy menüsünde _Install > Service_ altında da bulunur).
+Signal'i `Super + Shift + G` ile başlatırsınız. Temel kurulumun bir parçası değildir, bu yüzden buna ilk kez bastığınızda Unbloarchy size onu kurmayı teklif edecektir (ayrıca Unbloarchy menüsünde _Install > Service_ altında da bulunur).
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv'yi uygulama başlatıcı (`Super + Space`) aracılığıyla başlatırsını
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut), Omarchy'nin kendi son derece basit video kırpma aracıdır. Tek ihtiyacınız olan bir klibin başını ve sonunu kesmek olduğunda, tam bir video düzenleyiciyi çalıştırmaktan daha iyidir.
+[Omacut](https://github.com/omacom-io/omacut), Unbloarchy'nin kendi son derece basit video kırpma aracıdır. Tek ihtiyacınız olan bir klibin başını ve sonunu kesmek olduğunda, tam bir video düzenleyiciyi çalıştırmaktan daha iyidir.
 
 Omacut'ı uygulama başlatıcı (`Super + Space`) aracılığıyla başlatırsınız.
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue), Omarchy'nin kendi son derece basit webcam kaydedicisidir. Kameranızı ve mikrofonunuzu bir kez seçin, ardından kaydetmek için `Space` tuşuna basın ve aynı çekimi duraklatıp sürdürmek için tekrar basın. Başlamadan önce seviyelerinizi kontrol edebilmeniz için canlı bir mikrofon ölçeriyle her zaman kameranızın en yüksek çözünürlüğünde kaydeder.
+[Monologue](https://github.com/omacom/monologue), Unbloarchy'nin kendi son derece basit webcam kaydedicisidir. Kameranızı ve mikrofonunuzu bir kez seçin, ardından kaydetmek için `Space` tuşuna basın ve aynı çekimi duraklatıp sürdürmek için tekrar basın. Başlamadan önce seviyelerinizi kontrol edebilmeniz için canlı bir mikrofon ölçeriyle her zaman kameranızın en yüksek çözünürlüğünde kaydeder.
 
 Çekimi durdurduğunuzda, hemen yerleşik bir düzenleyicide açılır. Bölmek için bir klibe çift tıklayın, her parçayı kırpmak için tutamaçları sürükleyin ve istemediğiniz kısımları kaldırın. Ardından MP4 olarak kaydedin. Orijinal kaydınız siz onu atana kadar saklanır, böylece her zaman geri gelip onu farklı şekilde kesebilirsiniz.
 

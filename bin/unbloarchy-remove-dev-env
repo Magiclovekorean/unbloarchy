@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# omarchy:summary=Remove a development environment that was previously installed via omarchy-install-dev-env.
-# omarchy:args=<ruby|node|bun|deno|go|php|laravel|symfony|python|elixir|phoenix|zig|rust|java|dotnet|ocaml|clojure|scala>
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Remove a development environment that was previously installed via unbloarchy-install-dev-env.
+# unbloarchy:args=<ruby|node|bun|deno|go|php|laravel|symfony|python|elixir|phoenix|zig|rust|java|dotnet|ocaml|clojure|scala>
+# unbloarchy:requires-sudo=true
 
 if [[ -z $1 ]]; then
-  echo "Usage: omarchy-remove-dev-env <ruby|node|bun|deno|go|php|laravel|symfony|python|elixir|phoenix|zig|rust|java|dotnet|ocaml|clojure|scala>" >&2
+  echo "Usage: unbloarchy-remove-dev-env <ruby|node|bun|deno|go|php|laravel|symfony|python|elixir|phoenix|zig|rust|java|dotnet|ocaml|clojure|scala>" >&2
   exit 1
 fi
 
@@ -44,7 +44,7 @@ remove_php() {
   mise tool-alias unset php
 
   # PHP from before it moved to mise
-  omarchy-pkg-drop php composer php-sqlite xdebug
+  unbloarchy-pkg-drop php composer php-sqlite xdebug
 }
 
 case "$1" in
@@ -86,7 +86,7 @@ laravel)
   ;;
 symfony)
   echo -e "Removing Symfony CLI...\n"
-  omarchy-pkg-drop symfony-cli
+  unbloarchy-pkg-drop symfony-cli
   ;;
 python)
   echo -e "Removing Python...\n"

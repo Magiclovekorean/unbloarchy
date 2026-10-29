@@ -1,8 +1,8 @@
 # Felügyelet nélküli telepítések
 
-Az Omarchy ISO képes önmagát telepíteni úgy, hogy senki sem ül a billentyűzetnél. Ha a telepítő talál egy második, `cidata` címkéjű meghajtót, amely a konfigurációs fájljait hordozza, lemásolja azokat, teljesen kihagyja a beállítási varázslót, és magától újraindul az elkészült rendszerbe. Nem kell hozzá külön ISO-build, sem extra rendszerindító menüpont — ha nincs ilyen meghajtó csatlakoztatva, semmi sem változik, és a szokásos varázslót kapod.
+Az Unbloarchy ISO képes önmagát telepíteni úgy, hogy senki sem ül a billentyűzetnél. Ha a telepítő talál egy második, `cidata` címkéjű meghajtót, amely a konfigurációs fájljait hordozza, lemásolja azokat, teljesen kihagyja a beállítási varázslót, és magától újraindul az elkészült rendszerbe. Nem kell hozzá külön ISO-build, sem extra rendszerindító menüpont — ha nincs ilyen meghajtó csatlakoztatva, semmi sem változik, és a szokásos varázslót kapod.
 
-Ezzel az Omarchy remek alapképfájl eldobható fejlesztői környezetekhez: hozz létre egy VM-et Proxmoxban vagy Packerrel, indítsd el, sétálj el, majd lépj be SSH-val. A `cidata` a cloud-init `NoCloud` címkéje, így az összes elterjedt virtualizációs eszköz már tudja, hogyan kell ilyen meghajtót csatlakoztatni.
+Ezzel az Unbloarchy remek alapképfájl eldobható fejlesztői környezetekhez: hozz létre egy VM-et Proxmoxban vagy Packerrel, indítsd el, sétálj el, majd lépj be SSH-val. A `cidata` a cloud-init `NoCloud` címkéje, így az összes elterjedt virtualizációs eszköz már tudja, hogyan kell ilyen meghajtót csatlakoztatni.
 
 ## A konfigurációs fájlok
 
@@ -18,13 +18,13 @@ A fájlok pontosan azok, amelyeket a telepítő saját varázslója ír ki, ezé
 
 A `user_credentials.json` jelszóhashét az `openssl passwd -6 "yourpassword"` paranccsal állíthatod elő.
 
-A git-commitetekhez használt név és e-mail-cím nem része a telepítésnek. Állítsd be őket, amint a gép felállt, például SSH-n keresztül, ezzel: `omarchy setup git --name "Jane Doe" --email jane@example.com`.
+A git-commitetekhez használt név és e-mail-cím nem része a telepítésnek. Állítsd be őket, amint a gép felállt, például SSH-n keresztül, ezzel: `unbloarchy setup git --name "Jane Doe" --email jane@example.com`.
 
 A `user_credentials.json` helyett betehetsz egy üres, `defer-provisioning` nevű fájlt is. Ez ugyanazt a [másik tulajdonosra felkészítő telepítést](02-getting-started.md) futtatja, amelyet interaktívan is elindíthatsz: a gép személyes adatok nélkül települ, és aki először elindítja, az választja ki a billentyűzetét és hozza létre a felhasználóját. Ez a mód képfájlkészítő gépekhez való, ahol a meghajtónak egyáltalán nem szabad senki hitelesítő adatait hordoznia.
 
 ## SSH-hozzáférés
 
-Ha az `authorized_keys` jelen van, a telepítés beállítja a kulcsokat a felhasználó `~/.ssh/authorized_keys` fájljaként, engedélyezi az `sshd` szolgáltatást, és megnyitja hozzá a tűzfalat. (Egy gyári Omarchy-telepítés úgy szállítja az openssh csomagot, hogy a szolgáltatás le van tiltva és a port zárva van, így egy felügyelet nélküli gép egyébként elérhetetlen lenne.) A telepítés csak hozzáadja a kulcsaidat — az SSH-démon többi hitelesítési beállításán semmit sem lazít.
+Ha az `authorized_keys` jelen van, a telepítés beállítja a kulcsokat a felhasználó `~/.ssh/authorized_keys` fájljaként, engedélyezi az `sshd` szolgáltatást, és megnyitja hozzá a tűzfalat. (Egy gyári Unbloarchy-telepítés úgy szállítja az openssh csomagot, hogy a szolgáltatás le van tiltva és a port zárva van, így egy felügyelet nélküli gép egyébként elérhetetlen lenne.) A telepítés csak hozzáadja a kulcsaidat — az SSH-démon többi hitelesítési beállításán semmit sem lazít.
 
 Ha a `tailscale_authkey` jelen van, a gép helyette az első rendszerindításkor csatlakozik a tailnetedhez: a Tailscale az ISO mellékelt csomagjaiból települ, a tűzfal engedélyezi a tailnet interfészt, és egy háttérfeladat végrehajtja a csatlakozást, amint a gépnek ténylegesen van hálózata, és sikerig újrapróbálkozik. Újrafelhasználható, előzetesen engedélyezett kulcsot használj, így egyetlen meghajtóképfájl sok gépet is ki tud szolgálni.
 
@@ -38,16 +38,16 @@ cp user_configuration.json user_credentials.json authorized_keys cidata/
 genisoimage -output cidata.iso -volid cidata -joliet -rock cidata/
 ```
 
-Ezután csatold a VM-hez az Omarchy ISO mellé. Íme egy teljes Proxmox-példa:
+Ezután csatold a VM-hez az Unbloarchy ISO mellé. Íme egy teljes Proxmox-példa:
 
 ```bash
-qm create 101 --name my-omarchy \
+qm create 101 --name my-unbloarchy \
   --bios ovmf --machine q35 --cpu host --cores 4 --memory 8192 \
   --ostype l26 --scsihw virtio-scsi-single \
   --efidisk0 local-lvm:0,efitype=4m,pre-enrolled-keys=0 \
   --scsi0 local-lvm:40,discard=on,iothread=1 \
   --net0 virtio,bridge=vmbr0 --vga virtio --serial0 socket \
-  --ide2 local:iso/omarchy.iso,media=cdrom \
+  --ide2 local:iso/unbloarchy.iso,media=cdrom \
   --ide3 local:iso/cidata.iso,media=cdrom \
   --boot order='scsi0;ide2'
 

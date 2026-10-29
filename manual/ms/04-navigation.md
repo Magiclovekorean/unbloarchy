@@ -1,8 +1,8 @@
 # Navigasi
 
-Segala-galanya dalam Omarchy berlaku melalui papan kekunci — _SEGALA-GALANYA!_ Apabila sistem mula-mula dimulakan, anda benar-benar tidak boleh berbuat apa-apa dengan tetikus sahaja. Tetapi anda boleh tekan `Super + Space` untuk memaparkan Menu Omarchy dan dari sini anda boleh melakukan hampir segala-galanya.
+Segala-galanya dalam Unbloarchy berlaku melalui papan kekunci — _SEGALA-GALANYA!_ Apabila sistem mula-mula dimulakan, anda benar-benar tidak boleh berbuat apa-apa dengan tetikus sahaja. Tetapi anda boleh tekan `Super + Space` untuk memaparkan Menu Unbloarchy dan dari sini anda boleh melakukan hampir segala-galanya.
 
-Tetapi menu Omarchy pun sebenarnya bukan bertujuan menjadi cara utama untuk mengendalikan sistem pada kebanyakan masa. Kita boleh melakukannya dengan lebih pantas daripada itu! Semua aplikasi terpenting diikat terus kepada kekunci pintas individu. Anda memulakan terminal dengan `Super + Return` dan pelayar dengan `Super + Shift + Return`. Cuba lakukan satu demi satu, dan anda akan melihat keajaiban penyusunan berjubin Hyprland beraksi:
+Tetapi menu Unbloarchy pun sebenarnya bukan bertujuan menjadi cara utama untuk mengendalikan sistem pada kebanyakan masa. Kita boleh melakukannya dengan lebih pantas daripada itu! Semua aplikasi terpenting diikat terus kepada kekunci pintas individu. Anda memulakan terminal dengan `Super + Return` dan pelayar dengan `Super + Shift + Return`. Cuba lakukan satu demi satu, dan anda akan melihat keajaiban penyusunan berjubin Hyprland beraksi:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Anda juga boleh pergi ke skrin penuh dengan `Super + F` atau hanya lebar penuh (
 
 ### Dwindle lwn susun atur menatal
 
-Susun atur lalai Omarchy dipanggil dwindle. Ia mengekalkan semua tetingkap yang anda buka pada satu ruang kerja kelihatan sepanjang masa, walaupun ia terpaksa mengecilkannya.
+Susun atur lalai Unbloarchy dipanggil dwindle. Ia mengekalkan semua tetingkap yang anda buka pada satu ruang kerja kelihatan sepanjang masa, walaupun ia terpaksa mengecilkannya.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Ruang kerja terapung berfungsi seperti desktop tradisional: tetingkap bertindan, dan anda mengalih serta mengubah saiznya sendiri. Setiap tetingkap mendapat bar tajuk dalam warna tema anda, dengan butang untuk meminimumkan, memaksimumkan, dan menutup. `Super + M` juga meminimumkan tetingkap yang difokuskan. Tetingkap yang diminimumkan menunggu di dok; klik aplikasinya untuk membawanya kembali. Klik tetingkap untuk membawanya ke hadapan. Ubah saiznya dari mana-mana tepi atau sudut. Klik dua kali bar tajuk untuk memaksimumkan tetingkap sambil mengekalkan bar atas kelihatan, dan sekali lagi untuk mendapatkan kembali saiz lamanya.
 
-Ruang kerja terapung juga menunjukkan dok, dengan aplikasi yang anda sematkan, segala yang sedang berjalan, dan grid setiap aplikasi di sebalik butang aplikasi, yang turut dibuka oleh `Super + Alt + Space` dan _Apps_ dalam menu Omarchy. Klik kanan aplikasi pada grid, atau tekan `Delete`, untuk menyahpasangnya. Klik aplikasi untuk membukanya, atau untuk membawa tetingkapnya ke hadapan; klik sekali lagi untuk berkitar melalui tetingkapnya. Klik tengah membuka tetingkap baharu. Seret ikon sepanjang dok untuk mengalihkannya; menyeret aplikasi yang sedang berjalan masuk ke antara yang lain akan mengekalkannya di situ. Klik kanan untuk mengekalkan aplikasi dalam dok, mengeluarkannya, atau menutupnya. Dok menyingkir daripada laluan tetingkap skrin penuh. Klik kanan butang aplikasi untuk mengalihkan dok ke tepi lain atau menyuruhnya bersembunyi sehingga penunjuk mencapai tepinya. Kedudukan itu juga berada di bawah _Appearance > Dock > Dock Position_, dan `omarchy dock position left` serta `omarchy dock autohide on` menetapkan kedua-duanya dari terminal. Aplikasi yang anda kekalkan dalam dok menjadi pudar semasa ia tidak berjalan.
+Ruang kerja terapung juga menunjukkan dok, dengan aplikasi yang anda sematkan, segala yang sedang berjalan, dan grid setiap aplikasi di sebalik butang aplikasi, yang turut dibuka oleh `Super + Alt + Space` dan _Apps_ dalam menu Unbloarchy. Klik kanan aplikasi pada grid, atau tekan `Delete`, untuk menyahpasangnya. Klik aplikasi untuk membukanya, atau untuk membawa tetingkapnya ke hadapan; klik sekali lagi untuk berkitar melalui tetingkapnya. Klik tengah membuka tetingkap baharu. Seret ikon sepanjang dok untuk mengalihkannya; menyeret aplikasi yang sedang berjalan masuk ke antara yang lain akan mengekalkannya di situ. Klik kanan untuk mengekalkan aplikasi dalam dok, mengeluarkannya, atau menutupnya. Dok menyingkir daripada laluan tetingkap skrin penuh. Klik kanan butang aplikasi untuk mengalihkan dok ke tepi lain atau menyuruhnya bersembunyi sehingga penunjuk mencapai tepinya. Kedudukan itu juga berada di bawah _Appearance > Dock > Dock Position_, dan `unbloarchy dock position left` serta `unbloarchy dock autohide on` menetapkan kedua-duanya dari terminal. Aplikasi yang anda kekalkan dalam dok menjadi pudar semasa ia tidak berjalan.
 
-Ruang kerja baharu, dan mana-mana yang belum anda berikan susun atur tersendiri dengan `Super + L`, menggunakan susun atur lalai. Menukar lalai menetapkan semula setiap ruang kerja tanpa tetingkap kepadanya, manakala ruang kerja yang mempunyai tetingkap padanya mengekalkan susun atur yang dimilikinya. Tetingkap yang diminimumkan ke dok masih dikira sebagai tetingkap pada ruang kerja yang ditinggalkannya. Pilihnya di bawah _Appearance > Workspace Layout_: Tiling, Scrolling, atau Floating. `omarchy-hyprland-workspace-layout-default scrolling` menetapkannya dari terminal.
+Ruang kerja baharu, dan mana-mana yang belum anda berikan susun atur tersendiri dengan `Super + L`, menggunakan susun atur lalai. Menukar lalai menetapkan semula setiap ruang kerja tanpa tetingkap kepadanya, manakala ruang kerja yang mempunyai tetingkap padanya mengekalkan susun atur yang dimilikinya. Tetingkap yang diminimumkan ke dok masih dikira sebagai tetingkap pada ruang kerja yang ditinggalkannya. Pilihnya di bawah _Appearance > Workspace Layout_: Tiling, Scrolling, atau Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` menetapkannya dari terminal.
 
 ### Mengumpulkan tetingkap
 

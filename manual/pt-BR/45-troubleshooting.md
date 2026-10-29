@@ -2,23 +2,23 @@
 
 ### Quebrei meu sistema com uma atualização!
 
-Primeiro, tente [reverter seu sistema](47-system-snapshots.md) para a versão anterior à sua atualização recente. Se isso não funcionar, use `omarchy-debug` para compartilhar seu problema no #omarchy-help no Discord. E se tudo isso falhar, você pode reinstalar as configurações e os pacotes padrão usando `omarchy-reinstall`.
+Primeiro, tente [reverter seu sistema](47-system-snapshots.md) para a versão anterior à sua atualização recente. Se isso não funcionar, use `unbloarchy-debug` para compartilhar seu problema no #unbloarchy-help no Discord. E se tudo isso falhar, você pode reinstalar as configurações e os pacotes padrão usando `unbloarchy-reinstall`.
 
 ### Por que alguns aplicativos estão tão grandes na minha tela?
 
-O Omarchy presume uma tela de alta resolução 2x, o que exige definir `GDK_SCALE` como 2 em `~/.config/hypr/monitors.lua`. Mas se você estiver em uma tela 1x, pode alterar `local omarchy_gdk_scale = 2` para 1 (e depois reiniciar qualquer aplicativo que esteja grande demais). Consulte [o manual sobre monitores](33-monitors.md).
+O Unbloarchy presume uma tela de alta resolução 2x, o que exige definir `GDK_SCALE` como 2 em `~/.config/hypr/monitors.lua`. Mas se você estiver em uma tela 1x, pode alterar `local unbloarchy_gdk_scale = 2` para 1 (e depois reiniciar qualquer aplicativo que esteja grande demais). Consulte [o manual sobre monitores](33-monitors.md).
 
 No Spotify, você pode usar `Ctrl + Minus` para reduzir a UI (e `Ctrl + Plus` para aumentá-la).
 
 ### Por que todos os meus atalhos da tecla Super pararam de funcionar?
 
-Em alguns notebooks ASUS ROG e TUF, `Fn + Super` é uma combinação fácil de passar despercebida que alterna um bloqueio da tecla Windows no firmware (pensado para jogos, para você não sair de um jogo por acidente). Nada na tela avisa que isso aconteceu. Enquanto o bloqueio estiver ativo, Super não emite absolutamente nada — então todos os atalhos do Omarchy que usam Super simplesmente param, e parece que o Hyprland quebrou.
+Em alguns notebooks ASUS ROG e TUF, `Fn + Super` é uma combinação fácil de passar despercebida que alterna um bloqueio da tecla Windows no firmware (pensado para jogos, para você não sair de um jogo por acidente). Nada na tela avisa que isso aconteceu. Enquanto o bloqueio estiver ativo, Super não emite absolutamente nada — então todos os atalhos do Unbloarchy que usam Super simplesmente param, e parece que o Hyprland quebrou.
 
 Pressione `Fn + Super` uma vez antes de fuçar em `~/.config/hypr/`, e se isso não trouxer o Super de volta, pressione novamente para não deixar o bloqueio ativado. Isso não é o Fn-lock, que só altera o que a fileira de teclas F faz.
 
 ### Meu Wi-Fi, Bluetooth, áudio ou trackpad simplesmente parou de funcionar
 
-Antes de reiniciar, tente reiniciar apenas o subsistema problemático. _Update > Hardware_ no menu do Omarchy tem Wi-Fi, Bluetooth, Audio e Trackpad, e recarregar um deles resolve a maioria das situações do tipo "estava funcionando cinco minutos atrás" — um headset Bluetooth que não quer reconectar, um trackpad que morreu depois de uma suspensão, um som que sumiu quando você desconectou um monitor.
+Antes de reiniciar, tente reiniciar apenas o subsistema problemático. _Update > Hardware_ no menu do Unbloarchy tem Wi-Fi, Bluetooth, Audio e Trackpad, e recarregar um deles resolve a maioria das situações do tipo "estava funcionando cinco minutos atrás" — um headset Bluetooth que não quer reconectar, um trackpad que morreu depois de uma suspensão, um som que sumiu quando você desconectou um monitor.
 
 ### Por que meus alto-falantes externos não estão tocando?
 
@@ -26,7 +26,7 @@ Provavelmente porque eles não estão definidos como a saída principal. Clique 
 
 ### Os alto-falantes do meu notebook estão com um som estranho
 
-Em alguns notebooks, o Omarchy aplica automaticamente um ajuste de alto-falante que corrige a resposta de frequência dos alto-falantes integrados. `omarchy audio tuning status` informa se há um ajuste ativo na sua máquina, e `omarchy audio tuning off` o desativa se você preferir ouvir os alto-falantes sem correção.
+Em alguns notebooks, o Unbloarchy aplica automaticamente um ajuste de alto-falante que corrige a resposta de frequência dos alto-falantes integrados. `unbloarchy audio tuning status` informa se há um ajuste ativo na sua máquina, e `unbloarchy audio tuning off` o desativa se você preferir ouvir os alto-falantes sem correção.
 
 ### Por que não consigo fazer login ou usar sudo com a minha senha?
 

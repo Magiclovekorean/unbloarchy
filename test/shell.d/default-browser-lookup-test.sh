@@ -73,22 +73,22 @@ echo "Exec=brave %U" >"$XDG_DATA_DIRS/applications/fallback.desktop"
 pass "default browser reads mimeapps.list and falls back to xdg-settings"
 
 # With the listed handler gone, xdg-settings and xdg-mime settle on the
-# routing entry, which only hands links back to omarchy-launch-browser. The
+# routing entry, which only hands links back to unbloarchy-launch-browser. The
 # installed handlers they stopped reporting are still in the mimeinfo caches.
 cat >"$mock_bin/xdg-settings" <<'SH'
 #!/bin/bash
-echo omarchy-browser.desktop
+echo unbloarchy-browser.desktop
 SH
 cat >"$mock_bin/xdg-mime" <<'SH'
 #!/bin/bash
-echo omarchy-browser.desktop
+echo unbloarchy-browser.desktop
 SH
 chmod +x "$mock_bin/xdg-settings" "$mock_bin/xdg-mime"
-printf '[MIME Cache]\nx-scheme-handler/https=omarchy-browser.desktop;\n' >"$XDG_DATA_HOME/applications/mimeinfo.cache"
+printf '[MIME Cache]\nx-scheme-handler/https=unbloarchy-browser.desktop;\n' >"$XDG_DATA_HOME/applications/mimeinfo.cache"
 printf '[MIME Cache]\nx-scheme-handler/https=removed.desktop;brave-browser.desktop;\n' >"$XDG_DATA_DIRS/applications/mimeinfo.cache"
 
-[[ $(omarchy-cmd-default-browser) == "brave-browser.desktop" ]] ||
-  fail "default browser falls back to an installed https handler in mimeinfo.cache" "$(omarchy-cmd-default-browser)"
+[[ $(unbloarchy-cmd-default-browser) == "brave-browser.desktop" ]] ||
+  fail "default browser falls back to an installed https handler in mimeinfo.cache" "$(unbloarchy-cmd-default-browser)"
 
 pass "default browser falls back to an installed browser when the listed one is gone"
 
@@ -104,7 +104,7 @@ echo firefox.desktop
 SH
 chmod +x "$mock_bin/xdg-settings" "$mock_bin/xdg-mime"
 
-[[ $(omarchy-cmd-default-browser) == "firefox.desktop" ]] ||
-  fail "default browser skips an xdg-settings answer that is not installed" "$(omarchy-cmd-default-browser)"
+[[ $(unbloarchy-cmd-default-browser) == "firefox.desktop" ]] ||
+  fail "default browser skips an xdg-settings answer that is not installed" "$(unbloarchy-cmd-default-browser)"
 
 pass "default browser checks that fallback answers are installed"

@@ -174,7 +174,7 @@ Panel {
 
   function resolveVolumeSink() {
     volumeSinkGeneration++
-    // A hardware output is its own volume sink, as omarchy-audio-output-sink
+    // A hardware output is its own volume sink, as unbloarchy-audio-output-sink
     // reports without looking further, so only a DSP sink needs the script.
     if (sink && String(sink.name).indexOf("alsa_output.") === 0) {
       volumeSinkName = String(sink.name)

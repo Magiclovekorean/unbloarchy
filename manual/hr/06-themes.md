@@ -1,8 +1,8 @@
 # Teme
 
-Omarchy dolazi s dvadeset dvije prekrasne teme. Među njima možete birati putem _Izgled > Tema_ u izborniku Omarchy Menu (`Super + Space`) ili izravno otvoriti birač tema pomoću `Super + Ctrl + T`.
+Unbloarchy dolazi s dvadeset dvije prekrasne teme. Među njima možete birati putem _Izgled > Tema_ u izborniku Unbloarchy Menu (`Super + Space`) ili izravno otvoriti birač tema pomoću `Super + Ctrl + T`.
 
-Svaka tema oblikuje radnu površinu, terminal, neovim, zaslon aktivnosti (btop), Chromium i cijelu ljusku Omarchy: gornju traku, izbornik, obavijesti, OSD i zaslon za zaključavanje. (Za Obsidian morate ručno odabrati temu Omarchy putem _Izgled > Teme_ unutar aplikacije).
+Svaka tema oblikuje radnu površinu, terminal, neovim, zaslon aktivnosti (btop), Chromium i cijelu ljusku Unbloarchy: gornju traku, izbornik, obavijesti, OSD i zaslon za zaključavanje. (Za Obsidian morate ručno odabrati temu Unbloarchy putem _Izgled > Teme_ unutar aplikacije).
 
 Teme imaju skup pozadinskih slika među kojima možete birati pomoću `Super + Ctrl + W`.
 

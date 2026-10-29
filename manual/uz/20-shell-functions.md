@@ -1,6 +1,6 @@
 # Shell funksiyalari
 
-Omarchy keng tarqalgan vazifalarni soddalashtirish va murakkab parametr chaqiruvlarini inkapsulyatsiya qilish uchun shell funksiyalari toʻplami bilan keladi.
+Unbloarchy keng tarqalgan vazifalarni soddalashtirish va murakkab parametr chaqiruvlarini inkapsulyatsiya qilish uchun shell funksiyalari toʻplami bilan keladi.
 
 ## Siqish
 

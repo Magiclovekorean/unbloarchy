@@ -1,8 +1,8 @@
 # Navigácia
 
-Všetko v Omarchy sa deje cez klávesnicu — _VŠETKO!_ Keď sa systém prvýkrát spustí, len s myšou doslova nič neurobíte. Môžete však stlačiť `Super + Space` a zobraziť tak Omarchy Menu, odkiaľ zvládnete takmer všetko.
+Všetko v Unbloarchy sa deje cez klávesnicu — _VŠETKO!_ Keď sa systém prvýkrát spustí, len s myšou doslova nič neurobíte. Môžete však stlačiť `Super + Space` a zobraziť tak Unbloarchy Menu, odkiaľ zvládnete takmer všetko.
 
-Ale Omarchy menu ani nemá byť väčšinu času hlavným spôsobom ovládania systému. Vieme to aj rýchlejšie! Všetky najdôležitejšie aplikácie sú naviazané priamo na samostatné klávesové skratky. Terminál spustíte pomocou `Super + Return` a prehliadač pomocou `Super + Shift + Return`. Skúste to urobiť jedno po druhom a uvidíte kúzlo dlaždicového usporiadania Hyprland v akcii:
+Ale Unbloarchy menu ani nemá byť väčšinu času hlavným spôsobom ovládania systému. Vieme to aj rýchlejšie! Všetky najdôležitejšie aplikácie sú naviazané priamo na samostatné klávesové skratky. Terminál spustíte pomocou `Super + Return` a prehliadač pomocou `Super + Shift + Return`. Skúste to urobiť jedno po druhom a uvidíte kúzlo dlaždicového usporiadania Hyprland v akcii:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Môžete tiež prejsť na celú obrazovku pomocou `Super + F`, alebo dokonca len
 
 ### Rozloženie dwindle vs. posúvacie rozloženie
 
-Predvolené rozloženie Omarchy sa nazýva dwindle. Všetky okná, ktoré otvoríte na jednom pracovnom priestore, udržiava neustále viditeľné, aj keď ich musí zmenšiť.
+Predvolené rozloženie Unbloarchy sa nazýva dwindle. Všetky okná, ktoré otvoríte na jednom pracovnom priestore, udržiava neustále viditeľné, aj keď ich musí zmenšiť.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Plávajúci pracovný priestor funguje ako tradičná pracovná plocha: okná sa prekrývajú a sami si ich presúvate a meníte ich veľkosť. Každé okno dostane titulný pruh vo farbách vašej témy, s tlačidlami na minimalizáciu, maximalizáciu a zatvorenie. `Super + M` tiež minimalizuje zamerané okno. Minimalizované okno čaká v docku; kliknutím na jeho aplikáciu ho vrátite späť. Kliknutím na okno ho prenesiete dopredu. Jeho veľkosť zmeníte z ktoréhokoľvek okraja alebo rohu. Dvojitým kliknutím na titulný pruh okno maximalizujete pri zachovaní horného panela v dohľade a ďalším dvojitým kliknutím mu vrátite jeho starú veľkosť.
 
-Plávajúci pracovný priestor tiež zobrazuje dock, s vašimi pripnutými aplikáciami, všetkým, čo beží, a mriežkou každej aplikácie za tlačidlom aplikácií, ktoré otvára aj `Super + Alt + Space` a položka _Aplikácie_ v Omarchy menu. Kliknite pravým tlačidlom na aplikáciu v mriežke, alebo stlačte `Delete`, a odinštalujete ju. Kliknutím na aplikáciu ju otvoríte, alebo prenesiete jej okno dopredu; opätovným kliknutím cyklujete cez jej okná. Kliknutím stredným tlačidlom otvoríte nové okno. Potiahnutím ikony pozdĺž docku ju presuniete; potiahnutím bežiacej aplikácie medzi ostatné ju tam ponecháte. Kliknutím pravým tlačidlom aplikáciu ponecháte v docku, odstránite ju z neho alebo ju ukončíte. Dock ustúpi z cesty oknu na celú obrazovku. Kliknutím pravým tlačidlom na tlačidlo aplikácií presuniete dock na iný okraj alebo ho necháte skrývať, kým ukazovateľ nedosiahne jeho okraj. Pozícia je aj pod _Vzhľad > Dock > Pozícia docku_ a príkazy `omarchy dock position left` a `omarchy dock autohide on` oboje nastavia z terminálu. Aplikácie, ktoré máte v docku, sú vyblednuté, kým nebežia.
+Plávajúci pracovný priestor tiež zobrazuje dock, s vašimi pripnutými aplikáciami, všetkým, čo beží, a mriežkou každej aplikácie za tlačidlom aplikácií, ktoré otvára aj `Super + Alt + Space` a položka _Aplikácie_ v Unbloarchy menu. Kliknite pravým tlačidlom na aplikáciu v mriežke, alebo stlačte `Delete`, a odinštalujete ju. Kliknutím na aplikáciu ju otvoríte, alebo prenesiete jej okno dopredu; opätovným kliknutím cyklujete cez jej okná. Kliknutím stredným tlačidlom otvoríte nové okno. Potiahnutím ikony pozdĺž docku ju presuniete; potiahnutím bežiacej aplikácie medzi ostatné ju tam ponecháte. Kliknutím pravým tlačidlom aplikáciu ponecháte v docku, odstránite ju z neho alebo ju ukončíte. Dock ustúpi z cesty oknu na celú obrazovku. Kliknutím pravým tlačidlom na tlačidlo aplikácií presuniete dock na iný okraj alebo ho necháte skrývať, kým ukazovateľ nedosiahne jeho okraj. Pozícia je aj pod _Vzhľad > Dock > Pozícia docku_ a príkazy `unbloarchy dock position left` a `unbloarchy dock autohide on` oboje nastavia z terminálu. Aplikácie, ktoré máte v docku, sú vyblednuté, kým nebežia.
 
-Nové pracovné priestory a všetky, ktorým ste pomocou `Super + L` nedali vlastné rozloženie, používajú predvolené rozloženie. Zmena predvoleného rozloženia obnoví naň každý pracovný priestor bez okien, zatiaľ čo ten, ktorý na sebe má okná, si ponechá rozloženie, ktoré má. Okno minimalizované do docku sa stále počíta ako okno na pracovnom priestore, ktorý opustilo. Vyberte ho pod _Vzhľad > Rozloženie pracovného priestoru_: Dlaždicové, Posúvacie alebo Plávajúce. Príkaz `omarchy-hyprland-workspace-layout-default scrolling` ho nastaví z terminálu.
+Nové pracovné priestory a všetky, ktorým ste pomocou `Super + L` nedali vlastné rozloženie, používajú predvolené rozloženie. Zmena predvoleného rozloženia obnoví naň každý pracovný priestor bez okien, zatiaľ čo ten, ktorý na sebe má okná, si ponechá rozloženie, ktoré má. Okno minimalizované do docku sa stále počíta ako okno na pracovnom priestore, ktorý opustilo. Vyberte ho pod _Vzhľad > Rozloženie pracovného priestoru_: Dlaždicové, Posúvacie alebo Plávajúce. Príkaz `unbloarchy-hyprland-workspace-layout-default scrolling` ho nastaví z terminálu.
 
 ### Zoskupovanie okien
 

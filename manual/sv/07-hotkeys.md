@@ -6,7 +6,7 @@ Du kan se alla de viktigaste kortkommandona med `Super + K` (Tmux-bindningar med
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy-menyn (appar och allt annat)    |
+| `Super + Space`           | Unbloarchy-menyn (appar och allt annat)    |
 | `Super + Alt + Space` | Apprutnät |
 | `Super + Escape` | Systemmenyn (viloläge, omstart, etc.)  |
 | `Super + Ctrl + L` | Lås datorn |
@@ -143,7 +143,7 @@ Kortkommandon för storleksändring använder fysiska tangenter `code:20` och `c
 | `Super + V`           | Klistra in    |
 | `Super + Ctrl + V`           | Urklippshanterare    |
 
-Vanligtvis på Linux behöver du `Ctrl + Shift + C/V` för att kopiera och klistra in i terminalen och `Ctrl + C/V` för att göra det överallt annars. Dessa enhetliga Omarchy-kortkommandon för urklipp fungerar överallt.
+Vanligtvis på Linux behöver du `Ctrl + Shift + C/V` för att kopiera och klistra in i terminalen och `Ctrl + C/V` för att göra det överallt annars. Dessa enhetliga Unbloarchy-kortkommandon för urklipp fungerar överallt.
 
 ## Skärmfångst
 
@@ -164,7 +164,7 @@ Vanligtvis på Linux behöver du `Ctrl + Shift + C/V` för att kopiera och klist
 
 Med skärminspelningar frågar kortkommandot först vilket ljud du vill ha, sedan startar inspelningen. Tryck på det igen för att stoppa. Se [skärmbilder och inspelning](12-screenshots-recording.md) för detaljerna.
 
-Alla fångstalternativ finns också under _Trigger > Capture_ i Omarchy-menyn (`Super + Space`).
+Alla fångstalternativ finns också under _Trigger > Capture_ i Unbloarchy-menyn (`Super + Space`).
 
 ## Aviseringar
 
@@ -186,9 +186,9 @@ Alla fångstalternativ finns också under _Trigger > Capture_ i Omarchy-menyn (`
 | `Super + Backspace` | Växla transparens på ett fönster |
 | `Super + Ctrl + Backspace` | Växla kvadratiskt format för enskilt fönster |
 
-Extra bakgrundsbilder finns i `~/.config/omarchy/backgrounds/<theme name>`. Finns också via _Install > Style > Background_ i Omarchy-menyn.
+Extra bakgrundsbilder finns i `~/.config/unbloarchy/backgrounds/<theme name>`. Finns också via _Install > Style > Background_ i Unbloarchy-menyn.
 
-Alla stilalternativ finns också under _Style_ i Omarchy-menyn (`Super + Space`).
+Alla stilalternativ finns också under _Style_ i Unbloarchy-menyn (`Super + Space`).
 
 ## Växlar
 
@@ -289,7 +289,7 @@ Dessa funktioner måste köras inuti en Tmux-session.
 
 ## Ghostty Terminal
 
-Ghostty Terminal installeras med _Install > Terminal_ via Omarchy-menyn.
+Ghostty Terminal installeras med _Install > Terminal_ via Unbloarchy-menyn.
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Du kan använda `Super + Ctrl + E` för att visa en komplett emojiväljare som l
 | `Shift + CapsLock Space N` | Ditt namn (som angivet vid installationen)  |
 | `Shift + CapsLock Space E` | Din e-post (som angiven vid installationen)  |
 
-Du kan lägga till fler egna genom att redigera `~/.XCompose`, sedan köra `omarchy-restart-xcompose` i terminalen för att få ändringarna att slå igenom.
+Du kan lägga till fler egna genom att redigera `~/.XCompose`, sedan köra `unbloarchy-restart-xcompose` i terminalen för att få ändringarna att slå igenom.

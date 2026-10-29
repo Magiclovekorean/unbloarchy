@@ -18,16 +18,16 @@ press(button, revoke)
 assert(launched.length === 0, 'repeat clicks during revocation cannot open the enable flow')
 revoke.running = false
 press(button, revoke)
-assertDeepEqual(launched, ['omarchy-launch-floating-terminal-with-presentation omarchy-sudo-passwordless'], 'inactive click still opens interactive setup')
+assertDeepEqual(launched, ['unbloarchy-launch-floating-terminal-with-presentation unbloarchy-sudo-passwordless'], 'inactive click still opens interactive setup')
 JS
 
 # Run the public grant flows against the fixture's stand-ins and check the
 # refreshes they push, without touching the host shell or user timers.
 source "$SHELL_TEST_DIR/fixtures/passwordless-sudo-test.sh"
-refresh="omarchy-shell -q omarchy.indicators refresh"
+refresh="unbloarchy-shell -q unbloarchy.indicators refresh"
 run_grant_flow() {
   : >"$test_tmp/commands"
-  env "$@" /usr/bin/bash -p "$test_tmp/omarchy-sudo-passwordless" "${grant_args[@]}" >"$test_tmp/public.log" 2>&1 || true
+  env "$@" /usr/bin/bash -p "$test_tmp/unbloarchy-sudo-passwordless" "${grant_args[@]}" >"$test_tmp/public.log" 2>&1 || true
 }
 refresh_follows() {
   grep -A1 -- "$1" "$test_tmp/commands" | grep -qxF -- "$refresh"
@@ -42,7 +42,7 @@ run_grant_flow TEST_STATUS=3 TEST_CONFIRM_STATUS=0
 after=$EPOCHSECONDS
 refresh_follows ' __enable [0-9]* 15$' || fail "timed enable must refresh the indicator after the grant changes"
 timer=$(grep '^systemd-run --user ' "$test_tmp/commands") || fail "timed enable must schedule an expiry refresh"
-timer_pattern="^systemd-run --user --quiet --collect --on-calendar=@([0-9]+) --timer-property=AccuracySec=1s -- $test_tmp/bin/omarchy-shell -q omarchy.indicators refresh$"
+timer_pattern="^systemd-run --user --quiet --collect --on-calendar=@([0-9]+) --timer-property=AccuracySec=1s -- $test_tmp/bin/unbloarchy-shell -q unbloarchy.indicators refresh$"
 [[ $timer =~ $timer_pattern ]] || fail "unexpected expiry refresh timer: $timer"
 deadline=${BASH_REMATCH[1]}
 (( deadline >= before + 15 * 60 + 2 && deadline <= after + 15 * 60 + 2 )) || fail "expiry refresh must fire just after the wall-clock deadline"

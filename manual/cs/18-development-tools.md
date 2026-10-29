@@ -2,7 +2,7 @@
 
 ## Alternativní editory
 
-Omarchy ve výchozím nastavení obsahuje [Neovim](https://neovim.io/), ale pokud chcete něco běžnějšího a známějšího, můžete spustit Omarchy Menu (`Super + Space`) a podívat se na možnosti v části _Install > Editor_. Máme tam VSCode, Cursor, Zed, Sublime Text, Helix, Vim a Emacs. Pokud nenajdete, co hledáte, podívejte se do _Install > Package_ a zjistěte, zda to náhodou není v balíčku Arch (a pokud ne, zkuste _Install > AUR_ a zkontrolujte AUR).
+Unbloarchy ve výchozím nastavení obsahuje [Neovim](https://neovim.io/), ale pokud chcete něco běžnějšího a známějšího, můžete spustit Unbloarchy Menu (`Super + Space`) a podívat se na možnosti v části _Install > Editor_. Máme tam VSCode, Cursor, Zed, Sublime Text, Helix, Vim a Emacs. Pokud nenajdete, co hledáte, podívejte se do _Install > Package_ a zjistěte, zda to náhodou není v balíčku Arch (a pokud ne, zkuste _Install > AUR_ a zkontrolujte AUR).
 
 Původní editor `vi` je také k dispozici hned po instalaci. Spuštěním `vi filename` upravíte soubor v terminálu.
 
@@ -12,7 +12,7 @@ Celý systémový výchozí editor můžete nastavit v části `Setup > Defaults
 
 ## Prostředí
 
-Omarchy podporuje nastavení celé řady vývojových prostředí prostřednictvím části _Install > Development_ v Omarchy Menu (`Super + Space`). Samozřejmě tam najdete _Ruby on Rails_, ale také všechny tři hlavní běhové prostředí pro JavaScript (Node.js, Bun, Deno) a také populární PHP frameworky jako Laravel a Symfony. Ach, a je tam také Go, Rust, Python, Java, Elixir (s Phoenix), .NET, OCaml, Zig, Clojure a Scala. Je to velmi široký výběr!
+Unbloarchy podporuje nastavení celé řady vývojových prostředí prostřednictvím části _Install > Development_ v Unbloarchy Menu (`Super + Space`). Samozřejmě tam najdete _Ruby on Rails_, ale také všechny tři hlavní běhové prostředí pro JavaScript (Node.js, Bun, Deno) a také populární PHP frameworky jako Laravel a Symfony. Ach, a je tam také Go, Rust, Python, Java, Elixir (s Phoenix), .NET, OCaml, Zig, Clojure a Scala. Je to velmi široký výběr!
 
 Většinu těchto prostředí spravuje [Mise](https://mise.jdx.dev/). Je to nástroj, který vám umožňuje nainstalovat a spouštět více verzí programovacího jazyka na stejném počítači. Je to jako rbenv nebo rvm pro Ruby nebo virtualenv pro Python, ale funguje pro celou řadu různých prostředí.
 
@@ -20,7 +20,7 @@ Chcete-li nainstalovat například Ruby, spustíte `mise use -g ruby`, čímž R
 
 ## Předinstalované nástroje CLI
 
-Omarchy zpřístupňuje nástroje jako `gh`, `uv` a většinu [kódovacích agentů](17-ai.md) prostřednictvím [líné instalace mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Při prvním spuštění některého z nich jej mise nainstaluje. Při dalších spuštěních se znovu použije nainstalovaná verze; při každém spuštění se nekontroluje aktualizace.
+Unbloarchy zpřístupňuje nástroje jako `gh`, `uv` a většinu [kódovacích agentů](17-ai.md) prostřednictvím [líné instalace mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Při prvním spuštění některého z nich jej mise nainstaluje. Při dalších spuštěních se znovu použije nainstalovaná verze; při každém spuštění se nekontroluje aktualizace.
 
 Můžete si také prohlédnout výchozí nastavení nebo si je nainstalovat předem:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Spuštěním `omarchy update` aktualizujete nainstalované nástroje spolu se zbytkem Omarchy. Alias `mup` aktualizuje pouze nástroje spravované mise. Chcete-li do vlastní konfigurace přidat další nástroj, použijte `mise use -g <tool>`.
+Spuštěním `unbloarchy update` aktualizujete nainstalované nástroje spolu se zbytkem Unbloarchy. Alias `mup` aktualizuje pouze nástroje spravované mise. Chcete-li do vlastní konfigurace přidat další nástroj, použijte `mise use -g <tool>`.
 
 Nastavení Pythonu také nainstaluje `uv` prostřednictvím mise. Odebráním vývojového prostředí Pythonu zůstane `uv` k dispozici jako nezávislý nástroj.
 
@@ -47,15 +47,15 @@ Pokud už tabulku `[settings]` máte, přidejte záznam do ní; stávající sez
 
 ### Odebrání a obnovení výchozích hodnot
 
-_Remove Preinstalls_ zařídí, že mise pro vašeho uživatele přeskočí deklarace nástrojů Omarchy, a to tak, že je přidá do `ignored_config_paths` v souboru `~/.config/mise/miserc.toml`. _Restore Preinstalls_ tento řádek opět odstraní. Nástroje, které si deklarujete sami, ve vlastní konfiguraci nebo v projektovém souboru `mise.toml`, fungují tak jako tak dál. Pokud po odebrání předinstalací zvolíte výchozího agenta nebo nastavíte Python, daný nástroj se přidá do vaší vlastní konfigurace. Obojí platí pouze pro vašeho uživatele; ostatní uživatelé na počítači si zachovají svou vlastní volbu.
+_Remove Preinstalls_ zařídí, že mise pro vašeho uživatele přeskočí deklarace nástrojů Unbloarchy, a to tak, že je přidá do `ignored_config_paths` v souboru `~/.config/mise/miserc.toml`. _Restore Preinstalls_ tento řádek opět odstraní. Nástroje, které si deklarujete sami, ve vlastní konfiguraci nebo v projektovém souboru `mise.toml`, fungují tak jako tak dál. Pokud po odebrání předinstalací zvolíte výchozího agenta nebo nastavíte Python, daný nástroj se přidá do vaší vlastní konfigurace. Obojí platí pouze pro vašeho uživatele; ostatní uživatelé na počítači si zachovají svou vlastní volbu.
 
 ## Docker
 
-[Docker](https://www.docker.com/) sotva potřebuje nějaké představování. Umožňuje vám spouštět izolované kontejnery a Omarchy nainstaluje vše potřebné k jeho dobrému běhu, včetně samotného Docker a [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) sotva potřebuje nějaké představování. Umožňuje vám spouštět izolované kontejnery a Unbloarchy nainstaluje vše potřebné k jeho dobrému běhu, včetně samotného Docker a [Docker Compose](https://docs.docker.com/compose/).
 
-Váš uživatel ve výchozím nastavení *není* ve skupině `docker`. Tato skupina je v podstatě root bez hesla — cokoliv v ní může spustit `docker run -v /:/host` a převzít počítač — takže jediný škodlivý skript nebo závislost běžící pod vaším uživatelem by jinak byla jediný příkaz od root. Na příkazové řádce tedy Docker spouštíte pomocí `sudo` (`sudo docker ps`, `sudo docker compose up`) a grafické nástroje, které komunikují s démonem — VM s Windows — si v případě potřeby vyžádají oprávnění. Pokud chcete zpět pohodlí nastavení bez skupiny a rozumíte kompromisu, povolte jej v části **Setup > Security > Sudoless Docker** (nebo spusťte `omarchy-setup-security-sudoless-docker`), čímž budete po varování přidáni do skupiny `docker`; pak prosté `docker` a alias `d` opět fungují bez `sudo`.
+Váš uživatel ve výchozím nastavení *není* ve skupině `docker`. Tato skupina je v podstatě root bez hesla — cokoliv v ní může spustit `docker run -v /:/host` a převzít počítač — takže jediný škodlivý skript nebo závislost běžící pod vaším uživatelem by jinak byla jediný příkaz od root. Na příkazové řádce tedy Docker spouštíte pomocí `sudo` (`sudo docker ps`, `sudo docker compose up`) a grafické nástroje, které komunikují s démonem — VM s Windows — si v případě potřeby vyžádají oprávnění. Pokud chcete zpět pohodlí nastavení bez skupiny a rozumíte kompromisu, povolte jej v části **Setup > Security > Sudoless Docker** (nebo spusťte `unbloarchy-setup-security-sudoless-docker`), čímž budete po varování přidáni do skupiny `docker`; pak prosté `docker` a alias `d` opět fungují bez `sudo`.
 
-Běžné databáze pro lokální vývoj v Docker můžete nastavit pomocí _Install > Development > Docker DB_ v menu Omarchy.
+Běžné databáze pro lokální vývoj v Docker můžete nastavit pomocí _Install > Development > Docker DB_ v menu Unbloarchy.
 
 ## GitHub CLI
 

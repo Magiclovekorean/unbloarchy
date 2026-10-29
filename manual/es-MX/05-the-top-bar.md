@@ -1,14 +1,14 @@
 # La barra superior
 
-La franja a lo largo de la parte superior de tu pantalla es la barra de Omarchy. No es una barra de estado atornillada después, sino parte del shell de Omarchy, el único proceso de Quickshell de larga duración que también dibuja el menú, las notificaciones, las ventanas emergentes OSD y la pantalla de bloqueo. Por eso combina a la perfección con todo lo demás y por eso un panel se abre al instante en lugar de lanzar una aplicación nueva.
+La franja a lo largo de la parte superior de tu pantalla es la barra de Unbloarchy. No es una barra de estado atornillada después, sino parte del shell de Unbloarchy, el único proceso de Quickshell de larga duración que también dibuja el menú, las notificaciones, las ventanas emergentes OSD y la pantalla de bloqueo. Por eso combina a la perfección con todo lo demás y por eso un panel se abre al instante en lugar de lanzar una aplicación nueva.
 
 También es la única pieza del escritorio que siempre está en pantalla, así que vale la pena saber qué hacen todos esos pequeños glifos.
 
 ## Qué trae por defecto
 
-La barra tiene tres secciones. A la izquierda está el logotipo de Omarchy (el lanzador del menú) y los indicadores de espacios de trabajo. En el centro tienes los indicadores de estado, el reloj, Elsewhen (un reloj mundial), el clima y una insignia de actualización de Omarchy. A la derecha: la bandeja del sistema, la distribución del teclado (cuando hay más de una configurada), los agentes, bluetooth, red, audio, pantalla y energía.
+La barra tiene tres secciones. A la izquierda está el logotipo de Unbloarchy (el lanzador del menú) y los indicadores de espacios de trabajo. En el centro tienes los indicadores de estado, el reloj, Elsewhen (un reloj mundial), el clima y una insignia de actualización de Unbloarchy. A la derecha: la bandeja del sistema, la distribución del teclado (cuando hay más de una configurada), los agentes, bluetooth, red, audio, pantalla y energía.
 
-Algunos de esos solo aparecen cuando tienen algo que decir. La distribución del teclado aparece solo si configuraste más de una distribución. La insignia de actualización aparece solo cuando hay una actualización de Omarchy esperando. Y el ícono de agentes aparece la primera vez que Omarchy encuentra uso de codificación con IA en la máquina (consulta [IA](17-ai.md)).
+Algunos de esos solo aparecen cuando tienen algo que decir. La distribución del teclado aparece solo si configuraste más de una distribución. La insignia de actualización aparece solo cuando hay una actualización de Unbloarchy esperando. Y el ícono de agentes aparece la primera vez que Unbloarchy encuentra uso de codificación con IA en la máquina (consulta [IA](17-ai.md)).
 
 ## Hacer clic por todas partes
 
@@ -16,7 +16,7 @@ Casi todos los componentes hacen algo con el clic izquierdo, derecho y central, 
 
 | Componente | Izquierdo | Derecho | Central / desplazamiento |
 | --- | --- | --- | --- |
-| Menú | Menú de Omarchy | Terminal nueva | — |
+| Menú | Menú de Unbloarchy | Terminal nueva | — |
 | Espacios de trabajo | Enfocar ese espacio de trabajo en este monitor | — | Desplazamiento: espacio de trabajo siguiente/anterior |
 | Reloj | Ventana emergente del calendario | Recorrer el formato de la etiqueta | Central: selector de zona horaria |
 | Clima | Ventana emergente del pronóstico | Clima completo como notificación | Central: actualizar |
@@ -29,7 +29,7 @@ Casi todos los componentes hacen algo con el clic izquierdo, derecho y central, 
 | Multimedia | Reproducir/pausar | Ventana emergente de la portada | Central: siguiente · desplazamiento: anterior/siguiente |
 | Agentes | Panel de agentes | Lanzar tu agente | Central: siguiente suscripción |
 | Bandeja | Pasar el cursor para mostrar el cajón | Clic derecho en el chevrones para administrar | — |
-| Actualización de Omarchy | Ejecutar la actualización | — | — |
+| Actualización de Unbloarchy | Ejecutar la actualización | — | — |
 
 No todo lo de esa tabla está en tu barra desde el inicio. El componente multimedia (MPRIS con lo que se está reproduciendo, con pista y artista en desplazamiento) y el componente de micrófono están integrados, pero desactivados por defecto: agrégalos si los quieres, como se describe más abajo.
 
@@ -66,7 +66,7 @@ Todos los paneles aceptan el teclado además del ratón: las flechas se mueven, 
 
 Dos componentes más aparecen en la barra solo una vez que instalas el servicio correspondiente desde **Instalar → Servicio**, y vale la pena conocer ambos porque hacen más que reportar el estado.
 
-El panel de **Tailscale** conecta y desconecta la tailnet, cambia entre cuentas y elige un nodo de salida (tus propias máquinas y las regiones de Mullvad aparecen en esa lista). También explora tus máquinas, y con una seleccionada, `s` le envía archivos por Taildrop, que es la forma más rápida de mover un archivo a tu teléfono u otra laptop. `c` copia la IP de la máquina, `n` su nombre y `d` su nombre DNS completo. También hay un botón de enviar en cada fila de máquina, por si prefieres hacer clic. Lo mismo desde la terminal es `omarchy tailscale send <machine> [file...]`.
+El panel de **Tailscale** conecta y desconecta la tailnet, cambia entre cuentas y elige un nodo de salida (tus propias máquinas y las regiones de Mullvad aparecen en esa lista). También explora tus máquinas, y con una seleccionada, `s` le envía archivos por Taildrop, que es la forma más rápida de mover un archivo a tu teléfono u otra laptop. `c` copia la IP de la máquina, `n` su nombre y `d` su nombre DNS completo. También hay un botón de enviar en cada fila de máquina, por si prefieres hacer clic. Lo mismo desde la terminal es `unbloarchy tailscale send <machine> [file...]`.
 
 El panel de **Dropbox** maneja el inicio de sesión, muestra cuánto almacenamiento has usado y enumera los archivos sincronizados recientemente.
 
@@ -93,19 +93,19 @@ Si prefieres elegir desde un menú, **Apariencia → Barra de menús** tiene la 
 Las mismas cosas tienen comandos, que es lo que quieres para una configuración de [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Para agregar o quitar un componente por completo, usa los comandos de complementos. `omarchy plugin list` imprime cada componente que el shell conoce con su id, y luego:
+Para agregar o quitar un componente por completo, usa los comandos de complementos. `unbloarchy plugin list` imprime cada componente que el shell conoce con su id, y luego:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Ocultar la barra
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## El archivo de configuración
 
-Todo se guarda en `~/.config/omarchy/shell.json`, bajo la clave `bar`. Aquí está una versión recortada:
+Todo se guarda en `~/.config/unbloarchy/shell.json`, bajo la clave `bar`. Aquí está una versión recortada:
 
 ```json
 {
@@ -123,20 +123,20 @@ Todo se guarda en `~/.config/omarchy/shell.json`, bajo la clave `bar`. Aquí est
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Cada componente es una entrada en uno de los cinco arreglos de disposición, y su configuración va en línea en esa entrada: no hay un archivo de configuración separado ni un subobjeto `config`. El `format`, el `formatAlt` (a lo que cambia el clic derecho) y el `verticalFormat` del reloj viven todos justo ahí en `{ "id": "omarchy.clock" }`.
+Cada componente es una entrada en uno de los cinco arreglos de disposición, y su configuración va en línea en esa entrada: no hay un archivo de configuración separado ni un subobjeto `config`. El `format`, el `formatAlt` (a lo que cambia el clic derecho) y el `verticalFormat` del reloj viven todos justo ahí en `{ "id": "unbloarchy.clock" }`.
 
 `center` es la caja en el centro de la barra: todo lo que está en ella se centra en la pantalla como un solo grupo. `centerBegin` y `centerEnd` cuelgan de cada lado de la caja, que es como el reloj se queda justo en el centro aun cuando el clima y la insignia de actualización van y vienen. Pon más de un componente en `center` y se centran juntos; déjalo vacío y `centerBegin` y `centerEnd` se encuentran en el centro de la barra.
 
-Una regla que vale la pena interiorizar: **una vez que tienes tu propio `shell.json`, es canónico**. Hasta que personalices algo, el shell lee el archivo por defecto de Omarchy. En el momento en que arrastras un componente, ejecutas `omarchy bar` o editas el archivo tú mismo, es tuyo: no hay una fusión profunda, así que los componentes por defecto nuevos en versiones futuras de Omarchy no aparecerán en tu barra automáticamente. `omarchy bar defaults` vuelve a poner la disposición incluida cuando quieras empezar de cero.
+Una regla que vale la pena interiorizar: **una vez que tienes tu propio `shell.json`, es canónico**. Hasta que personalices algo, el shell lee el archivo por defecto de Unbloarchy. En el momento en que arrastras un componente, ejecutas `unbloarchy bar` o editas el archivo tú mismo, es tuyo: no hay una fusión profunda, así que los componentes por defecto nuevos en versiones futuras de Unbloarchy no aparecerán en tu barra automáticamente. `unbloarchy bar defaults` vuelve a poner la disposición incluida cuando quieras empezar de cero.
 
 El mismo archivo también guarda tus tiempos de inactividad en el nivel superior, fuera de la clave `bar`: `idle.screensaver` e `idle.lock`, ambos en segundos desde que te quedaste inactivo. Así que el protector de pantalla por defecto entra a los 150 segundos y el bloqueo a los 300.

@@ -2,7 +2,7 @@
 
 ## Alternatīvi redaktori
 
-Omarchy pēc noklusējuma nāk ar [Neovim](https://neovim.io/), bet, ja vēlies kaut ko nedaudz plašāk izplatītu un pazīstamāku, vari atvērt Omarchy Menu (`Super + Space`) un apskatīt opcijas sadaļā _Install > Editor_. Tur uzskaitīti VSCode, Cursor, Zed, Sublime Text, Helix, Vim un Emacs. Ja neatrod meklēto, ieskaties _Install > Package_ un pārbaudi, vai tā nav Arch pakotnē (un, ja nav, pamēģini _Install > AUR_, lai pārbaudītu AUR).
+Unbloarchy pēc noklusējuma nāk ar [Neovim](https://neovim.io/), bet, ja vēlies kaut ko nedaudz plašāk izplatītu un pazīstamāku, vari atvērt Unbloarchy Menu (`Super + Space`) un apskatīt opcijas sadaļā _Install > Editor_. Tur uzskaitīti VSCode, Cursor, Zed, Sublime Text, Helix, Vim un Emacs. Ja neatrod meklēto, ieskaties _Install > Package_ un pārbaudi, vai tā nav Arch pakotnē (un, ja nav, pamēģini _Install > AUR_, lai pārbaudītu AUR).
 
 Oriģinālais `vi` redaktors arī ir pieejams jau no kastes. Palaid `vi filename`, lai rediģētu failu terminālī.
 
@@ -12,7 +12,7 @@ Sistēmas mēroga noklusējuma redaktoru vari iestatīt sadaļā `Setup > Defaul
 
 ## Vide
 
-Omarchy atbalsta vesela lēruma izstrādes vižu iestatīšanu Omarchy Menu (`Super + Space`) sadaļā _Install > Development_. Tur, protams, atradīsi _Ruby on Rails_, bet arī visus trīs galvenos JavaScript izpildlaikus (Node.js, Bun, Deno), kā arī populārus PHP ietvarus, piemēram, Laravel un Symfony. Ak, un tur ir arī Go, Rust, Python, Java, Elixir (ar Phoenix), .NET, OCaml, Zig, Clojure un Scala. Tā ir ļoti plaša izvēle!
+Unbloarchy atbalsta vesela lēruma izstrādes vižu iestatīšanu Unbloarchy Menu (`Super + Space`) sadaļā _Install > Development_. Tur, protams, atradīsi _Ruby on Rails_, bet arī visus trīs galvenos JavaScript izpildlaikus (Node.js, Bun, Deno), kā arī populārus PHP ietvarus, piemēram, Laravel un Symfony. Ak, un tur ir arī Go, Rust, Python, Java, Elixir (ar Phoenix), .NET, OCaml, Zig, Clojure un Scala. Tā ir ļoti plaša izvēle!
 
 Lielāko daļu šo vižu pārvalda [Mise](https://mise.jdx.dev/). Tas ir rīks, kas ļauj vienā iekārtā instalēt un palaist vairākas programmēšanas valodas versijas. Tas ir kā rbenv vai rvm priekš Ruby vai virtualenv priekš Python, bet darbojas daudzām dažādām vidēm.
 
@@ -20,7 +20,7 @@ Lai instalētu, piemēram, Ruby, palaid `mise use -g ruby`, kas gan instalēs Ru
 
 ## Iepriekš instalēti CLI rīki
 
-Omarchy rīkus, piemēram, `gh`, `uv` un lielāko daļu [kodēšanas aģentu](17-ai.md), padara pieejamus, izmantojot [mise slinko instalēšanu](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Pirmajā palaišanas reizē mise to instalē. Turpmākajās palaišanas reizēs tiek izmantota instalētā versija; tā nepārbauda atjauninājumu katrā palaišanas reizē.
+Unbloarchy rīkus, piemēram, `gh`, `uv` un lielāko daļu [kodēšanas aģentu](17-ai.md), padara pieejamus, izmantojot [mise slinko instalēšanu](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Pirmajā palaišanas reizē mise to instalē. Turpmākajās palaišanas reizēs tiek izmantota instalētā versija; tā nepārbauda atjauninājumu katrā palaišanas reizē.
 
 Vari arī pārbaudīt noklusējumus vai instalēt tos iepriekš:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Palaid `omarchy update`, lai atjauninātu instalētos rīkus kopā ar pārējo Omarchy. Aizstājvārds `mup` atjaunina tikai mise pārvaldītos rīkus. Lai savai konfigurācijai pievienotu citu rīku, izmanto `mise use -g <tool>`.
+Palaid `unbloarchy update`, lai atjauninātu instalētos rīkus kopā ar pārējo Unbloarchy. Aizstājvārds `mup` atjaunina tikai mise pārvaldītos rīkus. Lai savai konfigurācijai pievienotu citu rīku, izmanto `mise use -g <tool>`.
 
 Python iestatīšana arī instalē `uv`, izmantojot mise. Python izstrādes vides noņemšana atstāj `uv` pieejamu kā neatkarīgu rīku.
 
@@ -47,15 +47,15 @@ Ja tev jau ir `[settings]` tabula, pievieno ierakstu tur; paplašini esošo `dis
 
 ### Noklusējumu noņemšana un atjaunošana
 
-_Remove Preinstalls_ liek mise izlaist Omarchy rīku deklarācijas tavam lietotājam, pievienojot tās `ignored_config_paths` failā `~/.config/mise/miserc.toml`. _Restore Preinstalls_ šo rindu atkal noņem. Rīki, ko deklarē tu pats savā konfigurācijā vai projekta `mise.toml`, turpina darboties jebkurā gadījumā. Ja pēc iepriekš instalēto rīku noņemšanas izvēlēsies noklusējuma aģentu vai iestatīsi Python, šis rīks tiks pievienots tavai konfigurācijai. Abas iespējas attiecas tikai uz tavu lietotāju; citi lietotāji šajā iekārtā saglabā savu izvēli.
+_Remove Preinstalls_ liek mise izlaist Unbloarchy rīku deklarācijas tavam lietotājam, pievienojot tās `ignored_config_paths` failā `~/.config/mise/miserc.toml`. _Restore Preinstalls_ šo rindu atkal noņem. Rīki, ko deklarē tu pats savā konfigurācijā vai projekta `mise.toml`, turpina darboties jebkurā gadījumā. Ja pēc iepriekš instalēto rīku noņemšanas izvēlēsies noklusējuma aģentu vai iestatīsi Python, šis rīks tiks pievienots tavai konfigurācijai. Abas iespējas attiecas tikai uz tavu lietotāju; citi lietotāji šajā iekārtā saglabā savu izvēli.
 
 ## Docker
 
-[Docker](https://www.docker.com/) diez vai vajag īpaši iepazīstināt. Tas ļauj palaist izolētus konteinerus, un Omarchy instalē visu, kas vajadzīgs tā labai darbībai, tostarp pašu Docker un [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) diez vai vajag īpaši iepazīstināt. Tas ļauj palaist izolētus konteinerus, un Unbloarchy instalē visu, kas vajadzīgs tā labai darbībai, tostarp pašu Docker un [Docker Compose](https://docs.docker.com/compose/).
 
-Pēc noklusējuma tavs lietotājs *nav* `docker` grupā. Šī grupa faktiski ir root bez paroles — jebkas tajā var palaist `docker run -v /:/host` un pārņemt iekārtu —, tāpēc viens negodīgs skripts vai atkarība, kas darbojas ar tavām tiesībām, citādi būtu tikai vienas komandas attālumā no root. Tāpēc komandrindā Docker palaiž ar `sudo` (`sudo docker ps`, `sudo docker compose up`), bet grafiskie rīki, kas sazinās ar dēmonu — Windows VM —, vajadzības gadījumā prasa autorizāciju. Ja vēlies atgūt ērtības bez grupas un saproti kompromisu, iespējo to sadaļā **Setup > Security > Sudoless Docker** (vai palaid `omarchy-setup-security-sudoless-docker`), kas pēc brīdinājuma pievienos tevi `docker` grupai; tad parastais `docker` un aizstājvārds `d` atkal darbosies bez `sudo`.
+Pēc noklusējuma tavs lietotājs *nav* `docker` grupā. Šī grupa faktiski ir root bez paroles — jebkas tajā var palaist `docker run -v /:/host` un pārņemt iekārtu —, tāpēc viens negodīgs skripts vai atkarība, kas darbojas ar tavām tiesībām, citādi būtu tikai vienas komandas attālumā no root. Tāpēc komandrindā Docker palaiž ar `sudo` (`sudo docker ps`, `sudo docker compose up`), bet grafiskie rīki, kas sazinās ar dēmonu — Windows VM —, vajadzības gadījumā prasa autorizāciju. Ja vēlies atgūt ērtības bez grupas un saproti kompromisu, iespējo to sadaļā **Setup > Security > Sudoless Docker** (vai palaid `unbloarchy-setup-security-sudoless-docker`), kas pēc brīdinājuma pievienos tevi `docker` grupai; tad parastais `docker` un aizstājvārds `d` atkal darbosies bez `sudo`.
 
-Parastās datubāzes lokālajai izstrādei Docker vari iestatīt Omarchy izvēlnē, izmantojot _Install > Development > Docker DB_.
+Parastās datubāzes lokālajai izstrādei Docker vari iestatīt Unbloarchy izvēlnē, izmantojot _Install > Development > Docker DB_.
 
 ## GitHub CLI
 

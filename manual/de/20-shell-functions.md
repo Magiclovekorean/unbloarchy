@@ -1,6 +1,6 @@
 # Shell-Funktionen
 
-Omarchy bringt eine Reihe von Shell-Funktionen mit, um häufige Aufgaben zu vereinfachen und umständliche Parameteraufrufe zu kapseln.
+Unbloarchy bringt eine Reihe von Shell-Funktionen mit, um häufige Aufgaben zu vereinfachen und umständliche Parameteraufrufe zu kapseln.
 
 ## Kompression
 

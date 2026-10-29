@@ -56,12 +56,12 @@ jq -e '
 ' "$ROOT/config/unbloarchy/shell.json" >/dev/null
 pass "default right layout keeps agents next to the tray"
 
-jq -e '.version == 1 and ([.bar.layout[("left", "centerBegin", "center", "centerEnd", "right")] | type == "array"] | all)' "$ROOT/config/omarchy/shell.json" >/dev/null
+jq -e '.version == 1 and ([.bar.layout[("left", "centerBegin", "center", "centerEnd", "right")] | type == "array"] | all)' "$ROOT/config/unbloarchy/shell.json" >/dev/null
 pass "default shell.json has versioned bar layout"
 
 # Every CLI write goes through the normalizer, which keeps every bar section a
 # list, the ones beside the center box included.
-normalized=$(OMARCHY_PATH="$ROOT" bash -c 'source "$OMARCHY_PATH/bin/omarchy-shell-config" && jq -c "$NORMALIZE | .bar.layout" <<<"{\"bar\":{\"layout\":{\"centerBegin\":null}}}"')
+normalized=$(UNBLOARCHY_PATH="$ROOT" bash -c 'source "$UNBLOARCHY_PATH/bin/unbloarchy-shell-config" && jq -c "$NORMALIZE | .bar.layout" <<<"{\"bar\":{\"layout\":{\"centerBegin\":null}}}"')
 [[ $normalized == '{"centerBegin":[],"left":[],"center":[],"centerEnd":[],"right":[]}' ]] ||
   fail "shell config normalizer keeps every bar section a list" "$normalized"
 pass "shell config normalizer keeps every bar section a list"
@@ -117,15 +117,15 @@ PY
 pass "default bar widget ids resolve to manifests and entry points"
 
 # The PKGBUILDs live in the omarchy-pkgs checkout, wherever this machine keeps it.
-if find_omarchy_pkgs; then
-  ROOT="$ROOT" OMARCHY_PKGS_ROOT="$OMARCHY_PKGS_ROOT" python3 <<'PY'
+if find_unbloarchy_pkgs; then
+  ROOT="$ROOT" UNBLOARCHY_PKGS_ROOT="$UNBLOARCHY_PKGS_ROOT" python3 <<'PY'
 import os
 import re
 import sys
 from pathlib import Path
 
 root = Path(os.environ["ROOT"])
-pkgs_root = Path(os.environ["OMARCHY_PKGS_ROOT"])
+pkgs_root = Path(os.environ["UNBLOARCHY_PKGS_ROOT"])
 settings_pkgbuild_path = pkgs_root / "omarchy-settings/PKGBUILD"
 omarchy_pkgbuild_path = pkgs_root / "omarchy/PKGBUILD"
 if not settings_pkgbuild_path.exists():
@@ -146,15 +146,15 @@ package_defaults = [
   ("default/systemd/user/bt-agent.service", "/usr/lib/systemd/user/bt-agent.service", "systemd/user/bt-agent.service"),
   ("default/systemd/user/omarchy-sleep-lock.service", "/usr/lib/systemd/user/omarchy-sleep-lock.service", "systemd/user/omarchy-sleep-lock.service"),
   ("default/systemd/user/omarchy-recover-internal-monitor.service", "/usr/lib/systemd/user/omarchy-recover-internal-monitor.service", "systemd/user/omarchy-recover-internal-monitor.service"),
-  ("default/systemd/user/omarchy-migrate-notify.service", "/usr/lib/systemd/user/omarchy-migrate-notify.service", "systemd/user/omarchy-migrate-notify.service"),
-  ("default/systemd/user/omarchy-tailscale-receive.service", "/usr/lib/systemd/user/omarchy-tailscale-receive.service", "systemd/user/omarchy-tailscale-receive.service"),
-  ("default/systemd/user/omarchy-fcitx5.service", "/usr/lib/systemd/user/omarchy-fcitx5.service", "systemd/user/omarchy-fcitx5.service"),
-  ("default/systemd/user/omarchy-crash-watch.service", "/usr/lib/systemd/user/omarchy-crash-watch.service", "systemd/user/omarchy-crash-watch.service"),
-  ("default/systemd/zram-generator.conf.d/90-omarchy.conf", "/usr/lib/systemd/zram-generator.conf.d/90-omarchy.conf", "systemd/zram-generator.conf.d/90-omarchy.conf"),
-  ("default/systemd/timesyncd.conf.d/10-omarchy.conf", "/usr/lib/systemd/timesyncd.conf.d/10-omarchy.conf", "systemd/timesyncd.conf.d/10-omarchy.conf"),
-  ("default/systemd/system/plocate-updatedb.service.d/10-omarchy.conf", "/usr/lib/systemd/system/plocate-updatedb.service.d/10-omarchy.conf", "systemd/system/plocate-updatedb.service.d/10-omarchy.conf"),
-  ("default/fonts/omarchy/omarchy.ttf", "/usr/share/fonts/omarchy/omarchy.ttf", "omarchy.ttf"),
-  ("default/snapper/root", "/etc/snapper/config-templates/omarchy", "snapper/root"),
+  ("default/systemd/user/omarchy-migrate-notify.service", "/usr/lib/systemd/user/unbloarchy-migrate-notify.service", "systemd/user/unbloarchy-migrate-notify.service"),
+  ("default/systemd/user/omarchy-tailscale-receive.service", "/usr/lib/systemd/user/unbloarchy-tailscale-receive.service", "systemd/user/unbloarchy-tailscale-receive.service"),
+  ("default/systemd/user/omarchy-fcitx5.service", "/usr/lib/systemd/user/unbloarchy-fcitx5.service", "systemd/user/unbloarchy-fcitx5.service"),
+  ("default/systemd/user/omarchy-crash-watch.service", "/usr/lib/systemd/user/unbloarchy-crash-watch.service", "systemd/user/unbloarchy-crash-watch.service"),
+  ("default/systemd/zram-generator.conf.d/90-omarchy.conf", "/usr/lib/systemd/zram-generator.conf.d/90-unbloarchy.conf", "systemd/zram-generator.conf.d/90-unbloarchy.conf"),
+  ("default/systemd/timesyncd.conf.d/10-unbloarchy.conf", "/usr/lib/systemd/timesyncd.conf.d/10-unbloarchy.conf", "systemd/timesyncd.conf.d/10-unbloarchy.conf"),
+  ("default/systemd/system/plocate-updatedb.service.d/10-unbloarchy.conf", "/usr/lib/systemd/system/plocate-updatedb.service.d/10-unbloarchy.conf", "systemd/system/plocate-updatedb.service.d/10-unbloarchy.conf"),
+  ("default/fonts/omarchy/omarchy.ttf", "/usr/share/fonts/omarchy/omarchy.ttf", "unbloarchy.ttf"),
+  ("default/snapper/root", "/etc/snapper/config-templates/unbloarchy", "snapper/root"),
 ]
 
 for source, destination, legacy in package_defaults:
@@ -264,7 +264,7 @@ if errors:
 PY
   pass "package-owned defaults live outside config"
 else
-  skip "package-owned defaults live outside config: needs the omarchy-pkgs checkout; set OMARCHY_PKGS_PATH to it"
+  skip "package-owned defaults live outside config: needs the omarchy-pkgs checkout; set UNBLOARCHY_PKGS_PATH to it"
 fi
 
 UNBLOARCHY_PATH="$ROOT" lua <<'LUA'
@@ -285,7 +285,7 @@ LUA
 pass "Hyprland bootstrap reloads cached Unbloarchy config modules"
 
 TMPDIR=$(mktemp -d)
-mkdir -p "$TMPDIR/home/.config/omarchy"
+mkdir -p "$TMPDIR/home/.config/unbloarchy"
 # The bar keeps its blur toggle where Hyprland reads it, under XDG_STATE_HOME,
 # so that points into the test home too.
 export XDG_STATE_HOME="$TMPDIR/home/.local/state"
@@ -375,27 +375,27 @@ jq -e '
 ' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null
 pass "shell config sets bar transparency"
 
-HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar transparent toggle
-jq -e '.bar.background == "opaque"' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null
+HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar transparent toggle
+jq -e '.bar.background == "opaque"' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null
 pass "shell config toggles bar transparency"
 
 # The bar background is opaque, glassy or none. A glassy bar needs Hyprland's
 # blur, so the bar-glassy toggle follows it.
 printf '#!/bin/bash\nprintf "%%s\\n" "$*" >>"%s/hyprctl.log"\n' "$TMPDIR" >"$ipc_mock_bin/hyprctl"
 chmod +x "$ipc_mock_bin/hyprctl"
-glass_toggle="$TMPDIR/home/.local/state/omarchy/toggles/hypr/bar-glassy.lua"
-bar_background() { HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar background "$@"; }
+glass_toggle="$TMPDIR/home/.local/state/unbloarchy/toggles/hypr/bar-glassy.lua"
+bar_background() { HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar background "$@"; }
 
 bar_background opaque >/dev/null
 [[ $(bar_background) == "opaque" ]] || fail "an opaque bar background is reported"
 bar_background glassy >/dev/null
-jq -e '.bar.background == "glassy"' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null ||
+jq -e '.bar.background == "glassy"' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null ||
   fail "shell config sets a glassy bar"
 [[ $(bar_background) == "glassy" ]] || fail "a glassy bar background is reported"
 [[ -f $glass_toggle ]] || fail "a glassy bar turns on Hyprland's blur behind it"
 grep -qx 'reload' "$TMPDIR/hyprctl.log" || fail "a glassy bar reloads Hyprland"
 bar_background none >/dev/null
-jq -e '.bar.background == "none"' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null ||
+jq -e '.bar.background == "none"' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null ||
   fail "a bar without a background is stored as none"
 [[ ! -f $glass_toggle ]] || fail "a bar without a background turns Hyprland's blur off again"
 pass "shell config sets the bar background, and Hyprland's blur follows a glassy one"
@@ -416,17 +416,17 @@ pass "the bar background cycles through its looks and refuses unknown ones"
 
 # transparent stays for scripts written against it: true is none, false opaque.
 bar_background glassy >/dev/null
-HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar transparent true >/dev/null
+HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar transparent true >/dev/null
 [[ $(bar_background) == "none" ]] || fail "transparent true leaves the bar without a background"
-HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar transparent toggle >/dev/null
+HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar transparent toggle >/dev/null
 [[ $(bar_background) == "opaque" ]] || fail "toggling transparency off makes the bar opaque"
 # A shell.json from before background says transparent, which reads as none
 # and is dropped once a background is set.
-jq '.bar.transparent = true | del(.bar.background)' "$TMPDIR/home/.config/omarchy/shell.json" >"$TMPDIR/legacy.json" &&
-  mv "$TMPDIR/legacy.json" "$TMPDIR/home/.config/omarchy/shell.json"
+jq '.bar.transparent = true | del(.bar.background)' "$TMPDIR/home/.config/unbloarchy/shell.json" >"$TMPDIR/legacy.json" &&
+  mv "$TMPDIR/legacy.json" "$TMPDIR/home/.config/unbloarchy/shell.json"
 [[ $(bar_background) == "none" ]] || fail "an older transparent bar reads as no background"
 bar_background glassy >/dev/null
-jq -e '.bar.background == "glassy" and (.bar | has("transparent") | not)' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null ||
+jq -e '.bar.background == "glassy" and (.bar | has("transparent") | not)' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null ||
   fail "setting a background drops the older transparent flag"
 pass "the older transparent form still sets and reads as the bar background"
 
@@ -434,18 +434,18 @@ pass "the older transparent form still sets and reads as the bar background"
 # behind a glassy one goes with it.
 bar_background glassy >/dev/null
 [[ -f $glass_toggle ]] || fail "a glassy bar has its blur on before defaults"
-HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar defaults >/dev/null
-[[ $(bar_background) == "opaque" && ! -f $glass_toggle ]] || fail "omarchy bar defaults turns a glassy bar's blur off"
+HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar defaults >/dev/null
+[[ $(bar_background) == "opaque" && ! -f $glass_toggle ]] || fail "unbloarchy bar defaults turns a glassy bar's blur off"
 pass "restoring the default bar turns a glassy bar's blur off"
 
 # A background set by editing shell.json gets its blur when the shell syncs it.
-jq '.bar.background = "glassy"' "$TMPDIR/home/.config/omarchy/shell.json" >"$TMPDIR/edited.json" &&
-  mv "$TMPDIR/edited.json" "$TMPDIR/home/.config/omarchy/shell.json"
-HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar sync-glass
+jq '.bar.background = "glassy"' "$TMPDIR/home/.config/unbloarchy/shell.json" >"$TMPDIR/edited.json" &&
+  mv "$TMPDIR/edited.json" "$TMPDIR/home/.config/unbloarchy/shell.json"
+HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar sync-glass
 [[ -f $glass_toggle ]] || fail "syncing a hand-edited glassy bar turns its blur on"
-jq '.bar.background = "opaque"' "$TMPDIR/home/.config/omarchy/shell.json" >"$TMPDIR/edited.json" &&
-  mv "$TMPDIR/edited.json" "$TMPDIR/home/.config/omarchy/shell.json"
-HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar sync-glass
+jq '.bar.background = "opaque"' "$TMPDIR/home/.config/unbloarchy/shell.json" >"$TMPDIR/edited.json" &&
+  mv "$TMPDIR/edited.json" "$TMPDIR/home/.config/unbloarchy/shell.json"
+HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar sync-glass
 [[ ! -f $glass_toggle ]] || fail "syncing a hand-edited opaque bar turns its blur off"
 pass "a bar background edited into shell.json gets its blur synced"
 
@@ -460,9 +460,9 @@ chmod u+w "$toggles_dir"
 [[ $(bar_background) == "opaque" && ! -f $glass_toggle ]] || fail "a bar whose blur can't be turned on keeps its old background" "$(bar_background)"
 pass "a bar whose blur can't change keeps its old background"
 
-HOME="$TMPDIR/home" OMARCHY_PATH="$ROOT" omarchy-bar set omarchy.bluetooth enabled false --json
-grep -Fqx 'shell setBarWidget omarchy.bluetooth enabled false {}' \
-  "$TMPDIR/home/.local/state/omarchy/shell-ipc-calls"
+HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar set unbloarchy.bluetooth enabled false --json
+grep -Fqx 'shell setBarWidget unbloarchy.bluetooth enabled false {}' \
+  "$TMPDIR/home/.local/state/unbloarchy/shell-ipc-calls"
 pass "bar set accepts false JSON values"
 
 HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" unbloarchy-bar set unbloarchy.bluetooth optional null --json
@@ -535,11 +535,11 @@ HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" PATH="$mock_path" UNBLOARCHY_TEST_DR
 jq -e '
   def ids: map(.id // .);
   (.bar.layout.right | ids) as $right |
-  ($right | index("omarchy.tray")) as $tray |
-  ($right | index("omarchy.tailscale") == $tray + 1) and
-  ($right | index("omarchy.dropbox") == $tray + 2) and
-  ([.bar.layout[]] | map(ids) | add | map(select(. == "omarchy.tailscale")) | length == 1)
-' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null
+  ($right | index("unbloarchy.tray")) as $tray |
+  ($right | index("unbloarchy.tailscale") == $tray + 1) and
+  ($right | index("unbloarchy.dropbox") == $tray + 2) and
+  ([.bar.layout[]] | map(ids) | add | map(select(. == "unbloarchy.tailscale")) | length == 1)
+' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null
 pass "bar defaults places plugins for running optional services"
 
 HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" PATH="$mock_path" \
@@ -548,30 +548,30 @@ HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" PATH="$mock_path" \
 jq -e '
   def ids: map(.id // .);
   (.bar.layout.right | ids) as $right |
-  ($right | index("omarchy.tray")) as $tray |
-  ($right | index("omarchy.tailscale") == $tray + 1) and
-  ($right | index("omarchy.dropbox") == $tray + 2) and
-  ([.bar.layout[]] | map(ids) | add | map(select(. == "omarchy.tailscale")) | length == 1)
-' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null
+  ($right | index("unbloarchy.tray")) as $tray |
+  ($right | index("unbloarchy.tailscale") == $tray + 1) and
+  ($right | index("unbloarchy.dropbox") == $tray + 2) and
+  ([.bar.layout[]] | map(ids) | add | map(select(. == "unbloarchy.tailscale")) | length == 1)
+' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null
 pass "bar defaults places service widgets without a running shell"
 
 HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" PATH="$mock_path" UNBLOARCHY_TEST_DROPBOX=0 UNBLOARCHY_TEST_TAILSCALE=0 unbloarchy-refresh-shell
 jq -e '
   def ids: map(.id // .);
   ([.bar.layout[]] | map(ids) | add) as $all |
-  ($all | index("omarchy.dropbox") == null) and
-  ($all | index("omarchy.tailscale") == null)
-' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null
+  ($all | index("unbloarchy.dropbox") == null) and
+  ($all | index("unbloarchy.tailscale") == null)
+' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null
 pass "shell refresh keeps optional service widgets absent when services are unavailable"
 
 HOME="$TMPDIR/home" UNBLOARCHY_PATH="$ROOT" PATH="$mock_path" UNBLOARCHY_TEST_DROPBOX=1 UNBLOARCHY_TEST_TAILSCALE=1 unbloarchy-refresh-shell
 jq -e '
   def ids: map(.id // .);
   (.bar.layout.right | ids) as $right |
-  ($right | index("omarchy.tray")) as $tray |
-  ($right | index("omarchy.tailscale") == $tray + 1) and
-  ($right | index("omarchy.dropbox") == $tray + 2) and
-  ([.bar.layout[]] | map(ids) | add | map(select(. == "omarchy.tailscale")) | length == 1)
-' "$TMPDIR/home/.config/omarchy/shell.json" >/dev/null
-[[ -f $TMPDIR/home/.local/state/omarchy/restart-shell-called ]] || fail "shell refresh restarts shell"
+  ($right | index("unbloarchy.tray")) as $tray |
+  ($right | index("unbloarchy.tailscale") == $tray + 1) and
+  ($right | index("unbloarchy.dropbox") == $tray + 2) and
+  ([.bar.layout[]] | map(ids) | add | map(select(. == "unbloarchy.tailscale")) | length == 1)
+' "$TMPDIR/home/.config/unbloarchy/shell.json" >/dev/null
+[[ -f $TMPDIR/home/.local/state/unbloarchy/restart-shell-called ]] || fail "shell refresh restarts shell"
 pass "shell refresh places optional service widgets when services are available"

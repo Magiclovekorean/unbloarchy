@@ -191,7 +191,7 @@ PanelWindow {
 
   visible: !remapGuard.remapping
   color: "transparent"
-  WlrLayershell.namespace: "omarchy-dock"
+  WlrLayershell.namespace: "unbloarchy-dock"
   WlrLayershell.layer: WlrLayer.Top
   WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
   // Kept clear of the bar's reserved edge, without reserving one of its own:
@@ -561,7 +561,7 @@ PanelWindow {
           visible: window.settingsMenu
           text: modelData[1]
           checked: window.position === modelData[0]
-          onTriggered: Util.execDetached("omarchy-dock position " + modelData[0])
+          onTriggered: Util.execDetached("unbloarchy-dock position " + modelData[0])
         }
       }
 
@@ -569,7 +569,7 @@ PanelWindow {
         visible: window.settingsMenu
         text: Commons.I18n.t("dock.autoHide")
         checked: window.autohide
-        onTriggered: Util.execDetached("omarchy-dock autohide " + (window.autohide ? "off" : "on"))
+        onTriggered: Util.execDetached("unbloarchy-dock autohide " + (window.autohide ? "off" : "on"))
       }
 
       MenuRow {

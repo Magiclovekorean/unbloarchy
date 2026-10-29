@@ -2,7 +2,7 @@
 
 Na Linuxu obvykle potřebujete `Ctrl + Shift + C/V` ke kopírování a vkládání v terminálu a `Ctrl + C/V` všude jinde. Pro každého, kdo se na Linuxu nenarodil a nevyrostl na něm, je na to těžké si zvyknout! Stejně tak na přechod ze Super na Ctrl, pokud přecházíte z Macu.
 
-Omarchy řeší oba problémy sjednocenými klávesovými zkratkami schránky, které fungují (téměř) všude. Jsou to:
+Unbloarchy řeší oba problémy sjednocenými klávesovými zkratkami schránky, které fungují (téměř) všude. Jsou to:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Pomocí `Super + A` a poté `Super + C` zkopírujete vše ve zaměřeném textov
 
 ### Historie schránky
 
-Historii schránky poskytuje shell Omarchy a funguje pro text i obrázky. Vyvoláte ji pomocí `Super + Ctrl + V`, vyberete položku klávesou Return a ta pak bude umístěna do schránky připravená k vložení pomocí `Super + V`.
+Historii schránky poskytuje shell Unbloarchy a funguje pro text i obrázky. Vyvoláte ji pomocí `Super + Ctrl + V`, vyberete položku klávesou Return a ta pak bude umístěna do schránky připravená k vložení pomocí `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

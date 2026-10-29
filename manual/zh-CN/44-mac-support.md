@@ -1,16 +1,16 @@
 # Mac 支持
 
-Omarchy 内置支持 **Intel Mac**。目前有几个已知的限制，但只要你了解这些限制并能接受，你就可以通过安装 Omarchy 为你的旧 Mac 注入新的活力。
+Unbloarchy 内置支持 **Intel Mac**。目前有几个已知的限制，但只要你了解这些限制并能接受，你就可以通过安装 Unbloarchy 为你的旧 Mac 注入新的活力。
 
 请注意，目前还不直接支持在 M 系列 Mac 上安装。你可以在我们的 [Discord](https://discord.gg/tXFUdasqhY) 的 #omarchy-on-other 频道中了解更多关于其状态的信息。
 
-在一次简单测试中，仅仅安装 Omarchy，我们在一台 2019 年的 MacBook Pro 上就获得了 36% 的性能提升。
+在一次简单测试中，仅仅安装 Unbloarchy，我们在一台 2019 年的 MacBook Pro 上就获得了 36% 的性能提升。
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### 在 Mac 上安装 Omarchy
+### 在 Mac 上安装 Unbloarchy
 
-Omarchy 目前只支持作为**唯一**已安装的操作系统。在安装过程中，硬盘将被擦除，MacOS 将不再可启动。
+Unbloarchy 目前只支持作为**唯一**已安装的操作系统。在安装过程中，硬盘将被擦除，MacOS 将不再可启动。
 
 如果需要，你仍然可以稍后通过 Internet Recovery 将其恢复。
 

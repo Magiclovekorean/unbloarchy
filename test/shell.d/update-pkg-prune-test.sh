@@ -22,7 +22,7 @@ SH
 }
 
 run_pkg_prune() {
-  PATH="$stub_bin:$PATH" "$ROOT/bin/omarchy-update-pkg-prune"
+  PATH="$stub_bin:$PATH" "$ROOT/bin/unbloarchy-update-pkg-prune"
 }
 
 # Pin the keep count above one.

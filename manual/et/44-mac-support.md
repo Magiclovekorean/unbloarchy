@@ -1,16 +1,16 @@
 # Maci tugi
 
-Omarchyl on sisseehitatud tugi **Inteli Macidele**. Praegu on paar teadaolevat piirangut, aga kui oled neist teadlik ja nendega nõus, saad oma vanadele Macidele Omarchy laadimisega uue elu sisse puhuda.
+Unbloarchyl on sisseehitatud tugi **Inteli Macidele**. Praegu on paar teadaolevat piirangut, aga kui oled neist teadlik ja nendega nõus, saad oma vanadele Macidele Unbloarchy laadimisega uue elu sisse puhuda.
 
-Pane tähele, et M-seeria Macile paigaldamine pole praegu otse toetatud. Selle seisu kohta saad rohkem teada meie [Discordis](https://discord.gg/tXFUdasqhY) kanalis #omarchy-on-other.
+Pane tähele, et M-seeria Macile paigaldamine pole praegu otse toetatud. Selle seisu kohta saad rohkem teada meie [Discordis](https://discord.gg/tXFUdasqhY) kanalis #unbloarchy-on-other.
 
-Lihtsas testis saavutasime 2019. aasta MacBook Prol 36% jõudluse kasvu lihtsalt Omarchy paigaldamisega.
+Lihtsas testis saavutasime 2019. aasta MacBook Prol 36% jõudluse kasvu lihtsalt Unbloarchy paigaldamisega.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Omarchy paigaldamine Macile
+### Unbloarchy paigaldamine Macile
 
-Omarchy toetab praegu ainult **ühe** paigaldatud operatsioonisüsteemi olemist. Paigaldamise ajal ketas pühitakse ja MacOS pole enam alglaaditav.
+Unbloarchy toetab praegu ainult **ühe** paigaldatud operatsioonisüsteemi olemist. Paigaldamise ajal ketas pühitakse ja MacOS pole enam alglaaditav.
 
 Soovi korral saad selle hiljem Internet Recovery kaudu ikka taastada.
 

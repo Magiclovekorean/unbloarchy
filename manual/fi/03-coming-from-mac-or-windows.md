@@ -1,12 +1,12 @@
 # Tuletko Macista tai Windowsista
 
-Jos olet viettänyt vuosia macOS:n tai Windowsin parissa, sormesi tietävät sata asiaa, jotka aivosi ovat unohtaneet koskaan oppineensa. Tämä luku on käännöskerros: mihin nuo vaistot menevät Omarchyssa. Ominaisuudet itsessään käsitellään perusteellisesti muualla — tämä on vain kartta.
+Jos olet viettänyt vuosia macOS:n tai Windowsin parissa, sormesi tietävät sata asiaa, jotka aivosi ovat unohtaneet koskaan oppineensa. Tämä luku on käännöskerros: mihin nuo vaistot menevät Unbloarchyssa. Ominaisuudet itsessään käsitellään perusteellisesti muualla — tämä on vain kartta.
 
 ### Super on kaiken keskipiste
 
-Kaikki Cmd:n tai Windows-näppäimen ympärille rakentamasi lihasmuisti siirtyy yhdelle näppäimelle: Super. Se on PC-näppäimistön Windows-näppäin, ja se on lähes jokaisen Omarchyn pikanäppäimen ankkuri.
+Kaikki Cmd:n tai Windows-näppäimen ympärille rakentamasi lihasmuisti siirtyy yhdelle näppäimelle: Super. Se on PC-näppäimistön Windows-näppäin, ja se on lähes jokaisen Unbloarchyn pikanäppäimen ankkuri.
 
-Spotlight-, Raycast- tai Käynnistä-valikkorefleksistäsi tulee `Super + Space`. Se avaa Omarchy-valikon, joka käynnistää sovelluksia, muuttaa asetuksia, asentaa ohjelmistoja, kaappaa näytön — melkein kaiken. Ala kirjoittaa suodattaaksesi. `Super + Alt + Space` näyttää jokaisen sovelluksen yhdessä ruudukossa, niin kuin Launchpad tekee. Katso [navigointi](04-navigation.md).
+Spotlight-, Raycast- tai Käynnistä-valikkorefleksistäsi tulee `Super + Space`. Se avaa Unbloarchy-valikon, joka käynnistää sovelluksia, muuttaa asetuksia, asentaa ohjelmistoja, kaappaa näytön — melkein kaiken. Ala kirjoittaa suodattaaksesi. `Super + Alt + Space` näyttää jokaisen sovelluksen yhdessä ruudukossa, niin kuin Launchpad tekee. Katso [navigointi](04-navigation.md).
 
 ### Telakkaa ja työpöytäkuvakkeita ei ole
 
@@ -22,27 +22,27 @@ Työtilat tuntuvat tutuilta: ne ovat macOS:n Spaces tai Windowsin virtuaalityöp
 
 ### Kopiointi ja liittäminen vain toimivat
 
-Macilla sinulla oli Cmd + C kaikkialla. Windowsilla sinulla oli Ctrl + C kaikkialla — paitsi terminaalissa, jossa se tappaa ohjelmasi. Omarchy antaa sinulle `Super + C`, `Super + X` ja `Super + V`, ja ne toimivat kaikkialla, myös terminaalissa. Ei erillistä refleksiä opittavaksi komentotulkille.
+Macilla sinulla oli Cmd + C kaikkialla. Windowsilla sinulla oli Ctrl + C kaikkialla — paitsi terminaalissa, jossa se tappaa ohjelmasi. Unbloarchy antaa sinulle `Super + C`, `Super + X` ja `Super + V`, ja ne toimivat kaikkialla, myös terminaalissa. Ei erillistä refleksiä opittavaksi komentotulkille.
 
 Windows-väki: Win + V -leikepöytähistoriasi on kohdassa `Super + Ctrl + V`, ja se säilyttää kuvien lisäksi myös tekstiä. Katso [yhtenäinen leikepöytä ja historia](08-unified-clipboard-history.md).
 
 ### Käännöstaulukko
 
-| Etsit tätä | Omarchyssa |
+| Etsit tätä | Unbloarchyssa |
 | ------------- | ---------- |
-| Spotlight / Raycast / Käynnistä-valikko | `Super + Space` — Omarchy-valikko |
+| Spotlight / Raycast / Käynnistä-valikko | `Super + Space` — Unbloarchy-valikko |
 | AirDrop | LocalSend, kautta `Super + Ctrl + S` — katso [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` tai `Print Screen` — katso [kuvakaappaukset ja tallennus](12-screenshots-recording.md) |
 | Ilmoituskeskus | Ilmoitushistoria kohdassa `Super + Shift + Alt + ,` |
 | Time Machine (järjestelmälle) | Automaattiset [järjestelmän tilannevedokset](47-system-snapshots.md) jokaisella päivityksellä |
-| App Store / asennusohjelman lataaminen | _Install_ valikossa tai `omarchy pkg add` — katso [muut paketit](29-other-packages.md) |
+| App Store / asennusohjelman lataaminen | _Install_ valikossa tai `unbloarchy pkg add` — katso [muut paketit](29-other-packages.md) |
 | Järjestelmäasetukset / Ohjauspaneeli | _Setup_ valikossa, joka muokkaa tavallisia asetustiedostoja — katso [dotfiles](31-dotfiles.md) |
 
 ### Jotkin asiat todella ovat toisin
 
 Monet asetukset ovat muokattavissa tekstitiedostoissa, eivät klikkailtavissa paneeleissa. Se kuulostaa alkeelliselta, kunnes tajuat, että se tarkoittaa, että jokainen muutos voidaan nähdä, kopioida seuraavalle koneellesi ja laittaa versionhallintaan. _Setup_-valikko pudottaa sinut suoraan oikeaan tiedostoon ja käynnistää uudelleen sen, mikä on käynnistettävä uudelleen, kun olet valmis.
 
-Päivitykset tulevat yhden komennon kautta — _Update > Omarchy_ — joka päivittää Omarchyn itsensä ja jokaisen järjestelmän paketin ja ottaa ensin tilannevedoksen. Ei yksittäisten sovellusten päivittäjiä nalkuttamassa sinulle satunnaisesti. Katso [päivitykset](30-updates.md).
+Päivitykset tulevat yhden komennon kautta — _Update > Unbloarchy_ — joka päivittää Unbloarchyn itsensä ja jokaisen järjestelmän paketin ja ottaa ensin tilannevedoksen. Ei yksittäisten sovellusten päivittäjiä nalkuttamassa sinulle satunnaisesti. Katso [päivitykset](30-updates.md).
 
 Ohjelmistot tulevat paketinhallinnasta, eivät ladatuista asennusohjelmista.
 
@@ -50,7 +50,7 @@ Ja kun suljet ikkunan, sovellus todella sulkeutuu. Ei ole macOS-limboaa, jossa o
 
 ### Mac-laitteistolla
 
-Omarchy toimii hyvin Intel-Maceilla — katso [Mac-tuki](44-mac-support.md). Ja näppäimistö on sinulle ystävällinen: Omarchy ei määritä mitään uudelleen, ja Linux käsittelee Command-näppäintä Superina, joten Super on juuri siellä, missä Cmd aina oli. Peukalosi ei huomaa siirtoa.
+Unbloarchy toimii hyvin Intel-Maceilla — katso [Mac-tuki](44-mac-support.md). Ja näppäimistö on sinulle ystävällinen: Unbloarchy ei määritä mitään uudelleen, ja Linux käsittelee Command-näppäintä Superina, joten Super on juuri siellä, missä Cmd aina oli. Peukalosi ei huomaa siirtoa.
 
 ### Anna sille kaksi viikkoa
 

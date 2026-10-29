@@ -1,7 +1,7 @@
 {
   "name": "workspace-switch-move-and-silent-move",
   "kind": "resume",
-  "context": "From the desktop please do the following:\n\n- Super+0 is workspace 10.\n- Super+Shift+Alt+4 is `<M-S-A-4>`.\n- The workspace indicators sit right of the Omarchy logo. Workspaces 1–5 are always in the bar, dimmed when empty; 6–10 appear only while they are showing or hold a window. The focused workspace shows a symbol instead of its number, and workspace 10 is labelled `0`.",
+  "context": "From the desktop please do the following:\n\n- Super+0 is workspace 10.\n- Super+Shift+Alt+4 is `<M-S-A-4>`.\n- The workspace indicators sit right of the Unbloarchy logo. Workspaces 1–5 are always in the bar, dimmed when empty; 6–10 appear only while they are showing or hold a window. The focused workspace shows a symbol instead of its number, and workspace 10 is labelled `0`.",
   "steps": [
     "Press Super+Return. A terminal opens on workspace 1.",
     "Type `echo MOVER` and press Return. The line `MOVER` appears and the bar marks workspace 1 as focused.",

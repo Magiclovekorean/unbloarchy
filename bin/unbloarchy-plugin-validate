@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# omarchy:summary=Validate a plugin folder against the Omarchy plugin manifest schema
-# omarchy:group=plugin
-# omarchy:args=<plugin-folder>
-# omarchy:examples=omarchy plugin validate ./my-plugin
+# unbloarchy:summary=Validate a plugin folder against the Unbloarchy plugin manifest schema
+# unbloarchy:group=plugin
+# unbloarchy:args=<plugin-folder>
+# unbloarchy:examples=unbloarchy plugin validate ./my-plugin
 
 # Mirrors the checks in shell/services/PluginRegistry.qml so the CLI refuses to
 # install anything the running shell would silently reject (or worse, load
@@ -12,13 +12,13 @@
 set -o pipefail
 
 fail() {
-  echo "omarchy-plugin-validate: $*" >&2
+  echo "unbloarchy-plugin-validate: $*" >&2
   exit 1
 }
 
 if [[ ${1:-} == -h || ${1:-} == --help ]]; then
   cat <<USAGE
-Usage: omarchy plugin validate <plugin-folder>
+Usage: unbloarchy plugin validate <plugin-folder>
 
 Checks a plugin folder's manifest.json against the schema the shell enforces:
 schemaVersion, required fields, safe relative entry points that exist, an entry
@@ -50,7 +50,7 @@ ID=$(jq -r '.id // ""' "$MANIFEST")
 [[ -n $ID ]] || fail "manifest 'id' is empty"
 [[ $ID =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || fail "invalid plugin id '$ID'"
 [[ $ID != *".."* ]] || fail "invalid plugin id '$ID'"
-[[ $ID != omarchy.* ]] || fail "plugin id '$ID' uses the reserved omarchy.* namespace"
+[[ $ID != unbloarchy.* ]] || fail "plugin id '$ID' uses the reserved unbloarchy.* namespace"
 
 # kinds must be a non-empty array.
 jq -e '(.kinds | type) == "array" and (.kinds | length) > 0' "$MANIFEST" >/dev/null 2>&1 \

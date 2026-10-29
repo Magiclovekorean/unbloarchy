@@ -42,7 +42,7 @@ JS
 
 # The browser must open the URL NetworkManager probes, or a portal that only
 # intercepts the probed host would never show its sign-in page.
-nm_conf="$ROOT/etc/NetworkManager/conf.d/omarchy-connectivity.conf"
+nm_conf="$ROOT/etc/NetworkManager/conf.d/unbloarchy-connectivity.conf"
 nm_uri=$(sed -n 's/^uri=//p' "$nm_conf")
 panel_uri=$(sed -n 's/^var captivePortalUrl = "\(.*\)"$/\1/p' "$ROOT/shell/plugins/panels/network/Model.js")
 [[ -n $nm_uri && $nm_uri == "$panel_uri" ]] || fail "NetworkManager probes the URL the panel opens ($nm_uri vs $panel_uri)"

@@ -13,15 +13,15 @@ SHELL_TEST_DIR="$ROOT/test/shell.d"
 export ROOT
 
 # Commands under test belong to this checkout, never to the one the running
-# session points OMARCHY_PATH at; the agent usage collectors load their
+# session points UNBLOARCHY_PATH at; the agent usage collectors load their
 # shared module from it.
-export OMARCHY_PATH=$ROOT
+export UNBLOARCHY_PATH=$ROOT
 
 # Commands print user-facing text in the language picked under Setup >
 # Language, so pin tests to English (a missing file means English) rather than
 # whatever the machine running them is set to. Tests of other languages point
 # this at a file of their own.
-export OMARCHY_LANGUAGE_FILE=$ROOT/test/.no-language
+export UNBLOARCHY_LANGUAGE_FILE=$ROOT/test/.no-language
 
 # Tests point HOME at a scratch directory, but a desktop session also exports
 # the XDG base directories, which would keep pointing at the real home: a
@@ -31,7 +31,7 @@ unset XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME
 
 # Run from inside an agent session, the agent's own account home would leak
 # into tests of agent accounts the same way.
-unset CLAUDE_CONFIG_DIR CODEX_HOME GROK_HOME OMARCHY_AGENT_CLAUDE_HOME OMARCHY_AGENT_CODEX_HOME OMARCHY_AGENT_GROK_HOME
+unset CLAUDE_CONFIG_DIR CODEX_HOME GROK_HOME UNBLOARCHY_AGENT_CLAUDE_HOME UNBLOARCHY_AGENT_CODEX_HOME UNBLOARCHY_AGENT_GROK_HOME
 
 pass() {
   printf 'ok - %s\n' "$1"
@@ -50,13 +50,13 @@ fail() {
   exit 1
 }
 
-# The IPC socket a shell running an OMARCHY_PATH's config on this display
-# serves, derived as omarchy-shell derives it. A test that starts the real
+# The IPC socket a shell running an UNBLOARCHY_PATH's config on this display
+# serves, derived as unbloarchy-shell derives it. A test that starts the real
 # shell removes it afterwards: killing the shell leaves the file behind.
 shell_ipc_socket() {
   local id
   id=$(printf '%s\n%s' "$1/shell" "${WAYLAND_DISPLAY:-}" | md5sum)
-  printf '%s/omarchy-shell-%s.sock\n' "${XDG_RUNTIME_DIR:-/run/user/$UID}" "${id:0:16}"
+  printf '%s/unbloarchy-shell-%s.sock\n' "${XDG_RUNTIME_DIR:-/run/user/$UID}" "${id:0:16}"
 }
 
 require_command() {
@@ -85,7 +85,7 @@ compositor_reachable() {
   [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]] || return 0
 
   # Hyprland can miss a query while it reconfigures outputs, and one miss is not
-  # a dead compositor; retry the way omarchy-launch-shell does rather than
+  # a dead compositor; retry the way unbloarchy-launch-shell does rather than
   # discard a whole file's runtime coverage. Only a leftover socket gets this
   # far, so the waiting is rare.
   local attempt
@@ -153,7 +153,7 @@ qml_fixture_scratch() {
 
 # Runs test/shell.d/fixtures/<fixture>/*.qml as a Quickshell config, with each
 # further argument (Ui, Commons, services) linked in from $ROOT/shell, and
-# passes when the fixture writes {"ok": true} to $OMARCHY_QML_TEST_RESULT.
+# passes when the fixture writes {"ok": true} to $UNBLOARCHY_QML_TEST_RESULT.
 # Fails with the fixture's result and log otherwise. Extra environment for the
 # fixture goes before the call (FOO=bar run_qml_fixture ...). Quickshell keeps
 # running until exit, and its log stays at $QML_FIXTURE_LOG for later checks.
@@ -178,8 +178,8 @@ run_qml_fixture() {
     ln -s "$ROOT/shell/$link" "$config_dir/$link"
   done
 
-  OMARCHY_PATH="$ROOT" \
-  OMARCHY_QML_TEST_RESULT="$result" \
+  UNBLOARCHY_PATH="$ROOT" \
+  UNBLOARCHY_QML_TEST_RESULT="$result" \
   HOME="$QML_FIXTURE_TMP/home" \
   XDG_CONFIG_HOME="$QML_FIXTURE_TMP/home/.config" \
   XDG_CACHE_HOME="$QML_FIXTURE_TMP/home/.cache" \
@@ -215,9 +215,9 @@ run_qml_fixture() {
   pass "$description"
 }
 
-# A second Omarchy shell on a scratch copy of this checkout's shell/, with a
+# A second Unbloarchy shell on a scratch copy of this checkout's shell/, with a
 # scratch HOME, for tests that drive or time the real shell. setup_scratch_shell
-# builds it and sets SCRATCH_ROOT (its OMARCHY_PATH), SCRATCH_HOME, SCRATCH_BIN
+# builds it and sets SCRATCH_ROOT (its UNBLOARCHY_PATH), SCRATCH_HOME, SCRATCH_BIN
 # (stubs, ahead of PATH) and SCRATCH_LOG; start_scratch_shell launches it and
 # sets SCRATCH_PID; scratch_ipc talks to it. It is stopped and removed on exit.
 SCRATCH_DIR=""
@@ -229,7 +229,7 @@ SCRATCH_PID=""
 
 setup_scratch_shell() {
   SCRATCH_DIR=$(mktemp -d)
-  SCRATCH_ROOT="$SCRATCH_DIR/omarchy"
+  SCRATCH_ROOT="$SCRATCH_DIR/unbloarchy"
   SCRATCH_HOME="$SCRATCH_DIR/home"
   SCRATCH_BIN="$SCRATCH_DIR/bin"
   SCRATCH_LOG="$SCRATCH_DIR/quickshell.log"
@@ -253,12 +253,12 @@ setup_scratch_shell() {
   done
   # Nor may it change system state over D-Bus: the battery service applies a
   # power profile when UPower reports one.
-  for name in omarchy-powerprofiles-set powerprofilesctl; do
+  for name in unbloarchy-powerprofiles-set powerprofilesctl; do
     printf '#!/bin/bash\nexit 0\n' >"$SCRATCH_BIN/$name"
     chmod +x "$SCRATCH_BIN/$name"
   done
   # The shell runs some commands under `bash -lc`, and a login shell resets
-  # PATH and OMARCHY_PATH from /etc/omarchy.conf, which would put the
+  # PATH and UNBLOARCHY_PATH from /etc/omarchy.conf, which would put the
   # session's checkout and its real commands back ahead of these stubs.
   printf '#!/bin/bash\n[[ ${1:-} == "-lc" ]] && shift && set -- -c "$@"\nexec /bin/bash "$@"\n' >"$SCRATCH_BIN/bash"
   chmod +x "$SCRATCH_BIN/bash"
@@ -271,15 +271,15 @@ setup_scratch_shell() {
 # lock the real desktop.
 reset_scratch_home() {
   rm -rf "$SCRATCH_HOME"
-  mkdir -p "$SCRATCH_HOME/.local/state/omarchy/indicators"
-  touch "$SCRATCH_HOME/.local/state/omarchy/indicators/stay-awake"
+  mkdir -p "$SCRATCH_HOME/.local/state/unbloarchy/indicators"
+  touch "$SCRATCH_HOME/.local/state/unbloarchy/indicators/stay-awake"
 }
 
 # Replaces the current (sub)shell with a command in the scratch shell's
 # environment, so a backgrounded (scratch_exec ...) & leaves $! naming the
 # command itself.
 scratch_exec() {
-  export OMARCHY_PATH="$SCRATCH_ROOT"
+  export UNBLOARCHY_PATH="$SCRATCH_ROOT"
   export HOME="$SCRATCH_HOME"
   export XDG_CONFIG_HOME="$SCRATCH_HOME/.config"
   export XDG_CACHE_HOME="$SCRATCH_HOME/.cache"
@@ -294,11 +294,11 @@ start_scratch_shell() {
 }
 
 scratch_ipc() {
-  OMARCHY_PATH="$SCRATCH_ROOT" "$ROOT/bin/omarchy-shell" "$@"
+  UNBLOARCHY_PATH="$SCRATCH_ROOT" "$ROOT/bin/unbloarchy-shell" "$@"
 }
 
 scratch_ipc_quiet() {
-  OMARCHY_PATH="$SCRATCH_ROOT" "$ROOT/bin/omarchy-shell" -q "$@"
+  UNBLOARCHY_PATH="$SCRATCH_ROOT" "$ROOT/bin/unbloarchy-shell" -q "$@"
 }
 
 # Waits until the scratch shell answers IPC, failing with its log when it
@@ -346,7 +346,7 @@ wait_scratch_layer() {
 # Quickshell leaves some of its children running when it is stopped, among them
 # the inotifywait watching the plugin directory, which then holds whatever it
 # inherited open (a flock around the run, say) indefinitely. Once the shell is
-# stopped, stop whatever still runs with the scratch OMARCHY_PATH: every child
+# stopped, stop whatever still runs with the scratch UNBLOARCHY_PATH: every child
 # inherits it, and it finds the ones a shell that already died left
 # reparented. The environment is read afresh before every signal, so a pid
 # that has since been reused by something else is never sent one.
@@ -357,7 +357,7 @@ scratch_leftover_pids() {
   while IFS= read -r environ; do
     pid=${environ#/proc/}
     echo "${pid%/environ}"
-  done < <(grep -lzxF -- "OMARCHY_PATH=$SCRATCH_ROOT" /proc/[0-9]*/environ 2>/dev/null || true)
+  done < <(grep -lzxF -- "UNBLOARCHY_PATH=$SCRATCH_ROOT" /proc/[0-9]*/environ 2>/dev/null || true)
 }
 
 signal_scratch_leftovers() {
@@ -406,24 +406,24 @@ scratch_shell_cleanup() {
 }
 
 # Finds the pkgbuilds/ directory of the omarchy-pkgs checkout, which some tests
-# hold Omarchy's scripts against, and sets OMARCHY_PKGS_ROOT to it. The checkout
+# hold Unbloarchy's scripts against, and sets UNBLOARCHY_PKGS_ROOT to it. The checkout
 # lives in its own repository, wherever this machine keeps it.
 #
-# OMARCHY_PKGS_PATH names it outright (the checkout or its pkgbuilds/), and then
+# UNBLOARCHY_PKGS_PATH names it outright (the checkout or its pkgbuilds/), and then
 # nothing else is tried: an override that doesn't resolve fails the test, so a
 # typo can't quietly turn the package checks into skips. Without the override,
 # the usual places beside this checkout are tried, and finding none returns 1 so
 # the test can skip what needs one.
-find_omarchy_pkgs() {
+find_unbloarchy_pkgs() {
   local candidate
   local -a candidates pkgbuilds
 
-  if [[ -n ${OMARCHY_PKGS_PATH:-} ]]; then
-    candidates=("$OMARCHY_PKGS_PATH/pkgbuilds" "$OMARCHY_PKGS_PATH")
+  if [[ -n ${UNBLOARCHY_PKGS_PATH:-} ]]; then
+    candidates=("$UNBLOARCHY_PKGS_PATH/pkgbuilds" "$UNBLOARCHY_PKGS_PATH")
   else
     candidates=(
       "$ROOT/../omarchy-pkgs/pkgbuilds"
-      "$ROOT/../omarchy/omarchy-pkgs/pkgbuilds"
+      "$ROOT/../unbloarchy/unbloarchy-pkgs/pkgbuilds"
       "$ROOT/../../omarchy-pkgs/pkgbuilds"
       "$ROOT/../omacom/omarchy-pkgs/pkgbuilds"
       "$ROOT/../../omacom/omarchy-pkgs/pkgbuilds"
@@ -435,19 +435,19 @@ find_omarchy_pkgs() {
     # Only */PKGBUILD is a pattern; the checkout's own path stays literal.
     pkgbuilds=("$candidate"/*/PKGBUILD)
     if [[ -f ${pkgbuilds[0]:-} ]]; then
-      OMARCHY_PKGS_ROOT=$(CDPATH= cd -- "$candidate" && pwd)
+      UNBLOARCHY_PKGS_ROOT=$(CDPATH= cd -- "$candidate" && pwd)
       return 0
     fi
   done
 
-  [[ -z ${OMARCHY_PKGS_PATH:-} ]] ||
-    fail "OMARCHY_PKGS_PATH names an omarchy-pkgs checkout" "no */PKGBUILD under $OMARCHY_PKGS_PATH or its pkgbuilds/"
+  [[ -z ${UNBLOARCHY_PKGS_PATH:-} ]] ||
+    fail "UNBLOARCHY_PKGS_PATH names an omarchy-pkgs checkout" "no */PKGBUILD under $UNBLOARCHY_PKGS_PATH or its pkgbuilds/"
   return 1
 }
 
-# Fake the hardware identity omarchy-hw-platform reads: a device tree under
+# Fake the hardware identity unbloarchy-hw-platform reads: a device tree under
 # $1/proc and a uname in $1/bin reporting the platform's CPU. Run the code under
-# test with OMARCHY_PROC_ROOT="$1/proc" and PATH="$1/bin:$ROOT/bin:...", so the
+# test with UNBLOARCHY_PROC_ROOT="$1/proc" and PATH="$1/bin:$ROOT/bin:...", so the
 # real detector and its wrappers answer from the fixture.
 fake_platform() {
   local dir="$1" platform="$2" machine=aarch64
@@ -476,25 +476,25 @@ SH
   chmod +x "$dir/bin/uname"
 }
 
-# omarchy-hw-platform ignores fixture roots when it runs as root, so a root run
+# unbloarchy-hw-platform ignores fixture roots when it runs as root, so a root run
 # cannot fake a platform. Skip the rest of the file there.
 require_platform_fixtures() {
   (( EUID != 0 )) && return 0
-  skip "running as root, where omarchy-hw-platform ignores fixtures; skipping $1"
+  skip "running as root, where unbloarchy-hw-platform ignores fixtures; skipping $1"
   exit 0
 }
 
 # A script reads the installed platform package's files from the fixed
-# /usr/share/omarchy-platform, which nothing in its environment moves. Copies
+# /usr/share/unbloarchy-platform, which nothing in its environment moves. Copies
 # script $1 to $2 reading fixture root $3 instead (a directory that doesn't
 # exist stands for no platform package), the way the security tests rewrite
 # other fixed paths.
 platform_root_copy() {
   local script="$1" copy="$2" fixture="$3"
 
-  sed -e "s|/usr/share/omarchy-platform|$fixture|g" "$script" >"$copy" &&
+  sed -e "s|/usr/share/unbloarchy-platform|$fixture|g" "$script" >"$copy" &&
     chmod +x "$copy" || fail "copy $script for a fixture platform root"
-  grep -qF -- "$fixture" "$copy" && ! grep -qF /usr/share/omarchy-platform "$copy" ||
+  grep -qF -- "$fixture" "$copy" && ! grep -qF /usr/share/unbloarchy-platform "$copy" ||
     fail "$(basename -- "$script") reads the platform root from the fixture"
 }
 

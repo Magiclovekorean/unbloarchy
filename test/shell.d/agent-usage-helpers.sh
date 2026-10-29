@@ -107,8 +107,8 @@ new_home() {
 
 # run_collector <home> <id> [VAR=value ...] [-- args...]
 #
-# Runs bin/omarchy-agent-usage-<id> as a process, in an environment holding
-# nothing but <home> and its XDG directories, OMARCHY_PATH, the caller's TZ,
+# Runs bin/unbloarchy-agent-usage-<id> as a process, in an environment holding
+# nothing but <home> and its XDG directories, UNBLOARCHY_PATH, the caller's TZ,
 # the dead proxy, and the VAR=value pairs given (a later PATH= replaces the default). PATH is
 # <home>/bin, then python3, rg, jq and sqlite3. Runs with --force unless args
 # follow `--` (then exactly those, none included). Prints the record; stderr
@@ -134,8 +134,8 @@ run_collector() {
     PATH="$home/bin:$SANDBOX/tools" \
     LANG=C.UTF-8 \
     ${TZ+TZ="$TZ"} \
-    OMARCHY_PATH="$ROOT" \
-    OMARCHY_LANGUAGE_FILE="$OMARCHY_LANGUAGE_FILE" \
+    UNBLOARCHY_PATH="$ROOT" \
+    UNBLOARCHY_LANGUAGE_FILE="$UNBLOARCHY_LANGUAGE_FILE" \
     XDG_CONFIG_HOME="$home/.config" \
     XDG_DATA_HOME="$home/.local/share" \
     XDG_STATE_HOME="$home/.local/state" \
@@ -145,7 +145,7 @@ run_collector() {
     HTTP_PROXY=$AGENT_DEAD_PROXY HTTPS_PROXY=$AGENT_DEAD_PROXY ALL_PROXY=$AGENT_DEAD_PROXY \
     no_proxy=127.0.0.1,localhost NO_PROXY=127.0.0.1,localhost \
     "${vars[@]}" \
-    "$timeout_command" --kill-after=5 "${AGENT_COLLECTOR_TIMEOUT:-60}" "$ROOT/bin/omarchy-agent-usage-$id" "${args[@]}" \
+    "$timeout_command" --kill-after=5 "${AGENT_COLLECTOR_TIMEOUT:-60}" "$ROOT/bin/unbloarchy-agent-usage-$id" "${args[@]}" \
     2>"$home/.run/$id.err" || status=$?
   if (( status != 0 )); then
     cat "$home/.run/$id.err" >&2
@@ -292,7 +292,7 @@ edit_limits_cache() {
   now_ms=$(python3 -c 'import time; print(int(time.time() * 1000))')
   past=$(python3 -c 'import datetime as d; print((d.datetime.now(d.timezone.utc) - d.timedelta(hours=1)).isoformat())')
   future=$(python3 -c 'import datetime as d; print((d.datetime.now(d.timezone.utc) + d.timedelta(hours=1)).isoformat())')
-  for file in "$XDG_CACHE_HOME/omarchy/agent-usage/$id"-limits*.json; do
+  for file in "$XDG_CACHE_HOME/unbloarchy/agent-usage/$id"-limits*.json; do
     [[ -f $file ]] || continue
     found=1
     jq --argjson now_ms "$now_ms" --arg past "$past" --arg future "$future" "$filter" "$file" >"$file.edit" &&

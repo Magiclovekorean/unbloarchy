@@ -1,8 +1,8 @@
 # Navigáció
 
-Az Omarchyban minden billentyűzettel történik — _MINDEN!_ Amikor a rendszer először elindul, egérrel önmagában szó szerint semmit sem tudsz csinálni. De megnyomhatod a `Super + Space` billentyűkombinációt az Omarchy Menu megjelenítéséhez, és innen szinte mindent meg tudsz csinálni.
+Az Unbloarchyban minden billentyűzettel történik — _MINDEN!_ Amikor a rendszer először elindul, egérrel önmagában szó szerint semmit sem tudsz csinálni. De megnyomhatod a `Super + Space` billentyűkombinációt az Unbloarchy Menu megjelenítéséhez, és innen szinte mindent meg tudsz csinálni.
 
-De az Omarchy menünek még csak nem is az a rendeltetése, hogy az idő nagy részében ez legyen a rendszer kezelésének fő módja. Ennél gyorsabbak is tudunk lenni! Az összes legfontosabb alkalmazás közvetlenül egyedi gyorsbillentyűkhöz van kötve. A terminált a `Super + Return` billentyűkombinációval, a böngészőt pedig a `Super + Shift + Return` billentyűkombinációval indítod. Próbáld meg egymás után megnyomni őket, és látni fogod a Hyprland csempézésének varázsát működés közben:
+De az Unbloarchy menünek még csak nem is az a rendeltetése, hogy az idő nagy részében ez legyen a rendszer kezelésének fő módja. Ennél gyorsabbak is tudunk lenni! Az összes legfontosabb alkalmazás közvetlenül egyedi gyorsbillentyűkhöz van kötve. A terminált a `Super + Return` billentyűkombinációval, a böngészőt pedig a `Super + Shift + Return` billentyűkombinációval indítod. Próbáld meg egymás után megnyomni őket, és látni fogod a Hyprland csempézésének varázsát működés közben:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Teljes képernyőre is válthatsz a `Super + F` billentyűkombinációval, vagy 
 
 ### Dwindle és görgetős elrendezés
 
-Az Omarchy alapértelmezett elrendezését dwindle-nek hívják. Egyetlen munkaterületen az összes megnyitott ablakot mindenkor láthatóan tartja, még ha ehhez össze is kell zsugorítania őket.
+Az Unbloarchy alapértelmezett elrendezését dwindle-nek hívják. Egyetlen munkaterületen az összes megnyitott ablakot mindenkor láthatóan tartja, még ha ehhez össze is kell zsugorítania őket.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 A lebegő munkaterület úgy működik, mint egy hagyományos asztal: az ablakok átfedik egymást, és te magad mozgatod és méretezed őket. Minden ablak címsort kap a témád színeiben, a minimalizáláshoz, maximalizáláshoz és bezáráshoz szükséges gombokkal. A `Super + M` a fókuszált ablakot is minimalizálja. A minimalizált ablak a dokkban várakozik; kattints az alkalmazására, hogy visszahozd. Kattints egy ablakra, hogy előtérbe hozd. Méretezd át bármelyik széléről vagy sarkáról. Kattints duplán egy címsorra, hogy maximalizáld az ablakot, miközben a felső sáv látható marad, és ismét, hogy visszakapd a régi méretét.
 
-A lebegő munkaterület dokkot is mutat, a rögzített alkalmazásaiddal, mindennel, ami fut, és minden alkalmazás rácsával az alkalmazások gomb mögött, amelyet a `Super + Alt + Space` és az Omarchy menüben az _Apps_ is megnyit. Kattints jobb gombbal egy alkalmazásra a rácson, vagy nyomd meg a `Delete` billentyűt az eltávolításához. Kattints egy alkalmazásra a megnyitásához, vagy az ablakának előtérbe hozásához; kattints ismét, hogy végigléptess az ablakain. A középső kattintás új ablakot nyit. Húzz egy ikont a dokk mentén a mozgatásához; egy futó alkalmazás behúzása a többi közé ott tartja azt. Kattints jobb gombbal egy alkalmazás dokkban tartásához, onnan való kivételéhez vagy kiléptetéséhez. A dokk félreáll egy teljes képernyős ablak útjából. Kattints jobb gombbal az alkalmazások gombra, hogy a dokkot egy másik szélre mozgassa, vagy elrejtse, amíg a mutató el nem éri a szélét. A pozíció az _Appearance > Dock > Dock Position_ alatt is megtalálható, és az `omarchy dock position left` és az `omarchy dock autohide on` mindkettőt beállítja terminálból. A dokkban tartott alkalmazások halványak, amíg nem futnak.
+A lebegő munkaterület dokkot is mutat, a rögzített alkalmazásaiddal, mindennel, ami fut, és minden alkalmazás rácsával az alkalmazások gomb mögött, amelyet a `Super + Alt + Space` és az Unbloarchy menüben az _Apps_ is megnyit. Kattints jobb gombbal egy alkalmazásra a rácson, vagy nyomd meg a `Delete` billentyűt az eltávolításához. Kattints egy alkalmazásra a megnyitásához, vagy az ablakának előtérbe hozásához; kattints ismét, hogy végigléptess az ablakain. A középső kattintás új ablakot nyit. Húzz egy ikont a dokk mentén a mozgatásához; egy futó alkalmazás behúzása a többi közé ott tartja azt. Kattints jobb gombbal egy alkalmazás dokkban tartásához, onnan való kivételéhez vagy kiléptetéséhez. A dokk félreáll egy teljes képernyős ablak útjából. Kattints jobb gombbal az alkalmazások gombra, hogy a dokkot egy másik szélre mozgassa, vagy elrejtse, amíg a mutató el nem éri a szélét. A pozíció az _Appearance > Dock > Dock Position_ alatt is megtalálható, és az `unbloarchy dock position left` és az `unbloarchy dock autohide on` mindkettőt beállítja terminálból. A dokkban tartott alkalmazások halványak, amíg nem futnak.
 
-Az új munkaterületek, és minden olyan, amelynek nem adtál saját elrendezést a `Super + L` billentyűkombinációval, az alapértelmezett elrendezést használják. Az alapértelmezett megváltoztatása minden ablak nélküli munkaterületet visszaállít arra, míg az, amelyen ablakok vannak, megtartja a meglévő elrendezését. A dokkba minimalizált ablak továbbra is ablaknak számít azon a munkaterületen, amelyet elhagyott. Válaszd ki az _Appearance > Workspace Layout_ alatt: Tiling, Scrolling vagy Floating. Az `omarchy-hyprland-workspace-layout-default scrolling` terminálból állítja be.
+Az új munkaterületek, és minden olyan, amelynek nem adtál saját elrendezést a `Super + L` billentyűkombinációval, az alapértelmezett elrendezést használják. Az alapértelmezett megváltoztatása minden ablak nélküli munkaterületet visszaállít arra, míg az, amelyen ablakok vannak, megtartja a meglévő elrendezését. A dokkba minimalizált ablak továbbra is ablaknak számít azon a munkaterületen, amelyet elhagyott. Válaszd ki az _Appearance > Workspace Layout_ alatt: Tiling, Scrolling vagy Floating. Az `unbloarchy-hyprland-workspace-layout-default scrolling` terminálból állítja be.
 
 ### Ablakok csoportosítása
 

@@ -1,14 +1,14 @@
 # Augšējā josla
 
-Josla gar ekrāna augšpusi ir Omarchy josla. Tā nav pieskrūvēta statusa josla, bet gan daļa no Omarchy čaulas — viena ilgstoši darbojoša Quickshell procesa, kas arī uzzīmē izvēlni, paziņojumus, OSD uznirstošos logus un bloķēšanas ekrānu. Tāpēc tā tematiski perfekti sader ar visu pārējo un tāpēc panelis atveras acumirklī, nevis palaiž jaunu lietotni.
+Josla gar ekrāna augšpusi ir Unbloarchy josla. Tā nav pieskrūvēta statusa josla, bet gan daļa no Unbloarchy čaulas — viena ilgstoši darbojoša Quickshell procesa, kas arī uzzīmē izvēlni, paziņojumus, OSD uznirstošos logus un bloķēšanas ekrānu. Tāpēc tā tematiski perfekti sader ar visu pārējo un tāpēc panelis atveras acumirklī, nevis palaiž jaunu lietotni.
 
 Tā ir arī vienīgā darbvirsmas daļa, kas vienmēr atrodas uz ekrāna, tāpēc ir vērts zināt, ko dara visas tās mazās zīmes.
 
 ## Kas tajā ir pēc noklusējuma
 
-Joslai ir trīs sadaļas. Kreisajā pusē atrodas Omarchy logotips (izvēlnes palaidējs) un darbvietu indikatori. Centrā jūs iegūstat statusa indikatorus, pulksteni, Elsewhen (pasaules pulksteni), laikapstākļus un Omarchy atjauninājuma nozīmīti. Labajā pusē: sistēmas paplāte, tastatūras izkārtojums (kad ir konfigurēts vairāk nekā viens), aģenti, Bluetooth, tīkls, audio, displejs un barošana.
+Joslai ir trīs sadaļas. Kreisajā pusē atrodas Unbloarchy logotips (izvēlnes palaidējs) un darbvietu indikatori. Centrā jūs iegūstat statusa indikatorus, pulksteni, Elsewhen (pasaules pulksteni), laikapstākļus un Unbloarchy atjauninājuma nozīmīti. Labajā pusē: sistēmas paplāte, tastatūras izkārtojums (kad ir konfigurēts vairāk nekā viens), aģenti, Bluetooth, tīkls, audio, displejs un barošana.
 
-Daži no tiem parādās tikai tad, kad tiem ir ko teikt. Tastatūras izkārtojums parādās tikai tad, ja esat konfigurējis vairāk nekā vienu izkārtojumu. Atjauninājuma nozīmīte parādās tikai tad, kad gaida kāds Omarchy atjauninājums. Un aģentu ikona parādās pirmo reizi, kad Omarchy atrod datorā AI kodēšanas lietojumu (skatiet [AI](17-ai.md)).
+Daži no tiem parādās tikai tad, kad tiem ir ko teikt. Tastatūras izkārtojums parādās tikai tad, ja esat konfigurējis vairāk nekā vienu izkārtojumu. Atjauninājuma nozīmīte parādās tikai tad, kad gaida kāds Unbloarchy atjauninājums. Un aģentu ikona parādās pirmo reizi, kad Unbloarchy atrod datorā AI kodēšanas lietojumu (skatiet [AI](17-ai.md)).
 
 ## Klikšķināšana
 
@@ -16,7 +16,7 @@ Gandrīz katrs logrīks kaut ko dara ar kreiso, labo un vidējo klikšķi, un va
 
 | Logrīks | Kreisais klikšķis | Labais klikšķis | Vidējais klikšķis / ritināšana |
 | --- | --- | --- | --- |
-| Izvēlne | Omarchy izvēlne | Jauns terminālis | — |
+| Izvēlne | Unbloarchy izvēlne | Jauns terminālis | — |
 | Darbvietas | Fokusēt šo darbvietu šajā monitorā | — | Ritināt: nākamā/iepriekšējā darbvieta |
 | Pulkstenis | Kalendāra uznirstošais logs | Cikliski mainīt etiķetes formātu | Vidējais klikšķis: laika joslu izvēle |
 | Laikapstākļi | Prognozes uznirstošais logs | Pilni laikapstākļi kā paziņojums | Vidējais klikšķis: atsvaidzināt |
@@ -29,7 +29,7 @@ Gandrīz katrs logrīks kaut ko dara ar kreiso, labo un vidējo klikšķi, un va
 | Multivide | Atskaņot/pauzēt | Vāka noformējuma uznirstošais logs | Vidējais klikšķis: nākamais · ritināt: iepriekšējais/nākamais |
 | Aģenti | Aģentu panelis | Palaist jūsu aģentu | Vidējais klikšķis: nākamais abonements |
 | Paplāte | Uzturēt kursoru virs tās, lai atklātu atvilktni | Labais klikšķis uz bultiņas, lai pārvaldītu | — |
-| Omarchy atjauninājums | Palaist atjauninājumu | — | — |
+| Unbloarchy atjauninājums | Palaist atjauninājumu | — | — |
 
 Ne viss šajā tabulā sākotnēji ir jūsu joslā. Gan multivides logrīks (MPRIS pašlaik atskaņotais ieraksts ar ritinošu ieraksta nosaukumu un izpildītāju), gan mikrofona logrīks ir iebūvēti, bet pēc noklusējuma izslēgti — pievienojiet tos, ja vēlaties, kā aprakstīts tālāk.
 
@@ -66,7 +66,7 @@ Katrs panelis izmanto gan tastatūru, gan peli: bulttaustiņi pārvieto, Return 
 
 Vēl divi logrīki parādās joslā tikai tad, kad instalējat attiecīgo pakalpojumu no **Instalēt → Pakalpojums**, un abus ir vērts zināt, jo tie dara vairāk nekā tikai ziņo par statusu.
 
-**Tailscale** panelis savieno un atvieno tailnet, pārslēdzas starp kontiem un izvēlas izejas mezglu (šajā sarakstā parādās gan jūsu pašu datori, gan Mullvad reģioni). Tas arī pārlūko jūsu datorus, un, kad viens ir atlasīts, `s` nosūta tam failus, izmantojot Taildrop, kas ir ātrākais veids, kā pārvietot failu uz tālruni vai citu klēpjdatoru. `c` kopē datora IP, `n` — tā nosaukumu, bet `d` — tā pilno DNS nosaukumu. Katrā datora rindā ir arī nosūtīšanas poga, ja labprātāk klikšķināt. No termināļa tas pats ir `omarchy tailscale send <machine> [file...]`.
+**Tailscale** panelis savieno un atvieno tailnet, pārslēdzas starp kontiem un izvēlas izejas mezglu (šajā sarakstā parādās gan jūsu pašu datori, gan Mullvad reģioni). Tas arī pārlūko jūsu datorus, un, kad viens ir atlasīts, `s` nosūta tam failus, izmantojot Taildrop, kas ir ātrākais veids, kā pārvietot failu uz tālruni vai citu klēpjdatoru. `c` kopē datora IP, `n` — tā nosaukumu, bet `d` — tā pilno DNS nosaukumu. Katrā datora rindā ir arī nosūtīšanas poga, ja labprātāk klikšķināt. No termināļa tas pats ir `unbloarchy tailscale send <machine> [file...]`.
 
 **Dropbox** panelis apstrādā pieteikšanos, parāda, cik daudz krātuves esat izmantojis, un uzskaita nesen sinhronizētos failus.
 
@@ -93,19 +93,19 @@ Ja labprātāk izvēlaties no izvēlnes, sadaļā **Izskats → Izvēlņu josla*
 Tām pašām lietām ir arī komandas, kas ir vajadzīgas [dotfiles](31-dotfiles.md) iestatījumam:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Lai pievienotu vai pilnībā noņemtu logrīku, izmantojiet spraudņu komandas. `omarchy plugin list` izdrukā katru čaulai zināmo logrīku kopā ar tā id, un pēc tam:
+Lai pievienotu vai pilnībā noņemtu logrīku, izmantojiet spraudņu komandas. `unbloarchy plugin list` izdrukā katru čaulai zināmo logrīku kopā ar tā id, un pēc tam:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Joslas slēpšana
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Konfigurācijas fails
 
-Viss tiek glabāts failā `~/.config/omarchy/shell.json` zem atslēgas `bar`. Šeit ir saīsināta versija:
+Viss tiek glabāts failā `~/.config/unbloarchy/shell.json` zem atslēgas `bar`. Šeit ir saīsināta versija:
 
 ```json
 {
@@ -123,20 +123,20 @@ Viss tiek glabāts failā `~/.config/omarchy/shell.json` zem atslēgas `bar`. Š
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Katrs logrīks ir viens ieraksts vienā no pieciem izkārtojuma masīviem, un tā iestatījumi atrodas tieši šajā ierakstā — nav atsevišķa iestatījumu faila un nav `config` apakšobjekta. Pulksteņa `format`, `formatAlt` (tas, uz ko cikliski pārslēdz labais klikšķis) un `verticalFormat` visi atrodas tieši tur — uz `{ "id": "omarchy.clock" }`.
+Katrs logrīks ir viens ieraksts vienā no pieciem izkārtojuma masīviem, un tā iestatījumi atrodas tieši šajā ierakstā — nav atsevišķa iestatījumu faila un nav `config` apakšobjekta. Pulksteņa `format`, `formatAlt` (tas, uz ko cikliski pārslēdz labais klikšķis) un `verticalFormat` visi atrodas tieši tur — uz `{ "id": "unbloarchy.clock" }`.
 
 `center` ir kaste joslas vidū: viss tajā tiek centrēts uz ekrāna kā viena grupa. `centerBegin` un `centerEnd` karājas abās kastes pusēs, un tāpēc pulkstenis paliek precīzi centrā pat tad, kad laikapstākļi un atjauninājuma nozīmīte parādās un pazūd. Ievietojiet `center` vairāk nekā vienu logrīku, un tie tiks centrēti kopā; atstājiet to tukšu, un `centerBegin` un `centerEnd` satiksies joslas vidū.
 
-Viens noteikums, ko ir vērts iegaumēt: **kad jums ir savs `shell.json`, tas ir kanonisks**. Kamēr neko nepielāgojat, čaula lasa Omarchy noklusējuma failu. Brīdī, kad pavelkat logrīku, palaižat `omarchy bar` vai pats rediģējat failu, tas pieder jums — dziļas sapludināšanas nav, tāpēc jauni noklusējuma logrīki turpmākajos Omarchy laidienos jūsu joslā automātiski neparādīsies. `omarchy bar defaults` atjauno komplektā iekļauto izkārtojumu ikreiz, kad vēlaties sākt no tīras lapas.
+Viens noteikums, ko ir vērts iegaumēt: **kad jums ir savs `shell.json`, tas ir kanonisks**. Kamēr neko nepielāgojat, čaula lasa Unbloarchy noklusējuma failu. Brīdī, kad pavelkat logrīku, palaižat `unbloarchy bar` vai pats rediģējat failu, tas pieder jums — dziļas sapludināšanas nav, tāpēc jauni noklusējuma logrīki turpmākajos Unbloarchy laidienos jūsu joslā automātiski neparādīsies. `unbloarchy bar defaults` atjauno komplektā iekļauto izkārtojumu ikreiz, kad vēlaties sākt no tīras lapas.
 
 Tas pats fails augšējā līmenī, ārpus atslēgas `bar`, glabā arī jūsu dīkstāves laikus: `idle.screensaver` un `idle.lock`, abus sekundēs kopš brīža, kad kļuvāt neaktīvs. Tāpēc noklusējuma ekrānsaudzētājs iedarbojas pēc 150 sekundēm, bet bloķēšana — pēc 300.

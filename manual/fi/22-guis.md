@@ -20,11 +20,11 @@ Obsidian on ilmainen kaikkeen käyttöön, mukaan lukien henkilökohtaiseen, kau
 
 Obsidian tarjoaa myös [kaupallisen lisäosan synkronointiin](https://obsidian.md/sync) iOS- ja Android-mobiilisovellusten kanssa. (https://obsidian.md/pricing).
 
-Käynnistät Obsidianin näppäinyhdistelmällä `Super + Shift + O`. Teeman synkronoinnin käyttämiseksi sinun on valittava asetuksista `Omarchy`-teema.
+Käynnistät Obsidianin näppäinyhdistelmällä `Super + Shift + O`. Teeman synkronoinnin käyttämiseksi sinun on valittava asetuksista `Unbloarchy`-teema.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) on Omarchyn oma äärimmäisen yksinkertainen Markdown-kirjoitussovellus. Ei holveja, ei lisäosia, vain sinä ja sanat.
+[Omawrite](https://github.com/omacom-io/omawrite) on Unbloarchyn oma äärimmäisen yksinkertainen Markdown-kirjoitussovellus. Ei holveja, ei lisäosia, vain sinä ja sanat.
 
 Käynnistät Omawrite näppäinyhdistelmällä `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Käynnistät Aetherin sovelluskäynnistimen kautta (`Super + Space`).
 
 [LocalSend](https://localsend.org/) antaa lähettää tiedostoja muihin samassa verkossa oleviin laitteisiin, joissa sovellus on käytössä, Applen AirDropin tapaan. Se on kuitenkin monialustainen, joten voit lähettää tiedostoja Windowsiin, macOS:ään, Androidiin, iOS:ään ja tietenkin Linuxiin ja niistä takaisin.
 
-Voit avata Share-valikon näppäinyhdistelmällä `Super + Ctrl + S` tai Omarchy-valikosta kohdasta _Trigger > Share_. Se antaa neljä vaihtoehtoa:
+Voit avata Share-valikon näppäinyhdistelmällä `Super + Ctrl + S` tai Unbloarchy-valikosta kohdasta _Trigger > Share_. Se antaa neljä vaihtoehtoa:
 
 - **Clipboard** lähettää kopioimasi sisällön tekstitiedostona. Erinomainen linkin tai koodinpätkän saamiseen puhelimeesi ilman, että lähetät itsellesi sähköpostia.
 - **File** avaa tiedostonvalitsimen, jossa voit valita useita kerralla.
 - **Folder** lähettää kokonaisen kansion.
 - **Receive** avaa varsinaisen LocalSendin, jotta toinen laite voi lähettää sinulle jotain.
 
-Sama toimii päätteestä komennoilla `omarchy share clipboard`, `omarchy share file [path]` ja `omarchy share folder [path]`. Jätä polku pois, niin saat valitsimen.
+Sama toimii päätteestä komennoilla `unbloarchy share clipboard`, `unbloarchy share file [path]` ja `unbloarchy share folder [path]`. Jätä polku pois, niin saat valitsimen.
 
 Voit myös lähettää suoraan tiedostonhallinnasta: napsauta mitä tahansa valintaa Nautiluksessa hiiren oikealla painikkeella ja valitse _Send via LocalSend_.
 
-Omarchyn palomuuri on oletuksena suljettu LocalSendin porttia lukuun ottamatta, joten tämä toimii heti tuoreessa asennuksessa. Katso [tietoturva](48-security.md).
+Unbloarchyn palomuuri on oletuksena suljettu LocalSendin porttia lukuun ottamatta, joten tämä toimii heti tuoreessa asennuksessa. Katso [tietoturva](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ Käynnistät LibreOfficen sovelluskäynnistimen kautta (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) on Omarchyn oma äärimmäisen yksinkertainen esityssovellus. Esityksesi on yksi Markdown-tiedosto, jonka kuvat ja videot ovat sen vieressä: kirjoita jokainen dia reaaliaikaisen esikatselun alle, vedä diat järjestykseen ja esitä sitten koko näytöllä tai vie PDF:ksi ja PowerPointiin. Se nappaa jopa Omarchy-teemasi.
+[Hype](https://github.com/omacom/hype) on Unbloarchyn oma äärimmäisen yksinkertainen esityssovellus. Esityksesi on yksi Markdown-tiedosto, jonka kuvat ja videot ovat sen vieressä: kirjoita jokainen dia reaaliaikaisen esikatselun alle, vedä diat järjestykseen ja esitä sitten koko näytöllä tai vie PDF:ksi ja PowerPointiin. Se nappaa jopa Unbloarchy-teemasi.
 
 Käynnistät Hypen sovelluskäynnistimen kautta (`Super + Space`). Paina sen sisällä `?` nähdäksesi kaikki pikanäppäimet.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) on Omarchyn oma äärimmäisen yksinkertainen tapa allekirjoittaa PDF:iä ja täyttää niitä. Aseta tallennettu allekirjoituksesi, tekstiä ja tämän päivän päivämäärä mihin tahansa sivulle ja tallenna sitten allekirjoitettu kopio alkuperäisen viereen. Katso ohjeet kohdasta [PDF-tiedostojen täyttäminen](27-filling-out-pdfs.md).
+[Signed](https://github.com/omacom/signed) on Unbloarchyn oma äärimmäisen yksinkertainen tapa allekirjoittaa PDF:iä ja täyttää niitä. Aseta tallennettu allekirjoituksesi, tekstiä ja tämän päivän päivämäärä mihin tahansa sivulle ja tallenna sitten allekirjoitettu kopio alkuperäisen viereen. Katso ohjeet kohdasta [PDF-tiedostojen täyttäminen](27-filling-out-pdfs.md).
 
 Käynnistät Signedin sovelluskäynnistimen kautta (`Super + Space`) tai avaat sillä PDF:n tiedostonhallinnasta.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) on Omarchyn oma äärimmäisen yksinkertainen laskin, joka avautuu kelluvaan ikkunaan.
+[Omacalc](https://github.com/omacom-io/omacalc) on Unbloarchyn oma äärimmäisen yksinkertainen laskin, joka avautuu kelluvaan ikkunaan.
 
 Käynnistät Omacalcin näppäinyhdistelmällä `Super + Shift + Q` (tai laskinnäppäimellä, jos näppäimistössäsi on sellainen).
 
@@ -85,7 +85,7 @@ Käynnistät Omacalcin näppäinyhdistelmällä `Super + Shift + Q` (tai laskinn
 
 [Signal](https://signal.org/) on E2E-salatun viestinnän pioneeri ja erinomainen viestintävaihtoehto kaikille, jotka eivät mieluummin kulkisi yhden suuren teknologiakonglomeraatin kautta.
 
-Käynnistät Signalin näppäinyhdistelmällä `Super + Shift + G`. Se ei ole osa perusasennusta, joten kun painat sitä ensimmäisen kerran, Omarchy tarjoaa sen asentamista puolestasi (se on myös Omarchy-valikossa kohdassa _Install > Service_).
+Käynnistät Signalin näppäinyhdistelmällä `Super + Shift + G`. Se ei ole osa perusasennusta, joten kun painat sitä ensimmäisen kerran, Unbloarchy tarjoaa sen asentamista puolestasi (se on myös Unbloarchy-valikossa kohdassa _Install > Service_).
 
 ## mpv
 
@@ -95,13 +95,13 @@ Käynnistät mpv:n sovelluskäynnistimen kautta (`Super + Space`) tai vain kakso
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) on Omarchyn oma äärimmäisen yksinkertainen videontrimmaaja. Kun sinun tarvitsee vain leikata klipin alku ja loppu pois, se voittaa täyden videoeditorin käynnistämisen.
+[Omacut](https://github.com/omacom-io/omacut) on Unbloarchyn oma äärimmäisen yksinkertainen videontrimmaaja. Kun sinun tarvitsee vain leikata klipin alku ja loppu pois, se voittaa täyden videoeditorin käynnistämisen.
 
 Käynnistät Omacutin sovelluskäynnistimen kautta (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) on Omarchyn oma äärimmäisen yksinkertainen verkkokameratallennin. Valitse kamerasi ja mikrofonisi kerran, paina sitten `Space` tallentaaksesi ja uudelleen keskeyttääksesi ja jatkaaksesi samaa otosta. Se tallentaa aina kamerasi korkeimmalla resoluutiolla, ja reaaliaikainen mikrofonimittari auttaa tarkistamaan tasosi ennen aloittamista.
+[Monologue](https://github.com/omacom/monologue) on Unbloarchyn oma äärimmäisen yksinkertainen verkkokameratallennin. Valitse kamerasi ja mikrofonisi kerran, paina sitten `Space` tallentaaksesi ja uudelleen keskeyttääksesi ja jatkaaksesi samaa otosta. Se tallentaa aina kamerasi korkeimmalla resoluutiolla, ja reaaliaikainen mikrofonimittari auttaa tarkistamaan tasosi ennen aloittamista.
 
 Lopeta otos, niin se avautuu heti sisäänrakennetussa editorissa. Kaksoisnapsauta klippiä jakaaksesi sen, vedä kahvoja trimmataksesi jokaisen osan ja poista osat, joita et halua. Tallenna se sitten MP4:nä. Alkuperäinen tallenteesi säilytetään, kunnes hylkäät sen, joten voit aina palata ja leikata sen toisin.
 

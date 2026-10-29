@@ -1,8 +1,8 @@
 # 無人インストール
 
-Omarchy ISO は、キーボードの前に誰もいなくても自動でインストールできる。インストーラーが `cidata` というラベルの付いた2台目のドライブに設定ファイルを見つけると、それらをコピーし、セットアップウィザードを完全にスキップし、自動で完成したシステムへ再起動する。特別な ISO ビルドも、余分なブートメニュー項目もいらない。そのようなドライブが接続されていなければ何も変わらず、通常のウィザードが表示される。
+Unbloarchy ISO は、キーボードの前に誰もいなくても自動でインストールできる。インストーラーが `cidata` というラベルの付いた2台目のドライブに設定ファイルを見つけると、それらをコピーし、セットアップウィザードを完全にスキップし、自動で完成したシステムへ再起動する。特別な ISO ビルドも、余分なブートメニュー項目もいらない。そのようなドライブが接続されていなければ何も変わらず、通常のウィザードが表示される。
 
-これにより Omarchy は使い捨ての開発環境のベースイメージとして優れている。Proxmox や Packer で VM を作成し、起動し、席を外して、SSH で入ればいい。`cidata` は cloud-init の `NoCloud` ラベルなので、一般的な仮想化ツールはすべて、そのようなドライブの接続方法をすでに知っている。
+これにより Unbloarchy は使い捨ての開発環境のベースイメージとして優れている。Proxmox や Packer で VM を作成し、起動し、席を外して、SSH で入ればいい。`cidata` は cloud-init の `NoCloud` ラベルなので、一般的な仮想化ツールはすべて、そのようなドライブの接続方法をすでに知っている。
 
 ## 設定ファイル
 
@@ -18,13 +18,13 @@ Omarchy ISO は、キーボードの前に誰もいなくても自動でイン�
 
 `user_credentials.json` 用のパスワードハッシュは `openssl passwd -6 "yourpassword"` で生成する。
 
-git コミット用の名前とメールアドレスはインストールの一部ではない。マシンが起動したら、たとえば SSH 経由で `omarchy setup git --name "Jane Doe" --email jane@example.com` で設定する。
+git コミット用の名前とメールアドレスはインストールの一部ではない。マシンが起動したら、たとえば SSH 経由で `unbloarchy setup git --name "Jane Doe" --email jane@example.com` で設定する。
 
 `user_credentials.json` の代わりに、`defer-provisioning` という名前の空ファイルを入れることもできる。これにより、対話式にも起動できる[別の所有者向けの準備インストール](02-getting-started.md)と同じものが実行される。マシンは個人情報を一切持たずにインストールされ、最初に起動した人が自分のキーボードを選び、自分のユーザーを作成する。ドライブに誰の認証情報も入れるべきではないイメージング用リグ向けのモードだ。
 
 ## SSH アクセス
 
-`authorized_keys` が存在する場合、インストールではその鍵をユーザーの `~/.ssh/authorized_keys` として設定し、`sshd` を有効にして、そのためのファイアウォールを開く。（標準の Omarchy インストールでは openssh が同梱されているがサービスは無効でポートも閉じているため、無人マシンはそうしなければ到達不能になってしまう。）インストールでは自分の鍵を追加するだけであり、SSH デーモンの他の認証設定は一切緩めない。
+`authorized_keys` が存在する場合、インストールではその鍵をユーザーの `~/.ssh/authorized_keys` として設定し、`sshd` を有効にして、そのためのファイアウォールを開く。（標準の Unbloarchy インストールでは openssh が同梱されているがサービスは無効でポートも閉じているため、無人マシンはそうしなければ到達不能になってしまう。）インストールでは自分の鍵を追加するだけであり、SSH デーモンの他の認証設定は一切緩めない。
 
 `tailscale_authkey` が存在する場合、その代わりにマシンは初回起動時に tailnet へ参加する。Tailscale は ISO に同梱されたパッケージからインストールされ、ファイアウォールでは tailnet インターフェースが許可され、バックグラウンドジョブがマシンに実際にネットワークがつながり次第参加を実行し、成功するまで再試行する。再利用可能で事前承認済みのキーを使えば、1つのドライブイメージで多くのマシンに対応できる。
 
@@ -38,16 +38,16 @@ cp user_configuration.json user_credentials.json authorized_keys cidata/
 genisoimage -output cidata.iso -volid cidata -joliet -rock cidata/
 ```
 
-次に、それを Omarchy ISO と一緒に VM に接続する。以下は Proxmox の完全な例だ。
+次に、それを Unbloarchy ISO と一緒に VM に接続する。以下は Proxmox の完全な例だ。
 
 ```bash
-qm create 101 --name my-omarchy \
+qm create 101 --name my-unbloarchy \
   --bios ovmf --machine q35 --cpu host --cores 4 --memory 8192 \
   --ostype l26 --scsihw virtio-scsi-single \
   --efidisk0 local-lvm:0,efitype=4m,pre-enrolled-keys=0 \
   --scsi0 local-lvm:40,discard=on,iothread=1 \
   --net0 virtio,bridge=vmbr0 --vga virtio --serial0 socket \
-  --ide2 local:iso/omarchy.iso,media=cdrom \
+  --ide2 local:iso/unbloarchy.iso,media=cdrom \
   --ide3 local:iso/cidata.iso,media=cdrom \
   --boot order='scsi0;ide2'
 

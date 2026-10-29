@@ -18,7 +18,7 @@ The files are exactly what the installer's own wizard writes, so the easiest way
 
 Generate the password hash for `user_credentials.json` with `openssl passwd -6 "yourpassword"`.
 
-The name and email for git commits aren't part of the install. Set them once the machine is up, over SSH for example, with `omarchy setup git --name "Jane Doe" --email jane@example.com`.
+The name and email for git commits aren't part of the install. Set them once the machine is up, over SSH for example, with `unbloarchy setup git --name "Jane Doe" --email jane@example.com`.
 
 You can also drop in an empty file named `defer-provisioning` in place of `user_credentials.json`. That runs the same [prepare-for-another-owner install](02-getting-started.md) you can trigger interactively: the machine installs with no personal details, and whoever boots it first picks their keyboard and creates their user. That's the mode for imaging rigs, where the drive shouldn't carry anyone's credentials at all.
 

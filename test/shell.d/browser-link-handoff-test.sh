@@ -20,7 +20,7 @@ export XDG_CURRENT_DESKTOP=Hyprland
 export PATH="$mock_bin:$ROOT/bin:$PATH"
 unset BROWSER
 
-for command in chromium firefox omarchy-notification-send update-desktop-database; do
+for command in chromium firefox unbloarchy-notification-send update-desktop-database; do
   printf '#!/bin/bash\n' >"$mock_bin/$command"
 done
 chmod +x "$mock_bin"/*
@@ -30,38 +30,38 @@ for browser in chromium firefox; do
     "$browser" "$browser" >"$test_tmp/system/applications/$browser.desktop"
 done
 
-cp "$ROOT/applications/omarchy-browser.desktop" "$applications/"
+cp "$ROOT/applications/unbloarchy-browser.desktop" "$applications/"
 cp "$ROOT/config/hyprland-mimeapps.list" "$XDG_CONFIG_HOME/"
 
-grep -qxF "Exec=omarchy-launch-browser %U" "$applications/omarchy-browser.desktop" ||
-  fail "the link entry opens links through omarchy-launch-browser"
-grep -qxF "NoDisplay=true" "$applications/omarchy-browser.desktop" ||
+grep -qxF "Exec=unbloarchy-launch-browser %U" "$applications/unbloarchy-browser.desktop" ||
+  fail "the link entry opens links through unbloarchy-launch-browser"
+grep -qxF "NoDisplay=true" "$applications/unbloarchy-browser.desktop" ||
   fail "the link entry stays out of the app launcher"
-pass "the link entry opens links through omarchy-launch-browser, out of the launcher's sight"
+pass "the link entry opens links through unbloarchy-launch-browser, out of the launcher's sight"
 
-omarchy-default-browser firefox || fail "setting the default browser succeeds behind the link entry"
+unbloarchy-default-browser firefox || fail "setting the default browser succeeds behind the link entry"
 grep -qxF "x-scheme-handler/https=firefox.desktop" "$XDG_CONFIG_HOME/mimeapps.list" ||
   fail "setting the default browser records it in mimeapps.list" "$(cat "$XDG_CONFIG_HOME/mimeapps.list")"
-[[ $(omarchy-cmd-default-browser) == "firefox.desktop" ]] ||
-  fail "the default browser is the one behind the link entry" "actual: $(omarchy-cmd-default-browser)"
-[[ $(omarchy-default-browser) == "firefox" ]] || fail "the default browser reads back by name"
+[[ $(unbloarchy-cmd-default-browser) == "firefox.desktop" ]] ||
+  fail "the default browser is the one behind the link entry" "actual: $(unbloarchy-cmd-default-browser)"
+[[ $(unbloarchy-default-browser) == "firefox" ]] || fail "the default browser reads back by name"
 pass "setting the default browser keeps the link entry in front of it"
 
-[[ $(xdg-mime query default x-scheme-handler/https) == "omarchy-browser.desktop" ]] ||
+[[ $(xdg-mime query default x-scheme-handler/https) == "unbloarchy-browser.desktop" ]] ||
   fail "xdg-open sends links to the link entry"
 if command -v gio >/dev/null; then
   gio_default=$(gio mime x-scheme-handler/https)
   gio_default=${gio_default%%$'\n'*}
-  [[ $gio_default == *"omarchy-browser.desktop"* ]] ||
+  [[ $gio_default == *"unbloarchy-browser.desktop"* ]] ||
     fail "the desktop portal sends links to the link entry" "$gio_default"
 fi
 pass "xdg-open and the desktop portal send links to the link entry"
 
-omarchy-default-browser chromium || fail "changing the default browser succeeds behind the link entry"
-[[ $(omarchy-cmd-default-browser) == "chromium.desktop" ]] || fail "a change of default browser takes effect"
+unbloarchy-default-browser chromium || fail "changing the default browser succeeds behind the link entry"
+[[ $(unbloarchy-cmd-default-browser) == "chromium.desktop" ]] || fail "a change of default browser takes effect"
 pass "a change of default browser takes effect"
 
 rm "$XDG_CONFIG_HOME/mimeapps.list"
-[[ $(omarchy-cmd-default-browser) != "omarchy-browser.desktop" ]] ||
+[[ $(unbloarchy-cmd-default-browser) != "unbloarchy-browser.desktop" ]] ||
   fail "the link entry is never taken for the browser, which would launch itself"
 pass "the link entry is never taken for the browser"

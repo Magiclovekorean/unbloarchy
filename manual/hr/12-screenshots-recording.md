@@ -22,7 +22,7 @@ Uređivač za označavanje može crtati strelice, crte, oblike, isticanja, numer
 
 Spremljene snimke zaslona prema zadanim postavkama završavaju u `~/Pictures/Screenshots`, s imenom poput `screenshot-2026-08-13_14-22-05-firefox.png`. Postavite `OMASNAP_SCREENSHOT_DIR` da biste koristili drugi direktorij — pogledajte [često postavljana pitanja](46-faq.md) za to gdje staviti varijable okruženja sesije. Omasnap stvara direktorij kad sprema prvu snimku. Postavite `[output] autosave = false` u `~/.config/omasnap/omasnap.conf` da biste onemogućili automatsko spremanje; snimke se tada samo kopiraju i prikazuju u pregledu na 10 sekundi, koji možete zadržati na zaslonu njegovim gumbom za prikvačivanje ili s `Ctrl + P`.
 
-Iz terminala, `omarchy screenshot` otvara isti sloj, a možete odabrati i njegov početni način: `omarchy capture screenshot region`, `windows`, `fullscreen` ili `scroll`. Drugi argument `copy` ili `save` šalje snimku izravno na to odredište. Da biste uredili prije izlaza, upotrijebite `omarchy screenshot --editor=overlay` za uređivač preko cijelog zaslona ili `omarchy screenshot --editor=window` za zaseban prozor.
+Iz terminala, `unbloarchy screenshot` otvara isti sloj, a možete odabrati i njegov početni način: `unbloarchy capture screenshot region`, `windows`, `fullscreen` ili `scroll`. Drugi argument `copy` ili `save` šalje snimku izravno na to odredište. Da biste uredili prije izlaza, upotrijebite `unbloarchy screenshot --editor=overlay` za uređivač preko cijelog zaslona ili `unbloarchy screenshot --editor=window` za zaseban prozor.
 
 ### Upravljanje odabirom s tipkovnice
 
@@ -41,9 +41,9 @@ Ove veze postoje samo dok je Omasnap otvoren, pa se ne mogu sudariti ni s čim u
 
 ## Snimanje zaslona
 
-`Alt + Print Screen` otvara _Trigger > Capture > Screenrecord_, koji vas pita što želite na zvučnoj podlozi: bez zvuka, zvuk radne površine, zvuk radne površine plus mikrofon ili zvuk radne površine plus mikrofon plus web-kameru. Ta posljednja opcija pojavljuje se samo ako vam je kamera stvarno priključena. Odaberite jednu i Omarchyjev odabir za snimanje omogućuje vam da povučete regiju ili kliknete prozor ili monitor.
+`Alt + Print Screen` otvara _Trigger > Capture > Screenrecord_, koji vas pita što želite na zvučnoj podlozi: bez zvuka, zvuk radne površine, zvuk radne površine plus mikrofon ili zvuk radne površine plus mikrofon plus web-kameru. Ta posljednja opcija pojavljuje se samo ako vam je kamera stvarno priključena. Odaberite jednu i Unbloarchyjev odabir za snimanje omogućuje vam da povučete regiju ili kliknete prozor ili monitor.
 
-Snimanje radi na gpu-screen-recorder, koji kodira na GPU-u pri 60fps i vraća se na CPU ako mora. Rezultat je MP4 u `~/Videos`, nazvan `screenrecording-2026-08-13_14-22-05.mp4`. Postavite `OMARCHY_SCREENRECORD_DIR` da biste to promijenili — ali imajte na umu da, za razliku od direktorija za snimke zaslona, ovaj već mora postojati, inače snimanje odbija započeti.
+Snimanje radi na gpu-screen-recorder, koji kodira na GPU-u pri 60fps i vraća se na CPU ako mora. Rezultat je MP4 u `~/Videos`, nazvan `screenrecording-2026-08-13_14-22-05.mp4`. Postavite `UNBLOARCHY_SCREENRECORD_DIR` da biste to promijenili — ali imajte na umu da, za razliku od direktorija za snimke zaslona, ovaj već mora postojati, inače snimanje odbija započeti.
 
 Dok snimate, u traci se pojavljuje mali indikator. Kliknite ga da biste zaustavili. Možete zaustaviti i ponovnim pritiskom na `Alt + Print Screen` ili unosom _Stop Screenrecording_ pod _Trigger > Capture > Screenrecord_, koji se pojavljuje samo dok se nešto stvarno snima.
 
@@ -60,7 +60,7 @@ Kad snimate s web-kamerom, kamera se pojavljuje kao prikvačen, obrezan portretn
 
 Postoje tri veličine — mala, srednja i velika — a prečaci se kreću između njih. Srednja je zadana. Proporcionalne su snimci, pa kamera zauzima isti udio kadra bez obzira snimate li 1080p monitor ili 6K monitor. A ako ste snimili regiju, a ne cijeli zaslon, preklapanje se sidri za kut te regije, a ne monitora, pa ostaje unutar snimke.
 
-Možete ga pozvati i izravno s `omarchy-capture-webcam-resize small` ili `reset` da biste se vratili na srednju veličinu.
+Možete ga pozvati i izravno s `unbloarchy-capture-webcam-resize small` ili `reset` da biste se vratili na srednju veličinu.
 
 ## Tekst, QR kodovi i boje
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ radi isti trik za QR kodove. Odaberite regiju s ko
 
 Slike idu u jpg ili png pri visokoj, srednjoj ili niskoj kvaliteti, što ograničava širinu na 3160, 2160 i 1080 piksela. Videozapisi idu u mp4 ili animirani gif pri 4k, 1080p ili 720p. Pretvorena datoteka zapisuje se pokraj izvornika, s razlučivošću u imenu — `demo-1080p.mp4` — a putanja se kopira u međuspremnik kao URI datoteke, pa je možete zalijepiti izravno u aplikaciju koja prima ispuštanje datoteka.
 
-Radi i iz terminala, ako već znate što želite: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Postoji i `omarchy transcode ascii`, koji sliku pretvara u ASCII umjetnost — taj je uglavnom za [brendiranje](41-branding.md).
+Radi i iz terminala, ako već znate što želite: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Postoji i `unbloarchy transcode ascii`, koji sliku pretvara u ASCII umjetnost — taj je uglavnom za [brendiranje](41-branding.md).
 
 ## Slanje nekamo
 

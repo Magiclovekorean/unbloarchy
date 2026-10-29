@@ -36,8 +36,8 @@ esac
 SH
 chmod +x "$mock_bin/brightnessctl"
 
-keyboard="$test_tmp/omarchy-brightness-keyboard"
-sed -e "s|/sys/class/leds|$leds|g" "$ROOT/bin/omarchy-brightness-keyboard" >"$keyboard"
+keyboard="$test_tmp/unbloarchy-brightness-keyboard"
+sed -e "s|/sys/class/leds|$leds|g" "$ROOT/bin/unbloarchy-brightness-keyboard" >"$keyboard"
 chmod +x "$keyboard"
 
 run_keyboard() {
@@ -93,7 +93,7 @@ pass "restore with nothing saved leaves the backlight alone"
 
 # An empty record, as a save that ran out of space leaves, is no record.
 echo 3 >"$level_file"
-: >"$test_tmp/runtime/omarchy-brightness-keyboard-asus::kbd_backlight"
+: >"$test_tmp/runtime/unbloarchy-brightness-keyboard-asus::kbd_backlight"
 run_keyboard off
 [[ $(level) == "0" ]] || fail "off blanks over an empty record once it has saved the level (got $(level))"
 run_keyboard restore

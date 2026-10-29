@@ -32,5 +32,5 @@ print(base64.b64encode(json.dumps(entries).encode()).decode())
 PY
 )
 
-OMARCHY_QML_BAR_WIDGETS="$bar_widgets" \
+UNBLOARCHY_QML_BAR_WIDGETS="$bar_widgets" \
   run_qml_fixture bar-widget-contract "bar widget contracts pass" Ui Commons

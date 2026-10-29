@@ -2,23 +2,23 @@
 
 ### Riko järjestelmäni päivityksellä!
 
-Kokeile ensin [palauttaa järjestelmäsi](47-system-snapshots.md) versioon ennen viimeisintä päivitystäsi. Jos se ei toimi, käytä `omarchy-debug`-komentoa jakaaksesi ongelmasi #omarchy-help-kanavalla Discordissa. Ja jos kaikki muu epäonnistuu, voit asentaa oletusasetukset ja -paketit uudelleen käyttämällä `omarchy-reinstall`-komentoa.
+Kokeile ensin [palauttaa järjestelmäsi](47-system-snapshots.md) versioon ennen viimeisintä päivitystäsi. Jos se ei toimi, käytä `unbloarchy-debug`-komentoa jakaaksesi ongelmasi #unbloarchy-help-kanavalla Discordissa. Ja jos kaikki muu epäonnistuu, voit asentaa oletusasetukset ja -paketit uudelleen käyttämällä `unbloarchy-reinstall`-komentoa.
 
 ### Miksi jotkin sovellukset ovat niin suuria näytölläni?
 
-Omarchy olettaa 2x korkean resoluution näytön, mikä edellyttää `GDK_SCALE`-arvon asettamista arvoon 2 tiedostossa `~/.config/hypr/monitors.lua`. Mutta jos käytät 1x-näyttöä, voit muuttaa `local omarchy_gdk_scale = 2` arvoon 1 (ja käynnistää sitten uudelleen kaikki liian suuret sovellukset). Katso [näyttöjä koskeva opas](33-monitors.md).
+Unbloarchy olettaa 2x korkean resoluution näytön, mikä edellyttää `GDK_SCALE`-arvon asettamista arvoon 2 tiedostossa `~/.config/hypr/monitors.lua`. Mutta jos käytät 1x-näyttöä, voit muuttaa `local unbloarchy_gdk_scale = 2` arvoon 1 (ja käynnistää sitten uudelleen kaikki liian suuret sovellukset). Katso [näyttöjä koskeva opas](33-monitors.md).
 
 Spotifyssa voit käyttää `Ctrl + Minus` pienentääksesi käyttöliittymää (ja `Ctrl + Plus` suurentaaksesi sitä).
 
 ### Miksi kaikki Super-näppäinsidontani lakkasivat toimimasta?
 
-Joissakin ASUS ROG- ja TUF-kannettavissa `Fn + Super` on helposti huomaamatta jäävä yhdistelmä, joka kytkee laiteohjelmiston Windows-näppäimen lukituksen (tarkoitettu pelaamiseen, jotta et poistu pelistä vahingossa). Mikään näytöllä ei kerro, että näin tapahtui. Kun lukitus on päällä, Super ei lähetä mitään — joten jokainen Superia käyttävä Omarchy-sidonta lakkaa toimimasta, ja näyttää siltä, että Hyprland meni rikki.
+Joissakin ASUS ROG- ja TUF-kannettavissa `Fn + Super` on helposti huomaamatta jäävä yhdistelmä, joka kytkee laiteohjelmiston Windows-näppäimen lukituksen (tarkoitettu pelaamiseen, jotta et poistu pelistä vahingossa). Mikään näytöllä ei kerro, että näin tapahtui. Kun lukitus on päällä, Super ei lähetä mitään — joten jokainen Superia käyttävä Unbloarchy-sidonta lakkaa toimimasta, ja näyttää siltä, että Hyprland meni rikki.
 
 Paina `Fn + Super` kerran ennen kuin alat kaivella `~/.config/hypr/`-kansiota, ja jos se ei tuo Superia takaisin, paina sitä uudelleen, jotta et jätä lukitusta päälle. Tämä ei ole Fn-lukitus, joka muuttaa vain F-näppäinrivin toimintaa.
 
 ### Wi-Fi, Bluetooth, ääni tai ohjauslevyni lakkasi juuri toimimasta
 
-Ennen kuin käynnistät koneen uudelleen, kokeile käynnistää viallinen alijärjestelmä uudelleen yksinään. Omarchy-valikon _Update > Hardware_ sisältää Wi-Fi, Bluetooth, Audio ja Trackpad, ja yhden niistä uudelleenlataaminen selvittää suurimman osan "se toimi viisi minuuttia sitten" -tilanteista — Bluetooth-kuulokkeet, jotka eivät yhdistä uudelleen, ohjauslevy, joka kuoli lepotilan jälkeen, ääni, joka katosi, kun irrotit näytön.
+Ennen kuin käynnistät koneen uudelleen, kokeile käynnistää viallinen alijärjestelmä uudelleen yksinään. Unbloarchy-valikon _Update > Hardware_ sisältää Wi-Fi, Bluetooth, Audio ja Trackpad, ja yhden niistä uudelleenlataaminen selvittää suurimman osan "se toimi viisi minuuttia sitten" -tilanteista — Bluetooth-kuulokkeet, jotka eivät yhdistä uudelleen, ohjauslevy, joka kuoli lepotilan jälkeen, ääni, joka katosi, kun irrotit näytön.
 
 ### Miksi ulkoiset kaiuttimeni eivät soi?
 
@@ -26,7 +26,7 @@ Todennäköisesti siksi, että niitä ei ole asetettu ensisijaiseksi ulostuloksi
 
 ### Kannettavani kaiuttimet kuulostavat oudoilta
 
-Joissakin kannettavissa Omarchy ottaa automaattisesti käyttöön kaiutinvirityksen, joka korjaa sisäänrakennettujen kaiuttimien taajuusvasteen. `omarchy audio tuning status` kertoo, onko sellainen aktiivinen koneellasi, ja `omarchy audio tuning off` kytkee sen pois, jos haluat mieluummin kuulla kaiuttimet raakana.
+Joissakin kannettavissa Unbloarchy ottaa automaattisesti käyttöön kaiutinvirityksen, joka korjaa sisäänrakennettujen kaiuttimien taajuusvasteen. `unbloarchy audio tuning status` kertoo, onko sellainen aktiivinen koneellasi, ja `unbloarchy audio tuning off` kytkee sen pois, jos haluat mieluummin kuulla kaiuttimet raakana.
 
 ### Miksi en voi kirjautua sisään tai käyttää sudoa salasanallani?
 

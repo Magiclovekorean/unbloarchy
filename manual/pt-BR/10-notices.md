@@ -10,7 +10,7 @@ Os cartões oferecem o que carregam: _Copiar código_ para códigos de verifica�
 
 Para usá-las sem o mouse, pressione `Super + Ctrl + ,`. A notificação mais recente é selecionada e seus botões são numerados: pressione um número para usar um deles, `Enter` para clicar na notificação, `↑` e `↓` para se mover entre as notificações, `Delete` para dispensar uma e `Esc` para devolver o teclado. Ele também se solta sozinho depois de alguns segundos de inatividade.
 
-Silenciar as notificações as segura, exceto as próprias confirmações do Omarchy, alertas de emergência e códigos de verificação, que você pediu há um instante. Coloque as últimas de volta na tela, seguradas ou não, com `Super + Shift + Alt + ,`. O histórico é mantido por um dia.
+Silenciar as notificações as segura, exceto as próprias confirmações do Unbloarchy, alertas de emergência e códigos de verificação, que você pediu há um instante. Coloque as últimas de volta na tela, seguradas ou não, com `Super + Shift + Alt + ,`. O histórico é mantido por um dia.
 
 ## Avisos de atalho
 
@@ -26,7 +26,7 @@ Silenciar as notificações as segura, exceto as próprias confirmações do Oma
 
  ![notice-weather](images/notice-weather.webp)
 
-A localização é detectada a partir do seu endereço IP, o que geralmente é preciso o suficiente, mas nem sempre. Você pode fixá-la com `omarchy weather location --set Malibu`, ou ser exato adicionando as coordenadas: `omarchy weather location --set Malibu 34.0259,-118.7798`. Execute `omarchy weather location` sozinho para ver onde ele acha que você está, e `--clear` para voltar à detecção automática.
+A localização é detectada a partir do seu endereço IP, o que geralmente é preciso o suficiente, mas nem sempre. Você pode fixá-la com `unbloarchy weather location --set Malibu`, ou ser exato adicionando as coordenadas: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Execute `unbloarchy weather location` sozinho para ver onde ele acha que você está, e `--clear` para voltar à detecção automática.
 
 ### Bateria
 

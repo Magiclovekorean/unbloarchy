@@ -1,14 +1,14 @@
 # ඉහළ තීරුව
 
-ඔබේ තිරයේ ඉහළින් ඇති තීරුව Omarchy තීරුවයි. එය බෝල්ට් කර සවිකළ තත්ත්ව තීරුවක් නොව Omarchy shell එකේම කොටසකි. එය මෙනුව, දැනුම්දීම්, OSD උත්පතන සහ අගුළු තිරයද අඳින තනි, දිගු කාලයක් ක්‍රියාත්මක වන Quickshell ක්‍රියාවලියමයි. ඒ නිසාම එය අනෙක් සියල්ල සමඟම පරිපූර්ණව තේමා වන අතර, නව app එකක් ආරම්භ කරනවා වෙනුවට පැනලයක් ක්ෂණිකව විවෘත වේ.
+ඔබේ තිරයේ ඉහළින් ඇති තීරුව Unbloarchy තීරුවයි. එය බෝල්ට් කර සවිකළ තත්ත්ව තීරුවක් නොව Unbloarchy shell එකේම කොටසකි. එය මෙනුව, දැනුම්දීම්, OSD උත්පතන සහ අගුළු තිරයද අඳින තනි, දිගු කාලයක් ක්‍රියාත්මක වන Quickshell ක්‍රියාවලියමයි. ඒ නිසාම එය අනෙක් සියල්ල සමඟම පරිපූර්ණව තේමා වන අතර, නව app එකක් ආරම්භ කරනවා වෙනුවට පැනලයක් ක්ෂණිකව විවෘත වේ.
 
 එය සැමවිටම තිරයේ පවතින එකම desktop කොටසද වන බැවින්, එම කුඩා ග්ලිෆ් සියල්ල කරන්නේ කුමක්දැයි දැන ගැනීම වටී.
 
 ## පෙරනිමියෙන් එහි ඇත්තේ මොනවාද
 
-තීරුවට කොටස් තුනක් ඇත. වම් පසින් Omarchy ලාංඡනය (මෙනු දියත් කරන්නා) සහ workspace දර්ශක පිහිටයි. මැදින් ඔබට තත්ත්ව දර්ශක, ඔරලෝසුව, Elsewhen (ලෝක ඔරලෝසුවක්), කාලගුණය සහ Omarchy යාවත්කාලීන ලාංඡනය ලැබේ. දකුණු පසින්: system tray එක, යතුරුපුවරු පිරිසැලසුම (එකකට වඩා වින්‍යාස කර ඇති විට), agents, bluetooth, network, audio, display සහ power.
+තීරුවට කොටස් තුනක් ඇත. වම් පසින් Unbloarchy ලාංඡනය (මෙනු දියත් කරන්නා) සහ workspace දර්ශක පිහිටයි. මැදින් ඔබට තත්ත්ව දර්ශක, ඔරලෝසුව, Elsewhen (ලෝක ඔරලෝසුවක්), කාලගුණය සහ Unbloarchy යාවත්කාලීන ලාංඡනය ලැබේ. දකුණු පසින්: system tray එක, යතුරුපුවරු පිරිසැලසුම (එකකට වඩා වින්‍යාස කර ඇති විට), agents, bluetooth, network, audio, display සහ power.
 
-ඒවායින් සමහරක් දිස්වන්නේ ඒවාට කීමට යමක් ඇති විට පමණි. යතුරුපුවරු පිරිසැලසුම දිස්වන්නේ ඔබ පිරිසැලසුම් එකකට වඩා වින්‍යාස කර ඇත්නම් පමණි. Omarchy යාවත්කාලීනයක් බලාපොරොත්තුවෙන් සිටින විට පමණක් යාවත්කාලීන ලාංඡනය දිස්වේ. තවද agents අයිකනය දිස්වන්නේ Omarchy විසින් යන්ත්‍රයේ AI coding භාවිතය මුල් වරට සොයා ගත් විටය (බලන්න [AI](17-ai.md)).
+ඒවායින් සමහරක් දිස්වන්නේ ඒවාට කීමට යමක් ඇති විට පමණි. යතුරුපුවරු පිරිසැලසුම දිස්වන්නේ ඔබ පිරිසැලසුම් එකකට වඩා වින්‍යාස කර ඇත්නම් පමණි. Unbloarchy යාවත්කාලීනයක් බලාපොරොත්තුවෙන් සිටින විට පමණක් යාවත්කාලීන ලාංඡනය දිස්වේ. තවද agents අයිකනය දිස්වන්නේ Unbloarchy විසින් යන්ත්‍රයේ AI coding භාවිතය මුල් වරට සොයා ගත් විටය (බලන්න [AI](17-ai.md)).
 
 ## ක්ලික් කරමින් සැරිසැරීම
 
@@ -16,7 +16,7 @@
 
 | විජට්ටුව | වම | දකුණ | මැද / අනුචලනය |
 | --- | --- | --- | --- |
-| Menu | Omarchy මෙනුව | නව terminal එකක් | — |
+| Menu | Unbloarchy මෙනුව | නව terminal එකක් | — |
 | Workspaces | එම workspace එක මෙම monitor එක මත නාභිගත කරන්න | — | අනුචලනය: ඊළඟ/පෙර workspace එක |
 | Clock | Calendar උත්පතනය | ලේබල ආකෘතිය චක්‍රීය කරන්න | මැද: වේලා කලාප තේරීම |
 | Weather | Forecast උත්පතනය | සම්පූර්ණ කාලගුණය දැනුම්දීමක් ලෙස | මැද: නැවත පූරණය කරන්න |
@@ -29,7 +29,7 @@
 | Media | වාදනය/විරාමය | Cover-art උත්පතනය | මැද: ඊළඟ · අනුචලනය: පෙර/ඊළඟ |
 | Agents | Agents පැනලය | ඔබේ agent දියත් කරන්න | මැද: ඊළඟ subscription එක |
 | Tray | Drawer එක හෙළි කිරීමට hover කරන්න | කළමනාකරණය කිරීමට chevron එක මත දකුණු ක්ලික් කරන්න | — |
-| Omarchy update | යාවත්කාලීනය ධාවනය කරන්න | — | — |
+| Unbloarchy update | යාවත්කාලීනය ධාවනය කරන්න | — | — |
 
 එම වගුවේ ඇති සියල්ල ඔබේ තීරුවේ මුල සිටම නැත. Media විජට්ටුව (අනුචලනය වන track එකක් සහ artist කෙනෙක් සහිත MPRIS now-playing) සහ microphone විජට්ටුව යන දෙකම ඇතුළත්වම එන නමුත් පෙරනිමියෙන් අක්‍රියයි — ඔබට ඒවා අවශ්‍ය නම්, පහත විස්තර කර ඇති පරිදි ඒවා එක් කරන්න.
 
@@ -66,7 +66,7 @@
 
 තවත් විජට්ටු දෙකක් තීරුව මත දිස්වන්නේ ඔබ **Install → Service** වෙතින් ගැළපෙන සේවාව ස්ථාපනය කළ පසු පමණි, සහ ඒ දෙකම දැන ගැනීම වටී, මන්ද ඒවා තත්ත්වය වාර්තා කිරීමට වඩා වැඩි යමක් කරයි.
 
-**Tailscale** පැනලය tailnet එක සම්බන්ධ කර විසන්ධි කරයි, ගිණුම් අතර මාරු වේ, සහ exit node එකක් තෝරයි (ඔබේම යන්ත්‍ර සහ Mullvad regions දෙකම එම ලැයිස්තුවේ දිස්වේ). එය ඔබේ යන්ත්‍රද පිරික්සයි — සහ එකක් තෝරාගෙන ඇති විට, `s` Taildrop හරහා එයට ගොනු යවයි, එය ඔබේ දුරකථනයට හෝ වෙනත් laptop එකකට ගොනුවක් ගෙන යාමේ වේගවත්ම ක්‍රමයයි. `c` යන්ත්‍රයේ IP එක පිටපත් කරයි, `n` එහි නම, සහ `d` එහි සම්පූර්ණ DNS නම. ඔබට ක්ලික් කිරීමට අවශ්‍ය නම්, සෑම යන්ත්‍ර පේළියකම send බොත්තමක්ද ඇත. Terminal එකෙන් එම දෙයම `omarchy tailscale send <machine> [file...]` වේ.
+**Tailscale** පැනලය tailnet එක සම්බන්ධ කර විසන්ධි කරයි, ගිණුම් අතර මාරු වේ, සහ exit node එකක් තෝරයි (ඔබේම යන්ත්‍ර සහ Mullvad regions දෙකම එම ලැයිස්තුවේ දිස්වේ). එය ඔබේ යන්ත්‍රද පිරික්සයි — සහ එකක් තෝරාගෙන ඇති විට, `s` Taildrop හරහා එයට ගොනු යවයි, එය ඔබේ දුරකථනයට හෝ වෙනත් laptop එකකට ගොනුවක් ගෙන යාමේ වේගවත්ම ක්‍රමයයි. `c` යන්ත්‍රයේ IP එක පිටපත් කරයි, `n` එහි නම, සහ `d` එහි සම්පූර්ණ DNS නම. ඔබට ක්ලික් කිරීමට අවශ්‍ය නම්, සෑම යන්ත්‍ර පේළියකම send බොත්තමක්ද ඇත. Terminal එකෙන් එම දෙයම `unbloarchy tailscale send <machine> [file...]` වේ.
 
 **Dropbox** පැනලය login වීම හසුරුවයි, ඔබ කොපමණ storage ප්‍රමාණයක් භාවිතා කර ඇත්දැයි පෙන්වයි, සහ මෑතකදී synced කළ ගොනු ලැයිස්තුගත කරයි.
 
@@ -93,19 +93,19 @@
 එම දේවල් සඳහාම commands ද ඇත, එය [dotfiles](31-dotfiles.md) සැකසුමක් සඳහා ඔබට අවශ්‍ය දෙයයි:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-විජට්ටුවක් සම්පූර්ණයෙන්ම එක් කිරීමට හෝ ඉවත් කිරීමට, plugin commands භාවිතා කරන්න. `omarchy plugin list` shell එක දන්නා සෑම විජට්ටුවක්ම එහි id එක සමඟ මුද්‍රණය කරයි, ඉන්පසු:
+විජට්ටුවක් සම්පූර්ණයෙන්ම එක් කිරීමට හෝ ඉවත් කිරීමට, plugin commands භාවිතා කරන්න. `unbloarchy plugin list` shell එක දන්නා සෑම විජට්ටුවක්ම එහි id එක සමඟ මුද්‍රණය කරයි, ඉන්පසු:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## තීරුව සැඟවීම
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Config ගොනුව
 
-මේ සියල්ල `~/.config/omarchy/shell.json` හි, `bar` යතුර යටතේ ගබඩා කර ඇත. මෙන්න කෙටි කළ අනුවාදයක්:
+මේ සියල්ල `~/.config/unbloarchy/shell.json` හි, `bar` යතුර යටතේ ගබඩා කර ඇත. මෙන්න කෙටි කළ අනුවාදයක්:
 
 ```json
 {
@@ -123,20 +123,20 @@ omarchy plugin disable omarchy.weather
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-සෑම විජට්ටුවක්ම layout arrays පහෙන් එකක එක් ප්‍රවේශයක් වන අතර, එහි settings ඒ ප්‍රවේශය මතම inline ලෙස පිහිටයි — වෙනම settings ගොනුවක් නැත, `config` උප-වස්තුවක්ද නැත. Clock එකේ `format`, `formatAlt` (දකුණු ක්ලික් කිරීම චක්‍රීය කරන්නේ කුමක් වෙතද යන්න), සහ `verticalFormat` යන සියල්ල `{ "id": "omarchy.clock" }` මතම එහිම පිහිටයි.
+සෑම විජට්ටුවක්ම layout arrays පහෙන් එකක එක් ප්‍රවේශයක් වන අතර, එහි settings ඒ ප්‍රවේශය මතම inline ලෙස පිහිටයි — වෙනම settings ගොනුවක් නැත, `config` උප-වස්තුවක්ද නැත. Clock එකේ `format`, `formatAlt` (දකුණු ක්ලික් කිරීම චක්‍රීය කරන්නේ කුමක් වෙතද යන්න), සහ `verticalFormat` යන සියල්ල `{ "id": "unbloarchy.clock" }` මතම එහිම පිහිටයි.
 
 `center` යනු තීරුවේ මැද ඇති box එකයි: එහි ඇති සියල්ල එක් කණ්ඩායමක් ලෙස තිරයේ මධ්‍යගත කරනු ලැබේ. `centerBegin` සහ `centerEnd` box එක දෙපසින් එල්ලෙන අතර, කාලගුණය සහ යාවත්කාලීන ලාංඡනය එහා මෙහා වන විට පවා clock එක නිශ්චිතවම මැද රැඳෙන්නේ එලෙසිනි. `center` හි විජට්ටු එකකට වඩා තබන්න, එවිට ඒවා එකට මධ්‍යගත වේ; එය හිස්ව තබන්න, එවිට `centerBegin` සහ `centerEnd` තීරුවේ මැදදී හමු වේ.
 
-අභ්‍යන්තරකරණයට වටිනා එක් නීතියක්: **ඔබට ඔබේම `shell.json` එකක් ලැබුණු පසු, එය ප්‍රාමාණිකය**. ඔබ කිසිවක් අභිරුචිකරණය කරන තෙක්, shell එක Omarchy හි පෙරනිමි ගොනුව කියවයි. ඔබ විජට්ටුවක් ඇදගෙන ගිය, `omarchy bar` ධාවනය කළ, නැතහොත් ගොනුව ඔබම සංස්කරණය කළ මොහොතේ, එය ඔබ සතු වේ — deep merge එකක් නැත, එබැවින් අනාගත Omarchy නිකුතුන්හි නව පෙරනිමි විජට්ටු ඔබේ තීරුවේ ස්වයංක්‍රීයව දිස් නොවනු ඇත. ඔබට පිරිසිදු ආරම්භයක් අවශ්‍ය ඕනෑම වේලාවක `omarchy bar defaults` නැව්ගත කළ පිරිසැලසුම නැවත තබයි.
+අභ්‍යන්තරකරණයට වටිනා එක් නීතියක්: **ඔබට ඔබේම `shell.json` එකක් ලැබුණු පසු, එය ප්‍රාමාණිකය**. ඔබ කිසිවක් අභිරුචිකරණය කරන තෙක්, shell එක Unbloarchy හි පෙරනිමි ගොනුව කියවයි. ඔබ විජට්ටුවක් ඇදගෙන ගිය, `unbloarchy bar` ධාවනය කළ, නැතහොත් ගොනුව ඔබම සංස්කරණය කළ මොහොතේ, එය ඔබ සතු වේ — deep merge එකක් නැත, එබැවින් අනාගත Unbloarchy නිකුතුන්හි නව පෙරනිමි විජට්ටු ඔබේ තීරුවේ ස්වයංක්‍රීයව දිස් නොවනු ඇත. ඔබට පිරිසිදු ආරම්භයක් අවශ්‍ය ඕනෑම වේලාවක `unbloarchy bar defaults` නැව්ගත කළ පිරිසැලසුම නැවත තබයි.
 
 එම ගොනුවම ඉහළ මට්ටමේ, `bar` යතුරෙන් පිටත ඔබේ idle කාලයන්ද තබා ගනී: `idle.screensaver` සහ `idle.lock`, දෙකම ඔබ idle වූ පසු තත්පර වලින්. එබැවින් පෙරනිමි screensaver එක තත්පර 150දී ආරම්භ වන අතර අගුළ තත්පර 300දී ක්‍රියාත්මක වේ.

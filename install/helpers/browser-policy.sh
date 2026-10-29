@@ -79,14 +79,14 @@ browser_policy_setup_parents_for() {
   done
 }
 
-# Links reach the browser through omarchy-browser.desktop, so the browser never
+# Links reach the browser through unbloarchy-browser.desktop, so the browser never
 # sees itself as the default. Hide its check and its button to become one, which
-# would rewrite mimeapps.list behind Omarchy's back.
+# would rewrite mimeapps.list behind Unbloarchy's back.
 browser_policy_install_defaults() {
   local policy_dir=$1
-  local policies=${2:-$OMARCHY_PATH/default/chromium/policies/omarchy.json}
+  local policies=${2:-$UNBLOARCHY_PATH/default/chromium/policies/unbloarchy.json}
 
-  as_root install -m 644 -o root -g root -T "$policies" "$policy_dir/omarchy.json"
+  as_root install -m 644 -o root -g root -T "$policies" "$policy_dir/unbloarchy.json"
 }
 
 browser_policy_setup_dir() {
@@ -169,7 +169,7 @@ browser_policy_install_firefox_policies() {
   as_root install -m 644 -o root -g root -T "$policies" "$distribution_dir/policies.json"
 }
 
-# Add Omarchy's default-browser setting to an existing policies.json, keeping
+# Add Unbloarchy's default-browser setting to an existing policies.json, keeping
 # whatever else an administrator put there.
 browser_policy_firefox_skip_default_check() {
   local file=$1/policies.json

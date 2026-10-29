@@ -1,6 +1,6 @@
 # Themes
 
-Omarchy comes with twenty-two beautiful themes. You can select between them via _Appearance > Theme_ in the Omarchy Menu (`Super + Space`) or hop directly to the theme selector using `Super + Ctrl + Shift + Space`.
+Unbloarchy comes with twenty-two beautiful themes. You can select between them via _Appearance > Theme_ in the Unbloarchy Menu (`Super + Space`) or hop directly to the theme selector using `Super + Ctrl + Shift + Space`.
 
 Each theme styles the desktop, terminal, neovim, activity screen (btop), Chromium, and the entire Unbloarchy shell: top bar, menu, notifications, OSD, and the lock screen. (For Obsidian, you must manually select the Unbloarchy theme via _Appearance > Themes_ inside the app).
 

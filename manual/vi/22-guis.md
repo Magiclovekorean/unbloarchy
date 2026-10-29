@@ -20,11 +20,11 @@ Obsidian miễn phí cho mọi mục đích, bao gồm sử dụng cá nhân, th
 
 Obsidian cũng cung cấp một [tiện ích bổ sung thương mại để đồng bộ hóa](https://obsidian.md/sync) với các ứng dụng di động trên iOS và Android. (https://obsidian.md/pricing).
 
-Bạn khởi chạy Obsidian bằng `Super + Shift + O`. Để sử dụng tính năng đồng bộ theme, bạn phải chọn theme `Omarchy` trong phần cài đặt.
+Bạn khởi chạy Obsidian bằng `Super + Shift + O`. Để sử dụng tính năng đồng bộ theme, bạn phải chọn theme `Unbloarchy` trong phần cài đặt.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) là ứng dụng viết Markdown cực kỳ đơn giản của chính Omarchy. Không vault, không plugin, chỉ có bạn và những con chữ.
+[Omawrite](https://github.com/omacom-io/omawrite) là ứng dụng viết Markdown cực kỳ đơn giản của chính Unbloarchy. Không vault, không plugin, chỉ có bạn và những con chữ.
 
 Bạn khởi chạy Omawrite bằng `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Bạn khởi chạy Aether qua trình khởi chạy ứng dụng (`Super + Space
 
 [LocalSend](https://localsend.org/) cho phép bạn gửi tệp tới các thiết bị khác trên cùng mạng đang chạy ứng dụng này, giống như AirDrop của Apple. Tuy nhiên, nó đa nền tảng, nên bạn có thể gửi tệp đến và từ Windows, macOS, Android, iOS, và tất nhiên là Linux.
 
-Bạn có thể mở menu Share trên `Super + Ctrl + S` hoặc trong _Trigger > Share_ trong menu Omarchy. Nó cho bạn bốn lựa chọn:
+Bạn có thể mở menu Share trên `Super + Ctrl + S` hoặc trong _Trigger > Share_ trong menu Unbloarchy. Nó cho bạn bốn lựa chọn:
 
 - **Clipboard** gửi bất cứ thứ gì bạn đã sao chép dưới dạng một tệp văn bản. Rất tuyệt để đưa một liên kết hoặc một đoạn mã lên điện thoại mà không cần tự gửi email cho mình.
 - **File** mở một trình chọn tệp, nơi bạn có thể chọn nhiều tệp cùng lúc.
 - **Folder** gửi toàn bộ một thư mục.
 - **Receive** mở LocalSend đúng nghĩa để một thiết bị khác có thể gửi thứ gì đó cho bạn.
 
-Điều tương tự cũng hoạt động từ terminal với `omarchy share clipboard`, `omarchy share file [path]`, và `omarchy share folder [path]`. Bỏ đường dẫn đi và bạn sẽ nhận được trình chọn tệp.
+Điều tương tự cũng hoạt động từ terminal với `unbloarchy share clipboard`, `unbloarchy share file [path]`, và `unbloarchy share folder [path]`. Bỏ đường dẫn đi và bạn sẽ nhận được trình chọn tệp.
 
 Bạn cũng có thể gửi thẳng từ trình quản lý tệp: nhấp chuột phải vào bất kỳ lựa chọn nào trong Nautilus và chọn _Send via LocalSend_.
 
-Tường lửa của Omarchy đóng theo mặc định ngoại trừ cổng của LocalSend, nên tính năng này hoạt động ngay từ đầu trên một bản cài đặt mới. Xem [bảo mật](48-security.md).
+Tường lửa của Unbloarchy đóng theo mặc định ngoại trừ cổng của LocalSend, nên tính năng này hoạt động ngay từ đầu trên một bản cài đặt mới. Xem [bảo mật](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ Bạn khởi chạy LibreOffice qua trình khởi chạy ứng dụng (`Super + 
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) là ứng dụng trình chiếu cực kỳ đơn giản của chính Omarchy. Bộ slide của bạn là một tệp Markdown duy nhất với các hình ảnh và video của nó nằm bên cạnh: viết mỗi slide bên dưới một bản xem trước trực tiếp, kéo các slide theo thứ tự, rồi trình chiếu toàn màn hình hoặc xuất ra PDF và PowerPoint. Nó thậm chí còn nhận theme Omarchy của bạn.
+[Hype](https://github.com/omacom/hype) là ứng dụng trình chiếu cực kỳ đơn giản của chính Unbloarchy. Bộ slide của bạn là một tệp Markdown duy nhất với các hình ảnh và video của nó nằm bên cạnh: viết mỗi slide bên dưới một bản xem trước trực tiếp, kéo các slide theo thứ tự, rồi trình chiếu toàn màn hình hoặc xuất ra PDF và PowerPoint. Nó thậm chí còn nhận theme Unbloarchy của bạn.
 
 Bạn khởi chạy Hype qua trình khởi chạy ứng dụng (`Super + Space`). Nhấn `?` bên trong nó để xem mọi phím tắt.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) là cách cực kỳ đơn giản của chính Omarchy để ký PDF và điền vào chúng. Đặt chữ ký đã lưu, văn bản, và ngày hôm nay của bạn ở bất cứ đâu trên một trang, rồi lưu một bản sao đã ký bên cạnh bản gốc. Xem [Điền vào PDF](27-filling-out-pdfs.md) để biết cách làm.
+[Signed](https://github.com/omacom/signed) là cách cực kỳ đơn giản của chính Unbloarchy để ký PDF và điền vào chúng. Đặt chữ ký đã lưu, văn bản, và ngày hôm nay của bạn ở bất cứ đâu trên một trang, rồi lưu một bản sao đã ký bên cạnh bản gốc. Xem [Điền vào PDF](27-filling-out-pdfs.md) để biết cách làm.
 
 Bạn khởi chạy Signed qua trình khởi chạy ứng dụng (`Super + Space`), hoặc mở một PDF bằng nó từ trình quản lý tệp.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) là máy tính cực kỳ đơn giản của chính Omarchy, mở trong một cửa sổ nổi.
+[Omacalc](https://github.com/omacom-io/omacalc) là máy tính cực kỳ đơn giản của chính Unbloarchy, mở trong một cửa sổ nổi.
 
 Bạn khởi chạy Omacalc bằng `Super + Shift + Q` (hoặc phím máy tính, nếu bàn phím của bạn có phím đó).
 
@@ -85,7 +85,7 @@ Bạn khởi chạy Omacalc bằng `Super + Shift + Q` (hoặc phím máy tính,
 
 [Signal](https://signal.org/) là ứng dụng tiên phong về nhắn tin mã hóa E2E, và là một lựa chọn giao tiếp tuyệt vời cho bất kỳ ai không muốn đi qua một trong những tập đoàn công nghệ lớn.
 
-Bạn khởi chạy Signal bằng `Super + Shift + G`. Nó không phải là một phần của bản cài đặt cơ bản, nên lần đầu tiên bạn nhấn phím đó, Omarchy sẽ đề nghị cài đặt nó cho bạn (nó cũng nằm trong _Install > Service_ trong menu Omarchy).
+Bạn khởi chạy Signal bằng `Super + Shift + G`. Nó không phải là một phần của bản cài đặt cơ bản, nên lần đầu tiên bạn nhấn phím đó, Unbloarchy sẽ đề nghị cài đặt nó cho bạn (nó cũng nằm trong _Install > Service_ trong menu Unbloarchy).
 
 ## mpv
 
@@ -95,13 +95,13 @@ Bạn khởi chạy mpv qua trình khởi chạy ứng dụng (`Super + Space`) 
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) là trình cắt video cực kỳ đơn giản của chính Omarchy. Khi tất cả những gì bạn cần là cắt bỏ phần đầu và phần cuối của một clip, nó hơn hẳn việc phải khởi động một trình chỉnh sửa video đầy đủ.
+[Omacut](https://github.com/omacom-io/omacut) là trình cắt video cực kỳ đơn giản của chính Unbloarchy. Khi tất cả những gì bạn cần là cắt bỏ phần đầu và phần cuối của một clip, nó hơn hẳn việc phải khởi động một trình chỉnh sửa video đầy đủ.
 
 Bạn khởi chạy Omacut qua trình khởi chạy ứng dụng (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) là trình ghi webcam cực kỳ đơn giản của chính Omarchy. Chọn camera và microphone của bạn một lần, rồi nhấn `Space` để ghi, và nhấn lại để tạm dừng và tiếp tục cùng một lần ghi. Nó luôn ghi ở độ phân giải cao nhất của camera của bạn, với một đồng hồ đo microphone trực tiếp để bạn có thể kiểm tra mức âm lượng trước khi bắt đầu.
+[Monologue](https://github.com/omacom/monologue) là trình ghi webcam cực kỳ đơn giản của chính Unbloarchy. Chọn camera và microphone của bạn một lần, rồi nhấn `Space` để ghi, và nhấn lại để tạm dừng và tiếp tục cùng một lần ghi. Nó luôn ghi ở độ phân giải cao nhất của camera của bạn, với một đồng hồ đo microphone trực tiếp để bạn có thể kiểm tra mức âm lượng trước khi bắt đầu.
 
 Dừng lần ghi và nó sẽ mở ngay trong một trình chỉnh sửa tích hợp. Nhấp đúp vào một clip để chia nó ra, kéo các tay cầm để cắt mỗi phần, và loại bỏ những phần bạn không muốn. Sau đó lưu nó dưới dạng MP4. Bản ghi gốc của bạn được giữ lại cho đến khi bạn loại bỏ nó, nên bạn luôn có thể quay lại và cắt nó theo cách khác.
 

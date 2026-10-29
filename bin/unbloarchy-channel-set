@@ -50,7 +50,7 @@ validate_dev_checkout() {
 # The dev channel refreshes pacman with the checkout's own tools. A checkout
 # without this machine's region profile would silently drop its repositories.
 validate_dev_region() {
-  local checkout="$1" region_file="${OMARCHY_REGION_FILE:-/etc/omarchy/region}" region=global
+  local checkout="$1" region_file="${UNBLOARCHY_REGION_FILE:-/etc/unbloarchy/region}" region=global
 
   [[ -f $region_file ]] && region=$(<"$region_file")
   [[ $region == "global" ]] && return 0
@@ -59,8 +59,8 @@ validate_dev_region() {
   # just a directory with the region's name: dev refreshes edge, and leaving
   # dev later refreshes stable or rc with this checkout's tools.
   local profile="$checkout/default/regions/$region/pacman" fragment supported=true
-  [[ -x $checkout/bin/omarchy-apply-pacman ]] || supported=false
-  for fragment in omarchy-{stable,rc,edge}.prepend mirrorlist-{stable,rc,edge}.prepend; do
+  [[ -x $checkout/bin/unbloarchy-apply-pacman ]] || supported=false
+  for fragment in unbloarchy-{stable,rc,edge}.prepend mirrorlist-{stable,rc,edge}.prepend; do
     [[ -r $profile/$fragment ]] || supported=false
   done
   if ! $supported; then
@@ -116,8 +116,8 @@ stop_for_older_destination() {
   local installed listed line
   local -a names=()
 
-  # omarchy-dev provides omarchy, so this lists whichever pair is installed.
-  installed=$(pacman -Q omarchy omarchy-settings 2>/dev/null) || true
+  # omarchy-dev provides unbloarchy, so this lists whichever pair is installed.
+  installed=$(pacman -Q unbloarchy omarchy-settings 2>/dev/null) || true
   while read -r line; do
     names+=("${line%% *}")
   done <<<"$installed"
@@ -126,12 +126,12 @@ stop_for_older_destination() {
   if [[ ${names[*]} == "${packages[*]}" ]]; then
     cat >&2 <<EOF
 The destination predates command-scoped sudo, so this switch stops before its update.
-Packages are switched to $listed. Run 'omarchy update' from a new terminal to finish, then reboot if prompted.
+Packages are switched to $listed. Run 'unbloarchy update' from a new terminal to finish, then reboot if prompted.
 EOF
   else
     cat >&2 <<EOF
-A package transaction replaced Omarchy with a release that predates command-scoped sudo, so this switch stops before installing ${packages[*]}.
-Installed now: ${listed:-neither omarchy nor omarchy-settings}. Run 'omarchy channel set $channel' from a new terminal to finish, then reboot if prompted.
+A package transaction replaced Unbloarchy with a release that predates command-scoped sudo, so this switch stops before installing ${packages[*]}.
+Installed now: ${listed:-neither unbloarchy nor unbloarchy-settings}. Run 'unbloarchy channel set $channel' from a new terminal to finish, then reboot if prompted.
 EOF
   fi
   exit 3

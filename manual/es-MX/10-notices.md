@@ -10,7 +10,7 @@ Las tarjetas ofrecen lo que traen: _Copiar código_ para los códigos de verific
 
 Para usarlas sin el mouse, presiona `Super + Ctrl + ,`. La notificación más reciente queda seleccionada y sus botones numerados: presiona un número para usar uno, `Enter` para hacer clic en la notificación, `↑` y `↓` para moverte entre notificaciones, `Delete` para descartar una y `Esc` para devolver el teclado. También se libera por sí sola después de unos segundos sin actividad.
 
-Silenciar las notificaciones las retiene, excepto las confirmaciones propias de Omarchy, las alertas de emergencia y los códigos de verificación, que pediste hace un momento. Vuelve a poner las últimas en pantalla, retenidas o no, con `Super + Shift + Alt + ,`. El historial se conserva durante un día.
+Silenciar las notificaciones las retiene, excepto las confirmaciones propias de Unbloarchy, las alertas de emergencia y los códigos de verificación, que pediste hace un momento. Vuelve a poner las últimas en pantalla, retenidas o no, con `Super + Shift + Alt + ,`. El historial se conserva durante un día.
 
 ## Avisos por atajo de teclado
 
@@ -26,7 +26,7 @@ Silenciar las notificaciones las retiene, excepto las confirmaciones propias de 
 
  ![notice-weather](images/notice-weather.webp)
 
-La ubicación se detecta a partir de tu dirección IP, que por lo general es lo bastante cercana, pero no siempre. Puedes precisarla con `omarchy weather location --set Malibu`, o ser exacto al respecto agregando coordenadas: `omarchy weather location --set Malibu 34.0259,-118.7798`. Ejecuta `omarchy weather location` por sí solo para ver dónde cree que estás, y `--clear` para volver a la detección automática.
+La ubicación se detecta a partir de tu dirección IP, que por lo general es lo bastante cercana, pero no siempre. Puedes precisarla con `unbloarchy weather location --set Malibu`, o ser exacto al respecto agregando coordenadas: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Ejecuta `unbloarchy weather location` por sí solo para ver dónde cree que estás, y `--clear` para volver a la detección automática.
 
 ### Batería
 

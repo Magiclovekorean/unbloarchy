@@ -99,7 +99,7 @@ for (let i = 0; i < 1000; i++) {
   assert.equal(Store.restored({ key: 'r', app: 'Chat', source: 'bank.example' }).groupKey, 'app:chat')
   assert.equal(Store.restored({ key: 'r', app: 'Chromium', source: 'app.slack.com' }).groupKey, 'web:app.slack.com')
   // An unnamed sender's toasts each stand alone rather than stacking.
-  for (const app of ['omarchy-action', 'notify-send'])
+  for (const app of ['unbloarchy-action', 'notify-send'])
     assert.notEqual(Store.restored({ key: 'a', app }).groupKey, Store.restored({ key: 'b', app }).groupKey, app)
 }
 
@@ -166,16 +166,16 @@ for (const body of ['Your verification code is 938271', 'Your code is 938 271', 
                      // A NUL cannot travel in an argv; Qt would cut the argument short.
                      JSON.stringify(['/usr/bin/printf\u0000ignored', '%s']), JSON.stringify(['echo', 'safe\u0000TRUNCATED'])])
     assert.equal(S.parseExecArgv(bad), null, bad)
-  assert.equal(snap({ appName: 'x', summary: 'y', hints: { 'omarchy-exec-argv': '["-x"]' } }).execArgv, '')
-  for (const app of ['omarchy-action', 'Crash watch', 'notify-send']) {
-    const row = snap({ appName: app, summary: 'Action', hints: { 'omarchy-exec-argv': shot } })
+  assert.equal(snap({ appName: 'x', summary: 'y', hints: { 'unbloarchy-exec-argv': '["-x"]' } }).execArgv, '')
+  for (const app of ['unbloarchy-action', 'Crash watch', 'notify-send']) {
+    const row = snap({ appName: app, summary: 'Action', hints: { 'unbloarchy-exec-argv': shot } })
     assert.equal(row.execArgv, shot, app)
     // A toast restored after a shell restart clicks through like the live one.
     assert.equal(Store.restored(Store.sanitiseForPersistence(row)).execArgv, shot)
   }
   // A verification-code card is redacted whole, its command and glyph included.
   const secret = Store.sanitiseForPersistence(snap({ appName: 'x', summary: 'Sign in', body: 'Your verification code is 482913',
-    hints: { 'omarchy-exec-argv': shot, 'omarchy-glyph': '\u{f0306}' } }))
+    hints: { 'unbloarchy-exec-argv': shot, 'unbloarchy-glyph': '\u{f0306}' } }))
   assert.deepEqual([secret.execArgv, secret.glyph], ['', ''])
 }
 
@@ -188,9 +188,9 @@ for (const body of ['Your verification code is 938271', 'Your code is 938 271', 
                      JSON.stringify([{ label: 'Go', argv: ['-rf'] }]), JSON.stringify([{ label: 'Go' }]), JSON.stringify([one, 'x'])])
     assert.equal(S.parseExecActions(bad), null, bad)
   // Stored with the row, so a restored card keeps its buttons; redacted with a code.
-  const row = snap({ appName: 'omasnap', summary: 'Screenshot saved', hints: { 'omarchy-actions': actions } })
+  const row = snap({ appName: 'omasnap', summary: 'Screenshot saved', hints: { 'unbloarchy-actions': actions } })
   assert.equal(Store.restored(Store.sanitiseForPersistence(row)).execActions, actions)
-  const secret = snap({ appName: 'x', summary: 'Sign in', body: 'Your verification code is 482913', hints: { 'omarchy-actions': actions } })
+  const secret = snap({ appName: 'x', summary: 'Sign in', body: 'Your verification code is 482913', hints: { 'unbloarchy-actions': actions } })
   assert.equal(Store.sanitiseForPersistence(secret).execActions, '')
 }
 
@@ -252,7 +252,7 @@ for (const body of ['Your verification code is 938271', 'Your code is 938 271', 
 }
 
 { // The glyph hint: a short mark for the icon slot, persisted with the row.
-  const row = snap({ appName: 'omarchy-action', summary: '14:02', hints: { 'omarchy-glyph': '\u{f0954}' } })
+  const row = snap({ appName: 'unbloarchy-action', summary: '14:02', hints: { 'unbloarchy-glyph': '\u{f0954}' } })
   assert.equal(Store.restored(Store.sanitiseForPersistence(row)).glyph, '\u{f0954}')
   for (const bad of ['x'.repeat(17), 'a\u0007', 12]) assert.equal(S.safeGlyph(bad), '')
   assert.equal(snap({ appName: 'Slack', summary: 'typing', hints: { transient: true } }).transient, true)
@@ -266,7 +266,7 @@ for (const body of ['Your verification code is 938271', 'Your code is 938 271', 
     [{ app: 'Slack', urgency: 2 }, true, 'silenced'],      // a branded critical does not punch through
     [{ app: 'notify-send', urgency: 2 }, true, ''],
     [{ app: 'notify-send', urgency: 1 }, true, 'silenced'],
-    [{ app: 'omarchy-action', urgency: 0 }, true, ''],
+    [{ app: 'unbloarchy-action', urgency: 0 }, true, ''],
     [{ app: 'Google', urgency: 1, code: '482913' }, true, ''],
   ]) assert.equal(Delivery.quietReason(row, dnd), expected, JSON.stringify([row, dnd]))
   // The number keys count buttons in the order the card draws them: codes, --action, the sender's.
@@ -274,18 +274,18 @@ for (const body of ['Your verification code is 938271', 'Your code is 938 271', 
                                [{ id: 'join', text: 'Join call' }])
   assert.equal(JSON.stringify(Array.from(deeds, d => d.kind + ':' + d.value)), JSON.stringify(['code:482913', 'code:771204', 'exec:0', 'action:join']))
   assert.equal(Delivery.deeds({}, []).length, 0)
-  for (const [row, ephemeral] of [[{ app: 'notify-send' }, true], [{ app: 'omarchy-action' }, true],
+  for (const [row, ephemeral] of [[{ app: 'notify-send' }, true], [{ app: 'unbloarchy-action' }, true],
                                   [{ app: 'Slack', transient: true }, true], [{ app: 'Slack' }, false]])
     assert.equal(Delivery.isEphemeral(row), ephemeral, row.app)
   assert.ok(Delivery.summaryStartsWithGlyph('\u{f009b}  Silenced'))
   assert.ok(!Delivery.summaryStartsWithGlyph('Silenced  notifications'))
   assert.ok(!Delivery.summaryStartsWithGlyph(''))
-  // Omarchy's marks share code points with Nerd Font devicons.
-  assert.ok(Delivery.omarchyGlyph(''))
-  assert.ok(Delivery.omarchyGlyph(''))
-  assert.ok(!Delivery.omarchyGlyph('\u{f048a}'))
-  assert.ok(!Delivery.omarchyGlyph(''))
-  assert.ok(!Delivery.omarchyGlyph(''))
+  // Unbloarchy's marks share code points with Nerd Font devicons.
+  assert.ok(Delivery.unbloarchyGlyph(''))
+  assert.ok(Delivery.unbloarchyGlyph(''))
+  assert.ok(!Delivery.unbloarchyGlyph('\u{f048a}'))
+  assert.ok(!Delivery.unbloarchyGlyph(''))
+  assert.ok(!Delivery.unbloarchyGlyph(''))
 
   // The deck clears the bar only on the top and right edges it touches.
   const bar = { barHidden: false, barSize: 26, barSizeFor: name => name === 'notched' ? 40 : 26 }
@@ -709,7 +709,7 @@ for (const held of [true, false]) { // A cancelled pending card frees exactly on
   assert.equal(s.liveCount(), 0)
 }
 
-for (const holding of [false, true]) { // Silencing closes a muted update; only Omarchy and bare notify-send critical get through.
+for (const holding of [false, true]) { // Silencing closes a muted update; only Unbloarchy and bare notify-send critical get through.
   const s = newCapacityScope()
   s.pointerHolding = holding
   const muted = s.fakeNotification(1, 'Before quiet')
@@ -724,7 +724,7 @@ for (const holding of [false, true]) { // Silencing closes a muted update; only 
   assert.equal(s.toasts.count, 0)
   for (const [id, summary, urgency, app, shows] of [[2, 'Branded critical', 2, 'Fixture', false],
                                                      [3, 'Critical', 2, 'notify-send', true],
-                                                     [4, 'Theme changed', 0, 'omarchy-action', true]]) {
+                                                     [4, 'Theme changed', 0, 'unbloarchy-action', true]]) {
     const before = s.toasts.count, n = s.fakeNotification(id, summary, urgency)
     n.appName = app
     s.handleNotification(n)
@@ -951,7 +951,7 @@ const eq = (actual, expected, message) => assert.deepEqual(plain(actual), plain(
 { // What is written reads back as itself, so a clean file is never rewritten.
   const rows = [Store.persistable(snap({ appName: 'Google Chrome', summary: '#design',
                   body: '<a href="https://app.slack.com/">app.slack.com</a>\n\nGurbinder: <b>look</b>',
-                  hints: { 'omarchy-exec-argv': JSON.stringify(['omarchy-update']), 'omarchy-glyph': '\u{f0954}' } }, 'n1')),
+                  hints: { 'unbloarchy-exec-argv': JSON.stringify(['unbloarchy-update']), 'unbloarchy-glyph': '\u{f0954}' } }, 'n1')),
                 Store.persistable({ key: 'n2', summary: 'Your code is 938271' }),
                 Store.persistable({ key: 'n3', body: '中'.repeat(30000) })]
   const text = Store.serialise(rows)
@@ -961,7 +961,7 @@ const eq = (actual, expected, message) => assert.deepEqual(plain(actual), plain(
   // Restored, a card clicks through and draws its glyph like the live one.
   const restored = Store.restored(Store.parseLive(text)[0])
   eq([restored.restored, restored.duration, restored.execArgv, restored.glyph, restored.source],
-                   [true, Store.RESTORE_GRACE, '["omarchy-update"]', '\u{f0954}', 'app.slack.com'])
+                   [true, Store.RESTORE_GRACE, '["unbloarchy-update"]', '\u{f0954}', 'app.slack.com'])
   assert.equal(Store.normalise(history[0]).bodyLine, restored.bodyLine)
 }
 

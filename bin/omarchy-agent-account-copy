@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Copy subscription account logins to another Omarchy machine over SSH
-# omarchy:args=[--replace] <ssh-host> [claude|codex|grok...]
-# omarchy:examples=omarchy agent account copy laptop | omarchy agent account copy user@desktop claude
+# unbloarchy:summary=Copy subscription account logins to another Unbloarchy machine over SSH
+# unbloarchy:args=[--replace] <ssh-host> [claude|codex|grok...]
+# unbloarchy:examples=unbloarchy agent account copy laptop | unbloarchy agent account copy user@desktop claude
 
 set -euo pipefail
 
@@ -28,13 +28,13 @@ while (( $# > 0 )); do
 done
 
 if [[ -z $host || $host == -* ]]; then
-  echo "Usage: omarchy-agent-account-copy [--replace] <ssh-host> [claude|codex|grok...]" >&2
+  echo "Usage: unbloarchy-agent-account-copy [--replace] <ssh-host> [claude|codex|grok...]" >&2
   exit 1
 fi
 
 # Finish the export before connecting, so invalid input never reaches SSH.
 # The credentials stay in memory and stdin, never in command arguments.
-payload=$(omarchy-agent-account-transfer bundle "${providers[@]}")
-receiver=$(omarchy-agent-account-transfer receiver-command ${replace:+--replace})
+payload=$(unbloarchy-agent-account-transfer bundle "${providers[@]}")
+receiver=$(unbloarchy-agent-account-transfer receiver-command ${replace:+--replace})
 # Disable terminal allocation so SSH cannot echo the credential stream.
 printf '%s\n' "$payload" | ssh -T -- "$host" "$receiver"

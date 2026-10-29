@@ -10,7 +10,7 @@ Kaardid pakuvad seda, mida nad endaga kannavad: _Kopeeri kood_ kinnituskoodide j
 
 Et kasutada neid ilma hiireta, vajuta `Super + Ctrl + ,`. Uusim teavitus on valitud ja selle nupud nummerdatud: vajuta numbrit, et mõnda neist kasutada, `Enter`, et teavitust klõpsata, `↑` ja `↓`, et liikuda teavituste vahel, `Delete`, et mõni neist sulgeda, ja `Esc`, et klaviatuur tagasi anda. See laseb ka ise mõne jõudeoleku sekundi järel lahti.
 
-Teavituste vaigistamine hoiab need tagasi, välja arvatud Omarchy enda kinnitused, hädaolukorra hoiatused ja kinnituskoodid, mida sa just hetk tagasi küsisid. Too viimased paar uuesti ekraanile, olgu need tagasi hoitud või mitte, klahvikombinatsiooniga `Super + Shift + Alt + ,`. Ajalugu säilitatakse üks päev.
+Teavituste vaigistamine hoiab need tagasi, välja arvatud Unbloarchy enda kinnitused, hädaolukorra hoiatused ja kinnituskoodid, mida sa just hetk tagasi küsisid. Too viimased paar uuesti ekraanile, olgu need tagasi hoitud või mitte, klahvikombinatsiooniga `Super + Shift + Alt + ,`. Ajalugu säilitatakse üks päev.
 
 ## Kiirklahvi teated
 
@@ -26,7 +26,7 @@ Teavituste vaigistamine hoiab need tagasi, välja arvatud Omarchy enda kinnituse
 
  ![notice-weather](images/notice-weather.webp)
 
-Asukoht tuvastatakse sinu IP-aadressi järgi, mis on tavaliselt piisavalt lähedal, kuid mitte alati. Saad selle paika panna käsuga `omarchy weather location --set Malibu`, või olla selle suhtes täpne, lisades koordinaadid: `omarchy weather location --set Malibu 34.0259,-118.7798`. Käivita `omarchy weather location` omaette, et näha, kus see sinu arvates asud, ja `--clear`, et naasta automaatse tuvastamise juurde.
+Asukoht tuvastatakse sinu IP-aadressi järgi, mis on tavaliselt piisavalt lähedal, kuid mitte alati. Saad selle paika panna käsuga `unbloarchy weather location --set Malibu`, või olla selle suhtes täpne, lisades koordinaadid: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Käivita `unbloarchy weather location` omaette, et näha, kus see sinu arvates asud, ja `--clear`, et naasta automaatse tuvastamise juurde.
 
 ### Aku
 

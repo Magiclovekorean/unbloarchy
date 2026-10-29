@@ -22,7 +22,7 @@ El editor de anotaciones puede dibujar flechas, líneas, formas, resaltados, mar
 
 Las capturas de pantalla guardadas llegan a `~/Pictures/Screenshots` de forma predeterminada, con un nombre como `screenshot-2026-08-13_14-22-05-firefox.png`. Define `OMASNAP_SCREENSHOT_DIR` para usar otro directorio: consulta [las preguntas frecuentes](46-faq.md) para saber dónde poner las variables de entorno de la sesión. Omasnap crea el directorio cuando guarda la primera captura. Define `[output] autosave = false` en `~/.config/omasnap/omasnap.conf` para desactivar el guardado automático; entonces las capturas solo se copian y se muestran en una vista previa durante 10 segundos que puedes mantener en pantalla con su botón de fijar o con `Ctrl + P`.
 
-Desde la terminal, `omarchy screenshot` abre la misma superposición, y puedes elegir su modo inicial: `omarchy capture screenshot region`, `windows`, `fullscreen` o `scroll`. Un segundo argumento de `copy` o `save` envía la captura directo a ese destino. Para editar antes de la salida, usa `omarchy screenshot --editor=overlay` para un editor de pantalla completa o `omarchy screenshot --editor=window` para una ventana separada.
+Desde la terminal, `unbloarchy screenshot` abre la misma superposición, y puedes elegir su modo inicial: `unbloarchy capture screenshot region`, `windows`, `fullscreen` o `scroll`. Un segundo argumento de `copy` o `save` envía la captura directo a ese destino. Para editar antes de la salida, usa `unbloarchy screenshot --editor=overlay` para un editor de pantalla completa o `unbloarchy screenshot --editor=window` para una ventana separada.
 
 ### Controlar el selector desde el teclado
 
@@ -41,9 +41,9 @@ Estas asignaciones solo existen mientras Omasnap está abierto, así que no pued
 
 ## Grabación de pantalla
 
-`Alt + Print Screen` abre _Trigger > Capture > Screenrecord_, que te pregunta qué quieres en la pista de sonido: sin audio, audio del escritorio, escritorio más micrófono, o escritorio más micrófono más cámara web. Esta última opción solo aparece si de verdad tienes una cámara conectada. Elige una y el selector de grabación de Omarchy te deja arrastrar una región o hacer clic en una ventana o un monitor.
+`Alt + Print Screen` abre _Trigger > Capture > Screenrecord_, que te pregunta qué quieres en la pista de sonido: sin audio, audio del escritorio, escritorio más micrófono, o escritorio más micrófono más cámara web. Esta última opción solo aparece si de verdad tienes una cámara conectada. Elige una y el selector de grabación de Unbloarchy te deja arrastrar una región o hacer clic en una ventana o un monitor.
 
-La grabación corre sobre gpu-screen-recorder, que codifica en la GPU a 60fps y recurre a la CPU si no le queda de otra. El resultado es un MP4 en `~/Videos`, con un nombre como `screenrecording-2026-08-13_14-22-05.mp4`. Define `OMARCHY_SCREENRECORD_DIR` para cambiar eso, pero ten en cuenta que, a diferencia del directorio de capturas de pantalla, este ya tiene que existir, o la grabación se niega a empezar.
+La grabación corre sobre gpu-screen-recorder, que codifica en la GPU a 60fps y recurre a la CPU si no le queda de otra. El resultado es un MP4 en `~/Videos`, con un nombre como `screenrecording-2026-08-13_14-22-05.mp4`. Define `UNBLOARCHY_SCREENRECORD_DIR` para cambiar eso, pero ten en cuenta que, a diferencia del directorio de capturas de pantalla, este ya tiene que existir, o la grabación se niega a empezar.
 
 Mientras grabas, aparece un pequeño indicador en la barra. Haz clic en él para detener. También puedes detener con `Alt + Print Screen` de nuevo, o con la entrada _Stop Screenrecording_ bajo _Trigger > Capture > Screenrecord_, que solo aparece mientras algo se está grabando de verdad.
 
@@ -60,7 +60,7 @@ Cuando grabas con una cámara web, la cámara aparece como una ventana vertical 
 
 Hay tres tamaños, chico, mediano y grande, y las teclas rápidas avanzan entre ellos. El mediano es el predeterminado. Son proporcionales a la grabación, así que la cámara ocupa la misma parte del cuadro grabes un monitor de 1080p o uno de 6K. Y si grabaste una región en lugar de una pantalla completa, la superposición se ancla a la esquina de esa región y no a la del monitor, para que se quede dentro de la toma.
 
-También puedes llamarla directamente con `omarchy-capture-webcam-resize small`, o `reset` para volver al tamaño mediano.
+También puedes llamarla directamente con `unbloarchy-capture-webcam-resize small`, o `reset` para volver al tamaño mediano.
 
 ## Texto, códigos QR y colores
 
@@ -76,7 +76,7 @@ Una grabación de pantalla en 4K o un HEIC crudo de tu teléfono a menudo son de
 
 Las imágenes van a jpg o png en alto, medio o bajo, que limitan el ancho a 3160, 2160 y 1080 píxeles. Los videos van a mp4 o a un gif animado en 4k, 1080p o 720p. El archivo convertido se escribe junto al original con la resolución en el nombre, `demo-1080p.mp4`, y la ruta se copia al portapapeles como un URI de archivo, para que puedas pegarlo directamente en una app que acepte archivos soltados.
 
-También funciona desde la terminal, si ya sabes lo que quieres: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. También está `omarchy transcode ascii`, que convierte una imagen en arte ASCII; ese es sobre todo para la [imagen de marca](41-branding.md).
+También funciona desde la terminal, si ya sabes lo que quieres: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. También está `unbloarchy transcode ascii`, que convierte una imagen en arte ASCII; ese es sobre todo para la [imagen de marca](41-branding.md).
 
 ## Enviarlo a algún lugar
 

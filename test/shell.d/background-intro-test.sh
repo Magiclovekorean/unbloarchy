@@ -9,7 +9,7 @@ trap 'rm -rf "$test_tmp"' EXIT
 
 intro_home="$test_tmp/home"
 intro_runtime="$test_tmp/runtime"
-intro_state="$intro_home/.local/state/omarchy/current"
+intro_state="$intro_home/.local/state/unbloarchy/current"
 theme_intro_dir="$intro_state/theme/backgrounds/intros"
 background="$intro_state/theme/backgrounds/road.webp"
 mkdir -p "$(dirname "$background")" "$theme_intro_dir" "$intro_runtime"
@@ -18,23 +18,23 @@ printf 'theme video\n' >"$theme_intro_dir/road.mp4"
 printf 'tokyo-night\n' >"$intro_state/theme.name"
 ln -s "$background" "$intro_state/background"
 
-resolved=$(HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-only)
+resolved=$(HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-only)
 [[ $resolved == "$theme_intro_dir/road.mp4" ]] || fail "a sibling intro matches the current image by filename" "$resolved"
 rm "$theme_intro_dir/road.mp4"
-resolved=$(HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-only)
+resolved=$(HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-only)
 [[ -z $resolved ]] || fail "a background without a matching video has no intro" "$resolved"
 printf 'theme video\n' >"$theme_intro_dir/road.mp4"
 
-custom_background="$intro_home/.config/omarchy/backgrounds/tokyo-night/road.webp"
+custom_background="$intro_home/.config/unbloarchy/backgrounds/tokyo-night/road.webp"
 mkdir -p "${custom_background%/*}"
 printf 'different still with the same name\n' >"$custom_background"
 ln -nsf "$custom_background" "$intro_state/background"
-resolved=$(HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-only)
+resolved=$(HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-only)
 [[ -z $resolved ]] || fail "a different image directory does not inherit the theme intro" "$resolved"
 ln -nsf "$background" "$intro_state/background"
 
-toggle="$intro_home/.local/state/omarchy/toggles/background-intros-off"
-marker="$intro_home/.local/state/omarchy/background-intro.session-id"
+toggle="$intro_home/.local/state/unbloarchy/toggles/background-intros-off"
+marker="$intro_home/.local/state/unbloarchy/background-intro.session-id"
 command_bin="$test_tmp/bin"
 command_log="$test_tmp/command-log"
 mkdir -p "$command_bin"
@@ -72,23 +72,23 @@ SH
 chmod +x "$command_bin/hyprctl"
 
 mkdir -p "$(dirname "$toggle")"
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-startup)
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-startup)
 [[ $resolved == "$theme_intro_dir/road.mp4" ]] || fail "OWE can prepare the selected intro while the shell starts" "$resolved"
 [[ ! -e $marker && ! -s $command_log ]] || fail "startup preparation does not consume the login or start playback"
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" ANIMATIONS=off "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-startup)
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" ANIMATIONS=off "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-startup)
 [[ -z $resolved ]] || fail "disabled animations skip startup preparation"
 touch "$toggle"
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-startup)
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-startup)
 [[ -z $resolved ]] || fail "disabled intros skip startup preparation"
 pass "speculative login preparation respects settings and leaves playback to the shell"
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OMARCHY_SESSION_ID=disabled-boot "$ROOT/bin/omarchy-theme-bg-boot-intro")
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" UNBLOARCHY_SESSION_ID=disabled-boot "$ROOT/bin/unbloarchy-theme-bg-boot-intro")
 [[ -z $resolved && $(<"$marker") == "disabled-boot" ]] || fail "the global toggle consumes the current login without playing"
 rm "$toggle"
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OMARCHY_SESSION_ID=disabled-boot "$ROOT/bin/omarchy-theme-bg-boot-intro")
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" UNBLOARCHY_SESSION_ID=disabled-boot "$ROOT/bin/unbloarchy-theme-bg-boot-intro")
 [[ -z $resolved ]] || fail "enabling midway through a login does not start a delayed intro" "$resolved"
 
 : >"$command_log"
-PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" ANIMATIONS=off OMARCHY_SESSION_ID=still-boot "$ROOT/bin/omarchy-theme-bg-boot-intro"
+PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" ANIMATIONS=off UNBLOARCHY_SESSION_ID=still-boot "$ROOT/bin/unbloarchy-theme-bg-boot-intro"
 [[ $(<"$marker") == "still-boot" ]] || fail "with animations off the session is consumed"
 ! grep -q '^owe: intro ' "$command_log" || fail "with animations off no intro plays"
 
@@ -99,29 +99,29 @@ rm "$marker"
 # window's real length. SECONDS is whole seconds, so a one-second window could
 # close straight after the first probe.
 boot_intro_fast="$test_tmp/boot-intro-fast"
-sed 's/SECONDS + 5/SECONDS + 2/' "$ROOT/bin/omarchy-theme-bg-boot-intro" >"$boot_intro_fast"
-! cmp -s "$ROOT/bin/omarchy-theme-bg-boot-intro" "$boot_intro_fast" || fail "the scratch copy shortens the OWE window"
+sed 's/SECONDS + 5/SECONDS + 2/' "$ROOT/bin/unbloarchy-theme-bg-boot-intro" >"$boot_intro_fast"
+! cmp -s "$ROOT/bin/unbloarchy-theme-bg-boot-intro" "$boot_intro_fast" || fail "the scratch copy shortens the OWE window"
 chmod +x "$boot_intro_fast"
-if ! PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_FAIL=unavailable OMARCHY_SESSION_ID=unavailable-boot timeout 15 "$boot_intro_fast"; then
+if ! PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_FAIL=unavailable UNBLOARCHY_SESSION_ID=unavailable-boot timeout 15 "$boot_intro_fast"; then
   fail "an unavailable OWE settles startup rather than requesting another launcher"
 fi
 probes=$(grep -c '^owe: status' "$command_log" || true)
 (( probes >= 2 )) || fail "startup keeps probing OWE through its window" "$probes"
 [[ $(<"$marker") == "unavailable-boot" ]] || fail "an unavailable OWE still settles the session"
 ! grep -q '^owe: intro ' "$command_log" || fail "an unavailable OWE never starts an intro"
-PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OMARCHY_SESSION_ID=unavailable-boot "$ROOT/bin/omarchy-theme-bg-boot-intro"
+PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" UNBLOARCHY_SESSION_ID=unavailable-boot "$ROOT/bin/unbloarchy-theme-bg-boot-intro"
 ! grep -q '^owe: intro ' "$command_log" || fail "starting OWE after the deadline does not play a late intro"
 
 rm "$marker"
 : >"$command_log"
 ready="$test_tmp/owe-ready"
-PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" OWE_READY_AFTER=3 OMARCHY_SESSION_ID=delayed-boot "$ROOT/bin/omarchy-theme-bg-boot-intro"
+PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" OWE_READY_AFTER=3 UNBLOARCHY_SESSION_ID=delayed-boot "$ROOT/bin/unbloarchy-theme-bg-boot-intro"
 [[ $(<"$marker") == "delayed-boot" ]] || fail "waiting for OWE keeps the session consumed"
 grep -Fxq "owe: intro --start first-frame $theme_intro_dir/road.mp4" "$command_log" || fail "a ready OWE starts on the video's first frame without revealing the still"
 
 rm -f "$marker" "$ready"*
 : >"$command_log"
-PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" OMARCHY_SESSION_ID=restart-while-waiting "$ROOT/bin/omarchy-theme-bg-boot-intro" &
+PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" UNBLOARCHY_SESSION_ID=restart-while-waiting "$ROOT/bin/unbloarchy-theme-bg-boot-intro" &
 waiting_pid=$!
 for attempt in {1..500}; do
   [[ -f $marker && $(<"$marker") == "restart-while-waiting" ]] && break
@@ -130,7 +130,7 @@ done
 [[ -f $marker && $(<"$marker") == "restart-while-waiting" ]] || fail "the waiting launcher consumes the session before it waits for OWE"
 # The waiting launcher holds out for OWE for five seconds; returning well
 # inside that shows the restart did not queue behind it.
-if ! PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" OMARCHY_SESSION_ID=restart-while-waiting timeout 3 "$ROOT/bin/omarchy-theme-bg-boot-intro"; then
+if ! PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" UNBLOARCHY_SESSION_ID=restart-while-waiting timeout 3 "$ROOT/bin/unbloarchy-theme-bg-boot-intro"; then
   kill "$waiting_pid" 2>/dev/null || true
   wait "$waiting_pid" || true
   fail "a restarted shell reads the consumed session without waiting for the old launcher"
@@ -141,19 +141,19 @@ wait "$waiting_pid"
 rm -f "$marker" "$ready"*
 : >"$command_log"
 PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" OWE_READY_AFTER=2 \
-  OWE_WHILE_STARTING="touch '$toggle'" OMARCHY_SESSION_ID=disabled-while-waiting "$ROOT/bin/omarchy-theme-bg-boot-intro"
+  OWE_WHILE_STARTING="touch '$toggle'" UNBLOARCHY_SESSION_ID=disabled-while-waiting "$ROOT/bin/unbloarchy-theme-bg-boot-intro"
 [[ -f $toggle ]] || fail "intros are disabled while the launcher waits for OWE"
 ! grep -q '^owe: intro ' "$command_log" || fail "disabling intros while waiting cancels startup playback"
 rm -f "$toggle" "$ready"* "$marker"
 : >"$command_log"
 PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_READY_FILE="$ready" OWE_READY_AFTER=2 \
-  OWE_WHILE_STARTING="ln -nsf '$custom_background' '$intro_state/background'" OMARCHY_SESSION_ID=changed-while-waiting "$ROOT/bin/omarchy-theme-bg-boot-intro"
+  OWE_WHILE_STARTING="ln -nsf '$custom_background' '$intro_state/background'" UNBLOARCHY_SESSION_ID=changed-while-waiting "$ROOT/bin/unbloarchy-theme-bg-boot-intro"
 [[ $(readlink "$intro_state/background") == "$custom_background" ]] || fail "the background changes while the launcher waits for OWE"
 ! grep -q '^owe: intro ' "$command_log" || fail "changing the background while waiting cancels its old intro"
 ln -nsf "$background" "$intro_state/background"
 
 rm "$marker"
-if PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_FAIL=interrupted OMARCHY_SESSION_ID=interrupted-boot "$ROOT/bin/omarchy-theme-bg-boot-intro"; then
+if PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OWE_FAIL=interrupted UNBLOARCHY_SESSION_ID=interrupted-boot "$ROOT/bin/unbloarchy-theme-bg-boot-intro"; then
   fail "an interrupted intro reports a failure"
 else
   status=$?
@@ -164,7 +164,7 @@ fi
 rm "$marker"
 : >"$command_log"
 for index in {1..32}; do
-  PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" OMARCHY_SESSION_ID=concurrent-boot "$ROOT/bin/omarchy-theme-bg-boot-intro" >"$test_tmp/output.$index" &
+  PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" UNBLOARCHY_SESSION_ID=concurrent-boot "$ROOT/bin/unbloarchy-theme-bg-boot-intro" >"$test_tmp/output.$index" &
   intro_pids[$index]=$!
 done
 for intro_pid in "${intro_pids[@]}"; do
@@ -178,43 +178,43 @@ pass "login intros settle the session once, wait briefly for OWE, and start on t
 : >"$command_log"
 for session in first-login first-login second-login; do
   PATH="$command_bin:$PATH" HOME="$intro_home" XDG_RUNTIME_DIR="$intro_runtime" COMMAND_LOG="$command_log" \
-    OMARCHY_SESSION_ID="" HYPRLAND_INSTANCE_SIGNATURE="$session" "$ROOT/bin/omarchy-theme-bg-boot-intro"
+    UNBLOARCHY_SESSION_ID="" HYPRLAND_INSTANCE_SIGNATURE="$session" "$ROOT/bin/unbloarchy-theme-bg-boot-intro"
 done
 intro_count=$(grep -c '^owe: intro ' "$command_log")
 (( intro_count == 2 )) || fail "a new login replays the intro while a shell restart in the same session does not" "$intro_count"
 [[ $(<"$marker") == "second-login" ]] || fail "the marker identifies the latest compositor session"
 pass "logging out and back in replays the intro without requiring a reboot"
 
-ln -s "$ROOT/bin/omarchy-theme-bg-boot-intro" "$command_bin/omarchy-theme-bg-boot-intro"
+ln -s "$ROOT/bin/unbloarchy-theme-bg-boot-intro" "$command_bin/unbloarchy-theme-bg-boot-intro"
 
-cat >"$command_bin/omarchy-notification-send" <<'SH'
+cat >"$command_bin/unbloarchy-notification-send" <<'SH'
 #!/bin/bash
 printf 'notification: %s\n' "$*" >>"$COMMAND_LOG"
 SH
-cat >"$command_bin/omarchy-theme-bg-current" <<'SH'
+cat >"$command_bin/unbloarchy-theme-bg-current" <<'SH'
 #!/bin/bash
 printf 'Road\n'
 SH
 chmod +x "$command_bin"/omarchy-*
 
-PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/omarchy-theme-bg-intro" disable
-if PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-intro" status; then
+PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/unbloarchy-theme-bg-intro" disable
+if PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-intro" status; then
   fail "disabled background intros report a disabled status"
 fi
-PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/omarchy-theme-bg-intro" enable
-PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-intro" status || fail "enabled background intros report an enabled status"
+PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/unbloarchy-theme-bg-intro" enable
+PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-intro" status || fail "enabled background intros report an enabled status"
 pass "background intros have one global on/off control"
 
 # The shell asks which clip a background change would play.
 : >"$command_log"
 before_marker=$(<"$marker")
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-enabled "$background")
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-enabled "$background")
 [[ $resolved == "$theme_intro_dir/road.mp4" ]] || fail "a background's clip resolves while intros are on" "$resolved"
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" ANIMATIONS=off "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-enabled "$background")
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" ANIMATIONS=off "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-enabled "$background")
 [[ -z $resolved ]] || fail "no clip resolves while animations are off"
-PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/omarchy-theme-bg-intro" disable
-resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/omarchy-theme-bg-boot-intro" --resolve-enabled "$background")
-PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/omarchy-theme-bg-intro" enable
+PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/unbloarchy-theme-bg-intro" disable
+resolved=$(PATH="$command_bin:$PATH" HOME="$intro_home" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --resolve-enabled "$background")
+PATH="$command_bin:$PATH" HOME="$intro_home" COMMAND_LOG="$command_log" "$ROOT/bin/unbloarchy-theme-bg-intro" enable
 [[ -z $resolved ]] || fail "no clip resolves while intros are off"
 ! grep -q '^owe: ' "$command_log" || fail "resolving a clip plays nothing"
 [[ $(<"$marker") == "$before_marker" ]] || fail "resolving a clip leaves login startup alone"
@@ -239,20 +239,20 @@ pass "theme intro filenames match their sibling background images"
 # Picker preparation is speculative and must not consume login startup or play.
 prepare_root="$test_tmp/prepare-repo"
 prepare_backgrounds="$prepare_root/themes/demo/backgrounds"
-mkdir -p "$prepare_backgrounds/intros" "$intro_home/.local/state/omarchy/theme-backgrounds"
+mkdir -p "$prepare_backgrounds/intros" "$intro_home/.local/state/unbloarchy/theme-backgrounds"
 printf 'first still\n' >"$prepare_backgrounds/1-first.webp"
 printf 'remembered still\n' >"$prepare_backgrounds/2-remembered.webp"
 printf 'remembered video\n' >"$prepare_backgrounds/intros/2-remembered.mp4"
-printf '%s\n' "$intro_state/theme/backgrounds/2-remembered.webp" >"$intro_home/.local/state/omarchy/theme-backgrounds/demo"
+printf '%s\n' "$intro_state/theme/backgrounds/2-remembered.webp" >"$intro_home/.local/state/unbloarchy/theme-backgrounds/demo"
 rm -f "$toggle"
 : >"$command_log"
 marker_before=$(<"$marker")
-PATH="$command_bin:$PATH" HOME="$intro_home" OMARCHY_PATH="$prepare_root" COMMAND_LOG="$command_log" "$ROOT/bin/omarchy-theme-bg-boot-intro" --prepare-theme demo
+PATH="$command_bin:$PATH" HOME="$intro_home" UNBLOARCHY_PATH="$prepare_root" COMMAND_LOG="$command_log" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --prepare-theme demo
 grep -Fxq "owe: intro-prepare $prepare_backgrounds/intros/2-remembered.mp4" "$command_log" || fail "picker preparation follows the theme's remembered background"
 ! grep -q '^owe: intro ' "$command_log" || fail "preparation does not play an intro"
 [[ $(<"$marker") == "$marker_before" ]] || fail "preparation leaves login startup alone"
 touch "$toggle"
 : >"$command_log"
-PATH="$command_bin:$PATH" HOME="$intro_home" OMARCHY_PATH="$prepare_root" COMMAND_LOG="$command_log" "$ROOT/bin/omarchy-theme-bg-boot-intro" --prepare-theme demo
+PATH="$command_bin:$PATH" HOME="$intro_home" UNBLOARCHY_PATH="$prepare_root" COMMAND_LOG="$command_log" "$ROOT/bin/unbloarchy-theme-bg-boot-intro" --prepare-theme demo
 [[ ! -s $command_log ]] || fail "disabled intros do not warm the renderer"
 pass "picker preparation respects the remembered background, login startup, and intro toggle"

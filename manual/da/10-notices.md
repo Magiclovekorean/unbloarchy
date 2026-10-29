@@ -10,7 +10,7 @@ Kort tilbyder det, de indeholder: _Kopiér kode_ til verifikationskoder (holdes 
 
 Hvis du vil bruge dem uden musen, skal du trykke på `Super + Ctrl + ,`. Den nyeste notifikation vælges, og dens knapper nummereres: tryk på et tal for at bruge en af dem, `Enter` for at klikke på notifikationen, `↑` og `↓` for at flytte mellem notifikationer, `Delete` for at afvise en og `Esc` for at give tastaturet tilbage. Den giver også selv slip efter et par sekunders inaktivitet.
 
-Når notifikationer slås fra, holdes de tilbage, undtagen Omarchys egne bekræftelser, nødalarmer og verifikationskoder, som du bad om for et øjeblik siden. Få de seneste vist på skærmen igen, uanset om de blev holdt tilbage eller ej, med `Super + Shift + Alt + ,`. Historikken gemmes i et døgn.
+Når notifikationer slås fra, holdes de tilbage, undtagen Unbloarchys egne bekræftelser, nødalarmer og verifikationskoder, som du bad om for et øjeblik siden. Få de seneste vist på skærmen igen, uanset om de blev holdt tilbage eller ej, med `Super + Shift + Alt + ,`. Historikken gemmes i et døgn.
 
 ## Genvejsnotifikationer
 
@@ -26,7 +26,7 @@ Når notifikationer slås fra, holdes de tilbage, undtagen Omarchys egne bekræf
 
  ![notice-weather](images/notice-weather.webp)
 
-Placeringen registreres ud fra din IP-adresse, hvilket som regel er tæt nok på, men ikke altid. Du kan fastlåse den med `omarchy weather location --set Malibu`, eller være helt præcis ved at tilføje koordinater: `omarchy weather location --set Malibu 34.0259,-118.7798`. Kør `omarchy weather location` alene for at se, hvor den tror, du er, og `--clear` for at vende tilbage til automatisk registrering.
+Placeringen registreres ud fra din IP-adresse, hvilket som regel er tæt nok på, men ikke altid. Du kan fastlåse den med `unbloarchy weather location --set Malibu`, eller være helt præcis ved at tilføje koordinater: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Kør `unbloarchy weather location` alene for at se, hvor den tror, du er, og `--clear` for at vende tilbage til automatisk registrering.
 
 ### Batteri
 

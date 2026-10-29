@@ -69,7 +69,7 @@ case "$name" in
   date)
     if [[ ${TEST_EXPIRED:-0} == 1 && $* == '-u +%Y%m%d%H%M%SZ' ]]; then echo 99991231235959Z; else /usr/bin/date "$@"; fi
     ;;
-  omarchy-shell) ;;
+  unbloarchy-shell) ;;
   getent) printf '%s:x:1000:1000:Test:/nonexistent:/bin/bash\n' "${TEST_ACCOUNT:-audituser}" ;;
   sudo)
     if [[ ${1:-} == -h ]]; then echo 'usage: sudo [-N] command'; exit 0; fi
@@ -99,7 +99,7 @@ case "$name" in
 esac
 STUB
 chmod +x "$test_tmp/bin/mock"
-for name in stat chown install rm mv systemd-run systemctl date getent sudo gum omarchy-shell; do
+for name in stat chown install rm mv systemd-run systemctl date getent sudo gum unbloarchy-shell; do
   ln -s mock "$test_tmp/bin/$name"
 done
 
@@ -113,7 +113,7 @@ for name in ('unbloarchy-sudo-passwordless', 'unbloarchy-security-functions'):
         target = str(temp/'hooks') if path == '/usr/share/libalpm/hooks' else str(temp) + path
         text = text.replace(path, target)
     text = text.replace('((EUID == 0))', '((${TEST_EUID:-1} == 0))')
-    for command in ('stat', 'chown', 'install', 'rm', 'mv', 'systemd-run', 'systemctl', 'date', 'getent', 'sudo', 'gum', 'omarchy-shell'):
+    for command in ('stat', 'chown', 'install', 'rm', 'mv', 'systemd-run', 'systemctl', 'date', 'getent', 'sudo', 'gum', 'unbloarchy-shell'):
         text = text.replace('/usr/bin/' + command, str(temp/'bin'/command))
     (temp/name).write_text(text)
     (temp/name).chmod(0o755)

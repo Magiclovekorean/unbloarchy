@@ -22,7 +22,7 @@ Editorul de adnotări poate desena săgeți, linii, forme, evidențieri, marcaje
 
 Capturile de ecran salvate ajung implicit în `~/Pictures/Screenshots`, cu un nume precum `screenshot-2026-08-13_14-22-05-firefox.png`. Setează `OMASNAP_SCREENSHOT_DIR` ca să folosești alt director — vezi [întrebările frecvente](46-faq.md) pentru unde se pun variabilele de mediu ale sesiunii. Omasnap creează directorul când salvează prima captură. Setează `[output] autosave = false` în `~/.config/omasnap/omasnap.conf` ca să dezactivezi salvarea automată; capturile sunt atunci doar copiate și afișate într-o previzualizare timp de 10 secunde, pe care o poți ține pe ecran cu butonul ei de fixare sau cu `Ctrl + P`.
 
-Din terminal, `omarchy screenshot` deschide aceeași suprapunere, iar tu îi poți alege modul de pornire: `omarchy capture screenshot region`, `windows`, `fullscreen` sau `scroll`. Un al doilea argument, `copy` sau `save`, trimite captura direct la acea destinație. Ca să editezi înainte de ieșire, folosește `omarchy screenshot --editor=overlay` pentru un editor pe tot ecranul sau `omarchy screenshot --editor=window` pentru o fereastră separată.
+Din terminal, `unbloarchy screenshot` deschide aceeași suprapunere, iar tu îi poți alege modul de pornire: `unbloarchy capture screenshot region`, `windows`, `fullscreen` sau `scroll`. Un al doilea argument, `copy` sau `save`, trimite captura direct la acea destinație. Ca să editezi înainte de ieșire, folosește `unbloarchy screenshot --editor=overlay` pentru un editor pe tot ecranul sau `unbloarchy screenshot --editor=window` pentru o fereastră separată.
 
 ### Controlarea selectorului de la tastatură
 
@@ -41,9 +41,9 @@ Aceste combinații există doar cât timp Omasnap este deschis, așa că nu pot 
 
 ## Înregistrarea ecranului
 
-`Alt + Print Screen` deschide _Trigger > Capture > Screenrecord_, care te întreabă ce vrei pe coloana sonoră: fără sunet, sunet de desktop, desktop plus microfon sau desktop plus microfon plus webcam. Ultima opțiune apare doar dacă chiar ai o cameră conectată. Alege una, iar selectorul de înregistrare din Omarchy te lasă să tragi o regiune sau să dai clic pe o fereastră sau pe un monitor.
+`Alt + Print Screen` deschide _Trigger > Capture > Screenrecord_, care te întreabă ce vrei pe coloana sonoră: fără sunet, sunet de desktop, desktop plus microfon sau desktop plus microfon plus webcam. Ultima opțiune apare doar dacă chiar ai o cameră conectată. Alege una, iar selectorul de înregistrare din Unbloarchy te lasă să tragi o regiune sau să dai clic pe o fereastră sau pe un monitor.
 
-Înregistrarea rulează pe gpu-screen-recorder, care codifică pe GPU la 60fps și revine la CPU dacă trebuie. Rezultatul este un MP4 în `~/Videos`, numit `screenrecording-2026-08-13_14-22-05.mp4`. Setează `OMARCHY_SCREENRECORD_DIR` ca să schimbi asta — dar reține că, spre deosebire de directorul pentru capturi de ecran, acesta trebuie să existe deja, altfel înregistrarea refuză să pornească.
+Înregistrarea rulează pe gpu-screen-recorder, care codifică pe GPU la 60fps și revine la CPU dacă trebuie. Rezultatul este un MP4 în `~/Videos`, numit `screenrecording-2026-08-13_14-22-05.mp4`. Setează `UNBLOARCHY_SCREENRECORD_DIR` ca să schimbi asta — dar reține că, spre deosebire de directorul pentru capturi de ecran, acesta trebuie să existe deja, altfel înregistrarea refuză să pornească.
 
 Cât timp înregistrezi, în bară apare un mic indicator. Dă clic pe el ca să oprești. Poți opri și cu `Alt + Print Screen` din nou sau cu intrarea _Stop Screenrecording_ de sub _Trigger > Capture > Screenrecord_, care apare doar cât timp chiar se înregistrează ceva.
 
@@ -60,7 +60,7 @@ Când înregistrezi cu o webcam, camera apare ca o fereastră portret fixată ș
 
 Există trei dimensiuni — mică, medie și mare — iar tastele rapide trec de la una la alta. Cea medie este implicită. Sunt proporționale cu înregistrarea, așa că camera ocupă aceeași parte din cadru indiferent dacă înregistrezi un monitor 1080p sau unul 6K. Iar dacă ai înregistrat o regiune, nu un întreg ecran, suprapunerea se ancorează în colțul acelei regiuni, nu al monitorului, așa că rămâne în interiorul capturii.
 
-O poți apela și direct cu `omarchy-capture-webcam-resize small` sau cu `reset` ca să revii la medie.
+O poți apela și direct cu `unbloarchy-capture-webcam-resize small` sau cu `reset` ca să revii la medie.
 
 ## Text, coduri QR și culori
 
@@ -76,7 +76,7 @@ O înregistrare de ecran 4K sau un HEIC brut de pe telefon este adesea prea mare
 
 Imaginile ajung în jpg sau png la calitate înaltă, medie sau scăzută, care limitează lățimea la 3160, 2160 și 1080 pixeli. Videoclipurile ajung în mp4 sau într-un gif animat la 4k, 1080p sau 720p. Fișierul convertit este scris lângă original, cu rezoluția în nume — `demo-1080p.mp4` — iar calea este copiată în clipboard ca URI de fișier, așa că îl poți lipi direct într-o aplicație care acceptă fișiere trase în ea.
 
-Funcționează și din terminal, dacă știi deja ce vrei: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Există și `omarchy transcode ascii`, care transformă o imagine în artă ASCII — asta e mai ales pentru [branding](41-branding.md).
+Funcționează și din terminal, dacă știi deja ce vrei: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Există și `unbloarchy transcode ascii`, care transformă o imagine în artă ASCII — asta e mai ales pentru [branding](41-branding.md).
 
 ## Trimiterea undeva
 

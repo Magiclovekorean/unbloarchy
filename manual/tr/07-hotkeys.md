@@ -6,7 +6,7 @@ Tüm ana klavye bağlamalarını `Super + K` ile görebilirsiniz (Tmux bağlamal
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy menüsü (uygulamalar ve diğer her şey)    |
+| `Super + Space`           | Unbloarchy menüsü (uygulamalar ve diğer her şey)    |
 | `Super + Alt + Space` | Uygulama ızgarası |
 | `Super + Escape` | Sistem menüsü (askıya al, yeniden başlat vb.)  |
 | `Super + Ctrl + L` | Bilgisayarı kilitle |
@@ -143,7 +143,7 @@ Bağlamaları `~/.config/hypr/bindings.lua` içinde değiştirin/ekleyin.
 | `Super + V`           | Yapıştır    |
 | `Super + Ctrl + V`           | Pano yöneticisi    |
 
-Genelde Linux'ta terminalde kopyalayıp yapıştırmak için `Ctrl + Shift + C/V`, diğer her yerde yapmak için `Ctrl + C/V` kullanmanız gerekir. Bu Omarchy birleşik pano kısayolları her yerde çalışır.
+Genelde Linux'ta terminalde kopyalayıp yapıştırmak için `Ctrl + Shift + C/V`, diğer her yerde yapmak için `Ctrl + C/V` kullanmanız gerekir. Bu Unbloarchy birleşik pano kısayolları her yerde çalışır.
 
 ## Yakalama
 
@@ -164,7 +164,7 @@ Genelde Linux'ta terminalde kopyalayıp yapıştırmak için `Ctrl + Shift + C/V
 
 Ekran kayıtlarında kısayol önce hangi sesi istediğinizi sorar, sonra kaydı başlatır. Durdurmak için tekrar basın. Ayrıntılar için [ekran görüntüleri ve kayıt](12-screenshots-recording.md) bölümüne bakın.
 
-Tüm yakalama seçeneklerine Omarchy menüsündeki (`Super + Space`) _Trigger > Capture_ altından da erişilebilir.
+Tüm yakalama seçeneklerine Unbloarchy menüsündeki (`Super + Space`) _Trigger > Capture_ altından da erişilebilir.
 
 ## Bildirimler
 
@@ -186,9 +186,9 @@ Tüm yakalama seçeneklerine Omarchy menüsündeki (`Super + Space`) _Trigger > 
 | `Super + Backspace` | Bir pencerede şeffaflığı aç/kapat |
 | `Super + Ctrl + Backspace` | Tek pencere kare en-boy oranını aç/kapat |
 
-Ekstra arka plan görselleri `~/.config/omarchy/backgrounds/<theme name>` içinde bulunur. Omarchy menüsündeki _Install > Style > Background_ üzerinden de erişilebilir.
+Ekstra arka plan görselleri `~/.config/unbloarchy/backgrounds/<theme name>` içinde bulunur. Unbloarchy menüsündeki _Install > Style > Background_ üzerinden de erişilebilir.
 
-Tüm stil seçeneklerine Omarchy menüsündeki (`Super + Space`) _Style_ altından da erişilebilir.
+Tüm stil seçeneklerine Unbloarchy menüsündeki (`Super + Space`) _Style_ altından da erişilebilir.
 
 ## Açma/Kapama
 
@@ -289,7 +289,7 @@ Bu işlevler bir Tmux oturumu içinde çalıştırılmalıdır.
 
 ## Ghostty Terminal
 
-Ghostty terminali, Omarchy menüsünden _Install > Terminal_ ile kurulur.
+Ghostty terminali, Unbloarchy menüsünden _Install > Terminal_ ile kurulur.
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Tam bir emoji seçici göstermek için `Super + Ctrl + E` kullanabilirsiniz; bu,
 | `Shift + CapsLock Space N` | Adınız (kurulumda girildiği gibi)  |
 | `Shift + CapsLock Space E` | E-postanız (kurulumda girildiği gibi)  |
 
-`~/.XCompose` dosyasını düzenleyerek kendinizinkilerden daha fazlasını ekleyebilir, sonra değişikliklerin alınması için terminalde `omarchy-restart-xcompose` çalıştırabilirsiniz.
+`~/.XCompose` dosyasını düzenleyerek kendinizinkilerden daha fazlasını ekleyebilir, sonra değişikliklerin alınması için terminalde `unbloarchy-restart-xcompose` çalıştırabilirsiniz.

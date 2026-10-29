@@ -6,7 +6,7 @@
 
 | Flýtilykill | Aðgerð |
 | ----------------------- | --------------------- |
-| `Super + Space` | Omarchy-valmynd (forrit og allt annað) |
+| `Super + Space` | Unbloarchy-valmynd (forrit og allt annað) |
 | `Super + Alt + Space` | Forritarist |
 | `Super + Escape` | Kerfisvalmynd (svæfa, endurræsa, o.s.frv.) |
 | `Super + Ctrl + L` | Læsa tölvu |
@@ -143,7 +143,7 @@ Breyttu/bættu við bindingum í `~/.config/hypr/bindings.lua`.
 | `Super + V` | Líma |
 | `Super + Ctrl + V` | Klippiborðsstjóri |
 
-Venjulega á Linux þarftu `Ctrl + Shift + C/V` til að afrita'n'líma í útstöðinni og `Ctrl + C/V` til að gera það alls staðar annars staðar. Þessir sameinuðu klippiborðsflýtilyklar Omarchy virka alls staðar.
+Venjulega á Linux þarftu `Ctrl + Shift + C/V` til að afrita'n'líma í útstöðinni og `Ctrl + C/V` til að gera það alls staðar annars staðar. Þessir sameinuðu klippiborðsflýtilyklar Unbloarchy virka alls staðar.
 
 ## Myndataka
 
@@ -164,7 +164,7 @@ Venjulega á Linux þarftu `Ctrl + Shift + C/V` til að afrita'n'líma í útst�
 
 Með skjáupptökum spyr flýtilykillinn fyrst hvaða hljóð þú vilt, byrjar síðan upptökuna. Ýttu á hann aftur til að stöðva. Sjá [skjáskot og upptaka](12-screenshots-recording.md) fyrir nánari upplýsingar.
 
-Allir myndatökuvalkostir eru einnig aðgengilegir undir _Trigger > Capture_ í Omarchy-valmyndinni (`Super + Space`).
+Allir myndatökuvalkostir eru einnig aðgengilegir undir _Trigger > Capture_ í Unbloarchy-valmyndinni (`Super + Space`).
 
 ## Tilkynningar
 
@@ -186,9 +186,9 @@ Allir myndatökuvalkostir eru einnig aðgengilegir undir _Trigger > Capture_ í 
 | `Super + Backspace` | Víxla gegnsæi á glugga |
 | `Super + Ctrl + Backspace` | Víxla ferningslaga hlutfalli eins glugga |
 
-Aukabakgrunnsmyndir eru í `~/.config/omarchy/backgrounds/<theme name>`. Einnig fáanlegt í gegnum _Install > Style > Background_ í Omarchy-valmyndinni.
+Aukabakgrunnsmyndir eru í `~/.config/unbloarchy/backgrounds/<theme name>`. Einnig fáanlegt í gegnum _Install > Style > Background_ í Unbloarchy-valmyndinni.
 
-Allir stílvalkostir eru einnig aðgengilegir undir _Style_ í Omarchy-valmyndinni (`Super + Space`).
+Allir stílvalkostir eru einnig aðgengilegir undir _Style_ í Unbloarchy-valmyndinni (`Super + Space`).
 
 ## Víxlar
 
@@ -289,7 +289,7 @@ Forskeytislykillinn er `Ctrl + Space` (`Ctrl + B` virkar líka). Þú getur brey
 
 ## Ghostty-útstöð
 
-Ghostty-útstöðin er sett upp með _Install > Terminal_ í gegnum Omarchy-valmyndina.
+Ghostty-útstöðin er sett upp með _Install > Terminal_ í gegnum Unbloarchy-valmyndina.
 
 | Flýtilykill | Aðgerð |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Ghostty-útstöðin er sett upp með _Install > Terminal_ í gegnum Omarchy-valm
 | `Shift + CapsLock Space N` | Nafnið þitt (eins og það var slegið inn við uppsetningu) |
 | `Shift + CapsLock Space E` | Netfangið þitt (eins og það var slegið inn við uppsetningu) |
 
-Þú getur bætt við fleiri sjálfur með því að breyta `~/.XCompose`, keyra síðan `omarchy-restart-xcompose` í útstöðinni til að breytingarnar taki gildi.
+Þú getur bætt við fleiri sjálfur með því að breyta `~/.XCompose`, keyra síðan `unbloarchy-restart-xcompose` í útstöðinni til að breytingarnar taki gildi.

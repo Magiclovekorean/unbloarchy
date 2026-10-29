@@ -1,12 +1,12 @@
 # Galing sa Mac o Windows
 
-Kung gumugol ka ng maraming taon sa macOS o Windows, alam ng mga daliri mo ang isang daang bagay na nakalimutan na ng utak mo na natutunan niya pala. Ang kabanatang ito ang layer ng pagsasalin: kung saan napupunta ang mga instinct na iyon sa Omarchy. Malalimang tinalakay sa ibang bahagi ang mga feature mismo — ito ay mapa lamang.
+Kung gumugol ka ng maraming taon sa macOS o Windows, alam ng mga daliri mo ang isang daang bagay na nakalimutan na ng utak mo na natutunan niya pala. Ang kabanatang ito ang layer ng pagsasalin: kung saan napupunta ang mga instinct na iyon sa Unbloarchy. Malalimang tinalakay sa ibang bahagi ang mga feature mismo — ito ay mapa lamang.
 
 ### Ang Super ang sentro ng lahat
 
-Lahat ng muscle memory na nabuo mo sa paligid ng Cmd o ng Windows key ay maililipat sa isang key: Super. Iyon ang Windows key sa PC keyboard, at ito ang angkla ng halos bawat hotkey sa Omarchy.
+Lahat ng muscle memory na nabuo mo sa paligid ng Cmd o ng Windows key ay maililipat sa isang key: Super. Iyon ang Windows key sa PC keyboard, at ito ang angkla ng halos bawat hotkey sa Unbloarchy.
 
-Ang reflex mo sa Spotlight o Raycast o Start menu ay magiging `Super + Space`. Binubuksan niyan ang menu ng Omarchy, na naglulunsad ng mga app, nagbabago ng mga setting, nag-i-install ng software, kumukuha ng screen — halos lahat ng bagay. Magsimulang mag-type para mag-filter. Ipinapakita ng `Super + Alt + Space` ang bawat app sa iisang grid, gaya ng ginagawa ng Launchpad. Tingnan ang [nabigasyon](04-navigation.md).
+Ang reflex mo sa Spotlight o Raycast o Start menu ay magiging `Super + Space`. Binubuksan niyan ang menu ng Unbloarchy, na naglulunsad ng mga app, nagbabago ng mga setting, nag-i-install ng software, kumukuha ng screen — halos lahat ng bagay. Magsimulang mag-type para mag-filter. Ipinapakita ng `Super + Alt + Space` ang bawat app sa iisang grid, gaya ng ginagawa ng Launchpad. Tingnan ang [nabigasyon](04-navigation.md).
 
 ### Walang dock at walang desktop icons
 
@@ -22,27 +22,27 @@ Pamilyar ang pakiramdam ng mga workspace: para silang macOS Spaces o Windows vir
 
 ### Gumagana lang ang copy at paste
 
-Sa Mac, mayroon kang Cmd + C sa lahat ng lugar. Sa Windows, mayroon kang Ctrl + C sa lahat ng lugar — maliban sa terminal, kung saan pinapatay nito ang programa mo. Binibigyan ka ng Omarchy ng `Super + C`, `Super + X`, at `Super + V`, at gumagana ang mga ito sa lahat ng lugar, pati sa terminal. Walang hiwalay na reflex na kailangang matutunan para sa shell.
+Sa Mac, mayroon kang Cmd + C sa lahat ng lugar. Sa Windows, mayroon kang Ctrl + C sa lahat ng lugar — maliban sa terminal, kung saan pinapatay nito ang programa mo. Binibigyan ka ng Unbloarchy ng `Super + C`, `Super + X`, at `Super + V`, at gumagana ang mga ito sa lahat ng lugar, pati sa terminal. Walang hiwalay na reflex na kailangang matutunan para sa shell.
 
 Mga taga-Windows: ang Win + V clipboard history mo ay nasa `Super + Ctrl + V`, at naglalaman ito ng mga larawan pati na rin ng teksto. Tingnan ang [pinag-isang clipboard at history](08-unified-clipboard-history.md).
 
 ### Ang talahanayan ng pagsasalin
 
-| Ang hinahanap mo | Sa Omarchy |
+| Ang hinahanap mo | Sa Unbloarchy |
 | ------------- | ---------- |
-| Spotlight / Raycast / Start menu | `Super + Space` — ang menu ng Omarchy |
+| Spotlight / Raycast / Start menu | `Super + Space` — ang menu ng Unbloarchy |
 | AirDrop | LocalSend, sa pamamagitan ng `Super + Ctrl + S` — tingnan ang [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` o `Print Screen` — tingnan ang [mga screenshot at recording](12-screenshots-recording.md) |
 | Notification Center | History ng notification sa `Super + Shift + Alt + ,` |
 | Time Machine (para sa system) | Awtomatikong [mga snapshot ng system](47-system-snapshots.md) sa bawat update |
-| App Store / pag-download ng installer | _Install_ sa menu, o `omarchy pkg add` — tingnan ang [iba pang mga package](29-other-packages.md) |
+| App Store / pag-download ng installer | _Install_ sa menu, o `unbloarchy pkg add` — tingnan ang [iba pang mga package](29-other-packages.md) |
 | System Settings / Control Panel | _Setup_ sa menu, na nag-e-edit ng mga plain na config file — tingnan ang [dotfiles](31-dotfiles.md) |
 
 ### Talagang magkaiba ang ilang bagay
 
 Maraming setting ang nasa mga text file na ine-edit mo, hindi sa mga panel na kini-click mo. Mukhang primitive iyon hanggang sa mapagtanto mo na ibig sabihin niyon, bawat tweak ay makikita, makokopya sa susunod mong machine, at mailalagay sa version control. Ididiretso ka ng menu na _Setup_ sa tamang file at ire-restart nito ang anumang kailangang i-restart kapag tapos ka na.
 
-Dumarating ang mga update sa pamamagitan ng iisang command — _Update > Omarchy_ — na nag-a-update sa Omarchy mismo at sa bawat package sa system, at kumukuha muna ng snapshot. Walang mga per-app updater na nangungulit sa iyo nang random. Tingnan ang [mga update](30-updates.md).
+Dumarating ang mga update sa pamamagitan ng iisang command — _Update > Unbloarchy_ — na nag-a-update sa Unbloarchy mismo at sa bawat package sa system, at kumukuha muna ng snapshot. Walang mga per-app updater na nangungulit sa iyo nang random. Tingnan ang [mga update](30-updates.md).
 
 Nagmumula ang software sa isang package manager, hindi sa mga na-download na installer.
 
@@ -50,7 +50,7 @@ At kapag nagsara ka ng window, talagang nagsasara ang app. Walang macOS limbo ku
 
 ### Sa Mac hardware
 
-Maganda ang takbo ng Omarchy sa mga Intel Mac — tingnan ang [suporta sa Mac](44-mac-support.md). At mabait ang keyboard sa iyo: walang nire-remap ang Omarchy, at itinuturing ng Linux ang Command key bilang Super, kaya ang Super ay nasa eksaktong kinalalagyan ng Cmd dati. Hindi mapapansin ng hinlalaki mo ang paglipat.
+Maganda ang takbo ng Unbloarchy sa mga Intel Mac — tingnan ang [suporta sa Mac](44-mac-support.md). At mabait ang keyboard sa iyo: walang nire-remap ang Unbloarchy, at itinuturing ng Linux ang Command key bilang Super, kaya ang Super ay nasa eksaktong kinalalagyan ng Cmd dati. Hindi mapapansin ng hinlalaki mo ang paglipat.
 
 ### Bigyan mo ito ng dalawang linggo
 

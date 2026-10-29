@@ -14,8 +14,8 @@ local vconsole = keyboard.selected()
 local kb_layout = vconsole.XKBLAYOUT or "us"
 local kb_variant = vconsole.XKBVARIANT or ""
 -- Caps Lock is Caps Lock, and Shift + Caps Lock is the compose key. Stock XKB
--- has no such option, so Omarchy defines it in /etc/xkb.
-local kb_options = "omarchy:shift_caps_compose"
+-- has no such option, so Unbloarchy defines it in /etc/xkb.
+local kb_options = "unbloarchy:shift_caps_compose"
 
 -- Hyprland resolves keybindings against the first entry in kb_layout, not the
 -- layout that's currently active, so Unbloarchy's Latin-keysym bindings (SUPER + W
@@ -90,12 +90,12 @@ hl.config({
 })
 
 -- Scroll nicely in the terminal. TUIs launched under their own app-id
--- (org.omarchy.agent in the console, org.omarchy.btop, TUI.float, ...) no longer
+-- (org.unbloarchy.agent in the console, org.unbloarchy.btop, TUI.float, ...) no longer
 -- carry the terminal's class, but their initial title is still the terminal's
 -- name, so they are matched by that to scroll at the same rate.
 local function terminal_scroll(class, title, factor)
   o.window(class, { scroll_touchpad = factor })
-  o.window({ class = "(org\\.omarchy\\..*|TUI\\..*)", initial_title = title }, { scroll_touchpad = factor })
+  o.window({ class = "(org\\.unbloarchy\\..*|TUI\\..*)", initial_title = title }, { scroll_touchpad = factor })
 end
 
 terminal_scroll("(Alacritty|kitty)", "(Alacritty|kitty)", 1.5)

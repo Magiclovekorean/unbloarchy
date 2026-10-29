@@ -2,23 +2,23 @@
 
 ### Zepsułem system aktualizacją!
 
-Najpierw spróbuj [przywrócić system](47-system-snapshots.md) do wersji sprzed ostatniej aktualizacji. Jeśli to nie zadziała, użyj `omarchy-debug`, aby podzielić się swoim problemem na kanale #omarchy-help na Discordzie. A jeśli wszystko inne zawiedzie, możesz ponownie zainstalować domyślne konfiguracje i pakiety za pomocą `omarchy-reinstall`.
+Najpierw spróbuj [przywrócić system](47-system-snapshots.md) do wersji sprzed ostatniej aktualizacji. Jeśli to nie zadziała, użyj `unbloarchy-debug`, aby podzielić się swoim problemem na kanale #unbloarchy-help na Discordzie. A jeśli wszystko inne zawiedzie, możesz ponownie zainstalować domyślne konfiguracje i pakiety za pomocą `unbloarchy-reinstall`.
 
 ### Dlaczego niektóre aplikacje są tak duże na moim ekranie?
 
-Omarchy zakłada wyświetlacz o wysokiej rozdzielczości ze skalowaniem 2x, co wymaga ustawienia `GDK_SCALE` na 2 w `~/.config/hypr/monitors.lua`. Ale jeśli masz wyświetlacz 1x, możesz zmienić `local omarchy_gdk_scale = 2` na 1 (a następnie ponownie uruchomić każdą aplikację, która jest za duża). Zobacz [podręcznik dotyczący monitorów](33-monitors.md).
+Unbloarchy zakłada wyświetlacz o wysokiej rozdzielczości ze skalowaniem 2x, co wymaga ustawienia `GDK_SCALE` na 2 w `~/.config/hypr/monitors.lua`. Ale jeśli masz wyświetlacz 1x, możesz zmienić `local unbloarchy_gdk_scale = 2` na 1 (a następnie ponownie uruchomić każdą aplikację, która jest za duża). Zobacz [podręcznik dotyczący monitorów](33-monitors.md).
 
 W Spotify możesz użyć `Ctrl + Minus`, aby zmniejszyć interfejs (i `Ctrl + Plus`, aby go powiększyć).
 
 ### Dlaczego wszystkie moje skróty z klawiszem Super przestały działać?
 
-Na niektórych laptopach ASUS ROG i TUF `Fn + Super` to łatwa do przeoczenia kombinacja, która przełącza wbudowaną w firmware blokadę klawisza Windows (przeznaczoną do gier, żebyś przypadkiem nie wyszedł z gry). Nic na ekranie nie informuje Cię, że to się stało. Gdy blokada jest włączona, Super nie wysyła absolutnie nic — więc każdy skrót Omarchy, który używa Super, po prostu przestaje działać i wygląda to tak, jakby zepsuł się Hyprland.
+Na niektórych laptopach ASUS ROG i TUF `Fn + Super` to łatwa do przeoczenia kombinacja, która przełącza wbudowaną w firmware blokadę klawisza Windows (przeznaczoną do gier, żebyś przypadkiem nie wyszedł z gry). Nic na ekranie nie informuje Cię, że to się stało. Gdy blokada jest włączona, Super nie wysyła absolutnie nic — więc każdy skrót Unbloarchy, który używa Super, po prostu przestaje działać i wygląda to tak, jakby zepsuł się Hyprland.
 
 Naciśnij `Fn + Super` raz, zanim zaczniesz grzebać w `~/.config/hypr/`, a jeśli to nie przywróci Super, naciśnij tę kombinację ponownie, żeby nie zostawić włączonej blokady. To nie jest Fn-lock, który zmienia tylko działanie rzędu klawiszy F.
 
 ### Moje Wi-Fi, Bluetooth, audio lub trackpad właśnie przestało działać
 
-Zanim ponownie uruchomisz komputer, spróbuj osobno zrestartować wadliwy podsystem. _Update > Hardware_ w menu Omarchy zawiera Wi-Fi, Bluetooth, Audio i Trackpad, a ponowne załadowanie jednego z nich rozwiązuje większość sytuacji typu „działało jeszcze pięć minut temu” — słuchawki Bluetooth, które nie chcą się ponownie połączyć, trackpad, który przestał działać po uśpieniu, dźwięk, który zniknął, gdy odłączyłeś monitor.
+Zanim ponownie uruchomisz komputer, spróbuj osobno zrestartować wadliwy podsystem. _Update > Hardware_ w menu Unbloarchy zawiera Wi-Fi, Bluetooth, Audio i Trackpad, a ponowne załadowanie jednego z nich rozwiązuje większość sytuacji typu „działało jeszcze pięć minut temu” — słuchawki Bluetooth, które nie chcą się ponownie połączyć, trackpad, który przestał działać po uśpieniu, dźwięk, który zniknął, gdy odłączyłeś monitor.
 
 ### Dlaczego moje głośniki zewnętrzne nie grają?
 
@@ -26,7 +26,7 @@ Prawdopodobnie dlatego, że nie są ustawione jako główne wyjście. Kliknij ik
 
 ### Głośniki mojego laptopa brzmią dziwnie
 
-Na niektórych laptopach Omarchy automatycznie stosuje dostrojenie głośników, które koryguje charakterystykę częstotliwościową wbudowanych głośników. `omarchy audio tuning status` powie Ci, czy takie dostrojenie jest aktywne na Twojej maszynie, a `omarchy audio tuning off` wyłączy je, jeśli wolisz słyszeć głośniki w surowym brzmieniu.
+Na niektórych laptopach Unbloarchy automatycznie stosuje dostrojenie głośników, które koryguje charakterystykę częstotliwościową wbudowanych głośników. `unbloarchy audio tuning status` powie Ci, czy takie dostrojenie jest aktywne na Twojej maszynie, a `unbloarchy audio tuning off` wyłączy je, jeśli wolisz słyszeć głośniki w surowym brzmieniu.
 
 ### Dlaczego nie mogę się zalogować ani użyć sudo przy użyciu mojego hasła?
 

@@ -1,14 +1,14 @@
 # Horný panel
 
-Pruh pozdĺž vrchu obrazovky je panel Omarchy. Nie je to priskrutkovaná stavová lišta, ale súčasť shellu Omarchy, jediného dlho bežiaceho procesu Quickshell, ktorý kreslí aj ponuku, oznámenia, vyskakovacie okná OSD a zamykaciu obrazovku. Preto dokonale ladí so všetkým ostatným a panel sa otvorí okamžite, namiesto toho, aby spúšťal novú aplikáciu.
+Pruh pozdĺž vrchu obrazovky je panel Unbloarchy. Nie je to priskrutkovaná stavová lišta, ale súčasť shellu Unbloarchy, jediného dlho bežiaceho procesu Quickshell, ktorý kreslí aj ponuku, oznámenia, vyskakovacie okná OSD a zamykaciu obrazovku. Preto dokonale ladí so všetkým ostatným a panel sa otvorí okamžite, namiesto toho, aby spúšťal novú aplikáciu.
 
 Je to aj jediný kus pracovnej plochy, ktorý je stále na obrazovke, takže stojí za to vedieť, čo všetky tie malé glyfy robia.
 
 ## Čo je na ňom predvolene
 
-Panel má tri sekcie. Vľavo sedí logo Omarchy (spúšťač ponuky) a indikátory pracovných plôch. V strede máte indikátory stavu, hodiny, Elsewhen (svetové hodiny), počasie a odznak aktualizácie Omarchy. Vpravo: systémový zásobník, rozloženie klávesnice (keď je nakonfigurované viac než jedno), agenti, bluetooth, sieť, zvuk, displej a napájanie.
+Panel má tri sekcie. Vľavo sedí logo Unbloarchy (spúšťač ponuky) a indikátory pracovných plôch. V strede máte indikátory stavu, hodiny, Elsewhen (svetové hodiny), počasie a odznak aktualizácie Unbloarchy. Vpravo: systémový zásobník, rozloženie klávesnice (keď je nakonfigurované viac než jedno), agenti, bluetooth, sieť, zvuk, displej a napájanie.
 
-Niekoľko z nich sa zobrazí len vtedy, keď majú čo povedať. Rozloženie klávesnice sa zobrazí len vtedy, ak ste nakonfigurovali viac než jedno rozloženie. Odznak aktualizácie sa zobrazí len vtedy, keď čaká aktualizácia Omarchy. A ikona agentov sa zobrazí pri prvom nájdení využívania AI kódovania na počítači (pozri [AI](17-ai.md)).
+Niekoľko z nich sa zobrazí len vtedy, keď majú čo povedať. Rozloženie klávesnice sa zobrazí len vtedy, ak ste nakonfigurovali viac než jedno rozloženie. Odznak aktualizácie sa zobrazí len vtedy, keď čaká aktualizácia Unbloarchy. A ikona agentov sa zobrazí pri prvom nájdení využívania AI kódovania na počítači (pozri [AI](17-ai.md)).
 
 ## Klikanie
 
@@ -16,7 +16,7 @@ Takmer každý widget robí niečo po kliknutí ľavým, pravým a stredným tla
 
 | Widget | Ľavé | Pravé | Stredné / posúvanie |
 | --- | --- | --- | --- |
-| Ponuka | Ponuka Omarchy | Nový terminál | — |
+| Ponuka | Ponuka Unbloarchy | Nový terminál | — |
 | Pracovné plochy | Zamerať tú pracovnú plochu na tomto monitore | — | Posúvanie: ďalšia/predchádzajúca pracovná plocha |
 | Hodiny | Vyskakovací kalendár | Precykliť formát štítka | Stredné: výber časového pásma |
 | Počasie | Vyskakovacia predpoveď | Úplné počasie ako oznámenie | Stredné: obnoviť |
@@ -29,7 +29,7 @@ Takmer každý widget robí niečo po kliknutí ľavým, pravým a stredným tla
 | Médiá | Prehrať/pozastaviť | Vyskakovací obal albumu | Stredné: ďalšie · posúvanie: predchádzajúce/ďalšie |
 | Agenti | Panel agentov | Spustiť vášho agenta | Stredné: ďalšie predplatné |
 | Zásobník | Prejdením myšou odhaliť zásuvku | Pravým na šípku spravovať | — |
-| Aktualizácia Omarchy | Spustiť aktualizáciu | — | — |
+| Aktualizácia Unbloarchy | Spustiť aktualizáciu | — | — |
 
 Nie všetko v tej tabuľke je na vašom paneli hneď po vybalení. Widget médií (MPRIS now-playing, s posúvajúcou sa skladbou a interpretom) a widget mikrofónu sú oba zabudované, ale predvolene vypnuté — pridajte si ich, ak ich chcete, ako je popísané nižšie.
 
@@ -66,7 +66,7 @@ Každý panel prijíma klávesnicu rovnako ako myš: šípky sa pohybujú, Retur
 
 Ďalšie dva widgety sa na paneli zobrazia až po nainštalovaní zodpovedajúcej služby z **Install → Service** a oba stoja za to poznať, pretože robia viac než len hlásia stav.
 
-Panel **Tailscale** pripája a odpája tailnet, prepína medzi účtami a vyberá výstupný uzol (vaše vlastné počítače aj regióny Mullvad sa zobrazia v tom zozname). Tiež prehliada vaše počítače — a pri vybratom jednom z nich `s` odosiela súbory naň cez Taildrop, čo je najrýchlejší spôsob, ako presunúť súbor do vášho telefónu alebo iného laptopu. `c` skopíruje IP počítača, `n` jeho názov a `d` jeho úplný názov DNS. Na každom riadku počítača je aj tlačidlo odoslania, ak radšej klikáte. To isté z terminálu je `omarchy tailscale send <machine> [file...]`.
+Panel **Tailscale** pripája a odpája tailnet, prepína medzi účtami a vyberá výstupný uzol (vaše vlastné počítače aj regióny Mullvad sa zobrazia v tom zozname). Tiež prehliada vaše počítače — a pri vybratom jednom z nich `s` odosiela súbory naň cez Taildrop, čo je najrýchlejší spôsob, ako presunúť súbor do vášho telefónu alebo iného laptopu. `c` skopíruje IP počítača, `n` jeho názov a `d` jeho úplný názov DNS. Na každom riadku počítača je aj tlačidlo odoslania, ak radšej klikáte. To isté z terminálu je `unbloarchy tailscale send <machine> [file...]`.
 
 Panel **Dropbox** rieši prihlásenie, ukazuje, koľko úložiska ste využili, a uvádza nedávno synchronizované súbory.
 
@@ -93,19 +93,19 @@ Ak by ste radšej vyberali z ponuky, **Appearance → Menu Bar** má pozíciu a 
 Tie isté veci majú príkazy, čo je to, čo chcete pre nastavenie [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Na úplné pridanie alebo odstránenie widgetu použite príkazy pluginov. `omarchy plugin list` vypíše každý widget, ktorý shell pozná, s jeho id, a potom:
+Na úplné pridanie alebo odstránenie widgetu použite príkazy pluginov. `unbloarchy plugin list` vypíše každý widget, ktorý shell pozná, s jeho id, a potom:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Skrytie panela
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Konfiguračný súbor
 
-Všetko je uložené v `~/.config/omarchy/shell.json`, pod kľúčom `bar`. Tu je orezaná verzia:
+Všetko je uložené v `~/.config/unbloarchy/shell.json`, pod kľúčom `bar`. Tu je orezaná verzia:
 
 ```json
 {
@@ -123,20 +123,20 @@ Všetko je uložené v `~/.config/omarchy/shell.json`, pod kľúčom `bar`. Tu j
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Každý widget je jeden záznam v jednom z piatich polí layoutu a jeho nastavenia sedia priamo na tom zázname — nie je žiadny samostatný súbor nastavení a žiadny podobobjekt `config`. `format`, `formatAlt` (na čo pravé kliknutie precykľuje) a `verticalFormat` hodín žijú všetky priamo tam na `{ "id": "omarchy.clock" }`.
+Každý widget je jeden záznam v jednom z piatich polí layoutu a jeho nastavenia sedia priamo na tom zázname — nie je žiadny samostatný súbor nastavení a žiadny podobobjekt `config`. `format`, `formatAlt` (na čo pravé kliknutie precykľuje) a `verticalFormat` hodín žijú všetky priamo tam na `{ "id": "unbloarchy.clock" }`.
 
 `center` je box v strede panela: všetko v ňom je vycentrované na obrazovke ako jedna skupina. `centerBegin` a `centerEnd` visia z oboch strán boxu, čo je spôsob, ako hodiny zostávajú presne v strede, aj keď počasie a odznak aktualizácie prichádzajú a odchádzajú. Dajte do `center` viac než jeden widget a budú vycentrované spolu; nechajte ho prázdny a `centerBegin` a `centerEnd` sa stretnú v strede panela.
 
-Jedno pravidlo, ktoré stojí za to si vryť do pamäti: **keď už máte vlastný `shell.json`, je kanonický**. Kým si nič neprispôsobíte, shell číta predvolený súbor Omarchy. V okamihu, keď potiahnete widget, spustíte `omarchy bar` alebo súbor upravíte sami, vlastníte ho — nie je žiadne hlboké zlučovanie, takže nové predvolené widgety v budúcich vydaniach Omarchy sa na vašom paneli neobjavia automaticky. `omarchy bar defaults` vráti dodávaný layout, kedykoľvek chcete čistý štít.
+Jedno pravidlo, ktoré stojí za to si vryť do pamäti: **keď už máte vlastný `shell.json`, je kanonický**. Kým si nič neprispôsobíte, shell číta predvolený súbor Unbloarchy. V okamihu, keď potiahnete widget, spustíte `unbloarchy bar` alebo súbor upravíte sami, vlastníte ho — nie je žiadne hlboké zlučovanie, takže nové predvolené widgety v budúcich vydaniach Unbloarchy sa na vašom paneli neobjavia automaticky. `unbloarchy bar defaults` vráti dodávaný layout, kedykoľvek chcete čistý štít.
 
 Ten istý súbor tiež drží vaše časovania nečinnosti na najvyššej úrovni, mimo kľúča `bar`: `idle.screensaver` a `idle.lock`, obe v sekundách od vašej nečinnosti. Takže predvolený šetrič obrazovky naskočí pri 150 sekundách a zámok pri 300.

@@ -10,7 +10,7 @@ Cardurile oferă ce conțin: _Copiază codul_ pentru codurile de verificare (pă
 
 Ca să le folosești fără mouse, apasă `Super + Ctrl + ,`. Cea mai nouă notificare este selectată, iar butoanele ei sunt numerotate: apasă un număr ca să folosești unul, `Enter` ca să faci clic pe notificare, `↑` și `↓` ca să te muți între notificări, `Delete` ca să închizi una și `Esc` ca să eliberezi tastatura. Se eliberează și singură după câteva secunde de inactivitate.
 
-Dacă reduci notificările la tăcere, ele sunt reținute, cu excepția confirmărilor proprii ale Omarchy, a alertelor de urgență și a codurilor de verificare, pe care le-ai cerut acum un moment. Pune ultimele câteva înapoi pe ecran, reținute sau nu, cu `Super + Shift + Alt + ,`. Istoricul este păstrat o zi.
+Dacă reduci notificările la tăcere, ele sunt reținute, cu excepția confirmărilor proprii ale Unbloarchy, a alertelor de urgență și a codurilor de verificare, pe care le-ai cerut acum un moment. Pune ultimele câteva înapoi pe ecran, reținute sau nu, cu `Super + Shift + Alt + ,`. Istoricul este păstrat o zi.
 
 ## Notificări prin combinații de taste
 
@@ -26,7 +26,7 @@ Dacă reduci notificările la tăcere, ele sunt reținute, cu excepția confirm�
 
  ![notice-weather](images/notice-weather.webp)
 
-Locația este detectată după adresa IP, ceea ce de obicei este suficient de aproape, dar nu întotdeauna. O poți fixa cu `omarchy weather location --set Malibu` sau poți fi exact adăugând coordonate: `omarchy weather location --set Malibu 34.0259,-118.7798`. Rulează `omarchy weather location` singur ca să vezi unde crede că ești și `--clear` ca să revii la detectarea automată.
+Locația este detectată după adresa IP, ceea ce de obicei este suficient de aproape, dar nu întotdeauna. O poți fixa cu `unbloarchy weather location --set Malibu` sau poți fi exact adăugând coordonate: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Rulează `unbloarchy weather location` singur ca să vezi unde crede că ești și `--clear` ca să revii la detectarea automată.
 
 ### Bateria
 

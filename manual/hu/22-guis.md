@@ -20,11 +20,11 @@ Az Obsidian minden célra ingyenes, beleértve a személyes, a kereskedelmi és 
 
 Az Obsidian [kereskedelmi kiegészítőt is kínál szinkronizáláshoz](https://obsidian.md/sync) iOS-es és androidos mobilalkalmazásokkal. (https://obsidian.md/pricing).
 
-Az Obsidiant a `Super + Shift + O` billentyűkombinációval indítod. A téma szinkronizálásához a beállítások alatt ki kell választanod az `Omarchy` témát.
+Az Obsidiant a `Super + Shift + O` billentyűkombinációval indítod. A téma szinkronizálásához a beállítások alatt ki kell választanod az `Unbloarchy` témát.
 
 ## Omawrite
 
-Az [Omawrite](https://github.com/omacom-io/omawrite) az Omarchy saját, pofonegyszerű Markdown-íróalkalmazása. Nincsenek vaultok, nincsenek bővítmények, csak te és a szavak.
+Az [Omawrite](https://github.com/omacom-io/omawrite) az Unbloarchy saját, pofonegyszerű Markdown-íróalkalmazása. Nincsenek vaultok, nincsenek bővítmények, csak te és a szavak.
 
 Az Omawrite-ot a `Super + Shift + W` billentyűkombinációval indítod.
 
@@ -44,18 +44,18 @@ Az Aethert az alkalmazásindítón keresztül indítod (`Super + Space`).
 
 A [LocalSend](https://localsend.org/) segítségével fájlokat küldhetsz ugyanazon a hálózaton lévő, az alkalmazást futtató más eszközökre, akárcsak az Apple AirDropjával. Viszont platformfüggetlen, így Windows, macOS, Android, iOS és persze Linux között is küldhetsz fájlokat oda-vissza.
 
-A Megosztás menüt a `Super + Ctrl + S` billentyűkombinációval vagy az Omarchy menüben a _Trigger > Share_ alatt nyithatod meg. Négy lehetőséget kínál:
+A Megosztás menüt a `Super + Ctrl + S` billentyűkombinációval vagy az Unbloarchy menüben a _Trigger > Share_ alatt nyithatod meg. Négy lehetőséget kínál:
 
 - A **Clipboard** szövegfájlként küldi el, bármit is másoltál. Remek arra, hogy egy hivatkozást vagy egy részletet a telefonodra juttass anélkül, hogy e-mailt küldenél magadnak.
 - A **File** egy fájlválasztót nyit meg, ahol egyszerre többet is kiválaszthatsz.
 - A **Folder** egy teljes könyvtárat küld el.
 - A **Receive** magát a LocalSendet nyitja meg, hogy egy másik eszköz küldhessen neked valamit.
 
-Ugyanez a terminálból is működik az `omarchy share clipboard`, az `omarchy share file [path]` és az `omarchy share folder [path]` parancsokkal. Hagyd le az elérési utat, és megkapod a választót.
+Ugyanez a terminálból is működik az `unbloarchy share clipboard`, az `unbloarchy share file [path]` és az `unbloarchy share folder [path]` parancsokkal. Hagyd le az elérési utat, és megkapod a választót.
 
 Közvetlenül a fájlkezelőből is küldhetsz: kattints jobb gombbal bármilyen kijelölésre a Nautilusban, és válaszd a _Send via LocalSend_ lehetőséget.
 
-Az Omarchy tűzfala alapértelmezés szerint zárva van, kivéve a LocalSend portját, így ez egy friss telepítésen azonnal működik. Lásd: [biztonság](48-security.md).
+Az Unbloarchy tűzfala alapértelmezés szerint zárva van, kivéve a LocalSend portját, így ez egy friss telepítésen azonnal működik. Lásd: [biztonság](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ A LibreOffice-t az alkalmazásindítón keresztül indítod (`Super + Space`).
 
 ## Hype
 
-A [Hype](https://github.com/omacom/hype) az Omarchy saját, pofonegyszerű prezentációs alkalmazása. A prezentációd egyetlen Markdown-fájl, mellette a képeivel és videóival: minden diát élő előnézet alatt írsz meg, a diákat sorrendbe húzod, majd teljes képernyőn prezentálsz, vagy PDF-be és PowerPointba exportálsz. Még az Omarchy-témádat is átveszi.
+A [Hype](https://github.com/omacom/hype) az Unbloarchy saját, pofonegyszerű prezentációs alkalmazása. A prezentációd egyetlen Markdown-fájl, mellette a képeivel és videóival: minden diát élő előnézet alatt írsz meg, a diákat sorrendbe húzod, majd teljes képernyőn prezentálsz, vagy PDF-be és PowerPointba exportálsz. Még az Unbloarchy-témádat is átveszi.
 
 A Hype-ot az alkalmazásindítón keresztül indítod (`Super + Space`). Nyomd meg benne a `?` billentyűt az összes gyorsbillentyű megtekintéséhez.
 
 ## Signed
 
-A [Signed](https://github.com/omacom/signed) az Omarchy saját, pofonegyszerű módja PDF-ek aláírására és kitöltésére. Helyezd el a mentett aláírásodat, szöveget és a mai dátumot bárhová egy oldalon, majd ments egy aláírt példányt az eredeti mellé. A módját lásd itt: [PDF-ek kitöltése](27-filling-out-pdfs.md).
+A [Signed](https://github.com/omacom/signed) az Unbloarchy saját, pofonegyszerű módja PDF-ek aláírására és kitöltésére. Helyezd el a mentett aláírásodat, szöveget és a mai dátumot bárhová egy oldalon, majd ments egy aláírt példányt az eredeti mellé. A módját lásd itt: [PDF-ek kitöltése](27-filling-out-pdfs.md).
 
 A Signedet az alkalmazásindítón keresztül indítod (`Super + Space`), vagy megnyithatsz vele egy PDF-et a fájlkezelőből.
 
 ## Omacalc
 
-Az [Omacalc](https://github.com/omacom-io/omacalc) az Omarchy saját, pofonegyszerű számológépe, amely lebegő ablakban nyílik meg.
+Az [Omacalc](https://github.com/omacom-io/omacalc) az Unbloarchy saját, pofonegyszerű számológépe, amely lebegő ablakban nyílik meg.
 
 Az Omacalcot a `Super + Shift + Q` billentyűkombinációval indítod (vagy a számológép billentyűvel, ha a billentyűzeteden van ilyen).
 
@@ -85,7 +85,7 @@ Az Omacalcot a `Super + Shift + Q` billentyűkombinációval indítod (vagy a sz
 
 A [Signal](https://signal.org/) az E2E-titkosított üzenetküldés úttörője, és remek kommunikációs lehetőség mindenkinek, aki inkább nem valamelyik nagy technológiai konglomerátumon keresztül intézné ezt.
 
-A Signalt a `Super + Shift + G` billentyűkombinációval indítod. Nem része az alaptelepítésnek, így amikor először megnyomod ezt, az Omarchy felajánlja, hogy telepíti neked (az Omarchy menüben az _Install > Service_ alatt is megtalálod).
+A Signalt a `Super + Shift + G` billentyűkombinációval indítod. Nem része az alaptelepítésnek, így amikor először megnyomod ezt, az Unbloarchy felajánlja, hogy telepíti neked (az Unbloarchy menüben az _Install > Service_ alatt is megtalálod).
 
 ## mpv
 
@@ -95,13 +95,13 @@ Az mpv-t az alkalmazásindítón keresztül indítod (`Super + Space`), vagy egy
 
 ## Omacut
 
-Az [Omacut](https://github.com/omacom-io/omacut) az Omarchy saját, pofonegyszerű videóvágója. Amikor csak egy klip elejét és végét kell levágnod, sokkal jobb, mint elindítani egy teljes értékű videószerkesztőt.
+Az [Omacut](https://github.com/omacom-io/omacut) az Unbloarchy saját, pofonegyszerű videóvágója. Amikor csak egy klip elejét és végét kell levágnod, sokkal jobb, mint elindítani egy teljes értékű videószerkesztőt.
 
 Az Omacutot az alkalmazásindítón keresztül indítod (`Super + Space`).
 
 ## Monologue
 
-A [Monologue](https://github.com/omacom/monologue) az Omarchy saját, pofonegyszerű webkamerás rögzítője. Válaszd ki egyszer a kamerádat és a mikrofonodat, majd nyomd meg a `Space` billentyűt a rögzítéshez, és újra ugyanannak a felvételnek a szüneteltetéséhez és folytatásához. Mindig a kamerád legmagasabb felbontásában rögzít, élő mikrofonszint-jelzővel, így még kezdés előtt ellenőrizheted a szinteket.
+A [Monologue](https://github.com/omacom/monologue) az Unbloarchy saját, pofonegyszerű webkamerás rögzítője. Válaszd ki egyszer a kamerádat és a mikrofonodat, majd nyomd meg a `Space` billentyűt a rögzítéshez, és újra ugyanannak a felvételnek a szüneteltetéséhez és folytatásához. Mindig a kamerád legmagasabb felbontásában rögzít, élő mikrofonszint-jelzővel, így még kezdés előtt ellenőrizheted a szinteket.
 
 Állítsd le a felvételt, és azonnal megnyílik egy beépített szerkesztőben. Kattints duplán egy klipre a felosztásához, húzd a fogantyúkat az egyes darabok vágásához, és távolítsd el azokat a részeket, amelyekre nincs szükséged. Ezután mentsd el MP4-ként. Az eredeti felvételed megmarad, amíg el nem veted, így bármikor visszatérhetsz hozzá, és másképp vághatod meg.
 

@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# omarchy:summary=Install support for using Xbox controllers with Steam/RetroArch/etc.
-# omarchy:group=install
-# omarchy:name=gaming xbox-controllers
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Install support for using Xbox controllers with Steam/RetroArch/etc.
+# unbloarchy:group=install
+# unbloarchy:name=gaming xbox-controllers
+# unbloarchy:requires-sudo=true
 
 set -e
 
 echo "Installing Xbox controller Bluetooth support..."
 
 # Install xpadneo to ensure controllers work out of the box
-omarchy-pkg-add xpadneo-dkms
+unbloarchy-pkg-add xpadneo-dkms
 
 # Prevent xpad/xpadneo driver conflict
 echo blacklist xpad | sudo tee /etc/modprobe.d/blacklist-xpad.conf >/dev/null
@@ -29,7 +29,7 @@ if lsmod | grep -q '^xpad '; then
 fi
 
 if $needs_reboot; then
-  gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n xbox.rebootNeeded)" && sudo reboot now
+  gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n xbox.rebootNeeded)" && sudo reboot now
   exit 0
 fi
 

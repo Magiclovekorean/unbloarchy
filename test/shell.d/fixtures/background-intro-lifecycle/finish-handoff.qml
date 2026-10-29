@@ -25,7 +25,7 @@ ShellRoot {
   property int step: 0
   readonly property var steps: [
     { delay: 100, run: function() {
-      test.services = ({ "omarchy.background": retainedBackground })
+      test.services = ({ "unbloarchy.background": retainedBackground })
       intro.prepareTheme(Quickshell.env("INTRO_TEST_COVER"), "switch", "", "")
     } },
     { delay: 100, run: function() {

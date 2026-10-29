@@ -1,3 +1,3 @@
-echo "Install the native Omarchy screensaver"
+echo "Install the native Unbloarchy screensaver"
 
-omarchy-pkg-add omarchy-screensaver
+unbloarchy-pkg-add unbloarchy-screensaver

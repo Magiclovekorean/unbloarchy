@@ -8,10 +8,10 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 # the test, and must be told which process launched it.
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
-printf '#!/bin/bash\necho "args=$* ppid=$PPID parent=$OMARCHY_SPEEDTEST_PARENT_PID"\n' > "$tmp/speedtest"
+printf '#!/bin/bash\necho "args=$* ppid=$PPID parent=$UNBLOARCHY_SPEEDTEST_PARENT_PID"\n' > "$tmp/speedtest"
 chmod +x "$tmp/speedtest"
-export OMARCHY_SPEEDTEST_BINARY=$tmp/speedtest
-launcher=$ROOT/bin/omarchy-network-speedtest
+export UNBLOARCHY_SPEEDTEST_BINARY=$tmp/speedtest
+launcher=$ROOT/bin/unbloarchy-network-speedtest
 
 out=$(bash -c '"$1" up; echo "caller=$$"' bash "$launcher")
 caller=${out##*caller=}
@@ -28,6 +28,6 @@ for args in sideways "down extra"; do
 done
 
 status=0
-out=$(OMARCHY_SPEEDTEST_BINARY=$tmp/missing "$launcher" down 2>&1) || status=$?
-(( status == 1 )) && [[ $out == *omarchy-speedtest* ]] || fail "names the package when the client is missing" "status $status: $out"
+out=$(UNBLOARCHY_SPEEDTEST_BINARY=$tmp/missing "$launcher" down 2>&1) || status=$?
+(( status == 1 )) && [[ $out == *unbloarchy-speedtest* ]] || fail "names the package when the client is missing" "status $status: $out"
 pass "names the package when the client is missing"

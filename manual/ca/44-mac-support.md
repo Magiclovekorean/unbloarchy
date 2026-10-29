@@ -1,16 +1,16 @@
 # Suport per a Mac
 
-Omarchy té suport integrat per als **Macs Intel**. De moment hi ha un parell de limitacions conegudes, però mentre les coneguis i t'hi avinguis, pots insuflar una mica de vida nova als teus Macs vells carregant-hi Omarchy.
+Unbloarchy té suport integrat per als **Macs Intel**. De moment hi ha un parell de limitacions conegudes, però mentre les coneguis i t'hi avinguis, pots insuflar una mica de vida nova als teus Macs vells carregant-hi Unbloarchy.
 
 Tingues en compte que la instal·lació en un Mac amb xip de la sèrie M no es suporta directament en aquest moment. Pots saber-ne més sobre l'estat d'això a #omarchy-on-other al nostre [Discord](https://discord.gg/tXFUdasqhY).
 
-En una prova senzilla, vam aconseguir guanys de rendiment del 36% en un MacBook Pro del 2019 només instal·lant-hi Omarchy.
+En una prova senzilla, vam aconseguir guanys de rendiment del 36% en un MacBook Pro del 2019 només instal·lant-hi Unbloarchy.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Instal·lar Omarchy en un Mac
+### Instal·lar Unbloarchy en un Mac
 
-Omarchy només suporta ser l'**únic** sistema operatiu instal·lat en aquest moment. Durant la instal·lació, la unitat s'esborrarà i macOS ja no es podrà arrencar.
+Unbloarchy només suporta ser l'**únic** sistema operatiu instal·lat en aquest moment. Durant la instal·lació, la unitat s'esborrarà i macOS ja no es podrà arrencar.
 
 Tanmateix, després el pots restaurar via Internet Recovery si ho vols.
 

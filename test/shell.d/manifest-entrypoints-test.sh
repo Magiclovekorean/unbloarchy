@@ -46,5 +46,5 @@ print(base64.b64encode(json.dumps(entries).encode()).decode())
 PY
 )
 
-OMARCHY_QML_MANIFESTS="$manifest_entries" \
+UNBLOARCHY_QML_MANIFESTS="$manifest_entries" \
   run_qml_fixture manifest-entrypoints "manifest entrypoints load" Ui Commons

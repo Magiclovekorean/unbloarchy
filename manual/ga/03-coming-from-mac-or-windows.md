@@ -1,12 +1,12 @@
 # Ag Teacht ó Mac nó Windows
 
-Má tá blianta caite agat ar macOS nó Windows, tá céad rud ar eolas ag do mhéara a ndearna d'inchinn dearmad gur fhoghlaim sí riamh iad. Is í an chaibidil seo an ciseal aistriúcháin: cá dtéann na hintinn sin in Omarchy. Clúdaítear na gnéithe féin go domhain in áiteanna eile — níl anseo ach an léarscáil.
+Má tá blianta caite agat ar macOS nó Windows, tá céad rud ar eolas ag do mhéara a ndearna d'inchinn dearmad gur fhoghlaim sí riamh iad. Is í an chaibidil seo an ciseal aistriúcháin: cá dtéann na hintinn sin in Unbloarchy. Clúdaítear na gnéithe féin go domhain in áiteanna eile — níl anseo ach an léarscáil.
 
 ### Is é Super croílár gach rud
 
-Aistríonn an chuimhne mhatánach ar fad atá agat thart ar Cmd nó eochair Windows go dtí eochair amháin: Super. Sin í eochair Windows ar mhéarchlár PC, agus is í ancaire beagnach gach eochair the in Omarchy í.
+Aistríonn an chuimhne mhatánach ar fad atá agat thart ar Cmd nó eochair Windows go dtí eochair amháin: Super. Sin í eochair Windows ar mhéarchlár PC, agus is í ancaire beagnach gach eochair the in Unbloarchy í.
 
-Éiríonn do dhíogha Spotlight nó Raycast nó roghchlár Start mar `Super + Space`. Osclaíonn sé sin roghchlár Omarchy, a sheolann aipeanna, a athraíonn socruithe, a shuiteálann bogearraí, a ghabhann an scáileán — beagnach gach rud. Tosaigh ag clóscríobh chun scagadh. Taispeánann `Super + Alt + Space` gach aip ar ghreille amháin, mar a dhéanann Launchpad. Féach [loingseoireacht](04-navigation.md).
+Éiríonn do dhíogha Spotlight nó Raycast nó roghchlár Start mar `Super + Space`. Osclaíonn sé sin roghchlár Unbloarchy, a sheolann aipeanna, a athraíonn socruithe, a shuiteálann bogearraí, a ghabhann an scáileán — beagnach gach rud. Tosaigh ag clóscríobh chun scagadh. Taispeánann `Super + Alt + Space` gach aip ar ghreille amháin, mar a dhéanann Launchpad. Féach [loingseoireacht](04-navigation.md).
 
 ### Níl aon duga ann agus níl aon deilbhíní deisce ann
 
@@ -22,27 +22,27 @@ Mothóidh spásanna oibre eolach: is iad macOS Spaces nó deasca fíorúla Windo
 
 ### Oibríonn cóipeáil agus greamú gan stró
 
-Ar an Mac bhí Cmd + C agat i ngach áit. Ar Windows bhí Ctrl + C agat i ngach áit — ach amháin an teirminéal, áit a maraíonn sé do chlár. Tugann Omarchy `Super + C`, `Super + X`, agus `Super + V` duit, agus oibríonn siad i ngach áit, an teirminéal san áireamh. Níl aon dhíogha ar leith le foghlaim don bhlaosc.
+Ar an Mac bhí Cmd + C agat i ngach áit. Ar Windows bhí Ctrl + C agat i ngach áit — ach amháin an teirminéal, áit a maraíonn sé do chlár. Tugann Unbloarchy `Super + C`, `Super + X`, agus `Super + V` duit, agus oibríonn siad i ngach áit, an teirminéal san áireamh. Níl aon dhíogha ar leith le foghlaim don bhlaosc.
 
 A dhaoine Windows: tá do stair ghearrthaisce Win + V ar `Super + Ctrl + V`, agus coinníonn sí íomhánna chomh maith le téacs. Féach [gearrthaisce aontaithe & stair](08-unified-clipboard-history.md).
 
 ### An tábla aistriúcháin
 
-| An rud a shíneann tú chuige | In Omarchy |
+| An rud a shíneann tú chuige | In Unbloarchy |
 | ------------- | ---------- |
-| Spotlight / Raycast / roghchlár Start | `Super + Space` — roghchlár Omarchy |
+| Spotlight / Raycast / roghchlár Start | `Super + Space` — roghchlár Unbloarchy |
 | AirDrop | LocalSend, via `Super + Ctrl + S` — féach [GUIs](22-guis.md) |
 | Cmd + Shift + 4 / Win + Shift + S | `Super + Ctrl + Alt + C` nó `Print Screen` — féach [seatanna scáileáin & taifeadadh](12-screenshots-recording.md) |
 | Notification Center | Stair fógraí ar `Super + Shift + Alt + ,` |
 | Time Machine (don chóras) | [Seatanna córais](47-system-snapshots.md) uathoibríocha ar gach nuashonrú |
-| App Store / suiteálaí a íoslódáil | _Install_ sa roghchlár, nó `omarchy pkg add` — féach [pacáistí eile](29-other-packages.md) |
+| App Store / suiteálaí a íoslódáil | _Install_ sa roghchlár, nó `unbloarchy pkg add` — féach [pacáistí eile](29-other-packages.md) |
 | System Settings / Control Panel | _Setup_ sa roghchlár, a chuireann comhaid chumraíochta shimplí in eagar — féach [dotfiles](31-dotfiles.md) |
 
 ### Tá roinnt rudaí difriúil i ndáiríre
 
 Tá a lán socruithe i gcomhaid téacs a chuireann tú in eagar, ní i bpainéil a chliceálann tú tríothu. Fuaimníonn sé sin primitive go dtí go dtuigeann tú go gciallaíonn sé gur féidir gach athrú beag a fheiceáil, a chóipeáil go dtí do chéad mheaisín eile, agus a chur faoi rialú leaganacha. Titeann roghchlár _Setup_ díreach isteach sa chomhad ceart tú agus atosaíonn sé pé rud is gá a atosú nuair a bhíonn tú críochnaithe.
 
-Tagann nuashonruithe trí ordú amháin — _Update > Omarchy_ — a nuashonraíonn Omarchy féin agus gach pacáiste ar an gcóras, ag tógáil seat ar dtús. Níl aon nuashonraitheoirí aipeanna aonair ag bodhrú ort go randamach. Féach [nuashonruithe](30-updates.md).
+Tagann nuashonruithe trí ordú amháin — _Update > Unbloarchy_ — a nuashonraíonn Unbloarchy féin agus gach pacáiste ar an gcóras, ag tógáil seat ar dtús. Níl aon nuashonraitheoirí aipeanna aonair ag bodhrú ort go randamach. Féach [nuashonruithe](30-updates.md).
 
 Tagann bogearraí ó bhainisteoir pacáistí, ní ó shuiteálaithe íoslódáilte.
 
@@ -50,7 +50,7 @@ Agus nuair a dhúnann tú fuinneog, éiríonn an aip as i ndáiríre. Níl aon l
 
 ### Ar chrua-earraí Mac
 
-Ritheann Omarchy go maith ar Intel Macs — féach [tacaíocht Mac](44-mac-support.md). Agus tá an méarchlár cineálta leat: ní athmhápaíonn Omarchy aon rud, agus caitheann Linux le heochair Command mar Super, mar sin suíonn Super díreach san áit a raibh Cmd i gcónaí. Ní thabharfaidh d'ordóg an t-aistriú faoi deara.
+Ritheann Unbloarchy go maith ar Intel Macs — féach [tacaíocht Mac](44-mac-support.md). Agus tá an méarchlár cineálta leat: ní athmhápaíonn Unbloarchy aon rud, agus caitheann Linux le heochair Command mar Super, mar sin suíonn Super díreach san áit a raibh Cmd i gcónaí. Ní thabharfaidh d'ordóg an t-aistriú faoi deara.
 
 ### Tabhair coicís dó
 

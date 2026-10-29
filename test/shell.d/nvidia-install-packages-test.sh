@@ -11,11 +11,11 @@ assert_packages() {
   actual=$(TEST_ARCH="$architecture" TEST_DRIVER="$driver" \
     bash -euo pipefail -c '
       lspci() { printf "%s\n" "3D controller: NVIDIA Corporation"; }
-      omarchy-hw-aarch64-n1x() { return 1; }
-      omarchy-hw-x86() { [[ $TEST_ARCH == "x86_64" ]]; }
-      omarchy-hw-nvidia-gsp() { [[ $TEST_DRIVER == "gsp" ]]; }
-      omarchy-hw-nvidia-without-gsp() { [[ $TEST_DRIVER == "legacy" ]]; }
-      omarchy-pkg-add() {
+      unbloarchy-hw-aarch64-n1x() { return 1; }
+      unbloarchy-hw-x86() { [[ $TEST_ARCH == "x86_64" ]]; }
+      unbloarchy-hw-nvidia-gsp() { [[ $TEST_DRIVER == "gsp" ]]; }
+      unbloarchy-hw-nvidia-without-gsp() { [[ $TEST_DRIVER == "legacy" ]]; }
+      unbloarchy-pkg-add() {
         printf "%s\n" "$*"
         exit 0
       }

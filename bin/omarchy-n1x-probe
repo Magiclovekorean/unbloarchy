@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# omarchy:summary=Record N1x hardware and boot evidence to /var/log/omarchy-n1x-probe.log, on demand.
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Record N1x hardware and boot evidence to /var/log/unbloarchy-n1x-probe.log, on demand.
+# unbloarchy:requires-sudo=true
 
-log=/var/log/omarchy-n1x-probe.log
+log=/var/log/unbloarchy-n1x-probe.log
 exec > >(tee "$log") 2>&1
 
 section() {
@@ -11,7 +11,7 @@ section() {
   echo "===== $* ====="
 }
 
-echo "Omarchy N1x probe"
+echo "Unbloarchy N1x probe"
 date --iso-8601=seconds
 
 section "kernel"

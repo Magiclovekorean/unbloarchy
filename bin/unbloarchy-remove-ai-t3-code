@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# omarchy:summary=Remove T3 Code along with its configuration and workspaces.
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Remove T3 Code along with its configuration and workspaces.
+# unbloarchy:requires-sudo=true
 
 set -e
 
 # Installs from before the AppImage came from these packages.
-omarchy-pkg-drop t3code-bin t3code-nightly-bin
+unbloarchy-pkg-drop t3code-bin t3code-nightly-bin
 
 # A `t3` link to one of T3 Code's launchers would only dangle once it is gone.
 case $(readlink "$HOME/.local/bin/t3" || true) in
 "$HOME/.t3/bin/t3" | /usr/bin/t3 | /usr/bin/t3-nightly) rm -f "$HOME/.local/bin/t3" ;;
 esac
 
-# The app registers its own hidden link handler next to Omarchy's launcher.
+# The app registers its own hidden link handler next to Unbloarchy's launcher.
 rm -f \
   "$HOME/.local/share/applications/t3code.desktop" \
   "$HOME/.local/share/applications/com.t3tools.T3Code.desktop" \

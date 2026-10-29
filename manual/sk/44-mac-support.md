@@ -1,16 +1,16 @@
 # Podpora pre Mac
 
-Omarchy má vstavanú podporu pre **Macy s procesormi Intel**. V tejto chvíli existuje pár známych obmedzení, ale pokiaľ o nich viete a ste s nimi v poriadku, môžete vdýchnuť nový život svojim starým Macom nainštalovaním Omarchy.
+Unbloarchy má vstavanú podporu pre **Macy s procesormi Intel**. V tejto chvíli existuje pár známych obmedzení, ale pokiaľ o nich viete a ste s nimi v poriadku, môžete vdýchnuť nový život svojim starým Macom nainštalovaním Unbloarchy.
 
 Upozorňujeme, že inštalácia na Mac s čipom série M nie je v súčasnosti priamo podporovaná. Viac o stave tejto podpory sa dozviete v kanáli #omarchy-on-other na našom [Discorde](https://discord.gg/tXFUdasqhY).
 
-V jednoduchom teste sme na MacBooku Pro z roku 2019 len nainštalovaním Omarchy dokázali dosiahnuť 36 % nárast výkonu.
+V jednoduchom teste sme na MacBooku Pro z roku 2019 len nainštalovaním Unbloarchy dokázali dosiahnuť 36 % nárast výkonu.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Inštalácia Omarchy na Macu
+### Inštalácia Unbloarchy na Macu
 
-Omarchy v súčasnosti podporuje byť **jediným** nainštalovaným operačným systémom. Počas inštalácie sa disk vymaže a MacOS už nebude možné zaviesť.
+Unbloarchy v súčasnosti podporuje byť **jediným** nainštalovaným operačným systémom. Počas inštalácie sa disk vymaže a MacOS už nebude možné zaviesť.
 
 Neskôr ho však môžete obnoviť cez Internet Recovery, ak budete chcieť.
 

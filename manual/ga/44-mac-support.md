@@ -1,16 +1,16 @@
 # Tacaíocht Mac
 
-Tá tacaíocht ionsuite ag Omarchy do **Intel Macs**. Tá cúpla teorainn aitheanta ann faoi láthair, ach fad is atá tú ar an eolas agus sásta leo sin; is féidir leat saol nua a thabhairt isteach i do shean-Mhacs trí Omarchy a lódáil.
+Tá tacaíocht ionsuite ag Unbloarchy do **Intel Macs**. Tá cúpla teorainn aitheanta ann faoi láthair, ach fad is atá tú ar an eolas agus sásta leo sin; is féidir leat saol nua a thabhairt isteach i do shean-Mhacs trí Unbloarchy a lódáil.
 
 Tabhair faoi deara le do thoil nach dtacaítear go díreach le suiteáil ar Mac den tsraith M faoi láthair. Is féidir leat tuilleadh a fháil amach faoi staid seo in #omarchy-on-other inár [Discord](https://discord.gg/tXFUdasqhY).
 
-I dtástáil shimplí, bhíomar in ann gnóthachain feidhmíochta 36% a bhaint amach ar MacBook Pro 2019 díreach trí Omarchy a shuiteáil.
+I dtástáil shimplí, bhíomar in ann gnóthachain feidhmíochta 36% a bhaint amach ar MacBook Pro 2019 díreach trí Unbloarchy a shuiteáil.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Omarchy a shuiteáil ar Mac
+### Unbloarchy a shuiteáil ar Mac
 
-Ní thacaíonn Omarchy ach le bheith mar an t-aon OS suiteáilte faoi láthair. Le linn na suiteála, glanfar an tiomáint agus ní bheidh MacOS intosaithe a thuilleadh.
+Ní thacaíonn Unbloarchy ach le bheith mar an t-aon OS suiteáilte faoi láthair. Le linn na suiteála, glanfar an tiomáint agus ní bheidh MacOS intosaithe a thuilleadh.
 
 Is féidir leat é a chur ar ais fós níos déanaí trí Internet Recovery más mian leat.
 

@@ -10,7 +10,7 @@ Kartalar o‘zida bor narsani taklif qiladi: tasdiqlash kodlari uchun _Copy code
 
 Ularga sichqonchasiz kirish uchun `Super + Ctrl + ,` tugmalarini bosing. Eng yangi bildirishnoma tanlanadi va uning tugmalari raqamlanadi: biridan foydalanish uchun raqamni bosing, bildirishnomani bosish uchun `Enter`ni bosing, bildirishnomalar orasida harakatlanish uchun `↑` va `↓` tugmalarini bosing, birini yopish uchun `Delete`ni bosing va klaviaturani qaytarish uchun `Esc`ni bosing. U bir necha soniya harakatsizlikdan keyin o‘zi ham qo‘yib yuboradi.
 
-Bildirishnomalarni ovozini o‘chirish ularni ushlab qoladi, bundan Omarchy’ning o‘z tasdiqlari, favqulodda ogohlantirishlari va siz hozirgina so‘ragan tasdiqlash kodlari mustasno. Ushlab qolinganmi yoki yo‘qmi, oxirgi bir nechtasini `Super + Shift + Alt + ,` bilan ekranga qaytaring. Tarix bir kun saqlanadi.
+Bildirishnomalarni ovozini o‘chirish ularni ushlab qoladi, bundan Unbloarchy’ning o‘z tasdiqlari, favqulodda ogohlantirishlari va siz hozirgina so‘ragan tasdiqlash kodlari mustasno. Ushlab qolinganmi yoki yo‘qmi, oxirgi bir nechtasini `Super + Shift + Alt + ,` bilan ekranga qaytaring. Tarix bir kun saqlanadi.
 
 ## Tezkor tugmalar bildirishnomalari
 
@@ -26,7 +26,7 @@ Bildirishnomalarni ovozini o‘chirish ularni ushlab qoladi, bundan Omarchy’ni
 
  ![notice-weather](images/notice-weather.webp)
 
-Joylashuv IP manzilingizdan aniqlanadi, bu odatda yetarlicha yaqin, lekin har doim ham emas. Uni `omarchy weather location --set Malibu` bilan aniq belgilashingiz yoki koordinatalarni qo‘shib aniq ko‘rsatishingiz mumkin: `omarchy weather location --set Malibu 34.0259,-118.7798`. Qayerda deb hisoblayotganini ko‘rish uchun `omarchy weather location`ni alohida ishga tushiring va avtomatik aniqlashga qaytish uchun `--clear`dan foydalaning.
+Joylashuv IP manzilingizdan aniqlanadi, bu odatda yetarlicha yaqin, lekin har doim ham emas. Uni `unbloarchy weather location --set Malibu` bilan aniq belgilashingiz yoki koordinatalarni qo‘shib aniq ko‘rsatishingiz mumkin: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Qayerda deb hisoblayotganini ko‘rish uchun `unbloarchy weather location`ni alohida ishga tushiring va avtomatik aniqlashga qaytish uchun `--clear`dan foydalaning.
 
 ### Batareya
 

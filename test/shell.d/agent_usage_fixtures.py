@@ -10,7 +10,7 @@ or holds its record to the collector contract (docs/agent-usage-collectors.md).
 The contract checks drive a collector through main() and assert on the record
 it prints, so every collector is held to the same field names.
 
-Files are found through ROOT and OMARCHY_PATH, which base-test.sh exports;
+Files are found through ROOT and UNBLOARCHY_PATH, which base-test.sh exports;
 never through this file's own location or HOME.
 """
 
@@ -42,8 +42,8 @@ from typing import Any, Callable
 sys.dont_write_bytecode = True
 
 ROOT = Path(os.environ["ROOT"])
-OMARCHY_PATH = Path(os.environ["OMARCHY_PATH"])
-sys.path.insert(0, str(OMARCHY_PATH / "shell" / "plugins" / "agents"))
+UNBLOARCHY_PATH = Path(os.environ["UNBLOARCHY_PATH"])
+sys.path.insert(0, str(UNBLOARCHY_PATH / "shell" / "plugins" / "agents"))
 
 # Variables a developer's own shell may carry that point a collector at a
 # real credential or a real store. The sandbox drops every one of them, and
@@ -129,7 +129,7 @@ def state_home() -> Path:
 
 
 def cache_root() -> Path:
-  """$XDG_CACHE_HOME/omarchy/agent-usage, where every collector caches."""
+  """$XDG_CACHE_HOME/unbloarchy/agent-usage, where every collector caches."""
   import collectors
   return collectors.cache_root()
 
@@ -140,11 +140,11 @@ _loaded = 0
 
 
 def load_collector(agent_id: str) -> Any:
-  """bin/omarchy-agent-usage-<id> as a fresh module. The shared module stays
+  """bin/unbloarchy-agent-usage-<id> as a fresh module. The shared module stays
   imported once, so anything patched on urllib reaches every load."""
   global _loaded
   _loaded += 1
-  path = ROOT / "bin" / f"omarchy-agent-usage-{agent_id}"
+  path = ROOT / "bin" / f"unbloarchy-agent-usage-{agent_id}"
   loader = importlib.machinery.SourceFileLoader(f"agent_usage_{agent_id.replace('-', '_')}_{_loaded}", str(path))
   spec = importlib.util.spec_from_loader(loader.name, loader)
   module = importlib.util.module_from_spec(spec)
@@ -157,7 +157,7 @@ def run_main(module: Any, *args: str) -> dict:
   """Run a loaded collector's main() with `args` and return the record it
   printed. A collector that exits non-zero or prints no record fails the test."""
   saved = sys.argv
-  sys.argv = [f"omarchy-agent-usage-{module.FIXTURE_ID}", *args]
+  sys.argv = [f"unbloarchy-agent-usage-{module.FIXTURE_ID}", *args]
   output = io.StringIO()
   try:
     with contextlib.redirect_stdout(output):
@@ -635,7 +635,7 @@ def opencode_auth(path: str | Path | None, provider: str, key: str) -> Path:
 
 
 def registry(agent_id: str, accounts: list, active: str | None = None, **switch: Any) -> Path:
-  """The accounts `omarchy agent account` registered: each account a dict or
+  """The accounts `unbloarchy agent account` registered: each account a dict or
   an id; `switch` adds the registry's own settings (switch="auto",
   threshold=90)."""
   entries = [{"id": account} if isinstance(account, str) else account for account in accounts]
@@ -704,7 +704,7 @@ def _default_measure(record: dict) -> tuple:
 class Adapter:
   """What the contract checks need to know about one collector.
 
-  - `id`: the collector, bin/omarchy-agent-usage-<id>.
+  - `id`: the collector, bin/unbloarchy-agent-usage-<id>.
   - `plant()`: sign the sandbox in (a credential on disk or in os.environ),
     so a healthy service gives limits.
   - `answer`: FakeHttp routes for the healthy service. Its windows' resets

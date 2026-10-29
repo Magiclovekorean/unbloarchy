@@ -1,14 +1,14 @@
 # Bilah Atas
 
-Jalur di sepanjang bagian atas layar Anda adalah bilah Omarchy. Bilah ini bukan bilah status yang ditempel begitu saja, melainkan bagian dari shell Omarchy, proses Quickshell tunggal yang berjalan lama yang juga menggambar menu, notifikasi, popup OSD, dan layar kunci. Itulah sebabnya temanya menyatu sempurna dengan semua hal lain dan mengapa panel terbuka seketika alih-alih memunculkan aplikasi baru.
+Jalur di sepanjang bagian atas layar Anda adalah bilah Unbloarchy. Bilah ini bukan bilah status yang ditempel begitu saja, melainkan bagian dari shell Unbloarchy, proses Quickshell tunggal yang berjalan lama yang juga menggambar menu, notifikasi, popup OSD, dan layar kunci. Itulah sebabnya temanya menyatu sempurna dengan semua hal lain dan mengapa panel terbuka seketika alih-alih memunculkan aplikasi baru.
 
 Bilah ini juga satu-satunya bagian dari desktop yang selalu tampil di layar, jadi ada baiknya Anda tahu fungsi semua glif kecil itu.
 
 ## Apa saja yang ada di dalamnya secara default
 
-Bilah ini memiliki tiga bagian. Di sebelah kiri terdapat logo Omarchy (peluncur menu) dan indikator workspace. Di tengah Anda mendapatkan indikator status, jam, Elsewhen (jam dunia), cuaca, dan lencana pembaruan Omarchy. Di sebelah kanan: system tray, tata letak keyboard (bila lebih dari satu yang dikonfigurasi), agents, bluetooth, network, audio, display, dan power.
+Bilah ini memiliki tiga bagian. Di sebelah kiri terdapat logo Unbloarchy (peluncur menu) dan indikator workspace. Di tengah Anda mendapatkan indikator status, jam, Elsewhen (jam dunia), cuaca, dan lencana pembaruan Unbloarchy. Di sebelah kanan: system tray, tata letak keyboard (bila lebih dari satu yang dikonfigurasi), agents, bluetooth, network, audio, display, dan power.
 
-Beberapa di antaranya hanya muncul bila mereka memiliki sesuatu untuk disampaikan. Tata letak keyboard hanya muncul jika Anda telah mengonfigurasi lebih dari satu tata letak. Lencana pembaruan hanya muncul bila ada pembaruan Omarchy yang menunggu. Dan ikon agents muncul pertama kali Omarchy menemukan penggunaan AI coding di mesin tersebut (lihat [AI](17-ai.md)).
+Beberapa di antaranya hanya muncul bila mereka memiliki sesuatu untuk disampaikan. Tata letak keyboard hanya muncul jika Anda telah mengonfigurasi lebih dari satu tata letak. Lencana pembaruan hanya muncul bila ada pembaruan Unbloarchy yang menunggu. Dan ikon agents muncul pertama kali Unbloarchy menemukan penggunaan AI coding di mesin tersebut (lihat [AI](17-ai.md)).
 
 ## Mengklik di sana-sini
 
@@ -16,7 +16,7 @@ Hampir setiap widget melakukan sesuatu saat diklik kiri, kanan, dan tengah, dan 
 
 | Widget | Kiri | Kanan | Tengah / gulir |
 | --- | --- | --- | --- |
-| Menu | Menu Omarchy | Terminal baru | — |
+| Menu | Menu Unbloarchy | Terminal baru | — |
 | Workspaces | Fokuskan workspace tersebut di monitor ini | — | Gulir: workspace berikutnya/sebelumnya |
 | Clock | Popup kalender | Putar format label | Tengah: pemilih zona waktu |
 | Weather | Popup prakiraan cuaca | Cuaca lengkap sebagai notifikasi | Tengah: segarkan |
@@ -29,7 +29,7 @@ Hampir setiap widget melakukan sesuatu saat diklik kiri, kanan, dan tengah, dan 
 | Media | Putar/jeda | Popup sampul album | Tengah: berikutnya · gulir: sebelumnya/berikutnya |
 | Agents | Panel Agents | Luncurkan agent Anda | Tengah: langganan berikutnya |
 | Tray | Arahkan kursor untuk membuka laci | Klik kanan pada chevron untuk mengelola | — |
-| Omarchy update | Jalankan pembaruan | — | — |
+| Unbloarchy update | Jalankan pembaruan | — | — |
 
 Tidak semua yang ada di tabel itu ada di bilah Anda sejak awal. Widget media (MPRIS now-playing, dengan trek dan artis yang bergulir) dan widget mikrofon keduanya sudah terpasang tetapi nonaktif secara default — tambahkan jika Anda menginginkannya, seperti dijelaskan di bawah ini.
 
@@ -66,7 +66,7 @@ Setiap panel menerima keyboard maupun mouse: panah untuk bergerak, Return untuk 
 
 Dua widget lagi muncul di bilah hanya setelah Anda memasang layanan yang sesuai dari **Install → Service**, dan keduanya patut diketahui karena fungsinya lebih dari sekadar melaporkan status.
 
-Panel **Tailscale** menghubungkan dan memutuskan tailnet, beralih antar akun, dan memilih exit node (mesin Anda sendiri dan wilayah Mullvad sama-sama muncul dalam daftar itu). Panel ini juga menelusuri mesin Anda — dan dengan satu mesin terpilih, `s` mengirim file ke mesin itu melalui Taildrop, yang merupakan cara tercepat untuk memindahkan file ke ponsel atau laptop lain Anda. `c` menyalin IP mesin tersebut, `n` namanya, dan `d` nama DNS lengkapnya. Ada juga tombol kirim di setiap baris mesin, jika Anda lebih suka mengklik. Hal yang sama dari terminal adalah `omarchy tailscale send <machine> [file...]`.
+Panel **Tailscale** menghubungkan dan memutuskan tailnet, beralih antar akun, dan memilih exit node (mesin Anda sendiri dan wilayah Mullvad sama-sama muncul dalam daftar itu). Panel ini juga menelusuri mesin Anda — dan dengan satu mesin terpilih, `s` mengirim file ke mesin itu melalui Taildrop, yang merupakan cara tercepat untuk memindahkan file ke ponsel atau laptop lain Anda. `c` menyalin IP mesin tersebut, `n` namanya, dan `d` nama DNS lengkapnya. Ada juga tombol kirim di setiap baris mesin, jika Anda lebih suka mengklik. Hal yang sama dari terminal adalah `unbloarchy tailscale send <machine> [file...]`.
 
 Panel **Dropbox** menangani login, menunjukkan berapa banyak penyimpanan yang telah Anda gunakan, dan mencantumkan file yang baru-baru ini disinkronkan.
 
@@ -93,19 +93,19 @@ Jika Anda lebih suka memilih dari menu, **Appearance → Menu Bar** memiliki pos
 Hal yang sama memiliki perintah, yang merupakan yang Anda inginkan untuk pengaturan [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Untuk menambah atau menghapus widget sepenuhnya, gunakan perintah plugin. `omarchy plugin list` mencetak setiap widget yang diketahui shell beserta id-nya, lalu:
+Untuk menambah atau menghapus widget sepenuhnya, gunakan perintah plugin. `unbloarchy plugin list` mencetak setiap widget yang diketahui shell beserta id-nya, lalu:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Menyembunyikan bilah
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## File konfigurasinya
 
-Semuanya disimpan di `~/.config/omarchy/shell.json`, di bawah kunci `bar`. Berikut versi yang dipangkas:
+Semuanya disimpan di `~/.config/unbloarchy/shell.json`, di bawah kunci `bar`. Berikut versi yang dipangkas:
 
 ```json
 {
@@ -123,20 +123,20 @@ Semuanya disimpan di `~/.config/omarchy/shell.json`, di bawah kunci `bar`. Berik
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Setiap widget adalah satu entri di salah satu dari lima larik layout, dan pengaturannya berada sebaris pada entri tersebut — tidak ada file pengaturan terpisah dan tidak ada sub-objek `config`. `format`, `formatAlt` (yang dirotasi oleh klik kanan), dan `verticalFormat` milik jam semuanya berada tepat di sana pada `{ "id": "omarchy.clock" }`.
+Setiap widget adalah satu entri di salah satu dari lima larik layout, dan pengaturannya berada sebaris pada entri tersebut — tidak ada file pengaturan terpisah dan tidak ada sub-objek `config`. `format`, `formatAlt` (yang dirotasi oleh klik kanan), dan `verticalFormat` milik jam semuanya berada tepat di sana pada `{ "id": "unbloarchy.clock" }`.
 
 `center` adalah kotak di tengah bilah: semua yang ada di dalamnya dipusatkan di layar sebagai satu kelompok. `centerBegin` dan `centerEnd` menggantung di kedua sisi kotak, yang merupakan cara jam tetap berada tepat di tengah bahkan saat cuaca dan lencana pembaruan datang dan pergi. Taruh lebih dari satu widget di `center` dan mereka akan dipusatkan bersama; biarkan kosong dan `centerBegin` dan `centerEnd` akan bertemu di tengah bilah.
 
-Satu aturan yang patut diinternalisasi: **setelah Anda memiliki `shell.json` sendiri, file itu yang berlaku**. Sampai Anda menyesuaikan apa pun, shell membaca file default Omarchy. Begitu Anda menyeret widget, menjalankan `omarchy bar`, atau mengedit file itu sendiri, Anda yang memilikinya — tidak ada penggabungan mendalam, jadi widget default baru di rilis Omarchy mendatang tidak akan muncul di bilah Anda secara otomatis. `omarchy bar defaults` mengembalikan layout bawaan kapan pun Anda menginginkan awal yang bersih.
+Satu aturan yang patut diinternalisasi: **setelah Anda memiliki `shell.json` sendiri, file itu yang berlaku**. Sampai Anda menyesuaikan apa pun, shell membaca file default Unbloarchy. Begitu Anda menyeret widget, menjalankan `unbloarchy bar`, atau mengedit file itu sendiri, Anda yang memilikinya — tidak ada penggabungan mendalam, jadi widget default baru di rilis Unbloarchy mendatang tidak akan muncul di bilah Anda secara otomatis. `unbloarchy bar defaults` mengembalikan layout bawaan kapan pun Anda menginginkan awal yang bersih.
 
 File yang sama juga menyimpan pengaturan waktu idle Anda di tingkat atas, di luar kunci `bar`: `idle.screensaver` dan `idle.lock`, keduanya dalam detik sejak Anda idle. Jadi screensaver default aktif pada 150 detik dan kunci pada 300.

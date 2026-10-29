@@ -22,7 +22,7 @@ Urejevalnik opomb lahko riše puščice, črte, oblike, poudarke, oštevilčene 
 
 Shranjeni posnetki zaslona privzeto pristanejo v `~/Pictures/Screenshots` z imenom, kot je `screenshot-2026-08-13_14-22-05-firefox.png`. Nastavite `OMASNAP_SCREENSHOT_DIR`, da uporabite drug imenik — glejte [pogosta vprašanja](46-faq.md) za to, kam postaviti okoljske spremenljivke seje. Omasnap imenik ustvari, ko shrani prvi posnetek. Nastavite `[output] autosave = false` v `~/.config/omasnap/omasnap.conf`, da onemogočite samodejno shranjevanje; zajemi se nato samo kopirajo in za 10 sekund pokažejo v predogledu, ki ga lahko s pripenjalnim gumbom ali `Ctrl + P` obdržite na zaslonu.
 
-Iz terminala `omarchy screenshot` odpre isto prekrivno plast, izberete pa lahko njen začetni način: `omarchy capture screenshot region`, `windows`, `fullscreen` ali `scroll`. Drugi argument `copy` ali `save` pošlje posnetek naravnost na to destinacijo. Za urejanje pred izhodom uporabite `omarchy screenshot --editor=overlay` za celozaslonski urejevalnik ali `omarchy screenshot --editor=window` za ločeno okno.
+Iz terminala `unbloarchy screenshot` odpre isto prekrivno plast, izberete pa lahko njen začetni način: `unbloarchy capture screenshot region`, `windows`, `fullscreen` ali `scroll`. Drugi argument `copy` ali `save` pošlje posnetek naravnost na to destinacijo. Za urejanje pred izhodom uporabite `unbloarchy screenshot --editor=overlay` za celozaslonski urejevalnik ali `unbloarchy screenshot --editor=window` za ločeno okno.
 
 ### Upravljanje izbirnika s tipkovnico
 
@@ -41,9 +41,9 @@ Te vezave obstajajo samo, ko je Omasnap odprt, zato se ne morejo spopasti z nič
 
 ## Snemanje zaslona
 
-`Alt + Print Screen` odpre _Trigger > Capture > Screenrecord_, ki vas vpraša, kaj želite na zvočnem posnetku: brez zvoka, zvok namizja, zvok namizja in mikrofon ali zvok namizja, mikrofon in spletna kamera. Zadnja možnost se pojavi samo, če imate dejansko priključeno kamero. Izberite eno in Omarchyjev izbirnik snemanja vam omogoča, da povlečete območje ali kliknete okno ali monitor.
+`Alt + Print Screen` odpre _Trigger > Capture > Screenrecord_, ki vas vpraša, kaj želite na zvočnem posnetku: brez zvoka, zvok namizja, zvok namizja in mikrofon ali zvok namizja, mikrofon in spletna kamera. Zadnja možnost se pojavi samo, če imate dejansko priključeno kamero. Izberite eno in Unbloarchyjev izbirnik snemanja vam omogoča, da povlečete območje ali kliknete okno ali monitor.
 
-Snemanje teče na gpu-screen-recorder, ki kodira na GPU pri 60fps in se po potrebi zateče na CPU. Rezultat je MP4 v `~/Videos` z imenom `screenrecording-2026-08-13_14-22-05.mp4`. Nastavite `OMARCHY_SCREENRECORD_DIR`, da to spremenite — vendar upoštevajte, da mora ta imenik, za razliko od imenika za posnetke zaslona, že obstajati, sicer se snemanje noče začeti.
+Snemanje teče na gpu-screen-recorder, ki kodira na GPU pri 60fps in se po potrebi zateče na CPU. Rezultat je MP4 v `~/Videos` z imenom `screenrecording-2026-08-13_14-22-05.mp4`. Nastavite `UNBLOARCHY_SCREENRECORD_DIR`, da to spremenite — vendar upoštevajte, da mora ta imenik, za razliko od imenika za posnetke zaslona, že obstajati, sicer se snemanje noče začeti.
 
 Med snemanjem se v vrstici pokaže majhen indikator. Kliknite ga, da ustavite. Ustavite lahko tudi z vnovičnim `Alt + Print Screen` ali z vnosom _Stop Screenrecording_ pod _Trigger > Capture > Screenrecord_, ki se pojavi samo, ko se nekaj dejansko snema.
 
@@ -60,7 +60,7 @@ Ko snemate s spletno kamero, se kamera pokaže kot pripeto, obrezano portretno o
 
 Na voljo so tri velikosti — majhna, srednja in velika — bližnjice pa korakajo med njimi. Srednja je privzeta. Sorazmerne so z posnetkom, tako da kamera zavzame enak delež okvira, ne glede na to, ali snemate monitor 1080p ali 6K. In če ste posneli območje namesto celotnega zaslona, se prekrivna plast zasidra v kot tega območja namesto monitorjevega, tako da ostane znotraj posnetka.
 
-Poklicate jo lahko tudi neposredno z `omarchy-capture-webcam-resize small` ali `reset`, da se vrnete na srednjo.
+Poklicate jo lahko tudi neposredno z `unbloarchy-capture-webcam-resize small` ali `reset`, da se vrnete na srednjo.
 
 ## Besedilo, kode QR in barve
 
@@ -76,7 +76,7 @@ Posnetek zaslona 4K ali surov HEIC z vašega telefona je pogosto prevelik, da bi
 
 Slike gredo v jpg ali png pri visoki, srednji ali nizki, ki širino omejijo na 3160, 2160 in 1080 slikovnih pik. Videoposnetki gredo v mp4 ali animirani gif pri 4k, 1080p ali 720p. Pretvorjena datoteka se zapiše poleg izvirnika z ločljivostjo v imenu — `demo-1080p.mp4` — pot pa se kopira v odložišče kot URI datoteke, tako da jo lahko prilepite neposredno v aplikacijo, ki sprejema spuščanje datotek.
 
-Deluje tudi iz terminala, če že veste, kaj želite: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Obstaja tudi `omarchy transcode ascii`, ki sliko spremeni v umetnost ASCII — ta je večinoma za [blagovno znamko](41-branding.md).
+Deluje tudi iz terminala, če že veste, kaj želite: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Obstaja tudi `unbloarchy transcode ascii`, ki sliko spremeni v umetnost ASCII — ta je večinoma za [blagovno znamko](41-branding.md).
 
 ## Pošiljanje nekam
 

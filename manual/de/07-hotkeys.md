@@ -6,7 +6,7 @@ Du siehst alle wichtigen Tastaturbelegungen mit `Super + K` (Tmux-Belegungen mit
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy-Menü (Apps und alles andere)    |
+| `Super + Space`           | Unbloarchy-Menü (Apps und alles andere)    |
 | `Super + Alt + Space` | App-Raster |
 | `Super + Escape` | Systemmenü (Ruhezustand, Neustart usw.)  |
 | `Super + Ctrl + L` | Computer sperren |
@@ -143,7 +143,7 @@ Die Kürzel zum Ändern der Größe nutzen die physischen Tasten `code:20` und `
 | `Super + V`           | Einfügen    |
 | `Super + Ctrl + V`           | Zwischenablage-Manager    |
 
-Normalerweise brauchst du unter Linux `Ctrl + Shift + C/V`, um im Terminal zu kopieren'n'einfügen, und `Ctrl + C/V`, um es überall sonst zu tun. Diese vereinheitlichten Zwischenablage-Hotkeys von Omarchy funktionieren überall.
+Normalerweise brauchst du unter Linux `Ctrl + Shift + C/V`, um im Terminal zu kopieren'n'einfügen, und `Ctrl + C/V`, um es überall sonst zu tun. Diese vereinheitlichten Zwischenablage-Hotkeys von Unbloarchy funktionieren überall.
 
 ## Aufnahme
 
@@ -164,7 +164,7 @@ Normalerweise brauchst du unter Linux `Ctrl + Shift + C/V`, um im Terminal zu ko
 
 Bei Bildschirmaufnahmen fragt der Hotkey zuerst, welchen Ton du willst, und startet dann die Aufnahme. Drücke ihn erneut, um zu stoppen. Siehe [Screenshots und Aufnahme](12-screenshots-recording.md) für die Details.
 
-Alle Aufnahmeoptionen sind auch unter _Trigger > Capture_ im Omarchy-Menü (`Super + Space`) verfügbar.
+Alle Aufnahmeoptionen sind auch unter _Trigger > Capture_ im Unbloarchy-Menü (`Super + Space`) verfügbar.
 
 ## Benachrichtigungen
 
@@ -186,9 +186,9 @@ Alle Aufnahmeoptionen sind auch unter _Trigger > Capture_ im Omarchy-Menü (`Sup
 | `Super + Backspace` | Transparenz eines Fensters umschalten |
 | `Super + Ctrl + Backspace` | Quadratisches Seitenverhältnis für ein einzelnes Fenster umschalten |
 
-Zusätzliche Hintergrundbilder liegen in `~/.config/omarchy/backgrounds/<theme name>`. Auch verfügbar über _Install > Style > Background_ im Omarchy-Menü.
+Zusätzliche Hintergrundbilder liegen in `~/.config/unbloarchy/backgrounds/<theme name>`. Auch verfügbar über _Install > Style > Background_ im Unbloarchy-Menü.
 
-Alle Stiloptionen sind auch unter _Style_ im Omarchy-Menü (`Super + Space`) verfügbar.
+Alle Stiloptionen sind auch unter _Style_ im Unbloarchy-Menü (`Super + Space`) verfügbar.
 
 ## Umschalter
 
@@ -289,7 +289,7 @@ Diese Funktionen müssen innerhalb einer Tmux-Sitzung ausgeführt werden.
 
 ## Ghostty Terminal
 
-Das Ghostty-Terminal wird über _Install > Terminal_ im Omarchy-Menü installiert.
+Das Ghostty-Terminal wird über _Install > Terminal_ im Unbloarchy-Menü installiert.
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Du kannst `Super + Ctrl + E` verwenden, um eine vollständige Emoji-Auswahl anzu
 | `Shift + CapsLock Space N` | Dein Name (wie bei der Einrichtung eingegeben)  |
 | `Shift + CapsLock Space E` | Deine E-Mail (wie bei der Einrichtung eingegeben)  |
 
-Du kannst weitere eigene hinzufügen, indem du `~/.XCompose` bearbeitest und dann `omarchy-restart-xcompose` im Terminal ausführst, damit die Änderungen übernommen werden.
+Du kannst weitere eigene hinzufügen, indem du `~/.XCompose` bearbeitest und dann `unbloarchy-restart-xcompose` im Terminal ausführst, damit die Änderungen übernommen werden.

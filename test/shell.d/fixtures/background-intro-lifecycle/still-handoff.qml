@@ -31,7 +31,7 @@ ShellRoot {
   property int step: 0
   readonly property var steps: [
     { delay: 100, run: function() {
-      test.services = ({ "omarchy.background": retainedBackground })
+      test.services = ({ "unbloarchy.background": retainedBackground })
     } },
     { delay: 200, run: function() {
       test.check(intro.cover, "the cover stays while the launcher runs")

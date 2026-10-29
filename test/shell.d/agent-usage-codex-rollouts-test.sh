@@ -276,7 +276,7 @@ expect("a forced read after theirs parses every rollout again", again, files)
 
 # The collectors of one refresh start together but get to the rollouts when
 # each does, so one forced read can be done before the next begins. Told when
-# the refresh began, as omarchy-agent-usage-update tells them, the later ones
+# the refresh began, as unbloarchy-agent-usage-update tells them, the later ones
 # take what the earlier one read: only the built-in rollout it skipped is
 # read again, for the one that needs it. A refresh stamp from long ago forces
 # as --force alone does.
@@ -291,13 +291,13 @@ def forced_reads(native=False):
 
 collectors.read_codex_rollout = reader
 try:
-  os.environ["OMARCHY_AGENT_USAGE_REFRESH_AT"] = str(time.time())
+  os.environ["UNBLOARCHY_AGENT_USAGE_REFRESH_AT"] = str(time.time())
   first, second, built_in = forced_reads(), forced_reads(), forced_reads(native=True)
-  os.environ["OMARCHY_AGENT_USAGE_REFRESH_AT"] = str(time.time() - collectors.CODEX_REFRESH_SECONDS - 1)
+  os.environ["UNBLOARCHY_AGENT_USAGE_REFRESH_AT"] = str(time.time() - collectors.CODEX_REFRESH_SECONDS - 1)
   stale = forced_reads()
 finally:
   collectors.read_codex_rollout = real_reader
-  del os.environ["OMARCHY_AGENT_USAGE_REFRESH_AT"]
+  del os.environ["UNBLOARCHY_AGENT_USAGE_REFRESH_AT"]
 expect("one refresh's forced reads, one after another, parse each rollout once between them", [first, second, built_in], [files, [], [str(native)]])
 expect("a refresh stamp from long ago parses every rollout again", stale, files)
 PY

@@ -1,8 +1,8 @@
 # Điều hướng
 
-Mọi thứ trong Omarchy đều diễn ra qua bàn phím — _MỌI THỨ!_ Khi hệ thống mới khởi động, bạn thực sự không thể làm được gì chỉ với chuột. Nhưng bạn có thể nhấn `Super + Space` để hiển thị Omarchy Menu và từ đây bạn có thể làm gần như mọi thứ.
+Mọi thứ trong Unbloarchy đều diễn ra qua bàn phím — _MỌI THỨ!_ Khi hệ thống mới khởi động, bạn thực sự không thể làm được gì chỉ với chuột. Nhưng bạn có thể nhấn `Super + Space` để hiển thị Unbloarchy Menu và từ đây bạn có thể làm gần như mọi thứ.
 
-Nhưng Omarchy menu thậm chí không được thiết kế để trở thành cách chính để vận hành hệ thống trong phần lớn thời gian. Chúng ta có thể làm nhanh hơn thế! Tất cả các ứng dụng quan trọng nhất đều được gán trực tiếp cho từng phím tắt riêng. Bạn khởi động terminal bằng `Super + Return` và trình duyệt bằng `Super + Shift + Return`. Hãy thử làm lần lượt cái này rồi cái kia, và bạn sẽ thấy phép màu xếp lớp của Hyprland hoạt động:
+Nhưng Unbloarchy menu thậm chí không được thiết kế để trở thành cách chính để vận hành hệ thống trong phần lớn thời gian. Chúng ta có thể làm nhanh hơn thế! Tất cả các ứng dụng quan trọng nhất đều được gán trực tiếp cho từng phím tắt riêng. Bạn khởi động terminal bằng `Super + Return` và trình duyệt bằng `Super + Shift + Return`. Hãy thử làm lần lượt cái này rồi cái kia, và bạn sẽ thấy phép màu xếp lớp của Hyprland hoạt động:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Bạn cũng có thể chuyển sang toàn màn hình bằng `Super + F` hoặc t
 
 ### Bố cục dwindle và bố cục cuộn
 
-Bố cục mặc định của Omarchy được gọi là dwindle. Nó giữ mọi cửa sổ bạn mở trên một không gian làm việc luôn hiển thị, ngay cả khi phải thu nhỏ chúng xuống.
+Bố cục mặc định của Unbloarchy được gọi là dwindle. Nó giữ mọi cửa sổ bạn mở trên một không gian làm việc luôn hiển thị, ngay cả khi phải thu nhỏ chúng xuống.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Một không gian làm việc nổi hoạt động giống như một màn hình nền truyền thống: các cửa sổ chồng chéo, và bạn tự di chuyển và định kích thước chúng. Mỗi cửa sổ có một thanh tiêu đề với màu sắc của theme của bạn, với các nút để thu nhỏ, phóng to và đóng. `Super + M` cũng thu nhỏ cửa sổ đang được chọn. Một cửa sổ đã thu nhỏ sẽ chờ trong dock; hãy nhấp vào ứng dụng của nó để đưa nó trở lại. Nhấp vào một cửa sổ để đưa nó lên phía trước. Thay đổi kích thước nó từ bất kỳ cạnh hoặc góc nào. Nhấp đúp vào thanh tiêu đề để phóng to cửa sổ trong khi vẫn giữ thanh trên cùng trong tầm nhìn, và nhấp đúp lần nữa để lấy lại kích thước cũ của nó.
 
-Một không gian làm việc nổi cũng hiển thị một dock, với các ứng dụng đã ghim của bạn, mọi thứ đang chạy, và một lưới mọi ứng dụng đằng sau nút ứng dụng, nút này cũng được mở bằng `Super + Alt + Space` và _Apps_ trong Omarchy menu. Nhấp chuột phải vào một ứng dụng trên lưới, hoặc nhấn `Delete`, để gỡ cài đặt nó. Nhấp vào một ứng dụng để mở nó, hoặc để đưa cửa sổ của nó lên phía trước; nhấp lần nữa để luân chuyển qua các cửa sổ của nó. Nhấp chuột giữa sẽ mở một cửa sổ mới. Kéo một biểu tượng dọc theo dock để di chuyển nó; kéo một ứng dụng đang chạy vào giữa các ứng dụng khác sẽ giữ nó ở đó. Nhấp chuột phải để giữ một ứng dụng trong dock, lấy nó ra, hoặc thoát nó. Dock sẽ nhường đường cho một cửa sổ toàn màn hình. Nhấp chuột phải vào nút ứng dụng để di chuyển dock sang một cạnh khác hoặc để nó ẩn đi cho đến khi con trỏ chạm tới cạnh của nó. Vị trí cũng nằm trong _Appearance > Dock > Dock Position_, và `omarchy dock position left` cùng `omarchy dock autohide on` đặt cả hai từ terminal. Các ứng dụng bạn giữ trong dock sẽ bị làm mờ trong khi chúng không chạy.
+Một không gian làm việc nổi cũng hiển thị một dock, với các ứng dụng đã ghim của bạn, mọi thứ đang chạy, và một lưới mọi ứng dụng đằng sau nút ứng dụng, nút này cũng được mở bằng `Super + Alt + Space` và _Apps_ trong Unbloarchy menu. Nhấp chuột phải vào một ứng dụng trên lưới, hoặc nhấn `Delete`, để gỡ cài đặt nó. Nhấp vào một ứng dụng để mở nó, hoặc để đưa cửa sổ của nó lên phía trước; nhấp lần nữa để luân chuyển qua các cửa sổ của nó. Nhấp chuột giữa sẽ mở một cửa sổ mới. Kéo một biểu tượng dọc theo dock để di chuyển nó; kéo một ứng dụng đang chạy vào giữa các ứng dụng khác sẽ giữ nó ở đó. Nhấp chuột phải để giữ một ứng dụng trong dock, lấy nó ra, hoặc thoát nó. Dock sẽ nhường đường cho một cửa sổ toàn màn hình. Nhấp chuột phải vào nút ứng dụng để di chuyển dock sang một cạnh khác hoặc để nó ẩn đi cho đến khi con trỏ chạm tới cạnh của nó. Vị trí cũng nằm trong _Appearance > Dock > Dock Position_, và `unbloarchy dock position left` cùng `unbloarchy dock autohide on` đặt cả hai từ terminal. Các ứng dụng bạn giữ trong dock sẽ bị làm mờ trong khi chúng không chạy.
 
-Các không gian làm việc mới, và bất kỳ không gian làm việc nào bạn chưa đặt bố cục riêng bằng `Super + L`, sẽ dùng bố cục mặc định. Thay đổi mặc định sẽ đặt lại mọi không gian làm việc không có cửa sổ về bố cục đó, trong khi một không gian làm việc có cửa sổ trên đó sẽ giữ lại bố cục nó đang có. Một cửa sổ đã thu nhỏ vào dock vẫn được tính là một cửa sổ trên không gian làm việc nó đã rời khỏi. Hãy chọn nó trong _Appearance > Workspace Layout_: Tiling, Scrolling, hoặc Floating. `omarchy-hyprland-workspace-layout-default scrolling` đặt nó từ terminal.
+Các không gian làm việc mới, và bất kỳ không gian làm việc nào bạn chưa đặt bố cục riêng bằng `Super + L`, sẽ dùng bố cục mặc định. Thay đổi mặc định sẽ đặt lại mọi không gian làm việc không có cửa sổ về bố cục đó, trong khi một không gian làm việc có cửa sổ trên đó sẽ giữ lại bố cục nó đang có. Một cửa sổ đã thu nhỏ vào dock vẫn được tính là một cửa sổ trên không gian làm việc nó đã rời khỏi. Hãy chọn nó trong _Appearance > Workspace Layout_: Tiling, Scrolling, hoặc Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` đặt nó từ terminal.
 
 ### Nhóm các cửa sổ
 

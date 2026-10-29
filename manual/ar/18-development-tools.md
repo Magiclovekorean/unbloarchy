@@ -2,7 +2,7 @@
 
 ## محررات بديلة
 
-يأتي Omarchy مع [Neovim](https://neovim.io/) افتراضيًا، لكن إذا أردت شيئًا أكثر انتشارًا وألفة، يمكنك تشغيل قائمة Omarchy (`Super + Space`) ورؤية الخيارات ضمن _Install > Editor_. ستجد هناك VSCode وCursor وZed وSublime Text وHelix وVim وEmacs مدرجة. وإذا لم تجد ما تبحث عنه، فاطّلع على _Install > Package_ لترى إن كان موجودًا في إحدى حزم Arch (وإن لم يكن، فجرّب _Install > AUR_ للتحقق من AUR).
+يأتي Unbloarchy مع [Neovim](https://neovim.io/) افتراضيًا، لكن إذا أردت شيئًا أكثر انتشارًا وألفة، يمكنك تشغيل قائمة Unbloarchy (`Super + Space`) ورؤية الخيارات ضمن _Install > Editor_. ستجد هناك VSCode وCursor وZed وSublime Text وHelix وVim وEmacs مدرجة. وإذا لم تجد ما تبحث عنه، فاطّلع على _Install > Package_ لترى إن كان موجودًا في إحدى حزم Arch (وإن لم يكن، فجرّب _Install > AUR_ للتحقق من AUR).
 
 المحرر الأصلي `vi` متاح أيضًا من الأساس. شغّل `vi filename` لتحرير ملف في الطرفية.
 
@@ -12,7 +12,7 @@
 
 ## البيئة
 
-يدعم Omarchy إعداد مجموعة كبيرة كاملة من بيئات التطوير من خلال قسم _Install > Development_ في قائمة Omarchy (`Super + Space`). ستجد بالطبع _Ruby on Rails_، وأيضًا بيئات التشغيل الرئيسية الثلاث كلها لـ JavaScript ‏(Node.js وBun وDeno)، بالإضافة إلى أطر PHP الشائعة مثل Laravel وSymfony. آه، وهناك أيضًا Go وRust وPython وJava وElixir (مع Phoenix) و.NET وOCaml وZig وClojure وScala. إنها مجموعة واسعة جدًا!
+يدعم Unbloarchy إعداد مجموعة كبيرة كاملة من بيئات التطوير من خلال قسم _Install > Development_ في قائمة Unbloarchy (`Super + Space`). ستجد بالطبع _Ruby on Rails_، وأيضًا بيئات التشغيل الرئيسية الثلاث كلها لـ JavaScript ‏(Node.js وBun وDeno)، بالإضافة إلى أطر PHP الشائعة مثل Laravel وSymfony. آه، وهناك أيضًا Go وRust وPython وJava وElixir (مع Phoenix) و.NET وOCaml وZig وClojure وScala. إنها مجموعة واسعة جدًا!
 
 تُدار غالبية هذه البيئات بواسطة [Mise](https://mise.jdx.dev/). إنها أداة تتيح لك تثبيت إصدارات متعددة من لغة برمجة وتشغيلها على الجهاز نفسه. إنها مثل rbenv أو rvm لـ Ruby أو virtualenv لـ Python، لكنها تعمل مع مجموعة كبيرة من البيئات المختلفة.
 
@@ -20,7 +20,7 @@
 
 ## أدوات سطر الأوامر المثبتة مسبقًا
 
-يتيح Omarchy أدوات مثل `gh` و`uv` ومعظم [وكلاء البرمجة](17-ai.md) من خلال [التثبيت الكسول في mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). في أول مرة تشغّل فيها إحداها، يثبّتها mise. وتعيد عمليات التشغيل اللاحقة استخدام الإصدار المثبت؛ فهي لا تتحقق من وجود تحديث في كل تشغيل.
+يتيح Unbloarchy أدوات مثل `gh` و`uv` ومعظم [وكلاء البرمجة](17-ai.md) من خلال [التثبيت الكسول في mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). في أول مرة تشغّل فيها إحداها، يثبّتها mise. وتعيد عمليات التشغيل اللاحقة استخدام الإصدار المثبت؛ فهي لا تتحقق من وجود تحديث في كل تشغيل.
 
 يمكنك أيضًا فحص الإعدادات الافتراضية أو تثبيتها مسبقًا:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-شغّل `omarchy update` لتحديث الأدوات المثبتة مع بقية Omarchy. ويحدّث الاسم المستعار `mup` الأدوات التي يديرها mise فقط. لإضافة أداة أخرى إلى إعداداتك الخاصة، استخدم `mise use -g <tool>`.
+شغّل `unbloarchy update` لتحديث الأدوات المثبتة مع بقية Unbloarchy. ويحدّث الاسم المستعار `mup` الأدوات التي يديرها mise فقط. لإضافة أداة أخرى إلى إعداداتك الخاصة، استخدم `mise use -g <tool>`.
 
 يُثبّت إعداد Python أيضًا `uv` من خلال mise. وتترك إزالة بيئة تطوير Python أداة `uv` متاحة كأداة مستقلة.
 
@@ -47,15 +47,15 @@ disable_tools = ["cursor-agent"]
 
 ### إزالة الإعدادات الافتراضية واستعادتها
 
-يجعل خيار _Remove Preinstalls_ أداة mise تتخطى إعلانات أدوات Omarchy الخاصة بمستخدمك، وذلك بإضافتها إلى `ignored_config_paths` في `~/.config/mise/miserc.toml`. ويزيل خيار _Restore Preinstalls_ ذلك السطر مرة أخرى. وتظل الأدوات التي تعلنها بنفسك، في إعداداتك الخاصة أو في ملف `mise.toml` الخاص بمشروع، تعمل في كلتا الحالتين. وإذا اخترت وكيلًا افتراضيًا أو أعددت Python بعد إزالة التثبيتات المسبقة، فستُضاف تلك الأداة إلى إعداداتك الخاصة. وينطبق كلا الخيارين على مستخدمك فقط؛ ويحتفظ المستخدمون الآخرون على الجهاز بخيارهم الخاص.
+يجعل خيار _Remove Preinstalls_ أداة mise تتخطى إعلانات أدوات Unbloarchy الخاصة بمستخدمك، وذلك بإضافتها إلى `ignored_config_paths` في `~/.config/mise/miserc.toml`. ويزيل خيار _Restore Preinstalls_ ذلك السطر مرة أخرى. وتظل الأدوات التي تعلنها بنفسك، في إعداداتك الخاصة أو في ملف `mise.toml` الخاص بمشروع، تعمل في كلتا الحالتين. وإذا اخترت وكيلًا افتراضيًا أو أعددت Python بعد إزالة التثبيتات المسبقة، فستُضاف تلك الأداة إلى إعداداتك الخاصة. وينطبق كلا الخيارين على مستخدمك فقط؛ ويحتفظ المستخدمون الآخرون على الجهاز بخيارهم الخاص.
 
 ## Docker
 
-يكاد [Docker](https://www.docker.com/) لا يحتاج إلى أي تعريف. فهو يتيح لك تشغيل حاويات معزولة، ويثبّت Omarchy كل ما يلزم لتشغيله بشكل جيد، بما في ذلك Docker نفسه و[Docker Compose](https://docs.docker.com/compose/).
+يكاد [Docker](https://www.docker.com/) لا يحتاج إلى أي تعريف. فهو يتيح لك تشغيل حاويات معزولة، ويثبّت Unbloarchy كل ما يلزم لتشغيله بشكل جيد، بما في ذلك Docker نفسه و[Docker Compose](https://docs.docker.com/compose/).
 
-افتراضيًا، مستخدمك *ليس* في مجموعة `docker`. فتلك المجموعة تعادل فعليًا صلاحيات root من دون كلمة مرور — يمكن لأي شيء فيها تشغيل `docker run -v /:/host` والسيطرة على الجهاز — لذا فإن نصًا برمجيًا مارقًا واحدًا أو تبعية واحدة تعمل باسمك ستكون بخلاف ذلك على بُعد أمر واحد من root. لذلك، في سطر الأوامر، تشغّل Docker باستخدام `sudo` ‏(`sudo docker ps` و`sudo docker compose up`)، وتطلب الأدوات الرسومية التي تتحدث إلى الخدمة — آلة Windows الافتراضية VM — الإذن عندما تحتاج إليه. وإذا أردت استعادة راحة الإعداد من دون مجموعة وفهمت المقايضة، ففعّلها من **Setup > Security > Sudoless Docker** (أو شغّل `omarchy-setup-security-sudoless-docker`)، وهو ما يضيفك إلى مجموعة `docker` بعد تحذير؛ وبعد ذلك يعمل `docker` العادي والاسم المستعار `d` من دون `sudo` مرة أخرى.
+افتراضيًا، مستخدمك *ليس* في مجموعة `docker`. فتلك المجموعة تعادل فعليًا صلاحيات root من دون كلمة مرور — يمكن لأي شيء فيها تشغيل `docker run -v /:/host` والسيطرة على الجهاز — لذا فإن نصًا برمجيًا مارقًا واحدًا أو تبعية واحدة تعمل باسمك ستكون بخلاف ذلك على بُعد أمر واحد من root. لذلك، في سطر الأوامر، تشغّل Docker باستخدام `sudo` ‏(`sudo docker ps` و`sudo docker compose up`)، وتطلب الأدوات الرسومية التي تتحدث إلى الخدمة — آلة Windows الافتراضية VM — الإذن عندما تحتاج إليه. وإذا أردت استعادة راحة الإعداد من دون مجموعة وفهمت المقايضة، ففعّلها من **Setup > Security > Sudoless Docker** (أو شغّل `unbloarchy-setup-security-sudoless-docker`)، وهو ما يضيفك إلى مجموعة `docker` بعد تحذير؛ وبعد ذلك يعمل `docker` العادي والاسم المستعار `d` من دون `sudo` مرة أخرى.
 
-يمكنك إعداد قواعد البيانات الشائعة للتطوير المحلي في Docker باستخدام _Install > Development > Docker DB_ في قائمة Omarchy.
+يمكنك إعداد قواعد البيانات الشائعة للتطوير المحلي في Docker باستخدام _Install > Development > Docker DB_ في قائمة Unbloarchy.
 
 ## GitHub CLI
 

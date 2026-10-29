@@ -22,7 +22,7 @@ Annotatsiooniredaktor oskab joonistada nooli, jooni, kujundeid, esiletõsteid, n
 
 Salvestatud ekraanipildid jõuavad vaikimisi kausta `~/Pictures/Screenshots`, nimega nagu `screenshot-2026-08-13_14-22-05-firefox.png`. Määra `OMASNAP_SCREENSHOT_DIR`, et kasutada teist kausta — vaata [KKK-d](46-faq.md), et teada saada, kuhu sessiooni keskkonnamuutujad panna. Omasnap loob kausta esimese pildi salvestamisel. Määra failis `~/.config/omasnap/omasnap.conf` `[output] autosave = false`, et automaatne salvestamine keelata; pildid siis ainult kopeeritakse ja näidatakse 10 sekundit eelvaates, mille saad selle kinnitusnupuga või `Ctrl + P` abil ekraanile jätta.
 
-Terminalist avab `omarchy screenshot` sama kihi ja saad valida selle algrežiimi: `omarchy capture screenshot region`, `windows`, `fullscreen` või `scroll`. Teine argument `copy` või `save` saadab pildi otse sellesse sihtkohta. Enne väljastamist muutmiseks kasuta `omarchy screenshot --editor=overlay` täisekraaniredaktori jaoks või `omarchy screenshot --editor=window` eraldi akna jaoks.
+Terminalist avab `unbloarchy screenshot` sama kihi ja saad valida selle algrežiimi: `unbloarchy capture screenshot region`, `windows`, `fullscreen` või `scroll`. Teine argument `copy` või `save` saadab pildi otse sellesse sihtkohta. Enne väljastamist muutmiseks kasuta `unbloarchy screenshot --editor=overlay` täisekraaniredaktori jaoks või `unbloarchy screenshot --editor=window` eraldi akna jaoks.
 
 ### Valiku juhtimine klaviatuurilt
 
@@ -41,9 +41,9 @@ Need seosed on olemas ainult siis, kui Omasnap on avatud, nii et need ei saa sin
 
 ## Ekraanisalvestus
 
-`Alt + Print Screen` avab _Trigger > Capture > Screenrecord_, mis küsib, mida sa heliribale tahad: heli pole, töölauaheli, töölaud pluss mikrofon või töölaud pluss mikrofon pluss veebikaamera. Viimane ilmub ainult siis, kui sul on kaamera tegelikult ühendatud. Vali üks ja Omarchy salvestusvalija laseb sul lohistada piirkonna või klõpsata akent või monitori.
+`Alt + Print Screen` avab _Trigger > Capture > Screenrecord_, mis küsib, mida sa heliribale tahad: heli pole, töölauaheli, töölaud pluss mikrofon või töölaud pluss mikrofon pluss veebikaamera. Viimane ilmub ainult siis, kui sul on kaamera tegelikult ühendatud. Vali üks ja Unbloarchy salvestusvalija laseb sul lohistada piirkonna või klõpsata akent või monitori.
 
-Salvestus töötab gpu-screen-recorder peal, mis kodeerib GPU peal 60fps ja läheb vajadusel CPU peale tagasi. Tulemuseks on MP4 kaustas `~/Videos`, nimega `screenrecording-2026-08-13_14-22-05.mp4`. Määra `OMARCHY_SCREENRECORD_DIR`, et seda muuta — aga pane tähele, et erinevalt ekraanipiltide kaustast peab see juba olemas olema, muidu keeldub salvestus käivitumast.
+Salvestus töötab gpu-screen-recorder peal, mis kodeerib GPU peal 60fps ja läheb vajadusel CPU peale tagasi. Tulemuseks on MP4 kaustas `~/Videos`, nimega `screenrecording-2026-08-13_14-22-05.mp4`. Määra `UNBLOARCHY_SCREENRECORD_DIR`, et seda muuta — aga pane tähele, et erinevalt ekraanipiltide kaustast peab see juba olemas olema, muidu keeldub salvestus käivitumast.
 
 Salvestamise ajal ilmub ribale väike indikaator. Klõpsa seda peatamiseks. Saad peatada ka uuesti `Alt + Print Screen` vajutades või kirje _Stop Screenrecording_ alt _Trigger > Capture > Screenrecord_, mis ilmub ainult siis, kui midagi tegelikult salvestatakse.
 
@@ -60,7 +60,7 @@ Kui salvestad veebikaameraga, ilmub kaamera kinnitatud, kärbitud portreeaknana 
 
 Suurusi on kolm — väike, keskmine ja suur — ja kiirklahvid astuvad nende vahel. Keskmine on vaikimisi. Need on salvestuse suhtes proportsionaalsed, nii et kaamera võtab sama osa kaadrist, kas salvestad 1080p monitori või 6K oma. Ja kui salvestasid terve ekraani asemel piirkonna, ankurdub kiht monitori nurga asemel selle piirkonna nurka, nii et see jääb pildi sisse.
 
-Saad seda kutsuda ka otse käsuga `omarchy-capture-webcam-resize small` või `reset`, et minna tagasi keskmisele.
+Saad seda kutsuda ka otse käsuga `unbloarchy-capture-webcam-resize small` või `reset`, et minna tagasi keskmisele.
 
 ## Tekst, QR-koodid ja värvid
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ teeb QR-koodidega sama trikki. Vali piirkond, kus 
 
 Pildid lähevad jpg või png vormingusse kõrge, keskmise või madala tasemega, mis piiravad laiuse vastavalt 3160, 2160 ja 1080 piksliga. Videod lähevad mp4 või animeeritud gif vormingusse 4k, 1080p või 720p. Teisendatud fail kirjutatakse originaali kõrvale, eraldusvõime nime sees — `demo-1080p.mp4` — ja tee kopeeritakse lõikelauale faili URI-na, nii et saad selle otse kleepida rakendusse, mis võtab vastu failide lohistamist.
 
-See töötab ka terminalist, kui tead juba, mida tahad: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. On ka `omarchy transcode ascii`, mis muudab pildi ASCII-kunstiks — see on enamasti [brändingu](41-branding.md) jaoks.
+See töötab ka terminalist, kui tead juba, mida tahad: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. On ka `unbloarchy transcode ascii`, mis muudab pildi ASCII-kunstiks — see on enamasti [brändingu](41-branding.md) jaoks.
 
 ## Selle kuhugi saatmine
 

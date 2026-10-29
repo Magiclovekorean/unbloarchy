@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# omarchy:summary=Scale text everywhere — omarchy shell, GTK apps, and terminals
-# omarchy:args=[size|reset]
-# omarchy:examples=omarchy display text size | omarchy display text size 16 | omarchy display text size reset
+# unbloarchy:summary=Scale text everywhere — unbloarchy shell, GTK apps, and terminals
+# unbloarchy:args=[size|reset]
+# unbloarchy:examples=unbloarchy display text size | unbloarchy display text size 16 | unbloarchy display text size reset
 
 # One knob for apparent text size across the desktop. It drives three settings
 # in lockstep, all anchored to the shell default of 12px:
-#   • the omarchy shell's font base-size (~/.config/omarchy/shell.toml [font])
+#   • the unbloarchy shell's font base-size (~/.config/unbloarchy/shell.toml [font])
 #   • GNOME/GTK's text-scaling-factor    (12px -> 1.0, quantized so the GTK
 #     interface font lands on a whole point size, so 16 -> 15pt/11pt = 1.3636)
 #   • the terminal font point size       (12px -> 9pt, so terminal_pt = px * 9/12)
@@ -23,10 +23,10 @@ GKEY_NAME="text-scaling-factor"
 TERM_DEFAULT_PT=9
 SHELL_DEFAULT_PX=12
 
-shell_config="$HOME/.config/omarchy/shell.toml"
+shell_config="$HOME/.config/unbloarchy/shell.toml"
 
 usage() {
-  echo "Usage: omarchy-display-text-size [size|reset]"
+  echo "Usage: unbloarchy-display-text-size [size|reset]"
   echo "  (no args)   print the current text size, GTK factor, and terminal size"
   echo "  <size>      set text size in px ($MIN–$MAX); shell + GTK + terminals together"
   echo "  reset       return all three to their defaults (12px / 1.0 / 9pt)"
@@ -131,8 +131,8 @@ term_pt_for() {
 
 # Set the font point size in terminal configs, creating Kitty overrides when
 # it inherits its size from the system config. Family is left
-# untouched — that is omarchy-font-set's job. Live-reload signals mirror
-# omarchy-font-set; foot has no reload signal, so running instances are nudged.
+# untouched — that is unbloarchy-font-set's job. Live-reload signals mirror
+# unbloarchy-font-set; foot has no reload signal, so running instances are nudged.
 set_terminal_size() {
   local pt="$1"
 
@@ -140,7 +140,7 @@ set_terminal_size() {
     sed -i -E "s/^size[[:space:]]*=.*/size = $pt/" ~/.config/alacritty/alacritty.toml
   fi
 
-  if [[ -f ~/.config/kitty/kitty.conf ]] || omarchy-cmd-present kitty; then
+  if [[ -f ~/.config/kitty/kitty.conf ]] || unbloarchy-cmd-present kitty; then
     mkdir -p ~/.config/kitty
     if grep -qE '^[[:space:]]*font_size[[:space:]]+' ~/.config/kitty/kitty.conf 2>/dev/null; then
       sed --follow-symlinks -i -E "s/^[[:space:]]*font_size[[:space:]]+.*/font_size $pt.0/" ~/.config/kitty/kitty.conf
@@ -162,14 +162,14 @@ set_terminal_size() {
     # but reuse the same notification id (freedesktop replaces_id) so dragging
     # through several sizes refreshes one toast instead of stacking a pile.
     if pgrep -x foot >/dev/null 2>&1; then
-      local id_file="${XDG_RUNTIME_DIR:-/tmp}/omarchy-display-text-size.foot-notif-id"
+      local id_file="${XDG_RUNTIME_DIR:-/tmp}/unbloarchy-display-text-size.foot-notif-id"
       local prev_id=""
       [[ -f $id_file ]] && read -r prev_id <"$id_file" 2>/dev/null
       local replace=()
       [[ $prev_id =~ ^[0-9]+$ ]] && replace=(-r "$prev_id")
       local new_id
-      new_id="$(omarchy-notification-send \
-        "$(omarchy-i18n display.restartFootForFontSize)" \
+      new_id="$(unbloarchy-notification-send \
+        "$(unbloarchy-i18n display.restartFootForFontSize)" \
         "${replace[@]}" -p 2>/dev/null)" || true
       [[ $new_id =~ ^[0-9]+$ ]] && printf '%s\n' "$new_id" >"$id_file"
     fi
@@ -188,7 +188,7 @@ term_current_pt() {
     echo "${pt:-$TERM_DEFAULT_PT}"
   elif [[ -f ~/.config/foot/foot.ini ]]; then
     grep -oP ':size=\K[0-9.]+' ~/.config/foot/foot.ini | head -1
-  elif omarchy-cmd-present kitty; then
+  elif unbloarchy-cmd-present kitty; then
     echo "$TERM_DEFAULT_PT"
   fi
 }
@@ -222,7 +222,7 @@ if [[ ! $size =~ ^[0-9]+$ ]] || ((size < MIN || size > MAX)); then
   exit 1
 fi
 
-# Shell side: base-size in px (the omarchy shell's rem root).
+# Shell side: base-size in px (the unbloarchy shell's rem root).
 set_base_size "$size"
 
 # GTK side: multiplier anchored so 12px == 1.0, quantized so the interface

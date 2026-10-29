@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Remove all the named packages from the system if they're installed (otherwise ignore).
-# omarchy:args=<packages...>
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Remove all the named packages from the system if they're installed (otherwise ignore).
+# unbloarchy:args=<packages...>
+# unbloarchy:requires-sudo=true
 
 installed=()
 declare -A installed_exact=()

@@ -7,7 +7,7 @@
 
 if [[ -z $1 ]]; then
   echo -e "\e[32mSee the upstream Omarchy theme catalog: https://github.com/omacom-io/omarchy-site\n\e[0m"
-  REPO_URL=$(gum input --placeholder="$(omarchy-i18n theme.repoPlaceholder)" --header="")
+  REPO_URL=$(gum input --placeholder="$(unbloarchy-i18n theme.repoPlaceholder)" --header="")
 else
   REPO_URL="$1"
 fi
@@ -33,7 +33,7 @@ THEME_NAME=$(basename -- "$REPO_PATH" .git | sed -E 's/^unbloarchy-//; s/-theme$
 THEME_PATH="$THEMES_DIR/$THEME_NAME"
 
 # The name comes from the URL, is joined into a path that is about to be
-# removed, and then names a directory the rest of Omarchy passes around by
+# removed, and then names a directory the rest of Unbloarchy passes around by
 # name: Appearance > Unlock builds a command line out of the one the picker
 # returned. So it is held to the characters a theme name needs rather than
 # screened for the harm of the day -- a repo called `..` would take

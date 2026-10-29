@@ -1,40 +1,40 @@
-# Omarchy CLI
+# Unbloarchy CLI
 
-Omarchy viene di solito controllato tramite i tasti di scelta rapida e il menu di Omarchy (`Super + Space`). Ma puoi controllarlo anche tramite la CLI `omarchy`. Questo è particolarmente utile quando fai lavorare un agente AI insieme a te sulla personalizzazione o sulla configurazione.
+Unbloarchy viene di solito controllato tramite i tasti di scelta rapida e il menu di Unbloarchy (`Super + Space`). Ma puoi controllarlo anche tramite la CLI `unbloarchy`. Questo è particolarmente utile quando fai lavorare un agente AI insieme a te sulla personalizzazione o sulla configurazione.
 
-La CLI ha accesso a tutta la strumentazione interna usata sia tramite il menu sia in altro modo. Puoi vedere tutto ciò che è disponibile eseguendo `omarchy` nel terminale.
+La CLI ha accesso a tutta la strumentazione interna usata sia tramite il menu sia in altro modo. Puoi vedere tutto ciò che è disponibile eseguendo `unbloarchy` nel terminale.
 
 Ha un aspetto simile a questo:
 
 ```
-~ ❯ omarchy
-Omarchy command center
+~ ❯ unbloarchy
+Unbloarchy command center
 
 Usage:
-  omarchy <command> [args...]
-  omarchy commands [--all] [--json] [--check]
-  omarchy <group> --help
-  omarchy <group> <command> --help
+  unbloarchy <command> [args...]
+  unbloarchy commands [--all] [--json] [--check]
+  unbloarchy <group> --help
+  unbloarchy <group> <command> --help
 
 Common commands:
-  omarchy update              Update Omarchy and system packages
-  omarchy theme list          List available themes
-  omarchy theme set <name>    Apply a theme
-  omarchy font list           List available fonts
-  omarchy screenshot          Take a screenshot
-  omarchy debug               Print debugging information
+  unbloarchy update              Update Unbloarchy and system packages
+  unbloarchy theme list          List available themes
+  unbloarchy theme set <name>    Apply a theme
+  unbloarchy font list           List available fonts
+  unbloarchy screenshot          Take a screenshot
+  unbloarchy debug               Print debugging information
 
 Groups:
   agent          AI coding agents, their usage, and subscription accounts
   audio          Audio input and output controls
-  bar            Omarchy shell bar layout and settings
+  bar            Unbloarchy shell bar layout and settings
   battery        Battery status helpers
   bluetooth      Bluetooth device controls
-  branch         Omarchy git branch management
+  branch         Unbloarchy git branch management
   branding       About and screensaver branding
   brightness     Display and keyboard brightness
   capture        Screenshots and screen recording
-  channel        Omarchy release channel management
+  channel        Unbloarchy release channel management
   clipboard      Clipboard helpers
   cmd            Command and shortcut helpers
   config         System configuration helpers
@@ -45,18 +45,18 @@ Groups:
 E puoi approfondire ogni singolo gruppo:
 
 ```
-~ ❯ omarchy capture
+~ ❯ unbloarchy capture
 Capture commands — Screenshots and screen recording:
-  omarchy capture qr                                                                                                                                                                                                       Decode a QR code from a screenshot region
-  omarchy capture screenrecording [--fullscreen] [--with-desktop-audio] [--with-microphone-audio] [--with-webcam] [--webcam-device=<device>] [--webcam-size=<small|medium|large>] [--resolution=<size>] [--stop-recording]  Start or stop screen recording
-  omarchy capture screenrecording with webcam                                                                                                                                                                              Pick a webcam and start a screen recording with it
-  omarchy capture screenshot [smart|region|windows|fullscreen|scroll] [copy|save]                                                                                                                                          Take a screenshot
-  omarchy capture text                                                                                                                                                                                                     Extract text from a screenshot region with OCR
-  omarchy capture webcam resize <smaller|larger|reset|small|medium|large>                                                                                                                                                  Resize the active webcam recording overlay
+  unbloarchy capture qr                                                                                                                                                                                                       Decode a QR code from a screenshot region
+  unbloarchy capture screenrecording [--fullscreen] [--with-desktop-audio] [--with-microphone-audio] [--with-webcam] [--webcam-device=<device>] [--webcam-size=<small|medium|large>] [--resolution=<size>] [--stop-recording]  Start or stop screen recording
+  unbloarchy capture screenrecording with webcam                                                                                                                                                                              Pick a webcam and start a screen recording with it
+  unbloarchy capture screenshot [smart|region|windows|fullscreen|scroll] [copy|save]                                                                                                                                          Take a screenshot
+  unbloarchy capture text                                                                                                                                                                                                     Extract text from a screenshot region with OCR
+  unbloarchy capture webcam resize <smaller|larger|reset|small|medium|large>                                                                                                                                                  Resize the active webcam recording overlay
 ```
 
-Ogni comando accetta anche `--help`, sia che tu lo chieda a un intero gruppo (`omarchy capture --help`) sia a un singolo comando (`omarchy capture screenshot --help`).
+Ogni comando accetta anche `--help`, sia che tu lo chieda a un intero gruppo (`unbloarchy capture --help`) sia a un singolo comando (`unbloarchy capture screenshot --help`).
 
 ### Aprire il menu dal terminale
 
-Il menu di Omarchy è anche scriptabile, il che è comodo per le tue associazioni di tasti personalizzate. `omarchy menu` lo apre alla radice, e puoi saltare direttamente a qualsiasi punto dell'albero nominandolo: `omarchy menu summon appearance.theme` va dritto al selettore del tema, `omarchy menu toggle system` apre il menu di sistema e lo richiude se è già aperto, e `omarchy menu close` lo mette via.
+Il menu di Unbloarchy è anche scriptabile, il che è comodo per le tue associazioni di tasti personalizzate. `unbloarchy menu` lo apre alla radice, e puoi saltare direttamente a qualsiasi punto dell'albero nominandolo: `unbloarchy menu summon appearance.theme` va dritto al selettore del tema, `unbloarchy menu toggle system` apre il menu di sistema e lo richiude se è già aperto, e `unbloarchy menu close` lo mette via.

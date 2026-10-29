@@ -1,14 +1,14 @@
 # Üst Çubuk
 
-Ekranınızın üstündeki şerit Omarchy çubuğudur. Üzerine sonradan eklenmiş bir durum çubuğu değil, Omarchy kabuğunun bir parçasıdır; menüyü, bildirimleri, OSD açılır pencerelerini ve kilit ekranını da çizen, uzun süre çalışan tek Quickshell sürecidir. Bu yüzden diğer her şeyle kusursuz biçimde uyum sağlar ve bir panel yeni bir uygulama başlatmak yerine anında açılır.
+Ekranınızın üstündeki şerit Unbloarchy çubuğudur. Üzerine sonradan eklenmiş bir durum çubuğu değil, Unbloarchy kabuğunun bir parçasıdır; menüyü, bildirimleri, OSD açılır pencerelerini ve kilit ekranını da çizen, uzun süre çalışan tek Quickshell sürecidir. Bu yüzden diğer her şeyle kusursuz biçimde uyum sağlar ve bir panel yeni bir uygulama başlatmak yerine anında açılır.
 
 Aynı zamanda masaüstünün her zaman ekranda olan tek parçasıdır, bu yüzden o küçük simgelerin ne işe yaradığını bilmeye değer.
 
 ## Varsayılan olarak üzerinde neler var
 
-Çubuğun üç bölümü vardır. Sol tarafta Omarchy logosu (menü başlatıcısı) ve çalışma alanı göstergeleri bulunur. Ortada durum göstergeleri, saat, Elsewhen (bir dünya saati), hava durumu ve bir Omarchy güncelleme rozeti yer alır. Sağda ise sistem tepsisi, klavye düzeni (birden fazla yapılandırıldığında), ajanlar, bluetooth, ağ, ses, ekran ve güç bulunur.
+Çubuğun üç bölümü vardır. Sol tarafta Unbloarchy logosu (menü başlatıcısı) ve çalışma alanı göstergeleri bulunur. Ortada durum göstergeleri, saat, Elsewhen (bir dünya saati), hava durumu ve bir Unbloarchy güncelleme rozeti yer alır. Sağda ise sistem tepsisi, klavye düzeni (birden fazla yapılandırıldığında), ajanlar, bluetooth, ağ, ses, ekran ve güç bulunur.
 
-Bunlardan birkaçı yalnızca söyleyecek bir şeyi olduğunda görünür. Klavye düzeni yalnızca birden fazla düzen yapılandırdıysanız görünür. Güncelleme rozeti yalnızca bekleyen bir Omarchy güncellemesi olduğunda görünür. Ajanlar simgesi ise Omarchy makinede ilk kez AI kodlama kullanımı bulduğunda görünür (bkz. [Yapay Zeka](17-ai.md)).
+Bunlardan birkaçı yalnızca söyleyecek bir şeyi olduğunda görünür. Klavye düzeni yalnızca birden fazla düzen yapılandırdıysanız görünür. Güncelleme rozeti yalnızca bekleyen bir Unbloarchy güncellemesi olduğunda görünür. Ajanlar simgesi ise Unbloarchy makinede ilk kez AI kodlama kullanımı bulduğunda görünür (bkz. [Yapay Zeka](17-ai.md)).
 
 ## Tıklama turu
 
@@ -16,7 +16,7 @@ Neredeyse her widget sol, sağ ve orta tıklamada bir şey yapar ve birkaçı ka
 
 | Widget | Sol | Sağ | Orta / kaydırma |
 | --- | --- | --- | --- |
-| Menü | Omarchy menüsü | Yeni terminal | — |
+| Menü | Unbloarchy menüsü | Yeni terminal | — |
 | Çalışma Alanları | O çalışma alanına bu monitörde odaklan | — | Kaydırma: sonraki/önceki çalışma alanı |
 | Saat | Takvim açılır penceresi | Etiket biçimini değiştir | Orta: saat dilimi seçici |
 | Hava Durumu | Tahmin açılır penceresi | Tam hava durumunu bildirim olarak göster | Orta: yenile |
@@ -29,7 +29,7 @@ Neredeyse her widget sol, sağ ve orta tıklamada bir şey yapar ve birkaçı ka
 | Medya | Oynat/duraklat | Kapak resmi açılır penceresi | Orta: sonraki · kaydırma: önceki/sonraki |
 | Ajanlar | Ajanlar paneli | Ajanınızı başlatın | Orta: sonraki abonelik |
 | Tepsi | Çekmeceyi göstermek için üzerine gelin | Yönetmek için köşe işaretine sağ tıklayın | — |
-| Omarchy güncellemesi | Güncellemeyi çalıştır | — | — |
+| Unbloarchy güncellemesi | Güncellemeyi çalıştır | — | — |
 
 O tablodaki her şey kutudan çıktığı haliyle çubuğunuzda değildir. Medya widget'ı (MPRIS şimdi çalıyor, kayan parça ve sanatçı bilgisiyle) ve mikrofon widget'ı yerleşik olarak gelir ancak varsayılan olarak kapalıdır — isterseniz aşağıda anlatıldığı gibi ekleyin.
 
@@ -66,7 +66,7 @@ Her panel fare kadar klavyeyi de kabul eder: oklar hareket eder, Return etkinle�
 
 **Install → Service** içinden eşleşen servisi kurduğunuzda çubukta iki widget daha görünür ve ikisini de bilmeye değer çünkü durum bildirmekten fazlasını yaparlar.
 
-**Tailscale** paneli tailnet'e bağlanır ve bağlantısını keser, hesaplar arasında geçiş yapar ve bir çıkış düğümü seçer (kendi makineleriniz ve Mullvad bölgeleri de o listede görünür). Ayrıca makinelerinize göz atar — ve birini seçtiğinizde `s` ona Taildrop üzerinden dosya gönderir; bu, telefonunuza veya başka bir dizüstü bilgisayara dosya taşımanın en hızlı yoludur. `c` makinenin IP adresini, `n` adını ve `d` tam DNS adını kopyalar. Tıklamayı tercih ederseniz her makine satırında bir gönder düğmesi de vardır. Terminalden aynısı `omarchy tailscale send <machine> [file...]` şeklindedir.
+**Tailscale** paneli tailnet'e bağlanır ve bağlantısını keser, hesaplar arasında geçiş yapar ve bir çıkış düğümü seçer (kendi makineleriniz ve Mullvad bölgeleri de o listede görünür). Ayrıca makinelerinize göz atar — ve birini seçtiğinizde `s` ona Taildrop üzerinden dosya gönderir; bu, telefonunuza veya başka bir dizüstü bilgisayara dosya taşımanın en hızlı yoludur. `c` makinenin IP adresini, `n` adını ve `d` tam DNS adını kopyalar. Tıklamayı tercih ederseniz her makine satırında bir gönder düğmesi de vardır. Terminalden aynısı `unbloarchy tailscale send <machine> [file...]` şeklindedir.
 
 **Dropbox** paneli girişi yönetir, ne kadar depolama kullandığınızı gösterir ve yakın zamanda eşitlenen dosyaları listeler.
 
@@ -93,19 +93,19 @@ Bir menüden seçmeyi tercih ederseniz **Appearance → Menu Bar** konumu içeri
 Aynı şeylerin komutları da vardır; bu, bir [dotfiles](31-dotfiles.md) kurulumu için istediğiniz şeydir:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Bir widget'ı tamamen eklemek veya kaldırmak için plugin komutlarını kullanın. `omarchy plugin list` kabuğun bildiği her widget'ı kimliğiyle birlikte yazar ve ardından:
+Bir widget'ı tamamen eklemek veya kaldırmak için plugin komutlarını kullanın. `unbloarchy plugin list` kabuğun bildiği her widget'ı kimliğiyle birlikte yazar ve ardından:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Çubuğu gizleme
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Yapılandırma dosyası
 
-Bunların hepsi `~/.config/omarchy/shell.json` içinde, `bar` anahtarı altında saklanır. İşte kırpılmış bir sürümü:
+Bunların hepsi `~/.config/unbloarchy/shell.json` içinde, `bar` anahtarı altında saklanır. İşte kırpılmış bir sürümü:
 
 ```json
 {
@@ -123,20 +123,20 @@ Bunların hepsi `~/.config/omarchy/shell.json` içinde, `bar` anahtarı altında
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Her widget beş düzen dizisinden birindeki tek bir girdidir ve ayarları o girdinin üzerinde satır içinde durur — ayrı bir ayar dosyası ve `config` alt nesnesi yoktur. Saatin `format`, `formatAlt` (sağ tıklamanın döndürdüğü) ve `verticalFormat` değerlerinin hepsi tam orada `{ "id": "omarchy.clock" }` üzerinde yaşar.
+Her widget beş düzen dizisinden birindeki tek bir girdidir ve ayarları o girdinin üzerinde satır içinde durur — ayrı bir ayar dosyası ve `config` alt nesnesi yoktur. Saatin `format`, `formatAlt` (sağ tıklamanın döndürdüğü) ve `verticalFormat` değerlerinin hepsi tam orada `{ "id": "unbloarchy.clock" }` üzerinde yaşar.
 
 `center` çubuğun ortasındaki kutudur: içindeki her şey ekranda tek bir grup olarak ortalanır. `centerBegin` ve `centerEnd` kutunun iki yanından sarkar; saat, hava durumu ve güncelleme rozeti gelip giderken bile böylece tam ortada kalır. `center` içine birden fazla widget koyarsanız birlikte ortalanırlar; boş bırakırsanız `centerBegin` ve `centerEnd` çubuğun ortasında buluşur.
 
-İçselleştirmeye değer bir kural: **kendi `shell.json` dosyanız olduğunda artık kanonik olan odur**. Hiçbir şeyi özelleştirene kadar kabuk Omarchy'nin varsayılan dosyasını okur. Bir widget'ı sürüklediğiniz, `omarchy bar` çalıştırdığınız veya dosyayı kendiniz düzenlediğiniz anda sahibi siz olursunuz — derin birleştirme yoktur, bu yüzden gelecek Omarchy sürümlerindeki yeni varsayılan widget'lar çubuğunuzda otomatik olarak görünmez. `omarchy bar defaults` temiz bir başlangıç istediğinizde birlikte gelen düzeni geri koyar.
+İçselleştirmeye değer bir kural: **kendi `shell.json` dosyanız olduğunda artık kanonik olan odur**. Hiçbir şeyi özelleştirene kadar kabuk Unbloarchy'nin varsayılan dosyasını okur. Bir widget'ı sürüklediğiniz, `unbloarchy bar` çalıştırdığınız veya dosyayı kendiniz düzenlediğiniz anda sahibi siz olursunuz — derin birleştirme yoktur, bu yüzden gelecek Unbloarchy sürümlerindeki yeni varsayılan widget'lar çubuğunuzda otomatik olarak görünmez. `unbloarchy bar defaults` temiz bir başlangıç istediğinizde birlikte gelen düzeni geri koyar.
 
 Aynı dosya, `bar` anahtarının dışında, üst düzeyde boşta kalma sürelerinizi de tutar: `idle.screensaver` ve `idle.lock`, ikisi de boşta kaldığınızdan bu yana saniye cinsindendir. Böylece varsayılan ekran koruyucu 150 saniyede devreye girer ve kilit 300 saniyede.

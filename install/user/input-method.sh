@@ -1,1 +1,1 @@
-omarchy-input-method configure --seed
+unbloarchy-input-method configure --seed

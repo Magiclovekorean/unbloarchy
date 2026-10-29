@@ -17,7 +17,7 @@ assert_fails() {
   if "${@:1:$#-1}" >/dev/null 2>&1; then fail "$description"; else pass "$description"; fi
 }
 
-# omarchy-hw-aarch64-n1x asks omarchy-hw-platform, which reads a fixture sysfs
+# unbloarchy-hw-aarch64-n1x asks unbloarchy-hw-platform, which reads a fixture sysfs
 # root when one is named (never as root) and refuses any machine that is not
 # aarch64.
 write_sysfs() {
@@ -44,11 +44,11 @@ hw_n1x() {
   mkdir -p "$shim"
   printf '#!/bin/bash\n[[ ${1:-} == -m ]] && { echo aarch64; exit 0; }\nexec /usr/bin/uname "$@"\n' >"$shim/uname"
   chmod +x "$shim/uname"
-  PATH="$shim:$ROOT/bin:$PATH" OMARCHY_SYS_ROOT="$tmp_dir/sys" "$ROOT/bin/omarchy-hw-aarch64-n1x" 2>/dev/null
+  PATH="$shim:$ROOT/bin:$PATH" UNBLOARCHY_SYS_ROOT="$tmp_dir/sys" "$ROOT/bin/unbloarchy-hw-aarch64-n1x" 2>/dev/null
 }
 
 if [[ $(uname -m) != aarch64 ]]; then
-  assert_fails "$ROOT/bin/omarchy-hw-aarch64-n1x" "non-aarch64 host is never N1x"
+  assert_fails "$ROOT/bin/unbloarchy-hw-aarch64-n1x" "non-aarch64 host is never N1x"
 fi
 
 # Root reads the live machine, never a fixture.
@@ -66,14 +66,14 @@ write_sysfs "" "0x8086:0x1234"
 assert_fails hw_n1x "an unrelated machine is not N1x"
 fi
 
-hooks_conf="$ROOT/etc/mkinitcpio.conf.d/omarchy_hooks.conf"
+hooks_conf="$ROOT/etc/mkinitcpio.conf.d/unbloarchy_hooks.conf"
 # mkinitcpio sources the platform's HOOKS baseline before the adjustments.
 hooks_have_plymouth() {
   (
     HOOKS=()
     MODULES=()
-    OMARCHY_PCI_DEVICES_PATH="$tmp_dir/pci"
-    source "$ROOT/etc/mkinitcpio.conf.d/00-omarchy-hooks.conf"
+    UNBLOARCHY_PCI_DEVICES_PATH="$tmp_dir/pci"
+    source "$ROOT/etc/mkinitcpio.conf.d/00-unbloarchy-hooks.conf"
     source "$hooks_conf"
     [[ " ${HOOKS[*]} " == *" plymouth "* ]]
   )

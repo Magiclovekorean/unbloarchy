@@ -56,7 +56,7 @@ BarWidget {
       root.bar.shell.updateEntryInline(root.moduleName, entry)
   }
 
-  // Day and month names follow the Omarchy language, not the system locale,
+  // Day and month names follow the Unbloarchy language, not the system locale,
   // which only catches up at the next login.
   readonly property var formatLocale: Qt.locale(I18n.formatLocale)
 

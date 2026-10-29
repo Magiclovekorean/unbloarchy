@@ -1,14 +1,14 @@
 # Die obere Leiste
 
-Der Streifen am oberen Rand deines Bildschirms ist die Omarchy-Leiste. Sie ist keine aufgeschraubte Statusleiste, sondern Teil der Omarchy-Shell, des einen, lang laufenden Quickshell-Prozesses, der auch das Menü, die Benachrichtigungen, die OSD-Popups und den Sperrbildschirm zeichnet. Deshalb passt sie thematisch perfekt zu allem anderen und deshalb öffnet sich ein Panel sofort, statt eine neue App zu starten.
+Der Streifen am oberen Rand deines Bildschirms ist die Unbloarchy-Leiste. Sie ist keine aufgeschraubte Statusleiste, sondern Teil der Unbloarchy-Shell, des einen, lang laufenden Quickshell-Prozesses, der auch das Menü, die Benachrichtigungen, die OSD-Popups und den Sperrbildschirm zeichnet. Deshalb passt sie thematisch perfekt zu allem anderen und deshalb öffnet sich ein Panel sofort, statt eine neue App zu starten.
 
 Sie ist auch das einzige Stück des Desktops, das immer auf dem Bildschirm ist, also lohnt es sich zu wissen, was all diese kleinen Glyphen tun.
 
 ## Was standardmäßig darauf ist
 
-Die Leiste hat drei Abschnitte. Links sitzen das Omarchy-Logo (der Menü-Launcher) und die Arbeitsbereich-Anzeigen. In der Mitte bekommst du die Statusanzeigen, die Uhr, Elsewhen (eine Weltuhr), das Wetter und ein Omarchy-Update-Abzeichen. Rechts: die Systemablage, das Tastaturlayout (wenn mehr als eines konfiguriert ist), Agents, Bluetooth, Netzwerk, Audio, Display und Power.
+Die Leiste hat drei Abschnitte. Links sitzen das Unbloarchy-Logo (der Menü-Launcher) und die Arbeitsbereich-Anzeigen. In der Mitte bekommst du die Statusanzeigen, die Uhr, Elsewhen (eine Weltuhr), das Wetter und ein Unbloarchy-Update-Abzeichen. Rechts: die Systemablage, das Tastaturlayout (wenn mehr als eines konfiguriert ist), Agents, Bluetooth, Netzwerk, Audio, Display und Power.
 
-Einige davon tauchen nur auf, wenn sie etwas zu sagen haben. Das Tastaturlayout erscheint nur, wenn du mehr als ein Layout konfiguriert hast. Das Update-Abzeichen erscheint nur, wenn ein Omarchy-Update wartet. Und das Agents-Icon erscheint, sobald Omarchy zum ersten Mal AI-Coding-Nutzung auf der Maschine findet (siehe [KI](17-ai.md)).
+Einige davon tauchen nur auf, wenn sie etwas zu sagen haben. Das Tastaturlayout erscheint nur, wenn du mehr als ein Layout konfiguriert hast. Das Update-Abzeichen erscheint nur, wenn ein Unbloarchy-Update wartet. Und das Agents-Icon erscheint, sobald Unbloarchy zum ersten Mal AI-Coding-Nutzung auf der Maschine findet (siehe [KI](17-ai.md)).
 
 ## Herumklicken
 
@@ -16,7 +16,7 @@ Fast jedes Widget tut etwas bei Links-, Rechts- und Mittelklick, und mehrere rea
 
 | Widget | Links | Rechts | Mitte / Scrollen |
 | --- | --- | --- | --- |
-| Menu | Omarchy-Menü | Neues Terminal | — |
+| Menu | Unbloarchy-Menü | Neues Terminal | — |
 | Workspaces | Diesen Arbeitsbereich auf diesem Monitor fokussieren | — | Scrollen: nächster/vorheriger Arbeitsbereich |
 | Clock | Kalender-Popup | Das Label-Format durchschalten | Mitte: Zeitzonen-Auswahl |
 | Weather | Vorhersage-Popup | Vollständiges Wetter als Benachrichtigung | Mitte: aktualisieren |
@@ -29,7 +29,7 @@ Fast jedes Widget tut etwas bei Links-, Rechts- und Mittelklick, und mehrere rea
 | Media | Wiedergabe/Pause | Cover-Art-Popup | Mitte: weiter · Scrollen: zurück/weiter |
 | Agents | Agents-Panel | Deinen Agent starten | Mitte: nächstes Abonnement |
 | Tray | Darüberfahren, um die Schublade zu zeigen | Rechtsklick auf den Chevron, um zu verwalten | — |
-| Omarchy update | Das Update ausführen | — | — |
+| Unbloarchy update | Das Update ausführen | — | — |
 
 Nicht alles in dieser Tabelle ist von Haus aus auf deiner Leiste. Das Media-Widget (MPRIS Now-Playing, mit scrollendem Track und Künstler) und das Mikrofon-Widget sind beide eingebaut, aber standardmäßig aus — füge sie hinzu, wenn du sie willst, wie unten beschrieben.
 
@@ -66,7 +66,7 @@ Jedes Panel nimmt ebenso die Tastatur wie die Maus: Pfeile bewegen, Return aktiv
 
 Zwei weitere Widgets erscheinen erst auf der Leiste, wenn du den passenden Dienst unter **Install → Service** installierst, und beide sollte man kennen, weil sie mehr tun, als nur den Status zu melden.
 
-Das **Tailscale**-Panel verbindet und trennt das Tailnet, wechselt zwischen Konten und wählt einen Exit Node (deine eigenen Maschinen und Mullvad-Regionen tauchen beide in dieser Liste auf). Es durchstöbert auch deine Maschinen — und wenn eine ausgewählt ist, sendet `s` Dateien per Taildrop an sie, was der schnellste Weg ist, eine Datei auf dein Telefon oder einen anderen Laptop zu bewegen. `c` kopiert die IP der Maschine, `n` ihren Namen und `d` ihren vollständigen DNS-Namen. Auf jeder Maschinenzeile gibt es auch einen Senden-Button, wenn du lieber klickst. Dasselbe vom Terminal aus ist `omarchy tailscale send <machine> [file...]`.
+Das **Tailscale**-Panel verbindet und trennt das Tailnet, wechselt zwischen Konten und wählt einen Exit Node (deine eigenen Maschinen und Mullvad-Regionen tauchen beide in dieser Liste auf). Es durchstöbert auch deine Maschinen — und wenn eine ausgewählt ist, sendet `s` Dateien per Taildrop an sie, was der schnellste Weg ist, eine Datei auf dein Telefon oder einen anderen Laptop zu bewegen. `c` kopiert die IP der Maschine, `n` ihren Namen und `d` ihren vollständigen DNS-Namen. Auf jeder Maschinenzeile gibt es auch einen Senden-Button, wenn du lieber klickst. Dasselbe vom Terminal aus ist `unbloarchy tailscale send <machine> [file...]`.
 
 Das **Dropbox**-Panel übernimmt den Login, zeigt, wie viel Speicher du verbraucht hast, und listet kürzlich synchronisierte Dateien.
 
@@ -93,19 +93,19 @@ Wenn du lieber aus einem Menü wählst, hat **Appearance → Menu Bar** die Posi
 Dieselben Dinge haben Befehle, was du für ein [Dotfiles](31-dotfiles.md)-Setup willst:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Um ein Widget ganz hinzuzufügen oder zu entfernen, benutze die Plugin-Befehle. `omarchy plugin list` gibt jedes Widget aus, das die Shell kennt, mit seiner id, und dann:
+Um ein Widget ganz hinzuzufügen oder zu entfernen, benutze die Plugin-Befehle. `unbloarchy plugin list` gibt jedes Widget aus, das die Shell kennt, mit seiner id, und dann:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Die Leiste ausblenden
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Die Konfigurationsdatei
 
-All das wird in `~/.config/omarchy/shell.json` gespeichert, unter dem Schlüssel `bar`. Hier ist eine gekürzte Version:
+All das wird in `~/.config/unbloarchy/shell.json` gespeichert, unter dem Schlüssel `bar`. Hier ist eine gekürzte Version:
 
 ```json
 {
@@ -123,20 +123,20 @@ All das wird in `~/.config/omarchy/shell.json` gespeichert, unter dem Schlüssel
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Jedes Widget ist ein Eintrag in einem der fünf Layout-Arrays, und seine Einstellungen sitzen inline auf diesem Eintrag — es gibt keine separate Einstellungsdatei und kein `config`-Unterobjekt. Das `format`, `formatAlt` (wohin der Rechtsklick weiterschaltet) und `verticalFormat` der Uhr leben alle genau dort auf `{ "id": "omarchy.clock" }`.
+Jedes Widget ist ein Eintrag in einem der fünf Layout-Arrays, und seine Einstellungen sitzen inline auf diesem Eintrag — es gibt keine separate Einstellungsdatei und kein `config`-Unterobjekt. Das `format`, `formatAlt` (wohin der Rechtsklick weiterschaltet) und `verticalFormat` der Uhr leben alle genau dort auf `{ "id": "unbloarchy.clock" }`.
 
 `center` ist die Box in der Mitte der Leiste: Alles darin wird als eine Gruppe auf dem Bildschirm zentriert. `centerBegin` und `centerEnd` hängen auf beiden Seiten der Box, und so bleibt die Uhr exakt in der Mitte, selbst wenn Wetter und Update-Abzeichen kommen und gehen. Lege mehr als ein Widget in `center` und sie werden zusammen zentriert; lasse es leer und `centerBegin` und `centerEnd` treffen sich in der Mitte der Leiste.
 
-Eine Regel, die es wert ist, verinnerlicht zu werden: **Sobald du deine eigene `shell.json` hast, ist sie kanonisch**. Bis du irgendetwas anpasst, liest die Shell Omarchys Standarddatei. In dem Moment, in dem du ein Widget ziehst, `omarchy bar` ausführst oder die Datei selbst bearbeitest, gehört sie dir — es gibt kein Deep Merge, also werden neue Standard-Widgets in zukünftigen Omarchy-Versionen nicht automatisch auf deiner Leiste erscheinen. `omarchy bar defaults` legt das mitgelieferte Layout zurück, wann immer du eine saubere Ausgangslage willst.
+Eine Regel, die es wert ist, verinnerlicht zu werden: **Sobald du deine eigene `shell.json` hast, ist sie kanonisch**. Bis du irgendetwas anpasst, liest die Shell Unbloarchys Standarddatei. In dem Moment, in dem du ein Widget ziehst, `unbloarchy bar` ausführst oder die Datei selbst bearbeitest, gehört sie dir — es gibt kein Deep Merge, also werden neue Standard-Widgets in zukünftigen Unbloarchy-Versionen nicht automatisch auf deiner Leiste erscheinen. `unbloarchy bar defaults` legt das mitgelieferte Layout zurück, wann immer du eine saubere Ausgangslage willst.
 
 Dieselbe Datei hält auch deine Idle-Zeiten auf der obersten Ebene, außerhalb des Schlüssels `bar`: `idle.screensaver` und `idle.lock`, beide in Sekunden seit du idle gegangen bist. Also setzt der Standard-Bildschirmschoner bei 150 Sekunden ein und die Sperre bei 300.

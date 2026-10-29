@@ -1,14 +1,14 @@
 # Yuqori panel
 
-Ekraningizning yuqori qismidagi chiziq — Omarchy paneli. Bu keyinchalik yopishtirilgan holat paneli emas, balki Omarchy qobigʻining bir qismi — menyuni, bildirishnomalarni, OSD qalqib chiquvchi oynalarini va qulflash ekranini ham chizadigan yagona uzoq ishlaydigan Quickshell jarayoni. Shuning uchun u qolgan hamma narsa bilan mukammal uygʻunlashadi va shuning uchun panel yangi ilovani ishga tushirmasdan, bir zumda ochiladi.
+Ekraningizning yuqori qismidagi chiziq — Unbloarchy paneli. Bu keyinchalik yopishtirilgan holat paneli emas, balki Unbloarchy qobigʻining bir qismi — menyuni, bildirishnomalarni, OSD qalqib chiquvchi oynalarini va qulflash ekranini ham chizadigan yagona uzoq ishlaydigan Quickshell jarayoni. Shuning uchun u qolgan hamma narsa bilan mukammal uygʻunlashadi va shuning uchun panel yangi ilovani ishga tushirmasdan, bir zumda ochiladi.
 
 Bu shuningdek doimo ekranda qoladigan yagona ish stoli qismi hamdir, shuning uchun oʻsha kichkina belgilarning hammasi nima qilishini bilib qoʻyganingiz arziydi.
 
 ## Standart holatda unda nimalar bor
 
-Panel uch qismdan iborat. Chap tomonda Omarchy logotipi (menyu ochgichi) va ish maydonlari koʻrsatkichlari joylashgan. Markazda holat koʻrsatkichlari, soat, Elsewhen (jahon soati), ob-havo va Omarchy yangilanish belgisi bor. Oʻng tomonda: tizim treyi, klaviatura tartibi (birdan ortiq tartib sozlangan boʻlsa), agentlar, bluetooth, tarmoq, audio, displey va quvvat.
+Panel uch qismdan iborat. Chap tomonda Unbloarchy logotipi (menyu ochgichi) va ish maydonlari koʻrsatkichlari joylashgan. Markazda holat koʻrsatkichlari, soat, Elsewhen (jahon soati), ob-havo va Unbloarchy yangilanish belgisi bor. Oʻng tomonda: tizim treyi, klaviatura tartibi (birdan ortiq tartib sozlangan boʻlsa), agentlar, bluetooth, tarmoq, audio, displey va quvvat.
 
-Ulardan bir qanchasi faqat aytadigan gapi boʻlgandagina paydo boʻladi. Klaviatura tartibi faqat birdan ortiq tartib sozlagan boʻlsangiz paydo boʻladi. Yangilanish belgisi faqat Omarchy yangilanishi kutayotgan boʻlsa paydo boʻladi. Agentlar belgisi esa Omarchy mashinada AI kodlashdan foydalanishni birinchi marta topganda paydo boʻladi (qarang: [AI](17-ai.md)).
+Ulardan bir qanchasi faqat aytadigan gapi boʻlgandagina paydo boʻladi. Klaviatura tartibi faqat birdan ortiq tartib sozlagan boʻlsangiz paydo boʻladi. Yangilanish belgisi faqat Unbloarchy yangilanishi kutayotgan boʻlsa paydo boʻladi. Agentlar belgisi esa Unbloarchy mashinada AI kodlashdan foydalanishni birinchi marta topganda paydo boʻladi (qarang: [AI](17-ai.md)).
 
 ## Atrofni bosish
 
@@ -16,7 +16,7 @@ Deyarli har bir vidjet chap, oʻng va oʻrta bosishga nimadir qiladi, bir qancha
 
 | Vidjet | Chap | Oʻng | Oʻrta / aylantirish |
 | --- | --- | --- | --- |
-| Menu | Omarchy menyusi | Yangi terminal | — |
+| Menu | Unbloarchy menyusi | Yangi terminal | — |
 | Workspaces | Ushbu monitorda oʻsha ish maydoniga oʻtish | — | Aylantirish: keyingi/oldingi ish maydoni |
 | Clock | Kalendar qalqib chiquvchi oynasi | Yorliq formatini aylanib almashtirish | Oʻrta: vaqt mintaqasi tanlagichi |
 | Weather | Prognoz qalqib chiquvchi oynasi | Toʻliq ob-havo bildirishnoma sifatida | Oʻrta: yangilash |
@@ -29,7 +29,7 @@ Deyarli har bir vidjet chap, oʻng va oʻrta bosishga nimadir qiladi, bir qancha
 | Media | Ijro/pauza | Muqova rasmi qalqib chiquvchi oynasi | Oʻrta: keyingi · aylantirish: oldingi/keyingi |
 | Agents | Agentlar paneli | Agentingizni ishga tushirish | Oʻrta: keyingi obuna |
 | Tray | Tortmani ochish uchun ustiga kursorni olib borish | Boshqarish uchun chevronga oʻng bosish | — |
-| Omarchy update | Yangilanishni ishga tushirish | — | — |
+| Unbloarchy update | Yangilanishni ishga tushirish | — | — |
 
 Oʻsha jadvaldagi hamma narsa ham panelingizda dastlabki holatda boʻlmaydi. Media vidjeti (MPRIS hozir ijro etilayotgani, aylanib turadigan trek va ijrochi bilan) va mikrofon vidjeti — ikkalasi ham ichiga oʻrnatilgan, lekin standart holatda oʻchirilgan — istasangiz, quyida tasvirlanganidek ularni qoʻshing.
 
@@ -66,7 +66,7 @@ Har bir panel sichqonchani ham, klaviaturani ham qabul qiladi: strelkalar haraka
 
 Yana ikkita vidjet panelda faqat mos xizmatni **Install → Service** dan oʻrnatganingizdan keyin paydo boʻladi va ikkalasini ham bilib qoʻyish arziydi, chunki ular shunchaki holatni xabar qilib qolmaydi.
 
-**Tailscale** paneli tailnet ga ulanadi va undan uziladi, hisoblar oʻrtasida almashadi va chiqish tugunini tanlaydi (oʻz mashinalaringiz ham, Mullvad hududlari ham oʻsha roʻyxatda chiqadi). U mashinalaringizni ham koʻrib chiqadi — va biri tanlangan boʻlsa, `s` unga Taildrop orqali fayllar yuboradi, bu faylni telefoningizga yoki boshqa noutbukka koʻchirishning eng tezkor yoʻli. `c` mashinaning IP manzilini nusxalaydi, `n` uning nomini va `d` uning toʻliq DNS nomini. Agar bosishni afzal koʻrsangiz, har bir mashina qatorida yuborish tugmasi ham bor. Terminaldan xuddi shu narsa `omarchy tailscale send <machine> [file...]` dir.
+**Tailscale** paneli tailnet ga ulanadi va undan uziladi, hisoblar oʻrtasida almashadi va chiqish tugunini tanlaydi (oʻz mashinalaringiz ham, Mullvad hududlari ham oʻsha roʻyxatda chiqadi). U mashinalaringizni ham koʻrib chiqadi — va biri tanlangan boʻlsa, `s` unga Taildrop orqali fayllar yuboradi, bu faylni telefoningizga yoki boshqa noutbukka koʻchirishning eng tezkor yoʻli. `c` mashinaning IP manzilini nusxalaydi, `n` uning nomini va `d` uning toʻliq DNS nomini. Agar bosishni afzal koʻrsangiz, har bir mashina qatorida yuborish tugmasi ham bor. Terminaldan xuddi shu narsa `unbloarchy tailscale send <machine> [file...]` dir.
 
 **Dropbox** paneli tizimga kirishni boshqaradi, qancha xotiradan foydalanganingizni koʻrsatadi va yaqinda sinxronlangan fayllarni roʻyxatlaydi.
 
@@ -93,19 +93,19 @@ Agar menyudan tanlashni afzal koʻrsangiz, **Appearance → Menu Bar** da joylas
 Xuddi shu narsalarning buyruqlari ham bor, [dotfiles](31-dotfiles.md) sozlamasi uchun aynan shular kerak boʻladi:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Vidjetni butunlay qoʻshish yoki olib tashlash uchun plagin buyruqlaridan foydalaning. `omarchy plugin list` qobiq biladigan har bir vidjetni uning id si bilan birga chiqaradi, keyin esa:
+Vidjetni butunlay qoʻshish yoki olib tashlash uchun plagin buyruqlaridan foydalaning. `unbloarchy plugin list` qobiq biladigan har bir vidjetni uning id si bilan birga chiqaradi, keyin esa:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Panelni yashirish
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Konfiguratsiya fayli
 
-Bularning hammasi `~/.config/omarchy/shell.json` da, `bar` kaliti ostida saqlanadi. Mana qisqartirilgan versiyasi:
+Bularning hammasi `~/.config/unbloarchy/shell.json` da, `bar` kaliti ostida saqlanadi. Mana qisqartirilgan versiyasi:
 
 ```json
 {
@@ -123,20 +123,20 @@ Bularning hammasi `~/.config/omarchy/shell.json` da, `bar` kaliti ostida saqlana
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Har bir vidjet beshta tartib massividan biridagi bitta yozuvdir va uning sozlamalari aynan oʻsha yozuvning ichida joylashadi — alohida sozlamalar fayli ham, `config` ichki obyekti ham yoʻq. Soatning `format`, `formatAlt` (oʻng bosish nimaga aylanib oʻtishi) va `verticalFormat` — hammasi aynan `{ "id": "omarchy.clock" }` ustida yashaydi.
+Har bir vidjet beshta tartib massividan biridagi bitta yozuvdir va uning sozlamalari aynan oʻsha yozuvning ichida joylashadi — alohida sozlamalar fayli ham, `config` ichki obyekti ham yoʻq. Soatning `format`, `formatAlt` (oʻng bosish nimaga aylanib oʻtishi) va `verticalFormat` — hammasi aynan `{ "id": "unbloarchy.clock" }` ustida yashaydi.
 
 `center` panel oʻrtasidagi qutidir: undagi hamma narsa ekranda bitta guruh sifatida markazda turadi. `centerBegin` va `centerEnd` qutining ikki tomoniga osilib turadi, soat ob-havo va yangilanish belgisi kelib-ketib turganda ham roppa-rosa markazda qolishi aynan shunday taʼminlanadi. `center` ga birdan ortiq vidjet qoʻying va ular birgalikda markazda turadi; uni boʻsh qoldiring va `centerBegin` bilan `centerEnd` panel oʻrtasida uchrashadi.
 
-Ichga singdirib olishga arziydigan bitta qoida: **oʻz `shell.json` ingiz boʻlgach, u kanonik hisoblanadi**. Biror narsani sozlamaguningizcha qobiq Omarchy ning standart faylini oʻqiydi. Vidjetni sudragan, `omarchy bar` ni ishga tushirgan yoki faylni oʻzingiz tahrirlagan zahotingiz u sizniki boʻladi — chuqur birlashtirish yoʻq, shuning uchun kelajakdagi Omarchy nashrlaridagi yangi standart vidjetlar panelingizda avtomatik paydo boʻlmaydi. `omarchy bar defaults` toza holatdan boshlashni istaganingizda yetkazib berilgan tartibni qaytaradi.
+Ichga singdirib olishga arziydigan bitta qoida: **oʻz `shell.json` ingiz boʻlgach, u kanonik hisoblanadi**. Biror narsani sozlamaguningizcha qobiq Unbloarchy ning standart faylini oʻqiydi. Vidjetni sudragan, `unbloarchy bar` ni ishga tushirgan yoki faylni oʻzingiz tahrirlagan zahotingiz u sizniki boʻladi — chuqur birlashtirish yoʻq, shuning uchun kelajakdagi Unbloarchy nashrlaridagi yangi standart vidjetlar panelingizda avtomatik paydo boʻlmaydi. `unbloarchy bar defaults` toza holatdan boshlashni istaganingizda yetkazib berilgan tartibni qaytaradi.
 
 Xuddi shu fayl yuqori darajada, `bar` kalitidan tashqarida, sizning boʻsh turish vaqtlaringizni ham saqlaydi: `idle.screensaver` va `idle.lock`, ikkalasi ham boʻsh turganingizdan beri oʻtgan soniyalarda. Shuning uchun standart ekran saqlagichi 150 soniyada, qulflash esa 300 soniyada ishga tushadi.

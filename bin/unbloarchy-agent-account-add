@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# omarchy:summary=Sign in to a Claude, Codex, or Grok subscription
-# omarchy:args=[--check] [--events] [--reauth <account>] [claude|codex|grok] [label]
-# omarchy:examples=omarchy agent account add claude | omarchy agent account add Work | omarchy agent account add codex Side
+# unbloarchy:summary=Sign in to a Claude, Codex, or Grok subscription
+# unbloarchy:args=[--check] [--events] [--reauth <account>] [claude|codex|grok] [label]
+# unbloarchy:examples=unbloarchy agent account add claude | unbloarchy agent account add Work | unbloarchy agent account add codex Side
 
 set -uo pipefail
 
 # --check prints, per provider, whether adding one now would be its first
 # sign-in, an additional account, or not possible yet. --events is for the
-# agents panel: progress arrives as `@@omarchy <event> <detail>` lines mixed
+# agents panel: progress arrives as `@@unbloarchy <event> <detail>` lines mixed
 # into the CLI's own output (which carries codes the panel shows), nothing
 # waits on a terminal, and the result also lands as a notification in case
 # the panel has closed.
@@ -32,7 +32,7 @@ done
 
 # Whether a provider's own home (~/.claude, ~/.codex, ~/.grok) is signed in.
 primary_signed_in() {
-  omarchy-agent-account-state list "$1" | jq -e '.[0].accounts | any(.primary and .signedIn)' >/dev/null
+  unbloarchy-agent-account-state list "$1" | jq -e '.[0].accounts | any(.primary and .signedIn)' >/dev/null
 }
 
 if [[ $check == "true" ]]; then
@@ -47,9 +47,9 @@ if [[ $check == "true" ]]; then
 fi
 
 # The provider can be left out when it's your default agent:
-# `omarchy agent account add Work`.
+# `unbloarchy agent account add Work`.
 if [[ ${1:-} != "claude" && ${1:-} != "codex" && ${1:-} != "grok" ]]; then
-  default=$(omarchy-default-agent)
+  default=$(unbloarchy-default-agent)
   [[ $default == "claude" || $default == "codex" || $default == "grok" ]] && set -- "$default" "$@"
 fi
 
@@ -58,7 +58,7 @@ claude) provider="claude"; name="Claude"; site="claude.ai"; package="claude"; ho
 codex) provider="codex"; name="Codex"; site="chatgpt.com"; package="codex"; home_env="CODEX_HOME" ;;
 grok) provider="grok"; name="Grok"; site="x.ai"; package="grok"; home_env="GROK_HOME" ;;
 *)
-  echo "Usage: omarchy-agent-account-add [--check] [--events] [--reauth <account>] [claude|codex|grok] [label]" >&2
+  echo "Usage: unbloarchy-agent-account-add [--check] [--events] [--reauth <account>] [claude|codex|grok] [label]" >&2
   exit 1
   ;;
 esac
@@ -66,7 +66,7 @@ label="${2:-}"
 
 say() {
   if [[ $events == "true" ]]; then
-    printf '@@omarchy status %s\n' "$*"
+    printf '@@unbloarchy status %s\n' "$*"
   else
     echo "$*"
   fi
@@ -74,8 +74,8 @@ say() {
 
 finish() {
   if [[ $events == "true" ]]; then
-    printf '@@omarchy done %s\n' "$1"
-    omarchy-notification-send -g 󰚩 "$1"
+    printf '@@unbloarchy done %s\n' "$1"
+    unbloarchy-notification-send -g 󰚩 "$1"
   else
     echo
     echo "$1"
@@ -84,8 +84,8 @@ finish() {
 
 fail() {
   if [[ $events == "true" ]]; then
-    printf '@@omarchy error %s\n' "$1"
-    omarchy-notification-send -g 󰚩 -u critical "$(omarchy-i18n agents.addFailed "$name")" "$1"
+    printf '@@unbloarchy error %s\n' "$1"
+    unbloarchy-notification-send -g 󰚩 -u critical "$(unbloarchy-i18n agents.addFailed "$name")" "$1"
   else
     echo "$1" >&2
   fi
@@ -112,10 +112,10 @@ interruptible() {
   wait $!
 }
 
-if omarchy-cmd-missing "$provider"; then
-  say "$(omarchy-i18n agents.installingCli "$name")"
+if unbloarchy-cmd-missing "$provider"; then
+  say "$(unbloarchy-i18n agents.installingCli "$name")"
   if [[ $events == "true" ]]; then
-    mise use -g "$package" >/dev/null 2>&1 || fail "$(omarchy-i18n agents.installCliFailed "$name")"
+    mise use -g "$package" >/dev/null 2>&1 || fail "$(unbloarchy-i18n agents.installCliFailed "$name")"
   else
     mise use -g "$package" || exit 1
   fi
@@ -125,9 +125,9 @@ fi
 # have, and a login would quietly reuse it. The CLIs open their login page
 # through $BROWSER, so this points it at a private window instead.
 private_browser() {
-  browser=$(mktemp "${XDG_RUNTIME_DIR:-/tmp}/omarchy-account-browser.XXXXXX") || fail "$(omarchy-i18n agents.homeFailed)"
-  printf '#!/bin/bash\nexec omarchy-launch-browser --private "$1"\n' >"$browser" || fail "$(omarchy-i18n agents.homeFailed)"
-  chmod +x "$browser" || fail "$(omarchy-i18n agents.homeFailed)"
+  browser=$(mktemp "${XDG_RUNTIME_DIR:-/tmp}/unbloarchy-account-browser.XXXXXX") || fail "$(unbloarchy-i18n agents.homeFailed)"
+  printf '#!/bin/bash\nexec unbloarchy-launch-browser --private "$1"\n' >"$browser" || fail "$(unbloarchy-i18n agents.homeFailed)"
+  chmod +x "$browser" || fail "$(unbloarchy-i18n agents.homeFailed)"
 }
 
 case "$provider" in
@@ -138,7 +138,7 @@ esac
 
 # The CLI's own home, whatever this shell has pointed it at.
 login() {
-  interruptible env -u CLAUDE_CONFIG_DIR -u CODEX_HOME -u GROK_HOME "OMARCHY_AGENT_${provider^^}_HOME=" "${login_command[@]}"
+  interruptible env -u CLAUDE_CONFIG_DIR -u CODEX_HOME -u GROK_HOME "UNBLOARCHY_AGENT_${provider^^}_HOME=" "${login_command[@]}"
 }
 
 # Signing an account that's already here in again, where it lives: the
@@ -148,49 +148,49 @@ if [[ -n $reauth ]]; then
   if [[ $reauth == ":primary" ]]; then
     account_home="$HOME/.$provider"
   else
-    account_home=$(omarchy-agent-account-state homes "$provider" | awk -F'\t' -v id="$reauth" '$1 == id { print $2 }')
+    account_home=$(unbloarchy-agent-account-state homes "$provider" | awk -F'\t' -v id="$reauth" '$1 == id { print $2 }')
   fi
-  [[ -n $account_home ]] || fail "$(omarchy-i18n agents.noAccountNamed "$name" "$reauth")"
+  [[ -n $account_home ]] || fail "$(unbloarchy-i18n agents.noAccountNamed "$name" "$reauth")"
 
   if [[ $account_home == "$HOME/.$provider" ]]; then
-    say "$(omarchy-i18n agents.signInAgainBrowser "$name")"
-    login || fail "$(omarchy-i18n agents.signInFailed "$name")"
+    say "$(unbloarchy-i18n agents.signInAgainBrowser "$name")"
+    login || fail "$(unbloarchy-i18n agents.signInFailed "$name")"
   else
-    say "$(omarchy-i18n agents.signInAgainPrivate)"
+    say "$(unbloarchy-i18n agents.signInAgainPrivate)"
     private_browser
-    interruptible env BROWSER="$browser" "$home_env=$account_home" "${login_command[@]}" || fail "$(omarchy-i18n agents.signInFailed "$name")"
+    interruptible env BROWSER="$browser" "$home_env=$account_home" "${login_command[@]}" || fail "$(unbloarchy-i18n agents.signInFailed "$name")"
   fi
 
-  omarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
-  finish "$(omarchy-i18n agents.signedInAgain "$name")"
+  unbloarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
+  finish "$(unbloarchy-i18n agents.signedInAgain "$name")"
   exit 0
 fi
 
 # The first subscription signs in where the CLI always looks, through your
 # normal browser: nothing is signed in there yet that it could be mistaken for.
 if ! primary_signed_in "$provider"; then
-  say "$(omarchy-i18n agents.signInBrowser "$name")"
+  say "$(unbloarchy-i18n agents.signInBrowser "$name")"
   if login && primary_signed_in "$provider"; then
     # The first agent signed in on a machine with none chosen becomes the
-    # default, so `omarchy agent` and the panel's starter prompts have one to
+    # default, so `unbloarchy agent` and the panel's starter prompts have one to
     # run. A default someone already picked is never touched.
-    if [[ -z $(omarchy-default-agent) ]]; then
-      mkdir -p "$HOME/.config/omarchy/defaults"
-      printf '%s\n' "$provider" >"$HOME/.config/omarchy/defaults/agent"
+    if [[ -z $(unbloarchy-default-agent) ]]; then
+      mkdir -p "$HOME/.config/unbloarchy/defaults"
+      printf '%s\n' "$provider" >"$HOME/.config/unbloarchy/defaults/agent"
     fi
-    omarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
-    finish "$(omarchy-i18n agents.signedIn "$name")"
+    unbloarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
+    finish "$(unbloarchy-i18n agents.signedIn "$name")"
   else
-    fail "$(omarchy-i18n agents.signInFailed "$name")"
+    fail "$(unbloarchy-i18n agents.signInFailed "$name")"
   fi
 else
   # Retry the final registration of a completed, interrupted sign-in before
   # asking for another browser login. Live sign-ins are never recovered.
-  if recovered=$(omarchy-agent-account-state recover "$provider"); then
+  if recovered=$(unbloarchy-agent-account-state recover "$provider"); then
     if [[ $(jq 'length' <<<"$recovered") != "0" ]]; then
       added=$(jq -r 'map(.label + (if .email != "" then " (" + .email + ")" else "" end)) | join(", ")' <<<"$recovered")
-      omarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
-      finish "$(omarchy-i18n agents.added "$added")"
+      unbloarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
+      finish "$(unbloarchy-i18n agents.added "$added")"
       exit 0
     fi
   else
@@ -202,7 +202,7 @@ else
   fi
 
   if [[ $events == "true" ]]; then
-    say "$(omarchy-i18n agents.signInPrivate)"
+    say "$(unbloarchy-i18n agents.signInPrivate)"
   else
     cat <<EOF
 
@@ -214,20 +214,20 @@ Don't log out of the $name CLI to do this: logging out revokes the saved sign-in
 EOF
   fi
 
-  home=$(omarchy-agent-account-state begin "$provider" "$label" "$$") || fail "$(omarchy-i18n agents.homeFailed)"
+  home=$(unbloarchy-agent-account-state begin "$provider" "$label" "$$") || fail "$(unbloarchy-i18n agents.homeFailed)"
 
   private_browser
   interruptible env BROWSER="$browser" "$home_env=$home" "${login_command[@]}"
 
-  if account=$(omarchy-agent-account-state register "$provider" "$label" "$home" 2>&1); then
+  if account=$(unbloarchy-agent-account-state register "$provider" "$label" "$home" 2>&1); then
     home=""
     added=$(jq -r '.label + (if .email != "" then " (" + .email + ")" else "" end)' <<<"$account")
-    omarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
+    unbloarchy-agent-usage-update --force "$provider" >/dev/null 2>&1 &
     if [[ $events == "true" ]]; then
-      finish "$(omarchy-i18n agents.added "$added")"
+      finish "$(unbloarchy-i18n agents.added "$added")"
     else
-      finish "$(omarchy-i18n agents.added "$added")"
-      echo "Switch to it with: omarchy agent account use $provider $(jq -r .id <<<"$account")"
+      finish "$(unbloarchy-i18n agents.added "$added")"
+      echo "Switch to it with: unbloarchy agent account use $provider $(jq -r .id <<<"$account")"
     fi
   else
     registration_status=$?

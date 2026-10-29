@@ -6,7 +6,7 @@ Makikita mo ang lahat ng pangunahing keyboard binding gamit ang `Super + K` (Tmu
 
 | Hotkey                  | Tungkulin              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menu ng Omarchy (mga app at lahat pa ng iba)    |
+| `Super + Space`           | Menu ng Unbloarchy (mga app at lahat pa ng iba)    |
 | `Super + Alt + Space` | Grid ng mga app |
 | `Super + Escape` | Menu ng system (suspend, restart, atbp)  |
 | `Super + Ctrl + L` | I-lock ang computer |
@@ -143,7 +143,7 @@ Baguhin/magdagdag ng mga binding sa `~/.config/hypr/bindings.lua`.
 | `Super + V`           | I-paste    |
 | `Super + Ctrl + V`           | Tagapamahala ng clipboard    |
 
-Karaniwan sa Linux, kailangan mo ng `Ctrl + Shift + C/V` para mag-copy'n'paste sa terminal at `Ctrl + C/V` para gawin ito saanman. Gumagana saanman ang mga pinag-isang clipboard hotkey na ito ng Omarchy.
+Karaniwan sa Linux, kailangan mo ng `Ctrl + Shift + C/V` para mag-copy'n'paste sa terminal at `Ctrl + C/V` para gawin ito saanman. Gumagana saanman ang mga pinag-isang clipboard hotkey na ito ng Unbloarchy.
 
 ## Pag-capture
 
@@ -164,7 +164,7 @@ Karaniwan sa Linux, kailangan mo ng `Ctrl + Shift + C/V` para mag-copy'n'paste s
 
 Sa mga screenrecording, tatanungin ka muna ng hotkey kung aling audio ang gusto mo, pagkatapos ay magsisimula ang pag-record. Pindutin itong muli para huminto. Tingnan ang [mga screenshot at pag-record](12-screenshots-recording.md) para sa mga detalye.
 
-Maa-access din ang lahat ng opsyon sa pag-capture sa ilalim ng _Trigger > Capture_ sa menu ng Omarchy (`Super + Space`).
+Maa-access din ang lahat ng opsyon sa pag-capture sa ilalim ng _Trigger > Capture_ sa menu ng Unbloarchy (`Super + Space`).
 
 ## Mga abiso
 
@@ -186,9 +186,9 @@ Maa-access din ang lahat ng opsyon sa pag-capture sa ilalim ng _Trigger > Captur
 | `Super + Backspace` | I-toggle ang transparency sa isang window |
 | `Super + Ctrl + Backspace` | I-toggle ang single-window square aspect |
 
-Nasa `~/.config/omarchy/backgrounds/<theme name>` ang mga karagdagang background image. Magagamit din sa pamamagitan ng _Install > Style > Background_ sa menu ng Omarchy.
+Nasa `~/.config/unbloarchy/backgrounds/<theme name>` ang mga karagdagang background image. Magagamit din sa pamamagitan ng _Install > Style > Background_ sa menu ng Unbloarchy.
 
-Maa-access din ang lahat ng opsyon sa estilo sa ilalim ng _Style_ sa menu ng Omarchy (`Super + Space`).
+Maa-access din ang lahat ng opsyon sa estilo sa ilalim ng _Style_ sa menu ng Unbloarchy (`Super + Space`).
 
 ## Mga toggle
 
@@ -289,7 +289,7 @@ Dapat patakbuhin ang mga function na ito sa loob ng isang Tmux session.
 
 ## Terminal ng Ghostty
 
-Ini-install ang terminal ng Ghostty gamit ang _Install > Terminal_ sa pamamagitan ng menu ng Omarchy.
+Ini-install ang terminal ng Ghostty gamit ang _Install > Terminal_ sa pamamagitan ng menu ng Unbloarchy.
 
 | Hotkey                  | Tungkulin              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Maaari mong gamitin ang `Super + Ctrl + E` para magpakita ng kumpletong tagapili
 | `Shift + CapsLock Space N` | Pangalan mo (gaya ng inilagay sa setup)  |
 | `Shift + CapsLock Space E` | Email mo (gaya ng inilagay sa setup)  |
 
-Maaari kang magdagdag pa ng sarili mo sa pamamagitan ng pag-edit sa `~/.XCompose`, pagkatapos ay patakbuhin ang `omarchy-restart-xcompose` sa terminal para ma-pick up ang mga pagbabago.
+Maaari kang magdagdag pa ng sarili mo sa pamamagitan ng pag-edit sa `~/.XCompose`, pagkatapos ay patakbuhin ang `unbloarchy-restart-xcompose` sa terminal para ma-pick up ang mga pagbabago.

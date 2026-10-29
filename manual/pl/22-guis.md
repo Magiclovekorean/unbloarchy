@@ -20,11 +20,11 @@ Obsidian jest darmowy do wszystkich celów, w tym do użytku osobistego, komercy
 
 Obsidian oferuje również [komercyjny dodatek do synchronizacji](https://obsidian.md/sync) z aplikacjami mobilnymi na iOS i Android. (https://obsidian.md/pricing).
 
-Obsidian uruchamiasz za pomocą `Super + Shift + O`. Aby korzystać z synchronizacji motywu, musisz wybrać motyw `Omarchy` w ustawieniach.
+Obsidian uruchamiasz za pomocą `Super + Shift + O`. Aby korzystać z synchronizacji motywu, musisz wybrać motyw `Unbloarchy` w ustawieniach.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) to własna, banalnie prosta aplikacja Omarchy do pisania w Markdown. Żadnych skarbców, żadnych wtyczek, tylko ty i słowa.
+[Omawrite](https://github.com/omacom-io/omawrite) to własna, banalnie prosta aplikacja Unbloarchy do pisania w Markdown. Żadnych skarbców, żadnych wtyczek, tylko ty i słowa.
 
 Omawrite uruchamiasz za pomocą `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Aether uruchamiasz za pomocą menu uruchamiania aplikacji (`Super + Space`).
 
 [LocalSend](https://localsend.org/) pozwala wysyłać pliki do innych urządzeń w tej samej sieci, na których działa aplikacja, podobnie jak AirDrop od Apple. Jest jednak wieloplatformowy, więc możesz wysyłać pliki do i z Windows, macOS, Android, iOS i oczywiście Linux.
 
-Menu udostępniania możesz otworzyć za pomocą `Super + Ctrl + S` lub w menu Omarchy pod _Trigger > Share_. Daje ci ono cztery opcje:
+Menu udostępniania możesz otworzyć za pomocą `Super + Ctrl + S` lub w menu Unbloarchy pod _Trigger > Share_. Daje ci ono cztery opcje:
 
 - **Clipboard** wysyła wszystko, co skopiowałeś, jako plik tekstowy. Świetne do przesyłania linku lub fragmentu na telefon bez wysyłania sobie e-maila.
 - **File** otwiera selektor plików, w którym możesz wybrać kilka naraz.
 - **Folder** wysyła cały katalog.
 - **Receive** otwiera właściwy LocalSend, aby inne urządzenie mogło coś do ciebie wysłać.
 
-To samo działa z terminala za pomocą `omarchy share clipboard`, `omarchy share file [path]` i `omarchy share folder [path]`. Pomiń ścieżkę, a otrzymasz selektor.
+To samo działa z terminala za pomocą `unbloarchy share clipboard`, `unbloarchy share file [path]` i `unbloarchy share folder [path]`. Pomiń ścieżkę, a otrzymasz selektor.
 
 Możesz też wysyłać bezpośrednio z menedżera plików: kliknij prawym przyciskiem myszy dowolny wybór w Nautilus i wybierz _Send via LocalSend_.
 
-Zapora sieciowa Omarchy jest domyślnie zamknięta, z wyjątkiem portu LocalSend, więc działa to od razu po świeżej instalacji. Zobacz [bezpieczeństwo](48-security.md).
+Zapora sieciowa Unbloarchy jest domyślnie zamknięta, z wyjątkiem portu LocalSend, więc działa to od razu po świeżej instalacji. Zobacz [bezpieczeństwo](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice uruchamiasz za pomocą menu uruchamiania aplikacji (`Super + Space`)
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) to własna, banalnie prosta aplikacja Omarchy do prezentacji. Twoja prezentacja to pojedynczy plik Markdown z obrazami i filmami obok niego: piszesz każdy slajd pod podglądem na żywo, przeciągasz slajdy w odpowiedniej kolejności, a następnie prezentujesz na pełnym ekranie lub eksportujesz do PDF i PowerPoint. Podchwytuje nawet twój motyw Omarchy.
+[Hype](https://github.com/omacom/hype) to własna, banalnie prosta aplikacja Unbloarchy do prezentacji. Twoja prezentacja to pojedynczy plik Markdown z obrazami i filmami obok niego: piszesz każdy slajd pod podglądem na żywo, przeciągasz slajdy w odpowiedniej kolejności, a następnie prezentujesz na pełnym ekranie lub eksportujesz do PDF i PowerPoint. Podchwytuje nawet twój motyw Unbloarchy.
 
 Hype uruchamiasz za pomocą menu uruchamiania aplikacji (`Super + Space`). Naciśnij `?` w aplikacji, aby zobaczyć każdy skrót.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) to własny, banalnie prosty sposób Omarchy na podpisywanie plików PDF i ich wypełnianie. Umieść zapisany podpis, tekst i dzisiejszą datę w dowolnym miejscu na stronie, a następnie zapisz podpisaną kopię obok oryginału. Zobacz [Wypełnianie plików PDF](27-filling-out-pdfs.md), aby dowiedzieć się, jak to zrobić.
+[Signed](https://github.com/omacom/signed) to własny, banalnie prosty sposób Unbloarchy na podpisywanie plików PDF i ich wypełnianie. Umieść zapisany podpis, tekst i dzisiejszą datę w dowolnym miejscu na stronie, a następnie zapisz podpisaną kopię obok oryginału. Zobacz [Wypełnianie plików PDF](27-filling-out-pdfs.md), aby dowiedzieć się, jak to zrobić.
 
 Signed uruchamiasz za pomocą menu uruchamiania aplikacji (`Super + Space`) lub otwierasz w nim plik PDF z menedżera plików.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) to własny, banalnie prosty kalkulator Omarchy, który otwiera się w pływającym oknie.
+[Omacalc](https://github.com/omacom-io/omacalc) to własny, banalnie prosty kalkulator Unbloarchy, który otwiera się w pływającym oknie.
 
 Omacalc uruchamiasz za pomocą `Super + Shift + Q` (lub klawisza kalkulatora, jeśli twoja klawiatura taki ma).
 
@@ -85,7 +85,7 @@ Omacalc uruchamiasz za pomocą `Super + Shift + Q` (lub klawisza kalkulatora, je
 
 [Signal](https://signal.org/) jest pionierem szyfrowanej komunikacji E2E i świetną opcją komunikacyjną dla każdego, kto wolałby nie korzystać z jednego z wielkich konglomeratów technologicznych.
 
-Signal uruchamiasz za pomocą `Super + Shift + G`. Nie jest częścią podstawowej instalacji, więc za pierwszym razem, gdy to naciśniesz, Omarchy zaproponuje zainstalowanie go za ciebie (znajduje się również w menu Omarchy pod _Install > Service_). 
+Signal uruchamiasz za pomocą `Super + Shift + G`. Nie jest częścią podstawowej instalacji, więc za pierwszym razem, gdy to naciśniesz, Unbloarchy zaproponuje zainstalowanie go za ciebie (znajduje się również w menu Unbloarchy pod _Install > Service_). 
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv uruchamiasz za pomocą menu uruchamiania aplikacji (`Super + Space`) lub po 
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) to własny, banalnie prosty przycinacz wideo Omarchy. Gdy potrzebujesz tylko przyciąć początek i koniec klipu, przebija odpalanie pełnego edytora wideo.
+[Omacut](https://github.com/omacom-io/omacut) to własny, banalnie prosty przycinacz wideo Unbloarchy. Gdy potrzebujesz tylko przyciąć początek i koniec klipu, przebija odpalanie pełnego edytora wideo.
 
 Omacut uruchamiasz za pomocą menu uruchamiania aplikacji (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) to własny, banalnie prosty rejestrator kamery internetowej Omarchy. Wybierz kamerę i mikrofon raz, a następnie naciśnij `Space`, aby nagrywać, i ponownie, aby wstrzymać i wznowić to samo nagranie. Zawsze nagrywa w najwyższej rozdzielczości twojej kamery, z miernikiem mikrofonu na żywo, abyś mógł sprawdzić poziomy przed rozpoczęciem.
+[Monologue](https://github.com/omacom/monologue) to własny, banalnie prosty rejestrator kamery internetowej Unbloarchy. Wybierz kamerę i mikrofon raz, a następnie naciśnij `Space`, aby nagrywać, i ponownie, aby wstrzymać i wznowić to samo nagranie. Zawsze nagrywa w najwyższej rozdzielczości twojej kamery, z miernikiem mikrofonu na żywo, abyś mógł sprawdzić poziomy przed rozpoczęciem.
 
 Zatrzymaj nagranie, a otworzy się od razu we wbudowanym edytorze. Kliknij dwukrotnie klip, aby go podzielić, przeciągnij uchwyty, aby przyciąć każdy fragment, i usuń części, których nie chcesz. Następnie zapisz go jako MP4. Twoje oryginalne nagranie jest przechowywane do momentu, aż je odrzucisz, więc zawsze możesz wrócić i przyciąć je inaczej.
 

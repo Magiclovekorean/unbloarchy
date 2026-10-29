@@ -2,7 +2,7 @@
 
 Karaniwan sa Linux, kailangan mo ng `Ctrl + Shift + C/V` para mag-copy'n'paste sa terminal at `Ctrl + C/V` para gawin ito sa lahat ng iba pang lugar. Mahirap itong masanayan para sa sinumang hindi ipinanganak at lumaki sa Linux! Ganoon din ang paglipat mula super papuntang ctrl, kung galing ka sa Mac.
 
-Tinutugunan ng Omarchy ang dalawang problemang ito gamit ang pinag-isang mga hotkey sa clipboard na gumagana (halos) kahit saan. Ang mga ito ay:
+Tinutugunan ng Unbloarchy ang dalawang problemang ito gamit ang pinag-isang mga hotkey sa clipboard na gumagana (halos) kahit saan. Ang mga ito ay:
 
 | Hotkey | Utos |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Gamitin ang `Super + A`, pagkatapos ay `Super + C` para kopyahin ang lahat sa is
 
 ### Kasaysayan ng clipboard
 
-Ang kasaysayan ng clipboard ay ibinibigay ng Omarchy shell at gumagana para sa parehong text at mga larawan. Bubuksan mo ito gamit ang `Super + Ctrl + V`, pipiliin ang entry mo gamit ang return, at mailalagay iyon sa clipboard na handa nang i-paste sa `Super + V`.
+Ang kasaysayan ng clipboard ay ibinibigay ng Unbloarchy shell at gumagana para sa parehong text at mga larawan. Bubuksan mo ito gamit ang `Super + Ctrl + V`, pipiliin ang entry mo gamit ang return, at mailalagay iyon sa clipboard na handa nang i-paste sa `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

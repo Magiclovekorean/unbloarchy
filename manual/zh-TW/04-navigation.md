@@ -1,8 +1,8 @@
 # 導覽
 
-Omarchy 中的一切都透過鍵盤完成——_一切！_系統剛啟動時，你光靠滑鼠真的什麼都做不了。但你可以按下 `Super + Space` 叫出 Omarchy Menu，從這裡幾乎什麼都能做。
+Unbloarchy 中的一切都透過鍵盤完成——_一切！_系統剛啟動時，你光靠滑鼠真的什麼都做不了。但你可以按下 `Super + Space` 叫出 Unbloarchy Menu，從這裡幾乎什麼都能做。
 
-但在大多數時候，Omarchy menu 甚至不算是操作系統的主要方式。我們可以比那更快！所有最重要的應用程式都直接綁定到個別的快捷鍵。你用 `Super + Return` 啟動終端機，用 `Super + Shift + Return` 啟動瀏覽器。試著一個接著一個執行，你就會看到 Hyprland 平鋪的魔法在運作：
+但在大多數時候，Unbloarchy menu 甚至不算是操作系統的主要方式。我們可以比那更快！所有最重要的應用程式都直接綁定到個別的快捷鍵。你用 `Super + Return` 啟動終端機，用 `Super + Shift + Return` 啟動瀏覽器。試著一個接著一個執行，你就會看到 Hyprland 平鋪的魔法在運作：
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Omarchy 中的一切都透過鍵盤完成——_一切！_系統剛啟動時，�
 
 ### Dwindle 與 scrolling 版面配置
 
-Omarchy 的預設版面配置稱為 dwindle。它讓你在單一工作區上開啟的所有視窗始終可見，即使它必須將它們縮小。
+Unbloarchy 的預設版面配置稱為 dwindle。它讓你在單一工作區上開啟的所有視窗始終可見，即使它必須將它們縮小。
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 floating 工作區運作起來像傳統桌面：視窗重疊，且由你自己移動它們並調整大小。每個視窗都會得到一個具有你的主題色彩的標題欄，帶有最小化、最大化和關閉的按鈕。`Super + M` 也會最小化聚焦的視窗。最小化的視窗會在 dock 中等待；點按它的應用程式將它帶回來。點按視窗將它帶到最前面。從任意邊緣或角落調整它的大小。按兩下標題欄將視窗最大化同時保持頂部欄可見，再按兩下則讓它恢復舊的大小。
 
-floating 工作區同時會顯示一個 dock，帶有你釘選的應用程式、所有正在執行的應用程式，以及 apps 按鈕後面的每個應用程式網格，而 `Super + Alt + Space` 和 Omarchy menu 中的 _Apps_ 也會開啟網格。在網格上以滑鼠右鍵點按應用程式，或按下 `Delete`，即可解除安裝該應用程式。點按應用程式開啟它，或將其視窗帶到最前面；再次點按則循環切換它的視窗。中鍵點按開啟新視窗。沿著 dock 拖曳圖示移動它；將正在執行的應用程式拖曳到其他應用程式之間會讓它留在那裡。以滑鼠右鍵點按來將應用程式保留在 dock 中、將它移出 dock 或結束它。dock 會避開全螢幕視窗。以滑鼠右鍵點按 apps 按鈕，將 dock 移動到另一邊緣，或讓它隱藏直到指標抵達它的邊緣。這個位置也在 _Appearance > Dock > Dock Position_ 之下，且 `omarchy dock position left` 和 `omarchy dock autohide on` 可以從終端機設定這兩者。Apps 在 dock 中時，你保留的應用程式在未執行時會以淡化方式顯示。
+floating 工作區同時會顯示一個 dock，帶有你釘選的應用程式、所有正在執行的應用程式，以及 apps 按鈕後面的每個應用程式網格，而 `Super + Alt + Space` 和 Unbloarchy menu 中的 _Apps_ 也會開啟網格。在網格上以滑鼠右鍵點按應用程式，或按下 `Delete`，即可解除安裝該應用程式。點按應用程式開啟它，或將其視窗帶到最前面；再次點按則循環切換它的視窗。中鍵點按開啟新視窗。沿著 dock 拖曳圖示移動它；將正在執行的應用程式拖曳到其他應用程式之間會讓它留在那裡。以滑鼠右鍵點按來將應用程式保留在 dock 中、將它移出 dock 或結束它。dock 會避開全螢幕視窗。以滑鼠右鍵點按 apps 按鈕，將 dock 移動到另一邊緣，或讓它隱藏直到指標抵達它的邊緣。這個位置也在 _Appearance > Dock > Dock Position_ 之下，且 `unbloarchy dock position left` 和 `unbloarchy dock autohide on` 可以從終端機設定這兩者。Apps 在 dock 中時，你保留的應用程式在未執行時會以淡化方式顯示。
 
-新的工作區，以及任何你尚未用 `Super + L` 賦予自己版面配置的工作區，會使用預設版面配置。變更預設會將每個沒有視窗的工作區重設為該預設，而有視窗的工作區會保持其已有的版面配置。最小化至 dock 的視窗仍然算作其所離開的工作區上的一個視窗。在 _Appearance > Workspace Layout_ 之下選取它：Tiling、Scrolling 或 Floating。`omarchy-hyprland-workspace-layout-default scrolling` 從終端機設定它。
+新的工作區，以及任何你尚未用 `Super + L` 賦予自己版面配置的工作區，會使用預設版面配置。變更預設會將每個沒有視窗的工作區重設為該預設，而有視窗的工作區會保持其已有的版面配置。最小化至 dock 的視窗仍然算作其所離開的工作區上的一個視窗。在 _Appearance > Workspace Layout_ 之下選取它：Tiling、Scrolling 或 Floating。`unbloarchy-hyprland-workspace-layout-default scrolling` 從終端機設定它。
 
 ### 視窗分組
 

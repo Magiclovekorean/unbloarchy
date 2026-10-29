@@ -2,7 +2,7 @@
 
 Na Linuxu obično morate koristiti `Ctrl + Shift + C/V` za kopiranje i lijepljenje u terminalu i `Ctrl + C/V` da biste to radili svugdje drugdje. Na to se teško naviknuti svakome tko nije rođen i odgojen na Linuxu! Isto vrijedi i za prelazak sa super na ctrl ako dolazite s Maca.
 
-Omarchy rješava oba problema ujednačenim prečacima za međuspremnik koji rade (gotovo) svugdje. Oni su:
+Unbloarchy rješava oba problema ujednačenim prečacima za međuspremnik koji rade (gotovo) svugdje. Oni su:
 
 | Hotkey | Command |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Koristite `Super + A`, zatim `Super + C` da biste kopirali sve u fokusiranom tek
 
 ### Povijest međuspremnika
 
-Povijest međuspremnika pruža Omarchy ljuska i radi i za tekst i za slike. Pokrećete je pomoću `Super + Ctrl + V`, odabirete svoj unos tipkom return, a zatim će on biti postavljen u međuspremnik, spreman za lijepljenje pomoću `Super + V`.
+Povijest međuspremnika pruža Unbloarchy ljuska i radi i za tekst i za slike. Pokrećete je pomoću `Super + Ctrl + V`, odabirete svoj unos tipkom return, a zatim će on biti postavljen u međuspremnik, spreman za lijepljenje pomoću `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

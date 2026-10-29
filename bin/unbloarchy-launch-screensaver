@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Launch the Omarchy screensaver on every display.
-# omarchy:args=[force] [options]
+# unbloarchy:summary=Launch the Unbloarchy screensaver on every display.
+# unbloarchy:args=[force] [options]
 
-exec /usr/lib/omarchy-screensaver/omarchy-screensaver "$@"
+exec /usr/lib/unbloarchy-screensaver/unbloarchy-screensaver "$@"

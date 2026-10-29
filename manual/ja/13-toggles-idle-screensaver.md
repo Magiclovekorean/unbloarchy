@@ -1,35 +1,35 @@
 # 切り替え項目、アイドルとスクリーンセーバー
 
-日々切り替えることの多くは、実は設定ではない。それは1時間だけオンにして、またオフに戻すモードだ：遅くまで働いている間のナイトライト、発表中の邪魔するなモード、何かを見ている間の起きたまま状態。Omarchy はそれらをトグルと呼び、すべて同じように動作する ― ホットキー、メニュー項目、コマンドが、すべて同じスイッチを叩く。
+日々切り替えることの多くは、実は設定ではない。それは1時間だけオンにして、またオフに戻すモードだ：遅くまで働いている間のナイトライト、発表中の邪魔するなモード、何かを見ている間の起きたまま状態。Unbloarchy はそれらをトグルと呼び、すべて同じように動作する ― ホットキー、メニュー項目、コマンドが、すべて同じスイッチを叩く。
 
 ### トグルメニュー
 
-`Super + Ctrl + O` で _トリガー > トグル_ を直接開くか、Omarchy メニュー（`Super + Space`）から辿って行くこともできる。そのリストにあるものはすべて、状態がどこに保存されているかを考えずに切り替えられるスイッチだ。デスクトップの見た目に関するスイッチは、その隣の _外観_ の下にある。
+`Super + Ctrl + O` で _トリガー > トグル_ を直接開くか、Unbloarchy メニュー（`Super + Space`）から辿って行くこともできる。そのリストにあるものはすべて、状態がどこに保存されているかを考えずに切り替えられるスイッチだ。デスクトップの見た目に関するスイッチは、その隣の _外観_ の下にある。
 
-ターミナルからは、同じスイッチが `omarchy toggle <thing>` だ。`omarchy toggle` を単独で実行すると、グループ全体を表示できる。
+ターミナルからは、同じスイッチが `unbloarchy toggle <thing>` だ。`unbloarchy toggle` を単独で実行すると、グループ全体を表示できる。
 
 | 切り替え項目 | ホットキー | コマンド |
 | ------ | ------ | ------- |
-| ナイトライト | — | `omarchy toggle nightlight` |
-| 通知を無音にする | `Super + Ctrl + Alt + ,` | `omarchy toggle notification silencing` |
-| 起きたままにする（アイドル時のロックなし） | `Super + Ctrl + I` | `omarchy toggle idle` |
-| クラッシュキャプチャ | — | `omarchy toggle crash-capture` |
-| スクリーンセーバー | — | `omarchy toggle screensaver` |
-| [Herdr](https://herdr.dev) テーマ同期 | — | `omarchy toggle theme sync` |
-| メニューバー | `Super + Shift + Space` | `omarchy toggle bar` |
-| タッチパッド | `XF86TouchpadToggle` | `omarchy toggle touchpad` |
-| タッチスクリーン | — | `omarchy toggle touchscreen` |
-| サスペンド | — | `omarchy toggle suspend` |
-| ハイブリッド GPU | — | `omarchy toggle hybrid gpu` |
+| ナイトライト | — | `unbloarchy toggle nightlight` |
+| 通知を無音にする | `Super + Ctrl + Alt + ,` | `unbloarchy toggle notification silencing` |
+| 起きたままにする（アイドル時のロックなし） | `Super + Ctrl + I` | `unbloarchy toggle idle` |
+| クラッシュキャプチャ | — | `unbloarchy toggle crash-capture` |
+| スクリーンセーバー | — | `unbloarchy toggle screensaver` |
+| [Herdr](https://herdr.dev) テーマ同期 | — | `unbloarchy toggle theme sync` |
+| メニューバー | `Super + Shift + Space` | `unbloarchy toggle bar` |
+| タッチパッド | `XF86TouchpadToggle` | `unbloarchy toggle touchpad` |
+| タッチスクリーン | — | `unbloarchy toggle touchscreen` |
+| サスペンド | — | `unbloarchy toggle suspend` |
+| ハイブリッド GPU | — | `unbloarchy toggle hybrid gpu` |
 
 タッチパッド、タッチスクリーン、ハイブリッド GPU のスイッチは、Toggle の下ではなく _トリガー > ハードウェア_（`Super + Ctrl + H`）の下にある。そのハードウェアを実際に持っている場合にのみ表示されるからだ。タッチパッドとタッチスクリーンのものは Hyprland のリロード後も維持される ― 無効にしたデバイスの名前が小さな状態ファイルに保存され、Hyprland が起動時にそれを読み取って再び無効にする。
 
-_外観_ にはメニューバーとアニメーションがあり、さらに `omarchy toggle` コマンドではないが同じように動作するものがいくつかある：バーに表示するバッテリー残量のパーセンテージ、デフォルトのワークスペースレイアウト、そして _ウィンドウ_ の下にある、ウィンドウの隙間（`Super + Shift + Backspace`）と1ウィンドウ時の正方形アスペクト（`Super + Ctrl + Backspace`）だ。
+_外観_ にはメニューバーとアニメーションがあり、さらに `unbloarchy toggle` コマンドではないが同じように動作するものがいくつかある：バーに表示するバッテリー残量のパーセンテージ、デフォルトのワークスペースレイアウト、そして _ウィンドウ_ の下にある、ウィンドウの隙間（`Super + Shift + Backspace`）と1ウィンドウ時の正方形アスペクト（`Super + Ctrl + Backspace`）だ。
 
-これらのほとんどは、`~/.local/state/omarchy/toggles/` の下にあるフラグファイルにすぎない。スクリプトでどれかを条件分岐に使いたい場合は、自分で探しに行かなくても `omarchy-toggle-enabled` が終了コードで教えてくれる：
+これらのほとんどは、`~/.local/state/unbloarchy/toggles/` の下にあるフラグファイルにすぎない。スクリプトでどれかを条件分岐に使いたい場合は、自分で探しに行かなくても `unbloarchy-toggle-enabled` が終了コードで教えてくれる：
 
 ```bash
-omarchy-toggle-enabled screensaver-off && echo "screensaver is off"
+unbloarchy-toggle-enabled screensaver-off && echo "screensaver is off"
 ```
 
 フラグはオフの状態で命名されている ― `screensaver-off`、`suspend-off`、`bar-off` ― つまり、その存在は機能が無効になっていることを意味する。
@@ -38,11 +38,11 @@ omarchy-toggle-enabled screensaver-off && echo "screensaver is off"
 
 モードがオンのとき、トップバーの中央、時計の隣に小さなグリフが表示される。それがインジケーターウィジェットで、音声入力、画面録画、保留中のリマインダー、ナイトライト、邪魔するなモード、起きたまま状態を表示する。
 
-非アクティブなインジケーターは非表示だ。バーのどこかにホバーすると、それらが薄くフェードインするので、ホットキーを知らなくてもクリックしてオンにできる。アクティブなものをクリックするとオフに戻る。常にすべて表示しておきたい場合は、`~/.config/omarchy/shell.json` の `omarchy.indicators` エントリで `alwaysShow` を `true` に設定する ― バーウィジェットの設定方法については[トップバー](05-the-top-bar.md)を参照。
+非アクティブなインジケーターは非表示だ。バーのどこかにホバーすると、それらが薄くフェードインするので、ホットキーを知らなくてもクリックしてオンにできる。アクティブなものをクリックするとオフに戻る。常にすべて表示しておきたい場合は、`~/.config/unbloarchy/shell.json` の `unbloarchy.indicators` エントリで `alwaysShow` を `true` に設定する ― バーウィジェットの設定方法については[トップバー](05-the-top-bar.md)を参照。
 
 ### ナイトライト
 
-ナイトライトは画面を 4000K に暖かくし、もう一度切り替えると 6500K に戻る。トグルメニュー（`Super + Ctrl + O`）から、または `omarchy toggle nightlight` で切り替える。これは hyprsunset で駆動されており、まだ実行されていない場合はトグルが代わりに起動する。
+ナイトライトは画面を 4000K に暖かくし、もう一度切り替えると 6500K に戻る。トグルメニュー（`Super + Ctrl + O`）から、または `unbloarchy toggle nightlight` で切り替える。これは hyprsunset で駆動されており、まだ実行されていない場合はトグルが代わりに起動する。
 
 デフォルトでは hyprsunset は画面にまったく何もしない。`~/.config/hypr/hyprsunset.conf` には identity プロファイルが同梱されており、暖かさを求めるまではディスプレイに一切手を加えないようになっている。時計に合わせて切り替えたい場合は、それを時刻プロファイルに置き換える：
 
@@ -61,11 +61,11 @@ profile {
 
 何も失われない。無音にされた通知は保留される：直近の数件を `Super + Shift + Alt + ,` で画面に戻せる。残りについては[通知](10-notices.md)を参照。
 
-それでも通り抜けるメッセージが2種類ある：今行ったことに対する Omarchy 自身の確認トースト（"Theme changed"、"Screenshot saved"）と、コマンドラインから送信された重要なアラートだ。何でもかんでも critical とマークして無理に前に出てこようとするチャットアプリは該当しない。
+それでも通り抜けるメッセージが2種類ある：今行ったことに対する Unbloarchy 自身の確認トースト（"Theme changed"、"Screenshot saved"）と、コマンドラインから送信された重要なアラートだ。何でもかんでも critical とマークして無理に前に出てこようとするチャットアプリは該当しない。
 
 ### アイドル
 
-Omarchy シェルがアイドル時の動作を管理し、そのタイミングは `~/.config/omarchy/shell.json` のトップレベルの `idle` ブロックにある：
+Unbloarchy シェルがアイドル時の動作を管理し、そのタイミングは `~/.config/unbloarchy/shell.json` のトップレベルの `idle` ブロックにある：
 
 ```json
 {
@@ -81,22 +81,22 @@ Omarchy シェルがアイドル時の動作を管理し、そのタイミング
 
 ロックの期限前にスクリーンセーバーを解除すると、それはアクティビティとしてカウントされ、保留中のロックはキャンセルされる。マシンをちらっと見ただけでロックアウトされることはない。
 
-アイドル時のロックを完全に止めるには、`Super + Ctrl + I` ― または `omarchy toggle idle` ― で起きたまま状態をオンにすると、コーヒーカップのインジケーターがバーに表示される。長いプレゼンテーションの前や、見守りたいビルドの前にはこれを使う。もう一度押すと通常に戻る。スクリプトから必要な場合は、`omarchy toggle idle status` が現在の状態を JSON で出力する。
+アイドル時のロックを完全に止めるには、`Super + Ctrl + I` ― または `unbloarchy toggle idle` ― で起きたまま状態をオンにすると、コーヒーカップのインジケーターがバーに表示される。長いプレゼンテーションの前や、見守りたいビルドの前にはこれを使う。もう一度押すと通常に戻る。スクリプトから必要な場合は、`unbloarchy toggle idle status` が現在の状態を JSON で出力する。
 
 これはロックとスクリーンセーバーについての話であり、電源についての話ではない。サスペンドと休止状態には[システムスリープ](36-system-sleep.md)で独自の設定がある。
 
 ### スクリーンセーバー
 
-Omarchy のスクリーンセーバーは、ランダムなテキストエフェクトで流れる ASCII アートで、モニターごとに1つのインスタンスが動く。キー入力やマウスの動きで終了する。
+Unbloarchy のスクリーンセーバーは、ランダムなテキストエフェクトで流れる ASCII アートで、モニターごとに1つのインスタンスが動く。キー入力やマウスの動きで終了する。
 
 _システム > スクリーンセーバー_（`Super + Esc`）からオンデマンドで起動でき、アイドル時のスクリーンセーバーをオフにしていても強制的に表示できる。デフォルトではホットキーは割り当てられていない。
 
-作業から直接ロックに移行したい場合は、`omarchy toggle screensaver` でアイドル時のものをオフにする。キー、クリック、スクロール、マウスの動きのいずれでも閉じられる。
+作業から直接ロックに移行したい場合は、`unbloarchy toggle screensaver` でアイドル時のものをオフにする。キー、クリック、スクロール、マウスの動きのいずれでも閉じられる。
 
-描画されるロゴは _外観 > ブランディング > スクリーンセーバー_ の下で変更できる。png や svg をアップロードすると、Omarchy が ASCII に変換する。[ブランディング](41-branding.md)を参照。
+描画されるロゴは _外観 > ブランディング > スクリーンセーバー_ の下で変更できる。png や svg をアップロードすると、Unbloarchy が ASCII に変換する。[ブランディング](41-branding.md)を参照。
 
 ### ロック画面
 
-`Super + Ctrl + L` でマシンをロックする。これにより Omarchy シェルのロック画面が実行され、ディスプレイが消え、間違ったアルファベットでパスワードを入力しないようキーボードレイアウトが最初のものにリセットされ、実行中なら 1Password もついでにロックされる。
+`Super + Ctrl + L` でマシンをロックする。これにより Unbloarchy シェルのロック画面が実行され、ディスプレイが消え、間違ったアルファベットでパスワードを入力しないようキーボードレイアウトが最初のものにリセットされ、実行中なら 1Password もついでにロックされる。
 
 ロック画面はパスワードを受け付け、指紋を設定済みなら指紋でも認証できる。それやその他の認証方法については[ハードウェア認証](37-hardware-authentication.md)で説明している。

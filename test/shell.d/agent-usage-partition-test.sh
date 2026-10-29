@@ -35,9 +35,9 @@ WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT
 
 collectors=()
-for collector in "$ROOT"/bin/omarchy-agent-usage-*; do
-  [[ ${collector##*/omarchy-agent-usage-} == "update" ]] && continue
-  collectors+=("${collector##*/omarchy-agent-usage-}")
+for collector in "$ROOT"/bin/unbloarchy-agent-usage-*; do
+  [[ ${collector##*/unbloarchy-agent-usage-} == "update" ]] && continue
+  collectors+=("${collector##*/unbloarchy-agent-usage-}")
 done
 (( ${#collectors[@]} > 0 )) || fail "agent usage collectors are found under bin/"
 
@@ -60,8 +60,8 @@ run_collector() {
     PATH="$WORK/bin" \
     LANG=C.UTF-8 \
     ${TZ+TZ="$TZ"} \
-    OMARCHY_PATH="$ROOT" \
-    OMARCHY_LANGUAGE_FILE="$OMARCHY_LANGUAGE_FILE" \
+    UNBLOARCHY_PATH="$ROOT" \
+    UNBLOARCHY_LANGUAGE_FILE="$UNBLOARCHY_LANGUAGE_FILE" \
     XDG_CONFIG_HOME="$home/.config" \
     XDG_DATA_HOME="$home/.local/share" \
     XDG_STATE_HOME="$home/.local/state" \
@@ -71,7 +71,7 @@ run_collector() {
     HTTP_PROXY=http://127.0.0.1:9 HTTPS_PROXY=http://127.0.0.1:9 \
     ALL_PROXY=http://127.0.0.1:9 \
     "$@" \
-    "$TIMEOUT" --kill-after=5 "$COLLECTOR_TIMEOUT" "$ROOT/bin/omarchy-agent-usage-$id" --force \
+    "$TIMEOUT" --kill-after=5 "$COLLECTOR_TIMEOUT" "$ROOT/bin/unbloarchy-agent-usage-$id" --force \
     >"$out.json" 2>"$out.err" || status=$?
   echo "$status" >"$out.status"
 }
@@ -504,8 +504,8 @@ run_all "$RELOCATED_HOME" "$WORK/relocated-results" PI_CODING_AGENT_DIR="$RELOCA
 CONFIGURED_HOME="$WORK/configured"
 cp -a "$FIXTURE_HOME" "$CONFIGURED_HOME"
 rm -rf "$CONFIGURED_HOME/.cache"
-mkdir -p "$CONFIGURED_HOME/.config/omarchy/agents" "$CONFIGURED_HOME/.pi/agent/sessions/fireworks"
-python3 - "$WORK/cells.json" "$CONFIGURED_HOME/.config/omarchy/agents/local.json" "$CONFIGURED_HOME/.pi/agent/sessions/fireworks/session.jsonl" <<'PY'
+mkdir -p "$CONFIGURED_HOME/.config/unbloarchy/agents" "$CONFIGURED_HOME/.pi/agent/sessions/fireworks"
+python3 - "$WORK/cells.json" "$CONFIGURED_HOME/.config/unbloarchy/agents/local.json" "$CONFIGURED_HOME/.pi/agent/sessions/fireworks/session.jsonl" <<'PY'
 import json
 import sys
 from datetime import datetime, timezone
@@ -1198,11 +1198,11 @@ def literals(node):
 def assigned(tree, names):
   return [node.value for node in tree.body if isinstance(node, ast.Assign) and any(getattr(target, "id", "") in names for target in node.targets)]
 
-local = ast.parse((bin_dir / "omarchy-agent-usage-local").read_text())
+local = ast.parse((bin_dir / "unbloarchy-agent-usage-local").read_text())
 claimed = {pid for value in assigned(local, ("CLAIMED_PROVIDERS",)) for pid in literals(value)}
-missing = [] if claimed else ["CLAIMED_PROVIDERS is not found in omarchy-agent-usage-local"]
-for path in sorted(bin_dir.glob("omarchy-agent-usage-*")):
-  cid = path.name.removeprefix("omarchy-agent-usage-")
+missing = [] if claimed else ["CLAIMED_PROVIDERS is not found in unbloarchy-agent-usage-local"]
+for path in sorted(bin_dir.glob("unbloarchy-agent-usage-*")):
+  cid = path.name.removeprefix("unbloarchy-agent-usage-")
   if cid in ("local", "update"):
     continue
   tree = ast.parse(path.read_text())
@@ -1228,8 +1228,8 @@ fi
 CLAIMED_IDS_HOME="$WORK/provider-ids-configured"
 cp -a "$IDS_HOME" "$CLAIMED_IDS_HOME"
 rm -rf "$CLAIMED_IDS_HOME/.cache"
-mkdir -p "$CLAIMED_IDS_HOME/.config/omarchy/agents"
-python3 - "$WORK/ids-cells.json" "$CLAIMED_IDS_HOME/.config/omarchy/agents/local.json" <<'PY'
+mkdir -p "$CLAIMED_IDS_HOME/.config/unbloarchy/agents"
+python3 - "$WORK/ids-cells.json" "$CLAIMED_IDS_HOME/.config/unbloarchy/agents/local.json" <<'PY'
 import json
 import sys
 
@@ -1354,7 +1354,7 @@ fi
 # own hardware is local's, and one at a host nothing can place nobody's. A
 # provider gone from the config keeps the base_url it was last seen with.
 CODEX_ROUTES_HOME="$WORK/codex-routes"
-mkdir -p "$CODEX_ROUTES_HOME/.codex" "$CODEX_ROUTES_HOME/.local/state/omarchy/agents"
+mkdir -p "$CODEX_ROUTES_HOME/.codex" "$CODEX_ROUTES_HOME/.local/state/unbloarchy/agents"
 cat >"$CODEX_ROUTES_HOME/.codex/config.toml" <<'TOML'
 model = "gpt-5.1-codex"
 [model_providers.zai]
@@ -1388,7 +1388,7 @@ from pathlib import Path
 
 home = Path(sys.argv[1])
 stamp = datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
-(home / ".local/state/omarchy/agents/local-codex-providers.json").write_text(json.dumps(
+(home / ".local/state/unbloarchy/agents/local-codex-providers.json").write_text(json.dumps(
   {"homes": {str(home / ".codex"): {"gone": "https://api.z.ai/api/paas/v4"}}}))
 ROUTES = [
   ("openai", "gpt-5.1-codex", "codex"),
@@ -1471,11 +1471,11 @@ fi
 # under Z.ai no longer stands once config.toml sends it elsewhere.
 mkdir -p "$WORK/codex-routes-cached"
 run_cached_zai() {
-  env -i HOME="$CODEX_ROUTES_HOME" PATH="$WORK/bin" LANG=C.UTF-8 ${TZ+TZ="$TZ"} OMARCHY_PATH="$ROOT" OMARCHY_LANGUAGE_FILE="$OMARCHY_LANGUAGE_FILE" \
+  env -i HOME="$CODEX_ROUTES_HOME" PATH="$WORK/bin" LANG=C.UTF-8 ${TZ+TZ="$TZ"} UNBLOARCHY_PATH="$ROOT" UNBLOARCHY_LANGUAGE_FILE="$UNBLOARCHY_LANGUAGE_FILE" \
     XDG_CONFIG_HOME="$CODEX_ROUTES_HOME/.config" XDG_DATA_HOME="$CODEX_ROUTES_HOME/.local/share" XDG_STATE_HOME="$CODEX_ROUTES_HOME/.local/state" \
     XDG_CACHE_HOME="$CODEX_ROUTES_HOME/.cache" XDG_RUNTIME_DIR="$CODEX_ROUTES_HOME/.run" \
     http_proxy=http://127.0.0.1:9 https_proxy=http://127.0.0.1:9 HTTP_PROXY=http://127.0.0.1:9 HTTPS_PROXY=http://127.0.0.1:9 ALL_PROXY=http://127.0.0.1:9 \
-    "$TIMEOUT" --kill-after=5 "$COLLECTOR_TIMEOUT" "$ROOT/bin/omarchy-agent-usage-zai" --limits-only \
+    "$TIMEOUT" --kill-after=5 "$COLLECTOR_TIMEOUT" "$ROOT/bin/unbloarchy-agent-usage-zai" --limits-only \
     >"$WORK/codex-routes-cached/zai.json" 2>"$WORK/codex-routes-cached/zai.err" || true
 }
 run_cached_zai
@@ -2360,8 +2360,8 @@ fi
 # not make local count those rows as well, while a self-hosted id beside it
 # still counts. The replies are pi's own shape on Kimchi's gateway.
 PREFIX_HOME="$WORK/kimchi-prefix"
-mkdir -p "$PREFIX_HOME/.config/omarchy/agents" "$PREFIX_HOME/.pi/agent/sessions/-" "$PREFIX_HOME/.cache" "$PREFIX_HOME/.run"
-echo '{"providers": ["Kimchi-Dev/MoonshotAI", "my-llama"]}' >"$PREFIX_HOME/.config/omarchy/agents/local.json"
+mkdir -p "$PREFIX_HOME/.config/unbloarchy/agents" "$PREFIX_HOME/.pi/agent/sessions/-" "$PREFIX_HOME/.cache" "$PREFIX_HOME/.run"
+echo '{"providers": ["Kimchi-Dev/MoonshotAI", "my-llama"]}' >"$PREFIX_HOME/.config/unbloarchy/agents/local.json"
 python3 - "$PREFIX_HOME/.pi/agent/sessions/-/session.jsonl" <<'PY'
 import json
 import sys

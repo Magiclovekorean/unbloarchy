@@ -22,7 +22,7 @@ annotation editor එකට arrows, lines, shapes, highlights, අංකිත m
 
 සුරකින ලද තිරරූප පෙරනිමියෙන් `~/Pictures/Screenshots` වෙත යන අතර, `screenshot-2026-08-13_14-22-05-firefox.png` වැනි නමක් ඇත. වෙනත් directory එකක් භාවිතා කිරීමට `OMASNAP_SCREENSHOT_DIR` සකසන්න — session environment variables තැබිය යුත්තේ කොතැනද යන්න සඳහා [නිතර ප්‍රශ්න](46-faq.md) බලන්න. Omasnap පළමු රූපය සුරකින විට directory එක සාදයි. ස්වයංක්‍රීය සුරැකීම අක්‍රිය කිරීමට `~/.config/omasnap/omasnap.conf` තුළ `[output] autosave = false` සකසන්න; එවිට ග්‍රහණයන් පිටපත් කරනු ලැබීම පමණක් සිදුවන අතර, තත්පර 10ක් preview එකක පෙන්වනු ලැබේ. එහි pin බොත්තම හෝ `Ctrl + P` මඟින් එය තිරයේ රඳවා තබාගත හැකිය.
 
-terminal එකේ සිට, `omarchy screenshot` මඟින් එම overlay එකම විවෘත වන අතර, ඔබට එහි ආරම්භක mode එක තෝරාගත හැකිය: `omarchy capture screenshot region`, `windows`, `fullscreen`, හෝ `scroll`. `copy` හෝ `save` යන දෙවන argument එකක් මඟින් රූපය කෙලින්ම එම ගමනාන්තයට යවයි. ප්‍රතිදානයට පෙර සංස්කරණය කිරීමට, fullscreen editor එකක් සඳහා `omarchy screenshot --editor=overlay` හෝ වෙනම window එකක් සඳහා `omarchy screenshot --editor=window` භාවිතා කරන්න.
+terminal එකේ සිට, `unbloarchy screenshot` මඟින් එම overlay එකම විවෘත වන අතර, ඔබට එහි ආරම්භක mode එක තෝරාගත හැකිය: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, හෝ `scroll`. `copy` හෝ `save` යන දෙවන argument එකක් මඟින් රූපය කෙලින්ම එම ගමනාන්තයට යවයි. ප්‍රතිදානයට පෙර සංස්කරණය කිරීමට, fullscreen editor එකක් සඳහා `unbloarchy screenshot --editor=overlay` හෝ වෙනම window එකක් සඳහා `unbloarchy screenshot --editor=window` භාවිතා කරන්න.
 
 ### යතුරු පුවරුවෙන් picker එක මෙහෙයවීම
 
@@ -41,9 +41,9 @@ selection එක දිස්ව තිබෙන අතරතුර, ඔබට m
 
 ## තිරය පටිගත කිරීම
 
-`Alt + Print Screen` මඟින් _Trigger > Capture > Screenrecord_ විවෘත වන අතර, එය soundtrack එකේ ඔබට අවශ්‍ය දේ අසයි: audio නැත, desktop audio, desktop සහ microphone, හෝ desktop සහ microphone සහ webcam. ඔබට ඇත්තටම camera එකක් සම්බන්ධ කර ඇත්නම් පමණක් අන්තිම එක දිස්වේ. එකක් තෝරන්න, එවිට Omarchy හි recording picker එක මඟින් ප්‍රදේශයක් ඇඳීමට හෝ window එකක් හෝ monitor එකක් click කිරීමට ඔබට ඉඩ දෙයි.
+`Alt + Print Screen` මඟින් _Trigger > Capture > Screenrecord_ විවෘත වන අතර, එය soundtrack එකේ ඔබට අවශ්‍ය දේ අසයි: audio නැත, desktop audio, desktop සහ microphone, හෝ desktop සහ microphone සහ webcam. ඔබට ඇත්තටම camera එකක් සම්බන්ධ කර ඇත්නම් පමණක් අන්තිම එක දිස්වේ. එකක් තෝරන්න, එවිට Unbloarchy හි recording picker එක මඟින් ප්‍රදේශයක් ඇඳීමට හෝ window එකක් හෝ monitor එකක් click කිරීමට ඔබට ඉඩ දෙයි.
 
-පටිගත කිරීම gpu-screen-recorder මත ධාවනය වන අතර, එය 60fps බැගින් GPU එකේ encode කරන අතර, අවශ්‍ය වුවහොත් CPU එකට ආපසු යයි. ප්‍රතිඵලය `~/Videos` තුළ ඇති `screenrecording-2026-08-13_14-22-05.mp4` ලෙස නම් කළ MP4 එකකි. එය වෙනස් කිරීමට `OMARCHY_SCREENRECORD_DIR` සකසන්න — නමුත් screenshot directory එකට වෙනස්ව, මෙය දැනටමත් පැවතිය යුතු බව සලකන්න, එසේ නැත්නම් පටිගත කිරීම ආරම්භ වීම ප්‍රතික්ෂේප කරයි.
+පටිගත කිරීම gpu-screen-recorder මත ධාවනය වන අතර, එය 60fps බැගින් GPU එකේ encode කරන අතර, අවශ්‍ය වුවහොත් CPU එකට ආපසු යයි. ප්‍රතිඵලය `~/Videos` තුළ ඇති `screenrecording-2026-08-13_14-22-05.mp4` ලෙස නම් කළ MP4 එකකි. එය වෙනස් කිරීමට `UNBLOARCHY_SCREENRECORD_DIR` සකසන්න — නමුත් screenshot directory එකට වෙනස්ව, මෙය දැනටමත් පැවතිය යුතු බව සලකන්න, එසේ නැත්නම් පටිගත කිරීම ආරම්භ වීම ප්‍රතික්ෂේප කරයි.
 
 ඔබ පටිගත කරන අතරතුර, bar එකේ කුඩා indicator එකක් දිස්වේ. එය නතර කිරීමට එය click කරන්න. ඔබට `Alt + Print Screen` නැවත එබීමෙන්, හෝ ඇත්තටම යමක් පටිගත වෙමින් පවතින විට පමණක් දිස්වන _Trigger > Capture > Screenrecord_ යට ඇති _Stop Screenrecording_ entry එකෙන්ද නතර කළ හැකිය.
 
@@ -60,7 +60,7 @@ selection එක දිස්ව තිබෙන අතරතුර, ඔබට m
 
 ප්‍රමාණ තුනක් ඇත — small, medium, සහ large — සහ hotkeys ඒවා අතර පියවරෙන් පියවර ගමන් කරයි. Medium පෙරනිමියයි. ඒවා පටිගත කිරීමට සමානුපාතික වේ, එබැවින් ඔබ 1080p monitor එකක් හෝ 6K එකක් පටිගත කළත් camera එක frame එකෙන් එම කොටසම ගනී. ඔබ සම්පූර්ණ display එකක් වෙනුවට ප්‍රදේශයක් පටිගත කළේ නම්, overlay එක monitor එකේ කෙළවරට නොව එම ප්‍රදේශයේ කෙළවරට බැඳෙන බැවින්, එය රූපය තුළම රැඳේ.
 
-ඔබට එය `omarchy-capture-webcam-resize small` සමඟ කෙලින්ම ඇමතිය හැකිය, හෝ medium වෙත ආපසු යාමට `reset` සමඟය.
+ඔබට එය `unbloarchy-capture-webcam-resize small` සමඟ කෙලින්ම ඇමතිය හැකිය, හෝ medium වෙත ආපසු යාමට `reset` සමඟය.
 
 ## පෙළ, QR codes, සහ වර්ණ
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ QR codes සඳහා එම උපක්‍රම
 
 Pictures jpg හෝ png වෙත high, medium, හෝ low ලෙස යන අතර, ඒවා width එක පිළිවෙළින් 3160, 2160, සහ 1080 pixels වලට සීමා කරයි. Videos mp4 හෝ animated gif එකක් ලෙස 4k, 1080p, හෝ 720p වෙත යයි. පරිවර්තනය කළ file එක මුල් file එක අසලම නමේ resolution එක සමඟ ලියැවේ — `demo-1080p.mp4` — සහ path එක file URI එකක් ලෙස clipboard එකට පිටපත් කෙරේ, එබැවින් file drops ගන්නා app එකකට ඔබට එය කෙලින්ම paste කළ හැකිය.
 
-ඔබට අවශ්‍ය දේ දැනටමත් ඔබ දන්නේ නම්, එය terminal එකෙන්ද ක්‍රියා කරයි: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. `omarchy transcode ascii` ද ඇත, එය රූපයක් ASCII art බවට පත් කරයි — එය බොහෝ දුරට [සන්නාමකරණය](41-branding.md) සඳහාය.
+ඔබට අවශ්‍ය දේ දැනටමත් ඔබ දන්නේ නම්, එය terminal එකෙන්ද ක්‍රියා කරයි: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. `unbloarchy transcode ascii` ද ඇත, එය රූපයක් ASCII art බවට පත් කරයි — එය බොහෝ දුරට [සන්නාමකරණය](41-branding.md) සඳහාය.
 
 ## එය කොතැනකට හෝ යැවීම
 

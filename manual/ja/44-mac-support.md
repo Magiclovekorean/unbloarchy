@@ -1,16 +1,16 @@
 # Macサポート
 
-Omarchyは**Intel Mac**のサポートを内蔵しています。現時点ではいくつかの既知の制限がありますが、それらを理解し問題ないのであれば、Omarchyをインストールすることで古いMacに新たな命を吹き込むことができます。
+Unbloarchyは**Intel Mac**のサポートを内蔵しています。現時点ではいくつかの既知の制限がありますが、それらを理解し問題ないのであれば、Unbloarchyをインストールすることで古いMacに新たな命を吹き込むことができます。
 
 MシリーズMacへのインストールは現時点では直接サポートされていません。その状況の詳細は、[Discord](https://discord.gg/tXFUdasqhY)の#omarchy-on-otherで確認できます。
 
-簡単なテストでは、2019年のMacBook ProにOmarchyをインストールするだけで36%のパフォーマンス向上が得られました。
+簡単なテストでは、2019年のMacBook ProにUnbloarchyをインストールするだけで36%のパフォーマンス向上が得られました。
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### MacにOmarchyをインストールする
+### MacにUnbloarchyをインストールする
 
-Omarchyは現時点では、インストールされた**唯一の**OSであることのみをサポートしています。インストール中、ドライブは消去され、MacOSは起動できなくなります。
+Unbloarchyは現時点では、インストールされた**唯一の**OSであることのみをサポートしています。インストール中、ドライブは消去され、MacOSは起動できなくなります。
 
 必要であれば、後からインターネット復元で復旧できます。
 

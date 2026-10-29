@@ -22,7 +22,7 @@ Anotacijų redaktorius gali piešti rodykles, linijas, figūras, paryškinimus, 
 
 Išsaugotos ekrano kopijos pagal numatytuosius nustatymus patenka į `~/Pictures/Screenshots`, tokiu pavadinimu kaip `screenshot-2026-08-13_14-22-05-firefox.png`. Nustatykite `OMASNAP_SCREENSHOT_DIR`, kad naudotumėte kitą katalogą — žr. [DUK](46-faq.md), kur dėti sesijos aplinkos kintamuosius. Omasnap sukuria katalogą, kai išsaugo pirmąjį kadrą. Nustatykite `[output] autosave = false` faile `~/.config/omasnap/omasnap.conf`, kad išjungtumėte automatinį išsaugojimą; tada užfiksuoti vaizdai tik nukopijuojami ir 10 sekundžių rodomi peržiūroje, kurią galite palikti ekrane jos prisegimo mygtuku arba `Ctrl + P`.
 
-Iš terminalo `omarchy screenshot` atveria tą pačią perdangą, ir galite pasirinkti jo pradinį režimą: `omarchy capture screenshot region`, `windows`, `fullscreen` arba `scroll`. Antras argumentas `copy` arba `save` siunčia kadrą tiesiai į tą paskirties vietą. Norėdami redaguoti prieš išvestį, naudokite `omarchy screenshot --editor=overlay`, kad gautumėte viso ekrano redaktorių, arba `omarchy screenshot --editor=window`, kad gautumėte atskirą langą.
+Iš terminalo `unbloarchy screenshot` atveria tą pačią perdangą, ir galite pasirinkti jo pradinį režimą: `unbloarchy capture screenshot region`, `windows`, `fullscreen` arba `scroll`. Antras argumentas `copy` arba `save` siunčia kadrą tiesiai į tą paskirties vietą. Norėdami redaguoti prieš išvestį, naudokite `unbloarchy screenshot --editor=overlay`, kad gautumėte viso ekrano redaktorių, arba `unbloarchy screenshot --editor=window`, kad gautumėte atskirą langą.
 
 ### Parinkiklio valdymas klaviatūra
 
@@ -41,9 +41,9 @@ Kol pasirinkimas atvertas, pelės jums visai nereikia:
 
 ## Ekrano įrašymas
 
-`Alt + Print Screen` atveria _Trigger > Capture > Screenrecord_, kuris paklausia, ko norite garso takelyje: jokio garso, darbalaukio garso, darbalaukio ir mikrofono arba darbalaukio, mikrofono ir internetinės kameros. Tas paskutinis variantas pasirodo tik jei iš tikrųjų turite prijungtą kamerą. Pasirinkite vieną ir Omarchy įrašymo parinkiklis leis jums vilkti regioną arba spustelėti langą ar monitorių.
+`Alt + Print Screen` atveria _Trigger > Capture > Screenrecord_, kuris paklausia, ko norite garso takelyje: jokio garso, darbalaukio garso, darbalaukio ir mikrofono arba darbalaukio, mikrofono ir internetinės kameros. Tas paskutinis variantas pasirodo tik jei iš tikrųjų turite prijungtą kamerą. Pasirinkite vieną ir Unbloarchy įrašymo parinkiklis leis jums vilkti regioną arba spustelėti langą ar monitorių.
 
-Įrašymas veikia su gpu-screen-recorder, kuris koduoja GPU 60fps dažniu ir, jei reikia, grįžta prie CPU. Rezultatas yra MP4 faile `~/Videos`, pavadintame `screenrecording-2026-08-13_14-22-05.mp4`. Nustatykite `OMARCHY_SCREENRECORD_DIR`, kad tai pakeistumėte — bet atkreipkite dėmesį, kad, skirtingai nei ekrano kopijų katalogas, šis turi jau egzistuoti, kitaip įrašymas atsisakys prasidėti.
+Įrašymas veikia su gpu-screen-recorder, kuris koduoja GPU 60fps dažniu ir, jei reikia, grįžta prie CPU. Rezultatas yra MP4 faile `~/Videos`, pavadintame `screenrecording-2026-08-13_14-22-05.mp4`. Nustatykite `UNBLOARCHY_SCREENRECORD_DIR`, kad tai pakeistumėte — bet atkreipkite dėmesį, kad, skirtingai nei ekrano kopijų katalogas, šis turi jau egzistuoti, kitaip įrašymas atsisakys prasidėti.
 
 Kol įrašote, juostoje pasirodo mažas indikatorius. Spustelėkite jį, kad sustabdytumėte. Taip pat galite sustabdyti dar kartą paspaudę `Alt + Print Screen` arba įrašu _Stop Screenrecording_ skiltyje _Trigger > Capture > Screenrecord_, kuris pasirodo tik kol kas nors iš tikrųjų įrašinėjama.
 
@@ -60,7 +60,7 @@ Kai įrašote su internetine kamera, kamera pasirodo kaip prisegtas, apkirptas p
 
 Yra trys dydžiai — mažas, vidutinis ir didelis — o spartieji klavišai žingsniuoja tarp jų. Vidutinis yra numatytasis. Jie proporcingi įrašui, todėl kamera užima tą pačią kadro dalį, nesvarbu, ar įrašote 1080p monitorių, ar 6K. O jei įrašėte regioną, o ne visą ekraną, perdanga prisitvirtina prie to regiono kampo, o ne monitoriaus, todėl lieka kadro viduje.
 
-Taip pat galite iškviesti tai tiesiogiai su `omarchy-capture-webcam-resize small` arba `reset`, kad grįžtumėte prie vidutinio.
+Taip pat galite iškviesti tai tiesiogiai su `unbloarchy-capture-webcam-resize small` arba `reset`, kad grįžtumėte prie vidutinio.
 
 ## Tekstas, QR kodai ir spalvos
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ daro tą patį triuką su QR kodais. Pasirinkite r
 
 Paveikslėliai virsta jpg arba png aukšta, vidutine arba žema kokybe, kurios apriboja plotį iki 3160, 2160 ir 1080 pikselių. Vaizdo įrašai virsta mp4 arba animuotu gif 4k, 1080p arba 720p raiška. Konvertuotas failas įrašomas šalia originalo su raiška pavadinime — `demo-1080p.mp4` — o kelias nukopijuojamas į iškarpinę kaip failo URI, todėl galite įklijuoti jį tiesiai į programą, kuri priima failų numetimus.
 
-Tai veikia ir iš terminalo, jei jau žinote, ko norite: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Taip pat yra `omarchy transcode ascii`, kuris paverčia vaizdą ASCII menu — tas dažniausiai skirtas [ženklodarai](41-branding.md).
+Tai veikia ir iš terminalo, jei jau žinote, ko norite: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Taip pat yra `unbloarchy transcode ascii`, kuris paverčia vaizdą ASCII menu — tas dažniausiai skirtas [ženklodarai](41-branding.md).
 
 ## Siuntimas kažkur
 

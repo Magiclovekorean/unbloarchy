@@ -22,7 +22,7 @@ Editor anotací umí kreslit šipky, čáry, tvary, zvýraznění, číslované 
 
 Uložené snímky obrazovky končí ve výchozím nastavení v `~/Pictures/Screenshots`, s názvem jako `screenshot-2026-08-13_14-22-05-firefox.png`. Nastavte `OMASNAP_SCREENSHOT_DIR`, abyste použili jiný adresář — viz [časté dotazy](46-faq.md), kam umístit proměnné prostředí relace. Omasnap adresář vytvoří, když ukládá první snímek. Nastavte `[output] autosave = false` v `~/.config/omasnap/omasnap.conf`, abyste zakázali automatické ukládání; zachycení jsou pak pouze kopírována a zobrazena v náhledu po dobu 10 sekund, který můžete nechat na obrazovce pomocí jeho tlačítka pro připnutí nebo `Ctrl + P`.
 
-Z terminálu `omarchy screenshot` otevře stejnou překryvnou vrstvu a můžete zvolit její počáteční režim: `omarchy capture screenshot region`, `windows`, `fullscreen` nebo `scroll`. Druhý argument `copy` nebo `save` pošle snímek rovnou do daného cíle. Pro úpravu před výstupem použijte `omarchy screenshot --editor=overlay` pro editor na celou obrazovku nebo `omarchy screenshot --editor=window` pro samostatné okno.
+Z terminálu `unbloarchy screenshot` otevře stejnou překryvnou vrstvu a můžete zvolit její počáteční režim: `unbloarchy capture screenshot region`, `windows`, `fullscreen` nebo `scroll`. Druhý argument `copy` nebo `save` pošle snímek rovnou do daného cíle. Pro úpravu před výstupem použijte `unbloarchy screenshot --editor=overlay` pro editor na celou obrazovku nebo `unbloarchy screenshot --editor=window` pro samostatné okno.
 
 ### Ovládání výběru z klávesnice
 
@@ -41,9 +41,9 @@ Tato přiřazení existují pouze tehdy, když je Omasnap otevřený, takže nem
 
 ## Nahrávání obrazovky
 
-`Alt + Print Screen` otevře _Trigger > Capture > Screenrecord_, které se zeptá, co chcete na zvukové stopě: žádný zvuk, zvuk plochy, plochu plus mikrofon, nebo plochu plus mikrofon plus webkameru. Ta poslední možnost se zobrazí pouze tehdy, pokud máte skutečně připojenou kameru. Vyberte jednu a výběr nahrávání v Omarchy vám umožní táhnout oblast nebo kliknout na okno či monitor.
+`Alt + Print Screen` otevře _Trigger > Capture > Screenrecord_, které se zeptá, co chcete na zvukové stopě: žádný zvuk, zvuk plochy, plochu plus mikrofon, nebo plochu plus mikrofon plus webkameru. Ta poslední možnost se zobrazí pouze tehdy, pokud máte skutečně připojenou kameru. Vyberte jednu a výběr nahrávání v Unbloarchy vám umožní táhnout oblast nebo kliknout na okno či monitor.
 
-Nahrávání běží na gpu-screen-recorder, který kóduje na GPU při 60fps a v případě nutnosti se vrátí k CPU. Výsledkem je MP4 v `~/Videos` s názvem `screenrecording-2026-08-13_14-22-05.mp4`. Nastavte `OMARCHY_SCREENRECORD_DIR`, abyste to změnili — ale všimněte si, že na rozdíl od adresáře pro snímky obrazovky musí tento již existovat, jinak nahrávání odmítne začít.
+Nahrávání běží na gpu-screen-recorder, který kóduje na GPU při 60fps a v případě nutnosti se vrátí k CPU. Výsledkem je MP4 v `~/Videos` s názvem `screenrecording-2026-08-13_14-22-05.mp4`. Nastavte `UNBLOARCHY_SCREENRECORD_DIR`, abyste to změnili — ale všimněte si, že na rozdíl od adresáře pro snímky obrazovky musí tento již existovat, jinak nahrávání odmítne začít.
 
 Když nahráváte, objeví se v liště malý indikátor. Klikněte na něj pro zastavení. Můžete také zastavit znovu pomocí `Alt + Print Screen` nebo pomocí položky _Stop Screenrecording_ pod _Trigger > Capture > Screenrecord_, která se zobrazí pouze tehdy, když něco skutečně nahrává.
 
@@ -60,7 +60,7 @@ Když nahráváte s webkamerou, kamera se objeví jako připnuté, oříznuté o
 
 Existují tři velikosti — malá, střední a velká — a klávesové zkratky mezi nimi krokuje. Střední je výchozí. Jsou proporcionální k nahrávce, takže kamera zabírá stejný podíl snímku, ať už nahráváte monitor 1080p, nebo 6K. A pokud jste nahrávali oblast místo celé obrazovky, překryvná vrstva se ukotví k rohu dané oblasti místo rohu monitoru, takže zůstane uvnitř záběru.
 
-Můžete ji také volat přímo pomocí `omarchy-capture-webcam-resize small`, nebo `reset` pro návrat ke střední.
+Můžete ji také volat přímo pomocí `unbloarchy-capture-webcam-resize small`, nebo `reset` pro návrat ke střední.
 
 ## Text, QR kódy a barvy
 
@@ -76,7 +76,7 @@ Nahrávka obrazovky ve 4K nebo syrové HEIC z vašeho telefonu je často příli
 
 Obrázky jdou do jpg nebo png ve vysoké, střední nebo nízké kvalitě, které omezují šířku na 3160, 2160 a 1080 pixelů. Videa jdou do mp4 nebo animovaného gif v 4k, 1080p nebo 720p. Převedený soubor je zapsán vedle originálu s rozlišením v názvu — `demo-1080p.mp4` — a cesta je zkopírována do schránky jako souborové URI, takže ji můžete vložit přímo do aplikace, která přijímá přetažení souborů.
 
-Funguje to i z terminálu, pokud už víte, co chcete: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Existuje také `omarchy transcode ascii`, které promění obrázek v ASCII art — to je většinou pro [branding](41-branding.md).
+Funguje to i z terminálu, pokud už víte, co chcete: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Existuje také `unbloarchy transcode ascii`, které promění obrázek v ASCII art — to je většinou pro [branding](41-branding.md).
 
 ## Poslání někam
 

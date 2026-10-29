@@ -6,7 +6,7 @@ Visus galvenos tastatūras saīsinājumus varat redzēt ar `Super + K` (Tmux sa�
 
 | Karstais taustiņš                  | Funkcija              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy izvēlne (lietotnes un viss pārējais)    |
+| `Super + Space`           | Unbloarchy izvēlne (lietotnes un viss pārējais)    |
 | `Super + Alt + Space` | Lietotņu režģis |
 | `Super + Escape` | Sistēmas izvēlne (apturēt, restartēt utt.)  |
 | `Super + Ctrl + L` | Bloķēt datoru |
@@ -143,7 +143,7 @@ Mainiet/pievienojiet saīsinājumus failā `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Ielīmēt    |
 | `Super + Ctrl + V`           | Starpliktuves pārvaldnieks    |
 
-Parasti Linux sistēmā terminālī kopēšanai un ielīmēšanai nepieciešami `Ctrl + Shift + C/V`, bet visur citur — `Ctrl + C/V`. Šie Omarchy vienotie starpliktuves karstie taustiņi darbojas visur.
+Parasti Linux sistēmā terminālī kopēšanai un ielīmēšanai nepieciešami `Ctrl + Shift + C/V`, bet visur citur — `Ctrl + C/V`. Šie Unbloarchy vienotie starpliktuves karstie taustiņi darbojas visur.
 
 ## Uzņemšana
 
@@ -164,7 +164,7 @@ Parasti Linux sistēmā terminālī kopēšanai un ielīmēšanai nepieciešami 
 
 Veicot ekrāna ierakstus, karstais taustiņš vispirms jautā, kuru audio vēlaties, pēc tam sāk ierakstīšanu. Nospiediet to vēlreiz, lai apturētu. Sīkāku informāciju skatiet sadaļā [ekrānuzņēmumi un ierakstīšana](12-screenshots-recording.md).
 
-Visas uzņemšanas opcijas ir pieejamas arī Omarchy izvēlnē (`Super + Space`) sadaļā _Trigger > Capture_.
+Visas uzņemšanas opcijas ir pieejamas arī Unbloarchy izvēlnē (`Super + Space`) sadaļā _Trigger > Capture_.
 
 ## Paziņojumi
 
@@ -186,9 +186,9 @@ Visas uzņemšanas opcijas ir pieejamas arī Omarchy izvēlnē (`Super + Space`)
 | `Super + Backspace` | Pārslēgt loga caurspīdīgumu |
 | `Super + Ctrl + Backspace` | Pārslēgt viena loga kvadrātveida malu attiecību |
 
-Papildu fona attēli atrodas mapē `~/.config/omarchy/backgrounds/<theme name>`. Pieejams arī Omarchy izvēlnē sadaļā _Install > Style > Background_.
+Papildu fona attēli atrodas mapē `~/.config/unbloarchy/backgrounds/<theme name>`. Pieejams arī Unbloarchy izvēlnē sadaļā _Install > Style > Background_.
 
-Visas stila opcijas ir pieejamas arī Omarchy izvēlnē (`Super + Space`) sadaļā _Style_.
+Visas stila opcijas ir pieejamas arī Unbloarchy izvēlnē (`Super + Space`) sadaļā _Style_.
 
 ## Pārslēgumi
 
@@ -289,7 +289,7 @@ Prefiksa taustiņš ir `Ctrl + Space` (der arī `Ctrl + B`). Šos saīsinājumus
 
 ## Ghostty terminālis
 
-Ghostty terminālis tiek instalēts, izmantojot Omarchy izvēlnes sadaļu _Install > Terminal_.
+Ghostty terminālis tiek instalēts, izmantojot Unbloarchy izvēlnes sadaļu _Install > Terminal_.
 
 | Karstais taustiņš                  | Funkcija              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Varat izmantot `Super + Ctrl + E`, lai parādītu pilnu emocijzīmju izvēli, ka
 | `Shift + CapsLock Space N` | Jūsu vārds (kā ievadīts iestatīšanas laikā)  |
 | `Shift + CapsLock Space E` | Jūsu e-pasts (kā ievadīts iestatīšanas laikā)  |
 
-Varat pievienot vēl savus, rediģējot `~/.XCompose`, pēc tam terminālī palaižot `omarchy-restart-xcompose`, lai izmaiņas tiktu uztvertas.
+Varat pievienot vēl savus, rediģējot `~/.XCompose`, pēc tam terminālī palaižot `unbloarchy-restart-xcompose`, lai izmaiņas tiktu uztvertas.

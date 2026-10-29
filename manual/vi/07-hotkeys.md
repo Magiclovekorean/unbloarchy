@@ -6,7 +6,7 @@ Bạn có thể xem tất cả các phím tắt chính bằng `Super + K` (phím
 
 | Phím tắt                  | Chức năng              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menu Omarchy (ứng dụng và mọi thứ khác)    |
+| `Super + Space`           | Menu Unbloarchy (ứng dụng và mọi thứ khác)    |
 | `Super + Alt + Space` | Lưới ứng dụng |
 | `Super + Escape` | Menu hệ thống (tạm dừng, khởi động lại, v.v.)  |
 | `Super + Ctrl + L` | Khóa máy tính |
@@ -143,7 +143,7 @@ Thay đổi/thêm các phím tắt trong `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Dán    |
 | `Super + Ctrl + V`           | Trình quản lý clipboard    |
 
-Thông thường trên Linux, bạn cần `Ctrl + Shift + C/V` để sao chép và dán trong terminal và `Ctrl + C/V` để làm điều đó ở mọi nơi khác. Các phím tắt clipboard hợp nhất này của Omarchy hoạt động ở mọi nơi.
+Thông thường trên Linux, bạn cần `Ctrl + Shift + C/V` để sao chép và dán trong terminal và `Ctrl + C/V` để làm điều đó ở mọi nơi khác. Các phím tắt clipboard hợp nhất này của Unbloarchy hoạt động ở mọi nơi.
 
 ## Chụp
 
@@ -164,7 +164,7 @@ Thông thường trên Linux, bạn cần `Ctrl + Shift + C/V` để sao chép v
 
 Với quay màn hình, phím tắt trước tiên sẽ hỏi bạn muốn dùng âm thanh nào, sau đó bắt đầu quay. Nhấn lại để dừng. Xem [ảnh chụp màn hình và quay màn hình](12-screenshots-recording.md) để biết chi tiết.
 
-Tất cả các tùy chọn chụp cũng có thể truy cập trong _Trigger > Capture_ trong menu Omarchy (`Super + Space`).
+Tất cả các tùy chọn chụp cũng có thể truy cập trong _Trigger > Capture_ trong menu Unbloarchy (`Super + Space`).
 
 ## Thông báo
 
@@ -186,9 +186,9 @@ Tất cả các tùy chọn chụp cũng có thể truy cập trong _Trigger > C
 | `Super + Backspace` | Bật/tắt độ trong suốt trên một cửa sổ |
 | `Super + Ctrl + Backspace` | Bật/tắt tỉ lệ vuông cho một cửa sổ đơn |
 
-Các hình nền bổ sung nằm trong `~/.config/omarchy/backgrounds/<theme name>`. Cũng có sẵn qua _Install > Style > Background_ trong menu Omarchy.
+Các hình nền bổ sung nằm trong `~/.config/unbloarchy/backgrounds/<theme name>`. Cũng có sẵn qua _Install > Style > Background_ trong menu Unbloarchy.
 
-Tất cả các tùy chọn phong cách cũng có thể truy cập trong _Style_ trong menu Omarchy (`Super + Space`).
+Tất cả các tùy chọn phong cách cũng có thể truy cập trong _Style_ trong menu Unbloarchy (`Super + Space`).
 
 ## Bật/tắt
 
@@ -289,7 +289,7 @@ Các hàm này phải được chạy bên trong một phiên Tmux.
 
 ## Ghostty Terminal
 
-Terminal Ghostty được cài đặt bằng _Install > Terminal_ qua menu Omarchy.
+Terminal Ghostty được cài đặt bằng _Install > Terminal_ qua menu Unbloarchy.
 
 | Phím tắt                  | Chức năng              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Bạn có thể dùng `Super + Ctrl + E` để hiển thị bộ chọn emoji đ
 | `Shift + CapsLock Space N` | Tên của bạn (như đã nhập khi thiết lập)  |
 | `Shift + CapsLock Space E` | Email của bạn (như đã nhập khi thiết lập)  |
 
-Bạn có thể thêm nhiều mục của riêng mình bằng cách chỉnh sửa `~/.XCompose`, sau đó chạy `omarchy-restart-xcompose` trong terminal để các thay đổi được áp dụng.
+Bạn có thể thêm nhiều mục của riêng mình bằng cách chỉnh sửa `~/.XCompose`, sau đó chạy `unbloarchy-restart-xcompose` trong terminal để các thay đổi được áp dụng.

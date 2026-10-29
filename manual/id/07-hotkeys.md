@@ -6,7 +6,7 @@ Anda dapat melihat semua tombol pintas keyboard utama dengan `Super + K` (tombol
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menu Omarchy (aplikasi dan semua hal lainnya)    |
+| `Super + Space`           | Menu Unbloarchy (aplikasi dan semua hal lainnya)    |
 | `Super + Alt + Space` | Grid aplikasi |
 | `Super + Escape` | Menu sistem (suspend, restart, dll)  |
 | `Super + Ctrl + L` | Kunci komputer |
@@ -143,7 +143,7 @@ Ubah/tambah binding di `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Tempel    |
 | `Super + Ctrl + V`           | Pengelola clipboard    |
 
-Biasanya di Linux, Anda perlu `Ctrl + Shift + C/V` untuk copy-paste di terminal dan `Ctrl + C/V` untuk melakukannya di semua tempat lain. Tombol pintas clipboard terpadu Omarchy ini bekerja di mana saja.
+Biasanya di Linux, Anda perlu `Ctrl + Shift + C/V` untuk copy-paste di terminal dan `Ctrl + C/V` untuk melakukannya di semua tempat lain. Tombol pintas clipboard terpadu Unbloarchy ini bekerja di mana saja.
 
 ## Tangkapan
 
@@ -164,7 +164,7 @@ Biasanya di Linux, Anda perlu `Ctrl + Shift + C/V` untuk copy-paste di terminal 
 
 Dengan perekaman layar, tombol pintas pertama-tama menanyakan audio mana yang Anda inginkan, lalu mulai merekam. Tekan lagi untuk berhenti. Lihat [tangkapan layar dan perekaman](12-screenshots-recording.md) untuk detailnya.
 
-Semua opsi tangkapan juga dapat diakses di bawah _Trigger > Capture_ di menu Omarchy (`Super + Space`).
+Semua opsi tangkapan juga dapat diakses di bawah _Trigger > Capture_ di menu Unbloarchy (`Super + Space`).
 
 ## Notifikasi
 
@@ -186,9 +186,9 @@ Semua opsi tangkapan juga dapat diakses di bawah _Trigger > Capture_ di menu Oma
 | `Super + Backspace` | Alihkan transparansi pada jendela |
 | `Super + Ctrl + Backspace` | Alihkan aspek persegi jendela tunggal |
 
-Gambar latar belakang tambahan berada di `~/.config/omarchy/backgrounds/<theme name>`. Juga tersedia melalui _Install > Style > Background_ di menu Omarchy.
+Gambar latar belakang tambahan berada di `~/.config/unbloarchy/backgrounds/<theme name>`. Juga tersedia melalui _Install > Style > Background_ di menu Unbloarchy.
 
-Semua opsi gaya juga dapat diakses di bawah _Style_ di menu Omarchy (`Super + Space`).
+Semua opsi gaya juga dapat diakses di bawah _Style_ di menu Unbloarchy (`Super + Space`).
 
 ## Pengalihan
 
@@ -289,7 +289,7 @@ Fungsi-fungsi ini harus dijalankan di dalam sesi Tmux.
 
 ## Ghostty Terminal
 
-Terminal Ghostty diinstal menggunakan _Install > Terminal_ melalui menu Omarchy.
+Terminal Ghostty diinstal menggunakan _Install > Terminal_ melalui menu Unbloarchy.
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Anda dapat menggunakan `Super + Ctrl + E` untuk menampilkan pemilih emoji lengka
 | `Shift + CapsLock Space N` | Nama Anda (sebagaimana dimasukkan saat penyiapan)  |
 | `Shift + CapsLock Space E` | Email Anda (sebagaimana dimasukkan saat penyiapan)  |
 
-Anda dapat menambahkan lebih banyak milik Anda sendiri dengan mengedit `~/.XCompose`, lalu menjalankan `omarchy-restart-xcompose` di terminal agar perubahan diterapkan.
+Anda dapat menambahkan lebih banyak milik Anda sendiri dengan mengedit `~/.XCompose`, lalu menjalankan `unbloarchy-restart-xcompose` di terminal agar perubahan diterapkan.

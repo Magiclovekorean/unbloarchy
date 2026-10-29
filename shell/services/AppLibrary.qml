@@ -78,12 +78,12 @@ Item {
     var id = String(desktopId || "")
     if (!id) return
     root.beginLaunchFeedback(name)
-    // A terminal app goes through Omarchy's TUI launcher, which names its
-    // terminal window after the command (org.omarchy.nvim), so the dock and
+    // A terminal app goes through Unbloarchy's TUI launcher, which names its
+    // terminal window after the command (org.unbloarchy.nvim), so the dock and
     // titlebars can tell Neovim from the terminal it runs in.
     var command = root.terminalCommand(DesktopEntries.byId(id))
     if (command.length > 0) {
-      Util.execDetached("omarchy-launch-tui " + command.map(function(word) { return Util.shellQuote(word) }).join(" "))
+      Util.execDetached("unbloarchy-launch-tui " + command.map(function(word) { return Util.shellQuote(word) }).join(" "))
       return
     }
     // Start gtk-launch inside a scope under app-graphical.slice so apps do not

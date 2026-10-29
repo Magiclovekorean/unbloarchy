@@ -109,7 +109,7 @@ for (const manifestPath of manifests) {
     check(typeof manifest[field] === 'string' && manifest[field].length > 0, `${manifest.id || relativePath} must have ${field}`)
   }
 
-  check(String(manifest.id).startsWith('omarchy.'), `${manifest.id} must use the first-party namespace`)
+  check(String(manifest.id).startsWith('unbloarchy.'), `${manifest.id} must use the first-party namespace`)
   check(!String(manifest.id).includes('/') && !String(manifest.id).includes('..'), `${manifest.id} must be safe as a plugin id`)
   check(!ids.has(manifest.id), `${manifest.id} must be unique`)
   ids.add(manifest.id)
@@ -157,9 +157,9 @@ for (const manifestPath of manifests) {
     check(JSON.stringify(manifest.kinds) === JSON.stringify(['bar-widget']), `${manifest.id} sibling manifest must be a bar widget`)
   }
 
-  const clonePaths = manifest.omarchy?.clonePaths
+  const clonePaths = manifest.unbloarchy?.clonePaths
   if (clonePaths !== undefined) {
-    check(Array.isArray(clonePaths), `${manifest.id} omarchy.clonePaths must be an array`)
+    check(Array.isArray(clonePaths), `${manifest.id} unbloarchy.clonePaths must be an array`)
     const cloneTargets = new Set()
     for (const clonePath of Array.isArray(clonePaths) ? clonePaths : []) {
       const valid = isPlainObject(clonePath)
@@ -192,7 +192,7 @@ const manifestsById = Object.fromEntries(manifests.map(manifestPath => {
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
   return [manifest.id, manifest]
 }))
-for (const id of ['omarchy.lock', 'omarchy.polkit', 'omarchy.idle']) {
+for (const id of ['unbloarchy.lock', 'unbloarchy.polkit', 'unbloarchy.idle']) {
   check(manifestsById[id]?.keepLoaded === true, `${id} must stay loaded across plugin reloads`)
 }
 

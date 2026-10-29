@@ -6,7 +6,7 @@ Näet kaikki tärkeimmät näppäinsidonnat näppäimillä `Super + K` (Tmux-sid
 
 | Pikanäppäin                  | Toiminto              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy-valikko (sovellukset ja kaikki muu)    |
+| `Super + Space`           | Unbloarchy-valikko (sovellukset ja kaikki muu)    |
 | `Super + Alt + Space` | Sovellusruudukko |
 | `Super + Escape` | Järjestelmävalikko (lepotila, uudelleenkäynnistys jne.)  |
 | `Super + Ctrl + L` | Lukitse tietokone |
@@ -143,7 +143,7 @@ Muuta/lisää sidontoja tiedostossa `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Liitä    |
 | `Super + Ctrl + V`           | Leikepöydän hallinta    |
 
-Yleensä Linuxissa tarvitset näppäimet `Ctrl + Shift + C/V` kopioimiseen ja liittämiseen päätteessä ja näppäimet `Ctrl + C/V` siihen kaikkialla muualla. Nämä Omarchyn yhtenäistetyt leikepöydän pikanäppäimet toimivat kaikkialla.
+Yleensä Linuxissa tarvitset näppäimet `Ctrl + Shift + C/V` kopioimiseen ja liittämiseen päätteessä ja näppäimet `Ctrl + C/V` siihen kaikkialla muualla. Nämä Unbloarchyn yhtenäistetyt leikepöydän pikanäppäimet toimivat kaikkialla.
 
 ## Sieppaus
 
@@ -164,7 +164,7 @@ Yleensä Linuxissa tarvitset näppäimet `Ctrl + Shift + C/V` kopioimiseen ja li
 
 Näyttötallennuksissa pikanäppäin kysyy ensin, mitä ääntä haluat, ja aloittaa sitten tallennuksen. Paina sitä uudelleen lopettaaksesi. Katso lisätietoja kohdasta [kuvakaappaukset ja tallennus](12-screenshots-recording.md).
 
-Kaikki sieppausvaihtoehdot ovat käytettävissä myös Omarchy-valikon kohdasta _Trigger > Capture_ (`Super + Space`).
+Kaikki sieppausvaihtoehdot ovat käytettävissä myös Unbloarchy-valikon kohdasta _Trigger > Capture_ (`Super + Space`).
 
 ## Ilmoitukset
 
@@ -186,9 +186,9 @@ Kaikki sieppausvaihtoehdot ovat käytettävissä myös Omarchy-valikon kohdasta 
 | `Super + Backspace` | Vaihda ikkunan läpinäkyvyys |
 | `Super + Ctrl + Backspace` | Vaihda yksittäisen ikkunan neliömäinen kuvasuhde |
 
-Ylimääräiset taustakuvat sijaitsevat kansiossa `~/.config/omarchy/backgrounds/<theme name>`. Saatavilla myös Omarchy-valikon kohdasta _Install > Style > Background_.
+Ylimääräiset taustakuvat sijaitsevat kansiossa `~/.config/unbloarchy/backgrounds/<theme name>`. Saatavilla myös Unbloarchy-valikon kohdasta _Install > Style > Background_.
 
-Kaikki tyylivaihtoehdot ovat käytettävissä myös Omarchy-valikon kohdasta _Style_ (`Super + Space`).
+Kaikki tyylivaihtoehdot ovat käytettävissä myös Unbloarchy-valikon kohdasta _Style_ (`Super + Space`).
 
 ## Kytkimet
 
@@ -289,7 +289,7 @@ Nämä funktiot on suoritettava Tmux-istunnon sisällä.
 
 ## Ghostty-pääte
 
-Ghostty-pääte asennetaan Omarchy-valikon kohdasta _Install > Terminal_.
+Ghostty-pääte asennetaan Unbloarchy-valikon kohdasta _Install > Terminal_.
 
 | Pikanäppäin                  | Toiminto              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Voit käyttää näppäimiä `Super + Ctrl + E` näyttääksesi täydellisen emo
 | `Shift + CapsLock Space N` | Nimesi (kuten se syötettiin asennuksen yhteydessä)  |
 | `Shift + CapsLock Space E` | Sähköpostisi (kuten se syötettiin asennuksen yhteydessä)  |
 
-Voit lisätä omiasi muokkaamalla tiedostoa `~/.XCompose` ja suorittamalla sitten päätteessä komennon `omarchy-restart-xcompose`, jotta muutokset tulevat voimaan.
+Voit lisätä omiasi muokkaamalla tiedostoa `~/.XCompose` ja suorittamalla sitten päätteessä komennon `unbloarchy-restart-xcompose`, jotta muutokset tulevat voimaan.

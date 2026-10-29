@@ -141,7 +141,7 @@ device=$(hw_display)
 [[ $device == "acpi_video0" ]] || fail "a directive with a trailing comment is ignored" "actual: $device"
 pass "malformed directives are ignored and the last line is read"
 
-# omarchy-hw-external-monitors: a connected connector that is not a built-in
+# unbloarchy-hw-external-monitors: a connected connector that is not a built-in
 # panel counts as an external display.
 drm_path="$tmp_dir/drm"
 
@@ -160,7 +160,7 @@ write_connectors() {
 }
 
 has_external_monitor() {
-  OMARCHY_DRM_PATH="$drm_path" "$ROOT/bin/omarchy-hw-external-monitors"
+  UNBLOARCHY_DRM_PATH="$drm_path" "$ROOT/bin/unbloarchy-hw-external-monitors"
 }
 
 write_connectors

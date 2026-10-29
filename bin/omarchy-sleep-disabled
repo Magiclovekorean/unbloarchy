@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Check whether Omarchy has turned off system sleep on this machine.
-# omarchy:hidden=true
+# unbloarchy:summary=Check whether Unbloarchy has turned off system sleep on this machine.
+# unbloarchy:hidden=true
 
-[[ -f ${OMARCHY_SLEEP_CONFIG_DIR:-/etc/systemd/sleep.conf.d}/omarchy-sleep-disabled.conf ]]
+[[ -f ${UNBLOARCHY_SLEEP_CONFIG_DIR:-/etc/systemd/sleep.conf.d}/unbloarchy-sleep-disabled.conf ]]

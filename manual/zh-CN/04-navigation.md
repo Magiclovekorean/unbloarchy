@@ -1,8 +1,8 @@
 # 导航
 
-在 Omarchy 中，一切都通过键盘完成——_一切！_ 系统刚启动时，你真的无法仅靠鼠标做任何事。但你可以按 `Super + Space` 调出 Omarchy Menu，从这里你可以完成几乎所有事情。
+在 Unbloarchy 中，一切都通过键盘完成——_一切！_ 系统刚启动时，你真的无法仅靠鼠标做任何事。但你可以按 `Super + Space` 调出 Unbloarchy Menu，从这里你可以完成几乎所有事情。
 
-但在大多数时候，Omarchy 菜单甚至都不打算成为操作系统的主要方式。我们还能更快！所有最重要的应用程序都直接绑定到了单个快捷键上。你用 `Super + Return` 启动终端，用 `Super + Shift + Return` 启动浏览器。试着一个接一个地打开，你就会看到 Hyprland 平铺的魔力在发挥作用：
+但在大多数时候，Unbloarchy 菜单甚至都不打算成为操作系统的主要方式。我们还能更快！所有最重要的应用程序都直接绑定到了单个快捷键上。你用 `Super + Return` 启动终端，用 `Super + Shift + Return` 启动浏览器。试着一个接一个地打开，你就会看到 Hyprland 平铺的魔力在发挥作用：
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@
 
 ### Dwindle 与滚动布局
 
-Omarchy 的默认布局称为 dwindle。它让你在单个工作区上打开的所有窗口始终可见，即使这意味着必须将它们缩小。
+Unbloarchy 的默认布局称为 dwindle。它让你在单个工作区上打开的所有窗口始终可见，即使这意味着必须将它们缩小。
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 浮动工作区的工作方式像传统桌面一样：窗口相互重叠，并由你自己移动和调整它们的大小。每个窗口都有一个使用你的主题颜色的标题栏，带有最小化、最大化和关闭按钮。`Super + M` 也会最小化聚焦的窗口。最小化的窗口会在 dock 中等待；点击它的应用可以将它带回来。点击一个窗口可以将它带到前面。从任何边缘或角落调整它的大小。双击标题栏可以最大化窗口，同时保持顶栏可见，再次双击可以恢复它的原来的大小。
 
-浮动工作区还会显示一个 dock，其中包含你固定的应用、所有正在运行的应用，以及 apps 按钮后面的所有应用网格，`Super + Alt + Space` 和 Omarchy 菜单中的 _Apps_ 也可以打开它。右键点击网格上的一个应用，或按 `Delete`，可以卸载它。点击一个应用可以打开它，或者将其窗口带到前面；再次点击可以在它的窗口之间循环。中键点击会打开一个新窗口。沿着 dock 拖动一个图标可以移动它；将一个正在运行的应用拖到其他应用之中会将它保留在那里。右键点击可以将一个应用保留在 dock 中、将它移出，或者退出它。dock 会为全屏窗口让路。右键点击 apps 按钮可以将 dock 移动到另一条边缘，或者让它一直隐藏，直到指针到达其边缘。该位置也位于 _Appearance > Dock > Dock Position_ 之下，并且 `omarchy dock position left` 和 `omarchy dock autohide on` 可以从终端设置这两者。你保留在 dock 中的应用在未运行时会变暗。
+浮动工作区还会显示一个 dock，其中包含你固定的应用、所有正在运行的应用，以及 apps 按钮后面的所有应用网格，`Super + Alt + Space` 和 Unbloarchy 菜单中的 _Apps_ 也可以打开它。右键点击网格上的一个应用，或按 `Delete`，可以卸载它。点击一个应用可以打开它，或者将其窗口带到前面；再次点击可以在它的窗口之间循环。中键点击会打开一个新窗口。沿着 dock 拖动一个图标可以移动它；将一个正在运行的应用拖到其他应用之中会将它保留在那里。右键点击可以将一个应用保留在 dock 中、将它移出，或者退出它。dock 会为全屏窗口让路。右键点击 apps 按钮可以将 dock 移动到另一条边缘，或者让它一直隐藏，直到指针到达其边缘。该位置也位于 _Appearance > Dock > Dock Position_ 之下，并且 `unbloarchy dock position left` 和 `unbloarchy dock autohide on` 可以从终端设置这两者。你保留在 dock 中的应用在未运行时会变暗。
 
-新的工作区，以及任何你没有用 `Super + L` 为其赋予自己布局的工作区，都会使用默认布局。更改默认布局会将每个没有窗口的工作区重置为该布局，而有窗口的工作区会保留它现有的布局。最小化到 dock 的窗口仍算作它离开的工作区上的一个窗口。在 _Appearance > Workspace Layout_ 之下选择它：平铺、滚动或浮动。`omarchy-hyprland-workspace-layout-default scrolling` 从终端设置它。
+新的工作区，以及任何你没有用 `Super + L` 为其赋予自己布局的工作区，都会使用默认布局。更改默认布局会将每个没有窗口的工作区重置为该布局，而有窗口的工作区会保留它现有的布局。最小化到 dock 的窗口仍算作它离开的工作区上的一个窗口。在 _Appearance > Workspace Layout_ 之下选择它：平铺、滚动或浮动。`unbloarchy-hyprland-workspace-layout-default scrolling` 从终端设置它。
 
 ### 分组窗口
 

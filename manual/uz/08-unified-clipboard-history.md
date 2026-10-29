@@ -2,7 +2,7 @@
 
 Odatda Linuxda terminalda nusxalash va joylash uchun `Ctrl + Shift + C/V`, boshqa hamma joyda esa `Ctrl + C/V` kerak boʻladi. Linux muhitida tugʻilib oʻsmagan har qanday odam uchun bunga koʻnikish qiyin! Macdan kelayotgan boʻlsangiz, Superdan Ctrlga oʻtish ham xuddi shunday.
 
-Omarchy bu ikkala muammoni ham (deyarli) hamma joyda ishlaydigan yagona bufer tezkor tugmalari bilan hal qiladi. Ular quyidagilar:
+Unbloarchy bu ikkala muammoni ham (deyarli) hamma joyda ishlaydigan yagona bufer tezkor tugmalari bilan hal qiladi. Ular quyidagilar:
 
 | Tezkor tugma | Buyruq |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Fokuslangan matn maydonidagi yoki `Ctrl + A`ni qoʻllab-quvvatlaydigan boshqa il
 
 ### Bufer tarixi
 
-Bufer tarixi Omarchy qobigʻi tomonidan taqdim etiladi va matn uchun ham, tasvirlar uchun ham ishlaydi. Uni `Super + Ctrl + V` bilan chaqirasiz, kerakli yozuvni Enter bilan tanlaysiz, shundan soʻng u buferga joylashadi va `Super + V` bilan joylashga tayyor boʻladi.
+Bufer tarixi Unbloarchy qobigʻi tomonidan taqdim etiladi va matn uchun ham, tasvirlar uchun ham ishlaydi. Uni `Super + Ctrl + V` bilan chaqirasiz, kerakli yozuvni Enter bilan tanlaysiz, shundan soʻng u buferga joylashadi va `Super + V` bilan joylashga tayyor boʻladi.
 
  ![clipboard-history](images/clipboard-history.webp)
 

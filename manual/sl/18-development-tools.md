@@ -2,7 +2,7 @@
 
 ## Alternativni urejevalniki
 
-Omarchy privzeto vključuje [Neovim](https://neovim.io/), če pa želite nekaj bolj običajnega in znanega, lahko odprete Meni Omarchy (`Super + Space`) in si ogledate možnosti pod _Namesti > Urejevalnik_. Tam so navedeni VSCode, Cursor, Zed, Sublime Text, Helix, Vim in Emacs. Če ne najdete, kar iščete, preverite _Namesti > Paket_ in poglejte, ali ni na voljo kot paket Arch (če ni, poskusite _Namesti > AUR_, da preverite AUR).
+Unbloarchy privzeto vključuje [Neovim](https://neovim.io/), če pa želite nekaj bolj običajnega in znanega, lahko odprete Meni Unbloarchy (`Super + Space`) in si ogledate možnosti pod _Namesti > Urejevalnik_. Tam so navedeni VSCode, Cursor, Zed, Sublime Text, Helix, Vim in Emacs. Če ne najdete, kar iščete, preverite _Namesti > Paket_ in poglejte, ali ni na voljo kot paket Arch (če ni, poskusite _Namesti > AUR_, da preverite AUR).
 
 Izvirni urejevalnik `vi` je prav tako na voljo takoj po namestitvi. Za urejanje datoteke v terminalu zaženite `vi filename`.
 
@@ -12,7 +12,7 @@ Privzeti urejevalnik za celoten sistem lahko nastavite pod `Setup > Defaults > E
 
 ## Okolje
 
-Omarchy podpira nastavitev cele vrste razvojnih okolij prek razdelka _Namesti > Razvoj_ v Meniju Omarchy (`Super + Space`). Tam boste seveda našli _Ruby on Rails_, pa tudi vse tri glavne izvajalne čase za JavaScript (Node.js, Bun, Deno) ter priljubljeni ogrodji PHP, kot sta Laravel in Symfony. Oh, na voljo so tudi Go, Rust, Python, Java, Elixir (s Phoenix), .NET, OCaml, Zig, Clojure in Scala. Izbira je res zelo široka!
+Unbloarchy podpira nastavitev cele vrste razvojnih okolij prek razdelka _Namesti > Razvoj_ v Meniju Unbloarchy (`Super + Space`). Tam boste seveda našli _Ruby on Rails_, pa tudi vse tri glavne izvajalne čase za JavaScript (Node.js, Bun, Deno) ter priljubljeni ogrodji PHP, kot sta Laravel in Symfony. Oh, na voljo so tudi Go, Rust, Python, Java, Elixir (s Phoenix), .NET, OCaml, Zig, Clojure in Scala. Izbira je res zelo široka!
 
 Večino teh okolij upravlja [Mise](https://mise.jdx.dev/). To je orodje, ki omogoča namestitev in uporabo več različic programskega jezika na istem računalniku. Je kot rbenv ali rvm za Ruby ali virtualenv za Python, vendar deluje za vrsto različnih okolij.
 
@@ -20,7 +20,7 @@ Večino teh okolij upravlja [Mise](https://mise.jdx.dev/). To je orodje, ki omog
 
 ## Vnaprej nameščena orodja CLI
 
-Omarchy prek [lenobne namestitve mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools) daje na voljo orodja, kot so `gh`, `uv`, in večino [agentov za programiranje](17-ai.md). Ko eno prvič zaženete, ga mise namesti. Poznejši zagoni znova uporabijo nameščeno različico; ob vsakem zagonu ne preverjajo, ali je na voljo posodobitev.
+Unbloarchy prek [lenobne namestitve mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools) daje na voljo orodja, kot so `gh`, `uv`, in večino [agentov za programiranje](17-ai.md). Ko eno prvič zaženete, ga mise namesti. Poznejši zagoni znova uporabijo nameščeno različico; ob vsakem zagonu ne preverjajo, ali je na voljo posodobitev.
 
 Ogledate si lahko tudi privzete nastavitve ali jih namestite vnaprej:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Zaženite `omarchy update`, da posodobite nameščena orodja skupaj s preostalim sistemom Omarchy. Vzdevek `mup` posodobi samo orodja, ki jih upravlja mise. Če želite svoji konfiguraciji dodati drugo orodje, uporabite `mise use -g <tool>`.
+Zaženite `unbloarchy update`, da posodobite nameščena orodja skupaj s preostalim sistemom Unbloarchy. Vzdevek `mup` posodobi samo orodja, ki jih upravlja mise. Če želite svoji konfiguraciji dodati drugo orodje, uporabite `mise use -g <tool>`.
 
 Nastavitev Pythona prek mise namesti tudi `uv`. Če odstranite razvojno okolje Python, ostane `uv` na voljo kot samostojno orodje.
 
@@ -47,15 +47,15 @@ disable_tools = ["cursor-agent"]
 
 ### Odstranjevanje in obnavljanje privzetih orodij
 
-_Odstrani prednamestitve_ povzroči, da mise za vašega uporabnika preskoči deklaracije orodij Omarchy, tako da jih doda v `ignored_config_paths` v `~/.config/mise/miserc.toml`. _Obnovi prednamestitve_ to vrstico znova odstrani. Orodja, ki jih deklarirate sami, v svoji konfiguraciji ali v projektni datoteki `mise.toml`, delujejo v obeh primerih. Če po odstranitvi prednamestitev izberete privzetega agenta ali nastavite Python, se to orodje doda vaši konfiguraciji. Oboje velja samo za vašega uporabnika; drugi uporabniki na računalniku obdržijo svojo izbiro.
+_Odstrani prednamestitve_ povzroči, da mise za vašega uporabnika preskoči deklaracije orodij Unbloarchy, tako da jih doda v `ignored_config_paths` v `~/.config/mise/miserc.toml`. _Obnovi prednamestitve_ to vrstico znova odstrani. Orodja, ki jih deklarirate sami, v svoji konfiguraciji ali v projektni datoteki `mise.toml`, delujejo v obeh primerih. Če po odstranitvi prednamestitev izberete privzetega agenta ali nastavite Python, se to orodje doda vaši konfiguraciji. Oboje velja samo za vašega uporabnika; drugi uporabniki na računalniku obdržijo svojo izbiro.
 
 ## Docker
 
-[Docker](https://www.docker.com/) skoraj ne potrebuje predstavitve. Omogoča zagon izoliranih vsebnikov, Omarchy pa namesti vse, kar je potrebno za njegovo dobro delovanje, vključno s samim Dockerjem in [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) skoraj ne potrebuje predstavitve. Omogoča zagon izoliranih vsebnikov, Unbloarchy pa namesti vse, kar je potrebno za njegovo dobro delovanje, vključno s samim Dockerjem in [Docker Compose](https://docs.docker.com/compose/).
 
-Privzeto vaš uporabnik *ni* v skupini `docker`. Ta skupina je dejansko enakovredna rootu brez gesla — vse v njej lahko zažene `docker run -v /:/host` in prevzame računalnik — zato bi bil en sam zlonameren skript ali odvisnost, ki se izvaja pod vašim uporabnikom, sicer le en ukaz oddaljen od roota. Na ukazni vrstici zato Docker uporabljate s `sudo` (`sudo docker ps`, `sudo docker compose up`), grafična orodja, ki komunicirajo z demonom — VM z Windows — pa po potrebi zahtevajo avtorizacijo. Če želite nazaj priročnost nastavitve brez skupine in razumete kompromis, jo omogočite v **Nastavitev > Varnost > Sudoless Docker** (ali zaženite `omarchy-setup-security-sudoless-docker`), kar vas po opozorilu doda v skupino `docker`; nato preprosti `docker` in vzdevek `d` znova delujeta brez `sudo`.
+Privzeto vaš uporabnik *ni* v skupini `docker`. Ta skupina je dejansko enakovredna rootu brez gesla — vse v njej lahko zažene `docker run -v /:/host` in prevzame računalnik — zato bi bil en sam zlonameren skript ali odvisnost, ki se izvaja pod vašim uporabnikom, sicer le en ukaz oddaljen od roota. Na ukazni vrstici zato Docker uporabljate s `sudo` (`sudo docker ps`, `sudo docker compose up`), grafična orodja, ki komunicirajo z demonom — VM z Windows — pa po potrebi zahtevajo avtorizacijo. Če želite nazaj priročnost nastavitve brez skupine in razumete kompromis, jo omogočite v **Nastavitev > Varnost > Sudoless Docker** (ali zaženite `unbloarchy-setup-security-sudoless-docker`), kar vas po opozorilu doda v skupino `docker`; nato preprosti `docker` in vzdevek `d` znova delujeta brez `sudo`.
 
-Običajne podatkovne zbirke za lokalni razvoj v Dockerju lahko nastavite z _Namesti > Razvoj > Docker DB_ v meniju Omarchy.
+Običajne podatkovne zbirke za lokalni razvoj v Dockerju lahko nastavite z _Namesti > Razvoj > Docker DB_ v meniju Unbloarchy.
 
 ## GitHub CLI
 

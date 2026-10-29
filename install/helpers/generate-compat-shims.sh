@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -94,7 +94,7 @@ write_file() {
   mv -f -- "$temporary" "$target"
 }
 
-write_file "$bin_dir/omarchy" "#!/bin/bash
+write_file "$bin_dir/omarchy" "#!/usr/bin/env bash
 $marker
 $compat_bootstrap
 exec \"\${BASH_SOURCE[0]%/*}/unbloarchy\" \"\$@\""
@@ -110,13 +110,13 @@ for source in "${sources[@]}"; do
   esac
 
   alias="omarchy-${name#unbloarchy-}"
-  write_file "$bin_dir/$alias" "#!/bin/bash
+  write_file "$bin_dir/$alias" "#!/usr/bin/env bash
 $marker
 $compat_bootstrap
 exec \"\${BASH_SOURCE[0]%/*}/$name\" \"\$@\""
 done
 
-write_file "$bin_dir/omarchy-security-functions" "#!/bin/bash
+write_file "$bin_dir/omarchy-security-functions" "#!/usr/bin/env bash
 $marker
 source \"\${BASH_SOURCE[0]%/*}/unbloarchy-security-functions\""
 

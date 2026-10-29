@@ -22,7 +22,7 @@ Ritillinn fyrir athugasemdir getur teiknað örvar, línur, form, áherslumerkin
 
 Vistaðar skjámyndir lenda í `~/Pictures/Screenshots` sjálfgefið, með nafni eins og `screenshot-2026-08-13_14-22-05-firefox.png`. Stilltu `OMASNAP_SCREENSHOT_DIR` til að nota aðra möppu — sjá [algengar spurningar](46-faq.md) um hvar á að setja umhverfisbreytur lotunnar. Omasnap býr möppuna til þegar það vistar fyrstu myndina. Stilltu `[output] autosave = false` í `~/.config/omasnap/omasnap.conf` til að slökkva á sjálfvirkri vistun; tökurnar eru þá aðeins afritaðar, og sýndar í forskoðun í 10 sekúndur sem þú getur haldið á skjánum með festihnappnum hennar eða `Ctrl + P`.
 
-Í skelinni opnar `omarchy screenshot` sömu yfirlögnina, og þú getur valið upphafsham hennar: `omarchy capture screenshot region`, `windows`, `fullscreen`, eða `scroll`. Annað viðfang, `copy` eða `save`, sendir myndina beint á þann áfangastað. Til að breyta áður en þú gefur út skaltu nota `omarchy screenshot --editor=overlay` fyrir ritil á öllum skjánum eða `omarchy screenshot --editor=window` fyrir sérstakan glugga.
+Í skelinni opnar `unbloarchy screenshot` sömu yfirlögnina, og þú getur valið upphafsham hennar: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, eða `scroll`. Annað viðfang, `copy` eða `save`, sendir myndina beint á þann áfangastað. Til að breyta áður en þú gefur út skaltu nota `unbloarchy screenshot --editor=overlay` fyrir ritil á öllum skjánum eða `unbloarchy screenshot --editor=window` fyrir sérstakan glugga.
 
 ### Að stýra veljaranum með lyklaborðinu
 
@@ -41,9 +41,9 @@ Vistaðar skjámyndir lenda í `~/Pictures/Screenshots` sjálfgefið, með nafni
 
 ## Skjáupptaka
 
-`Alt + Print Screen` opnar _Trigger > Capture > Screenrecord_, sem spyr hvað þú viljir hafa á hljóðrásinni: ekkert hljóð, skjáborðshljóð, skjáborð auk hljóðnema, eða skjáborð auk hljóðnema auk vefmyndavélar. Sá síðasti birtist aðeins ef þú ert raunverulega með myndavél tengda. Veldu einn og upptökuveljari Omarchy lætur þig draga svæði eða smella á glugga eða skjá.
+`Alt + Print Screen` opnar _Trigger > Capture > Screenrecord_, sem spyr hvað þú viljir hafa á hljóðrásinni: ekkert hljóð, skjáborðshljóð, skjáborð auk hljóðnema, eða skjáborð auk hljóðnema auk vefmyndavélar. Sá síðasti birtist aðeins ef þú ert raunverulega með myndavél tengda. Veldu einn og upptökuveljari Unbloarchy lætur þig draga svæði eða smella á glugga eða skjá.
 
-Upptakan keyrir á gpu-screen-recorder, sem umkóðar á GPU á 60fps og fellur aftur á CPU ef það þarf. Niðurstaðan er MP4 í `~/Videos`, sem heitir `screenrecording-2026-08-13_14-22-05.mp4`. Stilltu `OMARCHY_SCREENRECORD_DIR` til að breyta því — en athugaðu að ólíkt skjámyndamöppunni verður þessi að vera til þegar, annars neitar upptakan að hefjast.
+Upptakan keyrir á gpu-screen-recorder, sem umkóðar á GPU á 60fps og fellur aftur á CPU ef það þarf. Niðurstaðan er MP4 í `~/Videos`, sem heitir `screenrecording-2026-08-13_14-22-05.mp4`. Stilltu `UNBLOARCHY_SCREENRECORD_DIR` til að breyta því — en athugaðu að ólíkt skjámyndamöppunni verður þessi að vera til þegar, annars neitar upptakan að hefjast.
 
 Á meðan þú tekur upp birtist lítill vísir á stikunni. Smelltu á hann til að stöðva. Þú getur líka stöðvað aftur með `Alt + Print Screen`, eða með _Stop Screenrecording_ færslunni undir _Trigger > Capture > Screenrecord_, sem birtist aðeins á meðan eitthvað er raunverulega í upptöku.
 
@@ -60,7 +60,7 @@ Upptakan keyrir á gpu-screen-recorder, sem umkóðar á GPU á 60fps og fellur 
 
 Það eru þrjár stærðir — lítil, meðal og stór — og flýtilyklarnir stíga á milli þeirra. Meðal er sjálfgefið. Þær eru í hlutfalli við upptökuna, svo myndavélin tekur sama hluta rammans hvort sem þú ert að taka upp 1080p skjá eða 6K skjá. Og ef þú tókst upp svæði frekar en allan skjáinn festist yfirlögnin við horn þess svæðis frekar en skjásins, svo hún helst inni í myndinni.
 
-Þú getur líka kallað á hana beint með `omarchy-capture-webcam-resize small`, eða `reset` til að fara aftur í meðal.
+Þú getur líka kallað á hana beint með `unbloarchy-capture-webcam-resize small`, eða `reset` til að fara aftur í meðal.
 
 ## Texti, QR kóðar og litir
 
@@ -76,7 +76,7 @@ _Trigger > Capture > QR Code_ gerir sama bragðið fyrir QR kóða. Veldu svæð
 
 Myndir fara í jpg eða png í háu, meðal eða lágu, sem takmarka breiddina við 3160, 2160 og 1080 pixla. Myndbönd fara í mp4 eða hreyft gif í 4k, 1080p eða 720p. Umbreytta skráin er skrifuð við hliðina á frumritinu með upplausninni í nafninu — `demo-1080p.mp4` — og slóðin er afrituð á klippiborðið sem skráar-URI, svo þú getur límt hana beint inn í forrit sem tekur við skráum sem sleppt er.
 
-Það virkar líka í skelinni, ef þú veist þegar hvað þú vilt: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Það er líka til `omarchy transcode ascii`, sem breytir mynd í ASCII list — sú er aðallega fyrir [vörumerkingu](41-branding.md).
+Það virkar líka í skelinni, ef þú veist þegar hvað þú vilt: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Það er líka til `unbloarchy transcode ascii`, sem breytir mynd í ASCII list — sú er aðallega fyrir [vörumerkingu](41-branding.md).
 
 ## Að senda það eitthvert
 

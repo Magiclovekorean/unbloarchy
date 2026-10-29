@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# omarchy:summary=Save or restore the focused Hyprland window width
-# omarchy:args=<save|restore>
-# omarchy:examples=omarchy hyprland window width save | omarchy-hyprland-window-width restore
+# unbloarchy:summary=Save or restore the focused Hyprland window width
+# unbloarchy:args=<save|restore>
+# unbloarchy:examples=unbloarchy hyprland window width save | unbloarchy-hyprland-window-width restore
 
 set -euo pipefail
 
-STATE_DIR="$HOME/.local/state/omarchy/windows"
+STATE_DIR="$HOME/.local/state/unbloarchy/windows"
 
 usage() {
-  echo "Usage: omarchy-hyprland-window-width save|restore" >&2
+  echo "Usage: unbloarchy-hyprland-window-width save|restore" >&2
   exit 1
 }
 
@@ -40,14 +40,14 @@ notify_missing_width() {
   local key="$1"
   local workspace="$2"
 
-  omarchy-notification-send -g  "$(omarchy-i18n window.noSavedWidth "$key" "$workspace")" "$(omarchy-i18n window.saveWidthHint)"
+  unbloarchy-notification-send -g  "$(unbloarchy-i18n window.noSavedWidth "$key" "$workspace")" "$(unbloarchy-i18n window.saveWidthHint)"
 }
 
 notify_saved_width() {
   local key="$1"
   local workspace="$2"
 
-  omarchy-notification-send -g  "$(omarchy-i18n window.savedWidth "$key" "$workspace")" "$(omarchy-i18n window.restoreWidthHint)"
+  unbloarchy-notification-send -g  "$(unbloarchy-i18n window.savedWidth "$key" "$workspace")" "$(unbloarchy-i18n window.restoreWidthHint)"
 }
 
 hypr_dispatch() {

@@ -49,12 +49,12 @@ stub_hyprctl() {
 # under $tmpdir/cache unless given another directory.
 keybindings() {
   env -i PATH="$stub_bin:$ROOT/bin:$PATH" HOME="$home" \
-    XDG_CACHE_HOME="${2:-$tmpdir/cache}" OMARCHY_PATH="$ROOT" \
+    XDG_CACHE_HOME="${2:-$tmpdir/cache}" UNBLOARCHY_PATH="$ROOT" \
     bash "${1:-$menu}" --print
 }
 
-# Closing a window is one of the actions Omarchy binds twice on purpose. The
-# last bind carries the longest description Omarchy ships, which is what puts a
+# Closing a window is one of the actions Unbloarchy binds twice on purpose. The
+# last bind carries the longest description Unbloarchy ships, which is what puts a
 # row closest to the width the menu allows.
 stub_hyprctl <<BINDS
 $(lua_bind 64 "SUPER + W" "Close window")
@@ -234,7 +234,7 @@ pass "chords whose dispatch is unknown stay apart"
 # A renamed description would leave an action the menu pairs up matching
 # nothing, and the row it was meant to share would quietly split in two. Only
 # real binds count: a commented-out example is not a second chord.
-eval "$(sed -n '/^alternative_chord_actions()/,/^}/p' "$ROOT/bin/omarchy-menu-keybindings")"
+eval "$(sed -n '/^alternative_chord_actions()/,/^}/p' "$ROOT/bin/unbloarchy-menu-keybindings")"
 [[ -n $(alternative_chord_actions) ]] || fail "the menu names the actions it pairs up"
 while IFS= read -r action; do
   (( $(grep -rhE '^[[:space:]]*o\.bind\(' "$ROOT/default/hypr/bindings" |
@@ -267,14 +267,14 @@ rm -rf "$tmpdir/cache"
 # A wedged scan is stopped by the menu's own timeout before the Terminal bind,
 # which the check below catches; the outer timeout only turns a hang into a fail.
 timeout --kill-after=1s 60s env -i PATH="$stub_bin:$ROOT/bin:$PATH" HOME="$home" \
-  XDG_CACHE_HOME="$tmpdir/cache" OMARCHY_PATH="$ROOT" \
+  XDG_CACHE_HOME="$tmpdir/cache" UNBLOARCHY_PATH="$ROOT" \
   bash "$menu" --print >/dev/null 2>&1 ||
   fail "a plugin iterating windows at load time does not wedge the keybindings scan"
-grep -qP '→ Terminal\texec\tomarchy-launch-terminal$' "$tmpdir"/cache/omarchy/keybindings-*.records ||
+grep -qP '→ Terminal\texec\tunbloarchy-launch-terminal$' "$tmpdir"/cache/unbloarchy/keybindings-*.records ||
   fail "a plugin iterating windows at load time does not wedge the keybindings scan (it stopped before the Terminal bind)"
 pass "a plugin iterating windows at load time does not wedge the keybindings scan"
 
-# Rows show their description in the Omarchy language: a numbered one
+# Rows show their description in the Unbloarchy language: a numbered one
 # matches its %1 pattern, an unknown one stays as written, and the chord
 # column and what the row runs never change.
 translate_root=$tmpdir/translate-root
@@ -282,18 +282,18 @@ mkdir -p "$translate_root/default/i18n/da"
 cp "$ROOT/default/i18n/locales.json" "$translate_root/default/i18n/"
 printf '{"Terminal": "Terminal (da)", "Switch to workspace %%1": "Skift til arbejdsområde %%1"}\n' >"$translate_root/default/i18n/da/keybindings.json"
 echo da >"$tmpdir/translate-language"
-eval "$(sed -n '/^translate_binding_records()/,/^}/p' "$ROOT/bin/omarchy-menu-keybindings")"
+eval "$(sed -n '/^translate_binding_records()/,/^}/p' "$ROOT/bin/unbloarchy-menu-keybindings")"
 translated=$(printf '%s\n' \
-  $'SUPER + RETURN                      → Terminal\texec\tomarchy-launch-terminal' \
+  $'SUPER + RETURN                      → Terminal\texec\tunbloarchy-launch-terminal' \
   $'SUPER + 3                           → Switch to workspace 3\tworkspace\t3' \
   $'SUPER + X                           → My own thing\texec\tmy-thing' |
-  OMARCHY_PATH=$translate_root OMARCHY_LANGUAGE_FILE=$tmpdir/translate-language translate_binding_records)
+  UNBLOARCHY_PATH=$translate_root UNBLOARCHY_LANGUAGE_FILE=$tmpdir/translate-language translate_binding_records)
 expected=$(printf '%s\n' \
-  $'SUPER + RETURN                      → Terminal (da)\texec\tomarchy-launch-terminal' \
+  $'SUPER + RETURN                      → Terminal (da)\texec\tunbloarchy-launch-terminal' \
   $'SUPER + 3                           → Skift til arbejdsområde 3\tworkspace\t3' \
   $'SUPER + X                           → My own thing\texec\tmy-thing')
-[[ $translated == "$expected" ]] || fail "keybinding descriptions show in the Omarchy language" "$translated"
-pass "keybinding descriptions show in the Omarchy language"
+[[ $translated == "$expected" ]] || fail "keybinding descriptions show in the Unbloarchy language" "$translated"
+pass "keybinding descriptions show in the Unbloarchy language"
 
 # A platform package names keys the way its keyboards print them. On a MacBook
 # XF86MonBrightnessUp/Down are the F2/F1 keys, so without the names the menu
@@ -304,8 +304,8 @@ platform=$tmpdir/platform
 mkdir -p "$platform/root" "$platform/crlf"
 printf '%s\n' 'XF86MonBrightnessUp F2' 'XF86MonBrightnessDown F1' 'not a line' 'Bad-Sym F3' >"$platform/root/key-names"
 printf '%s\r\n' 'XF86MonBrightnessUp F2' '  XF86MonBrightnessDown	F1 ' >"$platform/crlf/key-names"
-platform_root_copy "$ROOT/bin/omarchy-menu-keybindings" "$platform/with-names" "$platform/root"
-platform_root_copy "$ROOT/bin/omarchy-menu-keybindings" "$platform/crlf-names" "$platform/crlf"
+platform_root_copy "$ROOT/bin/unbloarchy-menu-keybindings" "$platform/with-names" "$platform/root"
+platform_root_copy "$ROOT/bin/unbloarchy-menu-keybindings" "$platform/crlf-names" "$platform/crlf"
 
 stub_hyprctl <<'BINDS'
 bindl
@@ -314,7 +314,7 @@ bindl
 	keycode: 0
 	description: Keyboard brightness up
 	dispatcher: exec
-	arg: omarchy-brightness-keyboard up
+	arg: unbloarchy-brightness-keyboard up
 
 bindl
 	modmask: 1
@@ -322,7 +322,7 @@ bindl
 	keycode: 0
 	description: Keyboard brightness down
 	dispatcher: exec
-	arg: omarchy-brightness-keyboard down
+	arg: unbloarchy-brightness-keyboard down
 
 bindi
 	modmask: 8
@@ -330,7 +330,7 @@ bindi
 	keycode: 0
 	description: Brightness up precise
 	dispatcher: exec
-	arg: omarchy-brightness-display +1%
+	arg: unbloarchy-brightness-display +1%
 
 bind
 	modmask: 64
@@ -376,7 +376,7 @@ tr -s ' ' <<<"$output" | grep -qF 'SUPER + Q → Close window' ||
 
 # The menu runs a chosen row from its cached record, which carries what the
 # binding runs.
-records=$(cat "$names_cache"/omarchy/keybindings-*.records)
+records=$(cat "$names_cache"/unbloarchy/keybindings-*.records)
 grep -qF 'wtype -k XF86MonBrightnessUp' <<<"$records" && ! grep -qF 'wtype -k F2' <<<"$records" ||
   fail "a key name never changes what a binding runs" "$records"
 
@@ -400,7 +400,7 @@ pass "keybindings menu keeps keysym names without a platform package"
 # the scan hangs (one user config spun a `lua` at 100% CPU for 27 hours after a
 # single SUPER+K) or aborts halfway, silently dropping every bind declared after
 # the failing line. The scan is run here on its own, lifted out of the menu.
-scan=$(awk '/lua (-E - )?<<.LUA.$/ { capture = 1; next } /^LUA$/ { capture = 0 } capture' "$ROOT/bin/omarchy-menu-keybindings")
+scan=$(awk '/lua (-E - )?<<.LUA.$/ { capture = 1; next } /^LUA$/ { capture = 0 } capture' "$ROOT/bin/unbloarchy-menu-keybindings")
 [[ -n $scan ]] || fail "keybindings menu embeds the Lua bind scan"
 
 scan_home=$tmpdir/scan-home
@@ -430,7 +430,7 @@ if monitor.scale > 1 then
   error("stub comparisons should be false")
 end
 
-hl.bind("SUPER + K", hl.dsp.exec_cmd("omarchy-menu keybindings"), { description = "Keybindings menu" })
+hl.bind("SUPER + K", hl.dsp.exec_cmd("unbloarchy-menu keybindings"), { description = "Keybindings menu" })
 hl.bind("SUPER + code:20", hl.dsp.workspace({ name = "special" }), { description = "Lua only bind" })
 LUA
 
@@ -438,19 +438,19 @@ output=$(lua_scan) || fail "Lua bind scan exits cleanly on a config that iterate
 pass "Lua bind scan survives load-time loops, comparisons, and arithmetic over stub state"
 
 [[ $output != *"lua bind scan failed"* ]] || fail "Lua bind scan does not abort on stub comparisons ($output)"
-grep -qF $'64\tKeybindings menu\tK\texec\tomarchy-menu keybindings' <<<"$output" || fail "Lua bind scan reports exec binds declared after load-time reads (got: $output)"
+grep -qF $'64\tKeybindings menu\tK\texec\tunbloarchy-menu keybindings' <<<"$output" || fail "Lua bind scan reports exec binds declared after load-time reads (got: $output)"
 grep -qF $'64\tLua only bind\tcode:20\tlua\thl.dsp.workspace({ name = "special" })' <<<"$output" || fail "Lua bind scan reports Lua dispatcher binds (got: $output)"
 pass "Lua bind scan reports binds declared after load-time compositor reads"
 
 # A loop nothing in the stub can end is stopped inside the scan, well before
 # the timeout, and the binds declared ahead of it are still reported.
 cat >"$scan_home/.config/hypr/hyprland.lua" <<'LUA'
-hl.bind("SUPER + K", hl.dsp.exec_cmd("omarchy-menu keybindings"), { description = "Keybindings menu" })
+hl.bind("SUPER + K", hl.dsp.exec_cmd("unbloarchy-menu keybindings"), { description = "Keybindings menu" })
 while true do end
 LUA
 
 output=$(lua_scan) || fail "Lua bind scan stops a runaway config instead of running until killed (output: $output)"
-grep -qF $'64\tKeybindings menu\tK\texec\tomarchy-menu keybindings' <<<"$output" || fail "Lua bind scan keeps binds declared before a runaway loop (got: $output)"
+grep -qF $'64\tKeybindings menu\tK\texec\tunbloarchy-menu keybindings' <<<"$output" || fail "Lua bind scan keeps binds declared before a runaway loop (got: $output)"
 pass "Lua bind scan stops a runaway config and keeps the binds declared before it"
 
 # Indexing a collection still reads a stand-in: only `ipairs` sees it as empty,
@@ -461,12 +461,12 @@ local first = monitors[1].name
 local last = monitors[#monitors].name
 hl.monitor({ output = first, scale = 1 })
 hl.monitor({ output = last, scale = 1 })
-hl.bind("SUPER + K", hl.dsp.exec_cmd("omarchy-menu keybindings"), { description = "Keybindings menu" })
+hl.bind("SUPER + K", hl.dsp.exec_cmd("unbloarchy-menu keybindings"), { description = "Keybindings menu" })
 LUA
 
 output=$(lua_scan) || fail "Lua bind scan reads an indexed stub collection (output: $output)"
 [[ $output != *"lua bind scan failed"* ]] || fail "Lua bind scan does not abort on an indexed stub collection ($output)"
-grep -qF $'64\tKeybindings menu\tK\texec\tomarchy-menu keybindings' <<<"$output" || fail "Lua bind scan reports binds declared after indexing a stub collection (got: $output)"
+grep -qF $'64\tKeybindings menu\tK\texec\tunbloarchy-menu keybindings' <<<"$output" || fail "Lua bind scan reports binds declared after indexing a stub collection (got: $output)"
 pass "Lua bind scan reads an indexed stub collection and keeps the binds after it"
 
 # A walk by index ends too, and the binds after it are still reported.
@@ -476,10 +476,10 @@ local i = 1
 while monitors[i] do
   i = i + 1
 end
-hl.bind("SUPER + K", hl.dsp.exec_cmd("omarchy-menu keybindings"), { description = "Keybindings menu" })
+hl.bind("SUPER + K", hl.dsp.exec_cmd("unbloarchy-menu keybindings"), { description = "Keybindings menu" })
 LUA
 
 output=$(lua_scan) || fail "Lua bind scan ends an indexed walk over a stub collection (output: $output)"
 [[ $output != *"lua bind scan failed"* ]] || fail "Lua bind scan does not abort on an indexed walk over a stub collection ($output)"
-grep -qF $'64\tKeybindings menu\tK\texec\tomarchy-menu keybindings' <<<"$output" || fail "Lua bind scan reports binds declared after an indexed walk (got: $output)"
+grep -qF $'64\tKeybindings menu\tK\texec\tunbloarchy-menu keybindings' <<<"$output" || fail "Lua bind scan reports binds declared after an indexed walk (got: $output)"
 pass "Lua bind scan ends an indexed walk over a stub collection and keeps the binds after it"

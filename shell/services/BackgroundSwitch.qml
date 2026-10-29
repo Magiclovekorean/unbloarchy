@@ -15,9 +15,9 @@ Item {
   property var intro: null
   readonly property var backgroundService: intro ? intro.backgroundService : null
   readonly property string home: Quickshell.env("HOME")
-  readonly property string backgroundLink: home + "/.local/state/omarchy/current/background"
-  readonly property string transitionCache: home + "/.cache/omarchy/background-transitions"
-  readonly property string themeSetLock: (Quickshell.env("XDG_RUNTIME_DIR") || "/tmp") + "/omarchy-theme-set.lock"
+  readonly property string backgroundLink: home + "/.local/state/unbloarchy/current/background"
+  readonly property string transitionCache: home + "/.cache/unbloarchy/background-transitions"
+  readonly property string themeSetLock: (Quickshell.env("XDG_RUNTIME_DIR") || "/tmp") + "/unbloarchy-theme-set.lock"
 
   // The change in progress, named by its cover's token.
   property string token: ""
@@ -60,7 +60,7 @@ Item {
     return path && !Util.isVideoPath(path) ? path : ""
   }
 
-  // omarchy-theme-bg-set's selection, with the intro it found for it.
+  // unbloarchy-theme-bg-set's selection, with the intro it found for it.
   function switchTo(path, clipPath) {
     path = String(path || "").trim()
     if (!path || !intro || !backgroundService) return "unavailable"
@@ -174,10 +174,10 @@ Item {
       else Quickshell.execDetached(["rm", "-f", path])
     }
     ownedCovers = kept
-    // The queued selection goes back through omarchy-theme-bg-set, which
+    // The queued selection goes back through unbloarchy-theme-bg-set, which
     // finds its intro under the settings and theme as they are now.
     if (queuedPath) {
-      Quickshell.execDetached(["omarchy-theme-bg-set", queuedPath])
+      Quickshell.execDetached(["unbloarchy-theme-bg-set", queuedPath])
       queuedPath = ""
     }
   }
@@ -200,7 +200,7 @@ Item {
   // taken and runs before it is released, so no new intro can start between.
   Process {
     id: reloadLock
-    command: ["flock", root.themeSetLock, "bash", "-c", 'echo locked; read -r go; [[ $go != reload ]] || exec omarchy-restart-hyprctl']
+    command: ["flock", root.themeSetLock, "bash", "-c", 'echo locked; read -r go; [[ $go != reload ]] || exec unbloarchy-restart-hyprctl']
     stdinEnabled: true
     stdout: SplitParser {
       onRead: {

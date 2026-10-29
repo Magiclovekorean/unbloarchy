@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# omarchy:summary=Choose a legible transparent bar text color
-# omarchy:hidden=true
+# unbloarchy:summary=Choose a legible transparent bar text color
+# unbloarchy:hidden=true
 
 set -e
 
@@ -72,15 +72,15 @@ valid_hex "$text_color" || fallback
 valid_hex "$background_color" || fallback
 [[ $position =~ ^(top|bottom|left|right)$ ]] || fallback
 [[ $bar_size =~ ^[0-9]+$ ]] || fallback
-omarchy-cmd-present magick || fallback
+unbloarchy-cmd-present magick || fallback
 
 if [[ -z $background_path ]]; then
-  background_path=$(readlink -f "$HOME/.local/state/omarchy/current/background" 2>/dev/null || true)
+  background_path=$(readlink -f "$HOME/.local/state/unbloarchy/current/background" 2>/dev/null || true)
 fi
 [[ -f $background_path ]] || fallback
 
 if [[ -z $screen_size ]]; then
-  if omarchy-cmd-present hyprctl && omarchy-cmd-present jq; then
+  if unbloarchy-cmd-present hyprctl && unbloarchy-cmd-present jq; then
     screen_size=$(hyprctl monitors -j 2>/dev/null | jq -r '.[0] | "\(.width)x\(.height)"' 2>/dev/null || true)
   fi
 fi
@@ -124,7 +124,7 @@ esac
 # second full-size resize buffer. Box scaling still averages every source pixel;
 # point sampling would alias on fine stripes and pick the wrong text color. Do
 # not let an oversized image spill its pixel cache into a memory map or /tmp (a
-# tmpfs on Omarchy); fall back to the configured text color when the bounded
+# tmpfs on Unbloarchy); fall back to the configured text color when the bounded
 # sample cannot finish cheaply.
 pixel=$(MAGICK_MEMORY_LIMIT=512MiB \
   MAGICK_MAP_LIMIT=0 \

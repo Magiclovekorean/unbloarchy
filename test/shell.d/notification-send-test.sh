@@ -212,10 +212,10 @@ pass "notification wrapper rejects --exec with an empty program"
 send "Screenshot saved" "shot.png" --action Edit omasnap --file --action "Copy path" wl-copy -- \
   --with "/tmp/a b --action x.png" >/dev/null
 load
-[[ $(hint_value omarchy-actions) == '[{"label":"Edit","argv":["omasnap","--file","/tmp/a b --action x.png"]},{"label":"Copy path","argv":["wl-copy","--","/tmp/a b --action x.png"]}]' ]] ||
-  fail "notification wrapper builds the actions hint" "$(hint_value omarchy-actions)"
-[[ $(hint_value omarchy-exec-argv) == '["omasnap","--file","/tmp/a b --action x.png"]' ]] ||
-  fail "the first action is the click command" "$(hint_value omarchy-exec-argv)"
+[[ $(hint_value unbloarchy-actions) == '[{"label":"Edit","argv":["omasnap","--file","/tmp/a b --action x.png"]},{"label":"Copy path","argv":["wl-copy","--","/tmp/a b --action x.png"]}]' ]] ||
+  fail "notification wrapper builds the actions hint" "$(hint_value unbloarchy-actions)"
+[[ $(hint_value unbloarchy-exec-argv) == '["omasnap","--file","/tmp/a b --action x.png"]' ]] ||
+  fail "the first action is the click command" "$(hint_value unbloarchy-exec-argv)"
 pass "notification wrapper builds --action buttons with --with data, the first as the click"
 
 if send "Head" --action One true --action Two true --action Three true --action Four true 2>/dev/null; then

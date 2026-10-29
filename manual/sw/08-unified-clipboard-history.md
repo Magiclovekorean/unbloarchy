@@ -2,7 +2,7 @@
 
 Kwa kawaida kwenye Linux, unahitaji `Ctrl + Shift + C/V` kunakili na kubandika kwenye terminal na `Ctrl + C/V` kufanya hivyo kila mahali pengine. Ni vigumu kuzoea kwa mtu yeyote ambaye hajazaliwa na kulelewa kwenye Linux! Vivyo hivyo kubadili kutoka super kwenda ctrl, ikiwa unatoka kwenye Mac.
 
-Omarchy inatatua matatizo yote mawili kwa mikato iliyounganishwa ya ubao wa kunakili inayofanya kazi (karibu) kila mahali. Ni hii:
+Unbloarchy inatatua matatizo yote mawili kwa mikato iliyounganishwa ya ubao wa kunakili inayofanya kazi (karibu) kila mahali. Ni hii:
 
 | Mkato | Amri |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Tumia `Super + A`, kisha `Super + C` kunakili kila kitu katika sehemu ya maandis
 
 ### Historia ya ubao wa kunakili
 
-Historia ya ubao wa kunakili hutolewa na shell ya Omarchy na hufanya kazi kwa maandishi na picha. Unaianzisha kwa `Super + Ctrl + V`, unachagua kipengee chako kwa return, na kisha kitawekwa kwenye ubao wa kunakili tayari kubandikwa kwa `Super + V`.
+Historia ya ubao wa kunakili hutolewa na shell ya Unbloarchy na hufanya kazi kwa maandishi na picha. Unaianzisha kwa `Super + Ctrl + V`, unachagua kipengee chako kwa return, na kisha kitawekwa kwenye ubao wa kunakili tayari kubandikwa kwa `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

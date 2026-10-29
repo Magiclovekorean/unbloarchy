@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# omarchy:summary=Show, set, or adjust focused Hyprland monitor scaling
-# omarchy:args=[up|down|SCALE]
-# omarchy:examples=omarchy hyprland monitor scaling | omarchy hyprland monitor scaling 1.6 | omarchy hyprland monitor scaling up | omarchy hyprland monitor scaling down
+# unbloarchy:summary=Show, set, or adjust focused Hyprland monitor scaling
+# unbloarchy:args=[up|down|SCALE]
+# unbloarchy:examples=unbloarchy hyprland monitor scaling | unbloarchy hyprland monitor scaling 1.6 | unbloarchy hyprland monitor scaling up | unbloarchy hyprland monitor scaling down
 
 SCALES=(1 1.25 1.6 2 3 4)
-STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/unbloarchy"
 SCALE_LOG="$STATE_DIR/monitor-scaling.log"
 
 usage() {
-  echo "Usage: omarchy-hyprland-monitor-scaling [up|down|SCALE]"
+  echo "Usage: unbloarchy-hyprland-monitor-scaling [up|down|SCALE]"
 }
 
 focused_monitor_scale() {
@@ -106,7 +106,7 @@ set_scale() {
 
 # Persist the scale as a rule for this monitor alone, so other monitors keep
 # theirs and the scale survives reboots. A rule already naming the monitor has
-# its scale updated in place. Otherwise one is added after Omarchy's catch-all,
+# its scale updated in place. Otherwise one is added after Unbloarchy's catch-all,
 # which stays the default for monitors without a rule of their own. Only rules
 # written on one line with a plain scale value are edited; a config holding
 # anything else for these rules (a multi-line table, a scale expression, another
@@ -166,7 +166,7 @@ persist_scale() {
 
   # GDK_SCALE is a single session-wide value, set from the lowest monitor scale.
   sed -i -E \
-    -e "s|^local omarchy_gdk_scale = .*|local omarchy_gdk_scale = ${gdk_scale}|" \
+    -e "s|^local unbloarchy_gdk_scale = .*|local unbloarchy_gdk_scale = ${gdk_scale}|" \
     -e 's|^hl\.env\("GDK_SCALE", "[^"]*"\)|hl.env("GDK_SCALE", "'"$gdk_scale"'")|' \
     "$tmp"
   chmod --reference="$target" "$tmp"

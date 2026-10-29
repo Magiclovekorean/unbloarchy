@@ -1,8 +1,8 @@
 # Témy
 
-Omarchy prichádza s dvadsiatimi dvoma krásnymi témami. Môžete si medzi nimi vybrať cez _Vzhľad > Téma_ v Omarchy Menu (`Super + Space`) alebo skočiť priamo do výberu tém pomocou `Super + Ctrl + T`.
+Unbloarchy prichádza s dvadsiatimi dvoma krásnymi témami. Môžete si medzi nimi vybrať cez _Vzhľad > Téma_ v Unbloarchy Menu (`Super + Space`) alebo skočiť priamo do výberu tém pomocou `Super + Ctrl + T`.
 
-Každá téma upravuje vzhľad pracovnej plochy, terminálu, neovim, obrazovky aktivity (btop), Chromium a celého prostredia Omarchy: horného panela, ponuky, oznámení, OSD a zamknutej obrazovky. (V prípade Obsidian musíte tému Omarchy vybrať manuálne cez _Vzhľad > Témy_ priamo v aplikácii).
+Každá téma upravuje vzhľad pracovnej plochy, terminálu, neovim, obrazovky aktivity (btop), Chromium a celého prostredia Unbloarchy: horného panela, ponuky, oznámení, OSD a zamknutej obrazovky. (V prípade Obsidian musíte tému Unbloarchy vybrať manuálne cez _Vzhľad > Témy_ priamo v aplikácii).
 
 Témy majú sadu obrázkov na pozadie, medzi ktorými si môžete vyberať pomocou `Super + Ctrl + W`.
 

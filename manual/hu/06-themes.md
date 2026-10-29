@@ -1,8 +1,8 @@
 # Témák
 
-Az Omarchy huszonkét gyönyörű témával érkezik. Közülük az Omarchy menü (`Super + Space`) _Megjelenés > Téma_ pontjában választhatsz, vagy közvetlenül a témaválasztóhoz ugorhatsz a `Super + Ctrl + T` billentyűkombinációval.
+Az Unbloarchy huszonkét gyönyörű témával érkezik. Közülük az Unbloarchy menü (`Super + Space`) _Megjelenés > Téma_ pontjában választhatsz, vagy közvetlenül a témaválasztóhoz ugorhatsz a `Super + Ctrl + T` billentyűkombinációval.
 
-Minden téma formázza az asztalt, a terminált, a neovimt, a tevékenységképernyőt (btop), a Chromiumot és a teljes Omarchy felületet: a felső sávot, a menüt, az értesítéseket, az OSD-t és a zárolási képernyőt. (Az Obsidian esetében manuálisan kell kiválasztanod az Omarchy témát az alkalmazáson belül a _Megjelenés > Témák_ alatt).
+Minden téma formázza az asztalt, a terminált, a neovimt, a tevékenységképernyőt (btop), a Chromiumot és a teljes Unbloarchy felületet: a felső sávot, a menüt, az értesítéseket, az OSD-t és a zárolási képernyőt. (Az Obsidian esetében manuálisan kell kiválasztanod az Unbloarchy témát az alkalmazáson belül a _Megjelenés > Témák_ alatt).
 
 A témákhoz háttérképek készlete tartozik, amelyek közül a `Super + Ctrl + W` billentyűkombinációval választhatsz.
 

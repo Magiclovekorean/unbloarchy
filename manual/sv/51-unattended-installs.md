@@ -1,8 +1,8 @@
 # Obevakade installationer
 
-Omarchy-ISO:n kan installera sig själv utan någon vid tangentbordet. Om installationsprogrammet hittar en andra enhet med etiketten `cidata` som innehåller dess konfigurationsfiler kopierar det över dem, hoppar över installationsguiden helt och startar om till det färdiga systemet på egen hand. Ingen särskild ISO-byggnad, ingen extra post i startmenyn — utan en sådan enhet ansluten förändras ingenting och du får den vanliga guiden.
+Unbloarchy-ISO:n kan installera sig själv utan någon vid tangentbordet. Om installationsprogrammet hittar en andra enhet med etiketten `cidata` som innehåller dess konfigurationsfiler kopierar det över dem, hoppar över installationsguiden helt och startar om till det färdiga systemet på egen hand. Ingen särskild ISO-byggnad, ingen extra post i startmenyn — utan en sådan enhet ansluten förändras ingenting och du får den vanliga guiden.
 
-Det gör Omarchy utmärkt som basavbildning för tillfälliga utvecklingsmiljöer: skapa en VM i Proxmox eller med Packer, starta den, gå därifrån, anslut via SSH. `cidata` är cloud-init-etiketten `NoCloud`, så alla vanliga virtualiseringsverktyg vet redan hur man ansluter en sådan enhet.
+Det gör Unbloarchy utmärkt som basavbildning för tillfälliga utvecklingsmiljöer: skapa en VM i Proxmox eller med Packer, starta den, gå därifrån, anslut via SSH. `cidata` är cloud-init-etiketten `NoCloud`, så alla vanliga virtualiseringsverktyg vet redan hur man ansluter en sådan enhet.
 
 ## Konfigurationsfilerna
 
@@ -18,13 +18,13 @@ Filerna är exakt det som installationsprogrammets egen guide skriver, så det e
 
 Generera lösenordshashen för `user_credentials.json` med `openssl passwd -6 "yourpassword"`.
 
-Namnet och e-postadressen för git-commits ingår inte i installationen. Ställ in dem när maskinen är igång, till exempel via SSH, med `omarchy setup git --name "Jane Doe" --email jane@example.com`.
+Namnet och e-postadressen för git-commits ingår inte i installationen. Ställ in dem när maskinen är igång, till exempel via SSH, med `unbloarchy setup git --name "Jane Doe" --email jane@example.com`.
 
 Du kan också lägga in en tom fil med namnet `defer-provisioning` i stället för `user_credentials.json`. Då körs samma [installation som förbereder för en annan ägare](02-getting-started.md) som du kan starta interaktivt: maskinen installeras utan personuppgifter, och den som startar den först väljer sitt tangentbord och skapar sin användare. Det är läget för avbildningsriggar, där enheten inte ska innehålla någons inloggningsuppgifter alls.
 
 ## SSH-åtkomst
 
-När `authorized_keys` finns ställer installationen in nycklarna som användarens `~/.ssh/authorized_keys`, aktiverar `sshd` och öppnar brandväggen för den. (En vanlig Omarchy-installation levereras med openssh med tjänsten inaktiverad och porten stängd, så en obevakad maskin skulle annars vara oåtkomlig.) Installationen lägger bara till dina nycklar — den luckrar inte upp några av SSH-daemonens övriga autentiseringsinställningar.
+När `authorized_keys` finns ställer installationen in nycklarna som användarens `~/.ssh/authorized_keys`, aktiverar `sshd` och öppnar brandväggen för den. (En vanlig Unbloarchy-installation levereras med openssh med tjänsten inaktiverad och porten stängd, så en obevakad maskin skulle annars vara oåtkomlig.) Installationen lägger bara till dina nycklar — den luckrar inte upp några av SSH-daemonens övriga autentiseringsinställningar.
 
 När `tailscale_authkey` finns ansluter maskinen i stället till ditt tailnet vid första uppstarten: Tailscale installeras från ISO:ns medföljande paket, brandväggen tillåter tailnet-gränssnittet, och ett bakgrundsjobb kör anslutningen så snart maskinen faktiskt har nätverk, med nya försök tills det lyckas. Använd en återanvändbar, förhandsgodkänd nyckel så att en enhetsavbildning kan betjäna många maskiner.
 
@@ -38,16 +38,16 @@ cp user_configuration.json user_credentials.json authorized_keys cidata/
 genisoimage -output cidata.iso -volid cidata -joliet -rock cidata/
 ```
 
-Anslut den sedan till VM:en tillsammans med Omarchy-ISO:n. Här är ett komplett Proxmox-exempel:
+Anslut den sedan till VM:en tillsammans med Unbloarchy-ISO:n. Här är ett komplett Proxmox-exempel:
 
 ```bash
-qm create 101 --name my-omarchy \
+qm create 101 --name my-unbloarchy \
   --bios ovmf --machine q35 --cpu host --cores 4 --memory 8192 \
   --ostype l26 --scsihw virtio-scsi-single \
   --efidisk0 local-lvm:0,efitype=4m,pre-enrolled-keys=0 \
   --scsi0 local-lvm:40,discard=on,iothread=1 \
   --net0 virtio,bridge=vmbr0 --vga virtio --serial0 socket \
-  --ide2 local:iso/omarchy.iso,media=cdrom \
+  --ide2 local:iso/unbloarchy.iso,media=cdrom \
   --ide3 local:iso/cidata.iso,media=cdrom \
   --boot order='scsi0;ide2'
 

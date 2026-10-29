@@ -108,9 +108,9 @@ grep -Fq $'XF86Calculator	Calculator' <<<"$fresh_output" || fail "default applic
 pass "default application bindings load from package defaults"
 
 removed_home="$tmpdir/removed-home"
-mkdir -p "$removed_home/.local/state/omarchy"
-touch "$removed_home/.local/state/omarchy/preinstalls-removed"
-removed_output=$(run_omarchy_bindings "$removed_home")
+mkdir -p "$removed_home/.local/state/unbloarchy"
+touch "$removed_home/.local/state/unbloarchy/preinstalls-removed"
+removed_output=$(run_unbloarchy_bindings "$removed_home")
 grep -Fq $'SUPER + RETURN	Terminal' <<<"$removed_output" || fail "preinstall removal keeps essential bindings"
 if grep -Fq $'SUPER + SHIFT + A	ChatGPT' <<<"$removed_output"; then
   fail "preinstall removal skips preinstalled web app bindings"
@@ -185,7 +185,7 @@ pass "missing Lazydocker skips its Docker shortcut"
 # The original scratchpad stays separate from the Quake console.
 scratchpad_home="$tmpdir/scratchpad-home"
 mkdir -p "$scratchpad_home"
-scratchpad_output=$(run_omarchy_bindings "$scratchpad_home")
+scratchpad_output=$(run_unbloarchy_bindings "$scratchpad_home")
 grep -Fqx $'SUPER + S	Toggle scratchpad' <<<"$scratchpad_output" ||
   fail "scratchpad keeps its existing toggle binding"
 grep -Fqx $'SUPER + grave	Toggle Quake console' <<<"$scratchpad_output" ||

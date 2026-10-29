@@ -1,3 +1,3 @@
 echo "Install titlebars for floating workspaces"
 
-omarchy-pkg-add omarchy-hyprland-titlebars
+unbloarchy-pkg-add unbloarchy-hyprland-titlebars

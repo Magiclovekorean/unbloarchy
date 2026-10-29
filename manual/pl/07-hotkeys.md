@@ -6,7 +6,7 @@ Wszystkie główne przypisania klawiszy możesz zobaczyć za pomocą `Super + K`
 
 | Skrót klawiszowy                  | Funkcja              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menu Omarchy (aplikacje i wszystko inne)    |
+| `Super + Space`           | Menu Unbloarchy (aplikacje i wszystko inne)    |
 | `Super + Alt + Space` | Siatka aplikacji |
 | `Super + Escape` | Menu systemowe (uśpienie, ponowne uruchomienie itd.)  |
 | `Super + Ctrl + L` | Zablokuj komputer |
@@ -143,7 +143,7 @@ Zmień/dodaj przypisania w `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Wklej    |
 | `Super + Ctrl + V`           | Menedżer schowka    |
 
-Zazwyczaj w systemie Linux potrzebujesz `Ctrl + Shift + C/V`, aby kopiować i wklejać w terminalu, oraz `Ctrl + C/V`, aby robić to wszędzie indziej. Te ujednolicone skróty schowka Omarchy działają wszędzie.
+Zazwyczaj w systemie Linux potrzebujesz `Ctrl + Shift + C/V`, aby kopiować i wklejać w terminalu, oraz `Ctrl + C/V`, aby robić to wszędzie indziej. Te ujednolicone skróty schowka Unbloarchy działają wszędzie.
 
 ## Przechwytywanie
 
@@ -164,7 +164,7 @@ Zazwyczaj w systemie Linux potrzebujesz `Ctrl + Shift + C/V`, aby kopiować i wk
 
 W przypadku nagrań ekranu skrót najpierw pyta, jakiego dźwięku chcesz użyć, a następnie rozpoczyna nagrywanie. Naciśnij go ponownie, aby zatrzymać. Zobacz [zrzuty ekranu i nagrywanie](12-screenshots-recording.md), aby poznać szczegóły.
 
-Wszystkie opcje przechwytywania są również dostępne w _Trigger > Capture_ w menu Omarchy (`Super + Space`).
+Wszystkie opcje przechwytywania są również dostępne w _Trigger > Capture_ w menu Unbloarchy (`Super + Space`).
 
 ## Powiadomienia
 
@@ -186,9 +186,9 @@ Wszystkie opcje przechwytywania są również dostępne w _Trigger > Capture_ w 
 | `Super + Backspace` | Przełącz przezroczystość okna |
 | `Super + Ctrl + Backspace` | Przełącz kwadratowe proporcje pojedynczego okna |
 
-Dodatkowe obrazy tła znajdują się w `~/.config/omarchy/backgrounds/<theme name>`. Dostępne również przez _Install > Style > Background_ w menu Omarchy.
+Dodatkowe obrazy tła znajdują się w `~/.config/unbloarchy/backgrounds/<theme name>`. Dostępne również przez _Install > Style > Background_ w menu Unbloarchy.
 
-Wszystkie opcje stylu są również dostępne w _Style_ w menu Omarchy (`Super + Space`).
+Wszystkie opcje stylu są również dostępne w _Style_ w menu Unbloarchy (`Super + Space`).
 
 ## Przełączniki
 
@@ -289,7 +289,7 @@ Te funkcje muszą być uruchamiane wewnątrz sesji Tmux.
 
 ## Terminal Ghostty
 
-Terminal Ghostty instaluje się za pomocą _Install > Terminal_ z menu Omarchy.
+Terminal Ghostty instaluje się za pomocą _Install > Terminal_ z menu Unbloarchy.
 
 | Skrót klawiszowy                  | Funkcja              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Możesz użyć `Super + Ctrl + E`, aby wyświetlić kompletny wybierak emoji, kt
 | `Shift + CapsLock Space N` | Twoje imię i nazwisko (podane podczas konfiguracji)  |
 | `Shift + CapsLock Space E` | Twój adres e-mail (podany podczas konfiguracji)  |
 
-Możesz dodać więcej własnych, edytując `~/.XCompose`, a następnie uruchamiając `omarchy-restart-xcompose` w terminalu, aby zmiany zostały wykryte.
+Możesz dodać więcej własnych, edytując `~/.XCompose`, a następnie uruchamiając `unbloarchy-restart-xcompose` w terminalu, aby zmiany zostały wykryte.

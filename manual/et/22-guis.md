@@ -20,11 +20,11 @@ Obsidian on tasuta kõigeks otstarbeks, sealhulgas isiklikuks, äriliseks ja mit
 
 Obsidian pakub ka [ärilist lisandmoodulit sünkroonimiseks](https://obsidian.md/sync) iOS-i ja Androidi mobiilirakendustega. (https://obsidian.md/pricing).
 
-Obsidiani käivitad klahvidega `Super + Shift + O`. Teema sünkroonimise kasutamiseks pead valima seadete alt teema `Omarchy`.
+Obsidiani käivitad klahvidega `Super + Shift + O`. Teema sünkroonimise kasutamiseks pead valima seadete alt teema `Unbloarchy`.
 
 ## Omawrite
 
-[Omawrite](https://github.com/omacom-io/omawrite) on Omarchy enda ülilihtne Markdowni kirjutamisrakendus. Ei mingeid hoidlaid, ei mingeid pistikprogramme, ainult sina ja sõnad.
+[Omawrite](https://github.com/omacom-io/omawrite) on Unbloarchy enda ülilihtne Markdowni kirjutamisrakendus. Ei mingeid hoidlaid, ei mingeid pistikprogramme, ainult sina ja sõnad.
 
 Omawrite'i käivitad klahvidega `Super + Shift + W`.
 
@@ -44,18 +44,18 @@ Aetheri käivitad rakenduste käivitaja kaudu (`Super + Space`).
 
 [LocalSend](https://localsend.org/) laseb sul saata faile teistele samas võrgus olevatele seadmetele, kus rakendus töötab, nagu Apple'i AirDrop. See on aga platvormiülene, nii et saad faile saata Windowsi, macOS-i, Androidi, iOS-i ja muidugi Linuxi vahel ning neile.
 
-Menüü Share saad avada klahvidega `Super + Ctrl + S` või Omarchy menüüs valiku _Trigger > Share_ alt. See annab sulle neli valikut:
+Menüü Share saad avada klahvidega `Super + Ctrl + S` või Unbloarchy menüüs valiku _Trigger > Share_ alt. See annab sulle neli valikut:
 
 - **Clipboard** saadab selle, mille oled kopeerinud, tekstifailina. Suurepärane selleks, et link või koodijupp telefoni saada ilma endale e-kirja saatmata.
 - **File** avab failivalija, kus saad valida mitu faili korraga.
 - **Folder** saadab terve kataloogi.
 - **Receive** avab päris LocalSendi, et teine seade saaks sulle midagi saata.
 
-Sama asi töötab terminalist käskudega `omarchy share clipboard`, `omarchy share file [path]` ja `omarchy share folder [path]`. Jäta tee ära ja saad valija.
+Sama asi töötab terminalist käskudega `unbloarchy share clipboard`, `unbloarchy share file [path]` ja `unbloarchy share folder [path]`. Jäta tee ära ja saad valija.
 
 Saad saata ka otse failihaldurist: tee Nautiluses valikul paremklõps ja vali _Send via LocalSend_.
 
-Omarchy tulemüür on vaikimisi suletud, välja arvatud LocalSendi port, nii et see töötab värskel paigaldusel kohe karbist võttes. Vaata [turvalisust](48-security.md).
+Unbloarchy tulemüür on vaikimisi suletud, välja arvatud LocalSendi port, nii et see töötab värskel paigaldusel kohe karbist võttes. Vaata [turvalisust](48-security.md).
 
 ## LibreOffice
 
@@ -65,19 +65,19 @@ LibreOffice'i käivitad rakenduste käivitaja kaudu (`Super + Space`).
 
 ## Hype
 
-[Hype](https://github.com/omacom/hype) on Omarchy enda ülilihtne esitlusrakendus. Sinu esitlus on üks Markdowni fail, mille pildid ja videod on selle kõrval: kirjuta iga slaid reaalajas eelvaate alla, lohista slaidid järjekorda, seejärel esitle täisekraanil või ekspordi PDF-i ja PowerPointi. See võtab isegi sinu Omarchy teema üle.
+[Hype](https://github.com/omacom/hype) on Unbloarchy enda ülilihtne esitlusrakendus. Sinu esitlus on üks Markdowni fail, mille pildid ja videod on selle kõrval: kirjuta iga slaid reaalajas eelvaate alla, lohista slaidid järjekorda, seejärel esitle täisekraanil või ekspordi PDF-i ja PowerPointi. See võtab isegi sinu Unbloarchy teema üle.
 
 Hype'i käivitad rakenduste käivitaja kaudu (`Super + Space`). Kõigi kiirklahvide nägemiseks vajuta selle sees `?`.
 
 ## Signed
 
-[Signed](https://github.com/omacom/signed) on Omarchy enda ülilihtne viis PDF-ide allkirjastamiseks ja täitmiseks. Pane oma salvestatud allkiri, tekst ja tänane kuupäev lehel ükskõik kuhu ning salvesta seejärel allkirjastatud koopia originaali kõrvale. Vaata, kuidas, peatükist [PDF-ide täitmine](27-filling-out-pdfs.md).
+[Signed](https://github.com/omacom/signed) on Unbloarchy enda ülilihtne viis PDF-ide allkirjastamiseks ja täitmiseks. Pane oma salvestatud allkiri, tekst ja tänane kuupäev lehel ükskõik kuhu ning salvesta seejärel allkirjastatud koopia originaali kõrvale. Vaata, kuidas, peatükist [PDF-ide täitmine](27-filling-out-pdfs.md).
 
 Signedi käivitad rakenduste käivitaja kaudu (`Super + Space`) või avad sellega failihaldurist PDF-i.
 
 ## Omacalc
 
-[Omacalc](https://github.com/omacom-io/omacalc) on Omarchy enda ülilihtne kalkulaator, mis avaneb hõljuvas aknas.
+[Omacalc](https://github.com/omacom-io/omacalc) on Unbloarchy enda ülilihtne kalkulaator, mis avaneb hõljuvas aknas.
 
 Omacalci käivitad klahvidega `Super + Shift + Q` (või kalkulaatoriklahviga, kui sinu klaviatuuril selline on).
 
@@ -85,7 +85,7 @@ Omacalci käivitad klahvidega `Super + Shift + Q` (või kalkulaatoriklahviga, ku
 
 [Signal](https://signal.org/) on E2E krüpteeritud sõnumside pioneer ja suurepärane suhtlusvõimalus kõigile, kes eelistaksid suurte tehnoloogiakonglomeraatide kaudu mitte minna.
 
-Signali käivitad klahvidega `Super + Shift + G`. See ei kuulu põhipaigalduse hulka, nii et esimesel korral, kui seda vajutad, pakub Omarchy selle sulle paigaldada (see on ka Omarchy menüüs valiku _Install > Service_ all).
+Signali käivitad klahvidega `Super + Shift + G`. See ei kuulu põhipaigalduse hulka, nii et esimesel korral, kui seda vajutad, pakub Unbloarchy selle sulle paigaldada (see on ka Unbloarchy menüüs valiku _Install > Service_ all).
 
 ## mpv
 
@@ -95,13 +95,13 @@ mpv käivitad rakenduste käivitaja kaudu (`Super + Space`) või lihtsalt topelt
 
 ## Omacut
 
-[Omacut](https://github.com/omacom-io/omacut) on Omarchy enda ülilihtne videolõikur. Kui sul on vaja ainult klipi algus ja lõpp ära lõigata, võidab see täiemahulise videoredaktori käivitamise.
+[Omacut](https://github.com/omacom-io/omacut) on Unbloarchy enda ülilihtne videolõikur. Kui sul on vaja ainult klipi algus ja lõpp ära lõigata, võidab see täiemahulise videoredaktori käivitamise.
 
 Omacuti käivitad rakenduste käivitaja kaudu (`Super + Space`).
 
 ## Monologue
 
-[Monologue](https://github.com/omacom/monologue) on Omarchy enda ülilihtne veebikaamera salvestaja. Vali oma kaamera ja mikrofon üks kord, seejärel vajuta salvestamiseks `Space` ja sama võtte peatamiseks ja jätkamiseks vajuta seda uuesti. See salvestab alati sinu kaamera kõrgeima eraldusvõimega, koos reaalajas mikrofoni mõõdikuga, et saaksid enne alustamist oma tasemed üle kontrollida.
+[Monologue](https://github.com/omacom/monologue) on Unbloarchy enda ülilihtne veebikaamera salvestaja. Vali oma kaamera ja mikrofon üks kord, seejärel vajuta salvestamiseks `Space` ja sama võtte peatamiseks ja jätkamiseks vajuta seda uuesti. See salvestab alati sinu kaamera kõrgeima eraldusvõimega, koos reaalajas mikrofoni mõõdikuga, et saaksid enne alustamist oma tasemed üle kontrollida.
 
 Peata võte ja see avaneb kohe sisseehitatud redaktoris. Klipi poolitamiseks tee sellel topeltklõps, iga tüki kärpimiseks lohista käepidemeid ja eemalda osad, mida sa ei taha. Seejärel salvesta see MP4-na. Sinu algne salvestis säilitatakse seni, kuni selle ära viskad, nii et saad alati tagasi tulla ja seda teisiti lõigata.
 

@@ -2,7 +2,7 @@
 
 Parasti Linux sistēmā, lai terminālī kopētu un ielīmētu, vajag `Ctrl + Shift + C/V`, bet visur citur — `Ctrl + C/V`. Pie tā ir grūti pierast ikvienam, kurš nav dzimis un uzaudzis ar Linux! Tāpat ir ar pāreju no super uz ctrl, ja nāc no Mac.
 
-Omarchy atrisina abas problēmas ar vienotiem starpliktuves karstajiem taustiņiem, kas darbojas (gandrīz) visur. Tie ir:
+Unbloarchy atrisina abas problēmas ar vienotiem starpliktuves karstajiem taustiņiem, kas darbojas (gandrīz) visur. Tie ir:
 
 | Karstais taustiņš | Komanda |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Lieto `Super + A`, pēc tam `Super + C`, lai kopētu visu fokusētā teksta lauk
 
 ### Starpliktuves vēsture
 
-Starpliktuves vēsturi nodrošina Omarchy čaula, un tā darbojas gan tekstam, gan attēliem. Tu to aktivizē ar `Super + Ctrl + V`, ar return izvēlies ierakstu, un pēc tam tas tiks ievietots starpliktuvē, gatavs ielīmēšanai ar `Super + V`.
+Starpliktuves vēsturi nodrošina Unbloarchy čaula, un tā darbojas gan tekstam, gan attēliem. Tu to aktivizē ar `Super + Ctrl + V`, ar return izvēlies ierakstu, un pēc tam tas tiks ievietots starpliktuvē, gatavs ielīmēšanai ar `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

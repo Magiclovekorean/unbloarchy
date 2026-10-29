@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# omarchy:summary=Install Battle.net standalone via umu-launcher + GE-Proton (no Steam, no Lutris, no Heroic).
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Install Battle.net standalone via umu-launcher + GE-Proton (no Steam, no Lutris, no Heroic).
+# unbloarchy:requires-sudo=true
 
 set -e
 
@@ -13,8 +13,8 @@ echo "Installing Battle.net..."
 
 # Satisfy umu-launcher's lib32-vulkan-driver dependency before --noconfirm
 # can select an NVIDIA provider on an AMD or Intel system.
-omarchy-install-gaming-gpu-lib32
-omarchy-pkg-add umu-launcher
+unbloarchy-install-gaming-gpu-lib32
+unbloarchy-pkg-add umu-launcher
 
 # Detect a half-finished prefix from a closed/crashed previous run and offer
 # to wipe it before trying again. Battle.net's installer isn't idempotent.
@@ -22,7 +22,7 @@ if [[ -d $PREFIX && ! -f $LAUNCHER ]]; then
   echo
   echo "Found a partial Battle.net install at $PREFIX (no Launcher.exe)."
   echo "Battle.net's installer can't resume from this state."
-  if gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n battlenet.wipePartial)"; then
+  if gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n battlenet.wipePartial)"; then
     pkill -f "$PREFIX" 2>/dev/null || true
     sleep 1
     rm -rf "$PREFIX"
@@ -43,7 +43,7 @@ if [[ -f $LAUNCHER ]]; then
   echo "Battle.net is already installed at $PREFIX."
   launched_installer=0
 else
-  cache_dir="$HOME/.cache/omarchy"
+  cache_dir="$HOME/.cache/unbloarchy"
   mkdir -p "$cache_dir"
   installer="$cache_dir/Battle.net-Setup.exe"
 
@@ -59,14 +59,14 @@ app launcher.
 
 EOF
 
-  log="/tmp/omarchy-battlenet-installer.log"
+  log="/tmp/unbloarchy-battlenet-installer.log"
   setsid -f sh -c "umu-run '$installer' >'$log' 2>&1" </dev/null >/dev/null 2>&1
   echo "Installer log: $log"
   launched_installer=1
 fi
 
 mkdir -p "$HOME/.local/share/applications"
-install -m 644 "$OMARCHY_PATH/default/applications/battlenet.desktop" \
+install -m 644 "$UNBLOARCHY_PATH/default/applications/battlenet.desktop" \
   "$HOME/.local/share/applications/battlenet.desktop"
 update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
 
@@ -76,7 +76,7 @@ if (( launched_installer )); then
 The Battle.net installer is running in the background. After it finishes,
 find Battle.net in your app launcher, or run:
 
-  omarchy-launch-battlenet
+  unbloarchy-launch-battlenet
 
 EOF
 else
@@ -84,7 +84,7 @@ else
 
 Battle.net is installed. Find it in your app launcher, or run:
 
-  omarchy-launch-battlenet
+  unbloarchy-launch-battlenet
 
 EOF
 fi

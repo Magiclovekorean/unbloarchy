@@ -62,9 +62,9 @@ clients_json='[
   {"address":"0xolder","class":"chromium","focusHistoryID":4},
   {"address":"0xrecent","class":"chromium","focusHistoryID":1}
 ]'
-PATH="$mock_bin:$PATH" OMARCHY_TEST_CLIENTS_JSON="$clients_json" \
-  OMARCHY_TEST_FOCUS_DISPATCH="$dispatch_log" \
-  bash "$ROOT/bin/omarchy-hyprland-focus-app" '^chromium$'
+PATH="$mock_bin:$PATH" UNBLOARCHY_TEST_CLIENTS_JSON="$clients_json" \
+  UNBLOARCHY_TEST_FOCUS_DISPATCH="$dispatch_log" \
+  bash "$ROOT/bin/unbloarchy-hyprland-focus-app" '^chromium$'
 
 grep -F 'hl.dsp.focus({ window = "address:0xrecent" })' "$dispatch_log" >/dev/null || \
   fail "app focus picks the window focused last"

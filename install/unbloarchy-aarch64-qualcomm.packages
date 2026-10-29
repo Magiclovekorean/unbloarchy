@@ -1,5 +1,5 @@
-# Qualcomm (Snapdragon) additions, composed after omarchy-base.packages and
-# omarchy-aarch64.packages (omarchy-pkg-defaults aarch64-qualcomm): what every
+# Qualcomm (Snapdragon) additions, composed after unbloarchy-base.packages and
+# unbloarchy-aarch64.packages (unbloarchy-pkg-defaults aarch64-qualcomm): what every
 # Snapdragon laptop runs, which install/hardware/qualcomm/ and vulkan.sh also
 # install.
 linux-firmware-qcom

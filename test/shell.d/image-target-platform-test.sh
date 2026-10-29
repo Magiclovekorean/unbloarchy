@@ -460,8 +460,8 @@ else
     chmod 644 "$image_root/var/lib/omarchy/image/target"
     (
       source "$ROOT/install/helpers/image-target.sh"
-      OMARCHY_IMAGE_ROOT=$image_root
-      omarchy_image_init && omarchy_image_read_manifest && [[ $omarchy_image_platform == "$platform" ]]
+      UNBLOARCHY_IMAGE_ROOT=$image_root
+      unbloarchy_image_init && unbloarchy_image_read_manifest && [[ $unbloarchy_image_platform == "$platform" ]]
     ) 2>"$test_tmp/error" || fail "the image setup reads platform=$platform from a manifest" "$(cat "$test_tmp/error")"
   done
   pass "the image setup reads every platform name"

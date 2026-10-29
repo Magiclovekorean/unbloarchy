@@ -6,23 +6,23 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 scratch=$(mktemp -d)
 trap 'rm -rf "$scratch"' EXIT
 export TARGET_ROOT="$scratch/target root"
-mkdir -p "$TARGET_ROOT/etc/omarchy"
+mkdir -p "$TARGET_ROOT/etc/unbloarchy"
 
 # The platform is pinned, so no test reads the host's hardware: x86 unless a
 # test says otherwise.
 mkdir -p "$scratch/bin"
-printf '#!/bin/bash\necho "${REGION_TEST_PLATFORM:-x86}"\n' > "$scratch/bin/omarchy-hw-platform"
-chmod +x "$scratch/bin/omarchy-hw-platform"
+printf '#!/bin/bash\necho "${REGION_TEST_PLATFORM:-x86}"\n' > "$scratch/bin/unbloarchy-hw-platform"
+chmod +x "$scratch/bin/unbloarchy-hw-platform"
 export PATH="$scratch/bin:$PATH"
 fixture_root() {
   mkdir -p "$1/install/helpers"
   cp "$ROOT/install/helpers/pacman.sh" "$1/install/helpers/"
 }
-export OMARCHY_PATH="$scratch/root"
+export UNBLOARCHY_PATH="$scratch/root"
 fixture_root "$OMARCHY_PATH"
-cp -a "$ROOT/default" "$OMARCHY_PATH/"
+cp -a "$ROOT/default" "$UNBLOARCHY_PATH/"
 
-apply() { "$ROOT/bin/omarchy-apply-pacman" "$1" "$TARGET_ROOT"; }
+apply() { "$ROOT/bin/unbloarchy-apply-pacman" "$1" "$TARGET_ROOT"; }
 
 for channel in stable rc edge; do
   apply "$channel"
@@ -37,18 +37,18 @@ apply stable
 chmod 644 "$TARGET_ROOT/etc/pacman.conf"
 pass "refresh keeps existing config file modes"
 
-printf 'cn\n' > "$TARGET_ROOT/etc/omarchy/region"
+printf 'cn\n' > "$TARGET_ROOT/etc/unbloarchy/region"
 for channel in stable rc edge; do
   case "$channel" in
-    stable) host=stable-mirror.omarchy ;;
-    rc) host=rc-mirror.omarchy ;;
-    edge) host=mirror.omarchy ;;
+    stable) host=stable-mirror.unbloarchy ;;
+    rc) host=rc-mirror.unbloarchy ;;
+    edge) host=mirror.unbloarchy ;;
   esac
   apply "$channel"
   expected=$(printf 'Server = https://%s.cn/$repo/os/$arch\nServer = https://%s.org/$repo/os/$arch' "$host" "$host")
   [[ $(<"$TARGET_ROOT/etc/pacman.d/mirrorlist") == "$expected" ]] || fail "$channel mirror order and variables"
   # The template plus one line: the China copy of [omarchy] ahead of .org.
-  sed "/^\[omarchy\]\$/a Server = https://pkgs.omarchy.cn/$channel/\$arch" \
+  sed "/^\[omarchy\]\$/a Server = https://pkgs.unbloarchy.cn/$channel/\$arch" \
     "$ROOT/default/pacman/pacman-$channel.conf" > "$scratch/expected.conf"
   cmp "$scratch/expected.conf" "$TARGET_ROOT/etc/pacman.conf"
   { diff "$ROOT/default/pacman/pacman-$channel.conf" "$TARGET_ROOT/etc/pacman.conf" || true; } | grep -c '^>' | grep -qx 1 ||
@@ -62,7 +62,7 @@ pass "China puts its channel and [omarchy] mirrors first, keeps the global ones 
 cp "$TARGET_ROOT/etc/pacman.conf" "$scratch/before.conf"
 cp "$TARGET_ROOT/etc/pacman.d/mirrorlist" "$scratch/before.mirrors"
 for region in '' CN chn zz '../cn' '$(touch NEVER_EXECUTE)'; do
-  printf '%s\n' "$region" > "$TARGET_ROOT/etc/omarchy/region"
+  printf '%s\n' "$region" > "$TARGET_ROOT/etc/unbloarchy/region"
   if apply stable > "$scratch/error" 2>&1; then
     fail "invalid region accepted: $region"
   fi
@@ -71,12 +71,12 @@ for region in '' CN chn zz '../cn' '$(touch NEVER_EXECUTE)'; do
 done
 pass "unsupported and malformed regions fail before replacing either config"
 
-printf 'cn\n' > "$TARGET_ROOT/etc/omarchy/region"
+printf 'cn\n' > "$TARGET_ROOT/etc/unbloarchy/region"
 fixture_root "$scratch/incomplete"
 mkdir -p "$scratch/incomplete/default/regions/cn/pacman"
 cp -a "$ROOT/default/pacman" "$scratch/incomplete/default/"
-cp "$ROOT/default/regions/cn/pacman/omarchy-stable.prepend" "$scratch/incomplete/default/regions/cn/pacman/"
-if OMARCHY_PATH="$scratch/incomplete" apply stable > "$scratch/error" 2>&1; then
+cp "$ROOT/default/regions/cn/pacman/unbloarchy-stable.prepend" "$scratch/incomplete/default/regions/cn/pacman/"
+if UNBLOARCHY_PATH="$scratch/incomplete" apply stable > "$scratch/error" 2>&1; then
   fail "incomplete region profile accepted"
 fi
 rg -q 'mirrorlist-stable.prepend' "$scratch/error" || fail "incomplete profile fails on the missing fragment" "$(<"$scratch/error")"
@@ -88,16 +88,16 @@ pass "missing fragment cannot leave a half-generated config"
 # privileged path is covered in the sudo-boundary sandbox, never on the host.
 cp "$TARGET_ROOT/etc/pacman.conf" "$scratch/before.conf"
 mkdir -p "$scratch/rendered"
-"$ROOT/bin/omarchy-apply-pacman" --render rc "$scratch/rendered" "$TARGET_ROOT"
+"$ROOT/bin/unbloarchy-apply-pacman" --render rc "$scratch/rendered" "$TARGET_ROOT"
 rg -qxF 'Server = https://pkgs.omarchy.org/rc/$arch' "$scratch/rendered/pacman.conf"
-[[ $(grep -A2 -xF '[omarchy]' "$scratch/rendered/pacman.conf") == $'[omarchy]\nServer = https://pkgs.omarchy.cn/rc/$arch\nServer = https://pkgs.omarchy.org/rc/$arch' ]] ||
+[[ $(grep -A2 -xF '[omarchy]' "$scratch/rendered/pacman.conf") == $'[omarchy]\nServer = https://pkgs.unbloarchy.cn/rc/$arch\nServer = https://pkgs.omarchy.org/rc/$arch' ]] ||
   fail "render puts the China [omarchy] server first"
-[[ $(<"$scratch/rendered/mirrorlist") == $'Server = https://rc-mirror.omarchy.cn/$repo/os/$arch\nServer = https://rc-mirror.omarchy.org/$repo/os/$arch' ]] ||
+[[ $(<"$scratch/rendered/mirrorlist") == $'Server = https://rc-mirror.unbloarchy.cn/$repo/os/$arch\nServer = https://rc-mirror.omarchy.org/$repo/os/$arch' ]] ||
   fail "render puts the regional channel mirror first"
 cmp "$scratch/before.conf" "$TARGET_ROOT/etc/pacman.conf"
 pass "render builds the regional channel files without touching the target"
 
-if "$ROOT/bin/omarchy-apply-pacman" --render dev "$scratch/rendered" "$TARGET_ROOT" > "$scratch/error" 2>&1; then
+if "$ROOT/bin/unbloarchy-apply-pacman" --render dev "$scratch/rendered" "$TARGET_ROOT" > "$scratch/error" 2>&1; then
   fail "render accepts a nonexistent dev pacman template"
 fi
 pass "render rejects channels without pacman templates"
@@ -118,7 +118,7 @@ for platform in aarch64 aarch64-apple; do
 done
 pass "ARM platforms apply their own templates and keep regional x86 mirrors out"
 
-printf 'global\n' > "$TARGET_ROOT/etc/omarchy/region"
+printf 'global\n' > "$TARGET_ROOT/etc/unbloarchy/region"
 apply stable
 cmp "$ROOT/default/pacman/pacman-stable.conf" "$TARGET_ROOT/etc/pacman.conf"
 cmp "$ROOT/default/pacman/mirrorlist-stable" "$TARGET_ROOT/etc/pacman.d/mirrorlist"
@@ -134,7 +134,7 @@ region = Path(os.environ["ROOT"]) / "default/regions/cn"
 # Mirrors of the same repositories only: no new repository, so no new signing keys.
 for fragment in region.glob("pacman/*.prepend"):
     for line in fragment.read_text().splitlines():
-        assert line.startswith("Server = https://") and ".omarchy.cn/" in line, (fragment.name, line)
+        assert line.startswith("Server = https://") and ".unbloarchy.cn/" in line, (fragment.name, line)
 PY
 pass "China profile only reorders mirrors of the repositories every install already trusts"
 

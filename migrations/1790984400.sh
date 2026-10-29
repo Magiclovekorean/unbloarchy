@@ -1,13 +1,13 @@
 echo "Give the Dell XPS 16 (NVIDIA N1x) the RAM its firmware reserves for Windows' GPU"
 
 # See install/hardware/fix-n1x-gpu-memory.sh. The kernel option takes effect
-# with linux-omarchy-n1x; older N1x kernels ignore it.
-dropin="${OMARCHY_N1X_GPU_MEMORY_CONF:-/etc/limine-entry-tool.d/omarchy-n1x-gpu-memory.conf}"
-iomem="${OMARCHY_IOMEM:-/proc/iomem}"
-running_cmdline="${OMARCHY_RUNNING_CMDLINE:-/proc/cmdline}"
+# with linux-unbloarchy-n1x; older N1x kernels ignore it.
+dropin="${UNBLOARCHY_N1X_GPU_MEMORY_CONF:-/etc/limine-entry-tool.d/unbloarchy-n1x-gpu-memory.conf}"
+iomem="${UNBLOARCHY_IOMEM:-/proc/iomem}"
+running_cmdline="${UNBLOARCHY_RUNNING_CMDLINE:-/proc/cmdline}"
 rebuild_marker="${OMARCHY_LIMINE_REBUILD_MARKER:-/var/lib/omarchy/migrations/1790984400}"
 
-if ! omarchy-hw-match "DX16263"; then
+if ! unbloarchy-hw-match "DX16263"; then
   exit 0
 fi
 

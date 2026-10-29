@@ -6,7 +6,7 @@ Is féidir leat na príomhcheangail mhéarchláir go léir a fheiceáil le `Supe
 
 | Aicearra                  | Feidhm              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Roghchlár Omarchy (aipeanna agus gach rud eile)    |
+| `Super + Space`           | Roghchlár Unbloarchy (aipeanna agus gach rud eile)    |
 | `Super + Alt + Space` | Greille aipeanna |
 | `Super + Escape` | Roghchlár an chórais (cur ar fionraí, atosú, srl.)  |
 | `Super + Ctrl + L` | Glasáil an ríomhaire |
@@ -143,7 +143,7 @@ Athraigh/cuir ceangail leis in `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Greamaigh    |
 | `Super + Ctrl + V`           | Bainisteoir na gearrthaisce    |
 
-De ghnáth ar Linux, bíonn `Ctrl + Shift + C/V` ag teastáil uait chun cóipeáil is greamú a dhéanamh sa chríochfort agus `Ctrl + C/V` chun é a dhéanamh i ngach áit eile. Oibríonn na haicearraí gearrthaisce aontaithe seo de chuid Omarchy i ngach áit.
+De ghnáth ar Linux, bíonn `Ctrl + Shift + C/V` ag teastáil uait chun cóipeáil is greamú a dhéanamh sa chríochfort agus `Ctrl + C/V` chun é a dhéanamh i ngach áit eile. Oibríonn na haicearraí gearrthaisce aontaithe seo de chuid Unbloarchy i ngach áit.
 
 ## Gabháil
 
@@ -164,7 +164,7 @@ De ghnáth ar Linux, bíonn `Ctrl + Shift + C/V` ag teastáil uait chun cóipeá
 
 Le taifeadtaí scáileáin, fiafraíonn an t-aicearra ar dtús cén fhuaim atá uait, ansin tosaíonn sé ag taifeadadh. Brúigh arís é chun stopadh. Féach [gabhálacha scáileáin agus taifeadadh](12-screenshots-recording.md) le haghaidh na sonraí.
 
-Tá gach rogha gabhála ar fáil freisin faoi _Trigger > Capture_ sa roghchlár Omarchy (`Super + Space`).
+Tá gach rogha gabhála ar fáil freisin faoi _Trigger > Capture_ sa roghchlár Unbloarchy (`Super + Space`).
 
 ## Fógraí
 
@@ -186,9 +186,9 @@ Tá gach rogha gabhála ar fáil freisin faoi _Trigger > Capture_ sa roghchlár 
 | `Super + Backspace` | Scoránaigh trédhearcacht ar fhuinneog |
 | `Super + Ctrl + Backspace` | Scoránaigh gné chearnógach aonfhuinneoge |
 
-Tá íomhánna cúlra breise in `~/.config/omarchy/backgrounds/<theme name>`. Ar fáil freisin trí _Install > Style > Background_ sa roghchlár Omarchy.
+Tá íomhánna cúlra breise in `~/.config/unbloarchy/backgrounds/<theme name>`. Ar fáil freisin trí _Install > Style > Background_ sa roghchlár Unbloarchy.
 
-Tá gach rogha stíle ar fáil freisin faoi _Style_ sa roghchlár Omarchy (`Super + Space`).
+Tá gach rogha stíle ar fáil freisin faoi _Style_ sa roghchlár Unbloarchy (`Super + Space`).
 
 ## Scoránaigh
 
@@ -289,7 +289,7 @@ Ní mór na feidhmeanna seo a rith taobh istigh de sheisiún Tmux.
 
 ## Críochfort Ghostty
 
-Suiteáiltear críochfort Ghostty ag baint úsáide as _Install > Terminal_ trí roghchlár Omarchy.
+Suiteáiltear críochfort Ghostty ag baint úsáide as _Install > Terminal_ trí roghchlár Unbloarchy.
 
 | Aicearra                  | Feidhm              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Is féidir leat `Super + Ctrl + E` a úsáid chun roghnóir emoji iomlán a thai
 | `Shift + CapsLock Space N` | D'ainm (mar a iontráladh é ag an socrú)  |
 | `Shift + CapsLock Space E` | Do ríomhphost (mar a iontráladh é ag an socrú)  |
 
-Is féidir leat níos mó de do chuid féin a chur leis trí `~/.XCompose` a chur in eagar, ansin `omarchy-restart-xcompose` a rith sa chríochfort chun na hathruithe a chur i bhfeidhm.
+Is féidir leat níos mó de do chuid féin a chur leis trí `~/.XCompose` a chur in eagar, ansin `unbloarchy-restart-xcompose` a rith sa chríochfort chun na hathruithe a chur i bhfeidhm.

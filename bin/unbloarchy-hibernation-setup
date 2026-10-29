@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Set up hibernation with swap and boot resume configuration
-# omarchy:requires-sudo=true
-# omarchy:args=[--force] [--no-rebuild]
+# unbloarchy:summary=Set up hibernation with swap and boot resume configuration
+# unbloarchy:requires-sudo=true
+# unbloarchy:args=[--force] [--no-rebuild]
 
 FORCE=false
 NO_REBUILD=false
@@ -14,12 +14,12 @@ for arg in "$@"; do
 done
 
 # Resume is Limine-oriented and hibernate is unreliable on Asahi.
-if omarchy-hw-aarch64-apple; then
+if unbloarchy-hw-aarch64-apple; then
   echo "Skipping hibernation setup (not supported on Apple Silicon)"
   exit 0
 fi
 
-if omarchy-sleep-disabled; then
+if unbloarchy-sleep-disabled; then
   echo "Hibernation is turned off on this machine" >&2
   exit 0
 fi
@@ -32,12 +32,12 @@ fi
 # When --no-rebuild is set, the caller is responsible for the UKI rebuild
 # (e.g. running before limine-mkinitcpio-hook is installed during initial
 # install), so we only require limine-mkinitcpio when we'd invoke it ourselves.
-if ! $NO_REBUILD && omarchy-cmd-missing limine-mkinitcpio; then
+if ! $NO_REBUILD && unbloarchy-cmd-missing limine-mkinitcpio; then
   echo "Skipping hibernation setup (requires Limine bootloader)"
   exit 0
 fi
 
-MKINITCPIO_CONF="/etc/mkinitcpio.conf.d/omarchy_resume.conf"
+MKINITCPIO_CONF="/etc/mkinitcpio.conf.d/unbloarchy_resume.conf"
 SWAP_FILE="/swap/swapfile"
 RESUME_DROP_IN="/etc/limine-entry-tool.d/resume.conf"
 RESUME_REBUILD_PENDING="/var/lib/omarchy/hibernation-resume-rebuild"
@@ -48,7 +48,7 @@ install_root_file() {
   local mode="$3"
   local stage
 
-  stage=$(sudo /usr/bin/mktemp -- "${destination%/*}/.${destination##*/}.omarchy.XXXXXX") || return 1
+  stage=$(sudo /usr/bin/mktemp -- "${destination%/*}/.${destination##*/}.unbloarchy.XXXXXX") || return 1
   safe_stage_path "$stage" "$destination" || return 1
 
   if sudo /usr/bin/install -m "$mode" -o root -g root -T "$source" "$stage" &&
@@ -65,7 +65,7 @@ safe_stage_path() {
   local destination="$2"
   local prefix suffix
 
-  prefix="${destination%/*}/.${destination##*/}.omarchy."
+  prefix="${destination%/*}/.${destination##*/}.unbloarchy."
   [[ $stage == "$prefix"* ]] || return 1
   suffix=${stage#"$prefix"}
   [[ $suffix =~ ^[[:alnum:]]{6}$ ]]
@@ -133,7 +133,7 @@ rebuild_renamed_resume_device() {
   fi
 
   rm -f "$log"
-  echo "Could not rebuild the boot image with the renamed resume device; run omarchy-hibernation-setup again once that is fixed" >&2
+  echo "Could not rebuild the boot image with the renamed resume device; run unbloarchy-hibernation-setup again once that is fixed" >&2
   return 1
 }
 
@@ -197,7 +197,7 @@ fi
 # Ensure keyboard backlight doesn't prevent sleep
 # Install this before writing the resume marker so a failed install remains
 # retryable through the normal setup command.
-if ! install_root_file "$OMARCHY_PATH/default/systemd/system-sleep/keyboard-backlight" \
+if ! install_root_file "$UNBLOARCHY_PATH/default/systemd/system-sleep/keyboard-backlight" \
   /usr/lib/systemd/system-sleep/keyboard-backlight 0755; then
   echo "Could not install the keyboard-backlight system-sleep hook" >&2
   exit 1
@@ -244,5 +244,5 @@ if ! $NO_REBUILD; then
 fi
 
 if ! $FORCE && ! $NO_REBUILD && gum confirm "Reboot to enable hibernation?"; then
-  omarchy-system reboot
+  unbloarchy-system reboot
 fi

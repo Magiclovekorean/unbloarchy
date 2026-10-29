@@ -1,14 +1,14 @@
 # 상단 바
 
-화면 상단을 따라 있는 띠가 Omarchy 바다. 나중에 붙인 상태 표시줄이 아니라 Omarchy 셸의 일부다. 셸은 메뉴, 알림, OSD 팝업, 잠금 화면까지 그리는 단일 장기 실행 Quickshell 프로세스다. 그래서 다른 모든 것과 완벽하게 테마가 맞고, 패널도 새 앱을 실행할 필요 없이 즉시 열린다.
+화면 상단을 따라 있는 띠가 Unbloarchy 바다. 나중에 붙인 상태 표시줄이 아니라 Unbloarchy 셸의 일부다. 셸은 메뉴, 알림, OSD 팝업, 잠금 화면까지 그리는 단일 장기 실행 Quickshell 프로세스다. 그래서 다른 모든 것과 완벽하게 테마가 맞고, 패널도 새 앱을 실행할 필요 없이 즉시 열린다.
 
 화면에 항상 떠 있는 유일한 데스크톱 요소이기도 하니, 그 작은 글리프들이 각각 무슨 일을 하는지 알아둘 가치가 있다.
 
 ## 기본 구성
 
-바는 세 개의 섹션으로 이루어져 있다. 왼쪽에는 Omarchy 로고(메뉴 런처)와 워크스페이스 표시기가 있다. 가운데에는 상태 표시기, 시계, Elsewhen(세계 시계), 날씨, Omarchy 업데이트 배지가 있다. 오른쪽에는 시스템 트레이, 키보드 레이아웃(두 개 이상 설정했을 때만), agents, bluetooth, network, audio, display, power가 있다.
+바는 세 개의 섹션으로 이루어져 있다. 왼쪽에는 Unbloarchy 로고(메뉴 런처)와 워크스페이스 표시기가 있다. 가운데에는 상태 표시기, 시계, Elsewhen(세계 시계), 날씨, Unbloarchy 업데이트 배지가 있다. 오른쪽에는 시스템 트레이, 키보드 레이아웃(두 개 이상 설정했을 때만), agents, bluetooth, network, audio, display, power가 있다.
 
-이 중 몇몇은 할 말이 있을 때만 나타난다. 키보드 레이아웃은 레이아웃을 두 개 이상 설정했을 때만 나타난다. 업데이트 배지는 Omarchy 업데이트가 대기 중일 때만 나타난다. 그리고 agents 아이콘은 Omarchy가 이 기기에서 AI 코딩 사용량을 처음 발견했을 때 나타난다([AI](17-ai.md) 참조).
+이 중 몇몇은 할 말이 있을 때만 나타난다. 키보드 레이아웃은 레이아웃을 두 개 이상 설정했을 때만 나타난다. 업데이트 배지는 Unbloarchy 업데이트가 대기 중일 때만 나타난다. 그리고 agents 아이콘은 Unbloarchy가 이 기기에서 AI 코딩 사용량을 처음 발견했을 때 나타난다([AI](17-ai.md) 참조).
 
 ## 클릭해 보기
 
@@ -16,7 +16,7 @@
 
 | 위젯 | 왼쪽 | 오른쪽 | 가운데 / 스크롤 |
 | --- | --- | --- | --- |
-| 메뉴 | Omarchy 메뉴 | 새 터미널 | — |
+| 메뉴 | Unbloarchy 메뉴 | 새 터미널 | — |
 | 워크스페이스 | 이 모니터에서 해당 워크스페이스로 포커스 | — | 스크롤: 다음/이전 워크스페이스 |
 | 시계 | 캘린더 팝업 | 레이블 형식 순환 | 가운데: 시간대 선택기 |
 | 날씨 | 일기예보 팝업 | 전체 날씨를 알림으로 표시 | 가운데: 새로고침 |
@@ -29,7 +29,7 @@
 | 미디어 | 재생/일시정지 | 커버 아트 팝업 | 가운데: 다음 · 스크롤: 이전/다음 |
 | Agents | Agents 패널 | 에이전트 실행 | 가운데: 다음 구독 |
 | 트레이 | 마우스를 올려 서랍 펼치기 | 셰브론에서 오른쪽 클릭해 관리 | — |
-| Omarchy 업데이트 | 업데이트 실행 | — | — |
+| Unbloarchy 업데이트 | 업데이트 실행 | — | — |
 
 그 표에 있는 모든 것이 처음부터 바에 있는 것은 아니다. 미디어 위젯(MPRIS 현재 재생 중, 스크롤되는 트랙과 아티스트 표시)과 마이크 위젯은 둘 다 내장되어 있지만 기본값은 꺼짐이다 — 원하면 아래 설명대로 추가하면 된다.
 
@@ -66,7 +66,7 @@
 
 **Install → Service**에서 해당 서비스를 설치해야만 바에 나타나는 위젯이 두 개 더 있는데, 둘 다 상태만 보고하는 수준을 넘어서니 알아둘 가치가 있다.
 
-**Tailscale** 패널은 tailnet을 연결하고 끊고, 계정을 전환하고, exit node를 고른다(내 기기와 Mullvad 지역이 모두 그 목록에 나타난다). 내 기기들을 탐색할 수도 있는데 — 하나를 선택한 상태에서 `s`를 누르면 Taildrop으로 그 기기에 파일을 보내며, 이게 휴대폰이나 다른 노트북으로 파일을 옮기는 가장 빠른 방법이다. `c`는 기기의 IP를, `n`은 이름을, `d`는 전체 DNS 이름을 복사한다. 클릭하는 편이 좋다면 각 기기 행에 보내기 버튼도 있다. 터미널에서 같은 일을 하려면 `omarchy tailscale send <machine> [file...]`다.
+**Tailscale** 패널은 tailnet을 연결하고 끊고, 계정을 전환하고, exit node를 고른다(내 기기와 Mullvad 지역이 모두 그 목록에 나타난다). 내 기기들을 탐색할 수도 있는데 — 하나를 선택한 상태에서 `s`를 누르면 Taildrop으로 그 기기에 파일을 보내며, 이게 휴대폰이나 다른 노트북으로 파일을 옮기는 가장 빠른 방법이다. `c`는 기기의 IP를, `n`은 이름을, `d`는 전체 DNS 이름을 복사한다. 클릭하는 편이 좋다면 각 기기 행에 보내기 버튼도 있다. 터미널에서 같은 일을 하려면 `unbloarchy tailscale send <machine> [file...]`다.
 
 **Dropbox** 패널은 로그인을 처리하고, 저장 공간을 얼마나 썼는지 보여주고, 최근 동기화된 파일을 나열한다.
 
@@ -93,19 +93,19 @@
 같은 일들을 하는 명령도 있는데, [dotfiles](31-dotfiles.md) 설정에 원하는 것이 바로 이쪽이다:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-위젯을 통째로 추가하거나 제거하려면 플러그인 명령을 쓰라. `omarchy plugin list`는 셸이 아는 모든 위젯을 id와 함께 출력하고, 그다음은 이렇다:
+위젯을 통째로 추가하거나 제거하려면 플러그인 명령을 쓰라. `unbloarchy plugin list`는 셸이 아는 모든 위젯을 id와 함께 출력하고, 그다음은 이렇다:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## 바 숨기기
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## 설정 파일
 
-이 모든 것은 `~/.config/omarchy/shell.json`에 `bar` 키 아래 저장된다. 다듬은 버전이 여기 있다:
+이 모든 것은 `~/.config/unbloarchy/shell.json`에 `bar` 키 아래 저장된다. 다듬은 버전이 여기 있다:
 
 ```json
 {
@@ -123,20 +123,20 @@ omarchy plugin disable omarchy.weather
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-모든 위젯은 다섯 개의 레이아웃 배열 중 하나에 있는 항목 하나이며, 그 설정은 그 항목에 인라인으로 들어 있다 — 별도의 설정 파일도 없고 `config` 하위 객체도 없다. 시계의 `format`, `formatAlt`(오른쪽 클릭으로 순환되는 것), `verticalFormat`은 모두 `{ "id": "omarchy.clock" }` 바로 거기에 산다.
+모든 위젯은 다섯 개의 레이아웃 배열 중 하나에 있는 항목 하나이며, 그 설정은 그 항목에 인라인으로 들어 있다 — 별도의 설정 파일도 없고 `config` 하위 객체도 없다. 시계의 `format`, `formatAlt`(오른쪽 클릭으로 순환되는 것), `verticalFormat`은 모두 `{ "id": "unbloarchy.clock" }` 바로 거기에 산다.
 
 `center`는 바 가운데의 상자다: 그 안에 있는 모든 것은 하나의 그룹으로 화면 중앙에 정렬된다. `centerBegin`과 `centerEnd`는 상자 양쪽에 매달리는데, 날씨와 업데이트 배지가 오가는데도 시계가 정확히 중앙에 머무는 비결이 바로 이것이다. `center`에 위젯을 두 개 이상 넣으면 함께 가운데 정렬되고, 비워 두면 `centerBegin`과 `centerEnd`가 바 가운데에서 만난다.
 
-내면화해둘 가치가 있는 규칙이 하나 있다: **자기만의 `shell.json`이 생긴 순간부터, 그게 정본이다**. 아무것도 맞춤 설정하지 않는 한 셸은 Omarchy의 기본 파일을 읽는다. 위젯을 드래그하거나, `omarchy bar`를 실행하거나, 파일을 직접 편집하는 순간, 그 파일은 내 소유가 된다 — 깊은 병합 같은 건 없으니, 향후 Omarchy 릴리스의 새 기본 위젯이 자동으로 바에 나타나지는 않는다. 깨끗한 상태에서 다시 시작하고 싶을 때는 언제든 `omarchy bar defaults`가 출고 시 레이아웃을 되돌려준다.
+내면화해둘 가치가 있는 규칙이 하나 있다: **자기만의 `shell.json`이 생긴 순간부터, 그게 정본이다**. 아무것도 맞춤 설정하지 않는 한 셸은 Unbloarchy의 기본 파일을 읽는다. 위젯을 드래그하거나, `unbloarchy bar`를 실행하거나, 파일을 직접 편집하는 순간, 그 파일은 내 소유가 된다 — 깊은 병합 같은 건 없으니, 향후 Unbloarchy 릴리스의 새 기본 위젯이 자동으로 바에 나타나지는 않는다. 깨끗한 상태에서 다시 시작하고 싶을 때는 언제든 `unbloarchy bar defaults`가 출고 시 레이아웃을 되돌려준다.
 
 같은 파일은 `bar` 키 바깥의 최상위 수준에 유휴 타이밍도 담고 있다: `idle.screensaver`와 `idle.lock`, 둘 다 유휴 상태가 된 뒤의 초 단위다. 그래서 기본 화면 보호기는 150초에 작동하고 잠금은 300초에 작동한다.

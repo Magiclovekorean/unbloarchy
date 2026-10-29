@@ -2,7 +2,7 @@
 
 Linuxon a terminálban általában a `Ctrl + Shift + C/V` billentyűkombináció kell a másoláshoz és beillesztéshez, mindenhol máshol pedig a `Ctrl + C/V`. Nehéz ezt megszokni annak, aki nem Linuxon született és nőtt fel! Ugyanígy a Super billentyűről a Ctrl billentyűre váltást is, ha Macről jössz.
 
-Az Omarchy mindkét problémát egységes vágólap-gyorsbillentyűkkel oldja meg, amelyek (szinte) mindenhol működnek. Ezek a következők:
+Az Unbloarchy mindkét problémát egységes vágólap-gyorsbillentyűkkel oldja meg, amelyek (szinte) mindenhol működnek. Ezek a következők:
 
 | Gyorsbillentyű | Művelet |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Használd a `Super + A`, majd a `Super + C` billentyűkombinációt, hogy minden
 
 ### Vágólap-előzmények
 
-A vágólap-előzményeket az Omarchy shell biztosítja, és szövegekhez és képekhez is működik. A `Super + Ctrl + V` billentyűkombinációval hívod elő, a return billentyűvel kiválasztod a bejegyzést, az pedig felkerül a vágólapra, készen arra, hogy a `Super + V` billentyűkombinációval beilleszd.
+A vágólap-előzményeket az Unbloarchy shell biztosítja, és szövegekhez és képekhez is működik. A `Super + Ctrl + V` billentyűkombinációval hívod elő, a return billentyűvel kiválasztod a bejegyzést, az pedig felkerül a vágólapra, készen arra, hogy a `Super + V` billentyűkombinációval beilleszd.
 
  ![clipboard-history](images/clipboard-history.webp)
 

@@ -13,8 +13,8 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 require_quickshell "panel open budgets"
 require_comparable_speed "panel open budgets"
 
-FIRST_BUDGET_MS=$(( ${OMARCHY_PANEL_FIRST_OPEN_BUDGET_MS:-400} * SPEED_PERCENT / 100 ))
-REOPEN_BUDGET_MS=$(( ${OMARCHY_PANEL_REOPEN_BUDGET_MS:-150} * SPEED_PERCENT / 100 ))
+FIRST_BUDGET_MS=$(( ${UNBLOARCHY_PANEL_FIRST_OPEN_BUDGET_MS:-400} * SPEED_PERCENT / 100 ))
+REOPEN_BUDGET_MS=$(( ${UNBLOARCHY_PANEL_REOPEN_BUDGET_MS:-150} * SPEED_PERCENT / 100 ))
 
 setup_scratch_shell
 start_scratch_shell
@@ -23,20 +23,20 @@ wait_scratch_shell
 # Registration is asynchronous; wait until the panels answer.
 for _ in {1..80}; do
   plugins=$(scratch_ipc shell listPlugins 2>/dev/null || true)
-  if jq -e 'map(.id) | contains(["omarchy.audio","omarchy.bluetooth","omarchy.monitor","omarchy.network"])' <<<"$plugins" >/dev/null 2>&1; then
+  if jq -e 'map(.id) | contains(["unbloarchy.audio","unbloarchy.bluetooth","unbloarchy.monitor","unbloarchy.network"])' <<<"$plugins" >/dev/null 2>&1; then
     break
   fi
   kill -0 "$SCRATCH_PID" 2>/dev/null || { sed -n '1,120p' "$SCRATCH_LOG" >&2; fail "panel test shell registers its panels"; }
   sleep 0.1
 done
 
-panels=(omarchy.audio omarchy.bluetooth omarchy.monitor omarchy.network)
+panels=(unbloarchy.audio unbloarchy.bluetooth unbloarchy.monitor unbloarchy.network)
 # The power panel hides itself without a battery, so it can only be
 # timed where one exists.
-if "$ROOT/bin/omarchy-battery-present" >/dev/null 2>&1; then
-  panels+=(omarchy.power)
+if "$ROOT/bin/unbloarchy-battery-present" >/dev/null 2>&1; then
+  panels+=(unbloarchy.power)
 else
-  skip "panel omarchy.power first open and reopen (no battery)"
+  skip "panel unbloarchy.power first open and reopen (no battery)"
 fi
 
 # listPlugins reports discovered manifests, not registered IPC handlers:
@@ -56,14 +56,14 @@ open_ms() { # panel-id -> ms on stdout, fails when it never maps
   local id="$1" start end
   start=$EPOCHREALTIME
   scratch_ipc_quiet "$id" open >/dev/null 2>&1 || true
-  wait_scratch_layer omarchy-keyboard-panel mapped || return 1
+  wait_scratch_layer unbloarchy-keyboard-panel mapped || return 1
   end=$EPOCHREALTIME
   echo $(( (${end/[.,]/} - ${start/[.,]/}) / 1000 ))
 }
 
 close_panel() {
   scratch_ipc_quiet "$1" close >/dev/null 2>&1 || true
-  wait_scratch_layer omarchy-keyboard-panel absent || return 1
+  wait_scratch_layer unbloarchy-keyboard-panel absent || return 1
 }
 
 for panel in "${panels[@]}"; do

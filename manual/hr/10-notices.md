@@ -10,7 +10,7 @@ Kartice nude ono što nose: _Kopiraj kod_ za verifikacijske kodove (koji se ne s
 
 Da biste ih koristili bez miša, pritisnite `Super + Ctrl + ,`. Odabire se najnovija obavijest, a njezini su gumbi numerirani: pritisnite broj da biste upotrijebili jedan od njih, `Enter` da biste kliknuli obavijest, `↑` i `↓` za kretanje između obavijesti, `Delete` da biste jednu odbacili i `Esc` da biste vratili tipkovnicu. Nakon nekoliko sekundi neaktivnosti i sama se otpušta.
 
-Utišavanjem obavijesti zadržavate ih, osim Omarchyjevih vlastitih potvrda, hitnih upozorenja i verifikacijskih kodova, koje ste zatražili prije trenutak. Posljednjih nekoliko vratite na ekran, zadržane ili ne, pomoću `Super + Shift + Alt + ,`. Povijest se čuva jedan dan.
+Utišavanjem obavijesti zadržavate ih, osim Unbloarchyjevih vlastitih potvrda, hitnih upozorenja i verifikacijskih kodova, koje ste zatražili prije trenutak. Posljednjih nekoliko vratite na ekran, zadržane ili ne, pomoću `Super + Shift + Alt + ,`. Povijest se čuva jedan dan.
 
 ## Obavijesti putem tipkovničkih prečaca
 
@@ -26,7 +26,7 @@ Utišavanjem obavijesti zadržavate ih, osim Omarchyjevih vlastitih potvrda, hit
 
  ![notice-weather](images/notice-weather.webp)
 
-Lokacija se otkriva na temelju vaše IP adrese, što je obično dovoljno točno, ali ne uvijek. Možete je precizirati pomoću `omarchy weather location --set Malibu` ili biti posve precizni dodavanjem koordinata: `omarchy weather location --set Malibu 34.0259,-118.7798`. Pokrenite `omarchy weather location` samostalno da biste vidjeli gdje misli da se nalazite, a `--clear` za povratak na automatsko otkrivanje.
+Lokacija se otkriva na temelju vaše IP adrese, što je obično dovoljno točno, ali ne uvijek. Možete je precizirati pomoću `unbloarchy weather location --set Malibu` ili biti posve precizni dodavanjem koordinata: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Pokrenite `unbloarchy weather location` samostalno da biste vidjeli gdje misli da se nalazite, a `--clear` za povratak na automatsko otkrivanje.
 
 ### Baterija
 

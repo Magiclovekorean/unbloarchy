@@ -10,7 +10,7 @@ Karten bieten an, was sie mitbringen: _Code kopieren_ für Verifizierungscodes (
 
 Um sie ohne Maus zu nutzen, drücke `Super + Ctrl + ,`. Die neueste Benachrichtigung ist ausgewählt und ihre Schaltflächen sind nummeriert: Drücke eine Zahl, um eine zu nutzen, `Enter`, um die Benachrichtigung anzuklicken, `↑` und `↓`, um zwischen Benachrichtigungen zu wechseln, `Delete`, um eine zu schließen, und `Esc`, um die Tastatur wieder freizugeben. Nach ein paar Sekunden ohne Eingabe gibt sie auch von selbst wieder frei.
 
-Das Stummschalten von Benachrichtigungen hält sie zurück, mit Ausnahme von Omarchys eigenen Bestätigungen, Notfallwarnungen und Verifizierungscodes, um die du gerade eben gebeten hast. Bringe die letzten paar wieder auf den Bildschirm, zurückgehalten oder nicht, mit `Super + Shift + Alt + ,`. Der Verlauf wird einen Tag lang aufbewahrt.
+Das Stummschalten von Benachrichtigungen hält sie zurück, mit Ausnahme von Unbloarchys eigenen Bestätigungen, Notfallwarnungen und Verifizierungscodes, um die du gerade eben gebeten hast. Bringe die letzten paar wieder auf den Bildschirm, zurückgehalten oder nicht, mit `Super + Shift + Alt + ,`. Der Verlauf wird einen Tag lang aufbewahrt.
 
 ## Tastenkürzel-Hinweise
 
@@ -26,7 +26,7 @@ Das Stummschalten von Benachrichtigungen hält sie zurück, mit Ausnahme von Oma
 
  ![notice-weather](images/notice-weather.webp)
 
-Der Standort wird anhand deiner IP-Adresse erkannt, was normalerweise nah genug dran ist, aber nicht immer. Du kannst ihn mit `omarchy weather location --set Malibu` festlegen, oder es genau nehmen und Koordinaten hinzufügen: `omarchy weather location --set Malibu 34.0259,-118.7798`. Führe `omarchy weather location` allein aus, um zu sehen, wo es dich vermutet, und `--clear`, um zur automatischen Erkennung zurückzukehren.
+Der Standort wird anhand deiner IP-Adresse erkannt, was normalerweise nah genug dran ist, aber nicht immer. Du kannst ihn mit `unbloarchy weather location --set Malibu` festlegen, oder es genau nehmen und Koordinaten hinzufügen: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Führe `unbloarchy weather location` allein aus, um zu sehen, wo es dich vermutet, und `--clear`, um zur automatischen Erkennung zurückzukehren.
 
 ### Akku
 

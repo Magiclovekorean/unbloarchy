@@ -1,6 +1,6 @@
 # Skallfunksjoner
 
-Omarchy kommer med et sett skallfunksjoner for å forenkle vanlige oppgaver og kapsle inn innviklede parameterkall.
+Unbloarchy kommer med et sett skallfunksjoner for å forenkle vanlige oppgaver og kapsle inn innviklede parameterkall.
 
 ## Komprimering
 

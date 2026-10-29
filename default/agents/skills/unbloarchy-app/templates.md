@@ -1,6 +1,6 @@
-# Omarchy App Templates
+# Unbloarchy App Templates
 
-Read this when starting an app from the omarchy-app skill. Replace `<name>`
+Read this when starting an app from the unbloarchy-app skill. Replace `<name>`
 with the app's name and `<Name>` with its display name. These come from
 Omacut and Monologue (MIT, David Heinemeier Hansson); keep that attribution in
 the LICENSE of any app that copies them.
@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
     QQuickStyle::setStyle("Material");
 
     // Installed before anything is translated, and every qsTr() binding is
-    // re-evaluated when the Omarchy language changes.
+    // re-evaluated when the Unbloarchy language changes.
     Translator translator;
     app.installTranslator(&translator);
 
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
 
 ## `src/theme.h` and `src/theme.cpp`
 
-Follows the Omarchy accent live, hands QML a readable color to put on it, and
+Follows the Unbloarchy accent live, hands QML a readable color to put on it, and
 tracks Hyprland's window rounding as `radius`. Tests construct it with a temp
 directory and a fake `hyprctl`.
 
@@ -186,7 +186,7 @@ private:
 
 Theme::Theme(const QString &directory, QObject *parent, const QString &hyprctl)
     : QObject(parent),
-      m_directory(directory.isEmpty() ? QDir::homePath() + "/.local/state/omarchy/current" : directory) {
+      m_directory(directory.isEmpty() ? QDir::homePath() + "/.local/state/unbloarchy/current" : directory) {
     m_debounce.setSingleShot(true);
     m_debounce.setInterval(80);
     connect(&m_watcher, &QFileSystemWatcher::directoryChanged, this, [this] { m_debounce.start(); });
@@ -195,7 +195,7 @@ Theme::Theme(const QString &directory, QObject *parent, const QString &hyprctl)
 
     // Corners follow Hyprland's effective rounding, which themes and personal
     // overrides can both set, so ask hyprctl rather than reading its config.
-    // Without Hyprland the corners stay sharp, like Omarchy's default.
+    // Without Hyprland the corners stay sharp, like Unbloarchy's default.
     m_hyprctl = !hyprctl.isEmpty() ? hyprctl
               : directory.isEmpty() && !qEnvironmentVariableIsEmpty("HYPRLAND_INSTANCE_SIGNATURE")
                   ? QStandardPaths::findExecutable("hyprctl") : QString();
@@ -262,7 +262,7 @@ void Theme::reload() {
 
     // A theme switch replaces symlinks and files, so watch the parents too and
     // re-arm after every change. Watching the nearest existing ancestor means
-    // installing Omarchy later works without restarting the app.
+    // installing Unbloarchy later works without restarting the app.
     QString ancestor = m_directory;
     while (!QFileInfo::exists(ancestor) && ancestor != "/")
         ancestor = QFileInfo(ancestor).absolutePath();
@@ -283,7 +283,7 @@ void Theme::reload() {
 
 ## `src/translator.h` and `src/translator.cpp`
 
-Follows the language picked under Omarchy's Setup > Language, live. QML
+Follows the language picked under Unbloarchy's Setup > Language, live. QML
 writes `qsTr("Save")` and C++ writes `tr("Save")`; the English text is the
 key, so an untranslated string simply shows in English. A counted string is
 `qsTr("%n clips", "", count)`, its forms picked by the language's plural
@@ -301,8 +301,8 @@ with a temp language file and catalog directory.
 #include <QTimer>
 #include <QTranslator>
 
-// Follows the language picked under Omarchy's Setup > Language. Catalogs are
-// flat JSON objects from English source text to translation, one per Omarchy
+// Follows the language picked under Unbloarchy's Setup > Language. Catalogs are
+// flat JSON objects from English source text to translation, one per Unbloarchy
 // language code (i18n/da.json, i18n/pt-BR.json), so QML keeps plain
 // qsTr("Save") and C++ keeps tr("Save"). A counted string,
 // qsTr("%n clips", "", count), maps to an object of plural forms keyed by
@@ -353,7 +353,7 @@ private:
 
 Translator::Translator(const QString &languageFile, const QString &catalogDirectory, QObject *parent)
     : QTranslator(parent),
-      m_languageFile(languageFile.isEmpty() ? QDir::homePath() + "/.config/omarchy/language" : languageFile),
+      m_languageFile(languageFile.isEmpty() ? QDir::homePath() + "/.config/unbloarchy/language" : languageFile),
       m_catalogDirectory(catalogDirectory) {
     m_debounce.setSingleShot(true);
     m_debounce.setInterval(80);
@@ -373,8 +373,8 @@ QString Translator::readLanguage(const QString &path) {
     return valid.match(code).hasMatch() ? code : "en";
 }
 
-// CLDR cardinal plural categories for whole counts, for Omarchy's languages
-// (the same rules as Omarchy's shell/Commons/Plural.js).
+// CLDR cardinal plural categories for whole counts, for Unbloarchy's languages
+// (the same rules as Unbloarchy's shell/Commons/Plural.js).
 QString Translator::pluralCategory(const QString &language, long long count) {
     const long long n = count < 0 ? -count : count, n10 = n % 10, n100 = n % 100;
     const bool millions = n != 0 && n % 1000000 == 0;
@@ -407,11 +407,11 @@ QString Translator::pluralCategory(const QString &language, long long count) {
     return n == 1 ? "one" : "other";
 }
 
-// The locale Omarchy formats this language with, from its registry, so the
+// The locale Unbloarchy formats this language with, from its registry, so the
 // app's numbers and dates match the desktop's (Arabic there uses Western
-// digits); without Omarchy, Qt's own locale for the code.
+// digits); without Unbloarchy, Qt's own locale for the code.
 QLocale Translator::formatLocale(const QString &language) {
-    QFile registry(qEnvironmentVariable("OMARCHY_PATH") + "/default/i18n/locales.json");
+    QFile registry(qEnvironmentVariable("UNBLOARCHY_PATH") + "/default/i18n/locales.json");
     if (registry.open(QIODevice::ReadOnly)) {
         const QString name = QJsonDocument::fromJson(registry.readAll()).object()
                                  .value(language).toObject().value("formatLocale").toString();
@@ -439,7 +439,7 @@ void Translator::reload() {
     if (!paths.isEmpty())
         m_watcher.removePaths(paths);
 
-    // omarchy-language replaces the file, which drops it from the watch, and a
+    // unbloarchy-language replaces the file, which drops it from the watch, and a
     // first pick creates it; watch its directory too and re-arm every time.
     const QString directory = QFileInfo(m_languageFile).absolutePath();
     if (QFileInfo::exists(directory))
@@ -575,8 +575,8 @@ for the plural forms of counted strings.
 ## `src/i18n/<code>.json`
 
 One flat JSON object per language, keyed by the English exactly as it appears
-in `qsTr()`, with Omarchy's language codes as file names
-(`$OMARCHY_PATH/default/i18n/locales.json` lists all 50: `da`, `de`, `pt-BR`,
+in `qsTr()`, with Unbloarchy's language codes as file names
+(`$UNBLOARCHY_PATH/default/i18n/locales.json` lists all 50: `da`, `de`, `pt-BR`,
 `zh-CN`, ...). Keep `%1` placeholders, which `.arg()` fills, so a translation
 can reorder them. A counted string's value is an object of plural forms keyed
 by CLDR category: English gives `one` and `other` in `en.json`, and each
@@ -748,7 +748,7 @@ package() {
 ```
 
 Add `ffmpeg`, `qt6-multimedia`, or `qt6-svg` to `depends` when the app uses
-them. Omarchy installs all three, but the package should still say what it
+them. Unbloarchy installs all three, but the package should still say what it
 needs. `package()` also installs `LICENSE` from the project root (the MIT text
 with the user's name and year) and the icon below, so both must exist.
 

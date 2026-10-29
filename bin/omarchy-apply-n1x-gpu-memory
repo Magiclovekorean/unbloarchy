@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Shrink the NVIDIA N1x firmware's GPU memory reservation to 4 GiB
-# omarchy:requires-sudo=true
-# omarchy:hidden=true
+# unbloarchy:summary=Shrink the NVIDIA N1x firmware's GPU memory reservation to 4 GiB
+# unbloarchy:requires-sudo=true
+# unbloarchy:hidden=true
 
 set -euo pipefail
 
@@ -23,14 +23,14 @@ set -euo pipefail
 # 230 MiB with a 5120x2160@120 monitor, and drawing a 5K display up to about
 # 700 MiB below the top of it, so 4 GiB leaves it room.
 
-var="${OMARCHY_EFIVARS:-/sys/firmware/efi/efivars}/EXPOSED_DISP_FRM-4b086294-0740-4f71-a7b5-85a329c7ec5f"
+var="${UNBLOARCHY_EFIVARS:-/sys/firmware/efi/efivars}/EXPOSED_DISP_FRM-4b086294-0740-4f71-a7b5-85a329c7ec5f"
 # What the firmware ships between the size and the last byte.
 layouts=(
   "00 00 00 20 00 00 00 00 00 00 00 00 01 00 00 00"
   "00 00 00 40 00 00 00 00 00 00 00 00 01 00 00 00"
 )
 
-omarchy-hw-aarch64-n1x || exit 0
+unbloarchy-hw-aarch64-n1x || exit 0
 
 if [[ ! -f $var ]]; then
   echo "Error: the N1x firmware has no EXPOSED_DISP_FRM variable to size its GPU memory with" >&2

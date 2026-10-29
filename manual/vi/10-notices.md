@@ -10,7 +10,7 @@ Các thẻ cung cấp những gì chúng mang theo: _Copy code_ cho các mã xá
 
 Để dùng chúng mà không cần chuột, nhấn `Super + Ctrl + ,`. Thông báo mới nhất được chọn và các nút của nó được đánh số: nhấn một số để dùng nút đó, `Enter` để nhấp vào thông báo, `↑` và `↓` để di chuyển giữa các thông báo, `Delete` để bỏ qua một thông báo, và `Esc` để trả bàn phím lại. Nó cũng tự buông ra sau vài giây không hoạt động.
 
-Tắt tiếng thông báo sẽ giữ chúng lại, ngoại trừ các xác nhận của chính Omarchy, cảnh báo khẩn cấp và mã xác minh mà bạn vừa yêu cầu cách đây ít lâu. Đưa vài thông báo gần nhất trở lại màn hình, dù bị giữ lại hay không, bằng `Super + Shift + Alt + ,`. Lịch sử được giữ trong một ngày.
+Tắt tiếng thông báo sẽ giữ chúng lại, ngoại trừ các xác nhận của chính Unbloarchy, cảnh báo khẩn cấp và mã xác minh mà bạn vừa yêu cầu cách đây ít lâu. Đưa vài thông báo gần nhất trở lại màn hình, dù bị giữ lại hay không, bằng `Super + Shift + Alt + ,`. Lịch sử được giữ trong một ngày.
 
 ## Thông báo qua phím tắt
 
@@ -26,7 +26,7 @@ Tắt tiếng thông báo sẽ giữ chúng lại, ngoại trừ các xác nhậ
 
  ![notice-weather](images/notice-weather.webp)
 
-Vị trí được phát hiện từ địa chỉ IP của bạn, thường đủ gần, nhưng không phải lúc nào cũng vậy. Bạn có thể cố định nó bằng `omarchy weather location --set Malibu`, hoặc chính xác hẳn bằng cách thêm tọa độ: `omarchy weather location --set Malibu 34.0259,-118.7798`. Chạy `omarchy weather location` riêng lẻ để xem nó nghĩ bạn đang ở đâu, và `--clear` để quay lại chế độ tự động phát hiện.
+Vị trí được phát hiện từ địa chỉ IP của bạn, thường đủ gần, nhưng không phải lúc nào cũng vậy. Bạn có thể cố định nó bằng `unbloarchy weather location --set Malibu`, hoặc chính xác hẳn bằng cách thêm tọa độ: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Chạy `unbloarchy weather location` riêng lẻ để xem nó nghĩ bạn đang ở đâu, và `--clear` để quay lại chế độ tự động phát hiện.
 
 ### Pin
 

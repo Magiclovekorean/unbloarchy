@@ -6,7 +6,7 @@ Unaweza kuona vifunguo vyote vikuu vya kibodi kwa `Super + K` (vifunguo vya Tmux
 
 | Kifunguo cha Mkato                  | Kazi              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menyu ya Omarchy (programu na kila kitu kingine)    |
+| `Super + Space`           | Menyu ya Unbloarchy (programu na kila kitu kingine)    |
 | `Super + Alt + Space` | Gridi ya programu |
 | `Super + Escape` | Menyu ya mfumo (simamisha kwa muda, washa upya, n.k.)  |
 | `Super + Ctrl + L` | Funga kompyuta |
@@ -143,7 +143,7 @@ Badilisha/ongeza vifunguo katika `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Bandika    |
 | `Super + Ctrl + V`           | Kidhibiti cha ubao wa kunakili    |
 
-Kwa kawaida kwenye Linux, unahitaji `Ctrl + Shift + C/V` kunakili na kubandika katika terminali na `Ctrl + C/V` kufanya hivyo kila mahali pengine. Vifunguo hivi vya mkato vya ubao wa kunakili vilivyounganishwa vya Omarchy hufanya kazi kila mahali.
+Kwa kawaida kwenye Linux, unahitaji `Ctrl + Shift + C/V` kunakili na kubandika katika terminali na `Ctrl + C/V` kufanya hivyo kila mahali pengine. Vifunguo hivi vya mkato vya ubao wa kunakili vilivyounganishwa vya Unbloarchy hufanya kazi kila mahali.
 
 ## Kunasa
 
@@ -164,7 +164,7 @@ Kwa kawaida kwenye Linux, unahitaji `Ctrl + Shift + C/V` kunakili na kubandika k
 
 Kwa rekodi za skrini, kifunguo cha mkato kwanza huuliza sauti unayotaka, kisha huanza kurekodi. Kibonyeze tena kusimamisha. Tazama [picha za skrini na kurekodi](12-screenshots-recording.md) kwa maelezo.
 
-Chaguo zote za kunasa pia zinapatikana chini ya _Trigger > Capture_ katika menyu ya Omarchy (`Super + Space`).
+Chaguo zote za kunasa pia zinapatikana chini ya _Trigger > Capture_ katika menyu ya Unbloarchy (`Super + Space`).
 
 ## Arifa
 
@@ -186,9 +186,9 @@ Chaguo zote za kunasa pia zinapatikana chini ya _Trigger > Capture_ katika menyu
 | `Super + Backspace` | Geuza uwazi kwenye dirisha |
 | `Super + Ctrl + Backspace` | Geuza uwiano wa mraba wa dirisha moja |
 
-Picha za ziada za usuli ziko katika `~/.config/omarchy/backgrounds/<theme name>`. Pia zinapatikana kupitia _Install > Style > Background_ katika menyu ya Omarchy.
+Picha za ziada za usuli ziko katika `~/.config/unbloarchy/backgrounds/<theme name>`. Pia zinapatikana kupitia _Install > Style > Background_ katika menyu ya Unbloarchy.
 
-Chaguo zote za mtindo pia zinapatikana chini ya _Style_ katika menyu ya Omarchy (`Super + Space`).
+Chaguo zote za mtindo pia zinapatikana chini ya _Style_ katika menyu ya Unbloarchy (`Super + Space`).
 
 ## Vigeuzi
 
@@ -289,7 +289,7 @@ Kazi hizi lazima ziendeshwe ndani ya sesheni ya Tmux.
 
 ## Terminali ya Ghostty
 
-Terminali ya Ghostty husakinishwa kwa kutumia _Install > Terminal_ kupitia menyu ya Omarchy.
+Terminali ya Ghostty husakinishwa kwa kutumia _Install > Terminal_ kupitia menyu ya Unbloarchy.
 
 | Kifunguo cha Mkato                  | Kazi              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Unaweza kutumia `Super + Ctrl + E` kuonyesha kichaguzi kamili cha emoji kitakach
 | `Shift + CapsLock Space N` | Jina lako (kama lilivyoingizwa wakati wa usanidi)  |
 | `Shift + CapsLock Space E` | Barua pepe yako (kama ilivyoingizwa wakati wa usanidi)  |
 
-Unaweza kuongeza zaidi yako mwenyewe kwa kuhariri `~/.XCompose`, kisha endesha `omarchy-restart-xcompose` katika terminali ili mabadiliko yachukuliwe.
+Unaweza kuongeza zaidi yako mwenyewe kwa kuhariri `~/.XCompose`, kisha endesha `unbloarchy-restart-xcompose` katika terminali ili mabadiliko yachukuliwe.

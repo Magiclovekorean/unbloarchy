@@ -6,7 +6,7 @@ Az összes fő billentyűkombinációt a `Super + K` billentyűvel tekintheted m
 
 | Gyorsbillentyű                  | Funkció              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy menü (alkalmazások és minden más)    |
+| `Super + Space`           | Unbloarchy menü (alkalmazások és minden más)    |
 | `Super + Alt + Space` | Alkalmazásrács |
 | `Super + Escape` | Rendszermenü (felfüggesztés, újraindítás stb.)  |
 | `Super + Ctrl + L` | Számítógép zárolása |
@@ -143,7 +143,7 @@ A kötéseket a `~/.config/hypr/bindings.lua` fájlban módosíthatod/adhatod ho
 | `Super + V`           | Beillesztés    |
 | `Super + Ctrl + V`           | Vágólapkezelő    |
 
-Linuxon általában `Ctrl + Shift + C/V` kell a másoláshoz és beillesztéshez a terminálban, és `Ctrl + C/V` mindenhol máshol. Ezek az Omarchy egységes vágólap-gyorsbillentyűk mindenhol működnek.
+Linuxon általában `Ctrl + Shift + C/V` kell a másoláshoz és beillesztéshez a terminálban, és `Ctrl + C/V` mindenhol máshol. Ezek az Unbloarchy egységes vágólap-gyorsbillentyűk mindenhol működnek.
 
 ## Rögzítés
 
@@ -164,7 +164,7 @@ Linuxon általában `Ctrl + Shift + C/V` kell a másoláshoz és beillesztéshez
 
 Képernyőfelvételeknél a gyorsbillentyű először megkérdezi, milyen hangot szeretnél, majd elindítja a felvételt. Nyomd meg újra a leállításhoz. A részletekért lásd: [képernyőképek és rögzítés](12-screenshots-recording.md).
 
-Az összes rögzítési lehetőség elérhető az Omarchy menü _Trigger > Capture_ pontjában is (`Super + Space`).
+Az összes rögzítési lehetőség elérhető az Unbloarchy menü _Trigger > Capture_ pontjában is (`Super + Space`).
 
 ## Értesítések
 
@@ -186,9 +186,9 @@ Az összes rögzítési lehetőség elérhető az Omarchy menü _Trigger > Captu
 | `Super + Backspace` | Átlátszóság váltása egy ablakon |
 | `Super + Ctrl + Backspace` | Egyablakos négyzetes képarány váltása |
 
-Az extra háttérképek itt találhatók: `~/.config/omarchy/backgrounds/<theme name>`. Elérhető az Omarchy menü _Install > Style > Background_ pontjában is.
+Az extra háttérképek itt találhatók: `~/.config/unbloarchy/backgrounds/<theme name>`. Elérhető az Unbloarchy menü _Install > Style > Background_ pontjában is.
 
-Az összes stílusbeállítás elérhető az Omarchy menü _Style_ pontjában is (`Super + Space`).
+Az összes stílusbeállítás elérhető az Unbloarchy menü _Style_ pontjában is (`Super + Space`).
 
 ## Kapcsolók
 
@@ -289,7 +289,7 @@ Ezeket a funkciókat egy Tmux munkameneten belül kell futtatni.
 
 ## Ghostty Terminal
 
-A Ghostty terminál az Omarchy menü _Install > Terminal_ pontjával telepíthető.
+A Ghostty terminál az Unbloarchy menü _Install > Terminal_ pontjával telepíthető.
 
 | Gyorsbillentyű                  | Funkció              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ A `Super + Ctrl + E` segítségével megjeleníthetsz egy teljes emoji választ�
 | `Shift + CapsLock Space N` | A neved (ahogy a beállításkor megadtad)  |
 | `Shift + CapsLock Space E` | Az e-mail címed (ahogy a beállításkor megadtad)  |
 
-Továbbiakat is hozzáadhatsz a `~/.XCompose` szerkesztésével, majd futtasd az `omarchy-restart-xcompose` parancsot a terminálban, hogy a módosítások érvénybe lépjenek.
+Továbbiakat is hozzáadhatsz a `~/.XCompose` szerkesztésével, majd futtasd az `unbloarchy-restart-xcompose` parancsot a terminálban, hogy a módosítások érvénybe lépjenek.

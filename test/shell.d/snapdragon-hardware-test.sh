@@ -14,8 +14,8 @@ for script in "$firmware_setup" "$dtb_setup"; do
 done
 
 (
-  omarchy-hw-aarch64-qualcomm() { return 0; }
-  omarchy-pkg-add() { :; }
+  unbloarchy-hw-aarch64-qualcomm() { return 0; }
+  unbloarchy-pkg-add() { :; }
   qcom-firmware-extract() {
     if [[ $1 == "--install" ]]; then
       return 1
@@ -32,7 +32,7 @@ done
     printf 'usb\n'
   }
 
-  OMARCHY_QUALCOMM_MODPROBE_DIR="$scratch/modprobe.d"
+  UNBLOARCHY_QUALCOMM_MODPROBE_DIR="$scratch/modprobe.d"
   source "$firmware_setup"
 )
 
@@ -40,8 +40,8 @@ done
   fail "Snapdragon firmware setup protects a USB-backed root disk"
 
 run_internal_firmware_setup() (
-  omarchy-hw-aarch64-qualcomm() { return 0; }
-  omarchy-pkg-add() { :; }
+  unbloarchy-hw-aarch64-qualcomm() { return 0; }
+  unbloarchy-pkg-add() { :; }
   findmnt() { printf '/dev/mapper/root\n'; }
   lsblk() { printf 'nvme\n'; }
   inspection_status=$1
@@ -49,7 +49,7 @@ run_internal_firmware_setup() (
     [[ $1 == "--list-missing" ]] || return 0
     return "$inspection_status"
   }
-  OMARCHY_QUALCOMM_MODPROBE_DIR="$scratch/modprobe.d"
+  UNBLOARCHY_QUALCOMM_MODPROBE_DIR="$scratch/modprobe.d"
   source "$firmware_setup"
 )
 
@@ -70,11 +70,11 @@ PCRPrivateKey=/secure/pcr.key
 CONF
 
 run_dtb_setup() (
-  omarchy-hw-aarch64-qualcomm() { return 0; }
-  omarchy-pkg-add() { :; }
+  unbloarchy-hw-aarch64-qualcomm() { return 0; }
+  unbloarchy-pkg-add() { :; }
 
-  OMARCHY_QUALCOMM_DTB_DIR="$scratch/dtbs"
-  OMARCHY_QUALCOMM_UKI_CONFIG="$scratch/uki.conf"
+  UNBLOARCHY_QUALCOMM_DTB_DIR="$scratch/dtbs"
+  UNBLOARCHY_QUALCOMM_UKI_CONFIG="$scratch/uki.conf"
   source "$dtb_setup"
 )
 
@@ -88,7 +88,7 @@ grep -Fq 'SecureBootPrivateKey=/secure/db.key' "$scratch/uki.conf" ||
   fail "Snapdragon DTB setup preserves Secure Boot settings"
 grep -Fq 'PCRPrivateKey=/secure/pcr.key' "$scratch/uki.conf" ||
   fail "Snapdragon DTB setup preserves PCR settings"
-[[ $(grep -Fc '# BEGIN OMARCHY QUALCOMM DEVICE TREES' "$scratch/uki.conf") == 1 ]] ||
+[[ $(grep -Fc '# BEGIN UNBLOARCHY QUALCOMM DEVICE TREES' "$scratch/uki.conf") == 1 ]] ||
   fail "Snapdragon DTB setup keeps one managed UKI block"
 grep -Fq "DeviceTreeAuto=$scratch/dtbs/x1e80100-test.dtb" "$scratch/uki.conf" ||
   fail "Snapdragon DTB setup lists the matching device tree"
@@ -100,45 +100,45 @@ fi
 # uki.conf, so a changed list asks for that rebuild and an unchanged one does not.
 request="$scratch/boot-rebuild"
 : >"$scratch/dtbs/x1e80100-added.dtb"
-(export OMARCHY_IMAGE_BOOT_REBUILD="$request" && run_dtb_setup)
+(export UNBLOARCHY_IMAGE_BOOT_REBUILD="$request" && run_dtb_setup)
 [[ -e $request ]] ||
   fail "a changed device tree list asks an image's first boot for the rebuild"
 rm -f "$request"
-(export OMARCHY_IMAGE_BOOT_REBUILD="$request" && run_dtb_setup)
+(export UNBLOARCHY_IMAGE_BOOT_REBUILD="$request" && run_dtb_setup)
 [[ ! -e $request ]] ||
   fail "an unchanged device tree list asks for no rebuild"
 
-# Omarchy's own kernel keeps its device trees under its package name. They come
+# Unbloarchy's own kernel keeps its device trees under its package name. They come
 # before Arch Linux ARM's, so the trees match the kernel that boots.
-mkdir -p "$scratch/dtbroot/qcom" "$scratch/dtbroot/linux-omarchy/qcom"
+mkdir -p "$scratch/dtbroot/qcom" "$scratch/dtbroot/linux-unbloarchy/qcom"
 : >"$scratch/dtbroot/qcom/x1e80100-stock.dtb"
-: >"$scratch/dtbroot/linux-omarchy/qcom/x1e80100-own.dtb"
+: >"$scratch/dtbroot/linux-unbloarchy/qcom/x1e80100-own.dtb"
 run_dtb_root_setup() (
-  omarchy-hw-aarch64-qualcomm() { return 0; }
-  omarchy-pkg-add() { :; }
+  unbloarchy-hw-aarch64-qualcomm() { return 0; }
+  unbloarchy-pkg-add() { :; }
 
-  OMARCHY_QUALCOMM_DTB_ROOT="$scratch/dtbroot"
-  OMARCHY_QUALCOMM_UKI_CONFIG="$scratch/uki-root.conf"
+  UNBLOARCHY_QUALCOMM_DTB_ROOT="$scratch/dtbroot"
+  UNBLOARCHY_QUALCOMM_UKI_CONFIG="$scratch/uki-root.conf"
   source "$dtb_setup"
 )
 run_dtb_root_setup
-grep -Fq "DeviceTreeAuto=$scratch/dtbroot/linux-omarchy/qcom/x1e80100-own.dtb" "$scratch/uki-root.conf" ||
-  fail "Snapdragon DTB setup takes the device trees of Omarchy's own kernel first"
-rm -r "$scratch/dtbroot/linux-omarchy"
+grep -Fq "DeviceTreeAuto=$scratch/dtbroot/linux-unbloarchy/qcom/x1e80100-own.dtb" "$scratch/uki-root.conf" ||
+  fail "Snapdragon DTB setup takes the device trees of Unbloarchy's own kernel first"
+rm -r "$scratch/dtbroot/linux-unbloarchy"
 run_dtb_root_setup
 grep -Fq "DeviceTreeAuto=$scratch/dtbroot/qcom/x1e80100-stock.dtb" "$scratch/uki-root.conf" ||
   fail "Snapdragon DTB setup falls back to Arch Linux ARM's device trees"
 
 pass "Snapdragon setup tolerates missing firmware and preserves UKI settings"
 
-defaults=$(OMARCHY_PATH="$ROOT" "$ROOT/bin/omarchy-pkg-defaults" aarch64-qualcomm)
+defaults=$(UNBLOARCHY_PATH="$ROOT" "$ROOT/bin/unbloarchy-pkg-defaults" aarch64-qualcomm)
 for package in linux-firmware-qcom qcom-firmware-extract systemd-ukify vulkan-freedreno; do
   grep -qx "$package" <<<"$defaults" ||
     fail "the Snapdragon package set has $package for offline setup"
 done
 pass "the Snapdragon package set has every package its setup installs"
 
-# The leaves ask omarchy-hw-aarch64-qualcomm, so run them under the real
+# The leaves ask unbloarchy-hw-aarch64-qualcomm, so run them under the real
 # detector: a Snapdragon device tree gets the setup and no other platform does.
 require_platform_fixtures "Snapdragon setup under the real detector"
 
@@ -153,10 +153,10 @@ run_leaves_on() (
   out="$scratch/on/$platform"
   mkdir -p "$out"
   fake_platform "$scratch/platforms/$platform" "$platform"
-  export OMARCHY_PROC_ROOT="$scratch/platforms/$platform/proc"
+  export UNBLOARCHY_PROC_ROOT="$scratch/platforms/$platform/proc"
   export PATH="$scratch/platforms/$platform/bin:$ROOT/bin:$PATH"
 
-  omarchy-pkg-add() { :; }
+  unbloarchy-pkg-add() { :; }
   qcom-firmware-extract() { [[ $1 != "--list-missing" ]]; }
   findmnt() { printf '/dev/mapper/root\n'; }
   lsblk() { printf 'nvme\n'; }
@@ -164,10 +164,10 @@ run_leaves_on() (
   # kernel-params.sh writes a fixed path, so run a copy that writes the fixture.
   sed "s|/etc/limine-entry-tool.d|$out/limine-entry-tool.d|g" "$kernel_params_setup" >"$out/kernel-params.sh"
 
-  OMARCHY_QUALCOMM_MODPROBE_DIR="$out/modprobe.d"
-  OMARCHY_QUALCOMM_DTB_DIR="$scratch/dtbs"
-  OMARCHY_QUALCOMM_UKI_CONFIG="$out/uki.conf"
-  OMARCHY_QUALCOMM_MKINITCPIO_DIR="$out/mkinitcpio.conf.d"
+  UNBLOARCHY_QUALCOMM_MODPROBE_DIR="$out/modprobe.d"
+  UNBLOARCHY_QUALCOMM_DTB_DIR="$scratch/dtbs"
+  UNBLOARCHY_QUALCOMM_UKI_CONFIG="$out/uki.conf"
+  UNBLOARCHY_QUALCOMM_MKINITCPIO_DIR="$out/mkinitcpio.conf.d"
   source "$firmware_setup"
   source "$dtb_setup"
   source "$out/kernel-params.sh"

@@ -22,7 +22,7 @@ Ang annotation editor ay maaaring gumuhit ng mga arrow, linya, hugis, highlight,
 
 Ang mga naka-save na screenshot ay napupunta sa `~/Pictures/Screenshots` bilang default, na may pangalang tulad ng `screenshot-2026-08-13_14-22-05-firefox.png`. Itakda ang `OMASNAP_SCREENSHOT_DIR` para gumamit ng ibang directory — tingnan ang [FAQ](46-faq.md) kung saan ilalagay ang mga session environment variable. Ginagawa ng Omasnap ang directory kapag sine-save nito ang unang shot. Itakda ang `[output] autosave = false` sa `~/.config/omasnap/omasnap.conf` para i-disable ang awtomatikong pag-save; ang mga capture ay kokopyahin na lang, at ipapakita sa isang preview sa loob ng 10 segundo na maaari mong panatilihin sa screen gamit ang pin button nito o ang `Ctrl + P`.
 
-Mula sa terminal, binubuksan ng `omarchy screenshot` ang parehong overlay, at maaari mong piliin ang panimulang mode nito: `omarchy capture screenshot region`, `windows`, `fullscreen`, o `scroll`. Ang pangalawang argument na `copy` o `save` ay direktang nagpapadala sa shot sa destinasyong iyon. Para mag-edit bago ang output, gamitin ang `omarchy screenshot --editor=overlay` para sa isang fullscreen na editor o ang `omarchy screenshot --editor=window` para sa isang hiwalay na window.
+Mula sa terminal, binubuksan ng `unbloarchy screenshot` ang parehong overlay, at maaari mong piliin ang panimulang mode nito: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, o `scroll`. Ang pangalawang argument na `copy` o `save` ay direktang nagpapadala sa shot sa destinasyong iyon. Para mag-edit bago ang output, gamitin ang `unbloarchy screenshot --editor=overlay` para sa isang fullscreen na editor o ang `unbloarchy screenshot --editor=window` para sa isang hiwalay na window.
 
 ### Pagpapatakbo sa picker gamit ang keyboard
 
@@ -41,9 +41,9 @@ Ang mga binding na ito ay umiiral lamang habang nakabukas ang Omasnap, kaya hind
 
 ## Pagre-record ng screen
 
-Binubuksan ng `Alt + Print Screen` ang _Trigger > Capture > Screenrecord_, na nagtatanong kung ano ang gusto mo sa soundtrack: walang audio, audio ng desktop, desktop plus microphone, o desktop plus microphone plus webcam. Ang huling iyon ay lumilitaw lamang kung mayroon ka talagang nakasaksak na camera. Pumili ng isa at hahayaan ka ng recording picker ng Omarchy na mag-drag ng rehiyon o mag-click ng window o monitor.
+Binubuksan ng `Alt + Print Screen` ang _Trigger > Capture > Screenrecord_, na nagtatanong kung ano ang gusto mo sa soundtrack: walang audio, audio ng desktop, desktop plus microphone, o desktop plus microphone plus webcam. Ang huling iyon ay lumilitaw lamang kung mayroon ka talagang nakasaksak na camera. Pumili ng isa at hahayaan ka ng recording picker ng Unbloarchy na mag-drag ng rehiyon o mag-click ng window o monitor.
 
-Tumatakbo ang pagre-record sa gpu-screen-recorder, na nag-e-encode sa GPU sa 60fps at bumabalik sa CPU kung kailangan. Ang resulta ay isang MP4 sa `~/Videos`, na pinangalanang `screenrecording-2026-08-13_14-22-05.mp4`. Itakda ang `OMARCHY_SCREENRECORD_DIR` para baguhin iyon — pero tandaan na hindi tulad ng directory ng screenshot, kailangang umiiral na ito, o tatangging magsimula ang recording.
+Tumatakbo ang pagre-record sa gpu-screen-recorder, na nag-e-encode sa GPU sa 60fps at bumabalik sa CPU kung kailangan. Ang resulta ay isang MP4 sa `~/Videos`, na pinangalanang `screenrecording-2026-08-13_14-22-05.mp4`. Itakda ang `UNBLOARCHY_SCREENRECORD_DIR` para baguhin iyon — pero tandaan na hindi tulad ng directory ng screenshot, kailangang umiiral na ito, o tatangging magsimula ang recording.
 
 Habang nagre-record ka, lumilitaw ang isang maliit na indicator sa bar. I-click ito para huminto. Maaari ka ring huminto gamit ang `Alt + Print Screen` ulit, o gamit ang entry na _Stop Screenrecording_ sa ilalim ng _Trigger > Capture > Screenrecord_, na lumilitaw lamang habang may aktwal na nagre-record.
 
@@ -60,7 +60,7 @@ Kapag nag-record ka gamit ang isang webcam, lumilitaw ang camera bilang isang na
 
 May tatlong laki — small, medium, at large — at ang mga hotkey ay humahakbang sa pagitan ng mga ito. Medium ang default. Proporsyonal ang mga ito sa recording, kaya sinasakop ng camera ang parehong bahagi ng frame kahit nagre-record ka ng 1080p na monitor o ng 6K na monitor. At kung rehiyon ang ni-record mo sa halip na buong display, naka-anchor ang overlay sa sulok ng rehiyong iyon sa halip na sa sulok ng monitor, kaya nananatili ito sa loob ng shot.
 
-Maaari mo rin itong tawagin nang direkta gamit ang `omarchy-capture-webcam-resize small`, o ang `reset` para bumalik sa medium.
+Maaari mo rin itong tawagin nang direkta gamit ang `unbloarchy-capture-webcam-resize small`, o ang `reset` para bumalik sa medium.
 
 ## Teksto, mga QR code, at mga kulay
 
@@ -76,7 +76,7 @@ Ang isang 4K na screen recording o isang raw na HEIC mula sa phone mo ay kadalas
 
 Ang mga larawan ay napupunta sa jpg o png sa high, medium, o low, na naglilimita sa lapad sa 3160, 2160, at 1080 pixel. Ang mga video ay napupunta sa mp4 o isang animated gif sa 4k, 1080p, o 720p. Ang na-convert na file ay isinusulat sa tabi ng orihinal na may resolution sa pangalan — `demo-1080p.mp4` — at ang path ay kinokopya sa clipboard bilang isang file URI, kaya maaari mo itong i-paste nang direkta sa isang app na tumatanggap ng mga file drop.
 
-Gumagana rin ito mula sa terminal, kung alam mo na kung ano ang gusto mo: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Mayroon ding `omarchy transcode ascii`, na ginagawang ASCII art ang isang larawan — iyon ay karaniwan para sa [branding](41-branding.md).
+Gumagana rin ito mula sa terminal, kung alam mo na kung ano ang gusto mo: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Mayroon ding `unbloarchy transcode ascii`, na ginagawang ASCII art ang isang larawan — iyon ay karaniwan para sa [branding](41-branding.md).
 
 ## Pagpapadala nito kung saan
 

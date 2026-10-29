@@ -1,6 +1,6 @@
 #!/bin/bash -p
 
-# omarchy:summary=Print the hardware platform: x86, aarch64, aarch64-apple, aarch64-qualcomm, aarch64-n1x or aarch64-gb10.
+# unbloarchy:summary=Print the hardware platform: x86, aarch64, aarch64-apple, aarch64-qualcomm, aarch64-n1x or aarch64-gb10.
 
 # Platform names are the CPU architecture, then the hardware family when it
 # needs handling of its own: x86, aarch64 (every ARM machine without one),
@@ -47,7 +47,7 @@ if (( EUID == 0 )); then
   export PATH=/usr/bin
   fixtures=""
 else
-  fixtures=${OMARCHY_PROC_ROOT:-}${OMARCHY_SYS_ROOT:-}${OMARCHY_IMAGE_ROOT:-}
+  fixtures=${UNBLOARCHY_PROC_ROOT:-}${UNBLOARCHY_SYS_ROOT:-}${UNBLOARCHY_IMAGE_ROOT:-}
 fi
 
 if [[ -z $fixtures ]]; then
@@ -58,12 +58,12 @@ if [[ -z $fixtures ]]; then
   image_dir=/var/lib/omarchy/image
   image_owner=0
 else
-  proc=${OMARCHY_PROC_ROOT:-}
+  proc=${UNBLOARCHY_PROC_ROOT:-}
   sources=()
-  [[ -z ${OMARCHY_PROC_ROOT:-} ]] || sources+=("$OMARCHY_PROC_ROOT/device-tree/compatible")
-  [[ -z ${OMARCHY_SYS_ROOT:-} ]] || sources+=("$OMARCHY_SYS_ROOT/firmware/devicetree/base/compatible")
-  sys=${OMARCHY_SYS_ROOT:-}
-  image_root=${OMARCHY_IMAGE_ROOT:-}
+  [[ -z ${UNBLOARCHY_PROC_ROOT:-} ]] || sources+=("$UNBLOARCHY_PROC_ROOT/device-tree/compatible")
+  [[ -z ${UNBLOARCHY_SYS_ROOT:-} ]] || sources+=("$UNBLOARCHY_SYS_ROOT/firmware/devicetree/base/compatible")
+  sys=${UNBLOARCHY_SYS_ROOT:-}
+  image_root=${UNBLOARCHY_IMAGE_ROOT:-}
   image_dir=${image_root:+$image_root/var/lib/omarchy/image}
   image_owner=$EUID
 fi

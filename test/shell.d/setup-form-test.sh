@@ -86,9 +86,9 @@ status=0
 
 # run_prompt <function> <status:output>... — each response answers one gum screen
 # The machine's own form defaults never reach these tests.
-export OMARCHY_FORM_DEFAULTS="$tmp_dir/no-form-defaults"
+export UNBLOARCHY_FORM_DEFAULTS="$tmp_dir/no-form-defaults"
 # The form's strings come from this checkout's catalogs, not the machine's.
-export OMARCHY_PATH="$ROOT"
+export UNBLOARCHY_PATH="$ROOT"
 
 run_prompt() {
   local prompt=$1
@@ -185,7 +185,7 @@ assert_status 0 "keyboard prompt succeeds"
 grep -qF -- '--selected English (US)' "$GUM_ARGS" || fail "keyboard prompt preselects English (US)"
 pass "keyboard prompt maps the chosen label to its keymap"
 
-OMARCHY_FORM_KEYBOARD_DEFAULT="Chinese (Simplified, Pinyin)" run_prompt omarchy_prompt_keyboard "0:Chinese (Simplified, Pinyin)"
+UNBLOARCHY_FORM_KEYBOARD_DEFAULT="Chinese (Simplified, Pinyin)" run_prompt unbloarchy_prompt_keyboard "0:Chinese (Simplified, Pinyin)"
 assert_status 0 "a preset keyboard prompt succeeds"
 grep -qF -- '--selected Chinese (Simplified\, Pinyin)' "$GUM_ARGS" || fail "install media can preset the keyboard choice" "$(cat "$GUM_ARGS")"
 [[ $(head -n 1 "$tmp_dir/stdin.1") == "English (US)" ]] || fail "a preset keeps the list in its usual order"
@@ -193,33 +193,33 @@ grep -qF -- '--selected Chinese (Simplified\, Pinyin)' "$GUM_ARGS" || fail "inst
 pass "install media can preselect the keyboard, which stays a choice"
 
 printf 'KEYBOARD=Chinese (Simplified, Pinyin)\nTIMEZONE=Asia/Shanghai\nOTHER=$(touch %s/NEVER)\n' "$tmp_dir" >"$tmp_dir/form-defaults"
-OMARCHY_FORM_DEFAULTS="$tmp_dir/form-defaults" run_prompt omarchy_prompt_keyboard "0:Chinese (Simplified, Pinyin)"
+UNBLOARCHY_FORM_DEFAULTS="$tmp_dir/form-defaults" run_prompt unbloarchy_prompt_keyboard "0:Chinese (Simplified, Pinyin)"
 grep -qF -- '--selected Chinese (Simplified\, Pinyin)' "$GUM_ARGS" || fail "a first-boot owner setup takes the media's keyboard default" "$(cat "$GUM_ARGS")"
-OMARCHY_FORM_DEFAULTS="$tmp_dir/form-defaults" TZ_GUESS=Europe/Copenhagen run_prompt omarchy_prompt_timezone "0:Asia/Shanghai"
+UNBLOARCHY_FORM_DEFAULTS="$tmp_dir/form-defaults" TZ_GUESS=Europe/Copenhagen run_prompt unbloarchy_prompt_timezone "0:Asia/Shanghai"
 grep -qF -- '--selected Asia/Shanghai' "$GUM_ARGS" || fail "a first-boot owner setup takes the media's timezone default" "$(cat "$GUM_ARGS")"
 [[ ! -e $tmp_dir/NEVER ]] || fail "form defaults are read as data"
-OMARCHY_FORM_DEFAULTS="$tmp_dir/form-defaults" OMARCHY_FORM_KEYBOARD_DEFAULT=Japanese run_prompt omarchy_prompt_keyboard "0:Japanese"
+UNBLOARCHY_FORM_DEFAULTS="$tmp_dir/form-defaults" UNBLOARCHY_FORM_KEYBOARD_DEFAULT=Japanese run_prompt unbloarchy_prompt_keyboard "0:Japanese"
 grep -qF -- '--selected Japanese' "$GUM_ARGS" || fail "the live installer's environment wins over the file"
 pass "a first-boot owner setup reads the media's defaults as data"
 
 for selection in 'Japanese|jp106|mozc|' 'Japanese (US keyboard)|us|mozc|' 'Korean|us|hangul|kr:kr104' 'Lao|us|none|la' 'Chinese (Simplified, Pinyin)|us|pinyin|' 'Taiwan (Zhuyin)|us|chewing|' 'Hong Kong (Cangjie)|us|cangjie5|'; do
   IFS='|' read -r label keymap method layout <<< "$selection"
-  run_prompt omarchy_prompt_keyboard "0:$label"
+  run_prompt unbloarchy_prompt_keyboard "0:$label"
   assert_status 0 "$label can be selected at install"
   [[ $(field keyboard) == "$keymap" && $(field keyboard_input_method) == "$method" && $(field keyboard_xkb_layout) == "$layout" ]] ||
     fail "$label carries a real console keymap and a separate input preference"
 done
 pass "language keyboard choices carry their keymap, input method, and desktop override"
 
-keyboard_input_method=hangul keyboard_xkb_layout=kr omarchy_persist_input_selection "$tmp_dir/target"
-[[ $(<"$tmp_dir/target/etc/omarchy/input-method") == $'INPUT_METHOD=hangul\nXKB_LAYOUT=kr' ]] || fail "first-boot setup persists the selection for user finalization"
-keyboard_input_method=hangul keyboard_xkb_layout=kr:kr104 omarchy_persist_input_selection "$tmp_dir/target"
-[[ $(<"$tmp_dir/target/etc/omarchy/input-method") == $'INPUT_METHOD=hangul\nXKB_LAYOUT=kr:kr104' ]] || fail "first-boot setup persists the Korean Right Alt variant"
-keyboard_input_method=hangul keyboard_xkb_layout=kr:dvorak omarchy_persist_input_selection "$tmp_dir/target" && fail "an unknown desktop variant is refused"
+keyboard_input_method=hangul keyboard_xkb_layout=kr unbloarchy_persist_input_selection "$tmp_dir/target"
+[[ $(<"$tmp_dir/target/etc/unbloarchy/input-method") == $'INPUT_METHOD=hangul\nXKB_LAYOUT=kr' ]] || fail "first-boot setup persists the selection for user finalization"
+keyboard_input_method=hangul keyboard_xkb_layout=kr:kr104 unbloarchy_persist_input_selection "$tmp_dir/target"
+[[ $(<"$tmp_dir/target/etc/unbloarchy/input-method") == $'INPUT_METHOD=hangul\nXKB_LAYOUT=kr:kr104' ]] || fail "first-boot setup persists the Korean Right Alt variant"
+keyboard_input_method=hangul keyboard_xkb_layout=kr:dvorak unbloarchy_persist_input_selection "$tmp_dir/target" && fail "an unknown desktop variant is refused"
 pass "first-boot setup persists the selection for user finalization"
 
-run_prompt omarchy_prompt_keyboard "1:"
-assert_status "$OMARCHY_FORM_BACK" "keyboard prompt reports Esc as back"
+run_prompt unbloarchy_prompt_keyboard "1:"
+assert_status "$UNBLOARCHY_FORM_BACK" "keyboard prompt reports Esc as back"
 assert_returned "keyboard prompt survives Esc under set -e"
 
 run_prompt unbloarchy_prompt_keyboard "130:"
@@ -324,16 +324,16 @@ pass "encryption prompt propagates Esc and Ctrl+C without dying under set -e"
 
 # Language
 
-catalogs="$tmp_dir/omarchy/default/i18n"
+catalogs="$tmp_dir/unbloarchy/default/i18n"
 mkdir -p "$catalogs/en" "$catalogs/da"
 jq '{"setupForm.usernamePrompt": .["setupForm.usernamePrompt"], "setupForm.usernameInvalid": .["setupForm.usernameInvalid"]}' "$ROOT/default/i18n/en/cli.json" >"$catalogs/en/cli.json"
 printf '{"setupForm.usernamePrompt": "Brugernavn> "}\n' >"$catalogs/da/cli.json"
-OMARCHY_PATH="$tmp_dir/omarchy" OMARCHY_FORM_LANGUAGE=da run_prompt omarchy_prompt_username "0:Bad Name" "0:dhh"
+UNBLOARCHY_PATH="$tmp_dir/unbloarchy" UNBLOARCHY_FORM_LANGUAGE=da run_prompt unbloarchy_prompt_username "0:Bad Name" "0:dhh"
 grep -qF -- '--prompt Brugernavn> ' "$GUM_ARGS" || fail "the form speaks the caller's language" "$(cat "$GUM_ARGS")"
 assert_notices "a string the language lacks falls back to English" "Username must be alphanumeric with no spaces"
-OMARCHY_PATH="$tmp_dir/omarchy" OMARCHY_FORM_LANGUAGE=../da run_prompt omarchy_prompt_username "0:dhh"
+UNBLOARCHY_PATH="$tmp_dir/unbloarchy" UNBLOARCHY_FORM_LANGUAGE=../da run_prompt unbloarchy_prompt_username "0:dhh"
 grep -qF -- '--prompt Username> ' "$GUM_ARGS" || fail "a language that is not a registry code means English" "$(cat "$GUM_ARGS")"
-pass "the form's text comes from Omarchy's catalogs in the caller's language, English filling in"
+pass "the form's text comes from Unbloarchy's catalogs in the caller's language, English filling in"
 
 # Timezone
 
@@ -352,19 +352,19 @@ assert_status 0 "timezone prompt survives a failed geo guess"
 [[ $(head -n 1 "$GUM_ARGS") == filter* ]] || fail "timezone prompt filters when there is no geo guess"
 pass "timezone prompt falls back to filtering when the geo guess fails"
 
-OMARCHY_FORM_TIMEZONE_DEFAULT=Asia/Shanghai TZ_GUESS=Europe/Copenhagen run_prompt omarchy_prompt_timezone "0:Asia/Shanghai"
+UNBLOARCHY_FORM_TIMEZONE_DEFAULT=Asia/Shanghai TZ_GUESS=Europe/Copenhagen run_prompt unbloarchy_prompt_timezone "0:Asia/Shanghai"
 assert_status 0 "a preset timezone prompt succeeds"
 grep -qF -- '--selected Asia/Shanghai' "$GUM_ARGS" || fail "install media can preset the timezone over the geo guess" "$(cat "$GUM_ARGS")"
 pass "install media can preselect the timezone, which stays a choice"
 
-OMARCHY_FORM_TIMEZONE_FALLBACK=Europe/Warsaw run_prompt omarchy_prompt_timezone "0:Europe/Warsaw"
+UNBLOARCHY_FORM_TIMEZONE_FALLBACK=Europe/Warsaw run_prompt unbloarchy_prompt_timezone "0:Europe/Warsaw"
 assert_status 0 "a timezone fallback prompt succeeds"
 grep -qF -- '--selected Europe/Warsaw' "$GUM_ARGS" || fail "the caller's fallback is preselected when the geo guess fails" "$(cat "$GUM_ARGS")"
-OMARCHY_FORM_TIMEZONE_FALLBACK=Europe/Warsaw TZ_GUESS=Europe/Copenhagen run_prompt omarchy_prompt_timezone "0:Europe/Copenhagen"
+UNBLOARCHY_FORM_TIMEZONE_FALLBACK=Europe/Warsaw TZ_GUESS=Europe/Copenhagen run_prompt unbloarchy_prompt_timezone "0:Europe/Copenhagen"
 grep -qF -- '--selected Europe/Copenhagen' "$GUM_ARGS" || fail "the geo guess beats the caller's fallback" "$(cat "$GUM_ARGS")"
 pass "a caller's timezone fallback stands in only when the geo guess fails"
 
-run_prompt omarchy_prompt_timezone "0:"
+run_prompt unbloarchy_prompt_timezone "0:"
 assert_status 0 "timezone prompt accepts an empty selection"
 [[ $(field timezone) == "UTC" ]] || fail "timezone prompt falls back to UTC"
 pass "timezone prompt falls back to UTC when nothing is selected"

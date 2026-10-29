@@ -6,7 +6,7 @@ Pots veure totes les combinacions de tecles principals amb `Super + K` (les comb
 
 | Drecera                  | Funció              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menú d'Omarchy (aplicacions i tota la resta)    |
+| `Super + Space`           | Menú d'Unbloarchy (aplicacions i tota la resta)    |
 | `Super + Alt + Space` | Graella d'aplicacions |
 | `Super + Escape` | Menú del sistema (suspendre, reiniciar, etc.)  |
 | `Super + Ctrl + L` | Bloqueja l'ordinador |
@@ -143,7 +143,7 @@ Canvia/afegeix combinacions a `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Enganxa    |
 | `Super + Ctrl + V`           | Gestor del porta-retalls    |
 
-Normalment a Linux, necessites `Ctrl + Shift + C/V` per copiar i enganxar al terminal i `Ctrl + C/V` per fer-ho a tota la resta. Aquestes dreceres unificades de porta-retalls d'Omarchy funcionen a tot arreu.
+Normalment a Linux, necessites `Ctrl + Shift + C/V` per copiar i enganxar al terminal i `Ctrl + C/V` per fer-ho a tota la resta. Aquestes dreceres unificades de porta-retalls d'Unbloarchy funcionen a tot arreu.
 
 ## Captura
 
@@ -164,7 +164,7 @@ Normalment a Linux, necessites `Ctrl + Shift + C/V` per copiar i enganxar al ter
 
 Amb els enregistraments de pantalla, la drecera primer pregunta quin àudio vols i després comença a enregistrar. Prem-la un altre cop per aturar-lo. Consulta [captures de pantalla i enregistrament](12-screenshots-recording.md) per veure'n els detalls.
 
-Totes les opcions de captura també són accessibles a _Trigger > Capture_ del menú d'Omarchy (`Super + Space`).
+Totes les opcions de captura també són accessibles a _Trigger > Capture_ del menú d'Unbloarchy (`Super + Space`).
 
 ## Notificacions
 
@@ -186,9 +186,9 @@ Totes les opcions de captura també són accessibles a _Trigger > Capture_ del m
 | `Super + Backspace` | Activa/desactiva la transparència d'una finestra |
 | `Super + Ctrl + Backspace` | Activa/desactiva l'aspecte quadrat d'una sola finestra |
 
-Les imatges de fons addicionals són a `~/.config/omarchy/backgrounds/<theme name>`. També disponibles via _Install > Style > Background_ al menú d'Omarchy.
+Les imatges de fons addicionals són a `~/.config/unbloarchy/backgrounds/<theme name>`. També disponibles via _Install > Style > Background_ al menú d'Unbloarchy.
 
-Totes les opcions d'estil també són accessibles a _Style_ del menú d'Omarchy (`Super + Space`).
+Totes les opcions d'estil també són accessibles a _Style_ del menú d'Unbloarchy (`Super + Space`).
 
 ## Commutadors
 
@@ -289,7 +289,7 @@ Aquestes funcions s'han d'executar dins d'una sessió de Tmux.
 
 ## Terminal Ghostty
 
-El terminal Ghostty s'instal·la amb _Install > Terminal_ via el menú d'Omarchy.
+El terminal Ghostty s'instal·la amb _Install > Terminal_ via el menú d'Unbloarchy.
 
 | Drecera                  | Funció              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Pots fer servir `Super + Ctrl + E` per mostrar un selector d'emojis complet que 
 | `Shift + CapsLock Space N` | El teu nom (tal com el vas introduir a la configuració)  |
 | `Shift + CapsLock Space E` | El teu correu electrònic (tal com el vas introduir a la configuració)  |
 
-Pots afegir-ne més de teus editant `~/.XCompose` i després executant `omarchy-restart-xcompose` al terminal perquè els canvis s'apliquin.
+Pots afegir-ne més de teus editant `~/.XCompose` i després executant `unbloarchy-restart-xcompose` al terminal perquè els canvis s'apliquin.

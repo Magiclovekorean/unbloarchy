@@ -1,14 +1,14 @@
 # Upau wa Juu
 
-Ukanda ulio kando ya juu ya skrini yako ndio upau wa Omarchy. Si upau wa hali uliobandikwa tu, bali ni sehemu ya shell ya Omarchy, mchakato mmoja wa Quickshell unaoendelea kwa muda mrefu ambao pia huchora menyu, arifa, madirisha ibukizi ya OSD, na skrini ya kufunga. Ndiyo maana unaendana kikamilifu na kila kitu kingine na ndiyo maana paneli hufunguka mara moja badala ya kuanzisha programu mpya.
+Ukanda ulio kando ya juu ya skrini yako ndio upau wa Unbloarchy. Si upau wa hali uliobandikwa tu, bali ni sehemu ya shell ya Unbloarchy, mchakato mmoja wa Quickshell unaoendelea kwa muda mrefu ambao pia huchora menyu, arifa, madirisha ibukizi ya OSD, na skrini ya kufunga. Ndiyo maana unaendana kikamilifu na kila kitu kingine na ndiyo maana paneli hufunguka mara moja badala ya kuanzisha programu mpya.
 
 Pia ni sehemu moja ya eneo-kazi iliyo kwenye skrini kila wakati, kwa hiyo inafaa kujua yale maglifu madogo yote yanafanya nini.
 
 ## Kilichopo juu yake kwa chaguo-msingi
 
-Upau una sehemu tatu. Upande wa kushoto kuna nembo ya Omarchy (kizindua menyu) na viashiria vya nafasi za kazi. Katikati unapata viashiria vya hali, saa, Elsewhen (saa ya dunia), hali ya hewa, na beji ya sasisho la Omarchy. Upande wa kulia: trei ya mfumo, mpangilio wa kibodi (wakati zaidi ya mmoja umesanidiwa), agents, bluetooth, mtandao, sauti, skrini, na nishati.
+Upau una sehemu tatu. Upande wa kushoto kuna nembo ya Unbloarchy (kizindua menyu) na viashiria vya nafasi za kazi. Katikati unapata viashiria vya hali, saa, Elsewhen (saa ya dunia), hali ya hewa, na beji ya sasisho la Unbloarchy. Upande wa kulia: trei ya mfumo, mpangilio wa kibodi (wakati zaidi ya mmoja umesanidiwa), agents, bluetooth, mtandao, sauti, skrini, na nishati.
 
-Baadhi ya hivyo huonekana tu vinapokuwa na jambo la kusema. Mpangilio wa kibodi huonekana tu ikiwa umesanidi zaidi ya mpangilio mmoja. Beji ya sasisho huonekana tu wakati kuna sasisho la Omarchy linalosubiri. Na aikoni ya agents huonekana mara ya kwanza Omarchy inapopata matumizi ya uandikaji wa msimbo wa AI kwenye mashine (tazama [AI](17-ai.md)).
+Baadhi ya hivyo huonekana tu vinapokuwa na jambo la kusema. Mpangilio wa kibodi huonekana tu ikiwa umesanidi zaidi ya mpangilio mmoja. Beji ya sasisho huonekana tu wakati kuna sasisho la Unbloarchy linalosubiri. Na aikoni ya agents huonekana mara ya kwanza Unbloarchy inapopata matumizi ya uandikaji wa msimbo wa AI kwenye mashine (tazama [AI](17-ai.md)).
 
 ## Kubofya huku na kule
 
@@ -16,7 +16,7 @@ Karibu kila wijeti hufanya jambo fulani kwa kubofya kushoto, kulia, na katikati,
 
 | Wijeti | Kushoto | Kulia | Katikati / kusogeza |
 | --- | --- | --- | --- |
-| Menyu | Menyu ya Omarchy | Kituo kipya cha terminal | — |
+| Menyu | Menyu ya Unbloarchy | Kituo kipya cha terminal | — |
 | Nafasi za kazi | Lenga nafasi hiyo ya kazi kwenye monita hii | — | Sogeza: nafasi ya kazi inayofuata/ iliyotangulia |
 | Saa | Dirisha ibukizi la kalenda | Zungusha umbizo la lebo | Katikati: kichagua saa za eneo |
 | Hali ya hewa | Dirisha ibukizi la utabiri | Hali ya hewa kamili kama arifa | Katikati: onyesha upya |
@@ -29,7 +29,7 @@ Karibu kila wijeti hufanya jambo fulani kwa kubofya kushoto, kulia, na katikati,
 | Media | Cheza/sitisha | Dirisha ibukizi la picha ya jalada | Katikati: inayofuata · sogeza: iliyotangulia/inayofuata |
 | Agents | Paneli ya Agents | Zindua agent wako | Katikati: usajili unaofuata |
 | Trei | Elea ili kufichua droo | Bofya kulia kwenye shevroni ili kudhibiti | — |
-| Sasisho la Omarchy | Endesha sasisho | — | — |
+| Sasisho la Unbloarchy | Endesha sasisho | — | — |
 
 Si kila kitu kilicho kwenye jedwali hilo kiko kwenye upau wako mara ya kwanza. Wijeti ya media (MPRIS inayocheza sasa, yenye wimbo na msanii wanaosogeza) na wijeti ya maikrofoni zote mbili zimejengwa ndani lakini zimezimwa kwa chaguo-msingi — ziongeze ukizitaka, kama ilivyoelezwa hapa chini.
 
@@ -66,7 +66,7 @@ Kila paneli hutumia kibodi pamoja na kipanya: mishale husogeza, Return huamilish
 
 Wijeti nyingine mbili huonekana kwenye upau tu mara unaposakinisha huduma inayolingana kutoka **Sakinisha → Huduma**, na zote mbili zinafaa kujulikana kwa sababu zinafanya zaidi ya kuripoti hali.
 
-Paneli ya **Tailscale** huunganisha na kutenganisha tailnet, hubadilisha kati ya akaunti, na huchagua nodi ya kutoka (mashine zako mwenyewe na maeneo ya Mullvad yote huonekana katika orodha hiyo). Pia huvinjari mashine zako — na ukiwa umechagua moja, `s` hutuma faili kwake kupitia Taildrop, ambayo ndiyo njia ya haraka zaidi ya kuhamisha faili hadi kwenye simu yako au kompyuta nyingine ndogo. `c` hunakili IP ya mashine, `n` jina lake, na `d` jina lake kamili la DNS. Pia kuna kitufe cha kutuma kwenye kila safu ya mashine, ikiwa ungependa kubofya. Jambo lilo hilo kutoka kwenye terminal ni `omarchy tailscale send <machine> [file...]`.
+Paneli ya **Tailscale** huunganisha na kutenganisha tailnet, hubadilisha kati ya akaunti, na huchagua nodi ya kutoka (mashine zako mwenyewe na maeneo ya Mullvad yote huonekana katika orodha hiyo). Pia huvinjari mashine zako — na ukiwa umechagua moja, `s` hutuma faili kwake kupitia Taildrop, ambayo ndiyo njia ya haraka zaidi ya kuhamisha faili hadi kwenye simu yako au kompyuta nyingine ndogo. `c` hunakili IP ya mashine, `n` jina lake, na `d` jina lake kamili la DNS. Pia kuna kitufe cha kutuma kwenye kila safu ya mashine, ikiwa ungependa kubofya. Jambo lilo hilo kutoka kwenye terminal ni `unbloarchy tailscale send <machine> [file...]`.
 
 Paneli ya **Dropbox** hushughulikia kuingia, huonyesha ni kiasi gani cha hifadhi umetumia, na huorodhesha faili zilizosawazishwa hivi karibuni.
 
@@ -93,19 +93,19 @@ Ikiwa ungependa kuchagua kutoka kwenye menyu, **Mwonekano → Upau wa Menyu** in
 Vitu hivyo hivyo vina amri, ambayo ndiyo unayoitaka kwa usanidi wa [dotfiles](31-dotfiles.md):
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Kuongeza au kuondoa wijeti kabisa, tumia amri za programu-jalizi. `omarchy plugin list` huchapisha kila wijeti ambayo shell inaijua pamoja na id yake, na kisha:
+Kuongeza au kuondoa wijeti kabisa, tumia amri za programu-jalizi. `unbloarchy plugin list` huchapisha kila wijeti ambayo shell inaijua pamoja na id yake, na kisha:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Kuficha upau
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Faili ya usanidi
 
-Yote huhifadhiwa katika `~/.config/omarchy/shell.json`, chini ya ufunguo wa `bar`. Hapa kuna toleo lililopunguzwa:
+Yote huhifadhiwa katika `~/.config/unbloarchy/shell.json`, chini ya ufunguo wa `bar`. Hapa kuna toleo lililopunguzwa:
 
 ```json
 {
@@ -123,20 +123,20 @@ Yote huhifadhiwa katika `~/.config/omarchy/shell.json`, chini ya ufunguo wa `bar
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Kila wijeti ni ingizo moja katika mojawapo ya safu tano za mpangilio, na mipangilio yake hukaa ndani ya ingizo hilo — hakuna faili tofauti ya mipangilio na hakuna kitu kidogo cha `config`. `format` ya saa, `formatAlt` (ambayo kubofya kulia huzungukia), na `verticalFormat` zote huishi pale pale kwenye `{ "id": "omarchy.clock" }`.
+Kila wijeti ni ingizo moja katika mojawapo ya safu tano za mpangilio, na mipangilio yake hukaa ndani ya ingizo hilo — hakuna faili tofauti ya mipangilio na hakuna kitu kidogo cha `config`. `format` ya saa, `formatAlt` (ambayo kubofya kulia huzungukia), na `verticalFormat` zote huishi pale pale kwenye `{ "id": "unbloarchy.clock" }`.
 
 `center` ni kisanduku kilicho katikati ya upau: kila kitu kilicho ndani yake huwekwa katikati ya skrini kama kundi moja. `centerBegin` na `centerEnd` hutegemea pande zote mbili za kisanduku, ambayo ndiyo jinsi saa inavyobaki katikati hasa hata hali ya hewa na beji ya sasisho vinavyokuja na kwenda. Weka zaidi ya wijeti moja katika `center` na huwekwa katikati pamoja; kiache tupu na `centerBegin` na `centerEnd` hukutana katikati ya upau.
 
-Kanuni moja inayofaa kuieka akilini: **mara unapokuwa na `shell.json` yako mwenyewe, ndiyo yenye mamlaka**. Hadi utakapobinafsisha chochote, shell husoma faili chaguo-msingi ya Omarchy. Wakati unapoburuta wijeti, kuendesha `omarchy bar`, au kuhariri faili mwenyewe, unakuwa mmiliki wake — hakuna muunganiko wa kina, kwa hiyo wijeti mpya za chaguo-msingi katika matoleo yajayo ya Omarchy hazitaonekana kwenye upau wako kiotomatiki. `omarchy bar defaults` hurudisha mpangilio uliotolewa wakati wowote unapotaka kuanza safi.
+Kanuni moja inayofaa kuieka akilini: **mara unapokuwa na `shell.json` yako mwenyewe, ndiyo yenye mamlaka**. Hadi utakapobinafsisha chochote, shell husoma faili chaguo-msingi ya Unbloarchy. Wakati unapoburuta wijeti, kuendesha `unbloarchy bar`, au kuhariri faili mwenyewe, unakuwa mmiliki wake — hakuna muunganiko wa kina, kwa hiyo wijeti mpya za chaguo-msingi katika matoleo yajayo ya Unbloarchy hazitaonekana kwenye upau wako kiotomatiki. `unbloarchy bar defaults` hurudisha mpangilio uliotolewa wakati wowote unapotaka kuanza safi.
 
 Faili hiyo hiyo pia hushikilia muda wako wa kutotumika katika kiwango cha juu, nje ya ufunguo wa `bar`: `idle.screensaver` na `idle.lock`, zote kwa sekunde tangu ulipoacha kutumia. Kwa hiyo kiokoa skrini cha chaguo-msingi huanza baada ya sekunde 150 na kufuli baada ya sekunde 300.

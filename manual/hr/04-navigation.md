@@ -1,8 +1,8 @@
 # Navigacija
 
-Sve u Omarchyju događa se putem tipkovnice — _SVE!_ Kad se sustav prvi put pokrene, doslovno ne možete učiniti ništa samo mišem. Ali možete pritisnuti `Super + Space` da otkrijete Omarchy Menu i odavde možete učiniti gotovo sve.
+Sve u Unbloarchyju događa se putem tipkovnice — _SVE!_ Kad se sustav prvi put pokrene, doslovno ne možete učiniti ništa samo mišem. Ali možete pritisnuti `Super + Space` da otkrijete Unbloarchy Menu i odavde možete učiniti gotovo sve.
 
-Ali Omarchy izbornik čak nije ni zamišljen kao glavni način upravljanja sustavom većinu vremena. Možemo i brže od toga! Sve najvažnije aplikacije izravno su vezane uz pojedinačne tipkovničke prečace. Terminal pokrećete sa `Super + Return`, a preglednik sa `Super + Shift + Return`. Pokušajte učiniti jedno za drugim i vidjet ćete magiju Hyprlandova slaganja pločica na djelu:
+Ali Unbloarchy izbornik čak nije ni zamišljen kao glavni način upravljanja sustavom većinu vremena. Možemo i brže od toga! Sve najvažnije aplikacije izravno su vezane uz pojedinačne tipkovničke prečace. Terminal pokrećete sa `Super + Return`, a preglednik sa `Super + Shift + Return`. Pokušajte učiniti jedno za drugim i vidjet ćete magiju Hyprlandova slaganja pločica na djelu:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Također možete prijeći na cijeli zaslon sa `Super + F` ili čak samo na punu 
 
 ### Dwindle naspram kliznog rasporeda
 
-Zadani raspored u Omarchyju zove se dwindle. On sve prozore koje otvorite na jednom radnom prostoru drži vidljivima u svakom trenutku, čak i ako ih mora smanjiti.
+Zadani raspored u Unbloarchyju zove se dwindle. On sve prozore koje otvorite na jednom radnom prostoru drži vidljivima u svakom trenutku, čak i ako ih mora smanjiti.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Plutajući radni prostor radi kao tradicionalna radna površina: prozori se preklapaju, a vi ih sami pomišete i mijenjate im veličinu. Svaki prozor dobiva naslovnu traku u bojama vaše teme, s gumbima za minimiziranje, maksimiziranje i zatvaranje. I `Super + M` minimizira fokusirani prozor. Minimizirani prozor čeka u docku; kliknite njegovu aplikaciju da ga vratite. Kliknite prozor da ga iznesete u prvi plan. Mijenjajte mu veličinu s bilo kojeg ruba ili kuta. Dvaput kliknite naslovnu traku da maksimizirate prozor uz zadržavanje gornje trake u vidokrugu, i ponovno da mu vratite staru veličinu.
 
-Plutajući radni prostor također prikazuje dock, s vašim prikvačenim aplikacijama, svime što se izvodi i mrežom svake aplikacije iza gumba za aplikacije, koji također otvaraju `Super + Alt + Space` i _Apps_ u Omarchy izborniku. Desnom tipkom miša kliknite aplikaciju na mreži, ili pritisnite `Delete`, da je deinstalirate. Kliknite aplikaciju da je otvorite, ili da njezin prozor iznesete u prvi plan; kliknite ponovno da kružite kroz njezine prozore. Srednji klik otvara novi prozor. Povucite ikonu duž docka da je premjestite; povlačenje pokrenute aplikacije među ostale zadržava je ondje. Kliknite desnom tipkom da zadržite aplikaciju u docku, izvadite je iz njega ili je zatvorite. Dock se miče s puta prozoru na cijelom zaslonu. Desnom tipkom kliknite gumb za aplikacije da premjestite dock na drugi rub ili da se skriva dok pokazivač ne dosegne njegov rub. Položaj se također nalazi pod _Appearance > Dock > Dock Position_, a `omarchy dock position left` i `omarchy dock autohide on` postavljaju oboje iz terminala. Aplikacije koje držite u docku izblijedjele su dok se ne izvode.
+Plutajući radni prostor također prikazuje dock, s vašim prikvačenim aplikacijama, svime što se izvodi i mrežom svake aplikacije iza gumba za aplikacije, koji također otvaraju `Super + Alt + Space` i _Apps_ u Unbloarchy izborniku. Desnom tipkom miša kliknite aplikaciju na mreži, ili pritisnite `Delete`, da je deinstalirate. Kliknite aplikaciju da je otvorite, ili da njezin prozor iznesete u prvi plan; kliknite ponovno da kružite kroz njezine prozore. Srednji klik otvara novi prozor. Povucite ikonu duž docka da je premjestite; povlačenje pokrenute aplikacije među ostale zadržava je ondje. Kliknite desnom tipkom da zadržite aplikaciju u docku, izvadite je iz njega ili je zatvorite. Dock se miče s puta prozoru na cijelom zaslonu. Desnom tipkom kliknite gumb za aplikacije da premjestite dock na drugi rub ili da se skriva dok pokazivač ne dosegne njegov rub. Položaj se također nalazi pod _Appearance > Dock > Dock Position_, a `unbloarchy dock position left` i `unbloarchy dock autohide on` postavljaju oboje iz terminala. Aplikacije koje držite u docku izblijedjele su dok se ne izvode.
 
-Novi radni prostori, i svi kojima niste dali vlastiti raspored sa `Super + L`, koriste zadani raspored. Promjena zadanog vraća svaki radni prostor bez prozora na njega, dok onaj s prozorima na njemu zadržava raspored koji ima. Prozor minimiziran u dock i dalje se računa kao prozor na radnom prostoru koji je napustio. Odaberite ga pod _Appearance > Workspace Layout_: Tiling, Scrolling ili Floating. `omarchy-hyprland-workspace-layout-default scrolling` postavlja ga iz terminala.
+Novi radni prostori, i svi kojima niste dali vlastiti raspored sa `Super + L`, koriste zadani raspored. Promjena zadanog vraća svaki radni prostor bez prozora na njega, dok onaj s prozorima na njemu zadržava raspored koji ima. Prozor minimiziran u dock i dalje se računa kao prozor na radnom prostoru koji je napustio. Odaberite ga pod _Appearance > Workspace Layout_: Tiling, Scrolling ili Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` postavlja ga iz terminala.
 
 ### Grupiranje prozora
 

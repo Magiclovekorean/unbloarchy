@@ -2,23 +2,23 @@
 
 ### Bir güncellemeyle sistemimi bozdum!
 
-Önce son güncellemenizden önceki sürüme [sisteminizi geri almayı](47-system-snapshots.md) deneyin. Bu işe yaramazsa, sorununuzu Discord'daki #omarchy-help kanalında paylaşmak için `omarchy-debug` kullanın. Ve bunların hepsi başarısız olursa, `omarchy-reinstall` kullanarak varsayılan yapılandırmaları ve paketleri yeniden kurabilirsiniz.
+Önce son güncellemenizden önceki sürüme [sisteminizi geri almayı](47-system-snapshots.md) deneyin. Bu işe yaramazsa, sorununuzu Discord'daki #unbloarchy-help kanalında paylaşmak için `unbloarchy-debug` kullanın. Ve bunların hepsi başarısız olursa, `unbloarchy-reinstall` kullanarak varsayılan yapılandırmaları ve paketleri yeniden kurabilirsiniz.
 
 ### Bazı uygulamalar ekranımda neden bu kadar büyük?
 
-Omarchy, `~/.config/hypr/monitors.lua` içinde `GDK_SCALE` değerinin 2 olarak ayarlanmasını gerektiren 2x yüksek çözünürlüklü bir ekran varsayar. Ancak 1x bir ekrandaysanız, `local omarchy_gdk_scale = 2` değerini 1 olarak değiştirebilirsiniz (ve ardından aşırı büyük görünen tüm uygulamaları yeniden başlatabilirsiniz). Bkz. [monitörler hakkındaki kılavuz](33-monitors.md).
+Unbloarchy, `~/.config/hypr/monitors.lua` içinde `GDK_SCALE` değerinin 2 olarak ayarlanmasını gerektiren 2x yüksek çözünürlüklü bir ekran varsayar. Ancak 1x bir ekrandaysanız, `local unbloarchy_gdk_scale = 2` değerini 1 olarak değiştirebilirsiniz (ve ardından aşırı büyük görünen tüm uygulamaları yeniden başlatabilirsiniz). Bkz. [monitörler hakkındaki kılavuz](33-monitors.md).
 
 Spotify için, arayüzü küçültmek için `Ctrl + Minus` (ve büyütmek için `Ctrl + Plus`) kullanabilirsiniz.
 
 ### Tüm Super tuşu atamalarım neden çalışmayı bıraktı?
 
-Bazı ASUS ROG ve TUF dizüstü bilgisayarlarda, `Fn + Super`, ürün yazılımındaki Windows tuşu kilidini (yanlışlıkla oyundan çıkmamanız için oyun oynamaya yönelik) açıp kapatan, kolayca gözden kaçan bir kombinasyondur. Ekranda bunun olduğunu gösteren hiçbir şey olmaz. Kilit açıkken, Super hiçbir şey göndermez — bu yüzden Super kullanan her Omarchy ataması çalışmayı bırakır ve Hyprland bozulmuş gibi görünür.
+Bazı ASUS ROG ve TUF dizüstü bilgisayarlarda, `Fn + Super`, ürün yazılımındaki Windows tuşu kilidini (yanlışlıkla oyundan çıkmamanız için oyun oynamaya yönelik) açıp kapatan, kolayca gözden kaçan bir kombinasyondur. Ekranda bunun olduğunu gösteren hiçbir şey olmaz. Kilit açıkken, Super hiçbir şey göndermez — bu yüzden Super kullanan her Unbloarchy ataması çalışmayı bırakır ve Hyprland bozulmuş gibi görünür.
 
 `~/.config/hypr/` içinde incelemeye başlamadan önce bir kez `Fn + Super` tuşlarına basın ve bu Super'i geri getirmezse, kilidi açık bırakmamak için tekrar basın. Bu, yalnızca F tuşu satırının ne yaptığını değiştiren Fn-lock değildir.
 
 ### Wi-Fi, Bluetooth, ses veya trackpad'im birden çalışmayı bıraktı
 
-Yeniden başlatmadan önce, sorunlu alt sistemi kendi başına yeniden başlatmayı deneyin. Omarchy menüsündeki _Update > Hardware_ içinde Wi-Fi, Bluetooth, Audio ve Trackpad bulunur ve bunlardan birini yeniden yüklemek, "beş dakika önce çalışıyordu" durumlarının çoğunu düzeltir — yeniden bağlanmayan bir Bluetooth kulaklık, askıya alma sonrasında çalışmayan bir trackpad, bir monitörün fişini çektiğinizde kaybolan ses.
+Yeniden başlatmadan önce, sorunlu alt sistemi kendi başına yeniden başlatmayı deneyin. Unbloarchy menüsündeki _Update > Hardware_ içinde Wi-Fi, Bluetooth, Audio ve Trackpad bulunur ve bunlardan birini yeniden yüklemek, "beş dakika önce çalışıyordu" durumlarının çoğunu düzeltir — yeniden bağlanmayan bir Bluetooth kulaklık, askıya alma sonrasında çalışmayan bir trackpad, bir monitörün fişini çektiğinizde kaybolan ses.
 
 ### Harici hoparlörlerim neden çalmıyor?
 
@@ -26,7 +26,7 @@ Muhtemelen birincil çıkış olarak ayarlanmadıkları için. Çubuğun sağ ta
 
 ### Dizüstü bilgisayarımın hoparlörlerinden garip ses geliyor
 
-Bazı dizüstü bilgisayarlarda Omarchy, yerleşik hoparlörlerin frekans yanıtını düzelten bir hoparlör ayarını otomatik olarak uygular. `omarchy audio tuning status` komutu, makinenizde bir ayarın etkin olup olmadığını söyler ve hoparlörleri ham haliyle duymayı tercih ederseniz `omarchy audio tuning off` komutu onu kapatır.
+Bazı dizüstü bilgisayarlarda Unbloarchy, yerleşik hoparlörlerin frekans yanıtını düzelten bir hoparlör ayarını otomatik olarak uygular. `unbloarchy audio tuning status` komutu, makinenizde bir ayarın etkin olup olmadığını söyler ve hoparlörleri ham haliyle duymayı tercih ederseniz `unbloarchy audio tuning off` komutu onu kapatır.
 
 ### Parolamla neden giriş yapamıyorum veya sudo kullanamıyorum?
 

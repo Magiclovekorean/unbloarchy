@@ -2,7 +2,7 @@
 
 ## 其他編輯器
 
-Omarchy 預設隨附 [Neovim](https://neovim.io/)，但如果你想要更主流、更熟悉一點的東西，可以開啟 Omarchy Menu（`Super + Space`），查看 _Install > Editor_ 下的選項。那裡列出了 VSCode、Cursor、Zed、Sublime Text、Helix、Vim 和 Emacs。如果找不到你要的，看看 _Install > Package_，確認它是不是在 Arch 套件裡（如果不在，再試試 _Install > AUR_ 查看 AUR）。
+Unbloarchy 預設隨附 [Neovim](https://neovim.io/)，但如果你想要更主流、更熟悉一點的東西，可以開啟 Unbloarchy Menu（`Super + Space`），查看 _Install > Editor_ 下的選項。那裡列出了 VSCode、Cursor、Zed、Sublime Text、Helix、Vim 和 Emacs。如果找不到你要的，看看 _Install > Package_，確認它是不是在 Arch 套件裡（如果不在，再試試 _Install > AUR_ 查看 AUR）。
 
 原始的 `vi` 編輯器也開箱即用。在終端機執行 `vi filename` 即可編輯檔案。
 
@@ -12,7 +12,7 @@ Omarchy 預設隨附 [Neovim](https://neovim.io/)，但如果你想要更主流�
 
 ## 環境
 
-Omarchy 支援透過 Omarchy Menu（`Super + Space`）中的 _Install > Development_ 區段，設定一整套開發環境。你當然會找到 _Ruby on Rails_，也還有 JavaScript 的三大執行環境（Node.js、Bun、Deno），以及 Laravel 和 Symfony 等熱門 PHP 框架。噢，還有 Go、Rust、Python、Java、Elixir（搭配 Phoenix）、.NET、OCaml、Zig、Clojure 和 Scala。選擇真的非常廣泛！
+Unbloarchy 支援透過 Unbloarchy Menu（`Super + Space`）中的 _Install > Development_ 區段，設定一整套開發環境。你當然會找到 _Ruby on Rails_，也還有 JavaScript 的三大執行環境（Node.js、Bun、Deno），以及 Laravel 和 Symfony 等熱門 PHP 框架。噢，還有 Go、Rust、Python、Java、Elixir（搭配 Phoenix）、.NET、OCaml、Zig、Clojure 和 Scala。選擇真的非常廣泛！
 
 這些環境大多由 [Mise](https://mise.jdx.dev/) 管理。它是一款讓你能在同一台機器上安裝並執行多個程式語言版本的工具。就像 Ruby 的 rbenv 或 rvm、Python 的 virtualenv，但它能用於一大堆不同的環境。
 
@@ -20,7 +20,7 @@ Omarchy 支援透過 Omarchy Menu（`Super + Space`）中的 _Install > Developm
 
 ## 預先安裝的 CLI 工具
 
-Omarchy 透過 [mise 的延遲安裝](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools)，讓 `gh`、`uv` 以及大多數[程式設計代理](17-ai.md)等工具可供使用。你第一次執行其中一個工具時，mise 會將它安裝。之後的執行會重複使用已安裝的版本；不會在每次啟動時檢查是否有更新。
+Unbloarchy 透過 [mise 的延遲安裝](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools)，讓 `gh`、`uv` 以及大多數[程式設計代理](17-ai.md)等工具可供使用。你第一次執行其中一個工具時，mise 會將它安裝。之後的執行會重複使用已安裝的版本；不會在每次啟動時檢查是否有更新。
 
 你也可以查看預設設定，或提前將它們安裝好：
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-執行 `omarchy update` 即可在更新 Omarchy 其餘部分時一併更新已安裝的工具。`mup` 別名則只更新由 mise 管理的工具。若要將另一個工具加入你自己的設定，請使用 `mise use -g <tool>`。
+執行 `unbloarchy update` 即可在更新 Unbloarchy 其餘部分時一併更新已安裝的工具。`mup` 別名則只更新由 mise 管理的工具。若要將另一個工具加入你自己的設定，請使用 `mise use -g <tool>`。
 
 Python 設定也會透過 mise 安裝 `uv`。移除 Python 開發環境後，`uv` 仍會作為獨立工具保留可用。
 
@@ -47,15 +47,15 @@ disable_tools = ["cursor-agent"]
 
 ### 移除與還原預設值
 
-_Remove Preinstalls_ 會讓 mise 對你的使用者略過 Omarchy 的工具宣告，做法是將它們加入 `~/.config/mise/miserc.toml` 中的 `ignored_config_paths`。_Restore Preinstalls_ 則會再次移除那一行。你自己宣告的工具，無論是在你自己的設定中，還是在專案的 `mise.toml` 中，無論如何都會繼續運作。如果你移除預先安裝項目後，選擇了預設 agent 或設定了 Python，該工具就會加入你自己的設定中。兩者都只適用於你的使用者；這台機器上的其他使用者會保留他們自己的選擇。
+_Remove Preinstalls_ 會讓 mise 對你的使用者略過 Unbloarchy 的工具宣告，做法是將它們加入 `~/.config/mise/miserc.toml` 中的 `ignored_config_paths`。_Restore Preinstalls_ 則會再次移除那一行。你自己宣告的工具，無論是在你自己的設定中，還是在專案的 `mise.toml` 中，無論如何都會繼續運作。如果你移除預先安裝項目後，選擇了預設 agent 或設定了 Python，該工具就會加入你自己的設定中。兩者都只適用於你的使用者；這台機器上的其他使用者會保留他們自己的選擇。
 
 ## Docker
 
-[Docker](https://www.docker.com/) 幾乎不需要介紹。它讓你能執行隔離的容器，而 Omarchy 會安裝讓它順暢運作所需的一切，包括 Docker 本身和 [Docker Compose](https://docs.docker.com/compose/)。
+[Docker](https://www.docker.com/) 幾乎不需要介紹。它讓你能執行隔離的容器，而 Unbloarchy 會安裝讓它順暢運作所需的一切，包括 Docker 本身和 [Docker Compose](https://docs.docker.com/compose/)。
 
-預設情況下，你的使用者*不在* `docker` 群組中。該群組實際上等同於免密碼的 root——群組中的任何東西都能執行 `docker run -v /:/host` 並接管整台機器——所以若非如此，一個以你的身分執行的惡意指令碼或相依套件，就只差一條命令便能取得 root。因此在命令列上，你要用 `sudo` 執行 Docker（`sudo docker ps`、`sudo docker compose up`），而與 daemon 通訊的圖形工具——例如 Windows VM——會在需要時要求授權。如果你想要回無群組設定的便利性，並且了解其中的取捨，請從 **Setup > Security > Sudoless Docker** 啟用它（或執行 `omarchy-setup-security-sudoless-docker`），它會在顯示警告後將你加入 `docker` 群組；之後一般的 `docker` 和 `d` 別名就能再次不需 `sudo` 使用。
+預設情況下，你的使用者*不在* `docker` 群組中。該群組實際上等同於免密碼的 root——群組中的任何東西都能執行 `docker run -v /:/host` 並接管整台機器——所以若非如此，一個以你的身分執行的惡意指令碼或相依套件，就只差一條命令便能取得 root。因此在命令列上，你要用 `sudo` 執行 Docker（`sudo docker ps`、`sudo docker compose up`），而與 daemon 通訊的圖形工具——例如 Windows VM——會在需要時要求授權。如果你想要回無群組設定的便利性，並且了解其中的取捨，請從 **Setup > Security > Sudoless Docker** 啟用它（或執行 `unbloarchy-setup-security-sudoless-docker`），它會在顯示警告後將你加入 `docker` 群組；之後一般的 `docker` 和 `d` 別名就能再次不需 `sudo` 使用。
 
-你可以使用 Omarchy 選單中的 _Install > Development > Docker DB_，在 Docker 中為本機開發設定常用的資料庫。
+你可以使用 Unbloarchy 選單中的 _Install > Development > Docker DB_，在 Docker 中為本機開發設定常用的資料庫。
 
 ## GitHub CLI
 

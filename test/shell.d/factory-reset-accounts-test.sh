@@ -20,7 +20,7 @@ awk '
   /^[a-z_]+\(\) \{/ { copying = 1 }
   copying { print }
   /^}/ { copying = 0 }
-' "$ROOT/bin/omarchy-system-factory-reset" >"$test_tmp/functions"
+' "$ROOT/bin/unbloarchy-system-factory-reset" >"$test_tmp/functions"
 
 cat >"$test_tmp/reset" <<'SH'
 #!/bin/bash
@@ -28,7 +28,7 @@ set -euo pipefail
 source "$1/functions"
 TOP_MNT="$2"
 ESP_MNT="$2/esp-mount"
-NEXT_NAME=@omarchy-reset-next
+NEXT_NAME=@unbloarchy-reset-next
 PROVISIONING_DIR=/var/lib/omarchy/provisioning
 LOG_FILE="$TOP_MNT/reset.log"
 
@@ -89,8 +89,8 @@ make_fixture() {
     "$factory/usr/bin" "$factory/usr/share/omarchy/install/provisioning"
   touch "$top/@/old-system" "$factory/home/seller/private-file" \
     "$factory/usr/share/omarchy/install/provisioning/omarchy-provision-owner.service"
-  printf '#!/bin/bash\n' >"$factory/usr/bin/omarchy-provision-owner"
-  chmod +x "$factory/usr/bin/omarchy-provision-owner"
+  printf '#!/bin/bash\n' >"$factory/usr/bin/unbloarchy-provision-owner"
+  chmod +x "$factory/usr/bin/unbloarchy-provision-owner"
   printf 'true\n' >"$factory/read-only"
   cat >"$factory/etc/passwd" <<'EOF'
 root:x:0:0:root:/root:/bin/bash
@@ -144,7 +144,7 @@ for scenario in normal locked; do
   pass "$scenario reset scrubs both roots, preserves service accounts, and can be repeated"
 done
 
-for target in @omarchy-reset-next @factory; do
+for target in @unbloarchy-reset-next @factory; do
   for command in userdel usermod rm; do
     top="$test_tmp/fail-$target-$command"
     make_fixture "$top"
@@ -161,19 +161,19 @@ done
 
 top="$test_tmp/fail-activate"
 make_fixture "$top"
-if FAIL_MV="$top/@omarchy-reset-next" bash "$test_tmp/reset" "$test_tmp" "$top"; then
+if FAIL_MV="$top/@unbloarchy-reset-next" bash "$test_tmp/reset" "$test_tmp" "$top"; then
   fail "reset accepted a failed activation"
 fi
-[[ -f $top/@/old-system ]] && ! compgen -G "$top/@omarchy-old-*" >/dev/null ||
+[[ -f $top/@/old-system ]] && ! compgen -G "$top/@unbloarchy-old-*" >/dev/null ||
   fail "a failed activation puts the running root back as @"
-[[ ! -e $top/@omarchy-reset-next ]] || fail "a failed activation discards the staged root"
+[[ ! -e $top/@unbloarchy-reset-next ]] || fail "a failed activation discards the staged root"
 pass "a failed activation puts the running root back"
 
 top="$test_tmp/fail-activate-and-restore"
 make_fixture "$top"
-if FAIL_MV="$top/@omarchy-*" bash "$test_tmp/reset" "$test_tmp" "$top"; then
+if FAIL_MV="$top/@unbloarchy-*" bash "$test_tmp/reset" "$test_tmp" "$top"; then
   fail "reset accepted a failed activation"
 fi
-[[ ! -e $top/@ && -d $top/@omarchy-reset-next ]] && compgen -G "$top/@omarchy-old-*/old-system" >/dev/null ||
+[[ ! -e $top/@ && -d $top/@unbloarchy-reset-next ]] && compgen -G "$top/@unbloarchy-old-*/old-system" >/dev/null ||
   fail "with no @ left, cleanup keeps both the running and the staged root"
 pass "a root switch that cannot be undone keeps both roots for recovery"

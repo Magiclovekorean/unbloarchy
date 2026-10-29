@@ -16,7 +16,7 @@ Item {
   // Follows power-profiles-daemon's change signals, so nothing polls it.
   // Quickshell never attaches that listener if the daemon failed when the
   // shell started, so a one-off read on startup, on a power source change and
-  // after omarchy-powerprofiles-set (which asks for it over IPC) recovers.
+  // after unbloarchy-powerprofiles-set (which asks for it over IPC) recovers.
   property string activePowerProfile: ""
   property bool powerProfileReadPending: false
   property int powerProfileSignals: 0

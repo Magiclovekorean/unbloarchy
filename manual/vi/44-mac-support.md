@@ -1,16 +1,16 @@
 # Hỗ trợ Mac
 
-Omarchy có hỗ trợ tích hợp sẵn cho **Mac Intel**. Hiện tại có một vài hạn chế đã biết, nhưng miễn là bạn nhận thức được và chấp nhận chúng; bạn có thể thổi luồng sinh khí mới vào những chiếc Mac cũ của mình bằng cách nạp Omarchy.
+Unbloarchy có hỗ trợ tích hợp sẵn cho **Mac Intel**. Hiện tại có một vài hạn chế đã biết, nhưng miễn là bạn nhận thức được và chấp nhận chúng; bạn có thể thổi luồng sinh khí mới vào những chiếc Mac cũ của mình bằng cách nạp Unbloarchy.
 
 Xin lưu ý rằng việc cài đặt trên Mac dòng M hiện không được hỗ trợ trực tiếp. Bạn có thể tìm hiểu thêm về tình trạng của việc này trong #omarchy-on-other trên [Discord](https://discord.gg/tXFUdasqhY) của chúng tôi.
 
-Trong một thử nghiệm đơn giản, chúng tôi đã đạt được mức tăng hiệu năng 36% trên một chiếc MacBook Pro 2019 chỉ bằng cách cài đặt Omarchy.
+Trong một thử nghiệm đơn giản, chúng tôi đã đạt được mức tăng hiệu năng 36% trên một chiếc MacBook Pro 2019 chỉ bằng cách cài đặt Unbloarchy.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Cài đặt Omarchy trên Mac
+### Cài đặt Unbloarchy trên Mac
 
-Omarchy hiện chỉ hỗ trợ là hệ điều hành **duy nhất** được cài đặt. Trong quá trình cài đặt, ổ đĩa sẽ bị xóa sạch và MacOS sẽ không còn khởi động được nữa.
+Unbloarchy hiện chỉ hỗ trợ là hệ điều hành **duy nhất** được cài đặt. Trong quá trình cài đặt, ổ đĩa sẽ bị xóa sạch và MacOS sẽ không còn khởi động được nữa.
 
 Bạn vẫn có thể khôi phục nó sau này qua Internet Recovery nếu muốn.
 

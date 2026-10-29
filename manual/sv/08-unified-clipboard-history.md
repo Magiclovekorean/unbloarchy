@@ -2,7 +2,7 @@
 
 Vanligtvis på Linux behöver du `Ctrl + Shift + C/V` för att kopiera och klistra in i terminalen och `Ctrl + C/V` för att göra det överallt annars. Det är svårt att vänja sig vid för alla som inte är födda och uppvuxna med Linux! Det är också bytet från super till ctrl, om du kommer från Mac.
 
-Omarchy löser båda problemen med enhetliga snabbkommandon för urklipp som fungerar (nästan) överallt. De är:
+Unbloarchy löser båda problemen med enhetliga snabbkommandon för urklipp som fungerar (nästan) överallt. De är:
 
 | Snabbkommando | Kommando |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Använd `Super + A`, sedan `Super + C` för att kopiera allt i ett fokuserat tex
 
 ### Urklippshistorik
 
-Urklippshistoriken tillhandahålls av Omarchy-skalet och fungerar för både text och bilder. Du öppnar den med `Super + Ctrl + V`, väljer din post med return, och sedan placeras den i urklippet redo att klistras in med `Super + V`.
+Urklippshistoriken tillhandahålls av Unbloarchy-skalet och fungerar för både text och bilder. Du öppnar den med `Super + Ctrl + V`, väljer din post med return, och sedan placeras den i urklippet redo att klistras in med `Super + V`.
 
  ![clipboard-history](images/clipboard-history.webp)
 

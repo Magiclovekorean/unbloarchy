@@ -1,8 +1,8 @@
 # Mavzular
 
-Omarchy bilan birga yigirma ikkita go'zal mavzu keladi. Ular orasidan Omarchy Menu (`Super + Space`) ichidagi _Tashqi ko'rinish > Mavzu_ orqali tanlashingiz yoki `Super + Ctrl + T` yordamida to'g'ridan-to'g'ri mavzu tanlagichga o'tishingiz mumkin.
+Unbloarchy bilan birga yigirma ikkita go'zal mavzu keladi. Ular orasidan Unbloarchy Menu (`Super + Space`) ichidagi _Tashqi ko'rinish > Mavzu_ orqali tanlashingiz yoki `Super + Ctrl + T` yordamida to'g'ridan-to'g'ri mavzu tanlagichga o'tishingiz mumkin.
 
-Har bir mavzu ish stolini, terminalni, neovim'ni, faollik ekranini (btop), Chromium'ni va butun Omarchy qobig'ini bezaydi: yuqori panel, menyu, bildirishnomalar, OSD va qulf ekrani. (Obsidian uchun Omarchy mavzusini ilova ichidagi _Tashqi ko'rinish > Mavzular_ orqali qo'lda tanlashingiz kerak).
+Har bir mavzu ish stolini, terminalni, neovim'ni, faollik ekranini (btop), Chromium'ni va butun Unbloarchy qobig'ini bezaydi: yuqori panel, menyu, bildirishnomalar, OSD va qulf ekrani. (Obsidian uchun Unbloarchy mavzusini ilova ichidagi _Tashqi ko'rinish > Mavzular_ orqali qo'lda tanlashingiz kerak).
 
 Mavzularda fon rasmlari to'plami bo'ladi, ular orasidan `Super + Ctrl + W` yordamida tanlashingiz mumkin.
 

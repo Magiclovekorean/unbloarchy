@@ -14,9 +14,9 @@ fail_with_log() {
 
 setup_scratch_shell
 
-# Every plugin under ~/.config/omarchy/plugins hot-reloads, whoever wrote it.
+# Every plugin under ~/.config/unbloarchy/plugins hot-reloads, whoever wrote it.
 hot_reload_id="acme.hot-reload"
-hot_reload_dir="$SCRATCH_HOME/.config/omarchy/plugins/$hot_reload_id"
+hot_reload_dir="$SCRATCH_HOME/.config/unbloarchy/plugins/$hot_reload_id"
 mkdir -p "$hot_reload_dir"
 cat >"$hot_reload_dir/manifest.json" <<JSON
 {
@@ -26,7 +26,7 @@ cat >"$hot_reload_dir/manifest.json" <<JSON
   "version": "1.0.0",
   "kinds": ["overlay"],
   "entryPoints": {"overlay": "Overlay.qml"},
-  "omarchy": {"clonedFrom": "omarchy.emojis"}
+  "omarchy": {"clonedFrom": "unbloarchy.emojis"}
 }
 JSON
 cat >"$hot_reload_dir/Overlay.qml" <<'QML'
@@ -41,7 +41,7 @@ QML
 # A keepLoaded service must keep its instance (and in-memory state) across a
 # plugin rescan. The marker below can only survive if the object does.
 keep_service_id="acme.keep-service"
-keep_service_dir="$SCRATCH_HOME/.config/omarchy/plugins/$keep_service_id"
+keep_service_dir="$SCRATCH_HOME/.config/unbloarchy/plugins/$keep_service_id"
 mkdir -p "$keep_service_dir"
 cat >"$keep_service_dir/manifest.json" <<JSON
 {
@@ -80,7 +80,7 @@ QML
 # live service, and its barConfig must be a detached snapshot on both initial
 # injection and later host-config updates.
 victim_service_id="acme.victim-service"
-victim_service_dir="$SCRATCH_HOME/.config/omarchy/plugins/$victim_service_id"
+victim_service_dir="$SCRATCH_HOME/.config/unbloarchy/plugins/$victim_service_id"
 mkdir -p "$victim_service_dir"
 cat >"$victim_service_dir/manifest.json" <<JSON
 {
@@ -104,7 +104,7 @@ QML
 # its own widget receives the raw companion service under the trusted bar, while
 # a replacement bar receives only the narrow media proxy resolved to the clone.
 media_clone_id="acme.media-clone"
-media_clone_dir="$SCRATCH_HOME/.config/omarchy/plugins/$media_clone_id"
+media_clone_dir="$SCRATCH_HOME/.config/unbloarchy/plugins/$media_clone_id"
 mkdir -p "$media_clone_dir"
 cat >"$media_clone_dir/manifest.json" <<JSON
 {
@@ -115,7 +115,7 @@ cat >"$media_clone_dir/manifest.json" <<JSON
   "kinds": ["service", "bar-widget"],
   "entryPoints": {"service": "Service.qml", "barWidget": "BarWidget.qml"},
   "barWidget": {"defaultSection": "center"},
-  "omarchy": {"clonedFrom": "omarchy.media"}
+  "omarchy": {"clonedFrom": "unbloarchy.media"}
 }
 JSON
 cat >"$media_clone_dir/Service.qml" <<'QML'
@@ -138,7 +138,7 @@ Item {
     target: "acme-media-clone-service"
     function ping(): string { return marker }
     function summonOsd(): string {
-      return root.shell && root.shell.summon("omarchy.osd", "{}") ? "true" : "false"
+      return root.shell && root.shell.summon("unbloarchy.osd", "{}") ? "true" : "false"
     }
   }
 }
@@ -155,7 +155,7 @@ Item {
     target: "acme-media-clone-widget"
     function probeOwnService(): string {
       var service = root.bar && root.bar.shell
-        ? root.bar.shell.firstPartyServiceFor("omarchy.media") : null
+        ? root.bar.shell.firstPartyServiceFor("unbloarchy.media") : null
       return JSON.stringify({
         reachable: !!service,
         marker: service ? String(service.marker || "") : ""
@@ -166,7 +166,7 @@ Item {
 QML
 
 review_bar_id="acme.review-bar"
-review_bar_dir="$SCRATCH_HOME/.config/omarchy/plugins/$review_bar_id"
+review_bar_dir="$SCRATCH_HOME/.config/unbloarchy/plugins/$review_bar_id"
 mkdir -p "$review_bar_dir"
 cat >"$review_bar_dir/manifest.json" <<JSON
 {
@@ -213,7 +213,7 @@ Item {
 
     function probeMediaProxy(): string {
       var service = root.shell
-        ? root.shell.firstPartyServiceFor("omarchy.media") : null
+        ? root.shell.firstPartyServiceFor("unbloarchy.media") : null
       return JSON.stringify({ reachable: !!service, enabled: service ? service.enabled === true : false })
     }
 
@@ -223,8 +223,8 @@ Item {
         ? root.shell.pluginShellForBarEntry("probe-media", "acme.media-clone") : null
       return JSON.stringify({
         entryFacade: !!entryFacade,
-        osdSummoned: entryFacade ? entryFacade.summon("omarchy.osd", "{}") : false,
-        foreignSummoned: entryFacade ? entryFacade.summon("omarchy.lock", "{}") : false
+        osdSummoned: entryFacade ? entryFacade.summon("unbloarchy.osd", "{}") : false,
+        foreignSummoned: entryFacade ? entryFacade.summon("unbloarchy.lock", "{}") : false
       })
     }
 
@@ -270,12 +270,12 @@ Item {
 }
 QML
 
-cat >"$SCRATCH_BIN/omarchy-update-available" <<'SH'
+cat >"$SCRATCH_BIN/unbloarchy-update-available" <<'SH'
 #!/bin/bash
-echo "Omarchy update available (test)"
+echo "Unbloarchy update available (test)"
 exit 0
 SH
-chmod +x "$SCRATCH_BIN/omarchy-update-available"
+chmod +x "$SCRATCH_BIN/unbloarchy-update-available"
 
 cat >"$SCRATCH_BIN/curl" <<'SH'
 #!/bin/bash
@@ -296,14 +296,14 @@ chmod +x "$SCRATCH_BIN/curl"
 
 # Counts the transparent bar's wallpaper samples.
 text_color_calls="$SCRATCH_DIR/text-color.calls"
-cat >"$SCRATCH_BIN/omarchy-bar-text-color" <<SH
+cat >"$SCRATCH_BIN/unbloarchy-bar-text-color" <<SH
 #!/bin/bash
 echo "\$*" >>"$text_color_calls"
 echo "#ffffff"
 SH
-chmod +x "$SCRATCH_BIN/omarchy-bar-text-color"
+chmod +x "$SCRATCH_BIN/unbloarchy-bar-text-color"
 
-state_dir="$SCRATCH_HOME/.local/state/omarchy"
+state_dir="$SCRATCH_HOME/.local/state/unbloarchy"
 mkdir -p "$state_dir/current/theme"
 : >"$state_dir/current/theme/a.png"
 : >"$state_dir/current/theme/b.png"
@@ -326,7 +326,7 @@ done
 
 jq -e '
   map(.id) as $ids |
-  all(["omarchy.menu", "omarchy.notifications", "omarchy.clock", "omarchy.osd"][]; $ids | index(.)) and
+  all(["unbloarchy.menu", "unbloarchy.notifications", "unbloarchy.clock", "unbloarchy.osd"][]; $ids | index(.)) and
   all(.[]; (.kinds | type == "array") and (.enabled | type == "boolean") and (.canDisable | type == "boolean") and (.firstParty | type == "boolean") and (.clonedFrom | type == "string")) and
   ([.[].name] == ([.[].name] | sort))
 ' <<<"$plugins" >/dev/null || {
@@ -346,7 +346,7 @@ text_color_count() {
 }
 
 bar_background() {
-  HOME="$SCRATCH_HOME" OMARCHY_PATH="$SCRATCH_ROOT" PATH="$ROOT/bin:$PATH" "$ROOT/bin/omarchy-bar" background "$@"
+  HOME="$SCRATCH_HOME" UNBLOARCHY_PATH="$SCRATCH_ROOT" PATH="$ROOT/bin:$PATH" "$ROOT/bin/unbloarchy-bar" background "$@"
 }
 
 # Elsewhen saves its first-run cities once its probe returns, and that save
@@ -354,8 +354,8 @@ bar_background() {
 # from outside the shell, it puts the old config back, so wait for it before
 # editing shell.json. A machine slower than a desktop returns the probe late.
 wait_for_elsewhen_cities() {
-  local saved='any(.bar.layout[][]; .id? == "omarchy.elsewhen" and .cities? != null)'
-  local config="$SCRATCH_HOME/.config/omarchy/shell.json"
+  local saved='any(.bar.layout[][]; .id? == "unbloarchy.elsewhen" and .cities? != null)'
+  local config="$SCRATCH_HOME/.config/unbloarchy/shell.json"
 
   for _ in {1..300}; do
     jq -e "$saved" "$config" >/dev/null 2>&1 && return 0
@@ -409,9 +409,9 @@ pass "installed plugin changes reload without an explicit rescan"
 
 [[ $(scratch_ipc shell setPluginEnabled "$hot_reload_id" true) == "ok" ]] ||
   fail_with_log "installed plugin could not be enabled"
-[[ $(scratch_ipc shell summon omarchy.emojis "{}") == "ok" ]] ||
+[[ $(scratch_ipc shell summon unbloarchy.emojis "{}") == "ok" ]] ||
   fail_with_log "calls to a cloned source id do not reach its enabled clone"
-scratch_ipc_quiet shell hide omarchy.emojis >/dev/null
+scratch_ipc_quiet shell hide unbloarchy.emojis >/dev/null
 scratch_ipc_quiet shell setPluginEnabled "$hot_reload_id" false >/dev/null
 pass "shell IPC routes built-in ids to enabled clones"
 
@@ -427,8 +427,8 @@ jq -e '
 }
 pass "shell IPC returns effective shell config"
 
-[[ $(scratch_ipc shell summon omarchy.menu '{"menu":"apps"}') == "ok" ]] || fail_with_log "shell IPC summons menu apps overlay"
-scratch_ipc_quiet shell hide omarchy.menu >/dev/null
+[[ $(scratch_ipc shell summon unbloarchy.menu '{"menu":"apps"}') == "ok" ]] || fail_with_log "shell IPC summons menu apps overlay"
+scratch_ipc_quiet shell hide unbloarchy.menu >/dev/null
 [[ $(scratch_ipc shell summon missing.plugin "{}") == "unknown" ]] || fail_with_log "shell IPC rejects unknown plugin"
 pass "shell IPC summon and hide contract works"
 
@@ -499,7 +499,7 @@ done
   fail_with_log "kept service is dropped when its plugin stops declaring a service"
 pass "kept service is dropped when its plugin stops declaring a service"
 
-default_layout=$(jq -c '.bar.layout' "$ROOT/config/omarchy/shell.json")
+default_layout=$(jq -c '.bar.layout' "$ROOT/config/unbloarchy/shell.json")
 
 geometry=""
 for _ in {1..80}; do
@@ -527,7 +527,7 @@ jq -e --argjson layout "$default_layout" '
   all($layout | to_entries[]; .key as $section |
     all(.value[]; (.id // .) as $id | any($rows[]; .id == $id and .section == $section))) and
   all($rows[] | select(.visible == true); .width > 0 and .height > 0) and
-  all("omarchy.menu", "omarchy.workspaces", "omarchy.clock"; . as $id | any($rows[]; .id == $id and .visible == true))
+  all("unbloarchy.menu", "unbloarchy.workspaces", "unbloarchy.clock"; . as $id | any($rows[]; .id == $id and .visible == true))
 ' <<<"$geometry" >/dev/null || {
   printf 'Geometry:\n' >&2
   jq . <<<"$geometry" >&2
@@ -535,7 +535,7 @@ jq -e --argjson layout "$default_layout" '
 }
 pass "default bar layout renders each widget in its configured section"
 
-for panel_id in omarchy.audio omarchy.bluetooth omarchy.monitor omarchy.network omarchy.power; do
+for panel_id in unbloarchy.audio unbloarchy.bluetooth unbloarchy.monitor unbloarchy.network unbloarchy.power; do
   scratch_ipc "$panel_id" open >/dev/null || fail_with_log "direct panel IPC opens $panel_id"
   scratch_ipc "$panel_id" close >/dev/null || fail_with_log "direct panel IPC closes $panel_id"
 done
@@ -578,13 +578,13 @@ if grep -q 'Binding loop detected for property "hints"\|Binding loop detected fo
 fi
 pass "shell start has no platform FileView binding loops"
 
-HOME="$SCRATCH_HOME" OMARCHY_PATH="$SCRATCH_ROOT" PATH="$ROOT/bin:$PATH" "$ROOT/bin/omarchy-plugin-disable" omarchy.audio
+HOME="$SCRATCH_HOME" UNBLOARCHY_PATH="$SCRATCH_ROOT" PATH="$ROOT/bin:$PATH" "$ROOT/bin/unbloarchy-plugin-disable" unbloarchy.audio
 
 for _ in {1..80}; do
   shell_config=$(scratch_ipc shell listShellConfig 2>/dev/null || true)
   geometry=$(scratch_ipc shell debugBarGeometry 2>/dev/null || true)
-  if jq -e 'all(.bar.layout.right[]; (.id // .) != "omarchy.audio")' <<<"$shell_config" >/dev/null 2>&1 && \
-     jq -e 'all(.[]; .id != "omarchy.audio")' <<<"$geometry" >/dev/null 2>&1; then
+  if jq -e 'all(.bar.layout.right[]; (.id // .) != "unbloarchy.audio")' <<<"$shell_config" >/dev/null 2>&1 && \
+     jq -e 'all(.[]; .id != "unbloarchy.audio")' <<<"$geometry" >/dev/null 2>&1; then
     break
   fi
   if ! kill -0 "$SCRATCH_PID" 2>/dev/null; then
@@ -593,12 +593,12 @@ for _ in {1..80}; do
   sleep 0.1
 done
 
-jq -e 'all(.bar.layout.right[]; (.id // .) != "omarchy.audio")' <<<"$shell_config" >/dev/null || {
+jq -e 'all(.bar.layout.right[]; (.id // .) != "unbloarchy.audio")' <<<"$shell_config" >/dev/null || {
   printf 'Shell config after reload:\n%s\n' "$shell_config" | jq . >&2
   fail_with_log "plugin disable reloads shell config"
 }
 
-jq -e 'all(.[]; .id != "omarchy.audio")' <<<"$geometry" >/dev/null || {
+jq -e 'all(.[]; .id != "unbloarchy.audio")' <<<"$geometry" >/dev/null || {
   printf 'Geometry after reload:\n' >&2
   jq . <<<"$geometry" >&2
   fail_with_log "runtime bar layout updates after shell config reload"
@@ -609,59 +609,59 @@ pass "bar remove reloads shell config and updates bar layout"
 # 'bar put' is what migrations use to place a newly shipped widget, so it has
 # to place one that is missing and leave one that is already there alone,
 # however often it runs. The widget it puts must be missing from the default
-# bar (omarchy.microphone is): 'put' leaves a widget that is already on the
+# bar (unbloarchy.microphone is): 'put' leaves a widget that is already on the
 # bar where it is, so putting one the defaults already carry (as
-# omarchy.keyboard-layout is, in right) can never move it into center.
+# unbloarchy.keyboard-layout is, in right) can never move it into center.
 bar_put() {
-  HOME="$SCRATCH_HOME" OMARCHY_PATH="$SCRATCH_ROOT" PATH="$ROOT/bin:$PATH" "$ROOT/bin/omarchy-bar" put "$@"
+  HOME="$SCRATCH_HOME" UNBLOARCHY_PATH="$SCRATCH_ROOT" PATH="$ROOT/bin:$PATH" "$ROOT/bin/unbloarchy-bar" put "$@"
 }
 
 center_ids() {
   jq -c '[.bar.layout.center[] | .id // .]' <<<"$(scratch_ipc shell listShellConfig)"
 }
 
-bar_put omarchy.microphone --after omarchy.clock >/dev/null
+bar_put unbloarchy.microphone --after unbloarchy.clock >/dev/null
 for _ in {1..80}; do
-  [[ $(center_ids) == *omarchy.microphone* ]] && break
+  [[ $(center_ids) == *unbloarchy.microphone* ]] && break
   kill -0 "$SCRATCH_PID" 2>/dev/null || fail_with_log "test shell exited while putting a bar widget"
   sleep 0.1
 done
 
 jq -e '
   [.bar.layout.center[] | .id // .] as $ids
-  | ($ids | index("omarchy.clock")) as $clock
-  | ($ids | index("omarchy.microphone")) as $widget
+  | ($ids | index("unbloarchy.clock")) as $clock
+  | ($ids | index("unbloarchy.microphone")) as $widget
   | $clock != null and $widget == $clock + 1
 ' <<<"$(scratch_ipc shell listShellConfig)" >/dev/null ||
   fail_with_log "bar put places a widget after the one it names ($(center_ids))"
 pass "bar put places a widget after the one it names"
 
 placed=$(center_ids)
-bar_put omarchy.microphone --section right >/dev/null
+bar_put unbloarchy.microphone --section right >/dev/null
 sleep 0.5
 [[ $(center_ids) == "$placed" ]] ||
   fail_with_log "bar put left a widget already on the bar alone (was $placed, now $(center_ids))"
-jq -e 'all(.bar.layout.right[]; (.id // .) != "omarchy.microphone")' \
+jq -e 'all(.bar.layout.right[]; (.id // .) != "unbloarchy.microphone")' \
   <<<"$(scratch_ipc shell listShellConfig)" >/dev/null ||
   fail_with_log "bar put added a second copy of a widget already on the bar"
 pass "bar put leaves a widget already on the bar alone"
 
 # A hand edit that drops the closing brace puts the shell on the defaults,
-# which have no omarchy.microphone. A bar change then applies for the session
+# which have no unbloarchy.microphone. A bar change then applies for the session
 # only, leaving the file as the user left it until they fix it.
-config="$SCRATCH_HOME/.config/omarchy/shell.json"
+config="$SCRATCH_HOME/.config/unbloarchy/shell.json"
 wait_for_elsewhen_cities
 sed -i '$ d' "$config"
 cp "$config" "$SCRATCH_DIR/broken.json"
 for _ in {1..80}; do
-  [[ $(center_ids) != *omarchy.microphone* ]] && break
+  [[ $(center_ids) != *unbloarchy.microphone* ]] && break
   kill -0 "$SCRATCH_PID" 2>/dev/null || fail_with_log "test shell exited while reading an unreadable shell.json"
   sleep 0.1
 done
-[[ $(center_ids) != *omarchy.microphone* ]] || fail_with_log "shell falls back to defaults on an unreadable shell.json"
-[[ $(scratch_ipc shell setBarWidget omarchy.clock format '"HH:mm"' '{}') == "ok" ]] ||
+[[ $(center_ids) != *unbloarchy.microphone* ]] || fail_with_log "shell falls back to defaults on an unreadable shell.json"
+[[ $(scratch_ipc shell setBarWidget unbloarchy.clock format '"HH:mm"' '{}') == "ok" ]] ||
   fail_with_log "bar widget setting is applied while shell.json is unreadable"
-jq -e 'any(.bar.layout[][]; .id? == "omarchy.clock" and .format? == "HH:mm")' \
+jq -e 'any(.bar.layout[][]; .id? == "unbloarchy.clock" and .format? == "HH:mm")' \
   <<<"$(scratch_ipc shell listShellConfig)" >/dev/null ||
   fail_with_log "a bar change still applies in memory while shell.json is unreadable"
 sleep 0.5
@@ -670,13 +670,13 @@ pass "a bar change leaves an unreadable shell.json as the user left it"
 
 printf '}\n' >>"$config"
 for _ in {1..80}; do
-  [[ $(center_ids) == *omarchy.microphone* ]] && break
+  [[ $(center_ids) == *unbloarchy.microphone* ]] && break
   kill -0 "$SCRATCH_PID" 2>/dev/null || fail_with_log "test shell exited while reading a fixed shell.json"
   sleep 0.1
 done
-[[ $(scratch_ipc shell setBarWidget omarchy.clock format '"H:mm"' '{}') == "ok" ]] ||
+[[ $(scratch_ipc shell setBarWidget unbloarchy.clock format '"H:mm"' '{}') == "ok" ]] ||
   fail_with_log "bar widget setting is applied once shell.json is fixed"
-saved='any(.bar.layout[][]; (.id? // .) == "omarchy.microphone") and any(.bar.layout[][]; .id? == "omarchy.clock" and .format? == "H:mm")'
+saved='any(.bar.layout[][]; (.id? // .) == "unbloarchy.microphone") and any(.bar.layout[][]; .id? == "unbloarchy.clock" and .format? == "H:mm")'
 for _ in {1..40}; do
   jq -e "$saved" "$config" >/dev/null 2>&1 && break
   sleep 0.1
@@ -751,18 +751,18 @@ bar_config_after=$(scratch_ipc shell listShellConfig | jq -c '.bar')
 [[ $bar_config_after == "$bar_config_before" ]] ||
   fail_with_log "replacement bar mutated the initially injected host configuration"
 
-[[ $(scratch_ipc shell setBarWidget omarchy.clock format '"HH:mm:ss"' '{}') == "ok" ]] ||
+[[ $(scratch_ipc shell setBarWidget unbloarchy.clock format '"HH:mm:ss"' '{}') == "ok" ]] ||
   fail_with_log "host bar configuration could not be updated for snapshot testing"
 updated_snapshot=""
 for _ in {1..80}; do
   updated_snapshot=$(scratch_ipc acme-review-bar snapshot 2>/dev/null || true)
-  if jq -e 'any(.layout.center[]; (.id // .) == "omarchy.clock" and .format == "HH:mm:ss")' \
+  if jq -e 'any(.layout.center[]; (.id // .) == "unbloarchy.clock" and .format == "HH:mm:ss")' \
     <<<"$updated_snapshot" >/dev/null 2>&1; then
     break
   fi
   sleep 0.1
 done
-jq -e 'any(.layout.center[]; (.id // .) == "omarchy.clock" and .format == "HH:mm:ss")' \
+jq -e 'any(.layout.center[]; (.id // .) == "unbloarchy.clock" and .format == "HH:mm:ss")' \
   <<<"$updated_snapshot" >/dev/null ||
   fail_with_log "replacement bar did not receive the refreshed configuration snapshot"
 bar_config_before=$(scratch_ipc shell listShellConfig | jq -c '.bar')

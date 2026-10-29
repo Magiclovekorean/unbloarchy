@@ -6,7 +6,7 @@ Visus pagrindinius klaviatūros susiejimus galite pamatyti paspaudę `Super + K`
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Omarchy meniu (programos ir visa kita)    |
+| `Super + Space`           | Unbloarchy meniu (programos ir visa kita)    |
 | `Super + Alt + Space` | Programų tinklelis |
 | `Super + Escape` | Sistemos meniu (pristabdyti, paleisti iš naujo ir kt.)  |
 | `Super + Ctrl + L` | Užrakinti kompiuterį |
@@ -143,7 +143,7 @@ Pakeiskite / pridėkite susiejimų faile `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Įklijuoti    |
 | `Super + Ctrl + V`           | Iškarpinės tvarkyklė    |
 
-Paprastai Linux sistemoje terminale kopijuoti ir įklijuoti reikia `Ctrl + Shift + C/V`, o visur kitur – `Ctrl + C/V`. Šie Omarchy suvienodinti iškarpinės spartieji klavišai veikia visur.
+Paprastai Linux sistemoje terminale kopijuoti ir įklijuoti reikia `Ctrl + Shift + C/V`, o visur kitur – `Ctrl + C/V`. Šie Unbloarchy suvienodinti iškarpinės spartieji klavišai veikia visur.
 
 ## Fiksavimas
 
@@ -164,7 +164,7 @@ Paprastai Linux sistemoje terminale kopijuoti ir įklijuoti reikia `Ctrl + Shift
 
 Įrašant ekraną, spartusis klavišas pirmiausia paklausia, kokio garso norite, tada pradeda įrašyti. Paspauskite jį dar kartą, kad sustabdytumėte. Išsamesnės informacijos žr. [ekrano kopijos ir įrašymas](12-screenshots-recording.md).
 
-Visos fiksavimo parinktys taip pat pasiekiamos Omarchy meniu (`Super + Space`) skiltyje _Aktyviklis > Fiksavimas_.
+Visos fiksavimo parinktys taip pat pasiekiamos Unbloarchy meniu (`Super + Space`) skiltyje _Aktyviklis > Fiksavimas_.
 
 ## Pranešimai
 
@@ -186,9 +186,9 @@ Visos fiksavimo parinktys taip pat pasiekiamos Omarchy meniu (`Super + Space`) s
 | `Super + Backspace` | Perjungti lango skaidrumą |
 | `Super + Ctrl + Backspace` | Perjungti vieno lango kvadratinį kraštinių santykį |
 
-Papildomi fono paveikslėliai yra `~/.config/omarchy/backgrounds/<theme name>`. Taip pat pasiekiama Omarchy meniu per _Įdiegti > Stilius > Fonas_.
+Papildomi fono paveikslėliai yra `~/.config/unbloarchy/backgrounds/<theme name>`. Taip pat pasiekiama Unbloarchy meniu per _Įdiegti > Stilius > Fonas_.
 
-Visos stiliaus parinktys taip pat pasiekiamos Omarchy meniu (`Super + Space`) skiltyje _Stilius_.
+Visos stiliaus parinktys taip pat pasiekiamos Unbloarchy meniu (`Super + Space`) skiltyje _Stilius_.
 
 ## Perjungikliai
 
@@ -289,7 +289,7 @@ Prefikso klavišas yra `Ctrl + Space` (taip pat veikia `Ctrl + B`). Šiuos susie
 
 ## Ghostty terminalas
 
-Ghostty terminalas įdiegiamas Omarchy meniu per _Įdiegti > Terminalas_.
+Ghostty terminalas įdiegiamas Unbloarchy meniu per _Įdiegti > Terminalas_.
 
 | Hotkey                  | Function              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Galite naudoti `Super + Ctrl + E`, kad būtų parodytas išsamus jaustukų parin
 | `Shift + CapsLock Space N` | Jūsų vardas (kaip įvesta sąrankos metu)  |
 | `Shift + CapsLock Space E` | Jūsų el. paštas (kaip įvesta sąrankos metu)  |
 
-Galite pridėti daugiau savų redaguodami `~/.XCompose`, tada terminale paleiskite `omarchy-restart-xcompose`, kad pakeitimai būtų pritaikyti.
+Galite pridėti daugiau savų redaguodami `~/.XCompose`, tada terminale paleiskite `unbloarchy-restart-xcompose`, kad pakeitimai būtų pritaikyti.

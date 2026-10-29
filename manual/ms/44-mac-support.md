@@ -1,16 +1,16 @@
 # Sokongan Mac
 
-Omarchy mempunyai sokongan terbina dalam untuk **Mac Intel**. Terdapat beberapa batasan yang diketahui pada masa ini, tetapi selagi anda sedar dan OK dengannya; anda boleh memberi nafas baharu kepada Mac lama anda dengan memuatkan Omarchy.
+Unbloarchy mempunyai sokongan terbina dalam untuk **Mac Intel**. Terdapat beberapa batasan yang diketahui pada masa ini, tetapi selagi anda sedar dan OK dengannya; anda boleh memberi nafas baharu kepada Mac lama anda dengan memuatkan Unbloarchy.
 
 Sila ambil perhatian bahawa pemasangan pada Mac siri M tidak disokong secara langsung pada masa ini. Anda boleh mengetahui lebih lanjut tentang keadaan ini di #omarchy-on-other dalam [Discord](https://discord.gg/tXFUdasqhY) kami.
 
-Dalam ujian ringkas, kami dapat mencapai peningkatan prestasi 36% pada MacBook Pro 2019 hanya dengan memasang Omarchy.
+Dalam ujian ringkas, kami dapat mencapai peningkatan prestasi 36% pada MacBook Pro 2019 hanya dengan memasang Unbloarchy.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Memasang Omarchy pada Mac
+### Memasang Unbloarchy pada Mac
 
-Omarchy hanya menyokong menjadi **satu-satunya** OS yang dipasang pada masa ini. Semasa pemasangan, pemacu akan dipadamkan dan MacOS tidak lagi boleh dibut.
+Unbloarchy hanya menyokong menjadi **satu-satunya** OS yang dipasang pada masa ini. Semasa pemasangan, pemacu akan dipadamkan dan MacOS tidak lagi boleh dibut.
 
 Anda masih boleh memulihkannya kemudian melalui Internet Recovery jika anda mahu.
 

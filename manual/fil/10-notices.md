@@ -10,7 +10,7 @@ Inaalok ng mga card kung ano ang dala nila: _Kopyahin ang code_ para sa mga veri
 
 Para gamitin ang mga ito nang walang mouse, pindutin ang `Super + Ctrl + ,`. Napili ang pinakabagong notification at nakabilang ang mga button nito: pindutin ang isang numero para gamitin ang isa, `Enter` para i-click ang notification, `↑` at `↓` para lumipat sa pagitan ng mga notification, `Delete` para mag-dismiss ng isa, at `Esc` para ibalik ang keyboard. Kusang bumibitaw din ito pagkalipas ng ilang segundong walang ginagawa.
 
-Pinipigilan ng pagpapatahimik sa mga notification ang mga ito, maliban sa sariling mga kumpirmasyon ng Omarchy, mga emergency alert, at mga verification code, na hiniling mo kanina lang. Ibalik sa screen ang huling iilan, napigilan man o hindi, gamit ang `Super + Shift + Alt + ,`. Itinatago ang kasaysayan sa loob ng isang araw.
+Pinipigilan ng pagpapatahimik sa mga notification ang mga ito, maliban sa sariling mga kumpirmasyon ng Unbloarchy, mga emergency alert, at mga verification code, na hiniling mo kanina lang. Ibalik sa screen ang huling iilan, napigilan man o hindi, gamit ang `Super + Shift + Alt + ,`. Itinatago ang kasaysayan sa loob ng isang araw.
 
 ## Mga hotkey notice
 
@@ -26,7 +26,7 @@ Pinipigilan ng pagpapatahimik sa mga notification ang mga ito, maliban sa sarili
 
  ![notice-weather](images/notice-weather.webp)
 
-Natutukoy ang lokasyon mula sa iyong IP address, na karaniwang sapat na ang lapit, pero hindi palagi. Maaari mo itong itakda gamit ang `omarchy weather location --set Malibu`, o maging eksakto tungkol dito sa pamamagitan ng pagdaragdag ng mga coordinate: `omarchy weather location --set Malibu 34.0259,-118.7798`. Patakbuhin ang `omarchy weather location` nang mag-isa para makita kung nasaan ka sa palagay nito, at `--clear` para bumalik sa auto-detection.
+Natutukoy ang lokasyon mula sa iyong IP address, na karaniwang sapat na ang lapit, pero hindi palagi. Maaari mo itong itakda gamit ang `unbloarchy weather location --set Malibu`, o maging eksakto tungkol dito sa pamamagitan ng pagdaragdag ng mga coordinate: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Patakbuhin ang `unbloarchy weather location` nang mag-isa para makita kung nasaan ka sa palagay nito, at `--clear` para bumalik sa auto-detection.
 
 ### Baterya
 

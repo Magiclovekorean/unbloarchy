@@ -10,7 +10,7 @@ Kad menawarkan apa yang dibawanya: _Salin kod_ untuk kod pengesahan (tidak disim
 
 Untuk menggunakannya tanpa tetikus, tekan `Super + Ctrl + ,`. Pemberitahuan terbaharu dipilih dan butang-butangnya dinomborkan: tekan nombor untuk menggunakan salah satu, `Enter` untuk mengklik pemberitahuan, `↑` dan `↓` untuk bergerak antara pemberitahuan, `Delete` untuk menyingkirkan satu, dan `Esc` untuk memulangkan papan kekunci. Ia juga akan melepaskannya sendiri selepas beberapa saat terbiar.
 
-Menyenyapkan pemberitahuan akan menahannya, kecuali pengesahan Omarchy sendiri, amaran kecemasan, dan kod pengesahan, yang anda minta sebentar tadi. Paparkan semula beberapa yang terakhir pada skrin, sama ada ditahan atau tidak, dengan `Super + Shift + Alt + ,`. Sejarah disimpan selama sehari.
+Menyenyapkan pemberitahuan akan menahannya, kecuali pengesahan Unbloarchy sendiri, amaran kecemasan, dan kod pengesahan, yang anda minta sebentar tadi. Paparkan semula beberapa yang terakhir pada skrin, sama ada ditahan atau tidak, dengan `Super + Shift + Alt + ,`. Sejarah disimpan selama sehari.
 
 ## Notis kekunci pintas
 
@@ -26,7 +26,7 @@ Menyenyapkan pemberitahuan akan menahannya, kecuali pengesahan Omarchy sendiri, 
 
  ![notice-weather](images/notice-weather.webp)
 
-Lokasi dikesan daripada alamat IP anda, yang biasanya cukup hampir, tetapi tidak selalunya. Anda boleh menetapkannya dengan `omarchy weather location --set Malibu`, atau lebih tepat dengan menambah koordinat: `omarchy weather location --set Malibu 34.0259,-118.7798`. Jalankan `omarchy weather location` secara bersendirian untuk melihat lokasi yang difikirkannya anda berada, dan `--clear` untuk kembali kepada pengesanan automatik.
+Lokasi dikesan daripada alamat IP anda, yang biasanya cukup hampir, tetapi tidak selalunya. Anda boleh menetapkannya dengan `unbloarchy weather location --set Malibu`, atau lebih tepat dengan menambah koordinat: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Jalankan `unbloarchy weather location` secara bersendirian untuk melihat lokasi yang difikirkannya anda berada, dan `--clear` untuk kembali kepada pengesanan automatik.
 
 ### Bateri
 

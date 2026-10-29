@@ -10,7 +10,7 @@ Cuireann cártaí an méid atá á iompar acu ar fáil: _Cóipeáil an cód_ le 
 
 Chun iad a úsáid gan an luch, brúigh `Super + Ctrl + ,`. Roghnaítear an fógra is nuaí agus cuirtear uimhreacha lena chnaipí: brúigh uimhir chun ceann acu a úsáid, `Enter` chun an fógra a chliceáil, `↑` agus `↓` chun bogadh idir fógraí, `Delete` chun ceann a dhíbhe, agus `Esc` chun an méarchlár a thabhairt ar ais. Ligeann sé leis féin freisin tar éis cúpla soicind díomhaoin.
 
-Nuair a chuirtear fógraí ina dtost, coinntear siar iad, seachas deimhnithe Omarchy féin, foláirimh éigeandála, agus cóid fhíorúcháin, a d'iarr tú nóiméad ó shin. Cuir na cinn dheireanacha ar ais ar an scáileán, bíodh siad coinnithe siar nó ná bíodh, le `Super + Shift + Alt + ,`. Coinnítear an stair ar feadh lae.
+Nuair a chuirtear fógraí ina dtost, coinntear siar iad, seachas deimhnithe Unbloarchy féin, foláirimh éigeandála, agus cóid fhíorúcháin, a d'iarr tú nóiméad ó shin. Cuir na cinn dheireanacha ar ais ar an scáileán, bíodh siad coinnithe siar nó ná bíodh, le `Super + Shift + Alt + ,`. Coinnítear an stair ar feadh lae.
 
 ## Fógraí aicearra
 
@@ -26,7 +26,7 @@ Nuair a chuirtear fógraí ina dtost, coinntear siar iad, seachas deimhnithe Oma
 
  ![notice-weather](images/notice-weather.webp)
 
-Aimsítear an suíomh ó do sheoladh IP, rud atá gar go leor de ghnáth, ach nach mbíonn i gcónaí. Is féidir leat é a shocrú go beacht le `omarchy weather location --set Malibu`, nó a bheith cruinn faoi trí chomhordanáidí a chur leis: `omarchy weather location --set Malibu 34.0259,-118.7798`. Rith `omarchy weather location` leis féin chun a fheiceáil cá measann sé go bhfuil tú, agus `--clear` chun filleadh ar an uathbhrath.
+Aimsítear an suíomh ó do sheoladh IP, rud atá gar go leor de ghnáth, ach nach mbíonn i gcónaí. Is féidir leat é a shocrú go beacht le `unbloarchy weather location --set Malibu`, nó a bheith cruinn faoi trí chomhordanáidí a chur leis: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Rith `unbloarchy weather location` leis féin chun a fheiceáil cá measann sé go bhfuil tú, agus `--clear` chun filleadh ar an uathbhrath.
 
 ### Ceallra
 

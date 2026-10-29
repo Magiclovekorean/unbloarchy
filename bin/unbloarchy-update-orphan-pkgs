@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# omarchy:summary=Review and optionally remove orphaned system packages after updates
-# omarchy:args=[-y]
-# omarchy:examples=omarchy update orphan-pkgs | omarchy update orphan-pkgs -y
-# omarchy:requires-sudo=true
+# unbloarchy:summary=Review and optionally remove orphaned system packages after updates
+# unbloarchy:args=[-y]
+# unbloarchy:examples=unbloarchy update orphan-pkgs | unbloarchy update orphan-pkgs -y
+# unbloarchy:requires-sudo=true
 
 set -e
 
@@ -15,17 +15,17 @@ printf '  %s\n' "${orphans[@]}"
 echo
 
 if [[ ${1:-} != "-y" && ( ! -t 0 || ! -t 1 ) ]]; then
-  echo "${#orphans[@]} orphaned package(s) found. Re-run omarchy-update-orphan-pkgs in a terminal to review/remove them."
+  echo "${#orphans[@]} orphaned package(s) found. Re-run unbloarchy-update-orphan-pkgs in a terminal to review/remove them."
   echo
   exit 0
 fi
 
-if [[ ${1:-} != "-y" ]] && ! gum confirm --default=false --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n --count "${#orphans[@]}" update.removeOrphans "${#orphans[@]}")"; then
+if [[ ${1:-} != "-y" ]] && ! gum confirm --default=false --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n --count "${#orphans[@]}" update.removeOrphans "${#orphans[@]}")"; then
   echo "Keeping orphaned packages."
   echo
   exit 0
 fi
 
 echo -e "\e[32m\nRemoving orphan system packages\e[0m"
-omarchy-pkg-drop "${orphans[@]}"
+unbloarchy-pkg-drop "${orphans[@]}"
 echo

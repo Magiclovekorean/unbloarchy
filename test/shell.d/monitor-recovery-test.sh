@@ -10,12 +10,12 @@ external_tmp=$(mktemp -d)
 trap 'rm -rf "$external_tmp"' EXIT
 cat >"$external_tmp/hyprctl" <<'SH'
 #!/bin/bash
-printf '%s\n' "$OMARCHY_TEST_MONITORS"
+printf '%s\n' "$UNBLOARCHY_TEST_MONITORS"
 SH
 chmod +x "$external_tmp/hyprctl"
 
 external_active() {
-  PATH="$external_tmp:$PATH" OMARCHY_TEST_MONITORS="$1" "$ROOT/bin/omarchy-hyprland-monitor-external-active"
+  PATH="$external_tmp:$PATH" UNBLOARCHY_TEST_MONITORS="$1" "$ROOT/bin/unbloarchy-hyprland-monitor-external-active"
 }
 
 external_active '[{"name":"eDP-1","disabled":true},{"name":"HDMI-A-1","disabled":false}]' ||

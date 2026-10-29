@@ -2,7 +2,7 @@
 
 Tavaliselt pead Linuxis terminalis kopeerimiseks ja kleepimiseks kasutama `Ctrl + Shift + C/V` ning kõikjal mujal `Ctrl + C/V`. Sellega on raske harjuda kõigil, kes ei ole Linuxi peal sündinud ja üles kasvanud! Sama raske on ka üleminek Super-klahvilt Ctrl-klahvile, kui tuled Maci pealt.
 
-Omarchy lahendab mõlemad probleemid ühtsete lõikelaua kiirklahvidega, mis töötavad (peaaegu) kõikjal. Need on:
+Unbloarchy lahendab mõlemad probleemid ühtsete lõikelaua kiirklahvidega, mis töötavad (peaaegu) kõikjal. Need on:
 
 | Kiirklahv | Käsk |
 | ------- | ----------- |
@@ -18,7 +18,7 @@ Kopeerimaks kõike fokuseeritud tekstiväljal või muus rakenduses, mis toetab `
 
 ### Lõikelaua ajalugu
 
-Lõikelaua ajalugu pakub Omarchy kest ning see töötab nii teksti kui ka piltidega. Avad selle `Super + Ctrl + V` abil, valid kirje Return-klahviga ning seejärel asetatakse see lõikelauale, valmis kleepimiseks `Super + V` abil.
+Lõikelaua ajalugu pakub Unbloarchy kest ning see töötab nii teksti kui ka piltidega. Avad selle `Super + Ctrl + V` abil, valid kirje Return-klahviga ning seejärel asetatakse see lõikelauale, valmis kleepimiseks `Super + V` abil.
 
  ![clipboard-history](images/clipboard-history.webp)
 

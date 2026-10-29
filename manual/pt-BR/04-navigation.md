@@ -1,8 +1,8 @@
 # Navegação
 
-Tudo no Omarchy acontece pelo teclado — _TUDO!_ Quando o sistema inicia pela primeira vez, você literalmente não consegue fazer nada só com o mouse. Mas você pode apertar `Super + Space` para revelar o Menu do Omarchy e, a partir daqui, você pode fazer praticamente tudo.
+Tudo no Unbloarchy acontece pelo teclado — _TUDO!_ Quando o sistema inicia pela primeira vez, você literalmente não consegue fazer nada só com o mouse. Mas você pode apertar `Super + Space` para revelar o Menu do Unbloarchy e, a partir daqui, você pode fazer praticamente tudo.
 
-Mas o menu do Omarchy nem sequer foi pensado para ser a principal forma de operar o sistema na maior parte do tempo. Dá para ser mais rápido que isso! Todos os aplicativos mais importantes estão vinculados diretamente a teclas de atalho individuais. Você inicia o terminal com `Super + Return` e um navegador com `Super + Shift + Return`. Tente fazer um depois do outro, e você verá a mágica do tiling do Hyprland em ação:
+Mas o menu do Unbloarchy nem sequer foi pensado para ser a principal forma de operar o sistema na maior parte do tempo. Dá para ser mais rápido que isso! Todos os aplicativos mais importantes estão vinculados diretamente a teclas de atalho individuais. Você inicia o terminal com `Super + Return` e um navegador com `Super + Shift + Return`. Tente fazer um depois do outro, e você verá a mágica do tiling do Hyprland em ação:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Você também pode entrar em tela cheia com `Super + F` ou até mesmo apenas em 
 
 ### Layout dwindle vs scrolling
 
-O layout padrão do Omarchy se chama dwindle. Ele mantém todas as janelas que você abre em um único workspace visíveis o tempo todo, mesmo que tenha que encolhê-las.
+O layout padrão do Unbloarchy se chama dwindle. Ele mantém todas as janelas que você abre em um único workspace visíveis o tempo todo, mesmo que tenha que encolhê-las.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Um workspace flutuante funciona como uma área de trabalho tradicional: as janelas se sobrepõem, e você as move e dimensiona por conta própria. Cada janela recebe uma barra de título nas cores do seu tema, com botões para minimizar, maximizar e fechar. `Super + M` também minimiza a janela em foco. Uma janela minimizada aguarda no dock; clique no aplicativo dela para trazê-la de volta. Clique em uma janela para trazê-la para frente. Redimensione-a a partir de qualquer borda ou canto. Clique duas vezes em uma barra de título para maximizar a janela mantendo a barra superior visível, e novamente para recuperar seu tamanho antigo.
 
-Um workspace flutuante também mostra um dock, com seus aplicativos fixados, tudo o que está em execução, e uma grade de todos os aplicativos atrás do botão de aplicativos, que `Super + Alt + Space` e _Apps_ no menu do Omarchy também abrem. Clique com o botão direito em um aplicativo na grade, ou pressione `Delete`, para desinstalá-lo. Clique em um aplicativo para abri-lo, ou para trazer sua janela para frente; clique novamente para alternar entre suas janelas. O clique do meio abre uma nova janela. Arraste um ícone ao longo do dock para movê-lo; arrastar um aplicativo em execução para entre os outros o mantém lá. Clique com o botão direito para manter um aplicativo no dock, tirá-lo dele, ou encerrá-lo. O dock sai do caminho de uma janela em tela cheia. Clique com o botão direito no botão de aplicativos para mover o dock para outra borda ou fazer com que ele se oculte até que o ponteiro alcance sua borda. A posição também está em _Appearance > Dock > Dock Position_, e `omarchy dock position left` e `omarchy dock autohide on` definem ambos a partir de um terminal. Aplicativos que você mantém no dock ficam esmaecidos enquanto não estão em execução.
+Um workspace flutuante também mostra um dock, com seus aplicativos fixados, tudo o que está em execução, e uma grade de todos os aplicativos atrás do botão de aplicativos, que `Super + Alt + Space` e _Apps_ no menu do Unbloarchy também abrem. Clique com o botão direito em um aplicativo na grade, ou pressione `Delete`, para desinstalá-lo. Clique em um aplicativo para abri-lo, ou para trazer sua janela para frente; clique novamente para alternar entre suas janelas. O clique do meio abre uma nova janela. Arraste um ícone ao longo do dock para movê-lo; arrastar um aplicativo em execução para entre os outros o mantém lá. Clique com o botão direito para manter um aplicativo no dock, tirá-lo dele, ou encerrá-lo. O dock sai do caminho de uma janela em tela cheia. Clique com o botão direito no botão de aplicativos para mover o dock para outra borda ou fazer com que ele se oculte até que o ponteiro alcance sua borda. A posição também está em _Appearance > Dock > Dock Position_, e `unbloarchy dock position left` e `unbloarchy dock autohide on` definem ambos a partir de um terminal. Aplicativos que você mantém no dock ficam esmaecidos enquanto não estão em execução.
 
-Novos workspaces, e qualquer um ao qual você não tenha dado um layout próprio com `Super + L`, usam o layout padrão. Alterar o padrão redefine para ele todo workspace sem janelas, enquanto um com janelas mantém o layout que tem. Uma janela minimizada para o dock ainda conta como uma janela no workspace que ela deixou. Escolha-o em _Appearance > Workspace Layout_: Tiling, Scrolling, ou Floating. `omarchy-hyprland-workspace-layout-default scrolling` define isso a partir de um terminal.
+Novos workspaces, e qualquer um ao qual você não tenha dado um layout próprio com `Super + L`, usam o layout padrão. Alterar o padrão redefine para ele todo workspace sem janelas, enquanto um com janelas mantém o layout que tem. Uma janela minimizada para o dock ainda conta como uma janela no workspace que ela deixou. Escolha-o em _Appearance > Workspace Layout_: Tiling, Scrolling, ou Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` define isso a partir de um terminal.
 
 ### Agrupando janelas
 

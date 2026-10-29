@@ -1,14 +1,14 @@
 # Viršutinė juosta
 
-Juosta jūsų ekrano viršuje yra „Omarchy“ juosta. Tai ne primontuota būsenos juosta, o „Omarchy“ apvalkalo dalis — to paties vieno ilgai veikiančio „Quickshell“ proceso, kuris taip pat piešia meniu, pranešimus, OSD iškylančiuosius langus ir užrakinimo ekraną. Štai kodėl ji puikiai dera su visa kita ir kodėl skydelis atsidaro akimirksniu, užuot paleidęs naują programą.
+Juosta jūsų ekrano viršuje yra „Unbloarchy“ juosta. Tai ne primontuota būsenos juosta, o „Unbloarchy“ apvalkalo dalis — to paties vieno ilgai veikiančio „Quickshell“ proceso, kuris taip pat piešia meniu, pranešimus, OSD iškylančiuosius langus ir užrakinimo ekraną. Štai kodėl ji puikiai dera su visa kita ir kodėl skydelis atsidaro akimirksniu, užuot paleidęs naują programą.
 
 Tai taip pat vienintelė darbalaukio dalis, kuri visada matoma ekrane, todėl verta žinoti, ką daro visi tie maži glifai.
 
 ## Kas joje yra pagal numatytuosius nustatymus
 
-Juosta turi tris skyrius. Kairėje yra „Omarchy“ logotipas (meniu paleidimo priemonė) ir darbo sričių indikatoriai. Centre matote būsenos indikatorius, laikrodį, „Elsewhen“ (pasaulio laikrodį), orą ir „Omarchy“ naujinio ženklelį. Dešinėje: sistemos dėklas, klaviatūros išdėstymas (kai sukonfigūruotas daugiau nei vienas), agentai, „Bluetooth“, tinklas, garsas, ekranas ir maitinimas.
+Juosta turi tris skyrius. Kairėje yra „Unbloarchy“ logotipas (meniu paleidimo priemonė) ir darbo sričių indikatoriai. Centre matote būsenos indikatorius, laikrodį, „Elsewhen“ (pasaulio laikrodį), orą ir „Unbloarchy“ naujinio ženklelį. Dešinėje: sistemos dėklas, klaviatūros išdėstymas (kai sukonfigūruotas daugiau nei vienas), agentai, „Bluetooth“, tinklas, garsas, ekranas ir maitinimas.
 
-Keli iš jų pasirodo tik tada, kai turi ką pasakyti. Klaviatūros išdėstymas pasirodo tik tada, jei sukonfigūravote daugiau nei vieną išdėstymą. Naujinio ženklelis pasirodo tik tada, kai laukia „Omarchy“ naujinys. O agentų piktograma pasirodo pirmą kartą, kai „Omarchy“ aptinka DI programavimo naudojimą kompiuteryje (žr. [DI](17-ai.md)).
+Keli iš jų pasirodo tik tada, kai turi ką pasakyti. Klaviatūros išdėstymas pasirodo tik tada, jei sukonfigūravote daugiau nei vieną išdėstymą. Naujinio ženklelis pasirodo tik tada, kai laukia „Unbloarchy“ naujinys. O agentų piktograma pasirodo pirmą kartą, kai „Unbloarchy“ aptinka DI programavimo naudojimą kompiuteryje (žr. [DI](17-ai.md)).
 
 ## Ką daro spustelėjimai
 
@@ -16,7 +16,7 @@ Beveik kiekvienas valdiklis ką nors daro spustelėjus kairiuoju, dešiniuoju ir
 
 | Valdiklis | Kairysis | Dešinysis | Vidurinis / slinktis |
 | --- | --- | --- | --- |
-| Meniu | „Omarchy“ meniu | Naujas terminalas | — |
+| Meniu | „Unbloarchy“ meniu | Naujas terminalas | — |
 | Darbo sritys | Fokusuoti tą darbo sritį šiame monitoriuje | — | Slinktis: kita / ankstesnė darbo sritis |
 | Laikrodis | Kalendoriaus iškylantysis langas | Cikliškai perjungti žymos formatą | Vidurinis: laiko juostos pasirinkimas |
 | Oras | Prognozės iškylantysis langas | Išsami orų prognozė kaip pranešimas | Vidurinis: atnaujinti |
@@ -29,7 +29,7 @@ Beveik kiekvienas valdiklis ką nors daro spustelėjus kairiuoju, dešiniuoju ir
 | Medija | Leisti / pristabdyti | Viršelio paveikslėlio iškylantysis langas | Vidurinis: kita · slinktis: ankstesnė / kita |
 | Agentai | Agentų skydelis | Paleisti jūsų agentą | Vidurinis: kita prenumerata |
 | Dėklas | Užvesti pelę, kad atsidarytų stalčius | Dešinysis ant ševrono, kad tvarkytumėte | — |
-| „Omarchy“ naujinys | Vykdyti naujinį | — | — |
+| „Unbloarchy“ naujinys | Vykdyti naujinį | — | — |
 
 Ne viskas, kas yra toje lentelėje, iš karto yra jūsų juostoje. Medijos valdiklis (MPRIS dabar leidžiamas įrašas su slenkančiu kūriniu ir atlikėju) ir mikrofono valdiklis abu yra integruoti, bet pagal numatytuosius nustatymus išjungti — pridėkite juos, jei norite, kaip aprašyta toliau.
 
@@ -66,7 +66,7 @@ Kiekvienas skydelis valdomas ir klaviatūra, ir pele: rodyklės juda, Return akt
 
 Dar du valdikliai juostoje pasirodo tik tada, kai įdiegiate atitinkamą paslaugą iš **Install → Service**, ir abu verta žinoti, nes jie daro daugiau nei tik praneša būseną.
 
-**„Tailscale“** skydelis prijungia ir atjungia tailnet, perjungia paskyras ir pasirenka išėjimo mazgą (tame sąraše rodomi ir jūsų pačių kompiuteriai, ir „Mullvad“ regionai). Jis taip pat naršo jūsų kompiuterius — ir kai vienas pasirinktas, `s` siunčia į jį failus per „Taildrop“, o tai greičiausias būdas perkelti failą į telefoną ar kitą nešiojamąjį kompiuterį. `c` kopijuoja kompiuterio IP, `n` — jo pavadinimą, o `d` — jo visą DNS pavadinimą. Kiekvienoje kompiuterio eilutėje taip pat yra siuntimo mygtukas, jei mieliau spustelėsite. Tas pats iš terminalo yra `omarchy tailscale send <machine> [file...]`.
+**„Tailscale“** skydelis prijungia ir atjungia tailnet, perjungia paskyras ir pasirenka išėjimo mazgą (tame sąraše rodomi ir jūsų pačių kompiuteriai, ir „Mullvad“ regionai). Jis taip pat naršo jūsų kompiuterius — ir kai vienas pasirinktas, `s` siunčia į jį failus per „Taildrop“, o tai greičiausias būdas perkelti failą į telefoną ar kitą nešiojamąjį kompiuterį. `c` kopijuoja kompiuterio IP, `n` — jo pavadinimą, o `d` — jo visą DNS pavadinimą. Kiekvienoje kompiuterio eilutėje taip pat yra siuntimo mygtukas, jei mieliau spustelėsite. Tas pats iš terminalo yra `unbloarchy tailscale send <machine> [file...]`.
 
 **„Dropbox“** skydelis tvarko prisijungimą, rodo, kiek saugyklos išnaudojote, ir išvardija neseniai sinchronizuotus failus.
 
@@ -93,19 +93,19 @@ Jei mieliau renkatės iš meniu, **Appearance → Menu Bar** turi padėtį, o **
 Tie patys dalykai turi komandas, o būtent to norite [dotfiles](31-dotfiles.md) sąrankai:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-Norėdami visiškai pridėti arba pašalinti valdiklį, naudokite papildinių komandas. `omarchy plugin list` išspausdina kiekvieną valdiklį, kurį žino apvalkalas, su jo id, o tada:
+Norėdami visiškai pridėti arba pašalinti valdiklį, naudokite papildinių komandas. `unbloarchy plugin list` išspausdina kiekvieną valdiklį, kurį žino apvalkalas, su jo id, o tada:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## Juostos slėpimas
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Konfigūracijos failas
 
-Visa tai saugoma `~/.config/omarchy/shell.json`, po `bar` raktu. Štai sutrumpinta versija:
+Visa tai saugoma `~/.config/unbloarchy/shell.json`, po `bar` raktu. Štai sutrumpinta versija:
 
 ```json
 {
@@ -123,20 +123,20 @@ Visa tai saugoma `~/.config/omarchy/shell.json`, po `bar` raktu. Štai sutrumpin
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-Kiekvienas valdiklis yra vienas įrašas viename iš penkių išdėstymo masyvų, o jo nustatymai yra tame pačiame įraše — nėra atskiro nustatymų failo ir nėra `config` poobjekčio. Laikrodžio `format`, `formatAlt` (į ką perjungia dešinysis spustelėjimas) ir `verticalFormat` visi yra ten pat, ant `{ "id": "omarchy.clock" }`.
+Kiekvienas valdiklis yra vienas įrašas viename iš penkių išdėstymo masyvų, o jo nustatymai yra tame pačiame įraše — nėra atskiro nustatymų failo ir nėra `config` poobjekčio. Laikrodžio `format`, `formatAlt` (į ką perjungia dešinysis spustelėjimas) ir `verticalFormat` visi yra ten pat, ant `{ "id": "unbloarchy.clock" }`.
 
 `center` yra dėžutė juostos viduryje: viskas joje yra centruojama ekrane kaip viena grupė. `centerBegin` ir `centerEnd` kabo abiejose dėžutės pusėse, todėl laikrodis lieka pačiame centre net tada, kai orai ir naujinio ženklelis ateina ir išeina. Įdėkite daugiau nei vieną valdiklį į `center` ir jie bus centruojami kartu; palikite jį tuščią ir `centerBegin` bei `centerEnd` susitiks juostos viduryje.
 
-Viena taisyklė, kurią verta įsisavinti: **kai turite savo `shell.json`, jis yra kanoninis**. Kol nieko nepritaikote, apvalkalas skaito numatytąjį „Omarchy“ failą. Vos tik nuvelkate valdiklį, paleidžiate `omarchy bar` arba patys redaguojate failą, jis tampa jūsų — nėra gilaus sujungimo, todėl nauji numatytieji valdikliai būsimose „Omarchy“ laidose automatiškai jūsų juostoje nepasirodys. `omarchy bar defaults` grąžina pristatytą išdėstymą, kai tik norite švaraus lapo.
+Viena taisyklė, kurią verta įsisavinti: **kai turite savo `shell.json`, jis yra kanoninis**. Kol nieko nepritaikote, apvalkalas skaito numatytąjį „Unbloarchy“ failą. Vos tik nuvelkate valdiklį, paleidžiate `unbloarchy bar` arba patys redaguojate failą, jis tampa jūsų — nėra gilaus sujungimo, todėl nauji numatytieji valdikliai būsimose „Unbloarchy“ laidose automatiškai jūsų juostoje nepasirodys. `unbloarchy bar defaults` grąžina pristatytą išdėstymą, kai tik norite švaraus lapo.
 
 Tame pačiame faile taip pat yra jūsų neveiklumo laikai aukščiausiame lygyje, už `bar` rakto ribų: `idle.screensaver` ir `idle.lock`, abu sekundėmis nuo tada, kai tapote neaktyvūs. Taigi numatytoji ekrano užsklanda įsijungia po 150 sekundžių, o užraktas — po 300.

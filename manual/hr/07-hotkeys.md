@@ -6,7 +6,7 @@ Sve glavne tipkovničke poveznice možete vidjeti pomoću `Super + K` (Tmux pove
 
 | Prečac                  | Funkcija              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Izbornik Omarchy (aplikacije i sve ostalo)    |
+| `Super + Space`           | Izbornik Unbloarchy (aplikacije i sve ostalo)    |
 | `Super + Alt + Space` | Mreža aplikacija |
 | `Super + Escape` | Izbornik sustava (obustava, ponovno pokretanje itd.)  |
 | `Super + Ctrl + L` | Zaključaj računalo |
@@ -143,7 +143,7 @@ Promijenite/dodajte poveznice u `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Zalijepi    |
 | `Super + Ctrl + V`           | Upravitelj međuspremnika    |
 
-Obično na Linuxu trebate `Ctrl + Shift + C/V` za kopiranje i lijepljenje u terminalu i `Ctrl + C/V` da to radite svugdje drugdje. Ovi Omarchy objedinjeni tipkovnički prečaci za međuspremnik rade svugdje.
+Obično na Linuxu trebate `Ctrl + Shift + C/V` za kopiranje i lijepljenje u terminalu i `Ctrl + C/V` da to radite svugdje drugdje. Ovi Unbloarchy objedinjeni tipkovnički prečaci za međuspremnik rade svugdje.
 
 ## Snimanje
 
@@ -164,7 +164,7 @@ Obično na Linuxu trebate `Ctrl + Shift + C/V` za kopiranje i lijepljenje u term
 
 Kod snimanja zaslona, prečac najprije pita koji zvuk želite, zatim započinje snimanje. Pritisnite ga ponovno za zaustavljanje. Pogledajte [snimke zaslona i snimanje](12-screenshots-recording.md) za detalje.
 
-Sve mogućnosti snimanja dostupne su i pod _Trigger > Capture_ u izborniku Omarchy (`Super + Space`).
+Sve mogućnosti snimanja dostupne su i pod _Trigger > Capture_ u izborniku Unbloarchy (`Super + Space`).
 
 ## Obavijesti
 
@@ -186,9 +186,9 @@ Sve mogućnosti snimanja dostupne su i pod _Trigger > Capture_ u izborniku Omarc
 | `Super + Backspace` | Uključi/isključi prozirnost na prozoru |
 | `Super + Ctrl + Backspace` | Uključi/isključi kvadratni omjer za jedan prozor |
 
-Dodatne pozadinske slike nalaze se u `~/.config/omarchy/backgrounds/<theme name>`. Dostupno i putem _Install > Style > Background_ u izborniku Omarchy.
+Dodatne pozadinske slike nalaze se u `~/.config/unbloarchy/backgrounds/<theme name>`. Dostupno i putem _Install > Style > Background_ u izborniku Unbloarchy.
 
-Sve mogućnosti stila dostupne su i pod _Style_ u izborniku Omarchy (`Super + Space`).
+Sve mogućnosti stila dostupne su i pod _Style_ u izborniku Unbloarchy (`Super + Space`).
 
 ## Prebacivanja
 
@@ -289,7 +289,7 @@ Ove funkcije moraju se pokrenuti unutar Tmux sesije.
 
 ## Ghostty terminal
 
-Ghostty terminal instalira se pomoću _Install > Terminal_ putem izbornika Omarchy.
+Ghostty terminal instalira se pomoću _Install > Terminal_ putem izbornika Unbloarchy.
 
 | Prečac                  | Funkcija              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Možete koristiti `Super + Ctrl + E` za prikaz potpunog birača emojija koji će
 | `Shift + CapsLock Space N` | Vaše ime (kako je uneseno prilikom postavljanja)  |
 | `Shift + CapsLock Space E` | Vaša e-pošta (kako je unesena prilikom postavljanja)  |
 
-Možete dodati još svojih uređivanjem `~/.XCompose`, zatim pokretanjem `omarchy-restart-xcompose` u terminalu kako bi promjene bile preuzete.
+Možete dodati još svojih uređivanjem `~/.XCompose`, zatim pokretanjem `unbloarchy-restart-xcompose` u terminalu kako bi promjene bile preuzete.

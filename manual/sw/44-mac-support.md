@@ -1,16 +1,16 @@
 # Usaidizi wa Mac
 
-Omarchy ina usaidizi uliojengwa ndani kwa **Mac za Intel**. Kuna mapungufu machache yanajulikana kwa sasa, lakini mradi unayafahamu na unakubaliana nayo; unaweza kuingiza uhai mpya katika Mac zako za zamani kwa kupakia Omarchy.
+Unbloarchy ina usaidizi uliojengwa ndani kwa **Mac za Intel**. Kuna mapungufu machache yanajulikana kwa sasa, lakini mradi unayafahamu na unakubaliana nayo; unaweza kuingiza uhai mpya katika Mac zako za zamani kwa kupakia Unbloarchy.
 
 Tafadhali kumbuka kuwa kusakinisha kwenye Mac ya mfululizo wa M hakusaidiwi moja kwa moja kwa sasa. Unaweza kujua zaidi kuhusu hali ya hii katika #omarchy-on-other katika [Discord](https://discord.gg/tXFUdasqhY) yetu.
 
-Katika jaribio rahisi, tuliweza kufikia ongezeko la utendaji la 36% kwenye MacBook Pro ya 2019 kwa kusakinisha Omarchy tu.
+Katika jaribio rahisi, tuliweza kufikia ongezeko la utendaji la 36% kwenye MacBook Pro ya 2019 kwa kusakinisha Unbloarchy tu.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Kusakinisha Omarchy kwenye Mac
+### Kusakinisha Unbloarchy kwenye Mac
 
-Omarchy inasaidia tu kuwa ndicho OS **pekee** iliyosakinishwa kwa sasa. Wakati wa usakinishaji, kiendeshaji kitafutwa na MacOS haitawashika tena.
+Unbloarchy inasaidia tu kuwa ndicho OS **pekee** iliyosakinishwa kwa sasa. Wakati wa usakinishaji, kiendeshaji kitafutwa na MacOS haitawashika tena.
 
 Bado unaweza kuirejesha baadaye kupitia Internet Recovery kama unataka.
 

@@ -11,13 +11,13 @@ mkdir -p "$tmp_dir/bin" "$tmp_dir/home"
 export TEST_LOG="$tmp_dir/log"
 export PATH="$tmp_dir/bin:$PATH"
 export HOME="$tmp_dir/home"
-export OMARCHY_OPENCLAW_ONBOARD_SETTLE_SECONDS=0
+export UNBLOARCHY_OPENCLAW_ONBOARD_SETTLE_SECONDS=0
 
 # Run a scratch copy of the wrapper with its 2s gateway poll shortened;
 # every scenario otherwise costs at least one full poll interval. Each poll is
 # logged, so a wizard stub can outlast a number of polls rather than a time.
-onboard="$tmp_dir/omarchy-openclaw-onboard"
-sed 's/^  sleep 2$/  sleep 0.1; echo poll >>"$TEST_LOG"/' "$ROOT/bin/omarchy-openclaw-onboard" >"$onboard"
+onboard="$tmp_dir/unbloarchy-openclaw-onboard"
+sed 's/^  sleep 2$/  sleep 0.1; echo poll >>"$TEST_LOG"/' "$ROOT/bin/unbloarchy-openclaw-onboard" >"$onboard"
 grep -q '^  sleep 0.1; echo poll' "$onboard" || fail "the scratch copy shortens the gateway poll"
 chmod +x "$onboard"
 unit="$HOME/.config/systemd/user/openclaw-gateway.service"
@@ -47,7 +47,7 @@ pid=
 exit 0
 SCRIPT
 chmod +x "$tmp_dir/bin/ss"
-export OMARCHY_OPENCLAW_ONBOARD_GATEWAY_TIMEOUT=1
+export UNBLOARCHY_OPENCLAW_ONBOARD_GATEWAY_TIMEOUT=1
 
 # A wizard that configures OpenClaw, prints its outro, and then lingers forever
 # on an open handle: the 2026.9.1 --skip-ui behaviour. It "installs the
@@ -254,7 +254,7 @@ chmod +x "$tmp_dir/prompting-wizard"
 mkdir -p "$HOME/.openclaw" && touch -d '1 minute ago' "$HOME/.openclaw/openclaw.json"
 cp "$tmp_dir/prompting-wizard" "$tmp_dir/bin/openclaw"
 rc=0
-OMARCHY_OPENCLAW_ONBOARD_GATEWAY_TIMEOUT=0 "$onboard" </dev/null >/dev/null 2>&1 || rc=$?
+UNBLOARCHY_OPENCLAW_ONBOARD_GATEWAY_TIMEOUT=0 "$onboard" </dev/null >/dev/null 2>&1 || rc=$?
 [[ $rc == 0 ]] || fail "a stale config does not start the gateway deadline" "rc=$rc"
 grep -q '^finished$' "$TEST_LOG" || fail "a stale config does not start the gateway deadline" "wizard was cut short"
 ! grep -q '^terminated$' "$TEST_LOG" || fail "a stale config does not start the gateway deadline" "wizard was signalled"

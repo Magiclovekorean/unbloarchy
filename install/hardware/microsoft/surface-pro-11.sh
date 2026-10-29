@@ -1,12 +1,12 @@
 # Microsoft Surface Pro 11 (Snapdragon X Elite, OLED) board-specific setup.
 
-mkinitcpio_dir=${OMARCHY_SURFACE_PRO11_MKINITCPIO_DIR:-/etc/mkinitcpio.conf.d}
-uki_config=${OMARCHY_SURFACE_PRO11_UKI_CONFIG:-/etc/kernel/uki.conf}
-dtb_root=${OMARCHY_QUALCOMM_DTB_ROOT:-/boot/dtbs}
+mkinitcpio_dir=${UNBLOARCHY_SURFACE_PRO11_MKINITCPIO_DIR:-/etc/mkinitcpio.conf.d}
+uki_config=${UNBLOARCHY_SURFACE_PRO11_UKI_CONFIG:-/etc/kernel/uki.conf}
+dtb_root=${UNBLOARCHY_QUALCOMM_DTB_ROOT:-/boot/dtbs}
 
 # Only the X Elite OLED model has been tested. The LCD and X Plus models share
 # the DMI product name but use other device trees and panels.
-if omarchy-hw-aarch64-qualcomm && omarchy-hw-match-device-tree microsoft,denali-oled; then
+if unbloarchy-hw-aarch64-qualcomm && unbloarchy-hw-match-device-tree microsoft,denali-oled; then
   echo "Detected Microsoft Surface Pro 11, applying board-specific support..."
 
   # Installs made before the Intel Surface fixes were limited to x86 carry
@@ -16,10 +16,10 @@ if omarchy-hw-aarch64-qualcomm && omarchy-hw-match-device-tree microsoft,denali-
 
   # Embed the OLED model's device tree instead of the list dtb-uki.sh writes.
   # systemd-stub picks from that list by SMBIOS identity, which the OLED, LCD
-  # and X Plus models share. Omarchy's kernel carries the tree, found the way
+  # and X Plus models share. Unbloarchy's kernel carries the tree, found the way
   # dtb-uki.sh finds it; without it the list stays and an earlier pin goes.
   surface_pro11_dtb=""
-  for dtb in "$dtb_root"/linux-omarchy*/qcom/x1e80100-microsoft-denali-oled.dtb; do
+  for dtb in "$dtb_root"/linux-unbloarchy*/qcom/x1e80100-microsoft-denali-oled.dtb; do
     if [[ -f $dtb ]]; then
       surface_pro11_dtb=$dtb
       break
@@ -33,8 +33,8 @@ if omarchy-hw-aarch64-qualcomm && omarchy-hw-match-device-tree microsoft,denali-
     if [[ -f $uki_config ]]; then
       cp -p "$uki_config" "$uki_tmp"
       awk -v pinned="${surface_pro11_dtb:+1}" '
-        $0 == "# BEGIN OMARCHY SURFACE PRO 11 DEVICE TREE" || (pinned && $0 == "# BEGIN OMARCHY QUALCOMM DEVICE TREES") { managed = 1; next }
-        managed && ($0 == "# END OMARCHY SURFACE PRO 11 DEVICE TREE" || $0 == "# END OMARCHY QUALCOMM DEVICE TREES") { managed = 0; next }
+        $0 == "# BEGIN UNBLOARCHY SURFACE PRO 11 DEVICE TREE" || (pinned && $0 == "# BEGIN UNBLOARCHY QUALCOMM DEVICE TREES") { managed = 1; next }
+        managed && ($0 == "# END UNBLOARCHY SURFACE PRO 11 DEVICE TREE" || $0 == "# END UNBLOARCHY QUALCOMM DEVICE TREES") { managed = 0; next }
         !managed { print }
       ' "$uki_config" >"$uki_tmp"
     else
@@ -43,10 +43,10 @@ if omarchy-hw-aarch64-qualcomm && omarchy-hw-match-device-tree microsoft,denali-
 
     if [[ -n $surface_pro11_dtb ]]; then
       {
-        echo "# BEGIN OMARCHY SURFACE PRO 11 DEVICE TREE"
+        echo "# BEGIN UNBLOARCHY SURFACE PRO 11 DEVICE TREE"
         echo "[UKI]"
         echo "DeviceTree=$surface_pro11_dtb"
-        echo "# END OMARCHY SURFACE PRO 11 DEVICE TREE"
+        echo "# END UNBLOARCHY SURFACE PRO 11 DEVICE TREE"
       } >>"$uki_tmp"
     fi
 
@@ -56,8 +56,8 @@ if omarchy-hw-aarch64-qualcomm && omarchy-hw-match-device-tree microsoft,denali-
       mv -f "$uki_tmp" "$uki_config"
       # As in dtb-uki.sh: an image's first boot rebuilds after its last step,
       # but does not watch this file.
-      if [[ -n ${OMARCHY_IMAGE_BOOT_REBUILD:-} ]]; then
-        : >"$OMARCHY_IMAGE_BOOT_REBUILD"
+      if [[ -n ${UNBLOARCHY_IMAGE_BOOT_REBUILD:-} ]]; then
+        : >"$UNBLOARCHY_IMAGE_BOOT_REBUILD"
       fi
     fi
   fi
@@ -83,8 +83,8 @@ for firmware in \
   ath12k/WCN7850/hw2.0/board.bin \
   qcom/x1e80100/X1E80100-Microsoft-Surface-Pro-11-tplg.bin; do
   for suffix in '' .zst .xz; do
-    for directory in "${OMARCHY_SURFACE_PRO11_FIRMWARE_ROOT:-/usr/lib/firmware}/updates" \
-      "${OMARCHY_SURFACE_PRO11_FIRMWARE_ROOT:-/usr/lib/firmware}"; do
+    for directory in "${UNBLOARCHY_SURFACE_PRO11_FIRMWARE_ROOT:-/usr/lib/firmware}/updates" \
+      "${UNBLOARCHY_SURFACE_PRO11_FIRMWARE_ROOT:-/usr/lib/firmware}"; do
       if [[ -f $directory/$firmware$suffix ]]; then
         FILES+=("$directory/$firmware$suffix")
         break 2
@@ -98,7 +98,7 @@ CONF
   # surface-pro-11-support carries Wi-Fi board data, audio and camera routing,
   # iptsd turns the digitizer's reports into pen and touch input, and the
   # sensor package serves the ADSP the light sensor's configuration.
-  omarchy-pkg-add surface-pro-11-support iptsd surface-pro-11-sensors
+  unbloarchy-pkg-add surface-pro-11-support iptsd surface-pro-11-sensors
 
   # The light sensor configuration is copied from the Windows installation,
   # which a full-disk install has already erased; it can be rerun later.

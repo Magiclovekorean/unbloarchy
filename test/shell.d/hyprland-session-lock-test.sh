@@ -16,8 +16,8 @@ cat >"$fake_bin/hyprctl" <<'SH'
 #!/bin/bash
 
 [[ ${1:-} == "-j" && ${2:-} == "monitors" ]] || exit 1
-[[ ${OMARCHY_TEST_HYPRCTL_FAILS:-0} == 1 ]] && exit 4
-printf '%s\n' "$OMARCHY_TEST_MONITORS"
+[[ ${UNBLOARCHY_TEST_HYPRCTL_FAILS:-0} == 1 ]] && exit 4
+printf '%s\n' "$UNBLOARCHY_TEST_MONITORS"
 SH
 
 # The lockers running are given, so the live desktop's own shell stays out of it.
@@ -25,8 +25,8 @@ cat >"$fake_bin/pgrep" <<'SH'
 #!/bin/bash
 
 [[ $* == "-u $UID -x quickshell|qs|hyprlock" ]] || exit 3
-[[ -n $OMARCHY_TEST_LOCKERS ]] || exit 1
-printf '%s\n' $OMARCHY_TEST_LOCKERS
+[[ -n $UNBLOARCHY_TEST_LOCKERS ]] || exit 1
+printf '%s\n' $UNBLOARCHY_TEST_LOCKERS
 SH
 chmod +x "$fake_bin"/*
 
@@ -37,15 +37,15 @@ UNDETERMINED=2
 locked_monitors='[{"name":"HDMI-A-1","solitaryBlockedBy":["WINDOWED","LOCK","CANDIDATE"]}]'
 unlocked_monitors='[{"name":"HDMI-A-1","solitaryBlockedBy":["WINDOWED","CANDIDATE"]}]'
 
-# The stranded check asks the real omarchy-hyprland-session-locked, so
+# The stranded check asks the real unbloarchy-hyprland-session-locked, so
 # $ROOT/bin follows the stubs on PATH.
 exit_status() {
   local command="$1" monitors="$2" hyprctl_fails="$3" lockers="$4" actual=0
 
   PATH="$fake_bin:$ROOT/bin:$PATH" \
-  OMARCHY_TEST_MONITORS="$monitors" \
-  OMARCHY_TEST_HYPRCTL_FAILS="$hyprctl_fails" \
-  OMARCHY_TEST_LOCKERS="$lockers" \
+  UNBLOARCHY_TEST_MONITORS="$monitors" \
+  UNBLOARCHY_TEST_HYPRCTL_FAILS="$hyprctl_fails" \
+  UNBLOARCHY_TEST_LOCKERS="$lockers" \
     "$ROOT/bin/$command" 100 || actual=$?
 
   printf '%s\n' "$actual"
@@ -54,7 +54,7 @@ exit_status() {
 assert_status() {
   local expected="$1" monitors="$2" description="$3" hyprctl_fails="${4:-0}" actual
 
-  actual=$(exit_status omarchy-hyprland-session-locked "$monitors" "$hyprctl_fails" "")
+  actual=$(exit_status unbloarchy-hyprland-session-locked "$monitors" "$hyprctl_fails" "")
   (( actual == expected )) || fail "$description" "expected exit $expected, got $actual"
   pass "$description"
 }
@@ -62,7 +62,7 @@ assert_status() {
 assert_stranded() {
   local expected="$1" monitors="$2" lockers="$3" description="$4" hyprctl_fails="${5:-0}" actual
 
-  actual=$(exit_status omarchy-hyprland-session-lock-stranded "$monitors" "$hyprctl_fails" "$lockers")
+  actual=$(exit_status unbloarchy-hyprland-session-lock-stranded "$monitors" "$hyprctl_fails" "$lockers")
   (( actual == expected )) || fail "$description" "expected exit $expected, got $actual"
   pass "$description"
 }

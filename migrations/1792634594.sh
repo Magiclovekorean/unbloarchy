@@ -1,6 +1,6 @@
 echo "Clear SoundWire routes the retired N1x UCM profiles left in the saved mixer state"
 
-# Omarchy's own MT8901 UCM profiles, replaced by NVIDIA's in 3a209895e4, routed
+# Unbloarchy's own MT8901 UCM profiles, replaced by NVIDIA's in 3a209895e4, routed
 # PDI2 to DP3 (ASUS ProArt P14) and PDI7/PDI8 to codec ports (ProArt P14 and
 # Dell XPS 16). alsactl saved those routes and restores them every boot, and
 # NVIDIA's profiles only set the routes they use, so a host port ends up fed by
@@ -8,13 +8,13 @@ echo "Clear SoundWire routes the retired N1x UCM profiles left in the saved mixe
 # microphone streams with EINVAL, PipeWire drops the HiFi profile, and the
 # internal speakers and microphones vanish. No current profile routes PDI7 or
 # PDI8, or PDI2 to DP3, so those values can only be leftovers.
-if ! omarchy-hw-aarch64-n1x; then
+if ! unbloarchy-hw-aarch64-n1x; then
   exit 0
 fi
 
 card=mt8901soundwire
-state_file="${OMARCHY_ALSA_STATE:-/var/lib/alsa/asound.state}"
-card_path="${OMARCHY_PROC_ROOT:-/proc}/asound/$card"
+state_file="${UNBLOARCHY_ALSA_STATE:-/var/lib/alsa/asound.state}"
+card_path="${UNBLOARCHY_PROC_ROOT:-/proc}/asound/$card"
 
 # amixer can't find a card the user has no seat ACL for (an update over SSH),
 # so ask the kernel whether it exists, and fail rather than complete unrepaired.

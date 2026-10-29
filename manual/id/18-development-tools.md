@@ -2,7 +2,7 @@
 
 ## Editor Alternatif
 
-Omarchy dilengkapi dengan [Neovim](https://neovim.io/) secara bawaan, tetapi jika Anda ingin sesuatu yang sedikit lebih umum dan familiar, Anda dapat menjalankan Menu Omarchy (`Super + Space`) dan melihat pilihan di bawah _Install > Editor_. Di sana kami menyediakan VSCode, Cursor, Zed, Sublime Text, Helix, Vim, dan Emacs. Jika Anda tidak menemukan yang Anda cari, lihat _Install > Package_, dan periksa apakah itu ada dalam sebuah paket Arch (dan jika tidak, coba _Install > AUR_ untuk memeriksa AUR).
+Unbloarchy dilengkapi dengan [Neovim](https://neovim.io/) secara bawaan, tetapi jika Anda ingin sesuatu yang sedikit lebih umum dan familiar, Anda dapat menjalankan Menu Unbloarchy (`Super + Space`) dan melihat pilihan di bawah _Install > Editor_. Di sana kami menyediakan VSCode, Cursor, Zed, Sublime Text, Helix, Vim, dan Emacs. Jika Anda tidak menemukan yang Anda cari, lihat _Install > Package_, dan periksa apakah itu ada dalam sebuah paket Arch (dan jika tidak, coba _Install > AUR_ untuk memeriksa AUR).
 
 Editor `vi` asli juga tersedia langsung. Jalankan `vi filename` untuk mengedit sebuah file di terminal.
 
@@ -12,7 +12,7 @@ Anda dapat mengatur editor bawaan di seluruh sistem di bawah `Setup > Defaults >
 
 ## Lingkungan
 
-Omarchy mendukung penyiapan segudang lingkungan pengembangan melalui bagian _Install > Development_ dari Menu Omarchy (`Super + Space`). Tentu saja Anda akan menemukan _Ruby on Rails_, tetapi juga ketiga runtime utama untuk JavaScript (Node.js, Bun, Deno), serta framework PHP populer seperti Laravel dan Symfony. Oh, dan ada juga Go, Rust, Python, Java, Elixir (dengan Phoenix), .NET, OCaml, Zig, Clojure, dan Scala. Pilihannya sangat luas!
+Unbloarchy mendukung penyiapan segudang lingkungan pengembangan melalui bagian _Install > Development_ dari Menu Unbloarchy (`Super + Space`). Tentu saja Anda akan menemukan _Ruby on Rails_, tetapi juga ketiga runtime utama untuk JavaScript (Node.js, Bun, Deno), serta framework PHP populer seperti Laravel dan Symfony. Oh, dan ada juga Go, Rust, Python, Java, Elixir (dengan Phoenix), .NET, OCaml, Zig, Clojure, dan Scala. Pilihannya sangat luas!
 
 Sebagian besar lingkungan ini dikelola oleh [Mise](https://mise.jdx.dev/). Ini adalah alat yang memungkinkan Anda menginstal dan menjalankan beberapa versi sebuah bahasa pemrograman di mesin yang sama. Ini seperti rbenv atau rvm untuk Ruby atau virtualenv untuk Python, tetapi ini bekerja untuk banyak lingkungan yang berbeda.
 
@@ -20,7 +20,7 @@ Untuk menginstal, misalnya, Ruby, Anda akan menjalankan `mise use -g ruby`, yang
 
 ## Alat CLI yang Sudah Terinstal
 
-Omarchy menyediakan alat seperti `gh`, `uv`, dan sebagian besar [agen coding](17-ai.md) melalui [instalasi lazy mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Pertama kali Anda menjalankan salah satunya, mise menginstalnya. Penggunaan berikutnya menggunakan kembali versi yang terinstal; mereka tidak memeriksa pembaruan pada setiap peluncuran.
+Unbloarchy menyediakan alat seperti `gh`, `uv`, dan sebagian besar [agen coding](17-ai.md) melalui [instalasi lazy mise](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Pertama kali Anda menjalankan salah satunya, mise menginstalnya. Penggunaan berikutnya menggunakan kembali versi yang terinstal; mereka tidak memeriksa pembaruan pada setiap peluncuran.
 
 Anda juga dapat memeriksa bawaannya atau menginstalnya lebih awal:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Jalankan `omarchy update` untuk memperbarui alat yang terinstal bersama bagian lain dari Omarchy. Alias `mup` hanya memperbarui alat yang dikelola mise. Untuk menambahkan alat lain ke konfigurasi Anda sendiri, gunakan `mise use -g <tool>`.
+Jalankan `unbloarchy update` untuk memperbarui alat yang terinstal bersama bagian lain dari Unbloarchy. Alias `mup` hanya memperbarui alat yang dikelola mise. Untuk menambahkan alat lain ke konfigurasi Anda sendiri, gunakan `mise use -g <tool>`.
 
 Penyiapan Python juga menginstal `uv` melalui mise. Menghapus lingkungan pengembangan Python tetap membuat `uv` tersedia sebagai alat independen.
 
@@ -47,15 +47,15 @@ Jika Anda sudah memiliki tabel `[settings]`, tambahkan entri di sana; perluas da
 
 ### Menghapus dan memulihkan bawaan
 
-_Remove Preinstalls_ membuat mise melewati deklarasi alat Omarchy untuk pengguna Anda, dengan menambahkannya ke `ignored_config_paths` di `~/.config/mise/miserc.toml`. _Restore Preinstalls_ menghapus baris itu kembali. Alat yang Anda deklarasikan sendiri, di konfigurasi Anda sendiri atau di `mise.toml` sebuah proyek, tetap bekerja dengan cara mana pun. Jika Anda memilih agen bawaan atau menyiapkan Python setelah menghapus prainstal, alat itu ditambahkan ke konfigurasi Anda sendiri. Keduanya hanya berlaku untuk pengguna Anda; pengguna lain di mesin tetap memiliki pilihan mereka sendiri.
+_Remove Preinstalls_ membuat mise melewati deklarasi alat Unbloarchy untuk pengguna Anda, dengan menambahkannya ke `ignored_config_paths` di `~/.config/mise/miserc.toml`. _Restore Preinstalls_ menghapus baris itu kembali. Alat yang Anda deklarasikan sendiri, di konfigurasi Anda sendiri atau di `mise.toml` sebuah proyek, tetap bekerja dengan cara mana pun. Jika Anda memilih agen bawaan atau menyiapkan Python setelah menghapus prainstal, alat itu ditambahkan ke konfigurasi Anda sendiri. Keduanya hanya berlaku untuk pengguna Anda; pengguna lain di mesin tetap memiliki pilihan mereka sendiri.
 
 ## Docker
 
-[Docker](https://www.docker.com/) hampir tidak perlu diperkenalkan lagi. Ini memungkinkan Anda menjalankan kontainer terisolasi, dan Omarchy menginstal semua yang diperlukan untuk menjalankannya dengan baik, termasuk Docker itu sendiri dan [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) hampir tidak perlu diperkenalkan lagi. Ini memungkinkan Anda menjalankan kontainer terisolasi, dan Unbloarchy menginstal semua yang diperlukan untuk menjalankannya dengan baik, termasuk Docker itu sendiri dan [Docker Compose](https://docs.docker.com/compose/).
 
-Secara bawaan pengguna Anda *tidak* berada dalam grup `docker`. Grup itu secara efektif adalah root tanpa kata sandi — apa pun di dalamnya dapat menjalankan `docker run -v /:/host` dan mengambil alih mesin — jadi satu skrip atau dependensi nakal yang berjalan sebagai Anda akan hanya berjarak satu perintah dari root. Jadi di baris perintah Anda menjalankan Docker dengan `sudo` (`sudo docker ps`, `sudo docker compose up`), dan alat grafis yang berkomunikasi dengan daemon — VM Windows — meminta otorisasi saat membutuhkannya. Jika Anda ingin kembali ke kenyamanan penyiapan tanpa grup dan memahami komprominya, aktifkan dari **Setup > Security > Sudoless Docker** (atau jalankan `omarchy-setup-security-sudoless-docker`), yang menambahkan Anda ke grup `docker` setelah sebuah peringatan; kemudian `docker` biasa dan alias `d` bekerja lagi tanpa `sudo`.
+Secara bawaan pengguna Anda *tidak* berada dalam grup `docker`. Grup itu secara efektif adalah root tanpa kata sandi — apa pun di dalamnya dapat menjalankan `docker run -v /:/host` dan mengambil alih mesin — jadi satu skrip atau dependensi nakal yang berjalan sebagai Anda akan hanya berjarak satu perintah dari root. Jadi di baris perintah Anda menjalankan Docker dengan `sudo` (`sudo docker ps`, `sudo docker compose up`), dan alat grafis yang berkomunikasi dengan daemon — VM Windows — meminta otorisasi saat membutuhkannya. Jika Anda ingin kembali ke kenyamanan penyiapan tanpa grup dan memahami komprominya, aktifkan dari **Setup > Security > Sudoless Docker** (atau jalankan `unbloarchy-setup-security-sudoless-docker`), yang menambahkan Anda ke grup `docker` setelah sebuah peringatan; kemudian `docker` biasa dan alias `d` bekerja lagi tanpa `sudo`.
 
-Anda dapat menyiapkan database umum untuk pengembangan lokal di Docker menggunakan _Install > Development > Docker DB_ di menu Omarchy.
+Anda dapat menyiapkan database umum untuk pengembangan lokal di Docker menggunakan _Install > Development > Docker DB_ di menu Unbloarchy.
 
 ## GitHub CLI
 

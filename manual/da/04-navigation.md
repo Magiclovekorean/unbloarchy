@@ -1,8 +1,8 @@
 # Navigation
 
-Alt i Omarchy foregår via tastaturet — _ALTING!_ Når systemet starter første gang, kan du bogstaveligt talt ikke gøre noget som helst med musen alene. Men du kan trykke på `Super + Space` for at åbne Omarchy-menuen, og herfra kan du gøre stort set alt.
+Alt i Unbloarchy foregår via tastaturet — _ALTING!_ Når systemet starter første gang, kan du bogstaveligt talt ikke gøre noget som helst med musen alene. Men du kan trykke på `Super + Space` for at åbne Unbloarchy-menuen, og herfra kan du gøre stort set alt.
 
-Men Omarchy-menuen er ikke engang tænkt som den primære måde at betjene systemet på det meste af tiden. Vi kan gøre det hurtigere end det! Alle de vigtigste programmer er bundet direkte til individuelle genvejstaster. Du starter terminalen med `Super + Return` og en browser med `Super + Shift + Return`. Prøv at gøre det ene efter det andet, og du vil se magien ved Hyprlands tiling i aktion:
+Men Unbloarchy-menuen er ikke engang tænkt som den primære måde at betjene systemet på det meste af tiden. Vi kan gøre det hurtigere end det! Alle de vigtigste programmer er bundet direkte til individuelle genvejstaster. Du starter terminalen med `Super + Return` og en browser med `Super + Shift + Return`. Prøv at gøre det ene efter det andet, og du vil se magien ved Hyprlands tiling i aktion:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Du kan også gå i fuld skærm med `Super + F` eller endda bare i fuld bredde (s
 
 ### Dwindle vs. rullelayout
 
-Omarchys standardlayout hedder dwindle. Det holder alle de vinduer, du åbner på et enkelt arbejdsområde, synlige hele tiden, selv om det er nødt til at formindske dem.
+Unbloarchys standardlayout hedder dwindle. Det holder alle de vinduer, du åbner på et enkelt arbejdsområde, synlige hele tiden, selv om det er nødt til at formindske dem.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Et flydende arbejdsområde fungerer som et traditionelt skrivebord: vinduer overlapper, og du flytter og tilpasser størrelsen på dem selv. Hvert vindue får en titellinje i dit temas farver med knapper til at minimere, maksimere og lukke. `Super + M` minimerer også det fokuserede vindue. Et minimeret vindue venter i docken; klik på dets app for at hente det tilbage. Klik på et vindue for at bringe det frem. Ændr størrelsen på det fra en hvilken som helst kant eller et hvilket som helst hjørne. Dobbeltklik på en titellinje for at maksimere vinduet, mens topbjælken forbliver synlig, og igen for at få dets gamle størrelse tilbage.
 
-Et flydende arbejdsområde viser også en dock med dine fastgjorte apps, alt det, der kører, og et gitter med hver eneste app bag apps-knappen, som `Super + Alt + Space` og _Apps_ i Omarchy-menuen også åbner. Højreklik på en app på gitteret, eller tryk på `Delete`, for at afinstallere den. Klik på en app for at åbne den eller for at bringe dens vindue frem; klik igen for at skifte mellem dens vinduer i rækkefølge. Mellemklik åbner et nyt vindue. Træk et ikon langs docken for at flytte det; hvis du trækker en kørende app ind blandt de andre, bliver den der. Højreklik for at beholde en app i docken, tage den ud eller afslutte den. Docken går af vejen for et fuldskærmsvindue. Højreklik på apps-knappen for at flytte docken til en anden kant eller få den til at skjule sig, indtil markøren når dens kant. Positionen er også under _Appearance > Dock > Dock Position_, og `omarchy dock position left` og `omarchy dock autohide on` indstiller begge fra en terminal. Apps, du beholder i docken, er nedtonede, mens de ikke kører.
+Et flydende arbejdsområde viser også en dock med dine fastgjorte apps, alt det, der kører, og et gitter med hver eneste app bag apps-knappen, som `Super + Alt + Space` og _Apps_ i Unbloarchy-menuen også åbner. Højreklik på en app på gitteret, eller tryk på `Delete`, for at afinstallere den. Klik på en app for at åbne den eller for at bringe dens vindue frem; klik igen for at skifte mellem dens vinduer i rækkefølge. Mellemklik åbner et nyt vindue. Træk et ikon langs docken for at flytte det; hvis du trækker en kørende app ind blandt de andre, bliver den der. Højreklik for at beholde en app i docken, tage den ud eller afslutte den. Docken går af vejen for et fuldskærmsvindue. Højreklik på apps-knappen for at flytte docken til en anden kant eller få den til at skjule sig, indtil markøren når dens kant. Positionen er også under _Appearance > Dock > Dock Position_, og `unbloarchy dock position left` og `unbloarchy dock autohide on` indstiller begge fra en terminal. Apps, du beholder i docken, er nedtonede, mens de ikke kører.
 
-Nye arbejdsområder, og alle dem, du ikke har givet deres eget layout med `Super + L`, bruger standardlayoutet. Ændring af standarden nulstiller alle arbejdsområder uden vinduer til den, mens et med vinduer på beholder det layout, det har. Et vindue, der er minimeret til docken, tæller stadig som et vindue på det arbejdsområde, det forlod. Vælg den under _Appearance > Workspace Layout_: Tiling, Scrolling eller Floating. `omarchy-hyprland-workspace-layout-default scrolling` indstiller den fra en terminal.
+Nye arbejdsområder, og alle dem, du ikke har givet deres eget layout med `Super + L`, bruger standardlayoutet. Ændring af standarden nulstiller alle arbejdsområder uden vinduer til den, mens et med vinduer på beholder det layout, det har. Et vindue, der er minimeret til docken, tæller stadig som et vindue på det arbejdsområde, det forlod. Vælg den under _Appearance > Workspace Layout_: Tiling, Scrolling eller Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` indstiller den fra en terminal.
 
 ### Gruppering af vinduer
 

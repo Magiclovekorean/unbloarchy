@@ -1,8 +1,8 @@
 [Metadata]
-Name=Omarchy
+Name=Unbloarchy
 Version=1
-Author=Omarchy
-Description=Generated from the current Omarchy theme
+Author=Unbloarchy
+Description=Generated from the current Unbloarchy theme
 ScaleWithDPI=True
 
 [InputPanel]

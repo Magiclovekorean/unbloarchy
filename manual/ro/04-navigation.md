@@ -1,8 +1,8 @@
 # Navigare
 
-Totul în Omarchy se face de la tastatură — _TOTUL!_ Când sistemul pornește prima dată, literalmente nu poți face nimic doar cu mouse-ul. Dar poți apăsa `Super + Space` ca să afișezi Meniul Omarchy și de aici poți face cam totul.
+Totul în Unbloarchy se face de la tastatură — _TOTUL!_ Când sistemul pornește prima dată, literalmente nu poți face nimic doar cu mouse-ul. Dar poți apăsa `Super + Space` ca să afișezi Meniul Unbloarchy și de aici poți face cam totul.
 
-Dar meniul Omarchy nici măcar nu este gândit să fie modalitatea principală de operare a sistemului în cea mai mare parte a timpului. Putem fi mai rapizi de atât! Toate aplicațiile cele mai importante sunt legate direct de taste rapide individuale. Pornești terminalul cu `Super + Return` și un browser cu `Super + Shift + Return`. Încearcă să le faci una după alta și vei vedea magia placării din Hyprland în acțiune:
+Dar meniul Unbloarchy nici măcar nu este gândit să fie modalitatea principală de operare a sistemului în cea mai mare parte a timpului. Putem fi mai rapizi de atât! Toate aplicațiile cele mai importante sunt legate direct de taste rapide individuale. Pornești terminalul cu `Super + Return` și un browser cu `Super + Shift + Return`. Încearcă să le faci una după alta și vei vedea magia placării din Hyprland în acțiune:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ De asemenea, poți trece pe ecran complet cu `Super + F` sau chiar doar pe lăț
 
 ### Dwindle vs aranjamentul cu derulare
 
-Aranjamentul implicit din Omarchy se numește dwindle. Păstrează toate ferestrele pe care le deschizi pe un singur spațiu de lucru vizibile în permanență, chiar dacă trebuie să le micșoreze.
+Aranjamentul implicit din Unbloarchy se numește dwindle. Păstrează toate ferestrele pe care le deschizi pe un singur spațiu de lucru vizibile în permanență, chiar dacă trebuie să le micșoreze.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Un spațiu de lucru plutitor funcționează ca un desktop tradițional: ferestrele se suprapun, iar tu le muți și le dimensionezi singur. Fiecare fereastră primește o bară de titlu în culorile temei tale, cu butoane pentru minimizare, maximizare și închidere. Și `Super + M` minimizează fereastra focalizată. O fereastră minimizată așteaptă în dock; dă clic pe aplicația ei ca să o aduci înapoi. Dă clic pe o fereastră ca să o aduci în față. Redimensioneaz-o de la orice margine sau colț. Dă dublu clic pe o bară de titlu ca să maximizezi fereastra păstrând bara superioară la vedere și din nou ca să-i redai vechea dimensiune.
 
-Un spațiu de lucru plutitor afișează și un dock, cu aplicațiile tale fixate, tot ce rulează și o grilă cu toate aplicațiile în spatele butonului pentru aplicații, pe care `Super + Alt + Space` și _Apps_ din meniul Omarchy îl deschid de asemenea. Dă clic dreapta pe o aplicație din grilă sau apasă `Delete` ca să o dezinstalezi. Dă clic pe o aplicație ca să o deschizi sau ca să-i aduci fereastra în față; dă clic din nou ca să parcurgi ciclic ferestrele ei. Clicul din mijloc deschide o fereastră nouă. Trage o pictogramă de-a lungul dock-ului ca să o muți; tragerea unei aplicații care rulează printre celelalte o păstrează acolo. Dă clic dreapta ca să păstrezi o aplicație în dock, să o scoți de acolo sau să o închizi. Dock-ul se dă din calea unei ferestre pe ecran complet. Dă clic dreapta pe butonul pentru aplicații ca să muți dock-ul pe altă margine sau ca să-l faci să se ascundă până când indicatorul ajunge la marginea lui. Poziția se află și sub _Appearance > Dock > Dock Position_, iar `omarchy dock position left` și `omarchy dock autohide on` le setează pe amândouă dintr-un terminal. Aplicațiile pe care le păstrezi în dock sunt estompate cât timp nu rulează.
+Un spațiu de lucru plutitor afișează și un dock, cu aplicațiile tale fixate, tot ce rulează și o grilă cu toate aplicațiile în spatele butonului pentru aplicații, pe care `Super + Alt + Space` și _Apps_ din meniul Unbloarchy îl deschid de asemenea. Dă clic dreapta pe o aplicație din grilă sau apasă `Delete` ca să o dezinstalezi. Dă clic pe o aplicație ca să o deschizi sau ca să-i aduci fereastra în față; dă clic din nou ca să parcurgi ciclic ferestrele ei. Clicul din mijloc deschide o fereastră nouă. Trage o pictogramă de-a lungul dock-ului ca să o muți; tragerea unei aplicații care rulează printre celelalte o păstrează acolo. Dă clic dreapta ca să păstrezi o aplicație în dock, să o scoți de acolo sau să o închizi. Dock-ul se dă din calea unei ferestre pe ecran complet. Dă clic dreapta pe butonul pentru aplicații ca să muți dock-ul pe altă margine sau ca să-l faci să se ascundă până când indicatorul ajunge la marginea lui. Poziția se află și sub _Appearance > Dock > Dock Position_, iar `unbloarchy dock position left` și `unbloarchy dock autohide on` le setează pe amândouă dintr-un terminal. Aplicațiile pe care le păstrezi în dock sunt estompate cât timp nu rulează.
 
-Spațiile de lucru noi și oricare cărora nu le-ai dat un aranjament propriu cu `Super + L` folosesc aranjamentul implicit. Schimbarea celui implicit resetează la acesta fiecare spațiu de lucru fără ferestre, în timp ce unul cu ferestre pe el păstrează aranjamentul pe care îl are. O fereastră minimizată în dock încă se numără ca fereastră pe spațiul de lucru pe care l-a părăsit. Alege-l sub _Appearance > Workspace Layout_: Tiling, Scrolling sau Floating. `omarchy-hyprland-workspace-layout-default scrolling` îl setează dintr-un terminal.
+Spațiile de lucru noi și oricare cărora nu le-ai dat un aranjament propriu cu `Super + L` folosesc aranjamentul implicit. Schimbarea celui implicit resetează la acesta fiecare spațiu de lucru fără ferestre, în timp ce unul cu ferestre pe el păstrează aranjamentul pe care îl are. O fereastră minimizată în dock încă se numără ca fereastră pe spațiul de lucru pe care l-a părăsit. Alege-l sub _Appearance > Workspace Layout_: Tiling, Scrolling sau Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` îl setează dintr-un terminal.
 
 ### Gruparea ferestrelor
 

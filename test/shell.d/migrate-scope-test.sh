@@ -7,40 +7,40 @@ source "$(dirname "$0")/base-test.sh"
 test_tmp=$(mktemp -d)
 trap 'rm -rf "$test_tmp"' EXIT
 
-test_root="$test_tmp/omarchy"
+test_root="$test_tmp/unbloarchy"
 test_home="$test_tmp/home"
 stub_bin="$test_tmp/bin"
 mkdir -p "$test_root/migrations" "$test_home" "$stub_bin"
 
-cat >"$stub_bin/omarchy-notification-dismiss" <<'SH'
+cat >"$stub_bin/unbloarchy-notification-dismiss" <<'SH'
 #!/bin/bash
 printf '%s\n' "$1" >>"$TEST_DISMISSALS"
 SH
-chmod +x "$stub_bin/omarchy-notification-dismiss"
+chmod +x "$stub_bin/unbloarchy-notification-dismiss"
 
 cat >"$test_root/migrations/100-first.sh" <<'SH'
-[[ $OMARCHY_PATH == "$TEST_EXPECTED_OMARCHY_PATH" ]]
+[[ $OMARCHY_PATH == "$TEST_EXPECTED_UNBLOARCHY_PATH" ]]
 echo first >>"$TEST_CALLS"
 SH
 cat >"$test_root/migrations/200-second.sh" <<'SH'
-[[ $OMARCHY_PATH == "$TEST_EXPECTED_OMARCHY_PATH" ]]
+[[ $OMARCHY_PATH == "$TEST_EXPECTED_UNBLOARCHY_PATH" ]]
 echo second >>"$TEST_CALLS"
 SH
 
 calls="$test_tmp/calls"
 dismissals="$test_tmp/dismissals"
 
-# $1 is HOME, $2 is OMARCHY_PATH; the rest are omarchy-migrate's arguments.
+# $1 is HOME, $2 is UNBLOARCHY_PATH; the rest are unbloarchy-migrate's arguments.
 run_migrate() {
   local home="$1" root="$2"
   shift 2
   HOME="$home" \
-  OMARCHY_PATH="$root" \
+  UNBLOARCHY_PATH="$root" \
   PATH="$stub_bin:$ROOT/bin:$PATH" \
-  TEST_EXPECTED_OMARCHY_PATH="$root" \
+  TEST_EXPECTED_UNBLOARCHY_PATH="$root" \
   TEST_CALLS="${TEST_CALLS:-$calls}" \
   TEST_DISMISSALS="$dismissals" \
-    "$ROOT/bin/omarchy-migrate" "$@"
+    "$ROOT/bin/unbloarchy-migrate" "$@"
 }
 
 if ! run_migrate "$test_home" "$test_root" --pending >"$test_tmp/pending.out"; then
@@ -53,11 +53,11 @@ pass "migration runner detects pending migrations"
 run_migrate "$test_home" "$test_root" >"$test_tmp/first-run.out"
 [[ $(sed -n '1p' "$calls") == "first" ]] || fail "migration runner runs first migration"
 [[ $(sed -n '2p' "$calls") == "second" ]] || fail "migration runner runs second migration"
-[[ -f $test_home/.local/state/omarchy/migrations/100-first.sh ]] || fail "migration runner records first migration marker"
-[[ -f $test_home/.local/state/omarchy/migrations/200-second.sh ]] || fail "migration runner records second migration marker"
+[[ -f $test_home/.local/state/unbloarchy/migrations/100-first.sh ]] || fail "migration runner records first migration marker"
+[[ -f $test_home/.local/state/unbloarchy/migrations/200-second.sh ]] || fail "migration runner records second migration marker"
 pass "migration runner runs all migrations"
 
-grep -Fx 'Omarchy Migrations' "$dismissals" >/dev/null || fail "migration runner dismisses migration notifications"
+grep -Fx 'Unbloarchy Migrations' "$dismissals" >/dev/null || fail "migration runner dismisses migration notifications"
 pass "migration runner clears completed migration notifications"
 
 run_migrate "$test_home" "$test_root" >"$test_tmp/second-run.out"
@@ -70,7 +70,7 @@ fi
 [[ ! -s $test_tmp/not-pending.out ]] || fail "migration runner --pending stays quiet without pending migrations"
 pass "migration runner detects no pending migrations"
 
-failure_root="$test_tmp/failure-omarchy"
+failure_root="$test_tmp/failure-unbloarchy"
 failure_home="$test_tmp/failure-home"
 mkdir -p "$failure_root/migrations" "$failure_home"
 
@@ -85,12 +85,12 @@ run_migrate "$failure_home" "$failure_root" >"$test_tmp/failure.out" 2>"$test_tm
 failure_status=$?
 set -e
 (( failure_status != 0 )) || fail "migration runner exits non-zero when a migration fails"
-[[ ! -f $failure_home/.local/state/omarchy/migrations/500-fail.sh ]] || fail "migration runner does not mark failed migration complete"
+[[ ! -f $failure_home/.local/state/unbloarchy/migrations/500-fail.sh ]] || fail "migration runner does not mark failed migration complete"
 grep -q '^before-fail$' "$calls" || fail "migration runner started failing migration"
 ! grep -q '^after-fail$' "$calls" || fail "migration runner stops failing migration under strict mode"
 pass "migration runner does not mark failed migrations complete"
 
-stdin_root="$test_tmp/stdin-omarchy"
+stdin_root="$test_tmp/stdin-unbloarchy"
 stdin_home="$test_tmp/stdin-home"
 stdin_calls="$test_tmp/stdin-calls"
 mkdir -p "$stdin_root/migrations" "$stdin_home"
@@ -110,7 +110,7 @@ grep -q '^reader:migration input$' "$stdin_calls" ||
   fail "migration runner preserves the caller's stdin for a migration" "$(cat "$stdin_calls")"
 grep -q '^after-reader$' "$stdin_calls" ||
   fail "a migration reading stdin does not swallow later queue entries" "$(cat "$stdin_calls")"
-[[ -f $stdin_home/.local/state/omarchy/migrations/100-reader.sh &&
-  -f $stdin_home/.local/state/omarchy/migrations/200-after.sh ]] ||
+[[ -f $stdin_home/.local/state/unbloarchy/migrations/100-reader.sh &&
+  -f $stdin_home/.local/state/unbloarchy/migrations/200-after.sh ]] ||
   fail "migration runner marks both stdin-isolated migrations complete"
 pass "migration queue uses a private file descriptor instead of migration stdin"

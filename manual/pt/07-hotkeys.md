@@ -6,7 +6,7 @@ Pode ver todas as principais combinações de teclas com `Super + K` (combinaç�
 
 | Atalho                  | Função              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Menu Omarchy (aplicações e tudo o resto)    |
+| `Super + Space`           | Menu Unbloarchy (aplicações e tudo o resto)    |
 | `Super + Alt + Space` | Grelha de aplicações |
 | `Super + Escape` | Menu do sistema (suspender, reiniciar, etc.)  |
 | `Super + Ctrl + L` | Bloquear o computador |
@@ -143,7 +143,7 @@ Altere/acrescente combinações em `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Colar    |
 | `Super + Ctrl + V`           | Gestor da área de transferência    |
 
-Normalmente, no Linux, precisa de `Ctrl + Shift + C/V` para copiar e colar no terminal e de `Ctrl + C/V` para o fazer em todo o resto. Estes atalhos unificados de área de transferência do Omarchy funcionam em todo o lado.
+Normalmente, no Linux, precisa de `Ctrl + Shift + C/V` para copiar e colar no terminal e de `Ctrl + C/V` para o fazer em todo o resto. Estes atalhos unificados de área de transferência do Unbloarchy funcionam em todo o lado.
 
 ## Captura
 
@@ -164,7 +164,7 @@ Normalmente, no Linux, precisa de `Ctrl + Shift + C/V` para copiar e colar no te
 
 Nas gravações de ecrã, o atalho pergunta primeiro que áudio pretende e só depois inicia a gravação. Prima-o outra vez para parar. Consulte [capturas de ecrã e gravação](12-screenshots-recording.md) para obter os detalhes.
 
-Todas as opções de captura também estão acessíveis em _Acionador > Captura_ no menu Omarchy (`Super + Space`).
+Todas as opções de captura também estão acessíveis em _Acionador > Captura_ no menu Unbloarchy (`Super + Space`).
 
 ## Notificações
 
@@ -186,9 +186,9 @@ Todas as opções de captura também estão acessíveis em _Acionador > Captura_
 | `Super + Backspace` | Alternar a transparência numa janela |
 | `Super + Ctrl + Backspace` | Alternar o formato quadrado de uma única janela |
 
-As imagens de fundo extra estão em `~/.config/omarchy/backgrounds/<theme name>`. Também disponíveis através de _Instalar > Estilo > Fundo_ no menu Omarchy.
+As imagens de fundo extra estão em `~/.config/unbloarchy/backgrounds/<theme name>`. Também disponíveis através de _Instalar > Estilo > Fundo_ no menu Unbloarchy.
 
-Todas as opções de estilo também estão acessíveis em _Estilo_ no menu Omarchy (`Super + Space`).
+Todas as opções de estilo também estão acessíveis em _Estilo_ no menu Unbloarchy (`Super + Space`).
 
 ## Alternâncias
 
@@ -289,7 +289,7 @@ Estas funções têm de ser executadas dentro de uma sessão Tmux.
 
 ## Terminal Ghostty
 
-O terminal Ghostty é instalado através de _Instalar > Terminal_ no menu Omarchy.
+O terminal Ghostty é instalado através de _Instalar > Terminal_ no menu Unbloarchy.
 
 | Atalho                  | Função              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Pode usar `Super + Ctrl + E` para mostrar um seletor de emojis completo que colo
 | `Shift + CapsLock Space N` | O seu nome (tal como introduzido na configuração)  |
 | `Shift + CapsLock Space E` | O seu e-mail (tal como introduzido na configuração)  |
 
-Pode acrescentar mais dos seus ao editar `~/.XCompose` e depois executar `omarchy-restart-xcompose` no terminal para que as alterações sejam reconhecidas.
+Pode acrescentar mais dos seus ao editar `~/.XCompose` e depois executar `unbloarchy-restart-xcompose` no terminal para que as alterações sejam reconhecidas.

@@ -1,22 +1,22 @@
 # NVIDIA N1x laptop (GB10-class SoC, MediaTek CPU-side peripherals; first seen
 # as the Dell XPS 16 DX16263). Runs in the target chroot from
-# omarchy-apply-hardware, after the settings package has dropped its Limine and
+# unbloarchy-apply-hardware, after the settings package has dropped its Limine and
 # mkinitcpio defaults and before the ISO's final limine-update builds the UKIs.
 
-omarchy-hw-aarch64-n1x || return 0
+unbloarchy-hw-aarch64-n1x || return 0
 
 echo "Detected NVIDIA N1x platform, applying platform configuration..."
 
 # The installer puts linux-omarchy and its headers on the machine, and the N1x
 # package list names them. Leave no other kernel for Limine to show.
-omarchy-pkg-drop linux linux-headers linux-aarch64 linux-aarch64-headers
+unbloarchy-pkg-drop linux linux-headers linux-aarch64 linux-aarch64-headers
 
 # The internal keyboard and touchpad are I2C-HID devices behind the MediaTek
 # MT8901 I2C controllers (ACPI NVDA0200). The keyboard hook only pulls in
 # drivers/hid, so add the I2C controller and I2C-HID transport to type the disk
 # passphrase.
 mkdir -p /etc/mkinitcpio.conf.d
-cat > /etc/mkinitcpio.conf.d/omarchy-n1x-input.conf <<'CONF'
+cat > /etc/mkinitcpio.conf.d/unbloarchy-n1x-input.conf <<'CONF'
 # N1x: the internal keyboard is I2C-HID behind the MediaTek I2C controllers;
 # see install/hardware/n1x.sh.
 MODULES+=(i2c_mt65xx i2c_hid_acpi)
@@ -27,7 +27,7 @@ CONF
 # The firmware publishes an ACPI SPCR serial console at 0x16a00000; without
 # acpi=nospcr the kernel adopts it and the LUKS prompt and any initramfs
 # emergency shell go to a UART nobody is watching. The ISO installer gives
-# every aarch64 install console=tty0 acpi=nospcr (00-omarchy-console.conf). The
+# every aarch64 install console=tty0 acpi=nospcr (00-unbloarchy-console.conf). The
 # normal entry otherwise boots as quietly as on x86, so Plymouth stays up from
 # the LUKS prompt to the login screen; the rescue entry below is the verbose
 # one. BOOT_ORDER is a plain assignment where the last file read wins, hence
@@ -44,7 +44,7 @@ mkdir -p /etc/limine-entry-tool.d
 # NVIDIA's images do, restore the full range when cppc_cpufreq loads and when a
 # core comes back online, then turn autonomous selection on, which programs the
 # floor and ceiling from that range.
-cat > /etc/udev/rules.d/71-omarchy-n1x-cppc.rules <<'RULES'
+cat > /etc/udev/rules.d/71-unbloarchy-n1x-cppc.rules <<'RULES'
 # N1x: the firmware hands over each core with its CPPC floor raised to its
 # ceiling, so restore the full range and turn on autonomous selection, which
 # programs the floor and ceiling from it; see install/hardware/n1x.sh.
@@ -56,19 +56,19 @@ RULES
 # keeps a tunnel root port awake while a dock's PCIe tunnel runs through it.
 # The firmware leaves those root ports unconfigured, so reserve bus numbers and
 # windows for docks behind them. A dock or adapter is approved through
-# Omarchy's Thunderbolt authorization prompt, like any other accessory.
+# Unbloarchy's Thunderbolt authorization prompt, like any other accessory.
 #
 # The ASUS ProArt P14's sizes are validated with a CalDigit TS4 on all three
 # ports. Other N1x laptops (the Dell XPS 16) set aside fewer bus numbers, as
 # tested there with a TS4.
-if omarchy-hw-match "H7407BA"; then
-  cat > /etc/limine-entry-tool.d/00-omarchy-n1x-usb4.conf <<'CONF'
+if unbloarchy-hw-match "H7407BA"; then
+  cat > /etc/limine-entry-tool.d/00-unbloarchy-n1x-usb4.conf <<'CONF'
 # N1x: leave room for docks behind the USB4 tunnel root ports; see
 # install/hardware/n1x.sh.
 KERNEL_CMDLINE[default]+=" pci=hpbussize=0x80,hpmmiosize=32M,hpmmioprefsize=32G"
 CONF
 else
-  cat > /etc/limine-entry-tool.d/00-omarchy-n1x-usb4.conf <<'CONF'
+  cat > /etc/limine-entry-tool.d/00-unbloarchy-n1x-usb4.conf <<'CONF'
 # N1x: leave bus numbers for docks behind the USB4 tunnel root ports; see
 # install/hardware/n1x.sh.
 KERNEL_CMDLINE[default]+=" pci=hpbussize=0x20"
@@ -95,7 +95,7 @@ printf '%s\n' \
   "KERNEL_CMDLINE[fallback]=\"$rescue_cmdline\"" \
   'EXCLUDE_SNAPSHOT_ENTRIES="Windows*, windows*, *fallback"' \
   'BOOT_ORDER="linux-omarchy, linux-omarchy-fallback, *, Snapshots"' \
-  > /etc/limine-entry-tool.d/zz-omarchy-n1x-boot-order.conf
+  > /etc/limine-entry-tool.d/zz-unbloarchy-n1x-boot-order.conf
 
 mapfile -t n1x_pkgbase_files < <(grep -lFx linux-omarchy /usr/lib/modules/*/pkgbase 2>/dev/null || true)
 if (( ${#n1x_pkgbase_files[@]} != 1 )); then
@@ -121,10 +121,10 @@ n1x_kernel_version=${n1x_kernel_version%/pkgbase}
 # Spark) so Hyprland sees exactly one DRM device. Verified 2026-09-11:
 # eDP-1 at 1920x1200@120 with nothing else configured.
 bios_version=$(cat /sys/class/dmi/id/bios_version 2>/dev/null || true)
-rm -f /etc/modprobe.d/nvidia.conf /etc/mkinitcpio.conf.d/nvidia.conf /etc/modprobe.d/omarchy-n1x-nvidia-disable.conf
+rm -f /etc/modprobe.d/nvidia.conf /etc/mkinitcpio.conf.d/nvidia.conf /etc/modprobe.d/unbloarchy-n1x-nvidia-disable.conf
 n1x_gpu_driver=unloaded
 if [[ ! $bios_version =~ ^0\. ]]; then
-  omarchy-pkg-add nvidia-open-dkms nvidia-utils libva-nvidia-driver
+  unbloarchy-pkg-add nvidia-open-dkms nvidia-utils libva-nvidia-driver
   # Early KMS lists the NVIDIA modules in the initramfs, so a DKMS build that
   # failed for this kernel would fail every UKI build. Fall back to the
   # firmware framebuffer instead: a software-rendered desktop beats no boot.
@@ -148,7 +148,7 @@ CONF
     '# N1x on firmware >= 1.0: the GPU owns the panel; drop the firmware' \
     '# framebuffer so Hyprland sees one DRM device.' \
     'KERNEL_CMDLINE[default]+=" initcall_blacklist=simpledrm_platform_driver_init"' \
-    > /etc/limine-entry-tool.d/00-omarchy-n1x-gpu.conf
+    > /etc/limine-entry-tool.d/00-unbloarchy-n1x-gpu.conf
 
   # The panel stays at its dim power-on backlight until the NVIDIA backlight
   # is first written: its DPCD brightness registers read zero and nvidia_0
@@ -156,7 +156,7 @@ CONF
   # filesystem is unlocked, so the LUKS prompt is nearly black. An initramfs
   # hook right after plymouth writes it first.
   mkdir -p /etc/initcpio/install /etc/initcpio/hooks
-  cat > /etc/initcpio/install/omarchy-n1x-boot-brightness <<'HOOK'
+  cat > /etc/initcpio/install/unbloarchy-n1x-boot-brightness <<'HOOK'
 #!/bin/bash
 
 build() {
@@ -169,7 +169,7 @@ Light the NVIDIA N1x panel for Plymouth's LUKS prompt.
 HELPEOF
 }
 HOOK
-  cat > /etc/initcpio/hooks/omarchy-n1x-boot-brightness <<'HOOK'
+  cat > /etc/initcpio/hooks/unbloarchy-n1x-boot-brightness <<'HOOK'
 #!/usr/bin/ash
 
 # The panel stays at its dim power-on backlight until the NVIDIA backlight is
@@ -182,21 +182,21 @@ run_hook() {
     fi
 }
 HOOK
-  cat > /etc/mkinitcpio.conf.d/zz-omarchy-n1x-boot-brightness.conf <<'CONF'
+  cat > /etc/mkinitcpio.conf.d/zz-unbloarchy-n1x-boot-brightness.conf <<'CONF'
 # N1x: light the panel for Plymouth's LUKS prompt; see install/hardware/n1x.sh.
-# Sorts after omarchy_hooks.conf so HOOKS is already set.
-_omarchy_n1x_hooks=()
-for _omarchy_n1x_hook in "${HOOKS[@]}"; do
-  _omarchy_n1x_hooks+=("$_omarchy_n1x_hook")
-  [[ $_omarchy_n1x_hook == plymouth ]] && _omarchy_n1x_hooks+=(omarchy-n1x-boot-brightness)
+# Sorts after unbloarchy_hooks.conf so HOOKS is already set.
+_unbloarchy_n1x_hooks=()
+for _unbloarchy_n1x_hook in "${HOOKS[@]}"; do
+  _unbloarchy_n1x_hooks+=("$_unbloarchy_n1x_hook")
+  [[ $_unbloarchy_n1x_hook == plymouth ]] && _unbloarchy_n1x_hooks+=(unbloarchy-n1x-boot-brightness)
 done
-HOOKS=("${_omarchy_n1x_hooks[@]}")
-unset _omarchy_n1x_hooks _omarchy_n1x_hook
+HOOKS=("${_unbloarchy_n1x_hooks[@]}")
+unset _unbloarchy_n1x_hooks _unbloarchy_n1x_hook
 CONF
 else
-  rm -f /etc/limine-entry-tool.d/00-omarchy-n1x-gpu.conf \
-    /etc/mkinitcpio.conf.d/zz-omarchy-n1x-boot-brightness.conf
-  cat > /etc/modprobe.d/omarchy-n1x-nvidia-disable.conf <<'CONF'
+  rm -f /etc/limine-entry-tool.d/00-unbloarchy-n1x-gpu.conf \
+    /etc/mkinitcpio.conf.d/zz-unbloarchy-n1x-boot-brightness.conf
+  cat > /etc/modprobe.d/unbloarchy-n1x-nvidia-disable.conf <<'CONF'
 # N1x: the NVIDIA stack cannot drive this panel here; see install/hardware/n1x.sh.
 blacklist nvidia
 blacklist nvidia_drm
@@ -209,6 +209,6 @@ install nvidia_uvm /bin/false
 CONF
 fi
 
-# omarchy-n1x-probe collects hardware and boot evidence on demand, from the
+# unbloarchy-n1x-probe collects hardware and boot evidence on demand, from the
 # rescue entry or a running system, and uses lspci.
-omarchy-pkg-add pciutils
+unbloarchy-pkg-add pciutils

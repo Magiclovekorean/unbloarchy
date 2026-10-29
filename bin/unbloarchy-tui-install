@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# omarchy:summary=Create a desktop launcher for a terminal UI app
-# omarchy:args=[name command window-style icon-url-or-name]
+# unbloarchy:summary=Create a desktop launcher for a terminal UI app
+# unbloarchy:args=[name command window-style icon-url-or-name]
 
 set -e
 
@@ -38,11 +38,11 @@ install_user_icon() {
 }
 
 if (( $# != 4 )); then
-  echo -e "\e[32m$(omarchy-i18n tui.intro)\n\e[0m"
-  APP_NAME=$(gum input --prompt "$(omarchy-i18n tui.namePrompt)" --placeholder "$(omarchy-i18n tui.namePlaceholder)")
-  APP_EXEC=$(gum input --prompt "$(omarchy-i18n tui.commandPrompt)" --placeholder "$(omarchy-i18n tui.commandPlaceholder "lazydocker" "bash -c 'dust; read -n 1 -s'")")
-  WINDOW_STYLE=$(gum choose --header "$(omarchy-i18n tui.windowStyle)" float tile)
-  ICON_REF=$(gum input --prompt "$(omarchy-i18n tui.iconPrompt)" --placeholder "$(omarchy-i18n tui.iconPlaceholder "https://dashboardicons.com")")
+  echo -e "\e[32m$(unbloarchy-i18n tui.intro)\n\e[0m"
+  APP_NAME=$(gum input --prompt "$(unbloarchy-i18n tui.namePrompt)" --placeholder "$(unbloarchy-i18n tui.namePlaceholder)")
+  APP_EXEC=$(gum input --prompt "$(unbloarchy-i18n tui.commandPrompt)" --placeholder "$(unbloarchy-i18n tui.commandPlaceholder "lazydocker" "bash -c 'dust; read -n 1 -s'")")
+  WINDOW_STYLE=$(gum choose --header "$(unbloarchy-i18n tui.windowStyle)" float tile)
+  ICON_REF=$(gum input --prompt "$(unbloarchy-i18n tui.iconPrompt)" --placeholder "$(unbloarchy-i18n tui.iconPlaceholder "https://dashboardicons.com")")
 else
   APP_NAME="$1"
   APP_EXEC="$2"
@@ -69,7 +69,7 @@ if [[ $ICON_REF =~ ^https?:// ]]; then
 elif [[ -f $ICON_REF ]]; then
   ICON_VALUE=$(install_user_icon "$ICON_REF" "$(safe_icon_name "$APP_NAME")")
 else
-  # Bundled Omarchy icons are package-owned under /usr/share/icons/hicolor.
+  # Bundled Unbloarchy icons are package-owned under /usr/share/icons/hicolor.
   ICON_VALUE=$(icon_name_from_ref "$ICON_REF")
 fi
 

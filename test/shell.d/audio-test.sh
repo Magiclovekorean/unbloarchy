@@ -112,9 +112,9 @@ const read = (file) => fs.readFileSync(path.join(root, file), 'utf8')
 // Platform quirks arrive as hints; the audio code names no platform or hardware of its own.
 const sources = ['shell/plugins/panels/audio/Panel.qml', 'shell/plugins/panels/audio/Model.js', 'shell/Commons/AudioNodes.qml',
   'shell/Commons/AudioNodesModel.js', 'shell/Commons/UntypedInput.qml', 'shell/plugins/bar/widgets/Microphone.qml',
-  'bin/omarchy-audio-input-set-default', 'bin/omarchy-audio-sink-availability']
+  'bin/unbloarchy-audio-input-set-default', 'bin/unbloarchy-audio-sink-availability']
 for (const file of sources)
-  assert(!/apple|asahi|macbook|j[0-9]{3}|omarchy-hw-|platform-sound/i.test(read(file)), file + ' names no platform')
+  assert(!/apple|asahi|macbook|j[0-9]{3}|unbloarchy-hw-|platform-sound/i.test(read(file)), file + ' names no platform')
 
 const panel = read('shell/plugins/panels/audio/Panel.qml')
 {
@@ -125,15 +125,15 @@ const panel = read('shell/plugins/panels/audio/Panel.qml')
   const state = { volumeSinkName: '', volumeSinkStale: false, volumeSinkGeneration: 0, volumeSinkRequest: -1 }
   resolve({ name: 'alsa_output.pci-0000_00_1f.3.analog-stereo' }, proc, state)
   assert(!proc.running && state.volumeSinkName === 'alsa_output.pci-0000_00_1f.3.analog-stereo', 'a hardware output resolves to itself without the script')
-  resolve({ name: 'omarchy_speaker_tuning' }, proc, state)
+  resolve({ name: 'unbloarchy_speaker_tuning' }, proc, state)
   assert(proc.running, 'a DSP output resolves through the script')
-  resolve({ name: 'omarchy_speaker_tuning' }, proc, state)
+  resolve({ name: 'unbloarchy_speaker_tuning' }, proc, state)
   assert(state.volumeSinkStale, 'a change during a resolve is marked for a rerun')
   {
     // Quickshell still reports the process running while it signals exit.
     const exited = new Function('root', 'Qt', panel.match(/id: volumeSinkProc[\s\S]*?onExited: \{([\s\S]*?)\n    \}/)[1])
     const deferred = []
-    const sink = { name: 'omarchy_speaker_tuning' }
+    const sink = { name: 'unbloarchy_speaker_tuning' }
     state.resolveVolumeSink = () => resolve(sink, proc, state)
     const requestBefore = state.volumeSinkRequest
     exited(state, { callLater: callback => deferred.push(callback) })

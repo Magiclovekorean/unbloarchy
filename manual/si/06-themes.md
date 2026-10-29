@@ -1,8 +1,8 @@
 # තේමා
 
-Omarchy සමඟ ලස්සන තේමා විසි දෙකක් ලැබේ. Omarchy Menu එකේ _පෙනුම > තේමාව_ හරහා ඔබට ඒවා අතරින් තෝරා ගත හැක (`Super + Space`), නැතහොත් `Super + Ctrl + T` භාවිතයෙන් තේමා තේරීම වෙත කෙලින්ම යා හැක.
+Unbloarchy සමඟ ලස්සන තේමා විසි දෙකක් ලැබේ. Unbloarchy Menu එකේ _පෙනුම > තේමාව_ හරහා ඔබට ඒවා අතරින් තෝරා ගත හැක (`Super + Space`), නැතහොත් `Super + Ctrl + T` භාවිතයෙන් තේමා තේරීම වෙත කෙලින්ම යා හැක.
 
-එක් එක් තේමාව desktop එක, terminal එක, neovim, activity screen එක (btop), Chromium, සහ සම්පූර්ණ Omarchy shell එකම හැඩගස්වයි: top bar එක, menu එක, notifications, OSD, සහ lock screen එක. (Obsidian සඳහා, app එක ඇතුළත _පෙනුම > තේමා_ හරහා ඔබ අතින්ම Omarchy තේමාව තෝරා ගත යුතුය).
+එක් එක් තේමාව desktop එක, terminal එක, neovim, activity screen එක (btop), Chromium, සහ සම්පූර්ණ Unbloarchy shell එකම හැඩගස්වයි: top bar එක, menu එක, notifications, OSD, සහ lock screen එක. (Obsidian සඳහා, app එක ඇතුළත _පෙනුම > තේමා_ හරහා ඔබ අතින්ම Unbloarchy තේමාව තෝරා ගත යුතුය).
 
 තේමාවලට background images කට්ටලයක් ඇති අතර, `Super + Ctrl + W` භාවිතයෙන් ඔබට ඒවා අතරින් තෝරා ගත හැක.
 

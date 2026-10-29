@@ -6,7 +6,7 @@ Poți vedea toate asocierile principale de taste cu `Super + K` (asocierile Tmux
 
 | Tastă rapidă                  | Funcție              |
 | ----------------------- | --------------------- |
-| `Super + Space`           | Meniul Omarchy (aplicații și orice altceva)    |
+| `Super + Space`           | Meniul Unbloarchy (aplicații și orice altceva)    |
 | `Super + Alt + Space` | Grila de aplicații |
 | `Super + Escape` | Meniul de sistem (suspendare, repornire etc.)  |
 | `Super + Ctrl + L` | Blochează computerul |
@@ -143,7 +143,7 @@ Modifică/adaugă asocieri în `~/.config/hypr/bindings.lua`.
 | `Super + V`           | Lipește    |
 | `Super + Ctrl + V`           | Managerul clipboardului    |
 
-De obicei pe Linux, ai nevoie de `Ctrl + Shift + C/V` ca să copiezi și să lipești în terminal și de `Ctrl + C/V` ca să faci asta oriunde altundeva. Aceste taste rapide unificate pentru clipboard din Omarchy funcționează peste tot.
+De obicei pe Linux, ai nevoie de `Ctrl + Shift + C/V` ca să copiezi și să lipești în terminal și de `Ctrl + C/V` ca să faci asta oriunde altundeva. Aceste taste rapide unificate pentru clipboard din Unbloarchy funcționează peste tot.
 
 ## Captură
 
@@ -164,7 +164,7 @@ De obicei pe Linux, ai nevoie de `Ctrl + Shift + C/V` ca să copiezi și să lip
 
 La înregistrările de ecran, tasta rapidă te întreabă mai întâi ce audio vrei, apoi începe înregistrarea. Apas-o din nou ca să oprești. Vezi [capturi de ecran și înregistrare](12-screenshots-recording.md) pentru detalii.
 
-Toate opțiunile de captură sunt accesibile și sub _Trigger > Capture_ în meniul Omarchy (`Super + Space`).
+Toate opțiunile de captură sunt accesibile și sub _Trigger > Capture_ în meniul Unbloarchy (`Super + Space`).
 
 ## Notificări
 
@@ -186,9 +186,9 @@ Toate opțiunile de captură sunt accesibile și sub _Trigger > Capture_ în men
 | `Super + Backspace` | Comută transparența unei ferestre |
 | `Super + Ctrl + Backspace` | Comută aspectul pătrat pentru o singură fereastră |
 
-Imaginile de fundal suplimentare se află în `~/.config/omarchy/backgrounds/<theme name>`. Disponibile și prin _Install > Style > Background_ în meniul Omarchy.
+Imaginile de fundal suplimentare se află în `~/.config/unbloarchy/backgrounds/<theme name>`. Disponibile și prin _Install > Style > Background_ în meniul Unbloarchy.
 
-Toate opțiunile de stil sunt accesibile și sub _Style_ în meniul Omarchy (`Super + Space`).
+Toate opțiunile de stil sunt accesibile și sub _Style_ în meniul Unbloarchy (`Super + Space`).
 
 ## Comutatoare
 
@@ -289,7 +289,7 @@ Aceste funcții trebuie rulate în interiorul unei sesiuni Tmux.
 
 ## Terminalul Ghostty
 
-Terminalul Ghostty se instalează folosind _Install > Terminal_ prin meniul Omarchy.
+Terminalul Ghostty se instalează folosind _Install > Terminal_ prin meniul Unbloarchy.
 
 | Tastă rapidă                  | Funcție              |
 | ----------------------- | --------------------- |
@@ -380,4 +380,4 @@ Poți folosi `Super + Ctrl + E` ca să afișezi un selector complet de emoji car
 | `Shift + CapsLock Space N` | Numele tău (așa cum a fost introdus la configurare)  |
 | `Shift + CapsLock Space E` | E-mailul tău (așa cum a fost introdus la configurare)  |
 
-Poți adăuga mai multe ale tale editând `~/.XCompose`, apoi rulând `omarchy-restart-xcompose` în terminal ca modificările să fie preluate.
+Poți adăuga mai multe ale tale editând `~/.XCompose`, apoi rulând `unbloarchy-restart-xcompose` în terminal ca modificările să fie preluate.

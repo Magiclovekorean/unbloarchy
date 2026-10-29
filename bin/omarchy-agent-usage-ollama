@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-# omarchy:summary=Print the Ollama Cloud usage record as JSON
-# omarchy:args=[--force] [--limits-only]
-# omarchy:hidden=true
+# unbloarchy:summary=Print the Ollama Cloud usage record as JSON
+# unbloarchy:args=[--force] [--limits-only]
+# unbloarchy:hidden=true
 """Collect Ollama Cloud usage into one display-ready JSON record.
 
 Everything the agents panel shows for Ollama Cloud comes from this one
@@ -27,7 +27,7 @@ from typing import Any
 
 # The shared collector plumbing ships with the agents panel.
 sys.dont_write_bytecode = True
-sys.path.insert(0, os.path.join(os.environ["OMARCHY_PATH"], "shell", "plugins", "agents"))
+sys.path.insert(0, os.path.join(os.environ["UNBLOARCHY_PATH"], "shell", "plugins", "agents"))
 from collectors import (  # noqa: E402
   HttpError,
   LimitsCache,
@@ -57,7 +57,7 @@ BALANCE_ENDPOINT = "https://ollama.com/api/balance"
 ME_ENDPOINT = "https://ollama.com/api/me"
 AUTH_HELP_NO_KEY = "Set OLLAMA_API_KEY, or sign in to pi with an Ollama Cloud key, to show the account limits."
 AUTH_HELP_BAD_KEY = (
-  "Ollama Cloud rejected the API key. Update OLLAMA_API_KEY or ~/.config/omarchy/agents/ollama.json,"
+  "Ollama Cloud rejected the API key. Update OLLAMA_API_KEY or ~/.config/unbloarchy/agents/ollama.json,"
   " or sign in to pi again. Local stats are still shown."
 )
 # GET /api/balance (docs.ollama.com/api/balance) answers a legacy plan with

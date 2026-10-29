@@ -90,12 +90,12 @@ Bar widgets may set `barWidget.defaultSection` to `left`, `centerBegin`, `center
 Plugins run as **unsandboxed code** inside `unbloarchy-shell`. Adding warns you before cloning, plugins land disabled so you can review the code before `unbloarchy plugin enable`, and updates show a diff before touching anything. Commands confirm in a terminal even when given arguments; without one they refuse rather than guess. Add `--yes` to skip every prompt (the path for scripts and agents). The scoped interfaces remove direct access to authentication services and avoid handing generic cross-plugin service factories to replacement bars, but visual plugins can still traverse ordinary objects in their shared QML scene. Plugin code also has the same user-level file and process access as the shell.
 
 You can still install by hand: drop a plugin into
-`~/.config/omarchy/plugins/<id>/`, run `omarchy-shell shell rescanPlugins`, then
-`omarchy plugin enable <id>`. A bar widget starts in its declared default
-section; enabling a full bar replaces the one in use. `omarchy bar` drives the
+`~/.config/unbloarchy/plugins/<id>/`, run `unbloarchy-shell shell rescanPlugins`, then
+`unbloarchy plugin enable <id>`. A bar widget starts in its declared default
+section; enabling a full bar replaces the one in use. `unbloarchy bar` drives the
 bar from the CLI — `use | reset | defaults | position | background | put |
 move | set | get`, with placement flags such as `--section` and `--index`.
-The lower-level IPC methods remain available through `omarchy-shell shell ...`.
+The lower-level IPC methods remain available through `unbloarchy-shell shell ...`.
 
 ## Elsewhen
 
@@ -149,11 +149,11 @@ string on a miss.
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left":        [ { "id": "omarchy.menu" } ],
-      "centerBegin": [ { "id": "omarchy.indicators" } ],
-      "center":      [ { "id": "omarchy.clock", "format": "HH:mm" } ],
-      "centerEnd":   [ { "id": "omarchy.weather" } ],
-      "right":       [ { "id": "omarchy.audio" } ]
+      "left":        [ { "id": "unbloarchy.menu" } ],
+      "centerBegin": [ { "id": "unbloarchy.indicators" } ],
+      "center":      [ { "id": "unbloarchy.clock", "format": "HH:mm" } ],
+      "centerEnd":   [ { "id": "unbloarchy.weather" } ],
+      "right":       [ { "id": "unbloarchy.audio" } ]
     }
   },
   "plugins": [
@@ -172,7 +172,7 @@ Rules:
    The sections are `left`, `centerBegin`, `center`, `centerEnd`, `tray`
    and `right`. `tray` is
    drawn inside the tray's drawer, after the app icons, and shows only while
-   `omarchy.tray` is on the bar; it cannot hold the tray itself.
+   `unbloarchy.tray` is on the bar; it cannot hold the tray itself.
 3. Settings are inline on the entry. No `config:` sub-object, no
    merge layers.
 4. Built-in bar widget ids are namespaced (`unbloarchy.clock`, `unbloarchy.audio`, …).
@@ -182,9 +182,9 @@ Rules:
 7. `idle.screensaver` and `idle.lock` are seconds since user idle began.
 8. `version: 1` is required.
 
-The bar's sections run along it in the order `left`, `centerBegin`, `center`, `centerEnd`, `right`. `center` is a box in the middle of the bar whose widgets are centered as one group; `centerBegin` and `centerEnd` hang off its two edges and move out as it grows. An empty box takes no room, so the two meet in the middle of the bar. While a widget is dragged, the other widgets make room for it where it would land, and it gives up its own room unless it would land back there; the box shows as an outline, or a line across the bar when empty, that it can be dropped into or beside, and grows to take in a widget that would land in it. A drop within the bar's thickness of an empty box's middle lands in it. The tray's drawer, which opens while a widget is dragged, holds the tray section the same way: it shows as an outline, or a line when empty, and a drop over it, or within half the bar's thickness of it, lands in it. A layout written from elsewhere during a drag (`omarchy bar move`, a hand edit) that moves widgets about makes the drag let go, and the layout stays as written.
+The bar's sections run along it in the order `left`, `centerBegin`, `center`, `centerEnd`, `right`. `center` is a box in the middle of the bar whose widgets are centered as one group; `centerBegin` and `centerEnd` hang off its two edges and move out as it grows. An empty box takes no room, so the two meet in the middle of the bar. While a widget is dragged, the other widgets make room for it where it would land, and it gives up its own room unless it would land back there; the box shows as an outline, or a line across the bar when empty, that it can be dropped into or beside, and grows to take in a widget that would land in it. A drop within the bar's thickness of an empty box's middle lands in it. The tray's drawer, which opens while a widget is dragged, holds the tray section the same way: it shows as an outline, or a line when empty, and a drop over it, or within half the bar's thickness of it, lands in it. A layout written from elsewhere during a drag (`unbloarchy bar move`, a hand edit) that moves widgets about makes the drag let go, and the layout stays as written.
 
-`config/omarchy/shell.json` describes the fresh-install state. When no
+`config/unbloarchy/shell.json` describes the fresh-install state. When no
 user `shell.json` exists, defaults are used verbatim. Once the user
 customizes, `shell.json` is canonical — there is no deep-merge.
 
@@ -237,7 +237,7 @@ The shell exposes these tokens to QML via three singletons in
   state tokens/helpers, spacing (`Style.spacing.*` / `Style.space(px)`),
   the type scale (`Style.font.*`), bar dimensions
   (`Style.bar.sizeHorizontal` / `Style.bar.sizeVertical`), and motion:
-  `Style.duration(ms)`, which every animation length goes through and which returns 0 when `omarchy toggle animations` has turned Hyprland's animations off (`Style.reduceMotion`), and `Style.easeOut`, the strong ease-out curve (`cubic-bezier(0.23, 1, 0.32, 1)`) for movement and entrances, used as `easing.type: Easing.Bezier; easing.bezierCurve: Style.easeOut`. [`agents/skills/motion.md`](../agents/skills/motion.md) has the rules for using them.
+  `Style.duration(ms)`, which every animation length goes through and which returns 0 when `unbloarchy toggle animations` has turned Hyprland's animations off (`Style.reduceMotion`), and `Style.easeOut`, the strong ease-out curve (`cubic-bezier(0.23, 1, 0.32, 1)`) for movement and entrances, used as `easing.type: Easing.Bezier; easing.bezierCurve: Style.easeOut`. [`agents/skills/motion.md`](../agents/skills/motion.md) has the rules for using them.
 - `Border` — border-spec helpers for QML surfaces. Use with
   `BorderSurface` from `qs.Ui` when a border should honor shell theme
   gradients or per-side widths. `Commons.Color.<section>.border` is only the
@@ -404,7 +404,7 @@ size-vertical   = 28   # left/right bar width at base-size 12
 
 Set `scale-with-font = false` to keep those bar sizes as fixed pixels.
 
-A panel with a camera cutout (a notch) at its top keeps a top bar out of it: the bar is never shorter than the cutout, and its three center sections sit beside the right one. Omarchy knows no panel's cutout itself; the platform's own package describes them in `/usr/share/omarchy-platform/display-cutouts.json`, a fixed path no environment variable moves (see [file-layout.md](file-layout.md#platform-root)):
+A panel with a camera cutout (a notch) at its top keeps a top bar out of it: the bar is never shorter than the cutout, and its three center sections sit beside the right one. Unbloarchy knows no panel's cutout itself; the platform's own package describes them in `/usr/share/unbloarchy-platform/display-cutouts.json`, a fixed path no environment variable moves (see [file-layout.md](file-layout.md#platform-root)):
 
 ```json
 { "panels": [ { "connector": "eDP", "width": 3024, "height": 1964, "top": 64 } ] }

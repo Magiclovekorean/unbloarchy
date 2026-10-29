@@ -1,16 +1,16 @@
 # Mac atbalsts
 
-Omarchy ir iebūvēts atbalsts **Intel Mac** datoriem. Šobrīd ir pāris zināmu ierobežojumu, bet, kamēr par tiem zināt un piekrītat, varat iedot saviem vecajiem Mac jaunu elpu, ielādējot Omarchy.
+Unbloarchy ir iebūvēts atbalsts **Intel Mac** datoriem. Šobrīd ir pāris zināmu ierobežojumu, bet, kamēr par tiem zināt un piekrītat, varat iedot saviem vecajiem Mac jaunu elpu, ielādējot Unbloarchy.
 
 Ņemiet vērā, ka instalēšana M sērijas Mac šobrīd tieši netiek atbalstīta. Vairāk par tā stāvokli varat uzzināt kanālā #omarchy-on-other mūsu [Discord](https://discord.gg/tXFUdasqhY).
 
-Vienkāršā testā 2019. gada MacBook Pro mums izdevās panākt 36% veiktspējas pieaugumu, vienkārši instalējot Omarchy.
+Vienkāršā testā 2019. gada MacBook Pro mums izdevās panākt 36% veiktspējas pieaugumu, vienkārši instalējot Unbloarchy.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Omarchy instalēšana Mac datorā
+### Unbloarchy instalēšana Mac datorā
 
-Omarchy šobrīd atbalsta tikai to, ka tā ir **vienīgā** instalētā OS. Instalēšanas laikā disks tiks notīrīts, un MacOS vairs nebūs sāknējama.
+Unbloarchy šobrīd atbalsta tikai to, ka tā ir **vienīgā** instalētā OS. Instalēšanas laikā disks tiks notīrīts, un MacOS vairs nebūs sāknējama.
 
 Vēlāk to joprojām varat atjaunot ar Internet Recovery, ja vēlaties.
 

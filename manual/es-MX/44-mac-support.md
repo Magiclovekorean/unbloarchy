@@ -1,16 +1,16 @@
 # Compatibilidad con Mac
 
-Omarchy tiene compatibilidad integrada para **Macs Intel**. Hay un par de limitaciones conocidas al momento, pero mientras estés consciente de ellas y te parezcan bien, podrás darle nueva vida a tus Macs viejas cargándoles Omarchy.
+Unbloarchy tiene compatibilidad integrada para **Macs Intel**. Hay un par de limitaciones conocidas al momento, pero mientras estés consciente de ellas y te parezcan bien, podrás darle nueva vida a tus Macs viejas cargándoles Unbloarchy.
 
 Ten en cuenta que por el momento no hay compatibilidad directa para instalar en una Mac de la serie M. Puedes enterarte más sobre el estado de esto en #omarchy-on-other en nuestro [Discord](https://discord.gg/tXFUdasqhY).
 
-En una prueba sencilla, logramos un aumento de rendimiento del 36 % en una MacBook Pro de 2019 solo por instalar Omarchy.
+En una prueba sencilla, logramos un aumento de rendimiento del 36 % en una MacBook Pro de 2019 solo por instalar Unbloarchy.
 
- ![macbook-omarchy](images/macbook-omarchy.webp)
+ ![macbook-unbloarchy](images/macbook-unbloarchy.webp)
 
-### Instalar Omarchy en Mac
+### Instalar Unbloarchy en Mac
 
-Por el momento, Omarchy solo es compatible siendo el **único** sistema operativo instalado. Durante la instalación, la unidad se borrará y MacOS ya no podrá arrancar.
+Por el momento, Unbloarchy solo es compatible siendo el **único** sistema operativo instalado. Durante la instalación, la unidad se borrará y MacOS ya no podrá arrancar.
 
 Aun así, podrás restaurarlo después mediante Recuperación por Internet si así lo deseas.
 

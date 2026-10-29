@@ -2,7 +2,7 @@
 
 ## Alternatyvūs redaktoriai
 
-Omarchy pagal numatytuosius nustatymus pateikiama su [Neovim](https://neovim.io/), bet jei norite kažko įprastesnio ir labiau pažįstamo, galite atverti Omarchy Menu (`Super + Space`) ir peržiūrėti parinktis skiltyje _Įdiegti > Redaktorius_. Ten išvardyti VSCode, Cursor, Zed, Sublime Text, Helix, Vim ir Emacs. Jei nerandate to, ko ieškote, žvilgtelėkite į _Įdiegti > Paketas_ ir patikrinkite, ar jo nėra Arch pakete (o jei nėra, pabandykite _Įdiegti > AUR_ ir patikrinkite AUR).
+Unbloarchy pagal numatytuosius nustatymus pateikiama su [Neovim](https://neovim.io/), bet jei norite kažko įprastesnio ir labiau pažįstamo, galite atverti Unbloarchy Menu (`Super + Space`) ir peržiūrėti parinktis skiltyje _Įdiegti > Redaktorius_. Ten išvardyti VSCode, Cursor, Zed, Sublime Text, Helix, Vim ir Emacs. Jei nerandate to, ko ieškote, žvilgtelėkite į _Įdiegti > Paketas_ ir patikrinkite, ar jo nėra Arch pakete (o jei nėra, pabandykite _Įdiegti > AUR_ ir patikrinkite AUR).
 
 Originalus `vi` redaktorius taip pat pasiekiamas iš karto. Paleiskite `vi filename`, kad redaguotumėte failą terminale.
 
@@ -12,7 +12,7 @@ Visos sistemos numatytąjį redaktorių galite nustatyti skiltyje `Setup > Defau
 
 ## Aplinka
 
-Omarchy palaiko daugybės programavimo aplinkų diegimą per Omarchy Menu (`Super + Space`) skiltį _Įdiegti > Programavimas_. Žinoma, rasite _Ruby on Rails_, bet taip pat visas tris pagrindines JavaScript vykdymo aplinkas (Node.js, Bun, Deno), taip pat populiarias PHP karkasų sistemas, tokias kaip Laravel ir Symfony. O, ir taip pat yra Go, Rust, Python, Java, Elixir (su Phoenix), .NET, OCaml, Zig, Clojure ir Scala. Tai labai platus pasirinkimas!
+Unbloarchy palaiko daugybės programavimo aplinkų diegimą per Unbloarchy Menu (`Super + Space`) skiltį _Įdiegti > Programavimas_. Žinoma, rasite _Ruby on Rails_, bet taip pat visas tris pagrindines JavaScript vykdymo aplinkas (Node.js, Bun, Deno), taip pat populiarias PHP karkasų sistemas, tokias kaip Laravel ir Symfony. O, ir taip pat yra Go, Rust, Python, Java, Elixir (su Phoenix), .NET, OCaml, Zig, Clojure ir Scala. Tai labai platus pasirinkimas!
 
 Daugumą šių aplinkų tvarko [Mise](https://mise.jdx.dev/). Tai įrankis, leidžiantis tame pačiame kompiuteryje įdiegti ir naudoti kelias programavimo kalbos versijas. Tai tarsi rbenv ar rvm, skirtos Ruby, arba virtualenv, skirta Python, bet veikia su daugybe skirtingų aplinkų.
 
@@ -20,7 +20,7 @@ Norėdami įdiegti, tarkime, Ruby, paleistumėte `mise use -g ruby` — tai ir �
 
 ## Iš anksto įdiegti CLI įrankiai
 
-Omarchy įrankius, tokius kaip `gh`, `uv`, ir daugumą [kodavimo agentų](17-ai.md) padaro pasiekiamus per [mise tingųjį diegimą](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Pirmą kartą paleidus vieną iš jų, mise jį įdiegia. Vėlesni paleidimai naudoja įdiegtą versiją; jie netikrina, ar yra naujinimas, kaskart paleidžiant.
+Unbloarchy įrankius, tokius kaip `gh`, `uv`, ir daugumą [kodavimo agentų](17-ai.md) padaro pasiekiamus per [mise tingųjį diegimą](https://mise.jdx.dev/dev-tools/shims.html#lazy-tools). Pirmą kartą paleidus vieną iš jų, mise jį įdiegia. Vėlesni paleidimai naudoja įdiegtą versiją; jie netikrina, ar yra naujinimas, kaskart paleidžiant.
 
 Taip pat galite patikrinti numatytuosius nustatymus arba įdiegti juos iš anksto:
 
@@ -30,7 +30,7 @@ mise install gh               # Install one tool now
 mise install --include-lazy    # Install all configured tools, including lazy tools
 ```
 
-Paleiskite `omarchy update`, kad atnaujintumėte įdiegtus įrankius kartu su likusia Omarchy dalimi. Slapyvardis `mup` atnaujina tik mise tvarkomus įrankius. Norėdami pridėti kitą įrankį į savo konfigūraciją, naudokite `mise use -g <tool>`.
+Paleiskite `unbloarchy update`, kad atnaujintumėte įdiegtus įrankius kartu su likusia Unbloarchy dalimi. Slapyvardis `mup` atnaujina tik mise tvarkomus įrankius. Norėdami pridėti kitą įrankį į savo konfigūraciją, naudokite `mise use -g <tool>`.
 
 Python sąranka taip pat įdiegia `uv` per mise. Pašalinus Python programavimo aplinką, `uv` lieka pasiekiamas kaip savarankiškas įrankis.
 
@@ -47,15 +47,15 @@ Jei jau turite `[settings]` lentelę, įrašą pridėkite ten; išplėskite esam
 
 ### Numatytųjų pašalinimas ir atkūrimas
 
-_Remove Preinstalls_ priverčia mise praleisti Omarchy įrankių deklaracijas jūsų vartotojui, pridėdama jas prie `ignored_config_paths` faile `~/.config/mise/miserc.toml`. _Restore Preinstalls_ tą eilutę vėl pašalina. Įrankiai, kuriuos deklaruojate patys, savo konfigūracijoje arba projekto `mise.toml`, bet kuriuo atveju veikia toliau. Jei pašalinę išankstinius diegimus pasirinksite numatytąjį agentą arba sukursite Python aplinką, tas įrankis bus pridėtas į jūsų pačių konfigūraciją. Abu veiksmai taikomi tik jūsų vartotojui; kiti kompiuterio vartotojai išlaiko savo pasirinkimą.
+_Remove Preinstalls_ priverčia mise praleisti Unbloarchy įrankių deklaracijas jūsų vartotojui, pridėdama jas prie `ignored_config_paths` faile `~/.config/mise/miserc.toml`. _Restore Preinstalls_ tą eilutę vėl pašalina. Įrankiai, kuriuos deklaruojate patys, savo konfigūracijoje arba projekto `mise.toml`, bet kuriuo atveju veikia toliau. Jei pašalinę išankstinius diegimus pasirinksite numatytąjį agentą arba sukursite Python aplinką, tas įrankis bus pridėtas į jūsų pačių konfigūraciją. Abu veiksmai taikomi tik jūsų vartotojui; kiti kompiuterio vartotojai išlaiko savo pasirinkimą.
 
 ## Docker
 
-[Docker](https://www.docker.com/) vargu ar reikia pristatyti. Jis leidžia paleisti izoliuotus konteinerius, o Omarchy įdiegia viską, ko reikia, kad jis gerai veiktų, įskaitant patį Docker ir [Docker Compose](https://docs.docker.com/compose/).
+[Docker](https://www.docker.com/) vargu ar reikia pristatyti. Jis leidžia paleisti izoliuotus konteinerius, o Unbloarchy įdiegia viską, ko reikia, kad jis gerai veiktų, įskaitant patį Docker ir [Docker Compose](https://docs.docker.com/compose/).
 
-Pagal numatytuosius nustatymus jūsų vartotojas *nėra* `docker` grupėje. Ta grupė iš esmės yra root be slaptažodžio — bet kas joje gali paleisti `docker run -v /:/host` ir perimti kompiuterį — todėl vienas nesąžiningas scenarijus ar priklausomybė, veikianti jūsų vardu, priešingu atveju būtų per vieną komandą nuo root. Taigi komandinėje eilutėje Docker paleidžiate su `sudo` (`sudo docker ps`, `sudo docker compose up`), o grafiniai įrankiai, kurie bendrauja su tarnyba — Windows VM — paprašo autorizacijos, kai jos reikia. Jei norite susigrąžinti patogumą be grupės ir suprantate kompromisą, įjunkite tai skiltyje **Sąranka > Sauga > Sudoless Docker** (arba paleiskite `omarchy-setup-security-sudoless-docker`), kuri po įspėjimo pridės jus į `docker` grupę; tada paprastas `docker` ir slapyvardis `d` vėl veiks be `sudo`.
+Pagal numatytuosius nustatymus jūsų vartotojas *nėra* `docker` grupėje. Ta grupė iš esmės yra root be slaptažodžio — bet kas joje gali paleisti `docker run -v /:/host` ir perimti kompiuterį — todėl vienas nesąžiningas scenarijus ar priklausomybė, veikianti jūsų vardu, priešingu atveju būtų per vieną komandą nuo root. Taigi komandinėje eilutėje Docker paleidžiate su `sudo` (`sudo docker ps`, `sudo docker compose up`), o grafiniai įrankiai, kurie bendrauja su tarnyba — Windows VM — paprašo autorizacijos, kai jos reikia. Jei norite susigrąžinti patogumą be grupės ir suprantate kompromisą, įjunkite tai skiltyje **Sąranka > Sauga > Sudoless Docker** (arba paleiskite `unbloarchy-setup-security-sudoless-docker`), kuri po įspėjimo pridės jus į `docker` grupę; tada paprastas `docker` ir slapyvardis `d` vėl veiks be `sudo`.
 
-Įprastas lokaliam programavimui skirtas duomenų bazes Docker galite sukurti naudodami Omarchy meniu punktą _Įdiegti > Programavimas > Docker DB_.
+Įprastas lokaliam programavimui skirtas duomenų bazes Docker galite sukurti naudodami Unbloarchy meniu punktą _Įdiegti > Programavimas > Docker DB_.
 
 ## GitHub CLI
 

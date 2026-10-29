@@ -10,7 +10,7 @@ Kort erbjuder det de bär med sig: _Kopiera kod_ för verifieringskoder (hålls 
 
 För att använda dem utan mus trycker du på `Super + Ctrl + ,`. Den nyaste aviseringen väljs och dess knappar numreras: tryck på en siffra för att använda en, `Enter` för att klicka på aviseringen, `↑` och `↓` för att flytta mellan aviseringar, `Delete` för att avfärda en och `Esc` för att ge tillbaka tangentbordet. Den släpper också taget på egen hand efter några sekunders inaktivitet.
 
-Att tysta aviseringar håller dem tillbaka, förutom Omarchys egna bekräftelser, nödlägesvarningar och verifieringskoder, som du bad om för en stund sedan. Ta fram de senaste få på skärmen igen, oavsett om de hållits tillbaka eller inte, med `Super + Shift + Alt + ,`. Historiken sparas i en dag.
+Att tysta aviseringar håller dem tillbaka, förutom Unbloarchys egna bekräftelser, nödlägesvarningar och verifieringskoder, som du bad om för en stund sedan. Ta fram de senaste få på skärmen igen, oavsett om de hållits tillbaka eller inte, med `Super + Shift + Alt + ,`. Historiken sparas i en dag.
 
 ## Kortkommandoaviseringar
 
@@ -26,7 +26,7 @@ Att tysta aviseringar håller dem tillbaka, förutom Omarchys egna bekräftelser
 
  ![notice-weather](images/notice-weather.webp)
 
-Platsen upptäcks från din IP-adress, vilket oftast är tillräckligt nära, men inte alltid. Du kan precisera den med `omarchy weather location --set Malibu`, eller vara exakt genom att lägga till koordinater: `omarchy weather location --set Malibu 34.0259,-118.7798`. Kör `omarchy weather location` på egen hand för att se var den tror att du är, och `--clear` för att gå tillbaka till automatisk upptäckt.
+Platsen upptäcks från din IP-adress, vilket oftast är tillräckligt nära, men inte alltid. Du kan precisera den med `unbloarchy weather location --set Malibu`, eller vara exakt genom att lägga till koordinater: `unbloarchy weather location --set Malibu 34.0259,-118.7798`. Kör `unbloarchy weather location` på egen hand för att se var den tror att du är, och `--clear` för att gå tillbaka till automatisk upptäckt.
 
 ### Batteri
 

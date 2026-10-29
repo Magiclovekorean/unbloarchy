@@ -1,6 +1,6 @@
 # Shell-functies
 
-Omarchy wordt geleverd met een set shell-functies om veelvoorkomende taken te vereenvoudigen en omslachtige parameteraanroepen in te kapselen.
+Unbloarchy wordt geleverd met een set shell-functies om veelvoorkomende taken te vereenvoudigen en omslachtige parameteraanroepen in te kapselen.
 
 ## Compressie
 

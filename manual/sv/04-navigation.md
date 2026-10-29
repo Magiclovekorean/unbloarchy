@@ -1,8 +1,8 @@
 # Navigering
 
-Allt i Omarchy sker via tangentbordet — _ALLT!_ När systemet startar första gången kan du bokstavligen inte göra någonting med bara musen. Men du kan trycka på `Super + Space` för att visa Omarchy Menu och härifrån kan du göra nästan allt.
+Allt i Unbloarchy sker via tangentbordet — _ALLT!_ När systemet startar första gången kan du bokstavligen inte göra någonting med bara musen. Men du kan trycka på `Super + Space` för att visa Unbloarchy Menu och härifrån kan du göra nästan allt.
 
-Men Omarchy-menyn är inte ens tänkt att vara det huvudsakliga sättet att använda systemet för det mesta. Vi kan bli snabbare än så! Alla de viktigaste applikationerna är bundna direkt till enskilda snabbtangenter. Du startar terminalen med `Super + Return` och en webbläsare med `Super + Shift + Return`. Prova att göra det ena efter det andra, så får du se Hyprlands tiling-magi i aktion:
+Men Unbloarchy-menyn är inte ens tänkt att vara det huvudsakliga sättet att använda systemet för det mesta. Vi kan bli snabbare än så! Alla de viktigaste applikationerna är bundna direkt till enskilda snabbtangenter. Du startar terminalen med `Super + Return` och en webbläsare med `Super + Shift + Return`. Prova att göra det ena efter det andra, så får du se Hyprlands tiling-magi i aktion:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Du kan också gå till helskärm med `Super + F` eller till och med bara till fu
 
 ### Layouterna dwindle och scrolling
 
-Omarchys standardlayout kallas dwindle. Den håller alla fönster du öppnar på en enda arbetsyta synliga hela tiden, även om den måste krympa dem.
+Unbloarchys standardlayout kallas dwindle. Den håller alla fönster du öppnar på en enda arbetsyta synliga hela tiden, även om den måste krympa dem.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 En flytande arbetsyta fungerar som ett traditionellt skrivbord: fönster överlappar, och du flyttar och storleksändrar dem själv. Varje fönster får en titelrad i ditt temas färger, med knappar för att minimera, maximera och stänga. `Super + M` minimerar också det fokuserade fönstret. Ett minimerat fönster väntar i dockan; klicka på dess app för att ta tillbaka det. Klicka på ett fönster för att ta det framåt. Ändra storlek på det från valfri kant eller valfritt hörn. Dubbelklicka på en titelrad för att maximera fönstret samtidigt som det översta fältet hålls i sikte, och igen för att få tillbaka dess gamla storlek.
 
-En flytande arbetsyta visar också en docka, med dina fästa appar, allt som körs, och ett rutnät med varje app bakom appar-knappen, som `Super + Alt + Space` och _Apps_ i Omarchy-menyn också öppnar. Högerklicka på en app på rutnätet, eller tryck på `Delete`, för att avinstallera den. Klicka på en app för att öppna den, eller för att ta dess fönster framåt; klicka igen för att växla genom dess fönster. Mellanklicka öppnar ett nytt fönster. Dra en ikon längs dockan för att flytta den; att dra en körande app in bland de andra behåller den där. Högerklicka för att behålla en app i dockan, ta ut den, eller avsluta den. Dockan flyttar sig ur vägen för ett helskärmsfönster. Högerklicka på appar-knappen för att flytta dockan till en annan kant eller låta den döljas tills pekaren når dess kant. Positionen finns också under _Appearance > Dock > Dock Position_, och `omarchy dock position left` och `omarchy dock autohide on` ställer in båda från en terminal. Appar du behåller i dockan är uttonade medan de inte körs.
+En flytande arbetsyta visar också en docka, med dina fästa appar, allt som körs, och ett rutnät med varje app bakom appar-knappen, som `Super + Alt + Space` och _Apps_ i Unbloarchy-menyn också öppnar. Högerklicka på en app på rutnätet, eller tryck på `Delete`, för att avinstallera den. Klicka på en app för att öppna den, eller för att ta dess fönster framåt; klicka igen för att växla genom dess fönster. Mellanklicka öppnar ett nytt fönster. Dra en ikon längs dockan för att flytta den; att dra en körande app in bland de andra behåller den där. Högerklicka för att behålla en app i dockan, ta ut den, eller avsluta den. Dockan flyttar sig ur vägen för ett helskärmsfönster. Högerklicka på appar-knappen för att flytta dockan till en annan kant eller låta den döljas tills pekaren når dess kant. Positionen finns också under _Appearance > Dock > Dock Position_, och `unbloarchy dock position left` och `unbloarchy dock autohide on` ställer in båda från en terminal. Appar du behåller i dockan är uttonade medan de inte körs.
 
-Nya arbetsytor, och alla som du inte har gett en egen layout med `Super + L`, använder standardlayouten. Att ändra standarden återställer varje arbetsyta utan fönster till den, medan en med fönster på sig behåller layouten den har. Ett fönster som minimerats till dockan räknas fortfarande som ett fönster på arbetsytan det lämnade. Välj den under _Appearance > Workspace Layout_: Tiling, Scrolling, eller Floating. `omarchy-hyprland-workspace-layout-default scrolling` ställer in den från en terminal.
+Nya arbetsytor, och alla som du inte har gett en egen layout med `Super + L`, använder standardlayouten. Att ändra standarden återställer varje arbetsyta utan fönster till den, medan en med fönster på sig behåller layouten den har. Ett fönster som minimerats till dockan räknas fortfarande som ett fönster på arbetsytan det lämnade. Välj den under _Appearance > Workspace Layout_: Tiling, Scrolling, eller Floating. `unbloarchy-hyprland-workspace-layout-default scrolling` ställer in den från en terminal.
 
 ### Gruppera fönster
 

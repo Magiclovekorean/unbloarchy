@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# omarchy:summary=Show or set window corners: theme, sharp, or rounded
-# omarchy:args=[theme|sharp|rounded]
-# omarchy:examples=omarchy hyprland corners | omarchy hyprland corners rounded
+# unbloarchy:summary=Show or set window corners: theme, sharp, or rounded
+# unbloarchy:args=[theme|sharp|rounded]
+# unbloarchy:examples=unbloarchy hyprland corners | unbloarchy hyprland corners rounded
 
-TOGGLES_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/toggles/hypr"
+TOGGLES_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/unbloarchy/toggles/hypr"
 
 # Sharp and rounded are toggle files loaded after every theme, so they override
 # the corners of whichever theme is current. Theme removes both.
@@ -20,22 +20,22 @@ if (( $# == 0 )); then
 fi
 
 case $1 in
-  theme) LABEL=$(omarchy-i18n corners.followTheme) ;;
-  sharp) LABEL=$(omarchy-i18n corners.sharp) ;;
-  rounded) LABEL=$(omarchy-i18n corners.rounded) ;;
+  theme) LABEL=$(unbloarchy-i18n corners.followTheme) ;;
+  sharp) LABEL=$(unbloarchy-i18n corners.sharp) ;;
+  rounded) LABEL=$(unbloarchy-i18n corners.rounded) ;;
   *)
-    echo "Usage: omarchy-hyprland-corners [theme|sharp|rounded]" >&2
+    echo "Usage: unbloarchy-hyprland-corners [theme|sharp|rounded]" >&2
     exit 1
     ;;
 esac
 
 # Save the new choice before dropping the old one, so a failed save keeps it.
 if [[ $1 != "theme" ]]; then
-  mkdir -p "$TOGGLES_DIR" && cp "$OMARCHY_PATH/default/hypr/toggles/corners-$1.lua" "$TOGGLES_DIR/corners-$1.lua" || exit 1
+  mkdir -p "$TOGGLES_DIR" && cp "$UNBLOARCHY_PATH/default/hypr/toggles/corners-$1.lua" "$TOGGLES_DIR/corners-$1.lua" || exit 1
 fi
 for mode in sharp rounded; do
   [[ $mode == "$1" ]] || rm -f "$TOGGLES_DIR/corners-$mode.lua" || exit 1
 done
 
 hyprctl reload >/dev/null || exit 1
-omarchy-notification-send -g 󰘇 "$LABEL"
+unbloarchy-notification-send -g 󰘇 "$LABEL"

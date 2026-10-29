@@ -1,8 +1,8 @@
 # Téamaí
 
-Tagann Omarchy le dhá théama is fiche álainne. Is féidir leat roghnú eatarthu trí _Dealramh > Téama_ sa Roghchlár Omarchy (`Super + Space`) nó léim go díreach chuig an roghnóir téamaí le `Super + Ctrl + T`.
+Tagann Unbloarchy le dhá théama is fiche álainne. Is féidir leat roghnú eatarthu trí _Dealramh > Téama_ sa Roghchlár Unbloarchy (`Super + Space`) nó léim go díreach chuig an roghnóir téamaí le `Super + Ctrl + T`.
 
-Déanann gach téama stíliú ar an deasc, ar an teirminéal, ar neovim, ar an scáileán gníomhaíochta (btop), ar Chromium, agus ar bhlaosc iomlán Omarchy: an barra uachtarach, an roghchlár, na fógraí, an OSD, agus an scáileán glais. (Maidir le Obsidian, ní mór duit téama Omarchy a roghnú de láimh trí _Dealramh > Téamaí_ laistigh den aip).
+Déanann gach téama stíliú ar an deasc, ar an teirminéal, ar neovim, ar an scáileán gníomhaíochta (btop), ar Chromium, agus ar bhlaosc iomlán Unbloarchy: an barra uachtarach, an roghchlár, na fógraí, an OSD, agus an scáileán glais. (Maidir le Obsidian, ní mór duit téama Unbloarchy a roghnú de láimh trí _Dealramh > Téamaí_ laistigh den aip).
 
 Tá sraith íomhánna cúlra ag téamaí ar féidir leat roghnú eatarthu le `Super + Ctrl + W`.
 

@@ -23,7 +23,7 @@ import "Icons.js" as Icons
 Item {
   id: service
 
-  // Injected by omarchy-shell (the first-party service loader).
+  // Injected by unbloarchy-shell (the first-party service loader).
   property var shell: null
 
   // ------------------------------------------------------------- displays
@@ -868,7 +868,7 @@ Item {
     return true
   }
 
-  // Whether a click does something of the card's own: Omarchy's --exec
+  // Whether a click does something of the card's own: Unbloarchy's --exec
   // command, the sender's default action, the sender's own window, or a site
   // to go to. Focusing an app by its name alone does not count.
   function clickable(key) {
@@ -1060,7 +1060,7 @@ Item {
     Hyprland.dispatch('hl.dsp.focus({window = hl.get_window("address:' + win.address + '")})')
   }
 
-  // A click: Omarchy's own --exec command first, then the sender's default
+  // A click: Unbloarchy's own --exec command first, then the sender's default
   // action, then its window, then its site.
   function activate(key, instant) {
     var at = rowIndexFor(key)
@@ -1083,7 +1083,7 @@ Item {
       else if (Markup.hostname(row.source))
         Security.openExternalUrl("https://" + Markup.hostname(row.source) + "/")
       else if (String(row.link || "")) Security.openExternalUrl(String(row.link))
-      else if (String(row.app || "")) Util.execArgv(["omarchy-hyprland-focus-app", String(row.app)])
+      else if (String(row.app || "")) Util.execArgv(["unbloarchy-hyprland-focus-app", String(row.app)])
     }
     closeToast(key, "activated", instant)
   }
@@ -1156,11 +1156,11 @@ Item {
 
   // ------------------------------------------------------------- store
   //
-  // State, not cache, in ~/.local/state/omarchy/notifications/: live.json (on
+  // State, not cache, in ~/.local/state/unbloarchy/notifications/: live.json (on
   // screen), history.json and quiet.json, formats in Store.js. Each file is
   // read once at startup and rewritten whole a moment after it changes, so a
   // burst of arrivals writes it once.
-  readonly property string stateDir: Quickshell.env("HOME") + "/.local/state/omarchy/notifications"
+  readonly property string stateDir: Quickshell.env("HOME") + "/.local/state/unbloarchy/notifications"
   property bool storeReady: false
   property bool liveLoaded: false
   property bool historyLoaded: false
@@ -1317,7 +1317,7 @@ Item {
       "  if [[ -L $file ]]; then rm -f -- \"$file\"; fi\n" +
       "  if [[ -f $file ]]; then chmod 600 -- \"$file\"; elif [[ ! -e $file ]]; then : >\"$file\"; fi\n" +
       "done\n",
-      "omarchy-notifications-state", service.stateDir]
+      "unbloarchy-notifications-state", service.stateDir]
     onExited: function(code) { service.storeReady = code === 0 }
   }
 
@@ -1371,7 +1371,7 @@ Item {
   function showPlaceholder(summary) {
     var key = "placeholder" + nextKey()
     if (!reserveLive(key)) return
-    var row = Store.normalise({ key: key, app: "omarchy-action", summary: summary, glyph: "\u{f009a}",
+    var row = Store.normalise({ key: key, app: "unbloarchy-action", summary: summary, glyph: "\u{f009a}",
                                 urgency: NotificationUrgency.Low, ts: Date.now() / 1000 })
     row.duration = lowDuration
     row.restored = true
@@ -1506,7 +1506,7 @@ Item {
       visible: !stepAside || hasSomethingToShow
       color: "transparent"
 
-      WlrLayershell.namespace: "omarchy-notifications"
+      WlrLayershell.namespace: "unbloarchy-notifications"
       WlrLayershell.layer: WlrLayer.Overlay
       readonly property bool takesKeyboard: service.keyboardMode && service.targetDisplayName === String(modelData.name)
       WlrLayershell.keyboardFocus: takesKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None

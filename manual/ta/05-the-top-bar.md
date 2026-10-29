@@ -1,14 +1,14 @@
 # மேல் பட்டை
 
-உங்கள் திரையின் மேல்புறம் உள்ள பட்டைதான் Omarchy பட்டை. இது பின்னால் பொருத்தப்பட்ட ஒரு status bar அல்ல, மாறாக Omarchy shell இன் ஒரு பகுதி; அந்த ஒற்றை, நீண்ட நேரம் இயங்கும் Quickshell process தான் மெனு, அறிவிப்புகள், OSD popups மற்றும் lock screen ஆகியவற்றையும் வரைகிறது. அதனால்தான் இது மற்ற எல்லாவற்றுடனும் மிகச் சரியாக theme ஆகிறது, மேலும் ஒரு புதிய app ஐத் தொடங்குவதற்குப் பதிலாக ஒரு panel உடனடியாகத் திறக்கிறது.
+உங்கள் திரையின் மேல்புறம் உள்ள பட்டைதான் Unbloarchy பட்டை. இது பின்னால் பொருத்தப்பட்ட ஒரு status bar அல்ல, மாறாக Unbloarchy shell இன் ஒரு பகுதி; அந்த ஒற்றை, நீண்ட நேரம் இயங்கும் Quickshell process தான் மெனு, அறிவிப்புகள், OSD popups மற்றும் lock screen ஆகியவற்றையும் வரைகிறது. அதனால்தான் இது மற்ற எல்லாவற்றுடனும் மிகச் சரியாக theme ஆகிறது, மேலும் ஒரு புதிய app ஐத் தொடங்குவதற்குப் பதிலாக ஒரு panel உடனடியாகத் திறக்கிறது.
 
 இது எப்போதும் திரையில் இருக்கும் ஒரே desktop பகுதியும் கூட, எனவே அந்தச் சிறிய glyphs எல்லாம் என்ன செய்கின்றன என்பதை அறிந்து கொள்வது மதிப்புக்குரியது.
 
 ## இயல்பாக இதில் என்ன இருக்கும்
 
-பட்டையில் மூன்று பிரிவுகள் உள்ளன. இடதுபுறத்தில் Omarchy logo (மெனு launcher) மற்றும் workspace குறிகாட்டிகள் அமர்ந்திருக்கின்றன. நடுவில் நிலைமைக் குறிகாட்டிகள், கடிகாரம், Elsewhen (ஒரு world clock), வானிலை மற்றும் Omarchy update badge ஆகியவற்றைப் பெறுகிறீர்கள். வலதுபுறத்தில்: system tray, keyboard layout (ஒன்றுக்கு மேற்பட்டவை உள்ளமைக்கப்பட்டிருக்கும்போது), agents, bluetooth, network, audio, display மற்றும் power.
+பட்டையில் மூன்று பிரிவுகள் உள்ளன. இடதுபுறத்தில் Unbloarchy logo (மெனு launcher) மற்றும் workspace குறிகாட்டிகள் அமர்ந்திருக்கின்றன. நடுவில் நிலைமைக் குறிகாட்டிகள், கடிகாரம், Elsewhen (ஒரு world clock), வானிலை மற்றும் Unbloarchy update badge ஆகியவற்றைப் பெறுகிறீர்கள். வலதுபுறத்தில்: system tray, keyboard layout (ஒன்றுக்கு மேற்பட்டவை உள்ளமைக்கப்பட்டிருக்கும்போது), agents, bluetooth, network, audio, display மற்றும் power.
 
-அவற்றில் சில, சொல்வதற்கு ஏதாவது இருக்கும்போது மட்டுமே தோன்றும். நீங்கள் ஒன்றுக்கு மேற்பட்ட layout ஐ உள்ளமைத்திருந்தால் மட்டுமே keyboard layout தோன்றும். Omarchy update ஒன்று காத்திருக்கும்போது மட்டுமே update badge தோன்றும். மேலும் Omarchy முதன்முறையாக அந்தக் கணினியில் AI coding பயன்பாட்டைக் கண்டறியும்போது agents ஐகான் தோன்றும் (பார்க்கவும் [AI](17-ai.md)).
+அவற்றில் சில, சொல்வதற்கு ஏதாவது இருக்கும்போது மட்டுமே தோன்றும். நீங்கள் ஒன்றுக்கு மேற்பட்ட layout ஐ உள்ளமைத்திருந்தால் மட்டுமே keyboard layout தோன்றும். Unbloarchy update ஒன்று காத்திருக்கும்போது மட்டுமே update badge தோன்றும். மேலும் Unbloarchy முதன்முறையாக அந்தக் கணினியில் AI coding பயன்பாட்டைக் கண்டறியும்போது agents ஐகான் தோன்றும் (பார்க்கவும் [AI](17-ai.md)).
 
 ## சுற்றி கிளிக் செய்தல்
 
@@ -16,7 +16,7 @@
 
 | Widget | இடது | வலது | நடு / உருட்டல் |
 | --- | --- | --- | --- |
-| மெனு | Omarchy மெனு | புதிய terminal | — |
+| மெனு | Unbloarchy மெனு | புதிய terminal | — |
 | Workspaces | அந்த workspace ஐ இந்த monitor இல் கவனத்திற்குக் கொண்டு வரும் | — | உருட்டல்: அடுத்த/முந்தைய workspace |
 | கடிகாரம் | Calendar popup | label வடிவமைப்பைச் சுழற்றும் | நடு: timezone picker |
 | வானிலை | Forecast popup | முழு வானிலையை ஒரு அறிவிப்பாகக் காட்டும் | நடு: புதுப்பிக்கும் |
@@ -29,7 +29,7 @@
 | Media | Play/pause | Cover-art popup | நடு: அடுத்தது · உருட்டல்: முந்தையது/அடுத்தது |
 | Agents | Agents panel | உங்கள் agent ஐத் தொடங்கும் | நடு: அடுத்த subscription |
 | Tray | drawer ஐ வெளிப்படுத்த hover செய்யவும் | நிர்வகிக்க chevron மீது right click செய்யவும் | — |
-| Omarchy update | update ஐ இயக்கும் | — | — |
+| Unbloarchy update | update ஐ இயக்கும் | — | — |
 
 அந்த அட்டவணையில் உள்ள எல்லாமே உங்கள் பட்டையில் இயல்பாக இருப்பதில்லை. media widget (MPRIS now-playing, உருளும் track மற்றும் artist உடன்) மற்றும் microphone widget ஆகிய இரண்டும் உள்ளமைக்கப்பட்டவைதான், ஆனால் இயல்பாக அணைக்கப்பட்டிருக்கும் — உங்களுக்கு வேண்டுமென்றால், கீழே விவரிக்கப்பட்டுள்ளபடி அவற்றைச் சேர்க்கவும்.
 
@@ -66,7 +66,7 @@ Panels வெறும் படித்துக் காட்டுபவ�
 
 பொருந்தும் service ஐ **Install → Service** இலிருந்து நிறுவிய பிறகே மேலும் இரண்டு widgets பட்டையில் தோன்றும், மேலும் இரண்டும் வெறும் நிலைமையை அறிவிப்பதை விட அதிகம் செய்வதால் அவற்றைப் பற்றி அறிந்து கொள்வது மதிப்புக்குரியது.
 
-**Tailscale** panel tailnet ஐ இணைத்துத் துண்டிக்கிறது, கணக்குகளுக்கு இடையே மாறுகிறது, மேலும் ஒரு exit node ஐத் தேர்ந்தெடுக்கிறது (உங்கள் சொந்தக் கணினிகளும் Mullvad பகுதிகளும் அந்தப் பட்டியலில் தோன்றும்). இது உங்கள் கணினிகளை உலாவவும் செய்கிறது — ஒன்றைத் தேர்ந்தெடுத்த நிலையில், `s` Taildrop வழியாக அதற்குக் கோப்புகளை அனுப்புகிறது, இது உங்கள் phone க்கோ அல்லது இன்னொரு laptop க்கோ ஒரு கோப்பை நகர்த்துவதற்கான வேகமான வழியாகும். `c` கணினியின் IP ஐ நகலெடுக்கிறது, `n` அதன் பெயரை, மற்றும் `d` அதன் முழு DNS பெயரை. நீங்கள் கிளிக் செய்ய விரும்பினால் ஒவ்வொரு machine வரிசையிலும் ஒரு send பொத்தானும் உண்டு. terminal இலிருந்து அதே விஷயம் `omarchy tailscale send <machine> [file...]` ஆகும்.
+**Tailscale** panel tailnet ஐ இணைத்துத் துண்டிக்கிறது, கணக்குகளுக்கு இடையே மாறுகிறது, மேலும் ஒரு exit node ஐத் தேர்ந்தெடுக்கிறது (உங்கள் சொந்தக் கணினிகளும் Mullvad பகுதிகளும் அந்தப் பட்டியலில் தோன்றும்). இது உங்கள் கணினிகளை உலாவவும் செய்கிறது — ஒன்றைத் தேர்ந்தெடுத்த நிலையில், `s` Taildrop வழியாக அதற்குக் கோப்புகளை அனுப்புகிறது, இது உங்கள் phone க்கோ அல்லது இன்னொரு laptop க்கோ ஒரு கோப்பை நகர்த்துவதற்கான வேகமான வழியாகும். `c` கணினியின் IP ஐ நகலெடுக்கிறது, `n` அதன் பெயரை, மற்றும் `d` அதன் முழு DNS பெயரை. நீங்கள் கிளிக் செய்ய விரும்பினால் ஒவ்வொரு machine வரிசையிலும் ஒரு send பொத்தானும் உண்டு. terminal இலிருந்து அதே விஷயம் `unbloarchy tailscale send <machine> [file...]` ஆகும்.
 
 **Dropbox** panel login ஐக் கையாளுகிறது, நீங்கள் எவ்வளவு storage பயன்படுத்தியுள்ளீர்கள் என்பதைக் காட்டுகிறது, மேலும் சமீபத்தில் sync செய்யப்பட்ட கோப்புகளைப் பட்டியலிடுகிறது.
 
@@ -93,19 +93,19 @@ Panels வெறும் படித்துக் காட்டுபவ�
 அதே விஷயங்களுக்கு commands உம் உண்டு, இது ஒரு [dotfiles](31-dotfiles.md) அமைப்புக்கு நீங்கள் விரும்புவது:
 
 ```bash
-omarchy bar position bottom
-omarchy bar background glassy  # opaque, glassy, none, or cycle
-omarchy bar move omarchy.weather --section centerBegin --index 0
-omarchy bar move omarchy.bluetooth --section tray  # into the tray's drawer
-omarchy bar set omarchy.clock format "HH:mm"
-omarchy bar defaults          # back to the shipped layout
+unbloarchy bar position bottom
+unbloarchy bar background glassy  # opaque, glassy, none, or cycle
+unbloarchy bar move unbloarchy.weather --section centerBegin --index 0
+unbloarchy bar move unbloarchy.bluetooth --section tray  # into the tray's drawer
+unbloarchy bar set unbloarchy.clock format "HH:mm"
+unbloarchy bar defaults          # back to the shipped layout
 ```
 
-ஒரு widget ஐ முழுவதுமாகச் சேர்க்க அல்லது நீக்க, plugin commands ஐப் பயன்படுத்தவும். `omarchy plugin list` shell அறிந்த ஒவ்வொரு widget ஐயும் அதன் id உடன் அச்சிடுகிறது, பிறகு:
+ஒரு widget ஐ முழுவதுமாகச் சேர்க்க அல்லது நீக்க, plugin commands ஐப் பயன்படுத்தவும். `unbloarchy plugin list` shell அறிந்த ஒவ்வொரு widget ஐயும் அதன் id உடன் அச்சிடுகிறது, பிறகு:
 
 ```bash
-omarchy plugin enable omarchy.media --section centerEnd
-omarchy plugin disable omarchy.weather
+unbloarchy plugin enable unbloarchy.media --section centerEnd
+unbloarchy plugin disable unbloarchy.weather
 ```
 
 ## பட்டையை மறைத்தல்
@@ -114,7 +114,7 @@ omarchy plugin disable omarchy.weather
 
 ## Config கோப்பு
 
-இவை எல்லாம் `~/.config/omarchy/shell.json` இல், `bar` key இன் கீழ் சேமிக்கப்படுகின்றன. இதோ ஒரு சுருக்கப்பட்ட பதிப்பு:
+இவை எல்லாம் `~/.config/unbloarchy/shell.json` இல், `bar` key இன் கீழ் சேமிக்கப்படுகின்றன. இதோ ஒரு சுருக்கப்பட்ட பதிப்பு:
 
 ```json
 {
@@ -123,20 +123,20 @@ omarchy plugin disable omarchy.weather
     "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
-      "centerBegin": [{ "id": "omarchy.indicators" }],
-      "center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
-      "centerEnd": [{ "id": "omarchy.weather" }],
-      "right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+      "left": [{ "id": "unbloarchy.menu" }, { "id": "unbloarchy.workspaces" }],
+      "centerBegin": [{ "id": "unbloarchy.indicators" }],
+      "center": [{ "id": "unbloarchy.clock", "format": "HH:mm" }],
+      "centerEnd": [{ "id": "unbloarchy.weather" }],
+      "right": [{ "id": "unbloarchy.audio" }, { "id": "unbloarchy.power" }]
     }
   }
 }
 ```
 
-ஒவ்வொரு widget உம் ஐந்து layout வரிசைகளில் ஒன்றில் ஒரு உள்ளீடு, மேலும் அதன் அமைப்புகள் அந்த உள்ளீட்டிலேயே inline ஆக அமர்ந்திருக்கும் — தனியாக ஒரு settings கோப்பு இல்லை, மேலும் ஒரு `config` துணை-பொருளும் இல்லை. கடிகாரத்தின் `format`, `formatAlt` (right-click எதற்குச் சுழல்கிறதோ அது) மற்றும் `verticalFormat` எல்லாம் `{ "id": "omarchy.clock" }` இல் அங்கேயே இருக்கின்றன.
+ஒவ்வொரு widget உம் ஐந்து layout வரிசைகளில் ஒன்றில் ஒரு உள்ளீடு, மேலும் அதன் அமைப்புகள் அந்த உள்ளீட்டிலேயே inline ஆக அமர்ந்திருக்கும் — தனியாக ஒரு settings கோப்பு இல்லை, மேலும் ஒரு `config` துணை-பொருளும் இல்லை. கடிகாரத்தின் `format`, `formatAlt` (right-click எதற்குச் சுழல்கிறதோ அது) மற்றும் `verticalFormat` எல்லாம் `{ "id": "unbloarchy.clock" }` இல் அங்கேயே இருக்கின்றன.
 
 `center` என்பது பட்டையின் நடுவில் உள்ள box: அதில் உள்ள எல்லாமே திரையில் ஒரே குழுவாக நடுவில் வைக்கப்படும். `centerBegin` மற்றும் `centerEnd` box இன் இருபுறமும் தொங்கும், இப்படித்தான் வானிலை மற்றும் update badge வரும்போதும் போகும்போதும் கூட கடிகாரம் மிகச் சரியாக நடுவில் இருக்கிறது. `center` இல் ஒன்றுக்கு மேற்பட்ட widget ஐ வைத்தால் அவை ஒன்றாக நடுவில் வைக்கப்படும்; அதைக் காலியாக விட்டால் `centerBegin` மற்றும் `centerEnd` பட்டையின் நடுவில் சந்திக்கும்.
 
-உள்வாங்கிக் கொள்ள வேண்டிய ஒரு விதி: **உங்களுக்கென சொந்த `shell.json` கிடைத்தவுடன், அதுதான் canonical**. நீங்கள் எதையும் தனிப்பயனாக்கும் வரை, shell Omarchy இன் இயல்புநிலைக் கோப்பைப் படிக்கிறது. நீங்கள் ஒரு widget ஐ இழுத்த கணம், `omarchy bar` ஐ இயக்கிய கணம், அல்லது கோப்பை நீங்களே திருத்திய கணம், நீங்கள்தான் அதற்குப் பொறுப்பு — ஆழமான merge எதுவும் இல்லை, எனவே எதிர்கால Omarchy வெளியீடுகளில் வரும் புதிய இயல்புநிலை widgets உங்கள் பட்டையில் தானாகத் தோன்றாது. நீங்கள் சுத்தமான ஒரு தொடக்கத்தை விரும்பும் போதெல்லாம் `omarchy bar defaults` வழங்கப்பட்ட layout ஐ மீண்டும் வைக்கும்.
+உள்வாங்கிக் கொள்ள வேண்டிய ஒரு விதி: **உங்களுக்கென சொந்த `shell.json` கிடைத்தவுடன், அதுதான் canonical**. நீங்கள் எதையும் தனிப்பயனாக்கும் வரை, shell Unbloarchy இன் இயல்புநிலைக் கோப்பைப் படிக்கிறது. நீங்கள் ஒரு widget ஐ இழுத்த கணம், `unbloarchy bar` ஐ இயக்கிய கணம், அல்லது கோப்பை நீங்களே திருத்திய கணம், நீங்கள்தான் அதற்குப் பொறுப்பு — ஆழமான merge எதுவும் இல்லை, எனவே எதிர்கால Unbloarchy வெளியீடுகளில் வரும் புதிய இயல்புநிலை widgets உங்கள் பட்டையில் தானாகத் தோன்றாது. நீங்கள் சுத்தமான ஒரு தொடக்கத்தை விரும்பும் போதெல்லாம் `unbloarchy bar defaults` வழங்கப்பட்ட layout ஐ மீண்டும் வைக்கும்.
 
 அதே கோப்பு உங்கள் idle நேரங்களையும் மேல் மட்டத்தில், `bar` key க்கு வெளியே வைத்திருக்கிறது: `idle.screensaver` மற்றும் `idle.lock`, இரண்டுமே நீங்கள் idle ஆனதிலிருந்து வினாடிகளில். எனவே இயல்புநிலை screensaver 150 வினாடிகளில் தொடங்குகிறது, lock 300 வினாடிகளில் தொடங்குகிறது.

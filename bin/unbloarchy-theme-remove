@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# omarchy:summary=Remove a user-installed theme
-# omarchy:args=[theme-name]
-# omarchy:examples=omarchy theme remove "Tokyo Night"
+# unbloarchy:summary=Remove a user-installed theme
+# unbloarchy:args=[theme-name]
+# unbloarchy:examples=unbloarchy theme remove "Tokyo Night"
 
 if [[ -z $1 ]]; then
-  mapfile -t extra_themes < <(find ~/.config/omarchy/themes -mindepth 1 -maxdepth 1 -type d ! -xtype l -printf '%f\n')
+  mapfile -t extra_themes < <(find ~/.config/unbloarchy/themes -mindepth 1 -maxdepth 1 -type d ! -xtype l -printf '%f\n')
 
   if (( ${#extra_themes[@]} > 0 )); then
     mapfile -t extra_themes < <(printf '%s\n' "${extra_themes[@]}" | sort)
-    THEME_NAME=$(omarchy-menu-select "$(omarchy-i18n theme.removeExtraTitle)" "${extra_themes[@]}" -- --width 520 --maxheight 520)
+    THEME_NAME=$(unbloarchy-menu-select "$(unbloarchy-i18n theme.removeExtraTitle)" "${extra_themes[@]}" -- --width 520 --maxheight 520)
   else
     echo "No extra themes installed."
     exit 1
@@ -18,7 +18,7 @@ else
   THEME_NAME="$1"
 fi
 
-THEMES_DIR="$HOME/.config/omarchy/themes"
+THEMES_DIR="$HOME/.config/unbloarchy/themes"
 THEME_PATH="$THEMES_DIR/$THEME_NAME"
 
 # Ensure a theme was set, and that the name cannot climb out of THEMES_DIR
@@ -35,5 +35,5 @@ fi
 
 # Now remove the theme directory for THEME_NAME
 rm -rf "$THEME_PATH"
-omarchy-notification-send "$(omarchy-i18n theme.removed)" "$THEME_NAME" || true
+unbloarchy-notification-send "$(unbloarchy-i18n theme.removed)" "$THEME_NAME" || true
 echo "Removed $THEME_NAME"

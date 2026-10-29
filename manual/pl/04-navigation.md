@@ -1,8 +1,8 @@
 # Nawigacja
 
-Wszystko w Omarchy dzieje się za pomocą klawiatury — _WSZYSTKO!_ Gdy system uruchamia się po raz pierwszy, samą myszą dosłownie nic nie zrobisz. Ale możesz nacisnąć `Super + Space`, aby wyświetlić Menu Omarchy, a stąd możesz zrobić niemal wszystko.
+Wszystko w Unbloarchy dzieje się za pomocą klawiatury — _WSZYSTKO!_ Gdy system uruchamia się po raz pierwszy, samą myszą dosłownie nic nie zrobisz. Ale możesz nacisnąć `Super + Space`, aby wyświetlić Menu Unbloarchy, a stąd możesz zrobić niemal wszystko.
 
-Ale Menu Omarchy przez większość czasu wcale nie ma być głównym sposobem obsługi systemu. Możemy być od tego szybsi! Wszystkie najważniejsze aplikacje są przypisane bezpośrednio do poszczególnych skrótów klawiszowych. Terminal uruchamiasz za pomocą `Super + Return`, a przeglądarkę za pomocą `Super + Shift + Return`. Spróbuj zrobić jedno po drugim, a zobaczysz magię układania kafelkowego Hyprland w akcji:
+Ale Menu Unbloarchy przez większość czasu wcale nie ma być głównym sposobem obsługi systemu. Możemy być od tego szybsi! Wszystkie najważniejsze aplikacje są przypisane bezpośrednio do poszczególnych skrótów klawiszowych. Terminal uruchamiasz za pomocą `Super + Return`, a przeglądarkę za pomocą `Super + Shift + Return`. Spróbuj zrobić jedno po drugim, a zobaczysz magię układania kafelkowego Hyprland w akcji:
 
  ![navigation-browser-terminal](images/navigation-browser-terminal.webp)
 
@@ -30,7 +30,7 @@ Możesz też przejść do trybu pełnoekranowego za pomocą `Super + F`, a nawet
 
 ### Układ dwindle a układ scrolling
 
-Domyślny układ Omarchy nazywa się dwindle. Utrzymuje on wszystkie okna otwarte w jednej przestrzeni roboczej widoczne przez cały czas, nawet jeśli musi je w tym celu zmniejszyć.
+Domyślny układ Unbloarchy nazywa się dwindle. Utrzymuje on wszystkie okna otwarte w jednej przestrzeni roboczej widoczne przez cały czas, nawet jeśli musi je w tym celu zmniejszyć.
 
  ![navigation-dwindle-layout](images/navigation-dwindle-layout.webp)
 
@@ -56,9 +56,9 @@ hl.config({
 
 Pływająca przestrzeń robocza działa jak tradycyjny pulpit: okna nakładają się na siebie, a ty sam je przesuwasz i zmieniasz ich rozmiar. Każde okno otrzymuje pasek tytułu w kolorach twojego motywu, z przyciskami do minimalizacji, maksymalizacji i zamykania. `Super + M` również minimalizuje aktywne okno. Zminimalizowane okno czeka w docku; kliknij jego aplikację, aby je przywrócić. Kliknij okno, aby wysunąć je na pierwszy plan. Zmieniaj jego rozmiar z dowolnej krawędzi lub rogu. Kliknij dwukrotnie pasek tytułu, aby zmaksymalizować okno, zachowując górny pasek w polu widzenia, i ponownie, aby przywrócić jego dawny rozmiar.
 
-Pływająca przestrzeń robocza pokazuje też dock, z przypiętymi aplikacjami, wszystkim, co jest uruchomione, oraz siatką wszystkich aplikacji za przyciskiem aplikacji, który otwierają też `Super + Alt + Space` oraz _Aplikacje_ w Menu Omarchy. Kliknij aplikację na siatce prawym przyciskiem myszy lub naciśnij `Delete`, aby ją odinstalować. Kliknij aplikację, aby ją otworzyć lub wysunąć jej okno na pierwszy plan; kliknij ponownie, aby przełączać cyklicznie między jej oknami. Kliknięcie środkowym przyciskiem myszy otwiera nowe okno. Przeciągnij ikonę wzdłuż docka, aby ją przesunąć; przeciągnięcie uruchomionej aplikacji pomiędzy pozostałe pozostawia ją tam. Kliknij prawym przyciskiem myszy, aby zachować aplikację w docku, usunąć ją z niego lub ją zamknąć. Dock ustępuje miejsca oknu pełnoekranowemu. Kliknij przycisk aplikacji prawym przyciskiem myszy, aby przenieść dock na inną krawędź lub sprawić, by ukrywał się, dopóki wskaźnik nie dotrze do jego krawędzi. Pozycja znajduje się też w _Wygląd > Dock > Pozycja docka_, a `omarchy dock position left` oraz `omarchy dock autohide on` ustawiają obie opcje z terminala. Aplikacje, które trzymasz w docku, są przygaszone, gdy nie są uruchomione.
+Pływająca przestrzeń robocza pokazuje też dock, z przypiętymi aplikacjami, wszystkim, co jest uruchomione, oraz siatką wszystkich aplikacji za przyciskiem aplikacji, który otwierają też `Super + Alt + Space` oraz _Aplikacje_ w Menu Unbloarchy. Kliknij aplikację na siatce prawym przyciskiem myszy lub naciśnij `Delete`, aby ją odinstalować. Kliknij aplikację, aby ją otworzyć lub wysunąć jej okno na pierwszy plan; kliknij ponownie, aby przełączać cyklicznie między jej oknami. Kliknięcie środkowym przyciskiem myszy otwiera nowe okno. Przeciągnij ikonę wzdłuż docka, aby ją przesunąć; przeciągnięcie uruchomionej aplikacji pomiędzy pozostałe pozostawia ją tam. Kliknij prawym przyciskiem myszy, aby zachować aplikację w docku, usunąć ją z niego lub ją zamknąć. Dock ustępuje miejsca oknu pełnoekranowemu. Kliknij przycisk aplikacji prawym przyciskiem myszy, aby przenieść dock na inną krawędź lub sprawić, by ukrywał się, dopóki wskaźnik nie dotrze do jego krawędzi. Pozycja znajduje się też w _Wygląd > Dock > Pozycja docka_, a `unbloarchy dock position left` oraz `unbloarchy dock autohide on` ustawiają obie opcje z terminala. Aplikacje, które trzymasz w docku, są przygaszone, gdy nie są uruchomione.
 
-Nowe przestrzenie robocze oraz każda, której nie nadałeś własnego układu za pomocą `Super + L`, używają układu domyślnego. Zmiana układu domyślnego resetuje do niego każdą przestrzeń roboczą bez okien, natomiast przestrzeń z oknami zachowuje układ, który ma. Okno zminimalizowane do docka nadal liczy się jako okno w przestrzeni roboczej, którą opuściło. Wybierz go w _Wygląd > Układ przestrzeni roboczej_: Kafelkowy, Scrolling lub Pływający. `omarchy-hyprland-workspace-layout-default scrolling` ustawia go z terminala.
+Nowe przestrzenie robocze oraz każda, której nie nadałeś własnego układu za pomocą `Super + L`, używają układu domyślnego. Zmiana układu domyślnego resetuje do niego każdą przestrzeń roboczą bez okien, natomiast przestrzeń z oknami zachowuje układ, który ma. Okno zminimalizowane do docka nadal liczy się jako okno w przestrzeni roboczej, którą opuściło. Wybierz go w _Wygląd > Układ przestrzeni roboczej_: Kafelkowy, Scrolling lub Pływający. `unbloarchy-hyprland-workspace-layout-default scrolling` ustawia go z terminala.
 
 ### Grupowanie okien
 

@@ -1,8 +1,8 @@
 # Thema's
 
-Omarchy wordt geleverd met tweeëntwintig prachtige thema's. Je kunt ertussen kiezen via _Appearance > Theme_ in het Omarchy Menu (`Super + Space`) of direct naar de themakiezer springen met `Super + Ctrl + T`.
+Unbloarchy wordt geleverd met tweeëntwintig prachtige thema's. Je kunt ertussen kiezen via _Appearance > Theme_ in het Unbloarchy Menu (`Super + Space`) of direct naar de themakiezer springen met `Super + Ctrl + T`.
 
-Elk thema geeft stijl aan het bureaublad, de terminal, neovim, het activiteitenscherm (btop), Chromium en de volledige Omarchy-shell: bovenbalk, menu, meldingen, OSD en het vergrendelscherm. (Voor Obsidian moet je het Omarchy-thema handmatig selecteren via _Appearance > Themes_ in de app).
+Elk thema geeft stijl aan het bureaublad, de terminal, neovim, het activiteitenscherm (btop), Chromium en de volledige Unbloarchy-shell: bovenbalk, menu, meldingen, OSD en het vergrendelscherm. (Voor Obsidian moet je het Unbloarchy-thema handmatig selecteren via _Appearance > Themes_ in de app).
 
 Thema's hebben een set achtergrondafbeeldingen waaruit je kunt kiezen met `Super + Ctrl + W`.
 

@@ -22,7 +22,7 @@ Trình chỉnh sửa chú thích có thể vẽ mũi tên, đường thẳng, h�
 
 Ảnh chụp màn hình đã lưu mặc định nằm trong `~/Pictures/Screenshots`, với một tên như `screenshot-2026-08-13_14-22-05-firefox.png`. Đặt `OMASNAP_SCREENSHOT_DIR` để dùng một thư mục khác — xem [FAQ](46-faq.md) để biết nơi đặt các biến môi trường của phiên. Omasnap tạo thư mục khi nó lưu ảnh đầu tiên. Đặt `[output] autosave = false` trong `~/.config/omasnap/omasnap.conf` để tắt lưu tự động; ảnh chụp khi đó chỉ được sao chép, và được hiển thị trong một bản xem trước trong 10 giây mà bạn có thể giữ trên màn hình bằng nút ghim của nó hoặc `Ctrl + P`.
 
-Từ terminal, `omarchy screenshot` mở cùng lớp phủ đó, và bạn có thể chọn chế độ bắt đầu của nó: `omarchy capture screenshot region`, `windows`, `fullscreen`, hoặc `scroll`. Một đối số thứ hai là `copy` hoặc `save` gửi ảnh chụp thẳng tới đích đó. Để chỉnh sửa trước khi xuất, dùng `omarchy screenshot --editor=overlay` cho một trình chỉnh sửa toàn màn hình hoặc `omarchy screenshot --editor=window` cho một cửa sổ riêng.
+Từ terminal, `unbloarchy screenshot` mở cùng lớp phủ đó, và bạn có thể chọn chế độ bắt đầu của nó: `unbloarchy capture screenshot region`, `windows`, `fullscreen`, hoặc `scroll`. Một đối số thứ hai là `copy` hoặc `save` gửi ảnh chụp thẳng tới đích đó. Để chỉnh sửa trước khi xuất, dùng `unbloarchy screenshot --editor=overlay` cho một trình chỉnh sửa toàn màn hình hoặc `unbloarchy screenshot --editor=window` cho một cửa sổ riêng.
 
 ### Điều khiển bộ chọn từ bàn phím
 
@@ -41,9 +41,9 @@ Các phím gán này chỉ tồn tại trong khi Omasnap đang mở, vì vậy c
 
 ## Quay màn hình
 
-`Alt + Print Screen` mở _Trigger > Capture > Screenrecord_, mục này hỏi bạn muốn gì trên bản nhạc âm thanh: không có âm thanh, âm thanh desktop, desktop cộng microphone, hoặc desktop cộng microphone cộng webcam. Lựa chọn cuối đó chỉ xuất hiện nếu bạn thực sự có một camera đã cắm vào. Chọn một lựa chọn và bộ chọn quay của Omarchy cho phép bạn kéo một vùng hoặc nhấp vào một cửa sổ hoặc màn hình.
+`Alt + Print Screen` mở _Trigger > Capture > Screenrecord_, mục này hỏi bạn muốn gì trên bản nhạc âm thanh: không có âm thanh, âm thanh desktop, desktop cộng microphone, hoặc desktop cộng microphone cộng webcam. Lựa chọn cuối đó chỉ xuất hiện nếu bạn thực sự có một camera đã cắm vào. Chọn một lựa chọn và bộ chọn quay của Unbloarchy cho phép bạn kéo một vùng hoặc nhấp vào một cửa sổ hoặc màn hình.
 
-Việc quay chạy trên gpu-screen-recorder, công cụ mã hóa trên GPU ở 60fps và quay về CPU nếu buộc phải làm vậy. Kết quả là một MP4 trong `~/Videos`, mang tên `screenrecording-2026-08-13_14-22-05.mp4`. Đặt `OMARCHY_SCREENRECORD_DIR` để thay đổi điều đó — nhưng lưu ý rằng không giống thư mục ảnh chụp màn hình, thư mục này phải tồn tại sẵn, nếu không việc quay sẽ từ chối bắt đầu.
+Việc quay chạy trên gpu-screen-recorder, công cụ mã hóa trên GPU ở 60fps và quay về CPU nếu buộc phải làm vậy. Kết quả là một MP4 trong `~/Videos`, mang tên `screenrecording-2026-08-13_14-22-05.mp4`. Đặt `UNBLOARCHY_SCREENRECORD_DIR` để thay đổi điều đó — nhưng lưu ý rằng không giống thư mục ảnh chụp màn hình, thư mục này phải tồn tại sẵn, nếu không việc quay sẽ từ chối bắt đầu.
 
 Trong khi bạn đang quay, một chỉ báo nhỏ xuất hiện trên thanh. Nhấp vào nó để dừng. Bạn cũng có thể dừng bằng `Alt + Print Screen` lần nữa, hoặc bằng mục _Stop Screenrecording_ trong _Trigger > Capture > Screenrecord_, mục này chỉ xuất hiện trong khi thực sự có thứ gì đó đang quay.
 
@@ -60,7 +60,7 @@ Khi bạn quay với một webcam, camera xuất hiện dưới dạng một c�
 
 Có ba kích thước — nhỏ, vừa và lớn — và các phím tắt bước giữa chúng. Vừa là mặc định. Chúng tỷ lệ với bản quay, vì vậy camera chiếm cùng một tỷ lệ khung hình dù bạn đang quay một màn hình 1080p hay một màn hình 6K. Và nếu bạn đã quay một vùng thay vì toàn bộ màn hình hiển thị, lớp phủ neo vào góc của vùng đó thay vì của màn hình, vì vậy nó ở lại bên trong ảnh chụp.
 
-Bạn cũng có thể gọi nó trực tiếp bằng `omarchy-capture-webcam-resize small`, hoặc `reset` để quay lại kích thước vừa.
+Bạn cũng có thể gọi nó trực tiếp bằng `unbloarchy-capture-webcam-resize small`, hoặc `reset` để quay lại kích thước vừa.
 
 ## Văn bản, mã QR và màu sắc
 
@@ -76,7 +76,7 @@ Một bản quay màn hình 4K hoặc một HEIC thô từ điện thoại của
 
 Ảnh đi tới jpg hoặc png ở mức cao, vừa, hoặc thấp, các mức này giới hạn chiều rộng ở 3160, 2160, và 1080 pixels. Video đi tới mp4 hoặc một gif động ở 4k, 1080p, hoặc 720p. Tệp đã chuyển đổi được viết bên cạnh tệp gốc với độ phân giải trong tên — `demo-1080p.mp4` — và đường dẫn được sao chép vào clipboard dưới dạng một file URI, vì vậy bạn có thể dán nó trực tiếp vào một ứng dụng nhận thả tệp.
 
-Nó cũng hoạt động từ terminal, nếu bạn đã biết mình muốn gì: `omarchy transcode ~/Videos/demo.mov mp4 1080p`. Còn có `omarchy transcode ascii`, lệnh này biến một hình ảnh thành ASCII art — cái đó chủ yếu dành cho [thương hiệu](41-branding.md).
+Nó cũng hoạt động từ terminal, nếu bạn đã biết mình muốn gì: `unbloarchy transcode ~/Videos/demo.mov mp4 1080p`. Còn có `unbloarchy transcode ascii`, lệnh này biến một hình ảnh thành ASCII art — cái đó chủ yếu dành cho [thương hiệu](41-branding.md).
 
 ## Gửi nó đi đâu đó
 

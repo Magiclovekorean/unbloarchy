@@ -1,26 +1,26 @@
 #!/bin/bash
 
-# omarchy:summary=First-boot provisioning: create the user on a machine installed in deferred provisioning
-# omarchy:requires-sudo=true
-# omarchy:hidden=true
+# unbloarchy:summary=First-boot provisioning: create the user on a machine installed in deferred provisioning
+# unbloarchy:requires-sudo=true
+# unbloarchy:hidden=true
 
-# Runs on tty1 via omarchy-provision-owner.service when /var/lib/omarchy/provisioning/pending
-# exists — the state a deferred-provisioning ISO install or omarchy-system-factory-reset leaves
+# Runs on tty1 via unbloarchy-provision-owner.service when /var/lib/omarchy/provisioning/pending
+# exists — the state a deferred-provisioning ISO install or unbloarchy-system-factory-reset leaves
 # behind. Asks for the user (the configurator's Step 2), creates it with the
 # groups system setup recorded, finalizes it offline, re-keys LUKS from the
 # throwaway install passphrase to the user's password, and hands off to SDDM.
 # A platform whose boot package owns its boot chain prepares it, drops the
 # install key's unlock from it and records the kept key slot through
-# omarchy-lifecycle-dispatch.
+# unbloarchy-lifecycle-dispatch.
 
 set -euo pipefail
 
 PROVISIONING_DIR=/var/lib/omarchy/provisioning
-OMARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
-LOG_FILE=/var/log/omarchy-provision-owner.log
+UNBLOARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
+LOG_FILE=/var/log/unbloarchy-provision-owner.log
 
 if (( EUID != 0 )); then
-  echo "Error: omarchy-provision-owner must run as root" >&2
+  echo "Error: unbloarchy-provision-owner must run as root" >&2
   exit 1
 fi
 
@@ -29,26 +29,26 @@ fi
 # Never set up a user on a half-wiped system: while a factory wipe is still
 # pending (i.e. it failed this boot), stand down and let it retry next boot.
 if [[ -f $PROVISIONING_DIR/wipe-pending ]]; then
-  echo "omarchy-provision-owner: factory wipe still pending; not running user setup" >&2
+  echo "unbloarchy-provision-owner: factory wipe still pending; not running user setup" >&2
   exit 1
 fi
 
-export PATH="$OMARCHY_PATH/bin:$PATH"
+export PATH="$UNBLOARCHY_PATH/bin:$PATH"
 
 REKEY_STATE=$PROVISIONING_DIR/luks-rekey.state
-source "$OMARCHY_PATH/install/provisioning/luks-rekey.sh"
+source "$UNBLOARCHY_PATH/install/provisioning/luks-rekey.sh"
 
 # The shared setup form — the same questions, prompts, and validation the ISO
 # configurator's user step asks. The ISO vendors this very file out of the
 # runtime package it bundles, so an install and the first boot that finishes it
 # can never offer different layouts or accept different usernames.
-source "$OMARCHY_PATH/install/provisioning/setup-form.sh"
+source "$UNBLOARCHY_PATH/install/provisioning/setup-form.sh"
 
 # Unlike a fresh install target, this machine already has accounts; a pinned
 # resume (below) bypasses the prompt entirely.
-omarchy_username_taken() { getent passwd "$1" >/dev/null; }
+unbloarchy_username_taken() { getent passwd "$1" >/dev/null; }
 
-LOGO_PATH="$OMARCHY_PATH/logo.txt"
+LOGO_PATH="$UNBLOARCHY_PATH/logo.txt"
 LOGO_WIDTH=$(awk '{ if (length > max) max = length } END { print max+0 }' "$LOGO_PATH" 2>/dev/null || echo 0)
 LOGO_HEIGHT=$(wc -l <"$LOGO_PATH" 2>/dev/null || echo 0)
 (( LOGO_WIDTH > 0 )) || LOGO_WIDTH=81
@@ -175,8 +175,8 @@ GREEN="${CSI}32m"
 WHITE="${CSI}37m"
 DARK="${CSI}90m"
 
-STATE_FILE=/run/omarchy-provision-owner.state
-FINALIZE_WARNING_FLAG=/run/omarchy-provision-owner.finalize-warning
+STATE_FILE=/run/unbloarchy-provision-owner.state
+FINALIZE_WARNING_FLAG=/run/unbloarchy-provision-owner.finalize-warning
 # Rows the setup screen occupies: logo, blank, title, blank, bar, blank, tip.
 SETUP_HEIGHT=$((LOGO_HEIGHT + 6))
 SETUP_TOP_ROW=1
@@ -184,7 +184,7 @@ DYNAMIC_ROW=$((LOGO_HEIGHT + 3))
 LAST_SETUP_SIZE=""
 
 tips=(
-  "Super + Space opens the Omarchy menu for apps, settings, and more"
+  "Super + Space opens the Unbloarchy menu for apps, settings, and more"
   "Super + K shows all the key bindings"
   "Super is the Windows or command key on your keyboard"
   "Sign PDFs and fill them in with Signed"
@@ -195,13 +195,13 @@ tips=(
   "Super + O grabs text off the screen with OCR"
   "Print takes a screenshot, Alt + Print records the screen"
   "Set a reminder with Super + Ctrl + R"
-  "Switch themes from Appearance > Theme in the Omarchy menu"
+  "Switch themes from Appearance > Theme in the Unbloarchy menu"
   "Double-click the menu bar to make it transparent"
   "Run a full Windows VM via Install > Windows in the menu"
   "Super + V opens the clipboard manager"
   "Super + 1 through 0 switches workspaces, add Shift to bring the window"
   "Super + Print picks a color from anywhere on screen"
-  "Keep the system fresh with Update in the Omarchy menu"
+  "Keep the system fresh with Update in the Unbloarchy menu"
 )
 
 term_cols() {
@@ -324,7 +324,7 @@ SETUP_PHASE_T0=0
 SETUP_T0=0
 NOW=0
 FINALIZE_BASE=-1
-FINALIZE_TOTAL=$(grep -c '^run_logged' "$OMARCHY_PATH/install/user/all.sh" 2>/dev/null || echo 0)
+FINALIZE_TOTAL=$(grep -c '^run_logged' "$UNBLOARCHY_PATH/install/user/all.sh" 2>/dev/null || echo 0)
 
 # Whether this boot will re-key LUKS (encrypted installs stage a throwaway key).
 # The re-key rebuilds the UKI and is the slowest single step, so it needs a wide
@@ -435,7 +435,7 @@ render_setup_dynamic() {
 
 # The first thing a new owner sees, shown once before the keyboard step:
 # the logo (vertically centered like the boot logo) running a looping ColorShift,
-# the Omarchy tagline, and a hint. Return skips ahead into setup at any time.
+# the Unbloarchy tagline, and a hint. Return skips ahead into setup at any time.
 greeter_screen() {
   local anim="" drawn_sig cur_sig resized=0
 
@@ -594,7 +594,7 @@ keyboard_form() {
 
   while true; do
     step "Let's setup your keyboard..."
-    omarchy_prompt_keyboard && status=0 || status=$?
+    unbloarchy_prompt_keyboard && status=0 || status=$?
     if ((status == 0)); then
       apply_keyboard "$keyboard" && break
       if ((++failures >= 3)); then
@@ -607,7 +607,7 @@ keyboard_form() {
     fi
 
     # Esc means "back", and nothing precedes the first screen, so re-ask.
-    ((status == OMARCHY_FORM_BACK)) && continue
+    ((status == UNBLOARCHY_FORM_BACK)) && continue
 
     # Ctrl+C is the way out of a screen the owner cannot get past. Rebooting is
     # safe but not an escape from setup: this service runs again at next boot,
@@ -616,7 +616,7 @@ keyboard_form() {
     confirm_reboot && exec systemctl reboot
   done
 
-  omarchy_persist_input_selection
+  unbloarchy_persist_input_selection
 }
 
 confirm_reboot() {
@@ -708,18 +708,18 @@ user_form() {
     say "Continuing setup for user: $username"
     echo
   else
-    omarchy_prompt_username || return $?
+    unbloarchy_prompt_username || return $?
   fi
 
-  omarchy_prompt_password || return $?
+  unbloarchy_prompt_password || return $?
 
   # Hostname and timezone are deferred to first boot with the rest of the user
-  # step: the deferred install seeds neutral placeholders (omarchy/UTC) and the
+  # step: the deferred install seeds neutral placeholders (unbloarchy/UTC) and the
   # owner overwrites them here.
-  omarchy_prompt_hostname || return $?
+  unbloarchy_prompt_hostname || return $?
 
   step "Let's set your timezone..."
-  omarchy_prompt_timezone || return $?
+  unbloarchy_prompt_timezone || return $?
 }
 
 confirm_form() {
@@ -729,7 +729,7 @@ confirm_form() {
 Keyboard,${keyboard_label:-English (US)}
 Username,$username
 Password,$(printf "%${#password}s" | tr ' ' '*')
-Hostname,${hostname:-omarchy}
+Hostname,${hostname:-unbloarchy}
 Timezone,${timezone:-UTC}" |
     gum table -s "," -p | sed "s/^/${PADDING_LEFT_SPACES}/"
 
@@ -737,7 +737,7 @@ Timezone,${timezone:-UTC}" |
   gum confirm --negative "No, change it" "Does this look right?"
 }
 
-# Groups recorded by omarchy-apply-system's scripts at install time
+# Groups recorded by unbloarchy-apply-system's scripts at install time
 # (/var/lib/omarchy/provisioning/groups), filtered to groups that exist on this system.
 user_groups() {
   local groups="wheel" group
@@ -808,12 +808,12 @@ create_user() {
 
   # deferred-provisioning installs skip archinstall's create_users, which is what normally
   # uncomments %wheel in /etc/sudoers. Always write the drop-in: detecting an
-  # existing grant is error-prone (omarchy ships narrow %wheel NOPASSWD rules
+  # existing grant is error-prone (unbloarchy ships narrow %wheel NOPASSWD rules
   # for specific commands), and a duplicate grant is harmless.
-  echo "%wheel ALL=(ALL:ALL) ALL" >/etc/sudoers.d/00-omarchy-wheel
-  chmod 440 /etc/sudoers.d/00-omarchy-wheel
+  echo "%wheel ALL=(ALL:ALL) ALL" >/etc/sudoers.d/00-unbloarchy-wheel
+  chmod 440 /etc/sudoers.d/00-unbloarchy-wheel
 
-  source "$OMARCHY_PATH/install/helpers/browser-policy.sh"
+  source "$UNBLOARCHY_PATH/install/helpers/browser-policy.sh"
   for dir in "${BROWSER_POLICY_MANAGED_DIRS[@]}"; do
     [[ -d $dir || -L $dir ]] || continue
     browser_policy_setup_dir "$dir"
@@ -904,8 +904,8 @@ configure_timezone() {
 # region, Hong Kong, Macau and Taiwan are always World, and any other timezone
 # keeps the media's region.
 configure_region() {
-  local defaults=${OMARCHY_FORM_DEFAULTS:-/etc/omarchy/form-defaults} marker=${OMARCHY_REGION_FILE:-/etc/omarchy/region}
-  local pacman_conf=${OMARCHY_PACMAN_CONF:-/etc/pacman.conf} key value fallback="" region current=global profile channel
+  local defaults=${UNBLOARCHY_FORM_DEFAULTS:-/etc/unbloarchy/form-defaults} marker=${UNBLOARCHY_REGION_FILE:-/etc/unbloarchy/region}
+  local pacman_conf=${UNBLOARCHY_PACMAN_CONF:-/etc/pacman.conf} key value fallback="" region current=global profile channel
   [[ -r $defaults && -n ${timezone:-} ]] || return 0
   while IFS='=' read -r key value; do
     [[ $key == "REGION" ]] && fallback=$value
@@ -928,9 +928,9 @@ configure_region() {
     printf '%s\n' "$region" >"$marker"
   fi
   # Re-render pacman for the region with the channel this machine installed.
-  channel=$(sed -n 's|^Server = https://pkgs\.omarchy\.[a-z]*/\([a-z]*\)/.*|\1|p' "$pacman_conf" | head -1)
-  if [[ -n $channel && -x $OMARCHY_PATH/bin/omarchy-apply-pacman ]]; then
-    "$OMARCHY_PATH/bin/omarchy-apply-pacman" "$channel" "${OMARCHY_REGION_TARGET:-/}" 2>&1 || true
+  channel=$(sed -n 's|^Server = https://pkgs\.unbloarchy\.[a-z]*/\([a-z]*\)/.*|\1|p' "$pacman_conf" | head -1)
+  if [[ -n $channel && -x $UNBLOARCHY_PATH/bin/unbloarchy-apply-pacman ]]; then
+    "$UNBLOARCHY_PATH/bin/unbloarchy-apply-pacman" "$channel" "${UNBLOARCHY_REGION_TARGET:-/}" 2>&1 || true
   fi
 }
 
@@ -939,8 +939,8 @@ configure_region() {
 # here. No reboot follows setup, so the radios get it now the way udev applies
 # it at every boot.
 configure_wireless_regdom() {
-  bash "$OMARCHY_PATH/install/hardware/set-wireless-regdom.sh" 2>&1 || return 0
-  if omarchy-cmd-present set-wireless-regdom; then
+  bash "$UNBLOARCHY_PATH/install/hardware/set-wireless-regdom.sh" 2>&1 || return 0
+  if unbloarchy-cmd-present set-wireless-regdom; then
     set-wireless-regdom 2>&1 || true
   fi
 }
@@ -955,20 +955,20 @@ finalize_user() {
     USER="$username" \
     LOGNAME="$username" \
     SHELL="${shell:-/bin/bash}" \
-    OMARCHY_PATH="$OMARCHY_PATH" \
-    OMARCHY_INSTALL="$OMARCHY_PATH/install" \
-    OMARCHY_SETUP_CONTEXT=provision-owner \
-    OMARCHY_INSTALL_LOG_FILE="$LOG_FILE" \
-    OMARCHY_LOG_TO_STDOUT=1 \
-    "$OMARCHY_PATH/bin/omarchy-provision-user" --force --first-install
+    UNBLOARCHY_PATH="$OMARCHY_PATH" \
+    UNBLOARCHY_INSTALL="$UNBLOARCHY_PATH/install" \
+    UNBLOARCHY_SETUP_CONTEXT=provision-owner \
+    UNBLOARCHY_INSTALL_LOG_FILE="$LOG_FILE" \
+    UNBLOARCHY_LOG_TO_STDOUT=1 \
+    "$UNBLOARCHY_PATH/bin/unbloarchy-provision-user" --force --first-install
 }
 
 # During the provisioning window the staged key rides in the UKI's initramfs,
 # named on the kernel cmdline, so boot unlocks unattended.
 PROVISIONING_UNLOCK_FILES=(
-  /etc/omarchy/provisioning.key
-  /etc/limine-entry-tool.d/99-omarchy-provisioning-unlock.conf
-  /etc/mkinitcpio.conf.d/99-omarchy-provisioning-key.conf
+  /etc/unbloarchy/provisioning.key
+  /etc/limine-entry-tool.d/99-unbloarchy-provisioning-unlock.conf
+  /etc/mkinitcpio.conf.d/99-unbloarchy-provisioning-key.conf
 )
 
 limine_auto_unlock_present() {
@@ -993,10 +993,10 @@ limine_auto_unlock_drop() {
   # retried for the boot entries.
   if [[ -f $PROVISIONING_DIR/luks-key ]]; then
     log_step "limine-update failed during re-key; restoring auto-unlock for retry"
-    install -Dm600 "$PROVISIONING_DIR/luks-key" /etc/omarchy/provisioning.key
-    echo 'KERNEL_CMDLINE[default]+=" cryptkey=rootfs:/etc/omarchy/provisioning.key"' \
-      >/etc/limine-entry-tool.d/99-omarchy-provisioning-unlock.conf
-    echo 'FILES+=(/etc/omarchy/provisioning.key)' >/etc/mkinitcpio.conf.d/99-omarchy-provisioning-key.conf
+    install -Dm600 "$PROVISIONING_DIR/luks-key" /etc/unbloarchy/provisioning.key
+    echo 'KERNEL_CMDLINE[default]+=" cryptkey=rootfs:/etc/unbloarchy/provisioning.key"' \
+      >/etc/limine-entry-tool.d/99-unbloarchy-provisioning-unlock.conf
+    echo 'FILES+=(/etc/unbloarchy/provisioning.key)' >/etc/mkinitcpio.conf.d/99-unbloarchy-provisioning-key.conf
   else
     log_step "limine-update failed during re-key; the staged key is gone, so no auto-unlock is restored"
   fi
@@ -1014,8 +1014,8 @@ unlock_owner() {
   [[ -z ${UNLOCK_OWNER:-} ]] || return 0
 
   local commit verify
-  commit=$("$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch" --resolve provision-commit) || return 1
-  verify=$("$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch" --resolve provision-verify) || return 1
+  commit=$("$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch" --resolve provision-commit) || return 1
+  verify=$("$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch" --resolve provision-verify) || return 1
   if [[ -n $commit && -n $verify ]]; then
     UNLOCK_OWNER=platform
   elif [[ -z $commit && -z $verify ]]; then
@@ -1029,7 +1029,7 @@ unlock_owner() {
 luks_auto_unlock_present() {
   unlock_owner || return 0
   if [[ $UNLOCK_OWNER == "platform" ]]; then
-    ! "$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch" provision-verify >>"$LOG_FILE" 2>&1
+    ! "$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch" provision-verify >>"$LOG_FILE" 2>&1
   else
     limine_auto_unlock_present
   fi
@@ -1038,7 +1038,7 @@ luks_auto_unlock_present() {
 luks_auto_unlock_drop() {
   unlock_owner || return 1
   if [[ $UNLOCK_OWNER == "platform" ]]; then
-    "$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch" provision-commit >>"$LOG_FILE" 2>&1
+    "$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch" provision-commit >>"$LOG_FILE" 2>&1
   else
     limine_auto_unlock_drop
   fi
@@ -1047,7 +1047,7 @@ luks_auto_unlock_drop() {
 # The platform records the slot the re-key keeps, and no recovery slot; a no-op
 # where nothing does.
 luks_record_slots() {
-  "$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch" luks-slots "owner=$1" "recovery=" >>"$LOG_FILE" 2>&1
+  "$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch" luks-slots "owner=$1" "recovery=" >>"$LOG_FILE" 2>&1
 }
 
 # Move the LUKS volume from the throwaway install passphrase to the user's
@@ -1130,8 +1130,8 @@ reset_limine_config() {
   local esp template="" candidate machine_id entries=""
   esp=$(esp_path)
 
-  for candidate in "$OMARCHY_PATH/install/assets/limine/limine.conf" \
-                   "$OMARCHY_PATH/default/limine/limine.conf"; do
+  for candidate in "$UNBLOARCHY_PATH/install/assets/limine/limine.conf" \
+                   "$UNBLOARCHY_PATH/default/limine/limine.conf"; do
     if [[ -f $candidate ]]; then
       template=$candidate
       break
@@ -1144,7 +1144,7 @@ reset_limine_config() {
 
   machine_id=$(cat /etc/machine-id 2>/dev/null || true)
   if [[ -f $esp/limine.conf ]]; then
-    # Same rewrite as omarchy-system-factory-reset, keyed to this identity:
+    # Same rewrite as unbloarchy-system-factory-reset, keyed to this identity:
     # this machine's entry keeps only its header, and any copy after the first
     # is dropped. An entry-less config passes through as is.
     entries=$(awk -v id="$machine_id" '
@@ -1172,7 +1172,7 @@ reset_limine_config() {
 cleanup_oem_state() {
   rm -f "$PROVISIONING_DIR/pending" "$PROVISIONING_DIR/authorized_keys" "$PROVISIONING_DIR/setup-user" "$REKEY_STATE"
 
-  rm -f /etc/systemd/system/multi-user.target.wants/omarchy-provision-owner.service
+  rm -f /etc/systemd/system/multi-user.target.wants/unbloarchy-provision-owner.service
   systemctl daemon-reload 2>/dev/null || true
 }
 
@@ -1184,7 +1184,7 @@ run_provisioning() {
   install_authorized_keys
   configure_login
 
-  log_step "setting hostname to ${hostname:-omarchy}"
+  log_step "setting hostname to ${hostname:-unbloarchy}"
   configure_hostname
 
   log_step "setting timezone to ${timezone:-UTC}"
@@ -1229,8 +1229,8 @@ run_provisioning() {
 # anything.
 platform_ready() {
   local error
-  if error=$("$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch" provision-prepare 2>&1 >>"$LOG_FILE") &&
-    error=$("$OMARCHY_PATH/bin/omarchy-lifecycle-dispatch" --resolve luks-slots 2>&1 >/dev/null); then
+  if error=$("$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch" provision-prepare 2>&1 >>"$LOG_FILE") &&
+    error=$("$UNBLOARCHY_PATH/bin/unbloarchy-lifecycle-dispatch" --resolve luks-slots 2>&1 >/dev/null); then
     return 0
   fi
   error=${error:-"The boot package could not prepare this machine for setup."}
@@ -1254,7 +1254,7 @@ run_setup() {
     if ((status != 0)); then
       # Esc unwinds to the keyboard step. Ctrl+C is the only other way out of a
       # prompt, and it offers the reboot instead of returning a value.
-      ((status == OMARCHY_FORM_SIGNAL)) && confirm_reboot && exec systemctl reboot
+      ((status == UNBLOARCHY_FORM_SIGNAL)) && confirm_reboot && exec systemctl reboot
       continue
     fi
     confirm_form || continue
@@ -1311,7 +1311,7 @@ run_setup() {
   # in on encrypted installs. No timed celebration screen and no "start" button
   # here — that send-off belongs to a direct install, not first-boot setup. The
   # finished progress bar is the last frame; clearing it for a "Starting
-  # Omarchy..." card would only add a flash of screen before the handoff.
+  # Unbloarchy..." card would only add a flash of screen before the handoff.
 }
 
 # A failed first-boot setup must not strand the machine at a user-less login
@@ -1340,7 +1340,7 @@ main() {
       # getty), and on a failed deferred setup there's no user account and root
       # is locked — so exiting would strand the machine with no way in. Exec a
       # root shell on tty1; SDDM starts once it exits.
-      say "Dropping to a root shell. Run 'omarchy-provision-owner' to retry setup."
+      say "Dropping to a root shell. Run 'unbloarchy-provision-owner' to retry setup."
       exec /bin/bash
     fi
   done
