@@ -1,24 +1,24 @@
 #!/bin/bash
 
-# unbloarchy:summary=Enable, disable, toggle, or recover mirroring the internal display to an external monitor
-# unbloarchy:args=<on|off|toggle|recover>
+# omarchy:summary=Enable, disable, toggle, or recover mirroring the internal display to an external monitor
+# omarchy:args=<on|off|toggle|recover>
 
 TOGGLE="internal-monitor-mirror"
-TOGGLE_FLAG="$HOME/.local/state/unbloarchy/toggles/hypr/$TOGGLE.lua"
+TOGGLE_FLAG="$HOME/.local/state/omarchy/toggles/hypr/$TOGGLE.lua"
 DISABLE_TOGGLE="internal-monitor-disable"
 
-INTERNAL=$(unbloarchy-hyprland-monitor-laptop)
+INTERNAL=$(omarchy-hyprland-monitor-laptop)
 # The first active external monitor
 EXTERNAL=$(hyprctl monitors -j | jq -r '.[] | select(.name | test("^(eDP|LVDS|DSI)-") | not).name' | head -n 1)
 
 on() {
   if [[ -z $EXTERNAL ]]; then
-    unbloarchy-notification-send -g 󰍹 "No external monitors found for mirror"
+    omarchy-notification-send -g 󰍹 "$(omarchy-i18n monitor.noExternalForMirror)"
     exit 1
   fi
 
   if [[ -z $INTERNAL ]]; then
-    unbloarchy-notification-send -g 󰍹 "No laptop monitor found to mirror"
+    omarchy-notification-send -g 󰍹 "$(omarchy-i18n monitor.noLaptopToMirror)"
     exit 1
   fi
 
@@ -26,29 +26,29 @@ on() {
   # names may pass; a user-created headless output can carry any name.
   for output in "$INTERNAL" "$EXTERNAL"; do
     if [[ ! $output =~ ^[A-Za-z0-9._-]+$ ]]; then
-      unbloarchy-notification-send -g 󰍹 "Refusing unsafe monitor name"
+      omarchy-notification-send -g 󰍹 "$(omarchy-i18n monitor.unsafeName)"
       exit 1
     fi
   done
 
-  unbloarchy-hyprland-toggle $DISABLE_TOGGLE off
+  omarchy-hyprland-toggle $DISABLE_TOGGLE off
 
-  if unbloarchy-hyprland-toggle-disabled $TOGGLE; then
+  if omarchy-hyprland-toggle-disabled $TOGGLE; then
     printf 'hl.monitor({ output = "%s", mode = "preferred", position = "auto", scale = 1, mirror = "%s" })\n' "$EXTERNAL" "$INTERNAL" >"$TOGGLE_FLAG"
-    unbloarchy-notification-send -g 󰍹 "Mirroring enabled ($EXTERNAL)"
+    omarchy-notification-send -g 󰍹 "$(omarchy-i18n monitor.mirroringEnabled "$EXTERNAL")"
     hyprctl reload
   fi
 }
 
 off() {
-  if unbloarchy-hyprland-toggle-enabled $TOGGLE; then
-    unbloarchy-hyprland-toggle $TOGGLE off
-    unbloarchy-notification-send -g 󰍹 "Extended mode restored"
+  if omarchy-hyprland-toggle-enabled $TOGGLE; then
+    omarchy-hyprland-toggle $TOGGLE off
+    omarchy-notification-send -g 󰍹 "$(omarchy-i18n monitor.extendedRestored)"
   fi
 }
 
 toggle() {
-  if unbloarchy-hyprland-toggle-enabled $TOGGLE; then
+  if omarchy-hyprland-toggle-enabled $TOGGLE; then
     off
   else
     on
@@ -56,8 +56,8 @@ toggle() {
 }
 
 recover() {
-  if ! unbloarchy-hyprland-monitor-external-active && unbloarchy-hyprland-toggle-enabled $TOGGLE; then
-    unbloarchy-hyprland-toggle $TOGGLE off
+  if ! omarchy-hyprland-monitor-external-active && omarchy-hyprland-toggle-enabled $TOGGLE; then
+    omarchy-hyprland-toggle $TOGGLE off
   fi
 }
 

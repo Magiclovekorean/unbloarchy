@@ -1,21 +1,21 @@
 #!/bin/bash
 
-# unbloarchy:summary=Pick a webcam and start a screen recording with it
-# unbloarchy:examples=unbloarchy capture screenrecording-with-webcam
+# omarchy:summary=Pick a webcam and start a screen recording with it
+# omarchy:examples=omarchy capture screenrecording-with-webcam
 
-mapfile -t devices < <(unbloarchy-capture-webcam-list)
+mapfile -t devices < <(omarchy-capture-webcam-list)
 if (( ${#devices[@]} == 0 )); then
-  unbloarchy-notification-send "No webcam devices found" -u critical -t 3000
+  omarchy-notification-send "$(omarchy-i18n capture.noWebcam)" -u critical -t 3000
   exit 1
 fi
 
 if (( ${#devices[@]} == 1 )); then
   device="${devices[0]%%[[:space:]]*}"
 else
-  selection=$(unbloarchy-menu-select "Select Webcam" "${devices[@]}" -- --width 520 --maxheight 520) || exit 1
+  selection=$(omarchy-menu-select "$(omarchy-i18n capture.selectWebcam)" "${devices[@]}" -- --width 520 --maxheight 520) || exit 1
   device="${selection%%[[:space:]]*}"
 fi
 
-exec unbloarchy-capture-screenrecording \
+exec omarchy-capture-screenrecording \
   --with-desktop-audio --with-microphone-audio \
   --with-webcam --webcam-device="$device"

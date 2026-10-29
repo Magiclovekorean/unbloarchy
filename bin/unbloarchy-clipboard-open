@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# unbloarchy:summary=Open a clipboard history entry
-# unbloarchy:group=clipboard
-# unbloarchy:args=--history-index <index>
-# unbloarchy:hidden=true
+# omarchy:summary=Open a clipboard history entry
+# omarchy:group=clipboard
+# omarchy:args=--history-index <index>
+# omarchy:hidden=true
 
 history_index=""
-history_path="$HOME/.local/state/unbloarchy/clipboard-history.json"
+history_path="$HOME/.local/state/omarchy/clipboard-history.json"
 
 while (( $# > 0 )); do
   case "$1" in
@@ -15,7 +15,7 @@ while (( $# > 0 )); do
       shift 2
       ;;
     *)
-      echo "Usage: unbloarchy-clipboard-open --history-index <index>" >&2
+      echo "Usage: omarchy-clipboard-open --history-index <index>" >&2
       exit 1
       ;;
   esac
@@ -30,7 +30,7 @@ open_image() {
   local path="$1"
 
   [[ -r $path ]] || exit 1
-  exec omasnap "$path"
+  exec omasnap --notify "$path"
 }
 
 open_text() {
@@ -45,14 +45,14 @@ open_text() {
   fi
 
   if [[ -n $url ]]; then
-    exec unbloarchy-launch-browser "$url"
+    exec omarchy-launch-browser "$url"
   fi
 
-  open_dir="${XDG_STATE_HOME:-$HOME/.local/state}/unbloarchy/clipboard-open"
+  open_dir="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/clipboard-open"
   mkdir -p "$open_dir"
   open_file=$(mktemp --tmpdir="$open_dir" clipboard.XXXXXX.txt) || exit 1
   printf '%s' "$text" >"$open_file"
-  exec unbloarchy-launch-editor "$open_file"
+  exec omarchy-launch-editor "$open_file"
 }
 
 case "$entry_type" in

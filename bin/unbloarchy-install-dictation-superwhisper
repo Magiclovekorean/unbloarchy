@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# unbloarchy:summary=Install and configure Superwhisper dictation
-# unbloarchy:requires-sudo=true
+# omarchy:summary=Install and configure Superwhisper dictation
+# omarchy:requires-sudo=true
 
 set -e
 
-unbloarchy-pkg-add superwhisper-bin
+omarchy-pkg-add superwhisper-bin
 bash /usr/share/superwhisper/setup-user
-# Existing profiles may still use Right Alt, which conflicts with Unbloarchy.
+# Existing profiles may still use Right Alt, which conflicts with Omarchy.
 # Keep a recording shortcut active while moving away from that binding.
 shortcuts=$(superwhisper shortcuts show)
 if [[ $(jq -r '.shortcuts.hold' <<< "$shortcuts") == "RightAlt" ]]; then
@@ -18,10 +18,10 @@ if [[ $(jq -r '.shortcuts.hold' <<< "$shortcuts") == "RightAlt" ]]; then
   fi
 fi
 # Superwhisper requires a native recording shortcut; keep it separate from
-# Unbloarchy's push-to-talk keys.
+# Omarchy's push-to-talk keys.
 superwhisper shortcuts set toggle "Alt+Space" >/dev/null
 superwhisper shortcuts set hold none >/dev/null
-unbloarchy-dictation-use superwhisper
+omarchy-dictation-use superwhisper
 hyprctl reload >/dev/null
-unbloarchy-notification-send -g  "Superwhisper Dictation Ready" "Hold Right Alt or F9 to dictate (or toggle with Super + Ctrl + X)." -t 10000
+omarchy-notification-send -g  "$(omarchy-i18n dictation.superwhisperReady)" "$(omarchy-i18n dictation.hint)" -t 10000
 superwhisper settings

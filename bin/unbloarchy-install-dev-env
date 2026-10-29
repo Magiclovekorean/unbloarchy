@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# unbloarchy:summary=Install a supported development environment
-# unbloarchy:name=dev-env
-# unbloarchy:args=<ruby|node|bun|deno|go|laravel|symfony|php|python|elixir|phoenix|rust|java|zig|ocaml|dotnet|clojure|scala>
-# unbloarchy:examples=unbloarchy install dev-env ruby | unbloarchy install dev-env node
-# unbloarchy:requires-sudo=true
+# omarchy:summary=Install a supported development environment
+# omarchy:name=dev-env
+# omarchy:args=<ruby|node|bun|deno|go|laravel|symfony|php|python|elixir|phoenix|rust|java|zig|ocaml|dotnet|clojure|scala>
+# omarchy:examples=omarchy install dev-env ruby | omarchy install dev-env node
+# omarchy:requires-sudo=true
 
 if [[ -z $1 ]]; then
-  echo "Usage: unbloarchy-install-dev-env <ruby|node|bun|deno|go|laravel|symfony|php|python|elixir|phoenix|rust|java|zig|ocaml|dotnet|clojure|scala>" >&2
+  echo "Usage: omarchy-install-dev-env <ruby|node|bun|deno|go|laravel|symfony|php|python|elixir|phoenix|rust|java|zig|ocaml|dotnet|clojure|scala>" >&2
   exit 1
 fi
 
@@ -20,13 +20,19 @@ install_php() {
 
 install_node() {
   echo -e "Installing Node.js...\n"
-  mise use --global node
+  # Omarchy declares Node as a default tool. A user who removed the preinstalls,
+  # like one without Omarchy's declarations, selects it in their own config.
+  if omarchy-mise-default-tools declares node; then
+    mise install node
+  else
+    mise use --global node
+  fi
 }
 
 case "$1" in
 ruby)
   echo -e "Installing Ruby on Rails...\n"
-  unbloarchy-pkg-add libyaml
+  omarchy-pkg-add libyaml
   mise settings add ruby.compile false
   mise settings add idiomatic_version_file_enable_tools ruby
   mise use --global ruby@latest
@@ -63,14 +69,20 @@ laravel)
 symfony)
   echo -e "Installing PHP and Symfony...\n"
   install_php
-  unbloarchy-pkg-add symfony-cli
+  omarchy-pkg-add symfony-cli
   echo -e "\nYou can now run: symfony new --webapp myproject"
   ;;
 python)
   echo -e "Installing Python...\n"
   mise use --global python@latest
   echo -e "\nInstalling uv...\n"
-  curl -fsSL https://astral.sh/uv/install.sh | sh
+  # Omarchy declares uv as a default tool. A user who removed the preinstalls,
+  # like one without Omarchy's declarations, selects it in their own config.
+  if omarchy-mise-default-tools declares uv; then
+    mise install uv
+  else
+    mise use --global uv
+  fi
   ;;
 elixir)
   echo -e "Installing Elixir...\n"
@@ -92,6 +104,9 @@ phoenix)
   ;;
 rust)
   echo -e "Installing Rust...\n"
+  # Crates that generate C bindings with bindgen, including Ruby gems built
+  # with rb-sys, load libclang from clang.
+  omarchy-pkg-add clang
   bash -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" -- -y
   ;;
 java)
@@ -116,7 +131,7 @@ dotnet)
   ;;
 clojure)
   echo -e "Installing Clojure...\n"
-  unbloarchy-pkg-add rlwrap
+  omarchy-pkg-add rlwrap
   mise use --global clojure@latest
   ;;
 scala)

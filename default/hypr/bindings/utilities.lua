@@ -1,5 +1,5 @@
 o.bind("SUPER + SPACE", "Unbloarchy menu", { menu = "root" })
-o.bind("SUPER + ALT + SPACE", "Apps menu", { menu = "apps" })
+o.bind("SUPER + ALT + SPACE", "Apps", "unbloarchy-shell unbloarchy.dock apps")
 o.bind("SUPER + E", "Emojis", { panel = "unbloarchy.emojis" })
 o.bind("SUPER + S", "Capture menu", { menu = "capture" })
 o.bind("SUPER + CTRL + O", "Toggle menu", { menu = "toggle" })
@@ -19,13 +19,15 @@ o.bind("SUPER + SHIFT + CTRL + SPACE", "Theme menu", { menu = "theme" })
 o.bind("SUPER + BACKSPACE", "Toggle transparency on a window", "unbloarchy-hyprland-window-transparency-toggle")
 o.bind("SUPER + SHIFT + BACKSPACE", "Toggle window gaps", "unbloarchy-hyprland-window-gaps-toggle")
 o.bind("SUPER + CTRL + BACKSPACE", "Toggle single-window square aspect", "unbloarchy-hyprland-window-single-square-aspect-toggle")
+o.bind_toggle("SUPER + CTRL + ALT + F", "Toggle full screen desktop", "fullscreen-desktop")
 
 -- xkbcommon names the comma keysym "comma"; the upper-case "COMMA" does not match.
-o.bind("SUPER + comma", "Dismiss last notification", { ipc = "notifications.dismissOne" })
+o.bind("SUPER + comma", "Dismiss, invoke, or focus last notification", { ipc = "notifications.act" })
 o.bind("SUPER + SHIFT + comma", "Dismiss all notifications", { ipc = "notifications.dismissAll" })
-o.bind_toggle("SUPER + CTRL + comma", "Toggle silencing notifications", "notification-silencing")
-o.bind("SUPER + ALT + comma", "Invoke last notification", { ipc = "notifications.invokeLast" })
+o.bind("SUPER + CTRL + comma", "Control notifications with the keyboard", { ipc = "notifications.keyboard" })
+o.bind("SUPER + ALT + comma", "Dismiss last notification", { ipc = "notifications.dismissOne" })
 o.bind("SUPER + SHIFT + ALT + comma", "Open notification history", { ipc = "notifications.showHistory" })
+o.bind_toggle("SUPER + CTRL + ALT + comma", "Toggle silencing notifications", "notification-silencing")
 
 o.bind_toggle("SUPER + SHIFT + I", "Toggle locking on idle", "idle")
 o.bind_toggle("SUPER + SHIFT + N", "Toggle nightlight", "nightlight")
@@ -38,6 +40,7 @@ o.bind("switch:on:Apple SMC power/lid events", nil, "unbloarchy-system-lid-close
 o.bind("switch:off:Apple SMC power/lid events", nil, "unbloarchy-hyprland-monitor-clamshell", { locked = true })
 
 o.bind("PRINT", "Screenshot", "unbloarchy-capture-screenshot")
+o.bind("SUPER + CTRL + ALT + C", "Screenshot", "unbloarchy-capture-screenshot")
 o.bind("ALT + PRINT", "Screenrecording", "unbloarchy-capture-screenrecording --stop-recording || unbloarchy-menu toggle trigger.capture.screenrecord")
 o.bind("SUPER + ALT + code:34", "Make webcam overlay smaller", "unbloarchy-capture-webcam-resize smaller")
 o.bind("SUPER + ALT + code:35", "Make webcam overlay larger", "unbloarchy-capture-webcam-resize larger")

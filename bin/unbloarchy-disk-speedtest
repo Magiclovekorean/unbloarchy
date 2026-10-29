@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# unbloarchy:summary=Measure live disk read and write speed
-# unbloarchy:args=[target-dir]
+# omarchy:summary=Measure live disk read and write speed
+# omarchy:args=[target-dir]
 
 set -e
 
 if [[ -n ${1:-} && ! -d $1 ]]; then
-  echo "Usage: unbloarchy-disk-speedtest [target-dir]" >&2
+  echo "Usage: omarchy-disk-speedtest [target-dir]" >&2
   exit 2
 fi
 
-target_dir="${1:-${XDG_CACHE_HOME:-$HOME/.cache}/unbloarchy}"
+target_dir="${1:-${XDG_CACHE_HOME:-$HOME/.cache}/omarchy}"
 phase_seconds=8
 parallel=4
 chunk_mb=4
@@ -70,7 +70,7 @@ trap 'exit 143' TERM INT
 # back to the page cache -- and it makes every rewrite land in place instead
 # of churning the extent allocator, which run-to-run reproducibility depends
 # on.
-chunk_file=$(mktemp /dev/shm/unbloarchy-disk-speedtest-XXXXXX.src)
+chunk_file=$(mktemp /dev/shm/omarchy-disk-speedtest-XXXXXX.src)
 for (( i = 0; i < parallel; i++ )); do
   file=$(mktemp "$target_dir/disk-speedtest-XXXXXX.dat")
   chattr +C "$file" 2>/dev/null || true
@@ -172,7 +172,9 @@ run_phase() {
   while (( SECONDS < deadline )) && (( $(alive_workers) > 0 )); do
     sleep 1
     after=$(device_sectors "$phase")
-    end_time=$EPOCHREALTIME
+    # awk reads only a dot as the decimal point, and EPOCHREALTIME uses the
+    # locale's separator, a comma in many.
+    end_time=${EPOCHREALTIME/,/.}
     rate=$(awk -v before="$before" -v after="$after" 'BEGIN {
       if (after < before) print 0
       else print (after - before) * 512 / 1000000

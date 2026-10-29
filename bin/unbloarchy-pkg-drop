@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# unbloarchy:summary=Remove all the named packages from the system if they're installed (otherwise ignore).
-# unbloarchy:args=<packages...>
-# unbloarchy:requires-sudo=true
+# omarchy:summary=Remove all the named packages from the system if they're installed (otherwise ignore).
+# omarchy:args=<packages...>
+# omarchy:requires-sudo=true
 
 installed=()
 declare -A installed_exact=()
@@ -27,5 +27,9 @@ for pkg in "$@"; do
 done
 
 if (( ${#installed[@]} > 0 )); then
-  sudo pacman -Rns --noconfirm "${installed[@]}"
+  if (( EUID == 0 )); then
+    pacman -Rns --noconfirm "${installed[@]}"
+  else
+    sudo pacman -Rns --noconfirm "${installed[@]}"
+  fi
 fi

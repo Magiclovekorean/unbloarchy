@@ -1,21 +1,21 @@
 #!/bin/bash
 
-# unbloarchy:summary=Measure Unbloarchy CLI response times
-# unbloarchy:args=[--repeat=<count>]
-# unbloarchy:examples=unbloarchy dev benchmark cli | unbloarchy dev benchmark cli --repeat=10
+# omarchy:summary=Measure Omarchy CLI response times
+# omarchy:args=[--repeat=<count>]
+# omarchy:examples=omarchy dev benchmark cli | omarchy dev benchmark cli --repeat=10
 
 set -euo pipefail
 
-UNBLOARCHY_BIN_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-CLI="$UNBLOARCHY_BIN_DIR/unbloarchy"
+OMARCHY_BIN_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+CLI="$OMARCHY_BIN_DIR/omarchy"
 REPEAT=5
 
 show_help() {
   cat <<'EOF'
 Usage:
-  unbloarchy dev benchmark cli [--repeat=<count>]
+  omarchy dev benchmark cli [--repeat=<count>]
 
-Measure response times for common Unbloarchy CLI surfaces.
+Measure response times for common Omarchy CLI surfaces.
 
 Options:
   --repeat=<count>  Number of times to run each case (default: 5)
@@ -23,7 +23,8 @@ EOF
 }
 
 now_us() {
-  local now="${EPOCHREALTIME/./}"
+  # EPOCHREALTIME uses the locale's decimal separator, a comma in many.
+  local now="${EPOCHREALTIME//[!0-9]/}"
   printf '%s' "$now"
 }
 
@@ -99,13 +100,13 @@ if [[ ! $REPEAT =~ ^[0-9]+$ ]] || (( REPEAT < 1 )); then
   exit 2
 fi
 
-printf 'Unbloarchy CLI benchmark (%d runs each)\n\n' "$REPEAT"
-run_case "unbloarchy" "$CLI"
-run_case "unbloarchy --help" "$CLI" --help
-run_case "unbloarchy commands" "$CLI" commands
-run_case "unbloarchy commands --json" "$CLI" commands --json
-run_case "unbloarchy commands --all --json" "$CLI" commands --all --json
-run_case "unbloarchy theme set --help" "$CLI" theme set --help
-run_case "unbloarchy screenshot --help" "$CLI" screenshot --help
-run_case "unbloarchy restart --help" "$CLI" restart --help
-run_case "unbloarchy theme current" "$CLI" theme current
+printf 'Omarchy CLI benchmark (%d runs each)\n\n' "$REPEAT"
+run_case "omarchy" "$CLI"
+run_case "omarchy --help" "$CLI" --help
+run_case "omarchy commands" "$CLI" commands
+run_case "omarchy commands --json" "$CLI" commands --json
+run_case "omarchy commands --all --json" "$CLI" commands --all --json
+run_case "omarchy theme set --help" "$CLI" theme set --help
+run_case "omarchy screenshot --help" "$CLI" screenshot --help
+run_case "omarchy restart --help" "$CLI" restart --help
+run_case "omarchy theme current" "$CLI" theme current

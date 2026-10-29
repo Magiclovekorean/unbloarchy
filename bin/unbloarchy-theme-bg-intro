@@ -1,34 +1,34 @@
 #!/bin/bash
 
-# unbloarchy:summary=Enable or disable background intros
-# unbloarchy:args=<enable|disable|toggle|status>
-# unbloarchy:examples=unbloarchy theme bg intro toggle | unbloarchy theme bg intro disable
+# omarchy:summary=Enable or disable background intros
+# omarchy:args=<enable|disable|toggle|status>
+# omarchy:examples=omarchy theme bg intro toggle | omarchy theme bg intro disable
 
 set -euo pipefail
 
-toggle="$HOME/.local/state/unbloarchy/toggles/background-intros-off"
+toggle="$HOME/.local/state/omarchy/toggles/background-intros-off"
 case ${1:-} in
   enable)
     rm -f "$toggle"
-    unbloarchy-notification-send "Background Intros" "Enabled"
+    omarchy-notification-send "$(omarchy-i18n theme.backgroundIntros)" "$(omarchy-i18n common.enabled)"
     ;;
   disable)
     mkdir -p "$(dirname "$toggle")"
     touch "$toggle"
-    unbloarchy-notification-send "Background Intros" "Disabled"
+    omarchy-notification-send "$(omarchy-i18n theme.backgroundIntros)" "$(omarchy-i18n common.disabled)"
     ;;
   toggle)
     if [[ -f $toggle ]]; then
-      unbloarchy-theme-bg-intro enable
+      omarchy-theme-bg-intro enable
     else
-      unbloarchy-theme-bg-intro disable
+      omarchy-theme-bg-intro disable
     fi
     ;;
   status)
     [[ ! -f $toggle ]]
     ;;
   *)
-    echo "Usage: unbloarchy-theme-bg-intro <enable|disable|toggle|status>" >&2
+    echo "Usage: omarchy-theme-bg-intro <enable|disable|toggle|status>" >&2
     exit 1
     ;;
 esac

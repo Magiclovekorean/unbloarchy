@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# unbloarchy:summary=Remove the Hermes desktop app along with the Hermes runtime it installed.
-# unbloarchy:requires-sudo=true
+# omarchy:summary=Remove the Hermes desktop app along with the Hermes runtime it installed.
+# omarchy:requires-sudo=true
 
 # -u so an unset HOME is an error rather than a set of rm -rf paths rooted at /.
 set -euo pipefail
@@ -160,15 +160,15 @@ for unit_file in "$unit_dir"/hermes-gateway*.service; do
   fi
 done
 
-# The installer leaves a unit waiting to hand the app the Unbloarchy theme; it
+# The installer leaves a unit waiting to hand the app the Omarchy theme; it
 # runs Hermes itself to do so, so it is stopped before the sweep reaches it.
-systemctl --user stop unbloarchy-hermes-theme.service 2>/dev/null || true
+systemctl --user stop omarchy-hermes-theme.service 2>/dev/null || true
 
 hermes_holders stop
-unbloarchy-pkg-drop hermes-desktop
+omarchy-pkg-drop hermes-desktop
 
 # Upstream's installer writes this when the runtime under ~/.hermes has landed,
-# whether Unbloarchy ran it for the app or the app's own first launch did, and it
+# whether Omarchy ran it for the app or the app's own first launch did, and it
 # is the only thing that tells that runtime apart from one the user installed
 # themselves -- the paths are the same either way. Without it the install never
 # got that far: a machine where the package landed but nothing set Hermes up
@@ -224,7 +224,12 @@ if [[ -d $HOME/.hermes || -d $HOME/.config/Hermes ]] && [[ -t 0 ]]; then
   # du answers non-zero when either directory is missing, and pipefail would
   # turn that into an aborted removal; the size is worth no such thing.
   size=$(du -shc "$HOME/.hermes" "$HOME/.config/Hermes" 2>/dev/null | tail -1 | cut -f1 || true)
-  if gum confirm --default=false "Also delete ~/.hermes and ~/.config/Hermes ($size: chats, memories, skills, connections and tokens)?"; then
+  # du glues the unit to the number ("1.2G"); write the number with the
+  # language's decimal separator and digits.
+  if [[ $size =~ ^([0-9]+([.,][0-9]+)?)([A-Za-z]*)$ ]] && number=$(omarchy-i18n --number "${BASH_REMATCH[1]/,/.}"); then
+    size="$number${BASH_REMATCH[3]}"
+  fi
+  if gum confirm --default=false --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n hermes.deleteData "$size")"; then
     hermes_holders stop
     rm -rf "$HOME/.hermes" "$HOME/.config/Hermes"
     data_removed=true

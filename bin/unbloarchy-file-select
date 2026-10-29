@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-# unbloarchy:summary=Pick files with the desktop file chooser
-# unbloarchy:args=[--title <title>] [--multiple] [--directory] [--extensions "<ext ext...>"]
-# unbloarchy:examples=unbloarchy file select --title "Send with Tailscale" --multiple | unbloarchy file select --title "Pick image" --extensions "png svg" | unbloarchy file select --title "Share folder" --directory
+# omarchy:summary=Pick files with the desktop file chooser
+# omarchy:args=[--title <title>] [--multiple] [--directory] [--extensions "<ext ext...>"]
+# omarchy:examples=omarchy file select --title "Send with Tailscale" --multiple | omarchy file select --title "Pick image" --extensions "png svg" | omarchy file select --title "Share folder" --directory
 
 # Python rather than bash, alone among the commands here, because the portal
 # answers a request with a Response signal addressed to the connection that
@@ -15,6 +15,7 @@
 
 import argparse
 import os
+import subprocess
 import sys
 
 import gi
@@ -32,17 +33,31 @@ EXIT_NOTHING_PICKED = 1
 EXIT_CHOOSER_FAILED = 2
 
 
+# The dialog's own title when the caller names none, in the Omarchy language.
+def default_title():
+    try:
+        title = subprocess.run("omarchy-i18n files.selectFile".split(), capture_output=True, text=True).stdout
+    except OSError:
+        title = ""
+    if not title or title == "files.selectFile":
+        title = "Select file"
+    return title
+
+
 def main():
     parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument("--title", default="Select file")
+    parser.add_argument("--title", default=None)
     parser.add_argument("--multiple", action="store_true")
     parser.add_argument("--directory", action="store_true")
     parser.add_argument("--extensions", default="")
     args, unknown = parser.parse_known_args()
 
     if unknown:
-        print("unbloarchy-file-select: unknown option %s" % unknown[0], file=sys.stderr)
+        print("omarchy-file-select: unknown option %s" % unknown[0], file=sys.stderr)
         return EXIT_CHOOSER_FAILED
+
+    if args.title is None:
+        args.title = default_title()
 
     bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
     loop = GLib.MainLoop()
@@ -68,7 +83,7 @@ def main():
     # The request path is derived from our bus name and the token we pass, so it
     # can be subscribed to up front. Asking first would race a dialog that gets
     # answered immediately.
-    token = "unbloarchy%d" % os.getpid()
+    token = "omarchy%d" % os.getpid()
     sender = bus.get_unique_name()[1:].replace(".", "_")
     predicted = "/org/freedesktop/portal/desktop/request/%s/%s" % (sender, token)
     subscribe(predicted)
@@ -120,5 +135,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except GLib.Error as error:
-        print("unbloarchy-file-select: %s" % error.message, file=sys.stderr)
+        print("omarchy-file-select: %s" % error.message, file=sys.stderr)
         sys.exit(EXIT_CHOOSER_FAILED)

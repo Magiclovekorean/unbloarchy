@@ -7,7 +7,7 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 # First-boot setup's keyboard step. The owner types the disk password at boot in
 # the layout /etc/vconsole.conf names, so a layout that did not load, did not
 # persist, or does not read back must be asked for again before the password
-# form. keyboard_form and apply_keyboard run as unbloarchy-provision-owner defines
+# form. keyboard_form and apply_keyboard run as omarchy-provision-owner defines
 # them, against a fixture root, with loadkeys, localectl and systemd-firstboot
 # faked.
 
@@ -70,10 +70,12 @@ SH
 chmod +x "$stub_bin"/*
 export PATH="$stub_bin:$PATH"
 
-sed -n '/^keyboard_form() {/,/^}/p; /^keyboard_xkb_settings() {/,/^}/p; /^apply_keyboard() {/,/^}/p' "$ROOT/bin/unbloarchy-provision-owner" |
-  sed "s|/etc/|$root/etc/|g" >"$tmp/keyboard.sh"
+{
+  sed -n '/^keyboard_form() {/,/^}/p; /^keyboard_xkb_settings() {/,/^}/p; /^apply_keyboard() {/,/^}/p' "$ROOT/bin/omarchy-provision-owner"
+  sed -n '/^omarchy_persist_input_selection() {/,/^}/p' "$ROOT/install/provisioning/setup-form.sh"
+} | sed "s|/etc/|$root/etc/|g" >"$tmp/keyboard.sh"
 grep -q '^keyboard_form() {' "$tmp/keyboard.sh" && grep -q '^apply_keyboard() {' "$tmp/keyboard.sh" ||
-  fail "unbloarchy-provision-owner defines the keyboard step"
+  fail "omarchy-provision-owner defines the keyboard step"
 
 # The owner's answers, one "label|keymap" per prompt. Running out means the step
 # asked once more than the test answered.
@@ -86,7 +88,7 @@ step() { echo "prompt" >>"$tmp/screen"; }
 notice() { echo "notice: \$1" >>"$tmp/screen"; }
 log_step() { echo "\$1" >>"\$LOG_FILE"; }
 confirm_reboot() { exit 5; }
-unbloarchy_prompt_keyboard() {
+omarchy_prompt_keyboard() {
   local answer
   answer=\$("$stub_bin/next-mode" "$tmp/answers")
   [[ \$answer != normal ]] || { echo "asked again" >>"$tmp/screen"; exit 9; }
@@ -143,6 +145,8 @@ form || fail "a known layout is set" "$(cat "$tmp/screen" "$tmp/log")"
 grep -qx 'loadkeys dk' "$tmp/calls" && grep -qx 'systemd-firstboot --keymap=dk --force' "$tmp/calls" ||
   fail "the layout is loaded on the console and persisted" "$(cat "$tmp/calls")"
 assert_layout dk "a known layout"
+[[ $(<"$root/etc/omarchy/input-method") == $'INPUT_METHOD=none\nXKB_LAYOUT=' ]] ||
+  fail "a known layout records no input method" "$(cat "$root/etc/omarchy/input-method" 2>&1)"
 pass "a layout that loads, persists and reads back goes straight to the password form"
 
 # systemd-firstboot writes only KEYMAP= for a keymap kbd-model-map lacks, as it
@@ -191,11 +195,11 @@ model_map=/usr/share/systemd/kbd-model-map
 if [[ -r $model_map ]]; then
   source "$ROOT/install/provisioning/setup-form.sh"
   source "$tmp/keyboard.sh"
-  while IFS='|' read -r label keymap; do
+  while IFS='|' read -r label keymap _; do
     awk -v k="$keymap" '$1 == k { found = 1 } END { exit !found }' "$model_map" ||
       { declare -F keyboard_xkb_settings >/dev/null && keyboard_xkb_settings "$keymap" >/dev/null; } ||
       fail "the $label layout ($keymap) gets an XKB layout"
-  done <<<"$UNBLOARCHY_KEYBOARD_LAYOUTS"
+  done <<<"$OMARCHY_KEYBOARD_LAYOUTS"
   pass "every layout the form offers gets an XKB layout"
 else
   echo "ok - # SKIP no $model_map to check the form's layouts against"
@@ -300,7 +304,7 @@ form || status=$?
   fail "the keyboard step gives up after three failures, and says so" "$(cat "$tmp/screen")"
 ! grep -q 'password form' "$tmp/screen" || fail "a layout that can never be set never reaches the password form" "$(cat "$tmp/screen")"
 grep -q 'no keyboard layout could be set after 3 attempts' "$tmp/log" || fail "the log records giving up" "$(cat "$tmp/log")"
-sed -n '/^run_setup() {/,/^}/p' "$ROOT/bin/unbloarchy-provision-owner" | grep -qx '    keyboard_form || return 1' ||
+sed -n '/^run_setup() {/,/^}/p' "$ROOT/bin/omarchy-provision-owner" | grep -qx '    keyboard_form || return 1' ||
   fail "a failed keyboard step fails the setup attempt, which offers retry or a console"
 pass "a machine that can't set any layout fails the attempt after three tries, reaching setup's retry-or-console screen"
 

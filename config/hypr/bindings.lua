@@ -2,15 +2,15 @@
 -- o.bind or replace defaults with o.rebind.
 
 -- See current bindings and descriptions:
---   unbloarchy menu keybindings --print
+--   omarchy menu keybindings --print
 
--- To disable every Unbloarchy default binding, set this in
--- ~/.config/hypr/hyprland.lua before require("default.hypr.unbloarchy"), then add
+-- To disable every Omarchy default binding, set this in
+-- ~/.config/hypr/hyprland.lua before require("default.hypr.omarchy"), then add
 -- only the bindings you want below:
---   unbloarchy_default_bindings = false
+--   omarchy_default_bindings = false
 
 -- To disable all preinstalled app/webapp bindings, set:
---   unbloarchy_preinstalled_bindings = false
+--   omarchy_preinstalled_bindings = false
 
 -- Add a new binding.
 -- o.bind("SUPER + SHIFT + R", "SSH", "alacritty -e ssh your-server")
@@ -23,6 +23,5 @@
 -- hl.unbind("SUPER + SHIFT + B")
 
 -- Logitech MX Keys examples:
--- o.bind("SUPER + SHIFT + S", nil, "unbloarchy-capture-screenshot")
 -- o.bind("SUPER + H", nil, "voxtype record toggle")
--- o.bind("SUPER + PERIOD", nil, { panel = "unbloarchy.emojis" })
+-- o.bind("SUPER + PERIOD", nil, { panel = "omarchy.emojis" })

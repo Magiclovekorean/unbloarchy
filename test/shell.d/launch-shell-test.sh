@@ -22,24 +22,33 @@ fake_bin="$test_tmp/bin"
 shell_root="$test_tmp/root"
 launch_home="$test_tmp/home"
 startup_wallpaper="$test_tmp/Selected wallpaper.webp"
-mkdir -p "$fake_bin" "$shell_root/shell" "$launch_home/.local/state/unbloarchy/current"
+mkdir -p "$fake_bin" "$shell_root/shell" "$launch_home/.local/state/omarchy/current"
 touch "$startup_wallpaper"
-ln -s "$startup_wallpaper" "$launch_home/.local/state/unbloarchy/current/background"
+ln -s "$startup_wallpaper" "$launch_home/.local/state/omarchy/current/background"
 
-# Each launch consumes the next status from UNBLOARCHY_TEST_QS_STATUSES; "run"
+# Run a scratch copy of the supervisor with its 1s relaunch backoff and
+# 0.5s compositor probe shortened; the scenarios only need the waiting
+# to happen, not its real duration. The backoff stays well above the
+# 0.05s launch poll below so the signal case lands inside it.
+launch_shell_bin="$test_tmp/omarchy-launch-shell"
+sed -e 's/^  sleep 1$/  sleep 0.3/' -e 's/sleep 0.5$/sleep 0.05/' \
+  "$ROOT/bin/omarchy-launch-shell" >"$launch_shell_bin"
+chmod +x "$launch_shell_bin"
+
+# Each launch consumes the next status from OMARCHY_TEST_QS_STATUSES; "run"
 # stands in for a healthy shell that keeps going until stopped.
 cat >"$fake_bin/quickshell" <<'SH'
 #!/bin/bash
 
-printf '%s\n' "$*" >>"$UNBLOARCHY_TEST_QS_LOG"
+printf '%s\n' "$*" >>"$OMARCHY_TEST_QS_LOG"
 printf 'watcher=%s popup=%s background=%s\n' \
-  "${QS_DISABLE_FILE_WATCHER:-unset}" "${QS_NO_RELOAD_POPUP:-unset}" "${UNBLOARCHY_STARTUP_BACKGROUND:-unset}" >>"$UNBLOARCHY_TEST_QS_ENV_LOG"
+  "${QS_DISABLE_FILE_WATCHER:-unset}" "${QS_NO_RELOAD_POPUP:-unset}" "${OMARCHY_STARTUP_BACKGROUND:-unset}" >>"$OMARCHY_TEST_QS_ENV_LOG"
 
-launches=$(wc -l <"$UNBLOARCHY_TEST_QS_LOG")
-status=$(awk -v n="$launches" 'NR == n { print; found = 1 } END { if (!found) print "0" }' <<<"$UNBLOARCHY_TEST_QS_STATUSES")
+launches=$(wc -l <"$OMARCHY_TEST_QS_LOG")
+status=$(awk -v n="$launches" 'NR == n { print; found = 1 } END { if (!found) print "0" }' <<<"$OMARCHY_TEST_QS_STATUSES")
 
 if [[ $status == "run" ]]; then
-  trap 'touch "$UNBLOARCHY_TEST_QS_TERMINATED"; exit 143' TERM
+  trap 'touch "$OMARCHY_TEST_QS_TERMINATED"; exit 143' TERM
   while true; do sleep 0.05; done
 fi
 
@@ -59,13 +68,13 @@ SH
 cat >"$fake_bin/hyprctl" <<'SH'
 #!/bin/bash
 
-[[ ${UNBLOARCHY_TEST_COMPOSITOR_GONE:-0} == 1 ]] && exit 4
+[[ ${OMARCHY_TEST_COMPOSITOR_GONE:-0} == 1 ]] && exit 4
 
-# Refuse the first UNBLOARCHY_TEST_HYPRCTL_MISSES queries, then answer.
-if (( ${UNBLOARCHY_TEST_HYPRCTL_MISSES:-0} > 0 )); then
-  misses=$(cat "$UNBLOARCHY_TEST_HYPRCTL_MISS_COUNT" 2>/dev/null || printf '0')
-  if (( misses < UNBLOARCHY_TEST_HYPRCTL_MISSES )); then
-    printf '%s\n' "$(( misses + 1 ))" >"$UNBLOARCHY_TEST_HYPRCTL_MISS_COUNT"
+# Refuse the first OMARCHY_TEST_HYPRCTL_MISSES queries, then answer.
+if (( ${OMARCHY_TEST_HYPRCTL_MISSES:-0} > 0 )); then
+  misses=$(cat "$OMARCHY_TEST_HYPRCTL_MISS_COUNT" 2>/dev/null || printf '0')
+  if (( misses < OMARCHY_TEST_HYPRCTL_MISSES )); then
+    printf '%s\n' "$(( misses + 1 ))" >"$OMARCHY_TEST_HYPRCTL_MISS_COUNT"
     exit 4
   fi
 fi
@@ -77,7 +86,7 @@ cat >"$fake_bin/logger" <<'SH'
 #!/bin/bash
 
 shift 2
-printf '%s\n' "$*" >>"$UNBLOARCHY_TEST_LOGGER_LOG"
+printf '%s\n' "$*" >>"$OMARCHY_TEST_LOGGER_LOG"
 SH
 
 chmod +x "$fake_bin/quickshell" "$fake_bin/systemd-cat" "$fake_bin/hyprctl" "$fake_bin/logger"
@@ -95,16 +104,16 @@ launch_shell() {
 
   PATH="$fake_bin:$PATH" \
   HOME="$launch_home" \
-  UNBLOARCHY_PATH="$shell_root" \
-  UNBLOARCHY_TEST_QS_LOG="$qs_log" \
-  UNBLOARCHY_TEST_QS_ENV_LOG="$qs_env_log" \
-  UNBLOARCHY_TEST_QS_STATUSES="$1" \
-  UNBLOARCHY_TEST_COMPOSITOR_GONE="${2:-0}" \
-  UNBLOARCHY_TEST_LOGGER_LOG="$logger_log" \
-  UNBLOARCHY_TEST_QS_TERMINATED="$qs_terminated" \
-  UNBLOARCHY_TEST_HYPRCTL_MISSES="${3:-0}" \
-  UNBLOARCHY_TEST_HYPRCTL_MISS_COUNT="$hyprctl_misses" \
-    timeout 30 "$ROOT/bin/unbloarchy-launch-shell"
+  OMARCHY_PATH="$shell_root" \
+  OMARCHY_TEST_QS_LOG="$qs_log" \
+  OMARCHY_TEST_QS_ENV_LOG="$qs_env_log" \
+  OMARCHY_TEST_QS_STATUSES="$1" \
+  OMARCHY_TEST_COMPOSITOR_GONE="${2:-0}" \
+  OMARCHY_TEST_LOGGER_LOG="$logger_log" \
+  OMARCHY_TEST_QS_TERMINATED="$qs_terminated" \
+  OMARCHY_TEST_HYPRCTL_MISSES="${3:-0}" \
+  OMARCHY_TEST_HYPRCTL_MISS_COUNT="$hyprctl_misses" \
+    timeout 30 "$launch_shell_bin"
 }
 
 launches() {
@@ -113,7 +122,7 @@ launches() {
 
 launch_shell '0' || fail "a clean launch succeeds"
 [[ $(launches) == 1 ]] || fail "a shell that exits cleanly is not relaunched" "$(<"$qs_log")"
-grep -F -- "-n -p $shell_root/shell" "$qs_log" >/dev/null || fail "the shell launches from UNBLOARCHY_PATH"
+grep -F -- "-n -p $shell_root/shell" "$qs_log" >/dev/null || fail "the shell launches from OMARCHY_PATH"
 pass "a shell that exits cleanly is left alone"
 
 # A misspelled variable would leave Quickshell hot-reloading the tree pacman
@@ -152,14 +161,14 @@ pass "a compositor too busy to answer is not mistaken for one that is gone"
 : >"$logger_log"
 
 PATH="$fake_bin:$PATH" \
-UNBLOARCHY_PATH="$shell_root" \
-UNBLOARCHY_TEST_QS_LOG="$qs_log" \
-UNBLOARCHY_TEST_QS_ENV_LOG="$qs_env_log" \
-UNBLOARCHY_TEST_QS_STATUSES=$'255\n0' \
-UNBLOARCHY_TEST_COMPOSITOR_GONE=0 \
-UNBLOARCHY_TEST_LOGGER_LOG="$logger_log" \
-UNBLOARCHY_TEST_QS_TERMINATED="$qs_terminated" \
-  "$ROOT/bin/unbloarchy-launch-shell" &
+OMARCHY_PATH="$shell_root" \
+OMARCHY_TEST_QS_LOG="$qs_log" \
+OMARCHY_TEST_QS_ENV_LOG="$qs_env_log" \
+OMARCHY_TEST_QS_STATUSES=$'255\n0' \
+OMARCHY_TEST_COMPOSITOR_GONE=0 \
+OMARCHY_TEST_LOGGER_LOG="$logger_log" \
+OMARCHY_TEST_QS_TERMINATED="$qs_terminated" \
+  "$launch_shell_bin" &
 launch_pid=$!
 
 for (( waited = 0; waited < 100; waited++ )); do
@@ -181,14 +190,14 @@ pass "a signal during backoff stops the supervisor before it relaunches"
 rm -f "$qs_terminated"
 
 PATH="$fake_bin:$PATH" \
-UNBLOARCHY_PATH="$shell_root" \
-UNBLOARCHY_TEST_QS_LOG="$qs_log" \
-UNBLOARCHY_TEST_QS_ENV_LOG="$qs_env_log" \
-UNBLOARCHY_TEST_QS_STATUSES='run' \
-UNBLOARCHY_TEST_COMPOSITOR_GONE=0 \
-UNBLOARCHY_TEST_LOGGER_LOG="$logger_log" \
-UNBLOARCHY_TEST_QS_TERMINATED="$qs_terminated" \
-  "$ROOT/bin/unbloarchy-launch-shell" &
+OMARCHY_PATH="$shell_root" \
+OMARCHY_TEST_QS_LOG="$qs_log" \
+OMARCHY_TEST_QS_ENV_LOG="$qs_env_log" \
+OMARCHY_TEST_QS_STATUSES='run' \
+OMARCHY_TEST_COMPOSITOR_GONE=0 \
+OMARCHY_TEST_LOGGER_LOG="$logger_log" \
+OMARCHY_TEST_QS_TERMINATED="$qs_terminated" \
+  "$launch_shell_bin" &
 launch_pid=$!
 
 for (( waited = 0; waited < 100; waited++ )); do

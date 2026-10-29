@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# unbloarchy:summary=Toggle animations, transparency and other effects that are slow without a GPU
-# unbloarchy:args=[toggle|on|off]
-# unbloarchy:examples=unbloarchy toggle animations | unbloarchy toggle animations off | unbloarchy toggle animations on
+# omarchy:summary=Toggle animations, blur and shadows, which are slow without a GPU
+# omarchy:args=[toggle|on|off]
+# omarchy:examples=omarchy toggle animations | omarchy toggle animations off | omarchy toggle animations on
 
 # The flag records animations being off, so on and off swap on the way through.
 case ${1:-toggle} in
-toggle) unbloarchy-hyprland-toggle no-animations toggle ;;
-on) unbloarchy-hyprland-toggle no-animations off ;;
-off) unbloarchy-hyprland-toggle no-animations on ;;
+toggle) omarchy-hyprland-toggle no-animations toggle ;;
+on) omarchy-hyprland-toggle no-animations off ;;
+off) omarchy-hyprland-toggle no-animations on ;;
 *)
-  echo "Usage: unbloarchy-toggle-animations [toggle|on|off]" >&2
+  echo "Usage: omarchy-toggle-animations [toggle|on|off]" >&2
   exit 1
   ;;
 esac
 
-if unbloarchy-hyprland-toggle-enabled no-animations; then
-  unbloarchy-notification-send -g 󰕟 "Animations disabled"
+if omarchy-hyprland-toggle-enabled no-animations; then
+  omarchy-notification-send -g 󰗘 "$(omarchy-i18n animations.disabled)"
 else
-  unbloarchy-notification-send -g 󰕟 "Animations enabled"
+  omarchy-notification-send -g 󰗘 "$(omarchy-i18n animations.enabled)"
 fi

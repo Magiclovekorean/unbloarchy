@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# unbloarchy:summary=Toggle mirroring theme changes to and from your herdr machines
+# omarchy:summary=Toggle mirroring theme changes to and from your herdr machines
 
-unbloarchy-toggle herdr-theme-sync
+omarchy-toggle herdr-theme-sync
 
-if unbloarchy-toggle-enabled herdr-theme-sync; then
-  unbloarchy-notification-send -g 󰸌 "Herdr theme sync enabled"
+if omarchy-toggle-enabled herdr-theme-sync; then
+  omarchy-notification-send -g 󰸌 "$(omarchy-i18n themeSync.enabled)"
 else
-  unbloarchy-notification-send -g 󰸌 "Herdr theme sync disabled"
+  omarchy-notification-send -g 󰸌 "$(omarchy-i18n themeSync.disabled)"
 fi

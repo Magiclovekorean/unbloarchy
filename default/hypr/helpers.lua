@@ -61,7 +61,7 @@ local shell_shortcuts = nil
 local function shell_shortcut_registered(name)
   if not shell_shortcuts then
     shell_shortcuts = {}
-    local file = io.open(paths.unbloarchy_path .. "/default/unbloarchy/shortcuts", "r")
+    local file = io.open(paths.omarchy_path .. "/default/omarchy/shortcuts", "r")
     if file then
       for line in file:lines() do
         local kind, target = line:match("^(%a+)%s+(%S+)%s*$")
@@ -81,7 +81,7 @@ end
 local function shell_dispatcher(kind, target, command)
   local name = kind .. "." .. target
   if shell_shortcut_registered(name) then
-    return hl.dsp.global("unbloarchy:" .. name)
+    return hl.dsp.global("omarchy:" .. name)
   end
 
   return command
@@ -92,20 +92,20 @@ local function command_from(value, description)
     return value
   end
 
-  if value.unbloarchy then
-    return "unbloarchy-launch-" .. value.unbloarchy
+  if value.omarchy then
+    return "omarchy-launch-" .. value.omarchy
   elseif value.menu then
-    return shell_dispatcher("menu", value.menu, "unbloarchy-menu toggle " .. shell_quote(value.menu))
+    return shell_dispatcher("menu", value.menu, "omarchy-menu toggle " .. shell_quote(value.menu))
   elseif value.panel then
-    return shell_dispatcher("panel", value.panel, "unbloarchy-shell shell toggle " .. shell_quote(value.panel))
+    return shell_dispatcher("panel", value.panel, "omarchy-shell shell toggle " .. shell_quote(value.panel))
   elseif value.audio then
-    return shell_dispatcher("audio", value.audio, "unbloarchy-audio-output-volume " .. shell_quote(value.audio))
+    return shell_dispatcher("audio", value.audio, "omarchy-audio-output-volume " .. shell_quote(value.audio))
   elseif value.brightness then
     local step = value.brightness == "raise" and "+5%" or "5%-"
-    return shell_dispatcher("brightness", value.brightness, "unbloarchy-brightness-display " .. step)
+    return shell_dispatcher("brightness", value.brightness, "omarchy-brightness-display " .. step)
   elseif value.ipc then
     local target, method = value.ipc:match("^([^.]+)%.(.+)$")
-    return shell_dispatcher("ipc", value.ipc, "unbloarchy-shell " .. shell_quote(target) .. " " .. shell_quote(method))
+    return shell_dispatcher("ipc", value.ipc, "omarchy-shell " .. shell_quote(target) .. " " .. shell_quote(method))
   elseif value.focus and value.launch then
     return o.launch_sole(value.focus, value.launch)
   elseif value.launch then
@@ -118,9 +118,9 @@ local function command_from(value, description)
     end
   elseif value.tui then
     if value.focus then
-      return "unbloarchy-launch-or-focus-tui " .. shell_quote(value.tui)
+      return "omarchy-launch-or-focus-tui " .. shell_quote(value.tui)
     else
-      return "unbloarchy-launch-tui " .. shell_quote(value.tui)
+      return "omarchy-launch-tui " .. shell_quote(value.tui)
     end
   end
 
@@ -128,11 +128,11 @@ local function command_from(value, description)
 end
 
 function o.preinstalled_bindings_enabled()
-  if _G.unbloarchy_preinstalled_bindings ~= nil then
-    return _G.unbloarchy_preinstalled_bindings == true
+  if _G.omarchy_preinstalled_bindings ~= nil then
+    return _G.omarchy_preinstalled_bindings == true
   end
 
-  return not file_exists((os.getenv("HOME") or "") .. "/.local/state/unbloarchy/preinstalls-removed")
+  return not file_exists((os.getenv("HOME") or "") .. "/.local/state/omarchy/preinstalls-removed")
 end
 
 function o.bind(keys, description, dispatcher, options)
@@ -164,19 +164,23 @@ end
 -- run a bind that Hyprland only reports as Lua.
 o.bind_commands = {}
 
+-- The Lua expression each function bind stands for, for binds with no command
+-- to run instead. The menu dispatches it as `hyprctl dispatch <expression>`.
+o.bind_expressions = {}
+
 -- Hand the launcher the focused window's pid, which it would otherwise ask
 -- Hyprland for, to open the new terminal in that terminal's directory.
 function o.launch_terminal()
   local function launch()
     local window = hl.get_active_window()
     if window and window.pid then
-      hl.exec_cmd("unbloarchy-launch-terminal --pid=" .. window.pid)
+      hl.exec_cmd("omarchy-launch-terminal --pid=" .. window.pid)
     else
-      hl.exec_cmd("unbloarchy-launch-terminal")
+      hl.exec_cmd("omarchy-launch-terminal")
     end
   end
 
-  o.bind_commands[launch] = "unbloarchy-launch-terminal"
+  o.bind_commands[launch] = "omarchy-launch-terminal"
   return launch
 end
 
@@ -191,19 +195,19 @@ function o.launch_on_start(command)
 end
 
 function o.launch_webapp(url)
-  return "unbloarchy-launch-webapp " .. shell_quote(url)
+  return "omarchy-launch-webapp " .. shell_quote(url)
 end
 
 function o.launch_webapp_sole(name, url)
-  return "unbloarchy-launch-or-focus-webapp " .. shell_quote(name) .. " " .. shell_quote(url)
+  return "omarchy-launch-or-focus-webapp " .. shell_quote(name) .. " " .. shell_quote(url)
 end
 
 function o.launch_sole(match, command)
-  return "unbloarchy-launch-or-focus " .. shell_quote(match) .. " " .. shell_quote(o.launch(command))
+  return "omarchy-launch-or-focus " .. shell_quote(match) .. " " .. shell_quote(o.launch(command))
 end
 
 function o.bind_toggle(keys, description, toggle, options)
-  o.bind(keys, description, "unbloarchy-toggle-" .. toggle, options)
+  o.bind(keys, description, "omarchy-toggle-" .. toggle, options)
 end
 
 -- Bind one action to a key's press and another to its release, as for
@@ -264,10 +268,18 @@ function o.bind_hold(keys, press_description, press, release_description, releas
 end
 
 function o.notify(message)
-  return "unbloarchy-notification-send -u low " .. shell_quote(message)
+  return "omarchy-notification-send -u low " .. shell_quote(message)
 end
 
+-- What makes apps float on their own account, so a floating workspace can
+-- leave their floating to them: the class and title patterns of rules that
+-- float them, the tags rules float, and the patterns of rules that tag them.
+o.floating_apps = { class = {}, title = {}, tags = {}, tagged = {} }
+-- Helpers reload before workspace modes, so discard the previous config's hook.
+o.floating_apps_changed = nil
+
 function o.window(match, rules)
+  local floating_changed = false
   rules.match = rules.match or {}
 
   if type(match) == "string" then
@@ -278,10 +290,40 @@ function o.window(match, rules)
     end
   end
 
+  if rules.float == true then
+    -- Only a rule floating a tag alone floats everything with that tag; one
+    -- that also names a class or title floats just those, recorded below.
+    if type(rules.match.tag) == "string" and rules.match.class == nil and rules.match.title == nil then
+      o.floating_apps.tags[rules.match.tag] = true
+      floating_changed = true
+    end
+    for _, key in ipairs({ "class", "title" }) do
+      if type(rules.match[key]) == "string" then
+        table.insert(o.floating_apps[key], rules.match[key])
+        floating_changed = true
+      end
+    end
+  end
+
+  if type(rules.tag) == "string" and rules.tag:sub(1, 1) == "+" then
+    local tag = rules.tag:sub(2)
+    o.floating_apps.tagged[tag] = o.floating_apps.tagged[tag] or {}
+    for _, key in ipairs({ "class", "title" }) do
+      if type(rules.match[key]) == "string" then
+        table.insert(o.floating_apps.tagged[tag], { key = key, pattern = rules.match[key] })
+        floating_changed = true
+      end
+    end
+  end
+
   hl.window_rule(rules)
+  if floating_changed and o.floating_apps_changed then
+    o.floating_apps_changed()
+  end
 end
 
--- Opt a window in to Unbloarchy's standard active/inactive transparency.
+-- Opt a window in to Omarchy's standard active/inactive transparency. The tag
+-- lets Appearance > Windows > Window Opacity turn these windows opaque or glassy.
 function o.transparent_window(match, opacity)
-  o.window(match, { opacity = opacity or "0.985 0.96" })
+  o.window(match, { opacity = opacity or "0.985 0.96", tag = "+transparent-window" })
 end

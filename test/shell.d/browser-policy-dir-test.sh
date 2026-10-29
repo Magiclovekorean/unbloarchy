@@ -7,8 +7,8 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 test_tmp=$(mktemp -d)
 trap 'rm -rf "$test_tmp"' EXIT
 
-export UNBLOARCHY_PATH="$ROOT"
-export UNBLOARCHY_PROVISIONING_DIR="$test_tmp/provisioning"
+export OMARCHY_PATH="$ROOT"
+export OMARCHY_PROVISIONING_DIR="$test_tmp/provisioning"
 
 source "$ROOT/install/helpers/browser-policy.sh"
 
@@ -103,6 +103,8 @@ browser_policy_setup_dir "$planted_dir"
 [[ -d $planted_dir ]] || fail "policy setup leaves the managed directory in place"
 mode=$(stat -c '%a' "$planted_dir")
 [[ $mode == "755" ]] || fail "policy setup leaves the managed directory 0755" "mode=$mode"
+[[ $(jq '.DefaultBrowserSettingEnabled' "$planted_dir/omarchy.json") == "false" ]] ||
+  fail "policy setup hides the default browser setting"
 pass "policy setup drops non-root files and non-empty subdirectories"
 
 owned=$test_tmp/not-root
@@ -231,14 +233,14 @@ for theme in "$ROOT"/themes/*/chromium.theme; do
 done
 pass "shipped chromium.theme files parse as RGB triples"
 
-grep -F 'browser_policy_theme_hex' "$ROOT/bin/unbloarchy-theme-set-browser" >/dev/null ||
-  fail "unbloarchy-theme-set-browser parses chromium.theme through browser_policy_theme_hex"
-grep -F 'unbloarchy-theme-set-browser-policy' "$ROOT/bin/unbloarchy-theme-set-browser" >/dev/null ||
-  fail "unbloarchy-theme-set-browser writes colour through unbloarchy-theme-set-browser-policy"
-if grep -E 'printf.*THEME_RGB_COLOR' "$ROOT/bin/unbloarchy-theme-set-browser" >/dev/null; then
-  fail "unbloarchy-theme-set-browser does not hand unvetted theme words to printf"
+grep -F 'browser_policy_theme_hex' "$ROOT/bin/omarchy-theme-set-browser" >/dev/null ||
+  fail "omarchy-theme-set-browser parses chromium.theme through browser_policy_theme_hex"
+grep -F 'omarchy-theme-set-browser-policy' "$ROOT/bin/omarchy-theme-set-browser" >/dev/null ||
+  fail "omarchy-theme-set-browser writes colour through omarchy-theme-set-browser-policy"
+if grep -E 'printf.*THEME_RGB_COLOR' "$ROOT/bin/omarchy-theme-set-browser" >/dev/null; then
+  fail "omarchy-theme-set-browser does not hand unvetted theme words to printf"
 fi
-pass "unbloarchy-theme-set-browser validates the theme colour"
+pass "omarchy-theme-set-browser validates the theme colour"
 
 fx_policy=$test_tmp/policies.json
 printf '%s\n' '{"policies":{}}' >"$fx_policy"
@@ -275,56 +277,55 @@ fi
 [[ -d $dir_dist/policies.json ]] || fail "Firefox policy install leaves a planted policies.json directory in place"
 pass "Firefox policy install does not write into a planted policies.json directory"
 
-grep -F 'exit "$failed"' "$ROOT/bin/unbloarchy-theme-set-browser" >/dev/null ||
-  fail "unbloarchy-theme-set-browser exits non-zero when a policy write fails"
-pass "unbloarchy-theme-set-browser exits non-zero when a policy write fails"
+grep -F 'exit "$failed"' "$ROOT/bin/omarchy-theme-set-browser" >/dev/null ||
+  fail "omarchy-theme-set-browser exits non-zero when a policy write fails"
+pass "omarchy-theme-set-browser exits non-zero when a policy write fails"
 
 # Bash 5.3 adopts the EXIT trap's last status as the script's exit status, so a
 # handler ending on a false test turns a clean run into a failure and aborts the
-# migration that calls this through unbloarchy-theme-set-browser.
-policy_cleanup=$(sed -n '/^cleanup() {/,/^}/p' "$ROOT/bin/unbloarchy-theme-set-browser-policy")
-[[ -n $policy_cleanup ]] || fail "unbloarchy-theme-set-browser-policy defines an EXIT cleanup handler"
+# migration that calls this through omarchy-theme-set-browser.
+policy_cleanup=$(sed -n '/^cleanup() {/,/^}/p' "$ROOT/bin/omarchy-theme-set-browser-policy")
+[[ -n $policy_cleanup ]] || fail "omarchy-theme-set-browser-policy defines an EXIT cleanup handler"
 eval "$policy_cleanup"
 staged=""
-cleanup || fail "unbloarchy-theme-set-browser-policy's EXIT trap succeeds with nothing staged"
+cleanup || fail "omarchy-theme-set-browser-policy's EXIT trap succeeds with nothing staged"
 staged=$test_tmp/staged-policy
 : >"$staged"
-cleanup || fail "unbloarchy-theme-set-browser-policy's EXIT trap succeeds with a staged file"
-[[ ! -e $staged ]] || fail "unbloarchy-theme-set-browser-policy's EXIT trap removes the staged file"
+cleanup || fail "omarchy-theme-set-browser-policy's EXIT trap succeeds with a staged file"
+[[ ! -e $staged ]] || fail "omarchy-theme-set-browser-policy's EXIT trap removes the staged file"
 unset -f cleanup
-pass "unbloarchy-theme-set-browser-policy's EXIT trap never leaks a failure status"
-
-grep -F 'unbloarchy-theme-set-browser || true' "$ROOT/migrations/1787515927.sh" >/dev/null ||
-  fail "the policy-directory migration hardens Firefox even when the theme refresh fails"
-pass "the policy-directory migration does not abort on a failed theme refresh"
+pass "omarchy-theme-set-browser-policy's EXIT trap never leaks a failure status"
 
 policy_files=(
-  "$ROOT/bin/unbloarchy-install-browser"
-  "$ROOT/bin/unbloarchy-provision-owner"
-  "$ROOT/bin/unbloarchy-theme-set-browser"
-  "$ROOT/bin/unbloarchy-theme-set-browser-policy"
-  "$ROOT/bin/unbloarchy-upgrade-to-quattro"
+  "$ROOT/bin/omarchy-install-browser"
+  "$ROOT/bin/omarchy-provision-owner"
+  "$ROOT/bin/omarchy-theme-set-browser"
+  "$ROOT/bin/omarchy-theme-set-browser-policy"
+  "$ROOT/bin/omarchy-upgrade-to-quattro"
   "$ROOT/install/config/theme-system.sh"
   "$ROOT/install/config/browser-policy.sh"
   "$ROOT/install/helpers/browser-policy.sh"
-  "$ROOT/migrations/1787515927.sh"
 )
-if grep -nE 'chmod a\+rwx\b|chmod a\+rw\b|chmod a\+w\b|chmod o\+w|chmod ugo\+w|chmod 2775\b|chmod 2777\b|chmod 0777\b|chmod 777\b|install -d -m 0?[27]?777|unbloarchy-browser-policy' "${policy_files[@]}" >/dev/null; then
-  fail "browser policy setup is not world-writable and does not use unbloarchy-browser-policy"
+if grep -nE 'chmod a\+rwx\b|chmod a\+rw\b|chmod a\+w\b|chmod o\+w|chmod ugo\+w|chmod 2775\b|chmod 2777\b|chmod 0777\b|chmod 777\b|install -d -m 0?[27]?777|omarchy-browser-policy' "${policy_files[@]}" >/dev/null; then
+  fail "browser policy setup is not world-writable and does not use omarchy-browser-policy"
 fi
 pass "browser policy setup is not world-writable"
 
-mapfile -t migrations < <(rg -l 'Stop world-writable Chromium and Firefox policy directories' "$ROOT/migrations")
-(( ${#migrations[@]} == 1 )) || fail "exactly one migration locks existing policy directories" "${migrations[*]}"
-grep -F 'browser_policy_setup_dir' "${migrations[0]}" >/dev/null ||
-  fail "the policy-directory migration repairs managed directories"
-if grep -F 'browser_policy_grant_user' "${migrations[0]}" >/dev/null; then
-  fail "the policy-directory migration does not grant a browser-policy group"
-fi
-grep -F 'BROWSER_POLICY_FIREFOX_DIRS' "${migrations[0]}" >/dev/null ||
-  fail "the policy-directory migration covers Firefox and Zen"
-grep -F 'browser_policy_firefox_policy_file_ok' "${migrations[0]}" >/dev/null ||
-  fail "the policy-directory migration keeps a trusted Firefox policies.json"
 grep -F '/opt/zen-browser/distribution' "$ROOT/install/helpers/browser-policy.sh" >/dev/null ||
   fail "the shared helper names the Zen distribution directory"
-pass "a migration locks existing policy directories"
+pass "the shared helper names the Zen distribution directory"
+
+fx_merge=$test_tmp/fx-merge
+mkdir -p "$fx_merge"
+printf '{"policies": {"DisableTelemetry": true}}\n' >"$fx_merge/policies.json"
+as_root() { unprivileged_as_root "$@"; }
+# Temp files are user-owned; trust them as the root-owned file they stand in for.
+browser_policy_firefox_policy_file_ok() { [[ -f $1 && ! -L $1 ]]; }
+browser_policy_firefox_skip_default_check "$fx_merge"
+browser_policy_firefox_skip_default_check "$fx_merge"
+[[ $(jq -c '.policies' "$fx_merge/policies.json") == '{"DisableTelemetry":true,"DontCheckDefaultBrowser":true}' ]] ||
+  fail "Firefox's default browser check is added beside an administrator's policies" "$(cat "$fx_merge/policies.json")"
+printf 'not json\n' >"$fx_merge/policies.json"
+browser_policy_firefox_skip_default_check "$fx_merge"
+[[ $(<"$fx_merge/policies.json") == "not json" ]] || fail "an unreadable Firefox policies.json is left alone"
+pass "Firefox's default browser check is merged into existing policies"

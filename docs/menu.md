@@ -1,9 +1,9 @@
-# The Unbloarchy menu
+# The Omarchy menu
 
-The menu is the `unbloarchy.menu` plugin of the Quickshell desktop, with its
-content defined as data in `default/unbloarchy/unbloarchy-menu.jsonc` (read at
-runtime from `$UNBLOARCHY_PATH`) and overlaid by the user's
-`~/.config/unbloarchy/extensions/unbloarchy-menu.jsonc`. The shell parses both files
+The menu is the `omarchy.menu` plugin of the Quickshell desktop, with its
+content defined as data in `default/omarchy/omarchy-menu.jsonc` (read at
+runtime from `$OMARCHY_PATH`) and overlaid by the user's
+`~/.config/omarchy/extensions/omarchy-menu.jsonc`. The shell parses both files
 at startup and watches them for changes, so the keybind → IPC → visible path
 never shells out to parse anything, and edits to either file take effect
 without restarting the shell. Rendering and behavior live in
@@ -33,13 +33,13 @@ submenu. The fields:
 | Field | Meaning |
 |---|---|
 | `icon` | Glyph in the icon column (usually Nerd Font) |
-| `iconFont` | Font family for the glyph when it differs from the menu font — how the private `unbloarchy` font's brand glyphs render |
+| `iconFont` | Font family for the glyph when it differs from the menu font — how the private `omarchy` font's brand glyphs render |
 | `label` | Visible row title; defaults to the id |
 | `title` | Header text when the submenu is open; defaults to `label`. Lets a row read "Browser" under Defaults while the open menu says "Default Browser" |
 | `action` | Shell command to run, detached, when selected |
 | `target` | Existing submenu id to open; makes the row a link |
 | `provider` | Runtime row source for this submenu (see Providers) |
-| `aliases` | Alternate `unbloarchy menu summon <name>` routes; also searchable |
+| `aliases` | Alternate `omarchy menu summon <name>` routes; also searchable |
 | `description` | Subtitle shown while searching, and extra search text matched by whole word |
 | `when` / `checked` / `disabled` | Shell conditions (see Guards) |
 
@@ -56,7 +56,7 @@ or re-icon a row without re-declaring its action, and an overridden entry
 keeps its original position in the list. New ids append. A `root` entry is
 injected if neither file declares one.
 
-The sample extension at `config/unbloarchy/extensions/unbloarchy-menu.jsonc`
+The sample extension at `config/omarchy/extensions/omarchy-menu.jsonc`
 (refreshed into `~/.config/`) documents the format in its header and ships
 only comments, so the default state adds nothing.
 
@@ -69,15 +69,25 @@ lines. The menu opens immediately on the previous evaluation's answers, so
 the batch's runtime is exactly how long a row can contradict the state it
 describes — which is why the batch works hard to be fast:
 
-- Package and command presence (`unbloarchy-pkg-present` and friends) are
+- Package and command presence (`omarchy-pkg-present` and friends) are
   answered in-process from one `pacman -Q` snapshot instead of a fork per
-  row. The snapshot resolves provides too, so gvim answers for vim.
+  row. The snapshot resolves provides too, so gvim answers for vim. It is
+  stored in `$XDG_RUNTIME_DIR/omarchy-menu-packages`, stamped with the
+  pacman local database directory (under `pacman-conf DBPath`), and rebuilt by the first batch after any
+  install, removal, or upgrade moves that stamp; a build that overlapped a
+  transaction (`db.lck`) or whose queries failed is used once and never
+  stored.
 - Commands that several rows read a value from — every Defaults > Browser row
-  compares against `$(unbloarchy-default-browser)` — run once, with the captured
+  compares against `$(omarchy-default-browser)` — run once, with the captured
   answer substituted into each expression. The reader list is
-  `GUARD_READERS` in `MenuModel.js`; a new `$(unbloarchy-...)` reader used by
+  `GUARD_READERS` in `MenuModel.js`; a new `$(omarchy-...)` reader used by
   more than one row must be added there, and `menu-guards-test.sh` fails the
-  build if it is not.
+  build if it is not. The readers all start at once, before the package
+  snapshot is built.
+- The guards themselves are dealt into eight background subshells that run
+  side by side, so the batch takes about as long as its slowest probe rather
+  than the sum of them. Result lines therefore arrive in any order, and a
+  guard must not depend on anything another guard set.
 
 The three guards differ in what failure means:
 
@@ -90,7 +100,7 @@ The three guards differ in what failure means:
   unselectable: cursor, pointer, and Enter all step over it, and search omits
   it. The Install submenus use it so software already on the machine reads as
   installed rather than vanishing from the list it was installed from — the
-  list stays a catalog of what Unbloarchy can install. Since a dimmed row means
+  list stays a catalog of what Omarchy can install. Since a dimmed row means
   "you already have this", it earns the same ✓ as `checked` does elsewhere.
 
 Install rows should therefore carry `disabled:` with the presence check, not
@@ -108,9 +118,11 @@ can point a submenu at an existing provider but cannot declare a new one:
   the launcher. App rows are searchable by their desktop Keywords but never
   routable, so an installed app cannot capture a menu route (htop ships
   `Keywords=system;...`, and SUPER+ESCAPE must still open the system menu).
-- `fonts` and `power-profiles` are bash one-liners in the `providers` map in
+- `fonts`, `power-profiles`, `kernels`, and `languages` are bash one-liners in the `providers` map in
   `Menu.qml`. The contract is one tab-delimited line per row:
-  `label\tvalue\tcurrent`. The row whose value equals `current` gets the ✓
+  `label\tvalue\tcurrent`, with an optional fourth field that becomes a search-only
+  term for the row (the languages provider passes each language's English name, so
+  searching "danish" finds the row labeled "Dansk", without making "danish" a routable command). The row whose value equals `current` gets the ✓
   icon, and selection runs the spec's `actionFor(value)`. Row ids are
   `<menuId>.<slugify(value)>`, with a `-` appended on collision so two values
   that slugify alike cannot silently drop a row.
@@ -132,15 +144,15 @@ it with `provider:`.
 
 ## Driving the menu from the CLI
 
-`bin/unbloarchy-menu` is a thin wrapper over the standard plugin IPC surface:
+`bin/omarchy-menu` is a thin wrapper over the standard plugin IPC surface:
 
 ```bash
-unbloarchy menu                    # toggle the root menu
-unbloarchy menu toggle system      # open at a route, or close if already open
-unbloarchy menu summon style.theme # always open (no close-if-visible)
-unbloarchy menu close
-unbloarchy menu refresh            # re-parse the JSONC files
-unbloarchy menu ping
+omarchy menu                    # toggle the root menu
+omarchy menu toggle system      # open at a route, or close if already open
+omarchy menu summon appearance.theme # always open (no close-if-visible)
+omarchy menu close
+omarchy menu refresh            # re-parse the JSONC files
+omarchy menu ping
 ```
 
 A route is an item id or a declared alias, case-insensitive, with
@@ -155,13 +167,20 @@ link is followed to its target. The default Hyprland bindings in
 
 ## Select and input modes
 
-The same plugin doubles as the system's dmenu. `unbloarchy-menu-select` and
-`unbloarchy-menu-input` summon it with a `mode: select` or `mode: input`
+The same plugin doubles as the system's dmenu. `omarchy-menu-select` and
+`omarchy-menu-input` summon it with a `mode: select` or `mode: input`
 payload, then block on a tempfile handshake: the shell writes the selection
 to `selectionFile` and touches `doneFile`, and cancellation (empty
 selection) exits 1. A select option is `label`, `glyph\tlabel`, or
 `glyph\tlabel\tsubtext` — the glyph shows but never returns, the subtext
 renders under the label, filters with it, and comes back as
 `label\tsubtext` so callers with same-named rows get a stable key. This is
-how the pickers behind menu actions (`unbloarchy-menu-plugin`,
-`unbloarchy-menu-timezone`, ...) present lists without owning any UI.
+how the pickers behind menu actions (`omarchy-menu-plugin`,
+`omarchy-menu-timezone`, ...) present lists without owning any UI.
+
+
+Pass `-- --multiple` to `omarchy-menu-select` for a multi-select request. Repeat `--selected <value>` to preselect returned values (labels plus any subtext, without icons). Clicking or pressing Enter toggles an option without closing the menu; Apply returns a JSON array in option order, including `[]` when all choices are deselected. Cancellation still exits 1. Selections survive filtering.
+
+With `--on-change <JSON command array>`, each toggle runs that command with the proposed selection JSON appended as its final argument, and no Apply row is shown. The checkbox changes only after the command succeeds; a failed command retains the previous selection. Changes persist when the menu closes. The typing selectors use this mode.
+
+For immediate multi-select requests, `--change-key <key>` identifies the setting being changed across picker openings. The menu keeps queued selections for that key when reopened, so a new toggle cannot discard a change still being saved. Without a key, the command array identifies the setting.

@@ -17,9 +17,9 @@ cat >"$stub_bin/pacman" <<'STUB'
 [[ $1 == "-Q" ]] || exit 1
 shift
 for package in "$@"; do
-  case ",${UNBLOARCHY_TEST_PACKAGES:-}," in
+  case ",${OMARCHY_TEST_PACKAGES:-}," in
     *",$package,"*)
-      echo "$package ${UNBLOARCHY_TEST_VERSION:-4.0.0-1}"
+      echo "$package ${OMARCHY_TEST_VERSION:-4.0.0-1}"
       exit 0
       ;;
   esac
@@ -30,10 +30,10 @@ STUB
 chmod +x "$stub_bin/pacman"
 
 version() {
-  UNBLOARCHY_TEST_PACKAGES="$1" \
-    UNBLOARCHY_PATH="${2:-/usr/share/unbloarchy}" \
+  OMARCHY_TEST_PACKAGES="$1" \
+    OMARCHY_PATH="${2:-/usr/share/omarchy}" \
     PATH="$stub_bin:$PATH" \
-    "$ROOT/bin/unbloarchy-version"
+    "$ROOT/bin/omarchy-version"
 }
 
 [[ $(version omarchy) == "4.0.0-1" ]] || fail "version reports the stable package"
@@ -47,17 +47,6 @@ pass "version reports the edge package"
 pass "version reports a dev checkout"
 
 if version "" >/dev/null 2>&1; then
-  fail "version fails when no Unbloarchy package is installed"
+  fail "version fails when no Omarchy package is installed"
 fi
-pass "version fails when no Unbloarchy package is installed"
-
-# The snapshot description is only a label, so a failed lookup must not abort
-# the update under set -e.
-snapshot_desc=$(
-  set -e
-  PATH="$stub_bin:$PATH" UNBLOARCHY_TEST_PACKAGES="" UNBLOARCHY_PATH=/usr/share/unbloarchy \
-    bash -c 'DESC="$(unbloarchy-version 2>/dev/null || echo unknown)"; echo "$DESC"' 2>/dev/null
-) || fail "snapshot survives an unknown version"
-
-[[ $snapshot_desc == "unknown" ]] || fail "snapshot labels an unknown version" "actual: $snapshot_desc"
-pass "snapshot survives an unknown version"
+pass "version fails when no Omarchy package is installed"

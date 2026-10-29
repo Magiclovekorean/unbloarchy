@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# unbloarchy:summary=Install the NordVPN service with optional GUI.
-# unbloarchy:requires-sudo=true
+# omarchy:summary=Install the NordVPN service with optional GUI.
+# omarchy:requires-sudo=true
 
 echo "Installing NordVPN..."
-unbloarchy-pkg-add nordvpn-bin
+omarchy-pkg-add nordvpn-bin
 
 echo "Enabling NordVPN daemon..."
 sudo systemctl enable --now nordvpnd
@@ -15,4 +15,4 @@ sudo usermod -aG nordvpn "$USER"
 echo -e "\nNordVPN installed! After reboot, run 'nordvpn login' to authenticate."
 
 echo
-gum confirm "Reboot now to make NordVPN usable?" && unbloarchy-system-reboot
+gum confirm --affirmative "$(omarchy-i18n common.yes)" --negative "$(omarchy-i18n common.no)" "$(omarchy-i18n nordvpn.rebootNow)" && omarchy-system reboot

@@ -1,6 +1,6 @@
-# Tailscale Unbloarchy Widget
+# Tailscale Omarchy Widget
 
-Native Unbloarchy bar widget for Tailscale.
+Native Omarchy bar widget for Tailscale.
 
 ## Features
 
@@ -34,11 +34,7 @@ Inside the panel:
 
 ## Receiving files
 
-Incoming Taildrop files are saved to `~/Downloads` by the
-`unbloarchy-tailscale-receive` service, which announces each one with a
-notification (an image preview when the file is an image, and a click to open
-it). The Tailscale service install enables it; `unbloarchy tailscale receive`
-runs the same loop by hand.
+Incoming Taildrop files are saved to `~/Downloads` by the `omarchy-tailscale-receive` service, which announces each one with a notification: an image preview when the file is an image, the send glyph otherwise. Click the notification to open the file. The Tailscale service install enables it; `omarchy tailscale receive` runs the same loop by hand.
 
 ## Icon
 
@@ -46,4 +42,4 @@ Renders the Tailscale mark natively as a theme-colored 3×3 dot grid, matching t
 
 ## Add to the bar
 
-This widget ships as first-party plugin `unbloarchy.tailscale`. Add it with `unbloarchy plugin enable unbloarchy.tailscale`, then place it with `unbloarchy bar move unbloarchy.tailscale` if desired.
+This widget ships as first-party plugin `omarchy.tailscale`. Add it with `omarchy plugin enable omarchy.tailscale`, then place it with `omarchy bar move omarchy.tailscale` if desired.

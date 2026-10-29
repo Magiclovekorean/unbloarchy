@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# unbloarchy:summary=Print the detected Hyprland touchpad or trackpad device name
+# omarchy:summary=Print the detected Hyprland touchpad or trackpad device name
 
 mice=$(hyprctl devices -j | jq -r '.mice[].name')
 device=$(grep -iE -m1 'touchpad|trackpad' <<<"$mice")
@@ -9,7 +9,7 @@ device=$(grep -iE -m1 'touchpad|trackpad' <<<"$mice")
 # so ask udev which mouse is one. The name alone can't say: some touchscreens'
 # mouse interfaces are called multi-touch too.
 if [[ -z $device ]]; then
-  input_class="${UNBLOARCHY_INPUT_CLASS_PATH:-/sys/class/input}"
+  input_class="${OMARCHY_INPUT_CLASS_PATH:-/sys/class/input}"
   for event in "$input_class"/event*; do
     [[ -r $event/device/name ]] || continue
     # Hyprland's name for a device: the kernel's, lowercased, with spaces,
@@ -18,13 +18,20 @@ if [[ -z $device ]]; then
     name=$(<"$event/device/name")
     name=${name,,}
     name=${name//[ ,$'\n']/-}
-    udevadm info --query=property "$event" 2>/dev/null | grep -Fxq 'ID_INPUT_TOUCHPAD=1' || continue
+    # Match the name first: udevadm is a fork per device, and a desktop with no
+    # touchpad would otherwise pay it for every keyboard, button and switch on
+    # each menu open.
+    match=""
     while IFS= read -r mouse; do
       if [[ $mouse == "$name" || ( $mouse == "$name"-* && ${mouse#"$name"-} =~ ^[0-9]+$ ) ]]; then
-        device=$mouse
-        break 2
+        match=$mouse
+        break
       fi
     done <<<"$mice"
+    [[ -n $match ]] || continue
+    udevadm info --query=property "$event" 2>/dev/null | grep -Fxq 'ID_INPUT_TOUCHPAD=1' || continue
+    device=$match
+    break
   done
 fi
 

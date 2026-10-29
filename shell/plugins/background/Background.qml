@@ -1,5 +1,4 @@
 import Quickshell
-import qs.Commons as Commons
 import Quickshell.Io
 import Quickshell.Wayland
 import QtQuick
@@ -16,7 +15,8 @@ Item {
   property bool suspended: false
   readonly property string home: Quickshell.env("HOME")
   readonly property string stateHome: home + "/.local/state"
-  readonly property string currentBackgroundLink: stateHome + "/unbloarchy/current/background"
+  readonly property string currentBackgroundLink: stateHome + "/omarchy/current/background"
+  readonly property string currentThemeBackgrounds: stateHome + "/omarchy/current/theme/backgrounds"
 
   property string currentBackground: ""
   property string displayedBackground: ""
@@ -67,6 +67,36 @@ Item {
     if (!readlinkProc.running) readlinkProc.running = true
   }
 
+  // The desktop must never be left without a wallpaper. A path that stops
+  // loading, say one that ran through a theme since replaced, is resolved
+  // again from the background link, which a theme switch always repoints.
+  // Only a different path is taken, so a file that is there but unreadable
+  // cannot loop. Resolving runs out of process, so a background chosen in the
+  // meantime wins over what it finds; if that one fails too, it is resolved
+  // in turn once the running lookup is done.
+  property string failedBackground: ""
+  property int recoverVersion: -1
+
+  function recoverBackground(failedPath) {
+    if (!failedPath || failedPath !== displayedBackground) return
+    failedBackground = failedPath
+    if (recoverProc.running) return
+    recoverVersion = backgroundVersion
+    recoverProc.running = true
+  }
+
+  function finishRecovery(path) {
+    path = String(path || "").trim()
+    var failedPath = failedBackground
+    failedBackground = ""
+    if (recoverVersion !== backgroundVersion) {
+      recoverBackground(failedPath)
+      return
+    }
+    if (!path || path === failedPath) return
+    setBackground(path, true)
+  }
+
   function setBackground(path, instant) {
     if (instant) reloadVersion += 1
     transitionBackground("", path, path, instant, instant)
@@ -86,6 +116,7 @@ Item {
     requestNativeSize(finalPath)
     currentBackground = finalPath
     backgroundVersion += 1
+    failedBackground = ""
     revealStartedVersion = -1
 
     revealAnimation.stop()
@@ -186,14 +217,15 @@ Item {
 
     // A cloned background may not summon the picker in-process, so it takes
     // the IPC route instead.
-    if (!root.shell || !root.shell.summon("unbloarchy.image-picker", payload))
-      Util.execArgv(["unbloarchy-shell", "shell", "summon", "unbloarchy.image-picker", payload])
+    if (!root.shell || !root.shell.summon("omarchy.image-picker", payload))
+      Util.execArgv(["omarchy-shell", "shell", "summon", "omarchy.image-picker", payload])
   }
 
+  // omarchy-theme-bg-set tells this service of the new background itself. A
+  // refresh here would start an ordinary transition under an intro's cover.
   Process {
     id: bgSwitchProc
-    command: ["bash", "-c", "background=$(unbloarchy-theme-bg-switcher); [[ -n $background ]] && unbloarchy-theme-bg-set \"$background\""]
-    onExited: root.refreshBackground()
+    command: ["bash", "-c", "background=$(omarchy-theme-bg-switcher); [[ -n $background ]] && omarchy-theme-bg-set \"$background\""]
   }
 
   Process {
@@ -218,6 +250,21 @@ Item {
     command: ["readlink", "-f", root.currentBackgroundLink]
     stdout: StdioCollector {
       onStreamFinished: root.setBackground(String(text || "").trim(), false)
+    }
+  }
+
+  // The link's target when it exists, or else the theme's first background,
+  // so a link left dangling still finds a wallpaper.
+  Process {
+    id: recoverProc
+    command: [
+      "bash", "-c",
+      'target=$(readlink -f "$1"); if [[ -e $target ]]; then echo "$target"; else ' +
+      'find "$2" -maxdepth 1 -type f \\( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \\) | sort | head -n 1; fi',
+      "resolve", root.currentBackgroundLink, root.currentThemeBackgrounds
+    ]
+    stdout: StdioCollector {
+      onStreamFinished: root.finishRecovery(text)
     }
   }
 
@@ -307,7 +354,7 @@ Item {
       color: "transparent"
       // Keep render updates enabled. The background layer has been observed to
       // lose its committed buffer while parked with updatesEnabled=false,
-      // leaving a black desktop until unbloarchy-shell is restarted. A still
+      // leaving a black desktop until omarchy-shell is restarted. A still
       // wallpaper costs nothing to keep enabled. OWE manages video layers.
       updatesEnabled: true
 
@@ -351,7 +398,7 @@ Item {
         })
       }
 
-      WlrLayershell.namespace: "unbloarchy-background"
+      WlrLayershell.namespace: "omarchy-background"
       WlrLayershell.layer: WlrLayer.Background
       WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
       exclusionMode: ExclusionMode.Ignore
@@ -366,6 +413,7 @@ Item {
         cached: true
         constrainDecode: true
         decodeSize: panel.decodeSize(root.displayedBackground)
+        onFailedChanged: if (failed) root.recoverBackground(path)
         onReadyChanged: {
           panel.readyFrames = 0
           if (ready && root.finishingTransition) {
@@ -462,15 +510,41 @@ Item {
         }
       }
 
-      MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onDoubleClicked: function(mouse) {
-          if (mouse.button === Qt.RightButton) root.openThemeSwitcher()
-          else root.openSelector()
-          mouse.accepted = true
-        }
-      }
+      DesktopClicks { service: root }
+    }
+  }
+
+  // OWE's video layer takes no clicks, and this service's own layer is hidden
+  // under it while a video plays. A clear layer above the video and below
+  // every window keeps the desktop's double-clicks working meanwhile.
+  Variants {
+    model: Quickshell.screens
+
+    PanelWindow {
+      required property var modelData
+
+      screen: modelData
+      visible: root.suspended
+      color: "transparent"
+      anchors { top: true; bottom: true; left: true; right: true }
+      exclusionMode: ExclusionMode.Ignore
+      WlrLayershell.namespace: "omarchy-background"
+      WlrLayershell.layer: WlrLayer.Bottom
+      WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+
+      DesktopClicks { service: root }
+    }
+  }
+
+  // Inline components do not see this file's ids, so each one is handed the service.
+  component DesktopClicks: MouseArea {
+    required property var service
+    anchors.fill: parent
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
+    onDoubleClicked: function(mouse) {
+      if (mouse.button === Qt.RightButton) service.openThemeSwitcher()
+      else service.openSelector()
+      mouse.accepted = true
     }
   }
 }

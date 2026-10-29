@@ -4,20 +4,6 @@ set -euo pipefail
 
 source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 
-TMPDIR=""
-QS_PID=""
-
-cleanup() {
-  if [[ -n $QS_PID ]] && kill -0 "$QS_PID" 2>/dev/null; then
-    kill "$QS_PID" 2>/dev/null || true
-    wait "$QS_PID" 2>/dev/null || true
-  fi
-  if [[ -n $TMPDIR && -d $TMPDIR ]]; then
-    rm -rf "$TMPDIR"
-  fi
-}
-trap cleanup EXIT
-
 shell_qml="$ROOT/shell/shell.qml"
 bar_qml="$ROOT/shell/plugins/bar/Bar.qml"
 plugin_shell_api="$ROOT/shell/services/PluginShellApi.qml"
@@ -56,10 +42,10 @@ vm.runInContext(
   store
 )
 const service = { destroy() {} }
-store.put('unbloarchy.lock', service)
-store.destroy('unbloarchy.lock')
+store.put('omarchy.lock', service)
+store.destroy('omarchy.lock')
 assert(
-  !store.has('unbloarchy.lock') && store.isTrusted('unbloarchy.lock'),
+  !store.has('omarchy.lock') && store.isTrusted('omarchy.lock'),
   'authentication classification survives service teardown'
 )
 JS
@@ -139,9 +125,9 @@ tr '\n\r\t' '   ' <<<"$bar_entry_shell" |
   fail "built-in clones in replacement bars cannot summon their existing auxiliary UI"
 qml_matches "$shell_qml" 'shell\.pluginCloneMaySummon\( *currentManifest\( *\), *requestedId *\)' ||
   fail "built-in clones cannot summon their existing auxiliary UI"
-qml_matches "$shell_qml" '"unbloarchy\.media": *\["unbloarchy\.osd"\]' ||
+qml_matches "$shell_qml" '"omarchy\.media": *\["omarchy\.osd"\]' ||
   fail "media clones cannot summon their existing OSD target"
-qml_matches "$shell_qml" '"unbloarchy\.network": *\["unbloarchy\.speedtest", *"unbloarchy\.wifiqr"\]' ||
+qml_matches "$shell_qml" '"omarchy\.network": *\["omarchy\.speedtest", *"omarchy\.wifiqr"\]' ||
   fail "network clones cannot summon their existing auxiliary panels"
 pass "built-in service and widget clones retain narrow configuration and UI integration"
 
@@ -153,49 +139,6 @@ qml_matches "$shell_qml" 'allowOwnService *&& *shell\.pluginOwnsTarget\( *key, *
   fail "cloned widgets cannot use a source id to reach their own service"
 pass "service facades resolve enabled clones without widening replacement-bar access"
 
-require_compositor "plugin authentication boundary runtime test"
+require_quickshell "plugin authentication boundary runtime test"
 
-if ! command -v quickshell >/dev/null 2>&1; then
-  skip "quickshell not installed; skipping plugin authentication boundary runtime test"
-  exit 0
-fi
-
-require_command jq
-
-TMPDIR=$(mktemp -d)
-result="$TMPDIR/result.json"
-log="$TMPDIR/quickshell.log"
-config_dir="$TMPDIR/plugin-auth-boundary"
-mkdir -p "$config_dir" "$TMPDIR/home"
-cp "$SHELL_TEST_DIR/fixtures/plugin-auth-boundary/"*.qml "$config_dir/"
-ln -s "$ROOT/shell/services" "$config_dir/services"
-
-UNBLOARCHY_QML_TEST_RESULT="$result" \
-HOME="$TMPDIR/home" \
-XDG_CONFIG_HOME="$TMPDIR/home/.config" \
-XDG_CACHE_HOME="$TMPDIR/home/.cache" \
-XDG_STATE_HOME="$TMPDIR/home/.local/state" \
-  quickshell -p "$config_dir" --no-color >"$log" 2>&1 &
-QS_PID=$!
-
-for _ in {1..80}; do
-  [[ -s $result ]] && break
-  if ! kill -0 "$QS_PID" 2>/dev/null; then
-    sed -n '1,220p' "$log" >&2
-    fail "plugin authentication boundary fixture exited before writing result"
-  fi
-  sleep 0.1
-done
-
-[[ -s $result ]] || {
-  sed -n '1,220p' "$log" >&2
-  fail "plugin authentication boundary runtime test timed out"
-}
-
-if ! jq -e '.ok == true' "$result" >/dev/null; then
-  jq . "$result" >&2
-  sed -n '1,220p' "$log" >&2
-  fail "plugin authentication boundary runtime behavior"
-fi
-
-pass "plugin authentication boundary runtime behavior"
+run_qml_fixture plugin-auth-boundary "plugin authentication boundary runtime behavior" services

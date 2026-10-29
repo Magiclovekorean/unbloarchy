@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# unbloarchy:summary=Save incoming Taildrop files and announce them
-# unbloarchy:args=[--once] [directory]
-# unbloarchy:examples=unbloarchy tailscale receive | unbloarchy tailscale receive --once ~/Desktop
+# omarchy:summary=Save incoming Taildrop files and announce them
+# omarchy:args=[--once] [directory]
+# omarchy:examples=omarchy tailscale receive | omarchy tailscale receive --once ~/Desktop
 
 set -euo pipefail
 
@@ -18,7 +18,7 @@ dir="${1:-${XDG_DOWNLOAD_DIR:-$HOME/Downloads}}"
 # downloads directory: waiting for a delivery can take hours, and everything
 # else that shows up meanwhile is somebody else's file. Same filesystem, so
 # handing the finished file over is a rename.
-staging="$dir/.unbloarchy-taildrop"
+staging="$dir/.omarchy-taildrop"
 mkdir -p "$staging"
 
 # Take the name by linking to it rather than by looking and then renaming.
@@ -59,20 +59,21 @@ claim_path() {
 announce() {
   local path="$1"
   local name="${path##*/}"
-  local args=("Received $name" "Saved to ${dir/#$HOME/~}" -u critical)
+  # Taildrop only accepts files from your own devices, so an image previews like
+  # any other app's notification image. The send glyph stays as the fallback for
+  # an image that doesn't load and the mark for everything else. Naming the app
+  # stacks a batch of files into one deck rather than a toast apiece.
+  local args=("$(omarchy-i18n tailscale.received "$name")" "$(omarchy-i18n tailscale.savedTo "${dir/#$HOME/"~"}")" --app-name Taildrop -u critical -g 󰒊)
 
   case "${name,,}" in
   *.png | *.jpg | *.jpeg | *.gif | *.webp | *.avif | *.bmp | *.tif | *.tiff)
     args+=(--image "$path")
     ;;
-  *)
-    args+=(-g 󰒊)
-    ;;
   esac
 
   # Announcing is best-effort: the file is already delivered, and under `set -e`
   # a notification outage would otherwise kill the long-running receiver.
-  unbloarchy-notification-send "${args[@]}" --exec xdg-open "$path" || true
+  omarchy-notification-send "${args[@]}" --exec xdg-open "$path" || true
 }
 
 deliver() {

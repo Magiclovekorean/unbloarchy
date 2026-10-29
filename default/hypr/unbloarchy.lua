@@ -1,17 +1,23 @@
--- Unbloarchy Hyprland setup: helpers, defaults, and current theme overrides.
+-- Omarchy Hyprland setup: helpers, defaults, and current theme overrides.
 
 require("default.hypr.helpers")
 local require_optional = require("default.hypr.require_optional")
 
--- Use Unbloarchy defaults, but don't edit these directly.
+-- Use Omarchy defaults, but don't edit these directly.
 require("default.hypr.autostart")
-if _G.unbloarchy_default_bindings ~= false then
+require("default.hypr.monitor-workspaces")
+if _G.omarchy_default_bindings ~= false then
   require("default.hypr.bindings.media")
   require("default.hypr.bindings.clipboard")
+  require("default.hypr.bindings.input-method")
+  require("default.hypr.bindings.jis")
   require("default.hypr.bindings.tiling")
   require("default.hypr.bindings.utilities")
   require("default.hypr.bindings.dictation")
   require_optional.module("default.hypr.bindings.applications")
+end
+if _G.omarchy_default_gestures ~= false then
+  require("default.hypr.gestures")
 end
 require("default.hypr.envs")
 require("default.hypr.looknfeel")
@@ -21,4 +27,4 @@ require("default.hypr.windows")
 require("default.hypr.dictation-backend")
 
 -- Current theme overrides.
-require_optional.module("unbloarchy.current.theme.hyprland")
+require_optional.module("omarchy.current.theme.hyprland")

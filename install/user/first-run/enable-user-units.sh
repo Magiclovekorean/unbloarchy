@@ -11,6 +11,8 @@
 
 set -euo pipefail
 
+omarchy-input-method configure --defaults || echo "Input method defaults deferred; run omarchy setup input after login." >&2
+
 systemctl --user daemon-reload
 
 # One at a time: given a list, systemctl enables none of it when it cannot find
@@ -19,15 +21,13 @@ failed=0
 for unit in \
   bt-agent.service \
   owed.service \
-  unbloarchy-recover-internal-monitor.service \
-  unbloarchy-sleep-lock.service \
-  unbloarchy-migrate-notify.service \
-  unbloarchy-fcitx5.service \
-  unbloarchy-crash-watch.service \
-  unbloarchy-usb-authorization.service \
-  unbloarchy-thunderbolt-authorization.service; do
+  omarchy-recover-internal-monitor.service \
+  omarchy-sleep-lock.service \
+  omarchy-migrate-notify.service \
+  omarchy-fcitx5.service \
+  omarchy-crash-watch.service; do
   systemctl --user enable --now "$unit" || failed=1
 done
 
-unbloarchy-hook-install theme-set /usr/share/owe/10-owe-sync
+omarchy-hook-install theme-set /usr/share/owe/10-owe-sync
 exit "$failed"

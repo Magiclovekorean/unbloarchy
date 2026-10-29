@@ -20,7 +20,7 @@ trap 'rm -rf "$TMPDIR"' EXIT
 
 mkdir -p "$TMPDIR/bin"
 STATE="$TMPDIR/hyprsunset-temp"
-SHELL_LOG="$TMPDIR/unbloarchy-shell-log"
+SHELL_LOG="$TMPDIR/omarchy-shell-log"
 
 cat >"$TMPDIR/bin/hyprctl" <<'SH'
 #!/bin/bash
@@ -42,18 +42,18 @@ cat >"$TMPDIR/bin/pgrep" <<'SH'
 exit 0
 SH
 
-cat >"$TMPDIR/bin/unbloarchy-shell" <<'SH'
+cat >"$TMPDIR/bin/omarchy-shell" <<'SH'
 #!/bin/bash
-printf '%s\n' "$*" >>"$UNBLOARCHY_SHELL_LOG"
+printf '%s\n' "$*" >>"$OMARCHY_SHELL_LOG"
 SH
 
-chmod +x "$TMPDIR/bin/hyprctl" "$TMPDIR/bin/pgrep" "$TMPDIR/bin/unbloarchy-shell"
+chmod +x "$TMPDIR/bin/hyprctl" "$TMPDIR/bin/pgrep" "$TMPDIR/bin/omarchy-shell"
 
 nightlight_cli() {
   PATH="$TMPDIR/bin:$PATH" \
   HYPRSUNSET_STATE="$STATE" \
-  UNBLOARCHY_SHELL_LOG="$SHELL_LOG" \
-    "$ROOT/bin/unbloarchy-toggle-nightlight" "$@"
+  OMARCHY_SHELL_LOG="$SHELL_LOG" \
+    "$ROOT/bin/omarchy-toggle-nightlight" "$@"
 }
 
 nightlight_status() {
@@ -86,7 +86,39 @@ nightlight_cli >/dev/null
 [[ $(<"$STATE") == 6500 ]] || fail "nightlight toggle restores daylight from night light"
 pass "nightlight toggle restores daylight from night light"
 
-if rg -q 'unbloarchy.indicators' "$ROOT/bin/unbloarchy-toggle-nightlight"; then
-  fail "nightlight toggle leaves indicator refresh to the nightlight service"
+# hyprsunset reports its age through ps. A boot still in progress applies its
+# default temperature on the first wait, overriding whatever was set before.
+BOOT_PENDING="$TMPDIR/boot-pending"
+printf '#!/bin/bash\n[[ $* == *etimes* ]] && echo "${HYPRSUNSET_AGE:-100}"\n' >"$TMPDIR/bin/ps"
+cat >"$TMPDIR/bin/sleep" <<'SH'
+#!/bin/bash
+printf 'sleep %s\n' "$*" >>"$OMARCHY_SHELL_LOG"
+if [[ -e $BOOT_PENDING ]]; then
+  rm -f "$BOOT_PENDING"
+  printf '6000\n' >"$HYPRSUNSET_STATE"
 fi
-pass "nightlight toggle leaves indicator refresh to the nightlight service"
+SH
+printf '#!/bin/bash\necho 4242\n' >"$TMPDIR/bin/pgrep"
+chmod +x "$TMPDIR/bin/sleep" "$TMPDIR/bin/ps" "$TMPDIR/bin/pgrep"
+toggle_from_daylight() {
+  printf '6500\n' >"$STATE"
+  : >"$SHELL_LOG"
+  BOOT_PENDING="$BOOT_PENDING" HYPRSUNSET_AGE="$1" nightlight_cli >/dev/null
+}
+
+toggle_from_daylight 100
+[[ $(<"$STATE") == 4000 ]] && ! grep -q '^sleep' "$SHELL_LOG" || fail "a hyprsunset that has finished starting applies the toggle without waiting"
+pass "a hyprsunset that has finished starting applies the toggle without waiting"
+
+: >"$BOOT_PENDING"
+toggle_from_daylight 1
+[[ $(<"$STATE") == 4000 && ! -e $BOOT_PENDING ]] || fail "a hyprsunset still booting can't undo the toggle with its default"
+pass "a hyprsunset still booting can't undo the toggle with its default"
+
+printf '#!/bin/bash\nexit 1\n' >"$TMPDIR/bin/pgrep"
+printf '#!/bin/bash\nexit 0\n' >"$TMPDIR/bin/setsid"
+chmod +x "$TMPDIR/bin/setsid"
+: >"$BOOT_PENDING"
+toggle_from_daylight 100
+[[ $(<"$STATE") == 4000 && ! -e $BOOT_PENDING ]] || fail "a freshly started hyprsunset can't undo the toggle with its default"
+pass "a freshly started hyprsunset can't undo the toggle with its default"

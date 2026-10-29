@@ -74,7 +74,7 @@ Column {
     anchors.horizontalCenter: parent.horizontalCenter
     spacing: Style.space(9)
 
-    TitleWord { text: "World" }
+    TitleWord { text: Commons.I18n.t("elsewhen.world") }
 
     Item {
       id: heroIcon
@@ -152,7 +152,7 @@ Column {
       }
     }
 
-    TitleWord { text: "Clock" }
+    TitleWord { text: Commons.I18n.t("elsewhen.clock") }
   }
 
   component TitleWord: Text {

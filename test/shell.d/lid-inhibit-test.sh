@@ -7,7 +7,7 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 # The watcher half opens its event stream with {fd}> redirection.
 (( BASH_VERSINFO[0] * 100 + BASH_VERSINFO[1] >= 401 )) || fail "this test runs under bash 4.1 or newer" "$BASH_VERSION"
 
-lid_inhibit="$ROOT/bin/unbloarchy-system-lid-inhibit"
+lid_inhibit="$ROOT/bin/omarchy-system-lid-inhibit"
 
 test_tmp=$(mktemp -d)
 watch_pid=""
@@ -62,26 +62,26 @@ mkdir -p "$fake_bin"
 cat >"$fake_bin/systemd-run" <<'SH'
 #!/bin/bash
 
-if [[ -e $UNBLOARCHY_TEST_UNIT_STATE ]]; then
-  printf 'refused\n' >>"$UNBLOARCHY_TEST_CALL_LOG"
+if [[ -e $OMARCHY_TEST_UNIT_STATE ]]; then
+  printf 'refused\n' >>"$OMARCHY_TEST_CALL_LOG"
   echo "Unit already loaded" >&2
   exit 1
 fi
 
-printf 'start %s\n' "$*" >>"$UNBLOARCHY_TEST_CALL_LOG"
-touch "$UNBLOARCHY_TEST_UNIT_STATE"
+printf 'start %s\n' "$*" >>"$OMARCHY_TEST_CALL_LOG"
+touch "$OMARCHY_TEST_UNIT_STATE"
 SH
 
 cat >"$fake_bin/systemctl" <<'SH'
 #!/bin/bash
 
 case "$*" in
-  "--user is-active --quiet unbloarchy-lid-inhibit.service")
-    [[ -e $UNBLOARCHY_TEST_UNIT_STATE ]]
+  "--user is-active --quiet omarchy-lid-inhibit.service")
+    [[ -e $OMARCHY_TEST_UNIT_STATE ]]
     ;;
-  "--user stop unbloarchy-lid-inhibit.service")
-    printf 'stop\n' >>"$UNBLOARCHY_TEST_CALL_LOG"
-    rm -f "$UNBLOARCHY_TEST_UNIT_STATE"
+  "--user stop omarchy-lid-inhibit.service")
+    printf 'stop\n' >>"$OMARCHY_TEST_CALL_LOG"
+    rm -f "$OMARCHY_TEST_UNIT_STATE"
     ;;
   *)
     exit 2
@@ -93,35 +93,35 @@ cat >"$fake_bin/busctl" <<'SH'
 #!/bin/bash
 
 [[ $* == *" HandleLidSwitchDocked" ]] || exit 1
-[[ -f $UNBLOARCHY_TEST_BUSCTL_FAIL ]] && exit 1
-printf 's "%s"\n' "$UNBLOARCHY_TEST_DOCKED_ACTION"
+[[ -f $OMARCHY_TEST_BUSCTL_FAIL ]] && exit 1
+printf 's "%s"\n' "$OMARCHY_TEST_DOCKED_ACTION"
 SH
 
-cat >"$fake_bin/unbloarchy-hw-laptop" <<'SH'
+cat >"$fake_bin/omarchy-hw-laptop" <<'SH'
 #!/bin/bash
 
-[[ $UNBLOARCHY_TEST_LAPTOP == 1 ]]
+[[ $OMARCHY_TEST_LAPTOP == 1 ]]
 SH
 
 cat >"$fake_bin/hyprctl" <<'SH'
 #!/bin/bash
 
 [[ $* == "monitors all -j" ]] || exit 0
-[[ -f $UNBLOARCHY_TEST_HYPRCTL_FAIL ]] && exit 1
-cat "$UNBLOARCHY_TEST_MONITORS"
+[[ -f $OMARCHY_TEST_HYPRCTL_FAIL ]] && exit 1
+cat "$OMARCHY_TEST_MONITORS"
 SH
 
 chmod +x "$fake_bin"/*
 
-export UNBLOARCHY_DRM_PATH="$drm_path"
-export UNBLOARCHY_TEST_UNIT_STATE="$unit_state"
-export UNBLOARCHY_TEST_CALL_LOG="$call_log"
-export UNBLOARCHY_TEST_MONITORS="$monitors"
-export UNBLOARCHY_TEST_HYPRCTL_FAIL="$hyprctl_fail"
-export UNBLOARCHY_TEST_BUSCTL_FAIL="$busctl_fail"
-export UNBLOARCHY_CGROUP_PATH="$cgroup"
-export UNBLOARCHY_TEST_DOCKED_ACTION=ignore
-export UNBLOARCHY_TEST_LAPTOP=1
+export OMARCHY_DRM_PATH="$drm_path"
+export OMARCHY_TEST_UNIT_STATE="$unit_state"
+export OMARCHY_TEST_CALL_LOG="$call_log"
+export OMARCHY_TEST_MONITORS="$monitors"
+export OMARCHY_TEST_HYPRCTL_FAIL="$hyprctl_fail"
+export OMARCHY_TEST_BUSCTL_FAIL="$busctl_fail"
+export OMARCHY_CGROUP_PATH="$cgroup"
+export OMARCHY_TEST_DOCKED_ACTION=ignore
+export OMARCHY_TEST_LAPTOP=1
 
 # Arguments come in pairs: connector and status. The card itself sits beside
 # its connectors, as in sysfs.
@@ -182,13 +182,13 @@ pass "a caller outside the user manager binds the inhibitor to nothing"
 
 # The watcher runs in a scope of the user manager; the inhibitor stops with it.
 reset_unit
-watcher_scope='app-Hyprland-unbloarchy\x2dhyprland\x2dmonitor\x2dwatch-f1fda151.scope'
+watcher_scope='app-Hyprland-omarchy\x2dhyprland\x2dmonitor\x2dwatch-f1fda151.scope'
 printf '0::/user.slice/user-1000.slice/user@1000.service/app.slice/app-graphical.slice/%s\n' "$watcher_scope" >"$cgroup"
 sync_inhibit
 start=$(grep '^start' "$call_log")
 # systemd-run unquotes property values: a single backslash would name a unit
 # that does not exist, and the inhibitor would never start.
-bound_scope='app-Hyprland-unbloarchy\\x2dhyprland\\x2dmonitor\\x2dwatch-f1fda151.scope'
+bound_scope='app-Hyprland-omarchy\\x2dhyprland\\x2dmonitor\\x2dwatch-f1fda151.scope'
 [[ $start == *"--property=BindsTo=$bound_scope --property=After=$bound_scope "* ]] ||
   fail "the inhibitor is bound to the watcher's unit" "$start"
 printf '0::/user.slice/user-1000.slice/session-3.scope\n' >"$cgroup"
@@ -281,7 +281,7 @@ pass "HDMI and DisplayPort displays, which logind counts, take no inhibitor"
 reset_unit
 write_connectors card2-USB-2 connected
 write_monitors "$clamshell"
-UNBLOARCHY_TEST_LAPTOP=0 sync_inhibit
+OMARCHY_TEST_LAPTOP=0 sync_inhibit
 [[ ! -s $call_log ]] || fail "a machine without a lid takes no inhibitor" "$(<"$call_log")"
 pass "a machine without a lid takes no inhibitor"
 
@@ -289,17 +289,18 @@ pass "a machine without a lid takes no inhibitor"
 reset_unit
 write_connectors card2-eDP-1 connected card2-USB-2 connected
 write_monitors "$clamshell"
-UNBLOARCHY_TEST_DOCKED_ACTION=suspend sync_inhibit
+OMARCHY_TEST_DOCKED_ACTION=suspend sync_inhibit
 [[ ! -s $call_log ]] || fail "a docked lid set to suspend takes no inhibitor" "$(<"$call_log")"
 sync_inhibit
 held || fail "the inhibitor is taken under the default docked action"
-UNBLOARCHY_TEST_DOCKED_ACTION=suspend sync_inhibit
+OMARCHY_TEST_DOCKED_ACTION=suspend sync_inhibit
 ! held || fail "changing the docked lid action away from ignore releases the inhibitor"
 pass "the inhibitor follows logind's docked lid action"
 
 # logind lists DVI-A and Composite, but a missing comma fuses them into one
-# entry, so they are uncounted too.
-for connector in DVI-A-1 Composite-1; do
+# entry, so they are uncounted too. Unknown is a driver with no type for its
+# USB-C connectors (nvidia-drm on the N1x before it reported DisplayPort).
+for connector in DVI-A-1 Composite-1 Unknown-6; do
   reset_unit
   write_connectors card0-LVDS-1 connected "card0-$connector" connected
   write_monitors "[{\"name\":\"LVDS-1\",\"disabled\":true},{\"name\":\"$connector\",\"disabled\":false}]"
@@ -321,10 +322,10 @@ pass "a USB-C display beside an HDMI one still holds the inhibitor"
 cat >"$fake_bin/socat" <<'SH'
 #!/bin/bash
 
-exec cat "$UNBLOARCHY_TEST_EVENTS"
+exec cat "$OMARCHY_TEST_EVENTS"
 SH
 
-for command in unbloarchy-hyprland-monitor-clamshell unbloarchy-hyprland-monitor-external-active; do
+for command in omarchy-hyprland-monitor-clamshell omarchy-hyprland-monitor-external-active; do
   cat >"$fake_bin/$command" <<'SH'
 #!/bin/bash
 
@@ -332,14 +333,24 @@ exit 0
 SH
 done
 
-cat >"$fake_bin/unbloarchy-hyprland-monitor-modeless" <<'SH'
+cat >"$fake_bin/omarchy-hyprland-monitor-modeless" <<'SH'
 #!/bin/bash
 
 exit 1
 SH
 
+# Each sync the watcher runs is logged, so the test can wait for its retries
+# and poll to have run rather than for a time.
+cat >"$fake_bin/omarchy-system-lid-inhibit" <<'SH'
+#!/bin/bash
+
+printf 'sync\n' >>"$OMARCHY_TEST_SYNC_LOG"
+exec "$OMARCHY_TEST_LID_INHIBIT" "$@"
+SH
+
 chmod +x "$fake_bin"/*
-ln -s "$lid_inhibit" "$fake_bin/unbloarchy-system-lid-inhibit"
+sync_log="$test_tmp/syncs"
+: >"$sync_log"
 
 start_watcher() {
   rm -f "$events"
@@ -348,8 +359,10 @@ start_watcher() {
   PATH="$fake_bin:$PATH" \
   XDG_RUNTIME_DIR="$test_tmp" \
   HYPRLAND_INSTANCE_SIGNATURE=test \
-  UNBLOARCHY_TEST_EVENTS="$events" \
-    "$ROOT/bin/unbloarchy-hyprland-monitor-watch" &
+  OMARCHY_TEST_EVENTS="$events" \
+  OMARCHY_TEST_SYNC_LOG="$sync_log" \
+  OMARCHY_TEST_LID_INHIBIT="$lid_inhibit" \
+    "$ROOT/bin/omarchy-hyprland-monitor-watch" &
   watch_pid=$!
 
   exec {events_fd}>"$events"
@@ -358,7 +371,7 @@ start_watcher() {
 await() {
   local waited
 
-  for (( waited = 0; waited < 100; waited++ )); do
+  for (( waited = 0; waited < 200; waited++ )); do
     "$@" && return 0
     sleep 0.05
   done
@@ -368,6 +381,12 @@ await() {
 
 released() {
   ! held
+}
+
+syncs_since() {
+  local count
+  count=$(grep -c '^sync$' "$sync_log" || true)
+  (( count >= $1 + $2 ))
 }
 
 reset_unit
@@ -390,8 +409,13 @@ printf 'monitoraddedv2>>2,USB-2,Display\n' >&"$events_fd"
 await held || fail "the watcher takes the inhibitor again when the USB-C display returns"
 
 # Across the delayed retries and the docked poll, one unit stays the only one.
-sleep 3.5
-(( $(count_calls start) == 2 && $(count_calls stop) == 1 && $(count_calls refused) == 0 )) ||
+# Retries from the hotplugs above overlap the fixture rewrites, so how many
+# starts and stops those took is the scheduler's business. Once the display is
+# back and held, the world is still: later syncs must leave the unit alone.
+calls=$(wc -l <"$call_log")
+synced=$(grep -c '^sync$' "$sync_log" || true)
+await syncs_since "$synced" 3 || fail "the watcher keeps syncing through its retries and poll" "$(<"$sync_log")"
+held && [[ -z $(tail -n "+$(( calls + 1 ))" "$call_log") ]] && (( $(count_calls refused) == 0 )) ||
   fail "the watcher never stacks inhibitors across its retries and poll" "$(<"$call_log")"
 pass "the watcher keeps one inhibitor across hotplugs, retries and its poll"
 

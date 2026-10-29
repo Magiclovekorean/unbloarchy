@@ -1,47 +1,47 @@
 #!/bin/bash
 
-# unbloarchy:summary=Point Unbloarchy at a local checkout after reboot
-# unbloarchy:group=dev
-# unbloarchy:args=<path-to-checkout> [--no-reboot]
-# unbloarchy:examples=unbloarchy dev link ~/unbloarchy
+# omarchy:summary=Point Omarchy at a local checkout after reboot
+# omarchy:group=dev
+# omarchy:args=<path-to-checkout> [--no-reboot]
+# omarchy:examples=omarchy dev link ~/omarchy
 
 set -euo pipefail
 
 if (( EUID == 0 )); then
-  echo "Error: run unbloarchy-dev-link as your user, not under sudo." >&2
+  echo "Error: run omarchy-dev-link as your user, not under sudo." >&2
   exit 1
 fi
 
 prompt_reboot=1
 
 # sudo resolves a bare command name against secure_path, never the caller's
-# PATH, so a dev-linked checkout is invisible to `sudo unbloarchy-*`: a command the
+# PATH, so a dev-linked checkout is invisible to `sudo omarchy-*`: a command the
 # package does not ship yet fails outright, and one it does ship silently runs
 # the packaged copy while every unprivileged call runs the checkout. Prepending
 # the checkout's bin keeps root on the code being edited — the same trust the
-# link already extends to every system script Unbloarchy runs out of $UNBLOARCHY_PATH.
-sudoers_file="/etc/sudoers.d/unbloarchy-dev-path"
+# link already extends to every system script Omarchy runs out of $OMARCHY_PATH.
+sudoers_file="/etc/sudoers.d/omarchy-dev-path"
 system_secure_path="/usr/local/sbin:/usr/local/bin:/usr/bin"
 
 if (( $# < 1 || $# > 2 )) || [[ $1 == "-h" || $1 == "--help" ]]; then
   cat <<USAGE
-Usage: unbloarchy dev link <path-to-checkout> [--no-reboot]
+Usage: omarchy dev link <path-to-checkout> [--no-reboot]
 
-Writes /etc/unbloarchy.conf so UNBLOARCHY_PATH resolves to <path-to-checkout>
+Writes /etc/omarchy.conf so OMARCHY_PATH resolves to <path-to-checkout>
 after reboot. This intentionally does not rewrite the running Hyprland,
 systemd, shell, or app-launcher environment; reboot to make every layer agree.
 
-Affects only \$UNBLOARCHY_PATH-resolved trees: bin/, default/, shell/,
+Affects only \$OMARCHY_PATH-resolved trees: bin/, default/, shell/,
 themes/, applications/, config/. Files installed at fixed system paths
 (/etc/, /usr/lib/systemd/, udev rule bodies, /etc/skel after user
-creation) are NOT covered — for those, use unbloarchy-dev-pkg-test to build
+creation) are NOT covered — for those, use omarchy-dev-pkg-test to build
 and install the package from the checkout.
 
-The Plymouth and SDDM themes under /usr/share are the exception: unbloarchy
-plymouth set and unbloarchy refresh plymouth republish them from the checkout,
-reading this link's authorization out of the root-owned /etc/unbloarchy.conf.
+The Plymouth and SDDM themes under /usr/share are the exception: omarchy
+plymouth set and omarchy refresh plymouth republish them from the checkout,
+reading this link's authorization out of the root-owned /etc/omarchy.conf.
 
-Also writes $sudoers_file so sudo resolves unbloarchy-*
+Also writes $sudoers_file so sudo resolves omarchy-*
 from the checkout instead of the packaged copies. That part takes effect
 immediately, no reboot needed.
 
@@ -54,12 +54,12 @@ if (( $# == 2 )); then
   if [[ $2 == "--no-reboot" ]]; then
     prompt_reboot=0
   else
-    echo "Usage: unbloarchy dev link <path-to-checkout> [--no-reboot]" >&2
+    echo "Usage: omarchy dev link <path-to-checkout> [--no-reboot]" >&2
     exit 1
   fi
 fi
 
-unbloarchy_conf_quote() {
+omarchy_conf_quote() {
   local value="$1"
   value=${value//\\/\\\\}
   value=${value//\"/\\\"}
@@ -85,7 +85,7 @@ target=$(realpath -e "$1" 2>/dev/null) || {
 
 for required in bin default shell; do
   if [[ ! -d $target/$required ]]; then
-    echo "Warning: $target/$required not found — does this look like an Unbloarchy source checkout?" >&2
+    echo "Warning: $target/$required not found — does this look like an Omarchy source checkout?" >&2
   fi
 done
 
@@ -107,17 +107,17 @@ if ! visudo -cf "$staged_sudoers" >/dev/null; then
 fi
 
 {
-  printf 'export UNBLOARCHY_PATH='
-  unbloarchy_conf_quote "$target"
+  printf 'export OMARCHY_PATH='
+  omarchy_conf_quote "$target"
   printf '\n'
-} | sudo tee /etc/unbloarchy.conf >/dev/null
+} | sudo tee /etc/omarchy.conf >/dev/null
 
 sudo install -Dm440 -o root -g root "$staged_sudoers" "$sudoers_file"
 
-echo "Pointed Unbloarchy at $target"
-echo "sudo now resolves unbloarchy-* from $target/bin"
+echo "Pointed Omarchy at $target"
+echo "sudo now resolves omarchy-* from $target/bin"
 echo
 
 if (( prompt_reboot )) && gum confirm "Reboot now to activate?"; then
-  unbloarchy-system-reboot
+  omarchy-system reboot
 fi

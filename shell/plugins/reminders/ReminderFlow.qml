@@ -1,5 +1,4 @@
 import Quickshell
-import qs.Commons as Commons
 import Quickshell.Wayland
 import QtQuick
 import qs.Commons
@@ -10,7 +9,7 @@ import "ReminderFlowModel.js" as ReminderFlowModel
 Item {
   id: root
 
-  property string unbloarchyPath: Quickshell.env("UNBLOARCHY_PATH")
+  property string omarchyPath: Quickshell.env("OMARCHY_PATH")
   property var shell: null
   property var manifest: null
 
@@ -30,7 +29,7 @@ Item {
   property int headerHeight: Math.max(Style.space(34), Style.font.title + Style.spacing.controlPaddingY * 2)
   property int cardWidth: Math.min(Style.space(300), panel.width - Style.gapsOut * 2)
   property int cardHeight: Math.min(contentMargin * 2 + headerHeight, panel.height - Style.gapsOut * 2)
-  readonly property string promptText: root.step === "message" ? "Reminder message" : "Remind in minutes"
+  readonly property string promptText: root.step === "message" ? I18n.t("reminders.messagePrompt") : I18n.t("reminders.minutesPrompt")
 
   function open(payloadJson) {
     var payload = ({})
@@ -52,7 +51,7 @@ Item {
   function dismiss() {
     root.opened = false
     if (root.shell && typeof root.shell.hide === "function")
-      root.shell.hide((root.manifest && root.manifest.id) || "unbloarchy.reminders")
+      root.shell.hide((root.manifest && root.manifest.id) || "omarchy.reminders")
   }
 
   function toggle() {
@@ -76,7 +75,7 @@ Item {
       }
 
       if (!nextMinutes) {
-        Quickshell.execDetached([root.unbloarchyPath + "/bin/unbloarchy-notification-send", "Invalid reminder", "Enter the number of minutes"])
+        Quickshell.execDetached([root.omarchyPath + "/bin/omarchy-notification-send", I18n.t("reminders.invalidTitle"), I18n.t("reminders.invalidBody")])
         return
       }
 
@@ -88,7 +87,7 @@ Item {
     }
 
     if (root.step === "message") {
-      var args = [root.unbloarchyPath + "/bin/unbloarchy-reminder"].concat(ReminderFlowModel.reminderArgs(root.minutes, selection))
+      var args = [root.omarchyPath + "/bin/omarchy-reminder"].concat(ReminderFlowModel.reminderArgs(root.minutes, selection))
       root.dismiss()
       Quickshell.execDetached(args)
     }
@@ -97,7 +96,7 @@ Item {
   OverlayWindow {
     id: panel
     shown: root.opened
-    WlrLayershell.namespace: "unbloarchy-reminders"
+    WlrLayershell.namespace: "omarchy-reminders"
 
     Rectangle {
       anchors.fill: parent
@@ -157,7 +156,7 @@ Item {
           anchors.left: parent.left
           anchors.right: parent.right
           anchors.verticalCenter: parent.verticalCenter
-          text: root.filterText || (root.promptText + "...")
+          text: root.filterText || root.promptText
           color: root.foreground
           opacity: root.filterText ? 1 : 0.58
           font.family: root.fontFamily
