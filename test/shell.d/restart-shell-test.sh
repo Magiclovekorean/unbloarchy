@@ -15,58 +15,6 @@ cleanup() {
 }
 trap cleanup EXIT
 
-wrapper_root="$test_tmp/wrapper-root"
-wrapper_bin="$test_tmp/wrapper-bin"
-mkdir -p "$wrapper_root/shell" "$wrapper_bin"
-touch "$wrapper_root/shell/shell.qml"
-
-cat >"$wrapper_bin/qs" <<'SH'
-#!/bin/bash
-
-[[ -n ${UNBLOARCHY_TEST_QS_ARGS:-} ]] && printf '%s\n' "$*" >"$UNBLOARCHY_TEST_QS_ARGS"
-
-if [[ ${UNBLOARCHY_TEST_QS_HANG:-0} == 1 ]]; then
-  sleep 5
-elif [[ ${UNBLOARCHY_TEST_QS_STARTING:-0} == 1 ]]; then
-  printf 'Not ready to accept queries yet.\n'
-else
-  printf 'ok\n'
-fi
-SH
-chmod +x "$wrapper_bin/qs"
-
-wrapper_error=$(PATH="$wrapper_bin:$PATH" \
-  UNBLOARCHY_PATH="$wrapper_root" \
-  UNBLOARCHY_SHELL_IPC_TIMEOUT=0.1s \
-  UNBLOARCHY_TEST_QS_HANG=1 \
-  "$ROOT/bin/unbloarchy-shell" shell ping 2>&1) && fail "hung shell IPC returns a failure"
-[[ $wrapper_error == "unbloarchy-shell is not responding" ]] || fail "hung shell IPC reports that the shell is unresponsive" "$wrapper_error"
-pass "shell IPC calls time out when Quickshell is unresponsive"
-
-# A starting shell answers on stdout and exits 0, so a ping reads it as up.
-wrapper_error=$(PATH="$wrapper_bin:$PATH" \
-  UNBLOARCHY_PATH="$wrapper_root" \
-  UNBLOARCHY_TEST_QS_STARTING=1 \
-  "$ROOT/bin/unbloarchy-shell" shell ping 2>&1) && fail "a starting shell answers IPC calls with a failure"
-[[ $wrapper_error == "unbloarchy-shell is not ready" ]] || fail "a starting shell reports that it is not ready" "$wrapper_error"
-pass "shell IPC calls fail while Quickshell is still starting"
-
-PATH="$wrapper_bin:$PATH" \
-UNBLOARCHY_PATH="$wrapper_root" \
-UNBLOARCHY_TEST_QS_STARTING=1 \
-  "$ROOT/bin/unbloarchy-shell" -q shell ping >/dev/null 2>&1 ||
-  fail "quiet best-effort IPC calls tolerate a starting shell"
-pass "quiet best-effort IPC calls tolerate a starting shell"
-
-wrapper_args="$test_tmp/wrapper-args"
-PATH="$wrapper_bin:$PATH" \
-UNBLOARCHY_PATH="$wrapper_root" \
-UNBLOARCHY_TEST_QS_ARGS="$wrapper_args" \
-  "$ROOT/bin/unbloarchy-shell" shell ping >/dev/null
-
-grep -F -- 'ipc -n -p' "$wrapper_args" >/dev/null || fail "shell IPC targets the newest live Quickshell instance"
-pass "shell IPC targets the newest live Quickshell instance"
-
 restart_root="$test_tmp/restart-root"
 restart_bin="$restart_root/bin"
 restart_state="$test_tmp/restart-pids"

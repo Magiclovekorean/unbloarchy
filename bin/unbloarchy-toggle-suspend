@@ -2,10 +2,15 @@
 
 # unbloarchy:summary=Toggle suspend availability in the system menu
 
+if unbloarchy-sleep-disabled; then
+  unbloarchy-notification-send -g 󰒲 "$(unbloarchy-i18n suspend.turnedOffOnMachine)"
+  exit 0
+fi
+
 unbloarchy-toggle suspend-off
 
 if unbloarchy-toggle-enabled suspend-off; then
-  unbloarchy-notification-send -g 󰒲 "Suspend removed from system menu"
+  unbloarchy-notification-send -g 󰒲 "$(unbloarchy-i18n suspend.removedFromMenu)"
 else
-  unbloarchy-notification-send -g 󰒲 "Suspend now available in system menu"
+  unbloarchy-notification-send -g 󰒲 "$(unbloarchy-i18n suspend.availableInMenu)"
 fi

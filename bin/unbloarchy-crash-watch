@@ -40,8 +40,8 @@ announce() {
   unbloarchy-notification-send \
     --urgency critical \
     --glyph "$CRASH_GLYPH" \
-    "Process crashed: $comm" \
-    "Click to diagnose with AI" \
+    "$(unbloarchy-i18n crash.processCrashed "$comm")" \
+    "$(unbloarchy-i18n crash.diagnose)" \
     --exec unbloarchy-agent-crash "$pid" "$comm" "$exe" "$signal"
 }
 

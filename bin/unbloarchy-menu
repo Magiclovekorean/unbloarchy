@@ -2,7 +2,7 @@
 
 # unbloarchy:summary=Control the Unbloarchy menu (toggle / summon / close / refresh)
 # unbloarchy:args=[toggle|summon|close|refresh|ping] [route]
-# unbloarchy:examples=unbloarchy menu | unbloarchy menu toggle system | unbloarchy menu summon style.theme | unbloarchy menu refresh
+# unbloarchy:examples=unbloarchy menu | unbloarchy menu toggle system | unbloarchy menu summon appearance.theme | unbloarchy menu refresh
 
 # Thin wrapper around the standard plugin IPC surface. The menu is the
 # first-party `unbloarchy.menu` plugin; routes are passed as JSON payload.

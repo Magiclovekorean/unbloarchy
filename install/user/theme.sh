@@ -11,6 +11,7 @@ if [[ ! -s $HOME/.local/state/unbloarchy/current/theme.name ]]; then
   fi
 fi
 unbloarchy-theme-set-pi --activate
+unbloarchy-theme-set-fcitx5 --activate
 
 mkdir -p ~/.config/btop/themes
-ln -snf "$HOME/.local/state/unbloarchy/current/theme/btop.theme" ~/.config/btop/themes/current.theme
+ln -snf "$HOME/.local/state/omarchy/current/theme/btop.theme" ~/.config/btop/themes/current.theme

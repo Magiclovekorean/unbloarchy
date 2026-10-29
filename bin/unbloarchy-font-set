@@ -73,12 +73,12 @@ XML
 
 unbloarchy-restart-shell
 
-if pgrep -x ghostty; then
-  unbloarchy-notification-send -g  "You must restart Ghostty to see font change"
+if pgrep -x ghostty >/dev/null; then
+  unbloarchy-notification-send -g  "$(unbloarchy-i18n font.restartToSeeChange Ghostty)"
 fi
 
-if pgrep -x foot; then
-  unbloarchy-notification-send -g  "You must restart Foot to see font change"
+if pgrep -x foot >/dev/null; then
+  unbloarchy-notification-send -g  "$(unbloarchy-i18n font.restartToSeeChange Foot)"
 fi
 
 unbloarchy-hook font-set "$font_name"

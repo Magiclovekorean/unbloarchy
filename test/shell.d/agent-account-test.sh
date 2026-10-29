@@ -38,6 +38,10 @@ if [[ ${1:-} == "auth" && ${2:-} == "login" ]]; then
   echo '{"claudeAiOauth":{"rateLimitTier":"default_claude_max_5x","subscriptionType":"max"}}' >"$home/.credentials.json"
   exit 0
 fi
+if [[ -n ${UNBLOARCHY_TEST_SHOW_PATH:-} ]]; then
+  echo "$PATH"
+  exit 0
+fi
 echo "claude home=${CLAUDE_CONFIG_DIR:-default} args=$*"
 SH
 
@@ -95,7 +99,10 @@ export PATH="$mock_bin:$ROOT/bin:$PATH"
 export UNBLOARCHY_PATH="$ROOT"
 export UNBLOARCHY_TEST_NOTIFICATIONS="$notifications"
 export UNBLOARCHY_TEST_BROWSER_LOG="$test_tmp/browser"
+# A session started by an account launch pins its home through these, and
+# a run from inside one (an agent working on Unbloarchy) must not inherit it.
 unset CLAUDE_CONFIG_DIR CODEX_HOME GROK_HOME BROWSER
+unset UNBLOARCHY_AGENT_CLAUDE_HOME UNBLOARCHY_AGENT_CODEX_HOME UNBLOARCHY_AGENT_GROK_HOME
 
 accounts="$XDG_STATE_HOME/unbloarchy/agents/accounts"
 
@@ -209,12 +216,16 @@ pass "Grok accounts are added and used like the others"
 
 unbloarchy-agent-account-use claude work >/dev/null
 [[ $(unbloarchy-agent-account-home claude) == "$work" ]] || fail "the active account's home is what launches use"
-grep -q "New Claude sessions now use Work (Max 5x)" "$notifications" || fail "switching says where new sessions go"
+grep -q "New Claude sessions now use Work Running sessions stay on" "$notifications" || fail "switching says where new sessions go"
 pass "use makes an account active and says so"
 
 [[ $(unbloarchy-agent-account-exec claude --version) == "claude home=$work args=--version" ]] || fail "claude at a prompt starts as the active account"
 [[ $(CLAUDE_CONFIG_DIR=/elsewhere unbloarchy-agent-account-exec claude) == "claude home=/elsewhere args=" ]] || fail "an explicit CLAUDE_CONFIG_DIR wins over the active account"
 [[ $(unbloarchy-agent-account-exec codex) == "codex home=default args=" ]] || fail "codex stays on its primary until switched"
+# mise strips its shims before running a wrapper, so the agent would only see
+# tools installed before it started.
+[[ :$(MISE_DATA_DIR="$test_tmp/mise" UNBLOARCHY_TEST_SHOW_PATH=1 unbloarchy-agent-account-exec claude): == *":$test_tmp/mise/shims:"* ]] ||
+  fail "an agent finds mise tools installed after it started"
 pass "account dispatch follows the active account"
 
 [[ $(UNBLOARCHY_TEST_DEFAULT_AGENT=claude unbloarchy-agent --inline) == "claude home=$work args=--permission-mode auto" ]] ||
@@ -290,8 +301,8 @@ unbloarchy-agent-account-remove claude work </dev/null >/dev/null
 [[ -z $(unbloarchy-agent-account-home claude) ]] || fail "removing the active account falls back to the primary"
 pass "remove forgets an added account without touching shared files"
 
-# A registry that can't be saved leaves the new login pending, where the add
-# command cleans it up, rather than in a home nothing can manage.
+# A registry that can't be saved leaves the new login pending for recovery,
+# rather than in a home nothing can manage.
 STATE="$ROOT/bin/unbloarchy-agent-account-state" python3 - <<'PY' || fail "a failed registration rolls the new home back to pending"
 import importlib.machinery, importlib.util, json, os, sys
 loader = importlib.machinery.SourceFileLoader("state", os.environ["STATE"])
@@ -301,6 +312,7 @@ loader.exec_module(state)
 
 pending = state.begin("claude")
 (pending / ".claude.json").write_text(json.dumps({"oauthAccount": {"accountUuid": "u-stranded", "emailAddress": "stranded@example.com"}}))
+(pending / ".credentials.json").write_text(json.dumps({"claudeAiOauth": {"accessToken": "test-token"}}))
 
 def broken_save(provider, registry):
   raise OSError("disk full")
@@ -314,11 +326,28 @@ else:
   sys.exit("register should fail when the registry can't be saved")
 assert pending.is_dir(), "the login goes back to pending"
 assert not (state.accounts_root() / "claude" / "stranded").exists(), "no home is left outside the registry"
-# The add command would remove it on exit; this test stands in for it.
+# Remove the recoverable fixture before later tests.
 import shutil
 shutil.rmtree(pending)
 PY
 pass "a failed registration rolls the new home back to pending"
+
+# A settings cache whose settings aren't an object costs only the plan.
+STATE="$ROOT/bin/unbloarchy-agent-account-state" python3 - <<'PY' || fail "a Grok settings cache of the wrong shape reads as no plan"
+import importlib.machinery, importlib.util, json, os, tempfile
+from pathlib import Path
+loader = importlib.machinery.SourceFileLoader("state", os.environ["STATE"])
+spec = importlib.util.spec_from_loader(loader.name, loader)
+state = importlib.util.module_from_spec(spec)
+loader.exec_module(state)
+
+home = Path(tempfile.mkdtemp(dir=os.environ["HOME"]))
+(home / "auth.json").write_text(json.dumps({"https://auth.x.ai::client": {"user_id": "u-odd", "email": "odd@example.com"}}))
+(home / "settings_cache.json").write_text(json.dumps({"payload": json.dumps({"settings": "x"})}))
+found = state.grok_identity(home)
+assert found["plan"] == "" and found["email"] == "odd@example.com", found
+PY
+pass "a Grok settings cache of the wrong shape reads as no plan"
 
 # ------------------------------------------------------------ panel add flow
 

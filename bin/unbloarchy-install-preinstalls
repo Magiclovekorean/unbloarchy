@@ -3,29 +3,32 @@
 # unbloarchy:summary=Restore the preinstalled Unbloarchy applications (web apps, TUIs, and selected packages).
 # unbloarchy:requires-sudo=true
 
-if gum confirm "Are you sure you want to restore all preinstalled web apps, TUI wrappers, and desktop applications?"; then
+if gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n preinstalls.confirmRestore)"; then
   echo -e "Restoring preinstalled Unbloarchy applications...\n"
 
-  # Recreates the shipped .desktop launchers (web apps and TUIs) and the mise stubs
-  # that back claude, gh, opencode, and the rest of the agents
-  unbloarchy-refresh-applications
+  # Recreates the shipped .desktop launchers (web apps and TUIs).
+  unbloarchy-refresh-applications || exit 1
+
+  # Re-enable Unbloarchy's default mise tools for this user and rebuild their shims.
+  if ! unbloarchy-mise-default-tools enable; then
+    echo -e "\nCould not restore mise tools. Preinstalls remain marked as removed."
+    exit 1
+  fi
 
   # Mirrors the list in unbloarchy-remove-preinstalls; both track unbloarchy-base.packages
   if ! unbloarchy-pkg-add \
     aether \
     cliamp \
     libreoffice-fresh \
-    xournalpp \
     pinta \
     obsidian \
-    obs-studio \
-    kdenlive \
     moonlight-qt \
     omacut \
     monologue \
     omacalc \
     omawrite \
-    hype; then
+    hype \
+    signed; then
     echo -e "\nPreinstalls are still marked as removed. Fix the errors above and try again."
     exit 1
   fi

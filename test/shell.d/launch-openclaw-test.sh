@@ -187,3 +187,40 @@ chmod +x "$tmp_dir/bin/openclaw"
 ! grep -q '^unbloarchy-launch-webapp:' "$TEST_LOG" ||
   fail "--tui seeds the session through --message" "webapp opened instead"
 pass "--tui seeds the session through --message"
+
+# With the package and no openclaw command, the package became the seed before
+# this user's OpenClaw moved; the launcher sets it up first.
+for stub in unbloarchy-cmd-present unbloarchy-pkg-present unbloarchy-install-openclaw-cli; do
+  cat >"$tmp_dir/bin/$stub" <<SCRIPT
+#!/bin/bash
+printf '$stub:%s\n' "\$*" >>"\$TEST_LOG"
+[[ $stub != unbloarchy-cmd-present ]]
+SCRIPT
+  chmod +x "$tmp_dir/bin/$stub"
+done
+: >"$TEST_LOG"
+"$ROOT/bin/unbloarchy-launch-openclaw"
+grep -Fxq 'unbloarchy-launch-floating-terminal-with-presentation:unbloarchy-install-openclaw-cli --now && unbloarchy-launch-openclaw' "$TEST_LOG" ||
+  fail "OpenClaw launch sets up OpenClaw where the package has no command yet" "$(cat "$TEST_LOG")"
+pass "OpenClaw launch sets up OpenClaw where the package has no command yet"
+
+# In the agent's terminal a failed setup waits to be read before it closes.
+cat >"$tmp_dir/bin/unbloarchy-install-openclaw-cli" <<'SCRIPT'
+#!/bin/bash
+printf 'unbloarchy-install-openclaw-cli:%s\n' "$*" >>"$TEST_LOG"
+exit 1
+SCRIPT
+cat >"$tmp_dir/bin/unbloarchy-show-done" <<'SCRIPT'
+#!/bin/bash
+printf 'unbloarchy-show-done:%s\n' "$*" >>"$TEST_LOG"
+SCRIPT
+chmod +x "$tmp_dir/bin/unbloarchy-install-openclaw-cli" "$tmp_dir/bin/unbloarchy-show-done"
+: >"$TEST_LOG"
+if "$ROOT/bin/unbloarchy-launch-openclaw" --tui >/dev/null 2>&1; then
+  fail "a failed setup in the agent's terminal fails the launch"
+fi
+grep -Fxq 'unbloarchy-install-openclaw-cli:--now' "$TEST_LOG" && grep -Fxq 'unbloarchy-show-done:1' "$TEST_LOG" ||
+  fail "a failed setup in the agent's terminal waits to be read" "$(cat "$TEST_LOG")"
+pass "a failed setup in the agent's terminal waits to be read"
+rm "$tmp_dir/bin/unbloarchy-show-done"
+rm "$tmp_dir/bin/unbloarchy-cmd-present" "$tmp_dir/bin/unbloarchy-pkg-present" "$tmp_dir/bin/unbloarchy-install-openclaw-cli"

@@ -124,7 +124,7 @@ New migration format:
   with `bash -euo pipefail`, not through executable bits.
 - No shebang line.
 - Start with an `echo` describing what the migration does.
-- Use `$UNBLOARCHY_PATH` to reference the Unbloarchy directory.
+- Use `$OMARCHY_PATH` to reference the Unbloarchy directory.
 - Be idempotent. Check existing state before changing it.
 - Migrations are strictly ordered and synchronous. A migration that cannot finish must exit non-zero, remain pending, and stop the queue; never mark later migrations complete against state an earlier migration has not established.
 - Use helper commands such as `unbloarchy-cmd-present`, `unbloarchy-cmd-missing`,
@@ -163,7 +163,7 @@ rm ~/.local/state/unbloarchy/migrations/<migration>.sh
 unbloarchy-migrate
 ```
 
-Keep a dedicated test while the migration is still being written or bugfixed, if it calls an Unbloarchy helper whose interface can still change, or if it is a security-sensitive privileged repair (FIDO2, leftover installer artifacts, udev, sshd). Once a one-shot rewrite has shipped in a tagged release and is frozen, drop the test even when that rewrite used sudo, pacman, or limine-mkinitcpio. Keep the migration itself for late-updaters. Tests of `unbloarchy-migrate`, the login notifier, and `unbloarchy-upgrade-to-quattro` stay.
+Don't add a test for a migration under `test/`. It runs once per machine and is frozen once it ships, so the test stops guarding anything. If a migration needs logic worth testing, put that logic in a `bin/` command the migration calls and test the command. Tests of `unbloarchy-migrate`, the login notifier, and `unbloarchy-upgrade-to-quattro` stay.
 
 Unbloarchy 4.0 is upgraded through `bin/unbloarchy-upgrade-to-quattro`, not through the
 normal migration runner. Do not add compatibility migrations for old installer

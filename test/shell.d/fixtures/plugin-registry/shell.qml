@@ -90,6 +90,9 @@ ShellRoot {
     scan += block("thirdparty", "/third/widget", manifest("third.widget", ["bar-widget"], { barWidget: "Widget.qml" }, { defaultSection: "left" }))
     scan += block("thirdparty", "/third/center-widget", manifest("third.center-widget", ["bar-widget"], { barWidget: "Widget.qml" }))
     scan += block("thirdparty", "/third/right-widget", manifest("third.right-widget", ["bar-widget"], { barWidget: "Widget.qml" }, { defaultSection: "right" }))
+    scan += block("thirdparty", "/third/hybrid-widget", manifest("third.hybrid-widget", ["panel", "bar-widget"], { panel: "Panel.qml", barWidget: "Widget.qml" }, { defaultSection: "left" }))
+    scan += block("thirdparty", "/third/begin-widget", manifest("third.begin-widget", ["bar-widget"], { barWidget: "Widget.qml" }, { defaultSection: "centerBegin" }))
+    scan += block("thirdparty", "/third/legacy-center", manifest("third.legacy-center", ["bar-widget"], { barWidget: "Widget.qml" }, { defaultSection: "center" }))
     var localWidget = manifest("local.first-widget", ["bar-widget"], { barWidget: "Widget.qml" })
     localWidget.unbloarchy = { clonedFrom: "unbloarchy.first-widget" }
     scan += block("thirdparty", "/third/local-widget", localWidget)
@@ -102,6 +105,9 @@ ShellRoot {
     var localPanel = manifest("local.grouped-panel", ["panel"], { panel: "Panel.qml" })
     localPanel.unbloarchy = { clonedFrom: "unbloarchy.grouped-panel" }
     scan += block("thirdparty", "/third/local-panel", localPanel)
+    var localTray = manifest("local.tray", ["bar-widget"], { barWidget: "Tray.qml" })
+    localTray.unbloarchy = { clonedFrom: "unbloarchy.tray" }
+    scan += block("thirdparty", "/third/local-tray", localTray)
     var localBar = manifest("local.bar", ["bar"], { bar: "Bar.qml" })
     localBar.unbloarchy = { clonedFrom: "unbloarchy.bar" }
     scan += block("thirdparty", "/third/local-bar", localBar)
@@ -128,9 +134,13 @@ ShellRoot {
       "local.future-auth",
       "local.grouped-panel",
       "local.hybrid",
+      "local.tray",
       "local.weather",
       "third.bar",
+      "third.begin-widget",
       "third.center-widget",
+      "third.hybrid-widget",
+      "third.legacy-center",
       "third.panel",
       "third.right-widget",
       "third.spoofed-auth",
@@ -188,7 +198,8 @@ ShellRoot {
       bar: {
         layout: {
           left: [{ id: "unbloarchy.workspaces" }, { id: "unbloarchy.menu" }],
-          center: [{ id: "unbloarchy.weather" }, { id: "unbloarchy.clock" }],
+          center: [{ id: "unbloarchy.clock" }],
+          centerEnd: [{ id: "unbloarchy.weather" }, { id: "unbloarchy.elsewhen" }],
           right: [{ id: "unbloarchy.tray" }]
         }
       },
@@ -202,16 +213,26 @@ ShellRoot {
     )
     registry.setEnabled("third.center-widget", true)
     root.assertDeepEqual(
-      root.config.bar.layout.center,
-      [{ id: "unbloarchy.weather" }, { id: "third.center-widget" }, { id: "unbloarchy.clock" }],
-      "widgets without a default section use the center anchor"
+      root.config.bar.layout.centerEnd,
+      [{ id: "unbloarchy.weather" }, { id: "third.center-widget" }, { id: "unbloarchy.elsewhen" }],
+      "widgets without a default section land after the weather, beside the center box"
     )
+    root.assertDeepEqual(root.config.bar.layout.center, [{ id: "unbloarchy.clock" }], "widgets without a default section leave the center box alone")
     registry.setEnabled("third.right-widget", true)
     root.assertDeepEqual(
       root.config.bar.layout.right,
       [{ id: "unbloarchy.tray" }, { id: "third.right-widget" }],
       "right widgets use the right anchor"
     )
+    registry.setEnabled("third.begin-widget", true)
+    root.assertDeepEqual(root.config.bar.layout.centerBegin, [{ id: "third.begin-widget" }], "a widget can default to a section hanging off the center box")
+    registry.setEnabled("third.legacy-center", true)
+    root.assertDeepEqual(
+      root.config.bar.layout.centerEnd,
+      [{ id: "unbloarchy.weather" }, { id: "third.legacy-center" }, { id: "third.center-widget" }, { id: "unbloarchy.elsewhen" }],
+      "a manifest written for the old center lands beside the clock, not in its box"
+    )
+    root.assertDeepEqual(root.config.bar.layout.center, [{ id: "unbloarchy.clock" }], "a manifest written for the old center leaves the box alone")
 
     root.config = { version: 1, bar: { layout: { left: [], center: [], right: [] } }, plugins: [] }
     registry.setEnabled("third.right-widget", true)
@@ -227,6 +248,28 @@ ShellRoot {
     root.assertEqual(registry.setBarWidget("third.widget", "size", 7, {}), "", "registry sets widget options")
     root.assertEqual(root.config.bar.layout.right[0].size, 7, "registry persists widget options")
 
+    // The tray section is a section of its own, in the tray's drawer.
+    root.assertEqual(registry.moveBarWidget("third.widget", { section: "tray" }), "", "registry moves widgets into the tray section")
+    root.assertDeepEqual(root.config.bar.layout.right, [], "a widget moved into the tray section leaves its section")
+    root.assertDeepEqual(root.config.bar.layout.tray, [{ id: "third.widget", size: 7 }], "the tray section keeps the widget's settings")
+    root.assertEqual(registry.setBarWidget("third.widget", "size", 9, {}), "", "registry finds widgets in the tray section")
+    root.assertEqual(root.config.bar.layout.tray[0].size, 9, "registry sets options on widgets in the tray section")
+    registry.setEnabled("third.widget", true)
+    root.assertDeepEqual(root.config.bar.layout.right, [], "enabling a widget in the tray section does not add it to the bar again")
+    root.assertEqual(registry.moveBarWidget("third.widget", { section: "right" }), "", "registry moves widgets out of the tray section")
+    root.assertDeepEqual(root.config.bar.layout.tray, [], "a widget moved out of the tray section leaves it")
+
+    root.config = { version: 1, bar: { layout: { left: [], center: [], right: [{ id: "unbloarchy.tray" }], tray: [{ id: "third.widget" }] } }, plugins: [] }
+    root.assertEqual(registry.moveBarWidget("unbloarchy.tray", { section: "tray" }), "the tray cannot go in its own drawer", "registry keeps the tray out of its own drawer")
+    root.assertEqual(registry.moveBarWidget("unbloarchy.tray", { after: "third.widget" }), "the tray cannot go in its own drawer", "registry keeps the tray out of its own drawer when placed beside a widget in it")
+    root.assertDeepEqual(root.config.bar.layout.right, [{ id: "unbloarchy.tray" }], "a refused tray move leaves the tray where it was")
+    root.config = { version: 1, bar: { layout: { left: [], center: [], right: [{ id: "local.tray" }], tray: [] } }, plugins: [] }
+    root.assertEqual(registry.moveBarWidget("local.tray", { section: "tray" }), "the tray cannot go in its own drawer", "registry keeps a tray clone out of its own drawer")
+    root.config = { version: 1, bar: { layout: { left: [], center: [], right: [], tray: [] } }, plugins: [] }
+    root.assertTrue(!registry.setEnabled("local.tray", true, { section: "tray" }), "enabling a tray into its own drawer is refused")
+    root.assertEqual(registry.lastEnableError, "the tray cannot go in its own drawer", "a refused tray enable says why")
+    root.assertDeepEqual(root.config.bar.layout.right, [], "a refused tray enable changes nothing")
+
     root.config = { version: 1, bar: { layout: { left: [], center: [], right: [] } }, plugins: [] }
     registry.setEnabled("third.widget", true, { section: "right", index: 0 })
     root.assertDeepEqual(root.config.bar.layout.right, [{ id: "third.widget" }], "enabling with placement is one registry transition")
@@ -234,7 +277,7 @@ ShellRoot {
     // A bar the placement's neighbour is not on still gets the widget.
     root.config = {
       version: 1,
-      bar: { layout: { left: [], center: [{ id: "unbloarchy.weather" }], right: [] } },
+      bar: { layout: { left: [], center: [], centerEnd: [{ id: "unbloarchy.weather" }], right: [] } },
       plugins: []
     }
     root.assertTrue(
@@ -246,14 +289,14 @@ ShellRoot {
       "could not find target widget unbloarchy.first-widget",
       "a refused enable names the target it could not find"
     )
-    root.assertDeepEqual(root.config.bar.layout.center, [{ id: "unbloarchy.weather" }], "a refused enable places nothing")
+    root.assertDeepEqual(root.config.bar.layout.centerEnd, [{ id: "unbloarchy.weather" }], "a refused enable places nothing")
     root.assertEqual(
       registry.putBarWidget("third.center-widget", { after: "unbloarchy.first-widget" }),
       "",
       "put accepts a placement target the bar does not carry"
     )
     root.assertDeepEqual(
-      root.config.bar.layout.center,
+      root.config.bar.layout.centerEnd,
       [{ id: "unbloarchy.weather" }, { id: "third.center-widget" }],
       "put falls back to the section anchor when its target is missing"
     )
@@ -278,7 +321,7 @@ ShellRoot {
     // The anchor a fallback lands against is as clonable as the target.
     root.config = {
       version: 1,
-      bar: { layout: { left: [], center: [{ id: "local.weather" }, { id: "unbloarchy.clock" }], right: [] } },
+      bar: { layout: { left: [], center: [], centerEnd: [{ id: "local.weather" }, { id: "unbloarchy.elsewhen" }], right: [] } },
       plugins: []
     }
     root.assertEqual(
@@ -287,8 +330,8 @@ ShellRoot {
       "put falls back past a cloned anchor"
     )
     root.assertDeepEqual(
-      root.config.bar.layout.center,
-      [{ id: "local.weather" }, { id: "third.center-widget" }, { id: "unbloarchy.clock" }],
+      root.config.bar.layout.centerEnd,
+      [{ id: "local.weather" }, { id: "third.center-widget" }, { id: "unbloarchy.elsewhen" }],
       "a cloned anchor still anchors the section it was cloned into"
     )
 
@@ -319,10 +362,10 @@ ShellRoot {
     )
 
     // Refusing an id the scan has not reached would fail the migration.
-    root.config = { version: 1, bar: { layout: { left: [], center: [], right: [] } }, plugins: [] }
+    root.config = { version: 1, bar: { layout: { left: [], center: [], centerEnd: [], right: [] } }, plugins: [] }
     registry.scanning = true
     root.assertEqual(registry.putBarWidget("third.absent", {}), "not ready", "put waits for a scan that has not reached its widget")
-    root.assertDeepEqual(root.config.bar.layout.center, [], "put places nothing while it is still waiting")
+    root.assertDeepEqual(root.config.bar.layout.centerEnd, [], "put places nothing while it is still waiting")
     root.assertEqual(registry.putBarWidget("third.center-widget", {}), "", "put places a widget the scan has already read")
     registry.scanning = false
 
@@ -439,7 +482,7 @@ ShellRoot {
     root.assertTrue(!registry.inBar("unbloarchy.first-widget"), "inBar follows the widget out of the layout")
     root.assertTrue(registry.isEnabled("unbloarchy.first-widget"), "a first-party widget stays loadable off the bar")
     registry.setEnabled("unbloarchy.first-widget", true)
-    root.assertDeepEqual(root.config.bar.layout.center, [{ id: "unbloarchy.first-widget" }], "a widget without a default section falls back to center")
+    root.assertDeepEqual(root.config.bar.layout.centerEnd, [{ id: "unbloarchy.first-widget" }], "a widget without a default section falls back to centerEnd")
 
     root.config = {
       version: 1,
@@ -456,6 +499,86 @@ ShellRoot {
     root.assertEqual(registry.localPluginIdForPath(registry.pluginsDir + "/acme.clock/BarWidget.qml"), "acme.clock", "installed plugin changes are watched")
     root.assertEqual(registry.localPluginIdForPath(cloneBase + "/.git/index"), "", "plugin git metadata is ignored")
     root.assertEqual(registry.localPluginIdForPath(registry.pluginsDir + "/.clone.abc123/manifest.json"), "", "hidden staging and backup dirs are ignored")
+
+    // A widget that is also a panel keeps a plugins[] record after its bar
+    // entry is disabled. Re-enabling must restore the bar entry even though
+    // the residual plugins[] record satisfies findEntryLocation.
+    root.config = {
+      version: 1,
+      bar: { layout: { left: [{ id: "third.hybrid-widget" }], center: [], right: [] } },
+      plugins: [{ id: "third.hybrid-widget" }]
+    }
+    registry.setEnabled("third.hybrid-widget", false)
+    root.assertDeepEqual(root.config.bar.layout.left, [], "disabling a hybrid widget removes only its bar entry")
+    root.assertDeepEqual(root.config.plugins, [{ id: "third.hybrid-widget" }], "the panel side of a hybrid widget survives disable")
+    registry.setEnabled("third.hybrid-widget", true)
+    root.assertDeepEqual(
+      root.config.bar.layout.left,
+      [{ id: "third.hybrid-widget" }],
+      "re-enabling a hybrid widget restores its bar entry despite a residual plugins[] record"
+    )
+    root.assertDeepEqual(root.config.plugins, [{ id: "third.hybrid-widget" }], "re-enabling a hybrid widget keeps the panel record")
+
+    root.config = {
+      version: 1,
+      bar: { layout: { left: [{ id: "unbloarchy.hybrid", size: 2 }], center: [], right: [] } },
+      plugins: [{ id: "local.hybrid" }]
+    }
+    registry.setEnabled("local.hybrid", true)
+    root.assertDeepEqual(root.config.bar.layout.left, [{ id: "local.hybrid", size: 2 }], "enabling a multi-kind clone with a plugins record replaces its source")
+    registry.setEnabled("local.hybrid", false)
+    root.assertDeepEqual(root.config.bar.layout.left, [{ id: "unbloarchy.hybrid", size: 2 }], "disabling a multi-kind clone with a plugins record restores its source")
+    root.assertDeepEqual(root.config.plugins, [], "disabling a multi-kind clone drops its plugins record")
+    root.assertEqual(registry.resolveEnabledId("unbloarchy.hybrid"), "unbloarchy.hybrid", "a disabled multi-kind clone stops receiving its source's calls")
+
+    // Disabling a widget takes its slot and leaves its plugins[] entry behind.
+    root.config = {
+      version: 1,
+      bar: { layout: { left: [], center: [], right: [] } },
+      plugins: [{ id: "third.widget", apiKey: "secret" }]
+    }
+    root.assertTrue(registry.setEnabled("third.widget", true), "enabling a widget listed only in plugins[] succeeds")
+    root.assertDeepEqual(root.config.bar.layout.left, [{ id: "third.widget" }], "enabling a widget listed only in plugins[] puts it on the bar")
+    root.assertDeepEqual(root.config.plugins, [{ id: "third.widget", apiKey: "secret" }], "enabling a widget leaves its plugins[] entry alone")
+    root.assertTrue(registry.inBar("third.widget"), "a widget enabled from plugins[] is on the bar")
+
+    root.config = {
+      version: 1,
+      bar: { layout: { left: [], center: [], right: [{ id: "third.widget" }] } },
+      plugins: [{ id: "third.widget", apiKey: "secret" }]
+    }
+    registry.setEnabled("third.widget", false)
+    root.assertDeepEqual(root.config.plugins, [{ id: "third.widget", apiKey: "secret" }], "disabling a widget leaves its plugins[] entry alone")
+    registry.setEnabled("third.widget", true)
+    root.assertDeepEqual(root.config.bar.layout.left, [{ id: "third.widget" }], "a disabled widget comes back on the bar when re-enabled")
+
+    root.config = {
+      version: 1,
+      bar: { layout: { left: [], center: [], right: [] } },
+      plugins: [{ id: "third.center-widget" }]
+    }
+    root.assertEqual(registry.putBarWidget("third.center-widget", { section: "right" }), "", "put accepts a widget listed only in plugins[]")
+    root.assertDeepEqual(root.config.bar.layout.right, [{ id: "third.center-widget" }], "put places a widget listed only in plugins[]")
+
+    root.config = {
+      version: 1,
+      bar: { layout: { left: [], center: [], centerEnd: [{ id: "unbloarchy.weather" }], right: [] } },
+      plugins: [{ id: "third.center-widget" }]
+    }
+    root.assertEqual(registry.putBarWidget("third.center-widget", {}), "", "put with no section accepts a widget listed only in plugins[]")
+    root.assertDeepEqual(
+      root.config.bar.layout.centerEnd,
+      [{ id: "unbloarchy.weather" }, { id: "third.center-widget" }],
+      "put with no section places a widget listed only in plugins[] in its default section"
+    )
+
+    root.config = {
+      version: 1,
+      bar: { id: "third.widget", layout: { left: [{ id: "third.widget" }], center: [], right: [] } },
+      plugins: []
+    }
+    registry.setEnabled("third.widget", true)
+    root.assertDeepEqual(root.config.bar.layout.left, [{ id: "third.widget" }], "a widget named as bar.id and already on the bar is not placed twice")
 
     root.assertTrue(changeCount > 0, "registry emits change notifications")
     writeResult()

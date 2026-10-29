@@ -91,6 +91,8 @@ unbloarchy-notification-wait || log_first_run "Timed out waiting for notificatio
 # order is enough to stack them newest-on-top.
 run_first_run_step "show welcome notification" \
   bash "$UNBLOARCHY_PATH/install/user/first-run/welcome.sh"
+run_first_run_step "show git setup notification" \
+  bash "$UNBLOARCHY_PATH/install/user/first-run/git.sh"
 run_first_run_step "schedule Wi-Fi/update notifications" \
   bash "$UNBLOARCHY_PATH/install/user/first-run/wifi.sh"
 

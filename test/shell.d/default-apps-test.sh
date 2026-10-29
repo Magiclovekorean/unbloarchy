@@ -48,7 +48,13 @@ cat >"$mock_bin/xdg-settings" <<'SH'
 #!/bin/bash
 case $1 in
 get) [[ -f $UNBLOARCHY_TEST_BROWSER_FILE ]] && cat "$UNBLOARCHY_TEST_BROWSER_FILE" ;;
-set) printf '%s\n' "$3" >"$UNBLOARCHY_TEST_BROWSER_FILE" ;;
+set)
+  printf '%s\n' "$3" >"$UNBLOARCHY_TEST_BROWSER_FILE"
+  # xdg-settings only answers an entry that is installed, so leave one behind
+  # for unbloarchy-cmd-default-browser to find.
+  mkdir -p "$HOME/.local/share/applications"
+  printf '[Desktop Entry]\nExec=true %%U\n' >"$HOME/.local/share/applications/$3"
+  ;;
 esac
 SH
 

@@ -10,7 +10,7 @@ set -euo pipefail
 
 case "${1:-}" in
 image)
-  image=$(unbloarchy-file-select --title "Pick PNG or SVG for About" --extensions "png svg")
+  image=$(unbloarchy-file-select --title "$(unbloarchy-i18n branding.pickAboutImage)" --extensions "png svg")
   if unbloarchy-transcode-ascii "$image" ~/.config/unbloarchy/branding/about.txt --width 54 --height 26; then
     unbloarchy-launch-about >/dev/null 2>&1
   fi

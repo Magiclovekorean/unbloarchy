@@ -40,14 +40,14 @@ notify_missing_width() {
   local key="$1"
   local workspace="$2"
 
-  unbloarchy-notification-send -g  "No saved width found for $key on workspace $workspace" "Use Super + Alt + Home to save one for this workspace."
+  unbloarchy-notification-send -g  "$(unbloarchy-i18n window.noSavedWidth "$key" "$workspace")" "$(unbloarchy-i18n window.saveWidthHint)"
 }
 
 notify_saved_width() {
   local key="$1"
   local workspace="$2"
 
-  unbloarchy-notification-send -g  "Saved width for $key on workspace $workspace" "Restore using Super + Home on this workspace."
+  unbloarchy-notification-send -g  "$(unbloarchy-i18n window.savedWidth "$key" "$workspace")" "$(unbloarchy-i18n window.restoreWidthHint)"
 }
 
 hypr_dispatch() {

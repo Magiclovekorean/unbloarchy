@@ -23,3 +23,7 @@ unbloarchy-install-chromium-ytdlp
 if [[ $INSTALL_GOOGLE_ACCOUNTS == "true" ]]; then
   unbloarchy-install-chromium-google-account
 fi
+
+# Put the Snapdragon video decoding settings back. Last, so a failure here is
+# the command's result.
+unbloarchy-install-video-decode

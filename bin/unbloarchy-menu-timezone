@@ -6,7 +6,7 @@
 
 set -e
 
-timezone=$(timedatectl list-timezones | unbloarchy-menu-select "Set timezone" -- --width 520 --maxheight 520) || exit 1
+timezone=$(timedatectl list-timezones | unbloarchy-menu-select "$(unbloarchy-i18n timezone.setTitle)" -- --width 520 --maxheight 520) || exit 1
 sudo timedatectl set-timezone "$timezone"
 unbloarchy-shell -q unbloarchy.clock refresh
-unbloarchy-notification-send "Timezone is now set to $timezone"
+unbloarchy-notification-send "$(unbloarchy-i18n timezone.changed "$timezone")"

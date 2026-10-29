@@ -228,4 +228,4 @@ if [[ ! $monitor_height =~ ^[0-9]+$ ]] || ((monitor_height <= 0)); then
 fi
 
 menu_height=$((monitor_height * 40 / 100))
-printf '%s\n' "$records" | unbloarchy-menu-select 'Herdr keybindings' -- --width 800 --height "$menu_height" >/dev/null || true
+printf '%s\n' "$records" | unbloarchy-menu-select "$(unbloarchy-i18n keybindings.herdrTitle)" -- --width 800 --height "$menu_height" >/dev/null || true

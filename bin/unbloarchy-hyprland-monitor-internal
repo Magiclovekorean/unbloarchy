@@ -16,7 +16,7 @@ wake() {
 on() {
   if unbloarchy-hyprland-toggle-enabled $TOGGLE; then
     unbloarchy-hyprland-toggle $TOGGLE off
-    unbloarchy-notification-send -g 󰍹 "Laptop display enabled"
+    unbloarchy-notification-send -g 󰍹 "$(unbloarchy-i18n monitor.laptopEnabled)"
   fi
 
   wake
@@ -24,25 +24,25 @@ on() {
 
 off() {
   if [[ -z $INTERNAL ]]; then
-    unbloarchy-notification-send -g 󰍹 "No laptop display found"
+    unbloarchy-notification-send -g 󰍹 "$(unbloarchy-i18n monitor.noLaptopDisplay)"
     exit 1
   fi
 
   # The name is written into generated Lua below, so only a plain connector
   # name may pass; anything else could execute on the next reload.
   if [[ ! $INTERNAL =~ ^[A-Za-z0-9._-]+$ ]]; then
-    unbloarchy-notification-send -g 󰍹 "Refusing unsafe monitor name"
+    unbloarchy-notification-send -g 󰍹 "$(unbloarchy-i18n monitor.unsafeName)"
     exit 1
   fi
 
   if ! unbloarchy-hyprland-monitor-external-active; then
-    unbloarchy-notification-send -g 󰍹 "Can't disable the only active display"
+    unbloarchy-notification-send -g 󰍹 "$(unbloarchy-i18n monitor.onlyDisplay)"
     exit 1
   fi
 
   if unbloarchy-hyprland-toggle-disabled $TOGGLE && unbloarchy-hyprland-toggle-disabled $MIRROR_TOGGLE; then
     printf 'hl.monitor({ output = "%s", disabled = true })\n' "$INTERNAL" >"$TOGGLE_FLAG"
-    unbloarchy-notification-send -g 󰍹 "Laptop display disabled"
+    unbloarchy-notification-send -g 󰍹 "$(unbloarchy-i18n monitor.laptopDisabled)"
     hyprctl reload
   fi
 }

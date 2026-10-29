@@ -61,9 +61,9 @@ fresh_root() {
 export PATH="$stub_bin:$unbloarchy/bin:$PATH"
 export UNBLOARCHY_PATH=$unbloarchy
 
-# The two setup functions as unbloarchy-provision-owner defines them, with its
-# fixed paths moved into the fixture root.
-sed -n '/^configure_timezone() {/,/^}/p; /^configure_wireless_regdom() {/,/^}/p' "$ROOT/bin/unbloarchy-provision-owner" |
+# The setup functions as unbloarchy-provision-owner defines them, with its fixed
+# paths moved into the fixture root.
+sed -n '/^configure_timezone() {/,/^}/p; /^configure_wireless_regdom() {/,/^}/p; /^configure_region() {/,/^}/p' "$ROOT/bin/unbloarchy-provision-owner" |
   sed -e "s|/usr/share/zoneinfo|$root/usr/share/zoneinfo|g" -e "s|/etc/|$root/etc/|g" >"$tmp/setup.sh"
 grep -q '^configure_wireless_regdom() {' "$tmp/setup.sh" || fail "unbloarchy-provision-owner sets the regulatory domain in setup"
 # shellcheck disable=SC1091

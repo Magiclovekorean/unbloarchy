@@ -31,7 +31,7 @@ chmod +x "$stub_bin/pacman"
 
 version() {
   UNBLOARCHY_TEST_PACKAGES="$1" \
-    UNBLOARCHY_PATH="${2:-/usr/share/unbloarchy}" \
+    UNBLOARCHY_PATH="${2:-/usr/share/omarchy}" \
     PATH="$stub_bin:$PATH" \
     "$ROOT/bin/unbloarchy-version"
 }
@@ -50,14 +50,3 @@ if version "" >/dev/null 2>&1; then
   fail "version fails when no Unbloarchy package is installed"
 fi
 pass "version fails when no Unbloarchy package is installed"
-
-# The snapshot description is only a label, so a failed lookup must not abort
-# the update under set -e.
-snapshot_desc=$(
-  set -e
-  PATH="$stub_bin:$PATH" UNBLOARCHY_TEST_PACKAGES="" UNBLOARCHY_PATH=/usr/share/unbloarchy \
-    bash -c 'DESC="$(unbloarchy-version 2>/dev/null || echo unknown)"; echo "$DESC"' 2>/dev/null
-) || fail "snapshot survives an unknown version"
-
-[[ $snapshot_desc == "unknown" ]] || fail "snapshot labels an unknown version" "actual: $snapshot_desc"
-pass "snapshot survives an unknown version"

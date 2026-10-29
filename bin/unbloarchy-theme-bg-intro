@@ -10,12 +10,12 @@ toggle="$HOME/.local/state/unbloarchy/toggles/background-intros-off"
 case ${1:-} in
   enable)
     rm -f "$toggle"
-    unbloarchy-notification-send "Background Intros" "Enabled"
+    unbloarchy-notification-send "$(unbloarchy-i18n theme.backgroundIntros)" "$(unbloarchy-i18n common.enabled)"
     ;;
   disable)
     mkdir -p "$(dirname "$toggle")"
     touch "$toggle"
-    unbloarchy-notification-send "Background Intros" "Disabled"
+    unbloarchy-notification-send "$(unbloarchy-i18n theme.backgroundIntros)" "$(unbloarchy-i18n common.disabled)"
     ;;
   toggle)
     if [[ -f $toggle ]]; then

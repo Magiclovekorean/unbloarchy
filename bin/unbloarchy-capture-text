@@ -23,4 +23,4 @@ TEXT=$(grim -g "$SELECTION" - | tesseract stdin stdout --oem 1 --psm 6 -l "${UNB
 [[ -z $TEXT ]] && exit 1
 
 printf "%s" "$TEXT" | wl-copy
-unbloarchy-notification-send -g 󰴑 "Copied text from selection to clipboard"
+unbloarchy-notification-send -g 󰴑 "$(unbloarchy-i18n capture.textCopied)"

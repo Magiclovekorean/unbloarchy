@@ -20,6 +20,10 @@ Finally, there's the dev channel, which links Unbloarchy directly to a git check
 
 You can switch between channels using _Update > Channel_ from the Unbloarchy menu (or `unbloarchy-channel-set` in the terminal).
 
+### Switching kernels
+
+Unbloarchy boots its own `linux-omarchy` kernel, but you can keep others installed next to it, like the stock Arch `linux` kernel or an experimental build you're testing. When there's more than one, _Update > Kernel_ in the Unbloarchy menu lists them with a check next to the one that boots by default. Pick another, enter your password once, and it'll boot after the next restart. The other kernels stay in the boot menu, so you can still pick one by hand if the new default gives you trouble. In the terminal, it's `unbloarchy-kernel` to see the current default, `unbloarchy-kernel list` for what's installed, and `unbloarchy-kernel set <kernel>` to switch.
+
 ### Firmware updates
 
 Your packages aren't the only thing that goes stale. Many laptops and peripherals ship BIOS, SSD, and dock firmware through the Linux Vendor Firmware Service, and _Update > Firmware_ in the Unbloarchy menu will fetch and install whatever your hardware has waiting. It installs `fwupd` the first time you run it. Plenty of firmware can only be written during a reboot, so don't be surprised to be asked for one.

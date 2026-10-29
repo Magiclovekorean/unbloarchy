@@ -10,10 +10,12 @@ trap 'rm -rf "$work_dir"' EXIT
 fake_home="$work_dir/home"
 mkdir -p "$fake_home/.config/unbloarchy/hooks" "$fake_home/.local/state/unbloarchy"
 
-# --- unbloarchy-hook --------------------------------------------------------------
+# A hook or state name is a label, not a path. One carrying a slash, or one
+# that is a bare `.` or `..`, would reach outside the hooks or state directory:
+# the runner would run a script from there, the installer would mkdir/cp
+# there, and state set would touch a file there.
 
-# A hook name is a label, not a path. One carrying a slash, or one that is a
-# bare `.` or `..`, would run a script from outside the hooks directory.
+# --- names that stay inside the directory ------------------------------------
 
 cat >"$fake_home/.config/unbloarchy/hooks/test-hook" <<'SH'
 touch "$HOME/hook-ran"
@@ -34,41 +36,6 @@ HOME="$fake_home" "$ROOT/bin/unbloarchy-hook" a..b
   fail "unbloarchy hook accepts a hook name with dots in the middle"
 pass "unbloarchy hook accepts a hook name with dots in the middle"
 
-for name in . ..; do
-  status=0
-  HOME="$fake_home" "$ROOT/bin/unbloarchy-hook" "$name" >/dev/null 2>&1 || status=$?
-  (( status == 2 )) ||
-    fail "unbloarchy hook refuses a hook name of $name" "exit: $status"
-  pass "unbloarchy hook refuses a hook name of $name"
-done
-
-# This file sits where a name of ../../evil would resolve: hooks/../.. is
-# ~/.config.
-cat >"$fake_home/.config/evil" <<'SH'
-touch "$HOME/escape-ran"
-SH
-chmod +x "$fake_home/.config/evil"
-
-status=0
-HOME="$fake_home" "$ROOT/bin/unbloarchy-hook" "../../evil" >/dev/null 2>&1 || status=$?
-(( status == 2 )) ||
-  fail "unbloarchy hook refuses a hook name with a dot-dot" "exit: $status"
-[[ ! -e $fake_home/escape-ran ]] ||
-  fail "unbloarchy hook runs nothing when it refuses the name"
-pass "unbloarchy hook refuses a hook name with a dot-dot"
-
-status=0
-HOME="$fake_home" "$ROOT/bin/unbloarchy-hook" "sub/dir" >/dev/null 2>&1 || status=$?
-(( status == 2 )) ||
-  fail "unbloarchy hook refuses a hook name with a slash" "exit: $status"
-pass "unbloarchy hook refuses a hook name with a slash"
-
-# --- unbloarchy-hook-install ------------------------------------------------------
-
-# The installer joins the type into ~/.config/unbloarchy/hooks/<type>.d before
-# mkdir/cp. The runner already refuses a slashed type; install must too, or a
-# name the runner will not run still lands on disk.
-
 source_hook="$work_dir/source-hook"
 cat >"$source_hook" <<'SH'
 #!/bin/bash
@@ -85,35 +52,6 @@ HOME="$fake_home" "$ROOT/bin/unbloarchy-hook-install" a..b "$source_hook" >/dev/
   fail "unbloarchy hook install accepts a hook name with dots in the middle"
 pass "unbloarchy hook install accepts a hook name with dots in the middle"
 
-for name in . ..; do
-  status=0
-  HOME="$fake_home" "$ROOT/bin/unbloarchy-hook-install" "$name" "$source_hook" >/dev/null 2>&1 || status=$?
-  (( status == 2 )) ||
-    fail "unbloarchy hook install refuses a hook name of $name" "exit: $status"
-  [[ ! -e $fake_home/.config/unbloarchy/hooks/${name}.d ]] ||
-    fail "unbloarchy hook install creates no directory for a hook name of $name"
-  pass "unbloarchy hook install refuses a hook name of $name"
-done
-
-# hooks/../../evil.d is ~/.config/evil.d. The guard must fire before mkdir.
-status=0
-HOME="$fake_home" "$ROOT/bin/unbloarchy-hook-install" "../../evil" "$source_hook" >/dev/null 2>&1 || status=$?
-(( status == 2 )) ||
-  fail "unbloarchy hook install refuses a hook name with a dot-dot" "exit: $status"
-[[ ! -e $fake_home/.config/evil.d ]] ||
-  fail "unbloarchy hook install creates nothing outside the hooks directory"
-pass "unbloarchy hook install refuses a hook name with a dot-dot"
-
-status=0
-HOME="$fake_home" "$ROOT/bin/unbloarchy-hook-install" "sub/dir" "$source_hook" >/dev/null 2>&1 || status=$?
-(( status == 2 )) ||
-  fail "unbloarchy hook install refuses a hook name with a slash" "exit: $status"
-[[ ! -e $fake_home/.config/unbloarchy/hooks/sub ]] ||
-  fail "unbloarchy hook install creates no nested directory from a slashed name"
-pass "unbloarchy hook install refuses a hook name with a slash"
-
-# --- unbloarchy-state -------------------------------------------------------------
-
 state_dir="$fake_home/.local/state/unbloarchy"
 
 HOME="$fake_home" "$ROOT/bin/unbloarchy-state" set reboot-required
@@ -126,28 +64,38 @@ HOME="$fake_home" "$ROOT/bin/unbloarchy-state" set v1..2
   fail "unbloarchy state set accepts a state name with dots in the middle"
 pass "unbloarchy state set accepts a state name with dots in the middle"
 
-for name in . ..; do
-  status=0
-  HOME="$fake_home" "$ROOT/bin/unbloarchy-state" set "$name" >/dev/null 2>&1 || status=$?
-  (( status == 2 )) ||
-    fail "unbloarchy state set refuses a state name of $name" "exit: $status"
-  pass "unbloarchy state set refuses a state name of $name"
+# --- names that would leave it ------------------------------------------------
+
+# This file sits where a hook name of ../../evil would resolve: hooks/../.. is
+# ~/.config. The same name is ~/.config/evil.d to the installer and
+# ~/.local/evil to state set.
+cat >"$fake_home/.config/evil" <<'SH'
+touch "$HOME/escape-ran"
+SH
+chmod +x "$fake_home/.config/evil"
+
+snapshot() {
+  find "$fake_home" | sort
+}
+
+# A refused name exits 2 and leaves the home exactly as it was: nothing run,
+# nothing created.
+refused() {
+  local description=$1 before after status=0
+  shift
+  before=$(snapshot)
+  HOME="$fake_home" "$@" >/dev/null 2>&1 || status=$?
+  after=$(snapshot)
+  (( status == 2 )) || fail "$description" "exit: $status"
+  [[ $after == "$before" ]] || fail "$description" "$(diff <(printf '%s\n' "$before") <(printf '%s\n' "$after"))"
+  pass "$description"
+}
+
+for name in . .. ../../evil sub/dir; do
+  refused "unbloarchy hook refuses a hook name of $name" "$ROOT/bin/unbloarchy-hook" "$name"
+  refused "unbloarchy hook install refuses a hook name of $name" "$ROOT/bin/unbloarchy-hook-install" "$name" "$source_hook"
+  refused "unbloarchy state set refuses a state name of $name" "$ROOT/bin/unbloarchy-state" set "$name"
 done
-
-# state/../.. is ~/.local. The guard must fire before touch gets there.
-status=0
-HOME="$fake_home" "$ROOT/bin/unbloarchy-state" set "../../escape" >/dev/null 2>&1 || status=$?
-(( status == 2 )) ||
-  fail "unbloarchy state set refuses a state name with a dot-dot" "exit: $status"
-[[ ! -e $fake_home/.local/escape ]] ||
-  fail "unbloarchy state set creates nothing outside the state directory"
-pass "unbloarchy state set refuses a state name with a dot-dot"
-
-status=0
-HOME="$fake_home" "$ROOT/bin/unbloarchy-state" set "sub/dir" >/dev/null 2>&1 || status=$?
-(( status == 2 )) ||
-  fail "unbloarchy state set refuses a state name with a slash" "exit: $status"
-pass "unbloarchy state set refuses a state name with a slash"
 
 # clear takes patterns by design ("state-name-or-pattern") and matches
 # basenames through find -name, so it can never walk out of the directory.

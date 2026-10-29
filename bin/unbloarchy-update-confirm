@@ -3,16 +3,16 @@
 # unbloarchy:summary=Prompt for confirmation before starting an update
 
 gum style --border normal --padding "1 2" \
-  "Ready to update?" \
+  "$(unbloarchy-i18n update.ready)" \
   "" \
-  "• You cannot stop the update once you start!" \
-  "• Make sure you're connected to power or have a full battery" \
+  "• $(unbloarchy-i18n update.cannotStop)" \
+  "• $(unbloarchy-i18n update.connectPower)" \
   "" \
-  "What's new: https://github.com/Magiclovekorean/unbloarchy/releases/latest"
+  "$(unbloarchy-i18n update.whatsNew "https://github.com/Magiclovekorean/unbloarchy/releases/latest")"
 
 echo
 
-if ! gum confirm "Continue with update?"; then
+if ! gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n update.continue)"; then
   echo "Update cancelled"
   exit 1
 fi

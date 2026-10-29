@@ -20,6 +20,14 @@ case "${1:-}" in
     ;;
 esac
 
+# Whole sentences per verb, so a translation can inflect the verb.
+case $1 in
+  enable) title=$(unbloarchy-i18n plugin.enableTitle) none=$(unbloarchy-i18n plugin.noneToEnable) ;;
+  disable) title=$(unbloarchy-i18n plugin.disableTitle) none=$(unbloarchy-i18n plugin.noneToDisable) ;;
+  clone) title=$(unbloarchy-i18n plugin.cloneTitle) none=$(unbloarchy-i18n plugin.noneToClone) ;;
+  remove) title=$(unbloarchy-i18n plugin.removeTitle) none=$(unbloarchy-i18n plugin.noneToRemove) ;;
+esac
+
 plugins=$(unbloarchy-plugin-list --json)
 
 # The id rides along as row subtext: it tells same-named plugins apart on
@@ -28,9 +36,9 @@ rows=$(jq -r --arg icon "$PLUGIN_ICON" \
   ". as \$plugins
    | .[] | select($filter)
    | \$icon + \"\\t\" + .name + \"\\t\" + .id" <<<"$plugins")
-[[ -n $rows ]] || { unbloarchy-notification-send "No plugin to ${1}"; exit 0; }
+[[ -n $rows ]] || { unbloarchy-notification-send "$none"; exit 0; }
 
-selection=$(unbloarchy-menu-select "${1^} plugin" <<<"$rows") || exit 0
+selection=$(unbloarchy-menu-select "$title" <<<"$rows") || exit 0
 [[ -n $selection ]] || exit 0
 
 id=$(cut -f2 <<<"$selection")

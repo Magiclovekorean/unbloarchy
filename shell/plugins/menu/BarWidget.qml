@@ -8,14 +8,12 @@ BarWidget {
   implicitWidth: button.implicitWidth
   implicitHeight: button.implicitHeight
 
-  WidgetButton {
+  BarIconButton {
     id: button
     anchors.fill: parent
     bar: root.bar
     text: "\ue900"
-    fontFamily: "unbloarchy"
-    centerFigures: false
-    horizontalMargin: 7.5
+    fontFamily: "omarchy"
     onPressed: function(button) {
       if (!root.bar) return
       if (button === Qt.RightButton) root.bar.run("xdg-terminal-exec")

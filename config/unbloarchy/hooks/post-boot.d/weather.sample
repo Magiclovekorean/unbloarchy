@@ -3,8 +3,7 @@
 # Show the weather status notification after Unbloarchy has started.
 # To put it into use, remove .sample from this file name.
 
-weather=$(unbloarchy-weather-status 2>/dev/null) || true
-
-if [[ -n $weather && $weather != "Weather unavailable" ]]; then
+# The status fails when the weather is unavailable, in whatever language it says so.
+if weather=$(unbloarchy-weather-status 2>/dev/null) && [[ -n $weather ]]; then
   unbloarchy-notification-send -u low "$weather"
 fi

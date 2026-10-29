@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# unbloarchy:summary=Refresh the shell update status
+# unbloarchy:summary=Clear the shell update indicator after an update
 # unbloarchy:hidden=true
 
-set -e
-
-if unbloarchy-update-available >/dev/null; then
-  unbloarchy-shell -q unbloarchy.system-update refresh
-else
-  unbloarchy-shell -q unbloarchy.system-update clear
-fi
+# unbloarchy-update now clears the indicator itself. This stays for an update
+# started by an older unbloarchy-update: its pipeline was parsed before the
+# upgrade replaced it, and still calls this right after a full upgrade that
+# went through, so there is nothing left for the indicator to show.
+unbloarchy-shell -q unbloarchy.system-update clear

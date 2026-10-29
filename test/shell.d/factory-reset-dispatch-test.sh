@@ -47,8 +47,9 @@ cat >"$tmp/reset" <<'SH'
 set -euo pipefail
 source "$TMP/functions"
 TOP_MNT=$TMP/top
+ESP_MNT=$TMP/esp-mount
 NEXT_NAME=@unbloarchy-reset-next
-PROVISIONING_DIR=/var/lib/unbloarchy/provisioning
+PROVISIONING_DIR=/var/lib/omarchy/provisioning
 LOG_FILE=$TMP/reset.log
 DISPATCH=${TEST_DISPATCH:-$ROOT/bin/unbloarchy-lifecycle-dispatch}
 RESET_BOOT=""
@@ -163,9 +164,9 @@ device=$tmp/luks-device
 fixture() {
   rm -rf "$tmp/top" "$tmp/calls" "$tmp/screen" "$tmp/reset.log" "$tmp/committed-key" "$tmp"/*-fail
   mkdir -p "$tmp/top/@" "$tmp/top/@factory/etc" "$tmp/top/@factory/usr/bin" \
-    "$tmp/top/@factory/usr/share/unbloarchy/install/provisioning" "$tmp/top/@factory/boot"
+    "$tmp/top/@factory/usr/share/omarchy/install/provisioning" "$tmp/top/@factory/boot"
   touch "$tmp/top/@/old-system" "$tmp/top/@factory/factory-system" "$tmp/esp" \
-    "$tmp/top/@factory/usr/share/unbloarchy/install/provisioning/unbloarchy-provision-owner.service"
+    "$tmp/top/@factory/usr/share/omarchy/install/provisioning/omarchy-provision-owner.service"
   printf '#!/bin/bash\n' >"$tmp/top/@factory/usr/bin/unbloarchy-provision-owner"
   chmod +x "$tmp/top/@factory/usr/bin/unbloarchy-provision-owner"
   printf '%s /boot vfat defaults 0 2\n' "$tmp/esp" >"$tmp/top/@factory/etc/fstab"
@@ -182,7 +183,7 @@ run() {
 }
 
 activated() {
-  [[ -e $tmp/top/@/factory-system && -f $tmp/top/@/var/lib/unbloarchy/provisioning/pending ]] &&
+  [[ -e $tmp/top/@/factory-system && -f $tmp/top/@/var/lib/omarchy/provisioning/pending ]] &&
     compgen -G "$tmp/top/@unbloarchy-old-*/old-system" >/dev/null
 }
 
@@ -199,22 +200,21 @@ activated || fail "x86: the factory root is activated"
 grep -qx 'chroot /usr/bin/limine-update' "$tmp/calls" || fail "x86: limine-update rebuilds the factory root's UKI" "$(cat "$tmp/calls")"
 [[ -f $tmp/top/@/etc/unbloarchy/provisioning.key && -f $tmp/top/@/etc/limine-entry-tool.d/99-unbloarchy-provisioning-unlock.conf &&
   -f $tmp/top/@/etc/mkinitcpio.conf.d/99-unbloarchy-provisioning-key.conf ]] || fail "x86: the UKI carries the reset's auto-unlock"
-[[ $(awk 'NR == 2 { print $2 }' "$tmp/slots") == "$(cat "$tmp/top/@/var/lib/unbloarchy/provisioning/luks-key")" ]] ||
+[[ $(awk 'NR == 2 { print $2 }' "$tmp/slots") == "$(cat "$tmp/top/@/var/lib/omarchy/provisioning/luks-key")" ]] ||
   fail "x86: the throwaway slot opens with the staged key" "$(cat "$tmp/slots")"
 ! grep -q '^reset-' "$tmp/calls" || fail "x86: no boot-package entrypoint runs" "$(cat "$tmp/calls")"
 pass "x86: dispatch is a no-op and the generic Limine UKI path resets the machine"
 
-# A failed activation on the generic path puts the previous root back and
-# revokes the throwaway slot. The ESP already holds the factory root's UKI, so
-# the screen says to rebuild the boot files rather than claiming nothing changed.
+# A failed activation on the generic path puts the previous root back,
+# restores its boot files on the ESP and revokes the throwaway slot.
 fixture
 touch "$tmp/activate-fail"
 if run reset x86; then fail "x86: a failed activation fails the reset"; fi
 untouched || fail "x86: a failed activation puts the previous root back and revokes the throwaway slot" "$(ls "$tmp/top"; cat "$tmp/slots")"
 ! grep -q '^reset-' "$tmp/calls" || fail "x86: a failed activation runs no boot-package entrypoint" "$(cat "$tmp/calls")"
-grep -q "run 'sudo limine-update' before rebooting" "$tmp/screen" ||
-  fail "x86: a failed activation says the boot files need rebuilding" "$(cat "$tmp/screen")"
-pass "x86: a failed activation puts the previous root back, revokes the throwaway slot and says to rebuild the boot files"
+grep -q 'the current root is back at @' "$tmp/screen" && grep -q "Restored this system's boot files" "$tmp/screen" ||
+  fail "x86: a failed activation says the current root is back and its boot files restored" "$(cat "$tmp/screen")"
+pass "x86: a failed activation puts the previous root back, restores its boot files and revokes the throwaway slot"
 
 # Apple: the boot package prepares and verifies the factory root before the
 # throwaway slot exists, and gets the key only once the factory root is active.
@@ -228,7 +228,7 @@ cryptsetup luksAddKey
 reset-commit"
 [[ $(grep -v '^cryptsetup \(open\|luksDump\)' "$tmp/calls") == "$expected" ]] ||
   fail "apple: prepare, verify, the throwaway slot, then commit" "$(cat "$tmp/calls")"
-staged=$(cat "$tmp/top/@/var/lib/unbloarchy/provisioning/luks-key")
+staged=$(cat "$tmp/top/@/var/lib/omarchy/provisioning/luks-key")
 [[ -n $staged && $(cat "$tmp/committed-key") == "$staged" ]] || fail "apple: reset-commit gets the staged key on standard input"
 [[ $(awk 'NR == 2 { print $2 }' "$tmp/slots") == "$staged" ]] || fail "apple: the throwaway slot opens with the staged key" "$(cat "$tmp/slots")"
 [[ ! -e $tmp/top/@/etc/unbloarchy/provisioning.key && ! -e $tmp/top/@/etc/limine-entry-tool.d/99-unbloarchy-provisioning-unlock.conf ]] ||

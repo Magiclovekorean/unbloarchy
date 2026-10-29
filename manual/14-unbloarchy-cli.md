@@ -59,4 +59,4 @@ Every command takes `--help` too, whether you ask a whole group (`unbloarchy cap
 
 ### Opening the menu from the terminal
 
-The Unbloarchy menu is scriptable as well, which is handy for your own keybindings. `unbloarchy menu` opens it at the root, and you can jump straight to any point in the tree by naming it: `unbloarchy menu summon style.theme` goes right to the theme picker, `unbloarchy menu toggle system` opens the system menu and closes it again if it's already up, and `unbloarchy menu close` puts it away.
+The Unbloarchy menu is scriptable as well, which is handy for your own keybindings. `unbloarchy menu` opens it at the root, and you can jump straight to any point in the tree by naming it: `unbloarchy menu summon appearance.theme` goes right to the theme picker, `unbloarchy menu toggle system` opens the system menu and closes it again if it's already up, and `unbloarchy menu close` puts it away.

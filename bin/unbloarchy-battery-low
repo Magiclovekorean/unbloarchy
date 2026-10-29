@@ -13,5 +13,5 @@ fi
 
 level=$1
 
-unbloarchy-notification-send -g 󱐋 -u critical "Time to recharge!" "Battery is down to ${level}%" -i battery-caution -t 30000
+unbloarchy-notification-send -g 󱐋 -u normal "$(unbloarchy-i18n battery.lowTitle)" "$(unbloarchy-i18n battery.lowBody "$level")" -i battery-caution -t 30000
 unbloarchy-hook battery-low "$level"

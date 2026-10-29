@@ -29,6 +29,6 @@ echo "need it, and the plain 'docker' CLI runs under sudo. It takes effect after
 echo ""
 # The migration reuses this command during 'unbloarchy update' and defers the
 # reboot to unbloarchy-update-restart, so it doesn't cut the update short.
-if [[ -z ${UNBLOARCHY_DEFER_REBOOT:-} ]] && gum confirm "Reboot now to apply?"; then
-  unbloarchy-system-reboot
+if [[ -z ${UNBLOARCHY_DEFER_REBOOT:-} ]] && gum confirm --affirmative "$(unbloarchy-i18n common.yes)" --negative "$(unbloarchy-i18n common.no)" "$(unbloarchy-i18n docker.rebootToApply)"; then
+  unbloarchy-system reboot
 fi

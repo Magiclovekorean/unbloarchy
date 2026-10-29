@@ -5,7 +5,7 @@
 unbloarchy-toggle screensaver-off
 
 if unbloarchy-toggle-enabled screensaver-off; then
-  unbloarchy-notification-send -g 󱄄 "Screensaver disabled"
+  unbloarchy-notification-send -g 󱄄 "$(unbloarchy-i18n screensaver.disabled)"
 else
-  unbloarchy-notification-send -g 󱄄 "Screensaver enabled"
+  unbloarchy-notification-send -g 󱄄 "$(unbloarchy-i18n screensaver.enabled)"
 fi

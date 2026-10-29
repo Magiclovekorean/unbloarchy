@@ -6,7 +6,7 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 source "$SHELL_TEST_DIR/fixtures/sudo-boundary-test.sh"
 rm "$SUDO_TEST_ROOT/bin/unbloarchy-update-restart"
 copy_boundary_file bin/unbloarchy-update-restart
-for step in unbloarchy-state unbloarchy-restart-sshd unbloarchy-restart-shell unbloarchy-system-reboot; do
+for step in unbloarchy-state unbloarchy-restart-sshd unbloarchy-restart-shell unbloarchy-system; do
   ln -s test-step "$SUDO_TEST_ROOT/bin/$step"
 done
 cat >"$SUDO_TEST_ROOT/bin/gum" <<'STUB'
@@ -33,7 +33,7 @@ for mode in --services-only --reboot-only; do
 done
 reset_boundary
 UNBLOARCHY_UPDATE_UNATTENDED=1 PATH="$SUDO_TEST_ROOT/bin:$PATH" "$SUDO_TEST_ROOT/bin/unbloarchy-update-restart" --reboot-only >"$boundary_tmp/output" 2>&1
-if grep -Eq "^(prompt:|step:unbloarchy-restart-|step:unbloarchy-system-reboot)" "$SUDO_TEST_LOG"; then
+if grep -Eq "^(prompt:|step:unbloarchy-restart-|step:unbloarchy-system)" "$SUDO_TEST_LOG"; then
   fail "unattended reboot phase prompted or performed service work"
 fi
 pass "unattended reboot phase reports a required reboot without prompting"

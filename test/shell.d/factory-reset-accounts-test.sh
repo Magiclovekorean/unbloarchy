@@ -27,8 +27,9 @@ cat >"$test_tmp/reset" <<'SH'
 set -euo pipefail
 source "$1/functions"
 TOP_MNT="$2"
+ESP_MNT="$2/esp-mount"
 NEXT_NAME=@unbloarchy-reset-next
-PROVISIONING_DIR=/var/lib/unbloarchy/provisioning
+PROVISIONING_DIR=/var/lib/omarchy/provisioning
 LOG_FILE="$TOP_MNT/reset.log"
 
 log() { printf '%s\n' "$1" >>"$LOG_FILE"; }
@@ -42,6 +43,8 @@ btrfs() {
     cp -a "$3/." "$4/"
   elif [[ $1 == "property" ]]; then
     printf '%s\n' "$6" >"$4/read-only"
+  elif [[ $1 == "subvolume" && $2 == "delete" ]]; then
+    command rm -rf "${@: -1}"
   else
     return 1
   fi
@@ -50,6 +53,7 @@ systemd-id128() { printf '%032d\n' 1; }
 install_provisioning_units() { :; }
 encrypted_install() { return 1; }
 rebuild_next_boot() { touch "$TOP_MNT/rebuilt"; }
+commit_next_boot() { :; }
 sync() { :; }
 
 userdel() {
@@ -64,6 +68,16 @@ rm() {
   [[ ${FAIL_COMMAND:-} == "rm" && $* == *"$FAIL_ROOT/etc/shadow-"* ]] && return 42
   command rm "$@"
 }
+# FAIL_MV is a pattern for the source of the renames that should fail.
+mv() {
+  [[ -n ${FAIL_MV:-} && $1 == $FAIL_MV ]] && return 42
+  command mv "$@"
+}
+
+# The production cleanup trap runs as it would on the real top-level mount.
+mountpoint() { [[ ${*: -1} == "$TOP_MNT" ]]; }
+umount() { :; }
+trap cleanup EXIT
 
 stage_full_reset
 SH
@@ -72,11 +86,9 @@ make_fixture() {
   local top="$1" root_hash="${2:-original-root-hash}"
   local factory="$top/@factory"
   mkdir -p "$top/@" "$factory/etc" "$factory/home/seller" \
-    "$factory/usr/bin" "$factory/usr/share/unbloarchy/install/provisioning" \
-    "$factory/var/lib/unbloarchy/provisioning/packages"
+    "$factory/usr/bin" "$factory/usr/share/omarchy/install/provisioning"
   touch "$top/@/old-system" "$factory/home/seller/private-file" \
-    "$factory/usr/share/unbloarchy/install/provisioning/unbloarchy-provision-owner.service" \
-    "$factory/var/lib/unbloarchy/provisioning/packages/node-v0.tar.gz"
+    "$factory/usr/share/omarchy/install/provisioning/omarchy-provision-owner.service"
   printf '#!/bin/bash\n' >"$factory/usr/bin/unbloarchy-provision-owner"
   chmod +x "$factory/usr/bin/unbloarchy-provision-owner"
   printf 'true\n' >"$factory/read-only"
@@ -123,7 +135,7 @@ for scenario in normal locked; do
   assert_scrubbed "$top/@factory"
   assert_scrubbed "$top/@"
   [[ $(cat "$top/@factory/read-only") == "true" ]] || fail "baseline returns to read-only"
-  [[ -f $top/@/var/lib/unbloarchy/provisioning/pending && -f $top/rebuilt ]] ||
+  [[ -f $top/@/var/lib/omarchy/provisioning/pending && -f $top/rebuilt ]] ||
     fail "reset reaches provisioning after cleanup"
 
   bash "$test_tmp/reset" "$test_tmp" "$top" || fail "$scenario reset can be repeated"
@@ -146,3 +158,22 @@ for target in @unbloarchy-reset-next @factory; do
     pass "failed $command in $target aborts reset before activation"
   done
 done
+
+top="$test_tmp/fail-activate"
+make_fixture "$top"
+if FAIL_MV="$top/@unbloarchy-reset-next" bash "$test_tmp/reset" "$test_tmp" "$top"; then
+  fail "reset accepted a failed activation"
+fi
+[[ -f $top/@/old-system ]] && ! compgen -G "$top/@unbloarchy-old-*" >/dev/null ||
+  fail "a failed activation puts the running root back as @"
+[[ ! -e $top/@unbloarchy-reset-next ]] || fail "a failed activation discards the staged root"
+pass "a failed activation puts the running root back"
+
+top="$test_tmp/fail-activate-and-restore"
+make_fixture "$top"
+if FAIL_MV="$top/@unbloarchy-*" bash "$test_tmp/reset" "$test_tmp" "$top"; then
+  fail "reset accepted a failed activation"
+fi
+[[ ! -e $top/@ && -d $top/@unbloarchy-reset-next ]] && compgen -G "$top/@unbloarchy-old-*/old-system" >/dev/null ||
+  fail "with no @ left, cleanup keeps both the running and the staged root"
+pass "a root switch that cannot be undone keeps both roots for recovery"

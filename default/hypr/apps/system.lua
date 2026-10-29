@@ -29,14 +29,6 @@ o.window("org.unbloarchy.about", { size = { 920, 480 } })
 
 o.window("omacalc", { float = true })
 
--- Fullscreen screensaver.
-o.window("org.unbloarchy.screensaver", { fullscreen = true })
-o.window("org.unbloarchy.screensaver", { float = true })
-o.window("org.unbloarchy.screensaver", { animation = "slide" })
--- The launcher picks each screensaver's workspace. A terminal mapped again as it closes lands out of sight instead,
--- where its fullscreen rule cannot take fullscreen from a window.
-o.window("org.unbloarchy.screensaver", { workspace = "special:screensaver silent" })
-
 -- Popped window rounding.
 o.window({ tag = "pop" }, { rounding = 8 })
 

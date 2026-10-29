@@ -9,7 +9,8 @@ test_tmp="$boundary_tmp"
 stub_bin="$SUDO_TEST_ROOT/bin"
 
 # Every step unbloarchy-update runs, recorded in order with the unattended flag it
-# was handed. One of them can be told to fail.
+# was handed. One of them can be told to fail. unbloarchy-update-available is here
+# so a recheck after the update would show up as an unexpected step.
 steps=(
   unbloarchy-update-lock
   unbloarchy-update-requires-free-space
@@ -27,7 +28,8 @@ steps=(
   unbloarchy-update-mise
   unbloarchy-update-orphan-pkgs
   unbloarchy-update-analyze-logs
-  unbloarchy-update-status
+  unbloarchy-shell
+  unbloarchy-update-available
   unbloarchy-update-restart
 )
 
@@ -38,6 +40,9 @@ for step in "${steps[@]}"; do
 printf '%s unattended=%s\n' "${0##*/}" "${UNBLOARCHY_UPDATE_UNATTENDED:-}" >>"$STEP_LOG"
 if [[ ${0##*/} == "unbloarchy-update-orphan-pkgs" ]]; then
   printf '%s\n' "$@" >"$STEP_LOG.orphan-args"
+fi
+if [[ ${0##*/} == "unbloarchy-shell" ]]; then
+  printf '%s\n' "$*" >"$STEP_LOG.shell-args"
 fi
 [[ ${FAILING_STEP:-} != "${0##*/}" ]] || exit 1
 STUB
@@ -75,7 +80,7 @@ expected_steps() {
     unbloarchy-migrate \
     unbloarchy-update-orphan-pkgs \
     unbloarchy-update-analyze-logs \
-    unbloarchy-update-status \
+    unbloarchy-shell \
     unbloarchy-update-restart \
     unbloarchy-hook \
     unbloarchy-update-mise \
@@ -91,6 +96,9 @@ diff <(expected_steps) <(steps_run) >"$test_tmp/order" ||
 pass "an update where every step works runs all of them, in order"
 [[ $(cat "$test_tmp/steps.orphan-args") == "-y" ]] || fail "an unattended update approves orphan removal"
 pass "an unattended update approves orphan removal"
+[[ $(cat "$test_tmp/steps.shell-args") == "-q unbloarchy.system-update clear" ]] ||
+  fail "a finished update clears the shell update indicator" "$(cat "$test_tmp/steps.shell-args")"
+pass "a finished update clears the shell update indicator without rechecking"
 
 grep -q '^unbloarchy-update-system-pkgs unattended=1$' "$test_tmp/steps" ||
   fail "-y does not mark the update unattended"
@@ -115,3 +123,12 @@ for step in unbloarchy-migrate unbloarchy-hook unbloarchy-update-aur-pkgs unbloa
   fi
 done
 pass "a blocked package upgrade stops the update before it migrates"
+
+# Optional tools may fail after system packages have already changed. Finish
+# AUR work, verify boot files and release Stay Awake before offering a reboot.
+FAILING_STEP=unbloarchy-update-mise run_update -y || fail "a failed mise update prevents system update completion"
+diff <(expected_steps) <(steps_run) >"$test_tmp/order" ||
+  fail "a failed mise update skips later update steps" "$(cat "$test_tmp/order")"
+grep -q "unbloarchy update mise" "$test_tmp/err" || fail "the tool update failure has no retry guidance"
+assert_boundary_cold "update after mise failure"
+pass "a mise failure still finishes the update, offers a reboot and explains how to retry"

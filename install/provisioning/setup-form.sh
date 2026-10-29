@@ -18,9 +18,14 @@
 # so it never reaches the shell as SIGINT. Act on the status, never on a trap.
 #
 # Callers supply `notice <message> <seconds>` for validation feedback, and set
-# the variables these prompts write: keyboard, keyboard_label, username,
-# password, password_confirmation, full_name, email_address, hostname, encrypt_installation,
-# timezone.
+# the variables these prompts write: keyboard, keyboard_label,
+# keyboard_input_method, keyboard_xkb_layout, username,
+# password, password_confirmation, full_name, email_address, hostname, encrypt_installation, timezone.
+#
+# Callers may also set UNBLOARCHY_FORM_LANGUAGE (a language registry code for the
+# form's text), UNBLOARCHY_FORM_KEYBOARD_DEFAULT (a layout label to preselect),
+# UNBLOARCHY_FORM_TIMEZONE_DEFAULT (a timezone that beats the network's guess) and
+# UNBLOARCHY_FORM_TIMEZONE_FALLBACK (one used only when that guess fails).
 
 UNBLOARCHY_FORM_BACK=1
 UNBLOARCHY_FORM_SIGNAL=130
@@ -35,10 +40,10 @@ English (UK)|uk
 English (US, Dvorak)|dvorak
 English (US, Colemak)|colemak
 Spanish|es
-Azerbaijani|azerty
 Belarusian|by
 Belgian|be-latin1
 Bulgarian|bg-cp1251
+Chinese (Simplified, Pinyin)|us|pinyin
 Croatian|croat
 Czech|cz
 Danish|dk-latin1
@@ -53,14 +58,17 @@ German|de
 German (Switzerland)|de_CH-latin1
 Greek|gr
 Hebrew|il
+Hong Kong (Cangjie)|us|cangjie5
 Hungarian|hu
 Icelandic|is-latin1
 Irish|ie
 Italian|it
-Japanese|jp106
+Japanese|jp106|mozc
+Japanese (US keyboard)|us|mozc
 Kazakh|kazakh
+Korean|us|hangul|kr:kr104
 Kyrgyz|kyrgyz
-Lao|la-latin1
+Lao|us||la
 Latvian|lv
 Lithuanian|lt
 Macedonian|mk-utf
@@ -75,6 +83,7 @@ Slovak|sk-qwertz
 Slovenian|slovene
 Spanish (Latin American)|la-latin1
 Swedish|sv-latin1
+Taiwan (Zhuyin)|us|chewing
 Tajik|tj_alt-UTF8
 Turkish|trq
 Ukrainian|ua'
@@ -92,32 +101,74 @@ unbloarchy_username_taken() { return 1; }
 # by `status=$?`: one caller runs under `set -e`, where a cancelled prompt is a
 # failing assignment that would kill the script before the status is read.
 
+# Install media for one market can leave its keyboard and timezone choices for
+# a first-boot owner setup: plain KEY=value lines, read as data. The live
+# installer sets the same defaults in its environment instead.
+unbloarchy_form_defaults=${UNBLOARCHY_FORM_DEFAULTS:-/etc/unbloarchy/form-defaults}
+if [[ -r $unbloarchy_form_defaults ]]; then
+  while IFS='=' read -r unbloarchy_form_key unbloarchy_form_value; do
+    case "$unbloarchy_form_key" in
+      KEYBOARD) : "${UNBLOARCHY_FORM_KEYBOARD_DEFAULT:=$unbloarchy_form_value}" ;;
+      TIMEZONE) : "${UNBLOARCHY_FORM_TIMEZONE_DEFAULT:=$unbloarchy_form_value}" ;;
+    esac
+  done <"$unbloarchy_form_defaults"
+  unset unbloarchy_form_key unbloarchy_form_value
+fi
+
+# The form's strings live in Unbloarchy's CLI catalogs, which the live ISO carries
+# too. The caller names the language in UNBLOARCHY_FORM_LANGUAGE; English fills in.
+unbloarchy_form_i18n=${UNBLOARCHY_PATH:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}/default/i18n
+
+unbloarchy_form_text() {
+  local language=${UNBLOARCHY_FORM_LANGUAGE:-en} text
+  local -a catalogs=("$unbloarchy_form_i18n/en/cli.json")
+  [[ $language =~ ^[a-z]{2,3}(-[A-Z]{2})?$ && -r $unbloarchy_form_i18n/$language/cli.json ]] &&
+    catalogs=("$unbloarchy_form_i18n/$language/cli.json" "${catalogs[@]}")
+  text=$(jq -rn --arg key "$1" 'first(inputs | .[$key] // empty) // empty' "${catalogs[@]}" 2>/dev/null) || text=""
+  printf '%s' "${text:-$1}"
+}
+
 unbloarchy_prompt_keyboard() {
-  local choice status
+  local choice status default=${UNBLOARCHY_FORM_KEYBOARD_DEFAULT:-English (US)}
+  # gum splits --selected on commas, so "Chinese (Simplified, Pinyin)" needs them escaped.
   choice=$(printf '%s\n' "$UNBLOARCHY_KEYBOARD_LAYOUTS" | cut -d'|' -f1 |
-    gum choose --height 10 --selected "English (US)" --header "Select keyboard layout") && status=0 || status=$?
+    gum choose --height 10 --selected "${default//,/\\,}" --header "$(unbloarchy_form_text setupForm.keyboardHeader)") && status=0 || status=$?
   ((status == 0)) || return $status
 
-  keyboard_label="$choice"
-  keyboard=$(printf '%s\n' "$UNBLOARCHY_KEYBOARD_LAYOUTS" | awk -F'|' -v c="$choice" '$1==c{print $2; exit}')
+  local selection
+  selection=$(printf '%s\n' "$UNBLOARCHY_KEYBOARD_LAYOUTS" | awk -F'|' -v c="$choice" '$1==c{print; exit}')
+  [[ -n $selection ]] || return 1
+  IFS='|' read -r keyboard_label keyboard keyboard_input_method keyboard_xkb_layout <<< "$selection"
+  keyboard_input_method=${keyboard_input_method:-none}
+  keyboard_xkb_layout=${keyboard_xkb_layout:-}
+}
+
+# Root-side persistence. Console keymaps remain real keymaps; the input
+# preference survives separately for every user of the installed system.
+unbloarchy_persist_input_selection() {
+  local target_root=${1:-} method=${keyboard_input_method:-none} layout=${keyboard_xkb_layout:-}
+  case "$method" in none | mozc | hangul | pinyin | chewing | cangjie5) ;; *) return 1 ;; esac
+  case "$layout" in "" | kr | kr:kr104 | la) ;; *) return 1 ;; esac
+  mkdir -p "$target_root/etc/unbloarchy"
+  printf 'INPUT_METHOD=%s\nXKB_LAYOUT=%s\n' "$method" "$layout" > "$target_root/etc/unbloarchy/input-method"
 }
 
 unbloarchy_prompt_username() {
   local status
   while true; do
-    username=$(gum input --placeholder "Alphanumeric without spaces (like dhh)" --prompt.foreground="#845DF9" --prompt "Username> ") && status=0 || status=$?
+    username=$(gum input --placeholder "$(unbloarchy_form_text setupForm.usernamePlaceholder)" --prompt.foreground="#845DF9" --prompt "$(unbloarchy_form_text setupForm.usernamePrompt)") && status=0 || status=$?
     ((status == 0)) || return $status
 
     if [[ "$username" =~ $UNBLOARCHY_USERNAME_PATTERN ]]; then
       if [[ "$username" =~ $UNBLOARCHY_RESERVED_USERNAMES ]]; then
-        notice "Username is reserved for system" 1
+        notice "$(unbloarchy_form_text setupForm.usernameReserved)" 1
       elif unbloarchy_username_taken "$username"; then
-        notice "That username already exists on this machine" 1
+        notice "$(unbloarchy_form_text setupForm.usernameTaken)" 1
       else
         return 0
       fi
     else
-      notice "Username must be alphanumeric with no spaces" 1
+      notice "$(unbloarchy_form_text setupForm.usernameInvalid)" 1
     fi
   done
 }
@@ -125,21 +176,22 @@ unbloarchy_prompt_username() {
 unbloarchy_prompt_password() {
   local status
   while true; do
-    password=$(gum input --placeholder "Used for user + root, and disk encryption when enabled" --prompt.foreground="#845DF9" --password --prompt "Password> ") && status=0 || status=$?
+    password=$(gum input --placeholder "$(unbloarchy_form_text setupForm.passwordPlaceholder)" --prompt.foreground="#845DF9" --password --prompt "$(unbloarchy_form_text setupForm.passwordPrompt)") && status=0 || status=$?
     ((status == 0)) || return $status
-    password_confirmation=$(gum input --placeholder "Must match the password you just typed" --prompt.foreground="#845DF9" --password --prompt "Confirm> ") && status=0 || status=$?
+    password_confirmation=$(gum input --placeholder "$(unbloarchy_form_text setupForm.confirmPlaceholder)" --prompt.foreground="#845DF9" --password --prompt "$(unbloarchy_form_text setupForm.confirmPrompt)") && status=0 || status=$?
     ((status == 0)) || return $status
 
     if [[ -n "$password" && "$password" == "$password_confirmation" ]]; then
       return 0
     elif [[ -z "$password" ]]; then
-      notice "Your password can't be blank!" 1
+      notice "$(unbloarchy_form_text setupForm.passwordBlank)" 1
     else
-      notice "Passwords didn't match!" 1
+      notice "$(unbloarchy_form_text setupForm.passwordMismatch)" 1
     fi
   done
 }
 
+# Only ISO configurators from before unbloarchy-setup-git still call this.
 # Both fields are skippable with Return, so an empty value is a real answer and
 # only Esc/Ctrl+C end the prompt early.
 unbloarchy_prompt_identity() {
@@ -153,7 +205,7 @@ unbloarchy_prompt_identity() {
 unbloarchy_prompt_hostname() {
   local status
   while true; do
-    hostname=$(gum input --placeholder "Letters, digits, and dashes (or return for 'unbloarchy')" --prompt.foreground="#845DF9" --prompt "Hostname> ") && status=0 || status=$?
+    hostname=$(gum input --placeholder "$(unbloarchy_form_text setupForm.hostnamePlaceholder)" --prompt.foreground="#845DF9" --prompt "$(unbloarchy_form_text setupForm.hostnamePrompt)") && status=0 || status=$?
     ((status == 0)) || return $status
 
     if [[ -z $hostname ]]; then
@@ -162,7 +214,7 @@ unbloarchy_prompt_hostname() {
     elif [[ "$hostname" =~ $UNBLOARCHY_HOSTNAME_PATTERN ]]; then
       return 0
     else
-      notice "Hostname must be 1-63 letters, digits, or dashes, and cannot start or end with a dash" 1
+      notice "$(unbloarchy_form_text setupForm.hostnameInvalid)" 1
     fi
   done
 }
@@ -190,12 +242,17 @@ unbloarchy_prompt_encryption() {
 # often; guard it or a `set -e` caller dies before the filter fallback.
 unbloarchy_prompt_timezone() {
   local guess status
-  guess=$(tzupdate -p 2>/dev/null) || guess=""
+  # A preset install media names its timezone; otherwise ask geo.omarchy.org,
+  # Unbloarchy's own lookup of where this network is, and failing that take the
+  # caller's fallback, like the language's capital.
+  guess=${UNBLOARCHY_FORM_TIMEZONE_DEFAULT:-}
+  [[ -n $guess ]] || guess=$(curl -fsS --max-time 5 https://geo.omarchy.org/ 2>/dev/null | jq -r '.timezone // empty' 2>/dev/null) || guess=""
+  [[ -n $guess ]] || guess=${UNBLOARCHY_FORM_TIMEZONE_FALLBACK:-}
 
   if [[ -n $guess ]]; then
-    timezone=$(timedatectl list-timezones | gum choose --height 10 --selected "$guess" --header "Timezone") && status=0 || status=$?
+    timezone=$(timedatectl list-timezones | gum choose --height 10 --selected "$guess" --header "$(unbloarchy_form_text setupForm.timezoneHeader)") && status=0 || status=$?
   else
-    timezone=$(timedatectl list-timezones | gum filter --height 10 --header "Timezone") && status=0 || status=$?
+    timezone=$(timedatectl list-timezones | gum filter --height 10 --header "$(unbloarchy_form_text setupForm.timezoneHeader)") && status=0 || status=$?
   fi
   ((status == 0)) || return $status
 

@@ -5,7 +5,7 @@ set -e
 # Unbloarchy ships no default agent, so invite once rather than picking one. An
 # agent already chosen means the invitation has nothing to offer.
 if [[ -z $(unbloarchy-default-agent) ]] && unbloarchy-done ensure agent-setup-invitation; then
-  unbloarchy-notification-send -u critical -g 󰚩 "Set your default agent" \
-    "Let your favorite agent help with Unbloarchy." \
+  unbloarchy-notification-send -u critical -g 󰚩 "$(unbloarchy-i18n firstRun.agentTitle)" \
+    "$(unbloarchy-i18n firstRun.agentBody)" \
     --exec unbloarchy menu summon setup.default.agent
 fi

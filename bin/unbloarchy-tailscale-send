@@ -24,11 +24,11 @@ if ((${#files[@]} == 0)); then
   # Command substitution so the chooser's exit status survives: reading it
   # through a process substitution reports success for a chooser that never
   # opened, which is indistinguishable here from someone deciding not to send.
-  picked=$(unbloarchy-file-select --title "Send to $name" --multiple) || status=$?
+  picked=$(unbloarchy-file-select --title "$(unbloarchy-i18n tailscale.sendToTitle "$name")" --multiple) || status=$?
 
   if ((${status:-0} > 1)); then
-    unbloarchy-notification-send -g "󰒊" -u critical "Could not send to $name" \
-      "The file chooser did not open"
+    unbloarchy-notification-send -g "󰒊" -u critical "$(unbloarchy-i18n tailscale.sendFailed "$name")" \
+      "$(unbloarchy-i18n share.chooserClosed)"
     exit 1
   fi
 
@@ -39,12 +39,12 @@ fi
 if ((${#files[@]} == 1)); then
   what=$(basename "${files[0]}")
 else
-  what="${#files[@]} files"
+  what=$(unbloarchy-i18n --count "${#files[@]}" tailscale.fileCount "${#files[@]}")
 fi
 
 if error=$(tailscale file cp --update-interval=0 -- "${files[@]}" "$machine:" 2>&1); then
-  unbloarchy-notification-send -g "󰒊" "Sent to $name" "$what"
+  unbloarchy-notification-send -g "󰒊" "$(unbloarchy-i18n tailscale.sent "$name")" "$what"
 else
-  unbloarchy-notification-send -g "󰒊" -u critical "Could not send to $name" "${error:-Taildrop transfer failed}"
+  unbloarchy-notification-send -g "󰒊" -u critical "$(unbloarchy-i18n tailscale.sendFailed "$name")" "${error:-$(unbloarchy-i18n tailscale.transferFailed)}"
   exit 1
 fi

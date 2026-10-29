@@ -5,7 +5,7 @@
 unbloarchy-toggle herdr-theme-sync
 
 if unbloarchy-toggle-enabled herdr-theme-sync; then
-  unbloarchy-notification-send -g 󰸌 "Herdr theme sync enabled"
+  unbloarchy-notification-send -g 󰸌 "$(unbloarchy-i18n themeSync.enabled)"
 else
-  unbloarchy-notification-send -g 󰸌 "Herdr theme sync disabled"
+  unbloarchy-notification-send -g 󰸌 "$(unbloarchy-i18n themeSync.disabled)"
 fi

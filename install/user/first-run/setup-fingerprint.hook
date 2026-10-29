@@ -6,7 +6,7 @@ set -e
 # PAM file is the last thing the setup writes on success).
 if unbloarchy-hw-fingerprint && [[ ! -f /etc/pam.d/unbloarchy-lock-fingerprint ]] &&
   unbloarchy-done ensure fingerprint-setup-invitation; then
-  unbloarchy-notification-send -u critical -g 󰈷 "Setup Fingerprint Reader" \
-    "Enable sudo and unlocking with your fingerprint." \
+  unbloarchy-notification-send -u critical -g 󰈷 "$(unbloarchy-i18n firstRun.fingerprintTitle)" \
+    "$(unbloarchy-i18n firstRun.fingerprintBody)" \
     --exec unbloarchy-launch-floating-terminal-with-presentation unbloarchy-setup-security-fingerprint
 fi

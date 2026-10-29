@@ -6,8 +6,8 @@ wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle >/dev/null
 
 if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then
   unbloarchy-brightness-keyboard-mute on
-  unbloarchy-osd -i microphone-muted -m "Microphone muted"
+  unbloarchy-osd -i microphone-muted -m "$(unbloarchy-i18n audio.micMuted)"
 else
   unbloarchy-brightness-keyboard-mute off
-  unbloarchy-osd -i microphone -m "Microphone on"
+  unbloarchy-osd -i microphone -m "$(unbloarchy-i18n audio.micOn)"
 fi

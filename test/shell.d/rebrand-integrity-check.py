@@ -52,8 +52,7 @@ def git(*args):
 
 TRACKED = git("ls-files").splitlines()
 
-COMPAT_PATHS = (
-    "default/sddm/omarchy/",
+COMPAT_PATHS = ("default/sddm/omarchy/",
     "default/fonts/omarchy/",
     "default/systemd/user/omarchy-crash-watch.service",
     "default/systemd/user/omarchy-fcitx5.service",
@@ -72,7 +71,23 @@ COMPAT_PATHS = (
     "default/wayland-sessions/omarchy.desktop",
     "default/fontconfig/conf.avail/50-omarchy.conf",
     "test/shell.d/fixtures/legacy-icon-font/omarchy.ttf",
-)
+    "default/chromium/policies/omarchy.json",
+    "default/regions/cn/pacman/omarchy-edge.prepend",
+    "default/regions/cn/pacman/omarchy-rc.prepend",
+    "default/regions/cn/pacman/omarchy-stable.prepend",
+    "default/systemd/system/systemd-pcrlogin@.service.d/10-omarchy-nvpcr.conf",
+    "default/systemd/system/systemd-pcrproduct.service.d/10-omarchy-nvpcr.conf",
+    "default/systemd/system/systemd-tpm2-setup-early.service.d/10-omarchy-nvpcr.conf",
+    "default/systemd/timesyncd.conf.d/10-omarchy.conf",
+    "etc/NetworkManager/conf.d/omarchy-connectivity.conf",
+    "etc/mkinitcpio.conf.d/omarchy_vconsole.conf",
+    "etc/pipewire/client.conf.d/50-omarchy-rtkit.conf",
+    "etc/pipewire/jack.conf.d/50-omarchy-rtkit.conf",
+    "etc/sudoers.d/omarchy-locale-generate",
+    "etc/sysctl.d/90-omarchy-arp.conf",
+    "etc/systemd/system/proc-sys-fs-binfmt_misc.mount.d/10-omarchy-conditions.conf",
+    "etc/xkb/symbols/omarchy",
+    "test/shell.d/omarchy-kernel-test.sh",)
 
 # Third-party Apple Silicon runtime package from omacom/omarchy-mac-pkgs.
 # The fork uses unbloarchy-mac-boot for its own boot package, but does not

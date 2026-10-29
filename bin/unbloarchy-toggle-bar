@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# unbloarchy:summary=Toggle bar visibility without killing the Unbloarchy shell
+# unbloarchy:summary=Toggle bar visibility without killing the Unbloarchy shell (on hides the bar, off shows it)
 # unbloarchy:args=[toggle|on|off]
 # unbloarchy:examples=unbloarchy toggle bar | unbloarchy toggle bar off | unbloarchy toggle bar on
 

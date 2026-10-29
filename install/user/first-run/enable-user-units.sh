@@ -11,6 +11,8 @@
 
 set -euo pipefail
 
+unbloarchy-input-method configure --defaults || echo "Input method defaults deferred; run unbloarchy setup input after login." >&2
+
 systemctl --user daemon-reload
 
 # One at a time: given a list, systemctl enables none of it when it cannot find
@@ -23,9 +25,7 @@ for unit in \
   unbloarchy-sleep-lock.service \
   unbloarchy-migrate-notify.service \
   unbloarchy-fcitx5.service \
-  unbloarchy-crash-watch.service \
-  unbloarchy-usb-authorization.service \
-  unbloarchy-thunderbolt-authorization.service; do
+  unbloarchy-crash-watch.service; do
   systemctl --user enable --now "$unit" || failed=1
 done
 

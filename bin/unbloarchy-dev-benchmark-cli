@@ -23,7 +23,8 @@ EOF
 }
 
 now_us() {
-  local now="${EPOCHREALTIME/./}"
+  # EPOCHREALTIME uses the locale's decimal separator, a comma in many.
+  local now="${EPOCHREALTIME//[!0-9]/}"
   printf '%s' "$now"
 }
 
@@ -100,7 +101,7 @@ if [[ ! $REPEAT =~ ^[0-9]+$ ]] || (( REPEAT < 1 )); then
 fi
 
 printf 'Unbloarchy CLI benchmark (%d runs each)\n\n' "$REPEAT"
-run_case "unbloarchy" "$CLI"
+run_case "omarchy" "$CLI"
 run_case "unbloarchy --help" "$CLI" --help
 run_case "unbloarchy commands" "$CLI" commands
 run_case "unbloarchy commands --json" "$CLI" commands --json

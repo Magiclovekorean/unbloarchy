@@ -8,8 +8,13 @@ if unbloarchy-pkg-present linux-t2 || [[ ${running_kernel,,} == *-t2* ]]; then
   exit 0
 fi
 
+if ! unbloarchy-cmd-present limine-mkinitcpio; then
+  echo "This machine has no Limine tooling; leaving its kernel alone"
+  exit 0
+fi
+
 limine_conf="${UNBLOARCHY_KERNEL_LIMINE_CONF:-/etc/default/limine}"
-rebuild_marker="${UNBLOARCHY_KERNEL_REBUILD_MARKER:-/var/lib/unbloarchy/migrations/1789325478}"
+rebuild_marker="${OMARCHY_KERNEL_REBUILD_MARKER:-/var/lib/omarchy/migrations/1789325478}"
 kernel="linux-omarchy"
 
 # Completion is machine-wide even though migrations run once per user. Leave

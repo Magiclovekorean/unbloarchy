@@ -113,6 +113,7 @@ run_channel() {
   : >"$log_file"
   UNBLOARCHY_CHANNEL_TEST_LOG="$log_file" \
     UNBLOARCHY_PATH="${UNBLOARCHY_TEST_PATH:-$package_root}" \
+    UNBLOARCHY_REGION_FILE="${UNBLOARCHY_TEST_REGION_FILE:-$test_tmp/no-region}" \
     HOME="$test_tmp/home" \
     PATH="$stub_bin:$ROOT/bin:$PATH" \
     "${UNBLOARCHY_TEST_PATH:-$package_root}/bin/unbloarchy-channel-set" "$@"
@@ -170,12 +171,12 @@ rmdir "$checkout"
 run_channel dev
 assert_log_line $'gum\tconfirm\t--default=false\tSwitch to dev channel?' "dev asks for confirmation"
 assert_log_line $'refresh\tedge' "dev refreshes the edge pacman channel"
-assert_log_line $'update-pacman\t-S\t--needed\t--noconfirm\t--ask\t4\tomarchy-dev\tomarchy-settings-dev' "dev installs development Unbloarchy packages"
-assert_log_line $'git\tclone\thttps://github.com/Magiclovekorean/unbloarchy.git\t'"$checkout" "dev clones the source checkout to ~/unbloarchy"
+assert_log_line $'update-pacman\t-S\t--needed\t--noconfirm\t--ask\t4\tunbloarchy-dev\tunbloarchy-settings-dev' "dev installs development Unbloarchy packages"
+assert_log_line $'git\tclone\t--filter=blob:none\thttps://github.com/Magiclovekorean/unbloarchy.git\t'"$checkout" "dev clones the source checkout to ~/unbloarchy"
 assert_log_line $'link\t'"$checkout"$'\t--no-reboot' "dev links ~/unbloarchy without an early reboot prompt"
 assert_log_line $'state\tset\treboot-required' "dev defers the reboot prompt to the update pipeline"
 assert_log_line $'update\t-y\tUNBLOARCHY_PATH='"$checkout" "dev runs the normal update pipeline from the source checkout"
-[[ $(grep -E '^(git|link|state|refresh|sudo|update)' "$log_file") == $'git\tclone\thttps://github.com/Magiclovekorean/unbloarchy.git\t'"$checkout"$'\nlink\t'"$checkout"$'\t--no-reboot\nstate\tset\treboot-required\nrefresh\tedge\nupdate-pacman\t-S\t--needed\t--noconfirm\t--ask\t4\tomarchy-dev\tomarchy-settings-dev\nupdate\t-y\tUNBLOARCHY_PATH='"$checkout" ]] ||
+[[ $(grep -E '^(git|link|state|refresh|sudo|update)' "$log_file") == $'git\tclone\t--filter=blob:none\thttps://github.com/Magiclovekorean/unbloarchy.git\t'"$checkout"$'\nlink\t'"$checkout"$'\t--no-reboot\nstate\tset\treboot-required\nrefresh\tedge\nupdate-pacman\t-S\t--needed\t--noconfirm\t--ask\t4\tunbloarchy-dev\tunbloarchy-settings-dev\nupdate\t-y\tUNBLOARCHY_PATH='"$checkout" ]] ||
   fail "dev activates the checkout before changing or updating packages" "$(cat "$log_file")"
 pass "dev activates the checkout before changing or updating packages"
 
@@ -189,6 +190,58 @@ if grep -q $'^git\tclone\t' "$log_file"; then
 fi
 assert_log_line $'link\t'"$checkout"$'\t--no-reboot' "switching back to dev links ~/unbloarchy"
 pass "switching back to dev reuses the existing ~/unbloarchy checkout"
+
+printf 'cn\n' >"$test_tmp/region"
+if UNBLOARCHY_TEST_REGION_FILE="$test_tmp/region" run_channel dev >"$test_tmp/region.out" 2>"$test_tmp/region.err"; then
+  fail "dev refuses a checkout without this machine's region"
+fi
+grep -q "does not support the 'cn' region" "$test_tmp/region.err" || fail "dev explains the missing region" "$(cat "$test_tmp/region.err")"
+if grep -Eq $'^(link|refresh)\t' "$log_file"; then
+  fail "dev refuses before linking or refreshing pacman" "$(cat "$log_file")"
+fi
+pass "dev refuses a checkout without the region before touching pacman"
+
+# A directory with the region's name, or a helper that cannot run, is not
+# support: the refresh after linking would fail with dev already linked.
+mkdir -p "$checkout/default/regions/cn"
+touch "$checkout/bin/unbloarchy-apply-pacman"
+chmod +x "$checkout/bin/unbloarchy-apply-pacman"
+if UNBLOARCHY_TEST_REGION_FILE="$test_tmp/region" run_channel dev >"$test_tmp/region.out" 2>"$test_tmp/region.err"; then
+  fail "dev refuses an empty region profile"
+fi
+if grep -Eq $'^(link|refresh)\t' "$log_file"; then
+  fail "dev refuses an empty region profile before linking or refreshing pacman" "$(cat "$log_file")"
+fi
+mkdir -p "$checkout/default/regions/cn/pacman"
+cn_fragments=(unbloarchy-stable.prepend unbloarchy-rc.prepend unbloarchy-edge.prepend mirrorlist-stable.prepend mirrorlist-rc.prepend mirrorlist-edge.prepend)
+for missing in "${cn_fragments[@]}"; do
+  for fragment in "${cn_fragments[@]}"; do
+    if [[ $fragment == "$missing" ]]; then
+      rm -f "$checkout/default/regions/cn/pacman/$fragment"
+    else
+      touch "$checkout/default/regions/cn/pacman/$fragment"
+    fi
+  done
+  if UNBLOARCHY_TEST_REGION_FILE="$test_tmp/region" run_channel dev >"$test_tmp/region.out" 2>"$test_tmp/region.err"; then
+    fail "dev refuses a region profile without $missing"
+  fi
+  if grep -Eq $'^(link|refresh)\t' "$log_file"; then
+    fail "dev refuses a profile without $missing before linking or refreshing pacman" "$(cat "$log_file")"
+  fi
+done
+touch "${cn_fragments[@]/#/$checkout/default/regions/cn/pacman/}"
+chmod -x "$checkout/bin/unbloarchy-apply-pacman"
+if UNBLOARCHY_TEST_REGION_FILE="$test_tmp/region" run_channel dev >"$test_tmp/region.out" 2>"$test_tmp/region.err"; then
+  fail "dev refuses a checkout whose pacman helper cannot run"
+fi
+if grep -Eq $'^(link|refresh)\t' "$log_file"; then
+  fail "dev refuses incomplete region support before linking or refreshing pacman" "$(cat "$log_file")"
+fi
+pass "dev refuses a region profile missing any fragment or a helper that cannot run"
+
+chmod +x "$checkout/bin/unbloarchy-apply-pacman"
+UNBLOARCHY_TEST_REGION_FILE="$test_tmp/region" run_channel dev
+assert_log_line $'refresh\tedge' "dev proceeds with a checkout that supports the region"
 
 current_channel() {
   UNBLOARCHY_TEST_VERSION_CHANNEL="$1" \

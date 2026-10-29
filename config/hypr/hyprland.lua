@@ -1,7 +1,7 @@
 -- Learn how to configure Hyprland: https://wiki.hypr.land/Configuring/Start/
 
 -- Unbloarchy's bootstrap keeps path setup out of this user config.
-dofile((os.getenv("UNBLOARCHY_PATH") or "/usr/share/unbloarchy") .. "/default/hypr/bootstrap.lua")
+dofile((os.getenv("UNBLOARCHY_PATH") or "/usr/share/omarchy") .. "/default/hypr/bootstrap.lua")
 
 -- Disable all Unbloarchy default bindings. Add your own in hypr/bindings.lua.
 -- unbloarchy_default_bindings = false
@@ -9,6 +9,9 @@ dofile((os.getenv("UNBLOARCHY_PATH") or "/usr/share/unbloarchy") .. "/default/hy
 -- Or disable only bindings for Unbloarchy's preinstalled apps/web apps while
 -- keeping core window-manager bindings:
 -- unbloarchy_preinstalled_bindings = false
+--
+-- Disable Unbloarchy's default touchpad gestures. Add your own in hypr/input.lua.
+-- unbloarchy_default_gestures = false
 
 -- Load Unbloarchy defaults.
 require("default.hypr.unbloarchy")

@@ -34,6 +34,10 @@ Unbloarchy is installed with encryption by default. It's the safe, responsible c
 
 But in special circumstances, like remote Unbloarchy installs on protected computers or for throw-away installations without sensitive data, you may want to install without encryption. You can hit `Ctrl + C` on the disk formatting confirmation to switch to an encryption-less installation.
 
+### Language
+
+Unbloarchy speaks 50 languages — the same set as omarchy.org — and English is the default. To switch, open the Unbloarchy menu and go to _Setup > Language_, or run `unbloarchy language <code>` in a terminal (`unbloarchy language list` shows the codes). The menu, desktop, and Unbloarchy's own notifications change language immediately, and every application you open afterwards follows too. Apps that were already open switch once you restart them.
+
 ### Help if you're stuck
 
 If you get stuck, ask the Unbloarchy community in [GitHub Discussions](https://github.com/Magiclovekorean/unbloarchy/discussions).

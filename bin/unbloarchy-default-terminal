@@ -48,4 +48,4 @@ cat >~/.config/xdg-terminals.list <<EOF
 $desktop_id
 EOF
 
-unbloarchy-notification-send -g $glyph "$name is now the default terminal"
+unbloarchy-notification-send -g $glyph "$(unbloarchy-i18n default.terminalSet "$name")"

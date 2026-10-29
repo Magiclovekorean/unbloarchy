@@ -16,6 +16,21 @@ if [[ ${1:-} == "--tui" ]]; then
   fi
 fi
 
+# With the package installed and no openclaw command, the package became the
+# seed before this user's OpenClaw moved, as for one installed while waiting
+# for the seed by a route that never ran the migration again. --now sets it up.
+if ! unbloarchy-cmd-present openclaw && unbloarchy-pkg-present openclaw; then
+  if [[ $tui == "true" ]]; then
+    # The agent's terminal closes when this exits, so a failure waits to be read.
+    if ! unbloarchy-install-openclaw-cli --now; then
+      unbloarchy-show-done 1
+      exit 1
+    fi
+  else
+    exec unbloarchy-launch-floating-terminal-with-presentation 'unbloarchy-install-openclaw-cli --now && unbloarchy-launch-openclaw'
+  fi
+fi
+
 # Onboarding is OpenClaw's own interactive wizard, run through
 # unbloarchy-openclaw-onboard so it stays in the terminal, installs the gateway
 # as a user service, and returns (see that script for why bare `openclaw

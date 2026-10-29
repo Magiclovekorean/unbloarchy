@@ -1,0 +1,6 @@
+// Unbloarchy's own XKB option. libxkbcommon reads /etc/xkb before the system
+// rules, which supply everything else.
+! include %S/evdev
+
+! option = symbols
+  unbloarchy:shift_caps_compose = +unbloarchy(shift_caps_compose)

@@ -1,10 +1,29 @@
 notify_update() {
-  unbloarchy-notification-send -u critical -g  "Update System" "Click to update the system." \
+  unbloarchy-notification-send -u critical -g  "$(unbloarchy-i18n firstRun.updateTitle)" "$(unbloarchy-i18n firstRun.updateBody)" \
     --exec unbloarchy-launch-floating-terminal-with-presentation unbloarchy-update
 }
 
+# Something for unbloarchy-update to install: any repository package, Unbloarchy's
+# own among them, or a development checkout behind its upstream. checkupdates
+# exits 2 when every package is current and 1 when it could not tell, so only
+# a definite "nothing" holds the prompt back. It syncs the package databases,
+# so it runs once; unbloarchy-update-available would run it again, and is asked
+# only about a checkout, which checkupdates cannot see.
+update_pending() {
+  local status=0
+  checkupdates --nocolor >/dev/null 2>&1 || status=$?
+
+  if (( status != 2 )); then
+    return 0
+  elif [[ $OMARCHY_PATH != "/usr/share/omarchy" ]]; then
+    unbloarchy-update-available >/dev/null 2>&1
+  else
+    return 1
+  fi
+}
+
 notify_wifi() {
-  unbloarchy-notification-send -u critical -g 󰖩 "Setup Wi-Fi" "Click to configure the wireless network." \
+  unbloarchy-notification-send -u critical -g 󰖩 "$(unbloarchy-i18n firstRun.wifiTitle)" "$(unbloarchy-i18n firstRun.wifiBody)" \
     --exec unbloarchy-shell shell toggle unbloarchy.network
 }
 
@@ -23,7 +42,9 @@ announce_network() {
     nm-online -q -t 3600 || return
   fi
 
-  notify_update
+  # A fresh install from current media has nothing to update, and a toast
+  # that leads nowhere teaches people to dismiss the next one.
+  update_pending && notify_update
 }
 
 # Detached, so a slow or absent connection never holds up the rest of first run.

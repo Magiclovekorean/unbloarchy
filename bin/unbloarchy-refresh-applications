@@ -1,17 +1,13 @@
 #!/bin/bash
 
-# unbloarchy:summary=Ensure default application launchers and mise wrappers are installed.
+# unbloarchy:summary=Ensure default application launchers are installed.
 
 # Copy .desktop declarations
 mkdir -p ~/.local/share/applications
-cp "$UNBLOARCHY_PATH"/applications/*.desktop ~/.local/share/applications/
+cp "$OMARCHY_PATH"/applications/*.desktop ~/.local/share/applications/
 
 if unbloarchy-cmd-present alacritty; then
   cp "$UNBLOARCHY_PATH/default/alacritty/Alacritty.desktop" ~/.local/share/applications/
-fi
-
-if [[ -f "$UNBLOARCHY_PATH/install/user/mise.sh" ]]; then
-  bash "$UNBLOARCHY_PATH/install/user/mise.sh"
 fi
 
 update-desktop-database ~/.local/share/applications

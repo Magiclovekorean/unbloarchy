@@ -73,7 +73,7 @@ else
 fi
 pass "the logo descriptor can only be opened by an unprivileged caller"
 
-# Style > Unlock picks a theme by name and hands the answer to
+# Appearance > Unlock picks a theme by name and hands the answer to
 # unbloarchy-launch-floating-terminal-with-presentation, which joins its arguments
 # into a script and runs that with `bash -c`. So the name is shell source
 # unless the action quotes it -- and the name is a directory name under
@@ -86,10 +86,10 @@ unlock_action=$(node -e '
   const path = require("path")
   const menu = require(path.join(process.env.ROOT, "shell/plugins/menu/MenuModel.js"))
   const items = menu.parseMenuJsonc(fs.readFileSync(path.join(process.env.ROOT, "default/unbloarchy/unbloarchy-menu.jsonc"), "utf8"))
-  process.stdout.write(items.find(item => item.id === "style.unlock").action)
+  process.stdout.write(items.find(item => item.id === "appearance.unlock").action)
 ')
 
-[[ -n $unlock_action ]] || fail "the shipped menu still carries a style.unlock action"
+[[ -n $unlock_action ]] || fail "the shipped menu still carries a appearance.unlock action"
 
 stub_dir="$test_tmp/stubs"
 mkdir -p "$stub_dir"
@@ -636,7 +636,7 @@ assert_no_temporary_files "$fake_root"
 pass "root never follows a packaged asset symlink"
 
 # A random user-owned UNBLOARCHY_PATH remains untrusted. Only the exact canonical
-# checkout recorded by root in /etc/unbloarchy.conf is the supported dev-link
+# checkout recorded by root in /etc/omarchy.conf is the supported dev-link
 # exception; an unrelated or stale authorization must not weaken the check.
 setup_run
 output=$(run_set 022 env TEST_UNTRUSTED_SOURCE="$ROOT" 2>&1)
@@ -656,7 +656,7 @@ status=$?
 
 (( status != 0 )) || fail "a stale dev-link authorization is rejected"
 [[ $(cat "$theme/bullet.png") == 'old plymouth bullet.png' ]] || fail "a stale dev-link authorization leaves the live theme unchanged"
-# The refusal has to name the authorization. Validating /etc/unbloarchy.conf walks
+# The refusal has to name the authorization. Validating /etc/omarchy.conf walks
 # its parents and leaves that walk's subject in failure_context, so without
 # restoring ours this refuses with "directory / must be root-owned and not
 # group- or world-writable" -- accusing a directory that passed and pointing the

@@ -1,10 +1,10 @@
 # Themes
 
-Unbloarchy comes with twenty-two beautiful themes. You can select between them via _Style > Theme_ in the Unbloarchy Menu (`Super + Space`) or hop directly to the theme selector using `Super + Ctrl + Shift + Space`.
+Unbloarchy comes with twenty-two beautiful themes. You can select between them via _Appearance > Theme_ in the Unbloarchy Menu (`Super + Space`) or hop directly to the theme selector using `Super + Ctrl + Shift + Space`.
 
 Each theme styles the desktop, terminal, neovim, activity screen (btop), Chromium, and the entire Unbloarchy shell: top bar, menu, notifications, OSD, and the lock screen. (For Obsidian, you must manually select the Unbloarchy theme via _Appearance > Themes_ inside the app).
 
-Themes have a set of background images that you can pick between using `Super + Ctrl + Space`.
+Themes have a set of background images that you can pick between using `Super + Ctrl + W`.
 
 You can find more themes in the [upstream Omarchy theme catalog](https://github.com/omacom-io/omarchy-site) or [make your own theme](43-making-your-own-theme.md).
 
@@ -32,8 +32,8 @@ _Miasma_
  ![hackerman](../themes/hackerman/preview.png)
 _Hackerman_
 
- ![osaka-jade](../themes/osaka-jade/preview.png)
-_Osaka Jade_
+ ![jade-horse](../themes/jade-horse/preview.png)
+_Jade Horse_
 
  ![kanagawa](../themes/kanagawa/preview.png)
 _Kanagawa_
@@ -67,7 +67,7 @@ _White_
 
 ### Unlocks
 
-Themes can also have a custom unlock design, which is used for the boot decryption process. You can select one of these under _Style > Unlock_. They look like this:
+Themes can also have a custom unlock design, which is used for the boot decryption process. You can select one of these under _Appearance > Unlock_. They look like this:
 
  ![catppuccin](../themes/catppuccin/preview-unlock.png)
 _Catppuccin_
@@ -90,6 +90,9 @@ _Gruvbox_
  ![hackerman](../themes/hackerman/preview-unlock.png)
 _Hackerman_
 
+ ![jade-horse](../themes/jade-horse/preview-unlock.png)
+_Jade Horse_
+
  ![kanagawa](../themes/kanagawa/preview-unlock.png)
 _Kanagawa_
 
@@ -104,9 +107,6 @@ _Miasma_
 
  ![nord](../themes/nord/preview-unlock.png)
 _Nord_
-
- ![osaka-jade](../themes/osaka-jade/preview-unlock.png)
-_Osaka Jade_
 
  ![retro-82](../themes/retro-82/preview-unlock.png)
 _Retro 82_

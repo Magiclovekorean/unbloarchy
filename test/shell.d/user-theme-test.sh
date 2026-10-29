@@ -14,7 +14,7 @@ printf '%s\n' "$*" >>"$UNBLOARCHY_TEST_THEME_CALLS"
 SH
 chmod +x "$mock_bin/unbloarchy-theme-set"
 
-for command in unbloarchy-theme-set-pi; do
+for command in unbloarchy-theme-set-pi unbloarchy-theme-set-fcitx5; do
   cat >"$mock_bin/$command" <<'SH'
 #!/bin/bash
 exit 0

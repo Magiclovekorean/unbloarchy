@@ -59,4 +59,4 @@ fi
 mkdir -p "$(dirname "$editor_file")"
 printf '%s\n' "$editor" >"$editor_file"
 
-unbloarchy-notification-send -g $glyph "$name is now the default editor"
+unbloarchy-notification-send -g $glyph "$(unbloarchy-i18n default.editorSet "$name")"

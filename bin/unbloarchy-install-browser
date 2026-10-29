@@ -35,6 +35,7 @@ copy_chromium_flags() {
   cp -f "$UNBLOARCHY_PATH/config/chromium-flags.conf" "$1"
   unbloarchy-install-chromium-copy-url
   unbloarchy-install-chromium-ytdlp
+  unbloarchy-install-video-decode
 }
 
 setup_firefox_wayland() {

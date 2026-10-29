@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# unbloarchy:summary=Select input methods for Japanese, Korean, or Chinese typing
+# unbloarchy:args=[mozc|hangul|pinyin|chewing|cangjie5]
+# unbloarchy:examples=unbloarchy setup input | unbloarchy setup input mozc
+# unbloarchy:requires-sudo=true
+
+set -euo pipefail
+
+if (( $# > 1 )); then
+  echo "Usage: unbloarchy setup input [mozc|hangul|pinyin|chewing|cangjie5]" >&2
+  exit 1
+fi
+
+method=${1:-}
+if [[ -z $method ]]; then
+  /usr/bin/python3 "$UNBLOARCHY_PATH/default/input-methods/typing_setup.py" input
+  exit
+fi
+
+case "$method" in
+  mozc | hangul | pinyin | chewing | cangjie5) ;;
+  *) echo "Unknown input method: $method" >&2; exit 1 ;;
+esac
+
+mapfile -t packages < <(jq -r --arg method "$method" '.[$method].packages[]' "$UNBLOARCHY_PATH/default/input-methods/presets.json")
+unbloarchy-pkg-add "${packages[@]}"
+/usr/bin/python3 "$UNBLOARCHY_PATH/default/input-methods/typing_setup.py" add "$method"
+echo "Input method added. Use Super+I or the Japanese/Korean input key to switch; existing custom Fcitx keys are preserved."

@@ -10,7 +10,7 @@ set -euo pipefail
 
 case "${1:-}" in
 image)
-  image=$(unbloarchy-file-select --title "Pick PNG or SVG for screensaver" --extensions "png svg")
+  image=$(unbloarchy-file-select --title "$(unbloarchy-i18n branding.pickScreensaverImage)" --extensions "png svg")
   if unbloarchy-transcode-ascii "$image" ~/.config/unbloarchy/branding/screensaver.txt; then
     unbloarchy-launch-screensaver force >/dev/null 2>&1
   fi
