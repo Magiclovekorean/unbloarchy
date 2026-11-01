@@ -1,15 +1,13 @@
 name: Sync translations
 
 # Keeps the 49 translations converged with English without blocking it.
-# Extraction runs without credentials and ships a patch; a trusted job
-# vets and publishes it to the i18n-sync branch; one credential-less Muse
-# runner per pending language translates; a single collect job validates
-# everything and land merges it as one pull request. Modeled on
-# omarchy-site's translate-news workflow; keep the Muse install pin in step
-# with it.
+# Extraction ships a patch; a trusted job vets and publishes it to the
+# i18n-sync branch; one runner per pending language translates through
+# OpenRouter; a single collect job validates everything and land merges it
+# as one pull request. Modeled on omarchy-site's translate-news workflow.
 #
-# Repository settings this needs: the MUSE_API_KEY Actions secret (and an
-# optional MUSE_MODEL variable), and an I18N_SYNC_TOKEN secret (a
+# Repository settings this needs: the OPENROUTER_API_KEY Actions secret (and an
+# optional OPENROUTER_MODEL variable, default openrouter/free), and an I18N_SYNC_TOKEN secret (a
 # fine-grained PAT with contents + pull-requests write on this repo) for
 # the bot that opens and merges the pull request. Runs where extraction
 # touched executable code are never merged here; they wait for a human
@@ -89,38 +87,11 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - name: Install Muse
-        run: |
-          mkdir -p "$RUNNER_TEMP/muse-bin"
-          curl --fail --silent --show-error --location https://api.meta.ai/muse-launcher.sh --output "$RUNNER_TEMP/muse-bin/muse"
-          echo "c6db294799a190ca380da274beb3b9c0e160e0da9681a3d364ce8b0e5fa3a4bc  $RUNNER_TEMP/muse-bin/muse" | sha256sum --check
-          chmod +x "$RUNNER_TEMP/muse-bin/muse"
-          MUSE_LAUNCHER_INSTALL=1 "$RUNNER_TEMP/muse-bin/muse"
-          echo "MUSE_NO_AUTO_UPDATE=1" >> "$GITHUB_ENV"
-          echo "$RUNNER_TEMP/muse-bin" >> "$GITHUB_PATH"
-      - name: Configure Muse
-        env:
-          MUSE_API_KEY: ${{ secrets.MUSE_API_KEY }}
-        run: |
-          python3 - <<'PY'
-          import json, os
-          from pathlib import Path
-          key = os.environ.get('MUSE_API_KEY')
-          if not key:
-              raise SystemExit('Add the MUSE_API_KEY Actions secret to enable automatic translations.')
-          config = Path.home() / '.config/muse'
-          config.mkdir(parents=True, exist_ok=True)
-          auth = config / 'auth.json'
-          auth.write_text(json.dumps({'schema_version': 1, 'providers': {'meta': {'api_key': key}}}))
-          auth.chmod(0o600)
-          PY
       - name: Extract embedded English into the catalogs
         env:
-          MUSE_MODEL: ${{ vars.MUSE_MODEL || 'muse-spark-1.3-contributor' }}
-        run: python3 scripts/i18n-sync.py extract-apply --model "$MUSE_MODEL"
-      - name: Remove Muse credentials
-        if: always()
-        run: rm -f "$HOME/.config/muse/auth.json"
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'openrouter/free' }}
+        run: python3 scripts/i18n-sync.py extract-apply --model "$OPENROUTER_MODEL"
       - name: Package extraction as a patch
         run: |
           mkdir -p "$RUNNER_TEMP/extraction"
@@ -265,37 +236,13 @@ jobs:
         with:
           ref: i18n-sync
           persist-credentials: false
-      - name: Install Muse
-        run: |
-          mkdir -p "$RUNNER_TEMP/muse-bin"
-          curl --fail --silent --show-error --location https://api.meta.ai/muse-launcher.sh --output "$RUNNER_TEMP/muse-bin/muse"
-          echo "c6db294799a190ca380da274beb3b9c0e160e0da9681a3d364ce8b0e5fa3a4bc  $RUNNER_TEMP/muse-bin/muse" | sha256sum --check
-          chmod +x "$RUNNER_TEMP/muse-bin/muse"
-          MUSE_LAUNCHER_INSTALL=1 "$RUNNER_TEMP/muse-bin/muse"
-          echo "MUSE_NO_AUTO_UPDATE=1" >> "$GITHUB_ENV"
-          echo "$RUNNER_TEMP/muse-bin" >> "$GITHUB_PATH"
-      - name: Configure Muse
-        env:
-          MUSE_API_KEY: ${{ secrets.MUSE_API_KEY }}
-        run: |
-          python3 - <<'PY'
-          import json, os
-          from pathlib import Path
-          key = os.environ.get('MUSE_API_KEY')
-          if not key:
-              raise SystemExit('Add the MUSE_API_KEY Actions secret to enable automatic translations.')
-          config = Path.home() / '.config/muse'
-          config.mkdir(parents=True, exist_ok=True)
-          auth = config / 'auth.json'
-          auth.write_text(json.dumps({'schema_version': 1, 'providers': {'meta': {'api_key': key}}}))
-          auth.chmod(0o600)
-          PY
       - name: Translate this language's pending units
         continue-on-error: true
         env:
-          MUSE_MODEL: ${{ vars.MUSE_MODEL || 'muse-spark-1.3-contributor' }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'openrouter/free' }}
           LOCALE: ${{ matrix.locale }}
-        run: python3 scripts/i18n-sync.py translate --locale "$LOCALE" --concurrency 2 --model "$MUSE_MODEL" --done-file "$RUNNER_TEMP/done.json"
+        run: python3 scripts/i18n-sync.py translate --locale "$LOCALE" --concurrency 2 --model "$OPENROUTER_MODEL" --done-file "$RUNNER_TEMP/done.json"
       - name: Package only this language's translations
         env:
           LOCALE: ${{ matrix.locale }}
@@ -308,9 +255,6 @@ jobs:
             ${{ runner.temp }}/translations/*.done.json
           retention-days: 3
           if-no-files-found: error
-      - name: Remove Muse credentials
-        if: always()
-        run: rm -f "$HOME/.config/muse/auth.json"
 
   # Collects every language's patch and validates the result, with no
   # credentials: the sync branch can carry an unreviewed extraction, and the
