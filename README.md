@@ -37,8 +37,14 @@ git clone https://github.com/omacom/omarchy-pkgs.git
 From the `omarchy-iso` directory, run the build with local source:
 
 ```bash
-cd omarchy-iso
+cd unbloarchy-iso
 ./bin/omarchy-iso-make --local-source ../unbloarchy ../omarchy-pkgs
+
+```
+If you do not want to compile all pkgs, you can use
+```bash
+cd unbloarchy-iso
+./bin/omarchy-iso-make --local-config ../unbloarchy
 ```
 
 Output goes into `./release/`.
