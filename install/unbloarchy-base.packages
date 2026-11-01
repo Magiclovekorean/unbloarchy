@@ -1,9 +1,9 @@
 # Unbloarchy core package list pacstrapped by the ISO.
 # The ISO builder also reads this file when constructing the offline mirror.
-
-aether
+# Stock power-profiles-daemon has no cppc_cpufreq driver, so profiles do nothing
+# on ARM laptops. Back to stock once upstream merges MR !236 and !239.
+# OWE owns desktop video backgrounds and feeds the lock screen its frames.
 alsa-utils
-asdcontrol
 avahi
 base-devel
 bash-completion
@@ -15,12 +15,10 @@ bolt
 brightnessctl
 btop
 chromium
-cliamp
 cups
 cups-filters
 cups-pk-helper
 ddcutil
-disktree-bin
 docker
 docker-buildx
 docker-compose
@@ -47,7 +45,6 @@ fontconfig
 foot
 fzf
 git
-gliff
 gnome-keyring
 gnome-themes-extra
 grim
@@ -56,11 +53,7 @@ gum
 gvfs-mtp
 gvfs-nfs
 gvfs-smb
-herdr
-hype
-hyprland
 hyprland-guiutils
-hyprland-preview-share-picker
 hyprpicker
 hyprsunset
 imagemagick
@@ -77,13 +70,10 @@ libsecret
 libvips
 libyaml
 libreoffice-fresh
-localsend
 lua51
 luarocks
 man-db
 mariadb-libs
-mise-bin
-monologue
 moonlight-qt
 mpv
 mpv-mpris
@@ -95,22 +85,8 @@ noto-fonts-cjk
 noto-fonts-emoji
 nss-mdns
 nvim
-obsidian
-omacalc
-omacut
-omawrite
-omarchy-nvim
-omarchy-hyprland-titlebars
-# Stock power-profiles-daemon has no cppc_cpufreq driver, so profiles do nothing
-# on ARM laptops. Back to stock once upstream merges MR !236 and !239.
-omarchy-power-profiles-daemon
-omarchy-screensaver
-omasnap
-# OWE owns desktop video backgrounds and feeds the lock screen its frames.
-owe
 pacman-contrib
 pamixer
-pinta
 plocate
 plymouth
 postgresql-libs
@@ -121,20 +97,16 @@ qt6-declarative
 qt6-multimedia
 qt6-svg
 qt6-wayland
-ttfx
 qemu-user-static-binfmt
 qrencode
 qt6-imageformats
-quickshell
 ripgrep
 rtkit
 ruby
 sddm
-signed
 slurp
 socat
 starship
-superwhisper-bin
 sushi
 system-config-printer
 tesseract
@@ -142,17 +114,11 @@ tesseract-data-eng
 tldr
 tree-sitter-cli
 tmux
-tobi-try
-ttf-ia-writer
-ttf-jetbrains-mono-nerd-basic
-tzupdate
 udiskie
 ufw
-ufw-docker
 unzip
 usage
 uwsm
-vi
 whois
 wireless-regdb
 wireplumber
@@ -162,8 +128,6 @@ woff2-font-awesome
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 xdg-terminal-exec
-yaru-icon-theme
-yay
 yt-dlp
 zbar
 zoxide
