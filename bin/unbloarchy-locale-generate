@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+helper="$script_dir/omarchy-locale-generate"
+
+if [[ ! -x $helper ]]; then
+  echo "Missing locale helper: $helper" >&2
+  exit 127
+fi
+
+exec "$helper" "$@"
